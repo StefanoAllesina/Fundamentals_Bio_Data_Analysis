@@ -1,5 +1,8 @@
 Materials for the class *Fundamentals of Biological Data Analysis*, by Dmitry Kondrashov & Stefano Allesina.
 
+## Useful info
+
+
 ## Useful links
 
 1. Tutorials on `R` and `RStudio`
@@ -20,5 +23,10 @@ Materials for the class *Fundamentals of Biological Data Analysis*, by Dmitry Ko
    * [Data Transformation Cheat Sheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
    * [Data Import Cheat Sheet](https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf)
 1. Repositories for biological data
-
+   * [Dryad](https://datadryad.org/)
+   * [figshare](https://figshare.com/)
+   * [GenBank](https://www.ncbi.nlm.nih.gov/genbank/)
+   * [Good list of discipline-specific](https://www.nature.com/sdata/policies/repositories)
+   
+   
 
