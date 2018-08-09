@@ -26,7 +26,7 @@ Materials for the class *Fundamentals of Biological Data Analysis*, by Dmitry Ko
    * [Dryad](https://datadryad.org/)
    * [figshare](https://figshare.com/)
    * [GenBank](https://www.ncbi.nlm.nih.gov/genbank/)
-   * [Good list of discipline-specific](https://www.nature.com/sdata/policies/repositories)
+   * [Good list of discipline-specific repos](https://www.nature.com/sdata/policies/repositories)
    
    
 
