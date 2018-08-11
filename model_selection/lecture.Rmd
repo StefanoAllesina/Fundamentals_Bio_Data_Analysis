@@ -1,0 +1,72 @@
+---
+title: "Model Selection"
+author: "Stefano Allesina"
+date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
+output:
+  html_document:
+    theme: cosmo
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+urlcolor: blue
+---
+
+```{r knitr, echo=FALSE}
+knitr::opts_chunk$set(
+  eval      = FALSE,
+  comment   = "#",
+  results   = "hold",
+  # collapse  = TRUE,
+  fig.align = "center")
+```
+
+> Cchiù longa è a pinsata cchiù grossa è a minchiata 
+>
+> [the longer the thought, the bigger the bullshit] 
+> 
+> --- Sicilian proverb
+
+
+## Goal
+
+For any data you might want to fit, several competing statistical models seem to do a fairly good job. But which model should you then use? 
+
+The goal of model selection is to provide you with a disciplined way to choose among competing models. While there is not consensus on a single technique to perform model selection (we will examine some of the alternative paradigms below), all techniques are inspired by Occam's razor: given models of similar explanatory power, choose the simplest.
+
+But what does "simplest" mean? Measuring a model's "complexity" is far from trivial, hence the different schools of thought. Some approaches simply count the number of free parameters, and penalize models with more parameters; others take into account how much each parameter should be "fine-tuned" to fit the data; other approaches are based on entirely different premises.
+
+But why should you choose the simplest model? First, simpler models are easier to analyze, so that for example you could make analytical headway into the mechanics of the process you want to model; simpler models are also considered more beautiful. Second, you want to avoid *overfitting*: each biological data set---however carefully crafted---is noisy, and you want to fit the signal, not the noise. If you include too much flexibility in your model, you will get an excellent fit for the specific data set, but you will be unable to fit other data sets for which your model should also apply.
+
+## Approaches based on maximum-likelihoods
+
+We start by examining models that are based on maximum likelihoods. For each data set and model, you find the best fitting parameters (those maximizing the likelihood).  The parameters are said to be at their maximum-likelihood estimate. 
+
+Some notation:
+
+* $D \to$ the observed data
+* $\theta \to$ the free parameter(s) of the statistical model
+* $L(\theta | D) \to$ the likelihood function, read "the likelihood of $\theta$ given the data"
+* $\hat{\theta} \to$ the maximum-likelihood estimates of the parameters
+* $\mathcal L(\theta | D) = \log L(\theta | D) \to$ the log-likelihood
+* $L(\hat{\theta} | D) \to$ the maximum likelihood
+
+
+### Likelihood-ratio tests
+
+### AIC
+
+### Other information-based approaches
+
+## Bayesian approaches
+
+### Marginal likelihoods
+
+## Other approaches
+
+### Cross validation
+
+* **Pros**: Easy to use; quite general; asymptotically equivalent to AIC.
+* **Cons**: Sensitive to how the data was split (you can average over multiple partitions); need much data (instability in parameter estimates due to "data loss")
+
+### Minimum description length
