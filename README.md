@@ -1,7 +1,13 @@
 Materials for the class *Fundamentals of Biological Data Analysis*, by Dmitry Kondrashov & Stefano Allesina.
 
 ## Useful info
-
+### Requirements
+- `R` and `RStudio`
+- The packages
+  * `tidyverse` (data wrangling and visualization)
+  * `httr` (download files from the internet; installed with tidyverse)
+  * `readxl` (read Excel files; installed with tidyverse)
+  
 
 ## Useful links
 
