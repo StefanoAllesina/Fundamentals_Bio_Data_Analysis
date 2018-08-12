@@ -14,7 +14,7 @@ urlcolor: blue
 
 ```{r knitr, echo=FALSE}
 knitr::opts_chunk$set(
-  eval      = FALSE,
+  eval      = TRUE,
   comment   = "#",
   results   = "hold",
   # collapse  = TRUE,
@@ -30,37 +30,90 @@ knitr::opts_chunk$set(
 
 ## Goal
 
-For any data you might want to fit, several competing statistical models seem to do a fairly good job. But which model should you then use? 
+For any data you might want to fit, several competing statistical models seem to do a fairly good job. But which model should you use then? 
 
-The goal of model selection is to provide you with a disciplined way to choose among competing models. While there is not consensus on a single technique to perform model selection (we will examine some of the alternative paradigms below), all techniques are inspired by Occam's razor: given models of similar explanatory power, choose the simplest.
+The goal of model selection is to provide you with a disciplined way to choose among competing models. While there is no consensus on a single technique to perform model selection (we will examine some of the alternative paradigms below), all techniques are inspired by Occam's razor: given models of similar explanatory power, choose the simplest.
 
 But what does "simplest" mean? Measuring a model's "complexity" is far from trivial, hence the different schools of thought. Some approaches simply count the number of free parameters, and penalize models with more parameters; others take into account how much each parameter should be "fine-tuned" to fit the data; other approaches are based on entirely different premises.
 
-But why should you choose the simplest model? First, simpler models are easier to analyze, so that for example you could make analytical headway into the mechanics of the process you want to model; simpler models are also considered more beautiful. Second, you want to avoid *overfitting*: each biological data set---however carefully crafted---is noisy, and you want to fit the signal, not the noise. If you include too much flexibility in your model, you will get an excellent fit for the specific data set, but you will be unable to fit other data sets for which your model should also apply.
+But why should you choose the simplest model? First, simpler models are easier to analyze, so that for example you could make analytical headway into the mechanics of the process you want to model; simpler models are also considered more beautiful. Second, you want to avoid *overfitting*: each biological data set---however carefully crafted---is noisy, and you want to fit the signal, not the noise. If you include too much flexibility in your model, you will get an excellent fit for the specific data set, but you will be unable to fit other data sets to which your model should also apply.
 
 ## Approaches based on maximum-likelihoods
 
-We start by examining models that are based on maximum likelihoods. For each data set and model, you find the best fitting parameters (those maximizing the likelihood).  The parameters are said to be at their maximum-likelihood estimate. 
+We start by examining methods that are based on maximum likelihoods. For each data set and model, you find the best fitting parameters (those maximizing the likelihood).  The parameters are said to be at their maximum-likelihood estimate. 
 
 Some notation:
 
 * $D \to$ the observed data
 * $\theta \to$ the free parameter(s) of the statistical model
 * $L(\theta | D) \to$ the likelihood function, read "the likelihood of $\theta$ given the data"
-* $\hat{\theta} \to$ the maximum-likelihood estimates of the parameters
+* $\hat{\theta} \to$ the maximum-likelihood estimates (m.l.e.) of the parameters
 * $\mathcal L(\theta | D) = \log L(\theta | D) \to$ the log-likelihood
 * $L(\hat{\theta} | D) \to$ the maximum likelihood
 
-
 ### Likelihood-ratio tests
+
+#### Two models with no free parameters
+
+#### Two nested models
+
+Nested means that model $\mathcal M_1$ has parameters $\theta_1$, and model $\mathcal M_2$ has parameters $\theta_2$, such that $\theta_1 \in \theta_2$ --- by setting some of the parameters of $\mathcal M_2$, we recover $\mathcal M_1$.
+
+For example, suppose we want to model the height of trees. We measure the response variable (height of tree $i$, $h_i$) as well as the girth ($g_i$). We actually have a data set that ships with `R` that contains exactly this type of data:
+
+```{r, message=FALSE}
+library(tidyverse)
+data(trees)
+head(trees)
+```
+
+A simple model is one that says that all tree heights have heights taken from a Gaussian distribution with a given mean. In the context of linear regression, we can write the model $\mathcal M_0$:
+
+$$
+h_i = \theta_1 + \epsilon_i
+$$
+where we assume that the errors $\epsilon_i \overset{\text{iid}}{\sim} N(0, \sigma^2)$. Now fit the model, obtaining $\hat{\theta_1}$, and compute the maximum log-likelihood $\mathcal L_0(\hat{\theta_1} | h)$. 
+
+In `R`, we would call:
+```{r}
+M0 <- lm(data = trees, Height ~ 1.) # only intercept
+# the m.l.e. of theta_0
+theta1_M0 <- M0$coefficients[1]
+theta1_M0
+# log likelihood
+logLik(M0)
+```
+
+We can build a more complex model in which the height also depends on girth ($\mathcal M_1$):
+
+$$
+h_i = \theta_1 + \theta_2 g_i + \epsilon_i
+$$
+as for model $\mathcal M_0$, fit the parameters (note that $\hat{\theta_1}$ for model $\mathcal M_0$ will in general be different from $\hat{\theta_1}$ for model $\mathcal M_1$), and compute $\mathcal L_1(\hat{\theta_1},\hat{\theta_2} | h)$. These two models are nested, as setting $\theta_2 = 0$  we recover $\mathcal M_0$.
+
+In `R`:
+```{r}
+M1 <- lm(data = trees, Height ~ Girth) # intercept and slope
+theta1_M1 <- M1$coefficients[1]
+theta2_M1 <- M1$coefficients[2]
+# theta1 takes a different value:
+print(c(theta1_M0, theta1_M1))
+# the log likelihood should improve
+logLik(M1)
+```
+
+Which model should we use? You can see that adding an extra parameter improved the likelihood somewhat.
+
 
 ### AIC
 
-### Other information-based approaches
+### Other information-based criteria
 
 ## Bayesian approaches
 
 ### Marginal likelihoods
+
+### Bayes factors
 
 ## Other approaches
 

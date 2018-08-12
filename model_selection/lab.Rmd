@@ -82,7 +82,14 @@ max_likelihood_Poisson <- find_lambda$value
 Using Poisson regression
 
 ```{r}
-summary(glm(dat$litter_size~1., family = "poisson"))
+summary(glm(dat$litter_size ~ 1., family = "poisson"))
 exp(1.67730)
+```
+
+Cleaning messy output with `broom`
+```{r}
+library(broom)
+model1 <- glm(dat$litter_size ~ 1., family = "poisson")
+model1_fit <- tidy(model1)
 ```
 
