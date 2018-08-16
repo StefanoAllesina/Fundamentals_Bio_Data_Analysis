@@ -1,6 +1,6 @@
 ---
 title: "Model Selection"
-author: "Stefano Allesina"
+author: "Dmitry Kondrashov & Stefano Allesina"
 date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
 output:
   html_document:
@@ -36,7 +36,7 @@ The goal of model selection is to provide you with a disciplined way to choose a
 
 But what does "simplest" mean? Measuring a model's "complexity" is far from trivial, hence the different schools of thought. Some approaches simply count the number of free parameters, and penalize models with more parameters; others take into account how much each parameter should be "fine-tuned" to fit the data; other approaches are based on entirely different premises.
 
-But why should you choose the simplest model? First, simpler models are easier to analyze, so that for example you could make analytical headway into the mechanics of the process you want to model; simpler models are also considered more beautiful. Second, you want to avoid *overfitting*: each biological data set---however carefully crafted---is noisy, and you want to fit the signal, not the noise. If you include too much flexibility in your model, you will get an excellent fit for the specific data set, but you will be unable to fit other data sets to which your model should also apply.
+But why should you choose the simplest model? First, simpler models are easier to analyze, so that for example you could make analytical headway into the mechanics of the process you want to model; simpler models are also considered more beautiful. Second, you want to avoid *overfitting*: each biological data set---however carefully crafted---is noisy, and you want to fit the signal, not the noise. If you include too much flexibility in your model, you will get what looks like an excellent fit for the specific data set, but you will be unable to fit other data sets to which your model should also apply.
 
 ## Approaches based on maximum-likelihoods
 
@@ -53,11 +53,13 @@ Some notation:
 
 ### Likelihood-ratio tests
 
-#### Two models with no free parameters
+These approaches contrast two models by taking the ratio of the maximum likelihoods of the sample data based on the models (i.e., when you evaluate the likelihood by setting the parameters to their m.l.e.). The two models are usually termed the *null* model (i.e., the "simpler" model), and the *alternative* model. The ratio of $L_a / L_n$ tells us how many times more likely the data are under the alternative model vs. the null model. We want to determine whether this ratio is large enough to reject the null model and favor the alternative.
+
+Likelihood-ratio is especially easy to perform for *nested* models.
 
 #### Two nested models
 
-Nested means that model $\mathcal M_1$ has parameters $\theta_1$, and model $\mathcal M_2$ has parameters $\theta_2$, such that $\theta_1 \in \theta_2$ --- by setting some of the parameters of $\mathcal M_2$, we recover $\mathcal M_1$.
+*Nested* means that model $\mathcal M_1$ has parameters $\theta_1$, and model $\mathcal M_2$ has parameters $\theta_2$, such that $\theta_1 \in \theta_2$ --- by setting some of the parameters of $\mathcal M_2$ to particular values, we recover $\mathcal M_1$.
 
 For example, suppose we want to model the height of trees. We measure the response variable (height of tree $i$, $h_i$) as well as the girth ($g_i$). We actually have a data set that ships with `R` that contains exactly this type of data:
 
@@ -67,7 +69,12 @@ data(trees)
 head(trees)
 ```
 
-A simple model is one that says that all tree heights have heights taken from a Gaussian distribution with a given mean. In the context of linear regression, we can write the model $\mathcal M_0$:
+Let's look at the distribution of three heights:
+```{r}
+trees %>% ggplot(aes(x = Height)) + geom_histogram(binwidth = 3)
+```
+
+A possible simple model is one that says that all tree heights have heights taken from a Gaussian distribution with a given mean. In the context of linear regression, we can write the model $\mathcal M_0$:
 
 $$
 h_i = \theta_1 + \epsilon_i
@@ -84,7 +91,18 @@ theta1_M0
 logLik(M0)
 ```
 
-We can build a more complex model in which the height also depends on girth ($\mathcal M_1$):
+Now let's plot the height of the trees vs. their girth:
+```{r}
+trees %>% ggplot(aes(x = Girth, y = Height)) + 
+  geom_point()
+```
+
+And compute their correlation:
+```{r}
+cor(trees$Girth, trees$Height)
+```
+
+Given the positive correlation between girth and height, we can build a more complex model in which the height also depends on girth ($\mathcal M_1$):
 
 $$
 h_i = \theta_1 + \theta_2 g_i + \epsilon_i
@@ -104,6 +122,27 @@ logLik(M1)
 
 Which model should we use? You can see that adding an extra parameter improved the likelihood somewhat.
 
+Enter the likelihood-ratio test. We want to know whether it's worth using the more complex model, and to do this we need to calculate a likelihood-ratio statistics. We're helped by *Wilks' theorem*: as the sample size $n \to \infty$, the test statistics $2 \log(L_1 / L_0)$ is asymptotically $\chi^2$ distributed with degrees of freedom equal to the difference in the number of parameters between $\mathcal M_1$ and $\mathcal M_0$.
+
+While there are many caveats [^1] this method is commonly used in practice.
+```{r}
+# 2 * log-likelihood ratio
+lrt <- as.numeric(2 * (logLik(M1) - logLik(M0)))
+print("2 log(L1 / L0)")
+print(lrt)
+
+# difference in parameters
+df0 <- length(M0$coefficients)
+df1 <- length(M1$coefficients)
+k <- df1 - df0
+print("Number of extra parameters")
+print(k)
+
+# calculate (approximate) p-value
+res <- pchisq(lrt, k, lower.tail = FALSE)
+print(paste("p-value using Chi^2 with", k, "degrees of freedom"))
+print(round(res, 4))
+```
 
 ### AIC
 
@@ -123,3 +162,7 @@ Which model should we use? You can see that adding an extra parameter improved t
 * **Cons**: Sensitive to how the data was split (you can average over multiple partitions); need much data (instability in parameter estimates due to "data loss")
 
 ### Minimum description length
+
+
+
+[^1]: see Pinheiro, José C.; Bates, Douglas M. (2000), Mixed-Effects Models in S and S-PLUS, Springer-Verlag, pp. 82–93

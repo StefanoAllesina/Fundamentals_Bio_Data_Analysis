@@ -9,7 +9,7 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="Stefano Allesina" />
+<meta name="author" content="Dmitry Kondrashov &amp; Stefano Allesina" />
 
 
 <title>Model Selection — Data lab</title>
@@ -217,7 +217,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Model Selection — Data lab</h1>
-<h4 class="author"><em>Stefano Allesina</em></h4>
+<h4 class="author"><em>Dmitry Kondrashov &amp; Stefano Allesina</em></h4>
 <h4 class="date"><em>Fundamentals of Biological Data Analysis – BIOS 26318</em></h4>
 
 </div>
@@ -290,7 +290,7 @@ find_lambda</code></pre>
 <pre class="r"><code>lambda_hat &lt;- find_lambda$par
 max_likelihood_Poisson &lt;- find_lambda$value</code></pre>
 <p>Using Poisson regression</p>
-<pre class="r"><code>summary(glm(dat$litter_size~1., family = &quot;poisson&quot;))</code></pre>
+<pre class="r"><code>summary(glm(dat$litter_size ~ 1., family = &quot;poisson&quot;))</code></pre>
 <pre><code># 
 # Call:
 # glm(formula = dat$litter_size ~ 1, family = &quot;poisson&quot;)
@@ -314,6 +314,10 @@ max_likelihood_Poisson &lt;- find_lambda$value</code></pre>
 # Number of Fisher Scoring iterations: 4</code></pre>
 <pre class="r"><code>exp(1.67730)</code></pre>
 <pre><code># [1] 5.351089</code></pre>
+<p>Cleaning messy output with <code>broom</code></p>
+<pre class="r"><code>library(broom)
+model1 &lt;- glm(dat$litter_size ~ 1., family = &quot;poisson&quot;)
+model1_fit &lt;- tidy(model1)</code></pre>
 </div>
 </div>
 
