@@ -1,0 +1,167 @@
+---
+title: "Week 3 exercises"
+author: "Dmitry Kondrashov"
+date: "8/15/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Part 1: Independence hypothesis testing for generated data
+
+In this section you will generate random numbers to produce a simulated 2 by 2 contingency table. Suppose that you have two groups of people: one with genotype A and the other with genotype B. The question is: does one of the genotypes make a phenotype (e.g. disease) more likely? In other words, are the variables of genotype and phenotype linked?
+
+The script below generates a data set of people with genotype A and genotype B by simulating random sampling with a given probability. This is done using the binomial raandom number generator to produce a sample.size of 0s and 1s with a specifed probability (probA and probB) of 1 (representing disease):
+
+```{r} 
+sample.size <- 100 
+probA <- 0.9 # probability of disease for genotype A
+probB <- 0.3 # probability of disease for genotype B
+dis.genA <- rbinom(sample.size,1,probA) # generate se
+dis.genB <- rbinom(sample.size,1,probB)
+```
+
+This results in two vectors, dis.genA and dis.genB containing 1s (disease) and 0s (healthy). Are the two phenotypes linked to disease? We know the true answer, but can we tell from the data set? The following script takes these two data sets, assigns the counts to a data matix, and runs the chi-squared test for independence, then prints out all the results (stored in variable chisq.result) and the p-value (in chisq.result$p.value)
+
+```{r}
+data.mat <- matrix(c(table(dis.genA),table(dis.genB)),nrow=2,ncol=2) # assign data matrix
+chisq.result <- chisq.test(data.mat) # run chi-squared test
+print(chisq.result)
+print(chisq.result$p.value)
+```
+You see that the chi-squared test return a low p-value, indicating that it is very unlikely that the two random variables (genotype and disease) are independent, based on the data set.
+
+This script plots the histograms of the two data sets in the same window: red shows the distribution of healthy and diseased in genotype A group and blue shows the distribution for genotype B group, and purple indicates where they overlap.
+
+```{r}
+hist(dis.genA, col=rgb(1,0,0,0.5), breaks = c(-0.1,0.5, 1.1), xlab = 'left - healthy, right - disease', main = 'Frequency of disease in genotype A (red) and genotype B (blue)')
+hist(dis.genB, col=rgb(0,0,1,0.5), breaks = c(-0.1,0.5, 1.1), add=TRUE)
+```
+
+
+In tasks 2 through 4 you will be asked to report how many p-values in a vector are below a certain threshold. There is an efficient way to calculate how many values are below a certain value using the logical test < and the sum() function. For example, the following script calculates and prints how many elements of the assigned vector p.vector are below 0.5.
+
+```{r}
+p.vector <- c(0.2, 0.01, 0.9, 0.03, 0.67)
+num.below <- sum(p.vector < 0.5)
+print(num.below)
+```
+
+
+1. Use the scripts above to generate data sets for genotype A and genotype B of 50 patients with 0.5 probability of disease for both data sets. Plot the histograms of both data sets and report whether they look similar. Place the counts into a data matrix and run a chi-squared test on it. Does the test lead to rejection for the independence hypothesis at 0.1 significance level? How about at 0.05? Based on how you generated the data sets, is the hypothesis actually true? Did the chi-squared test get the result right?
+  
+```{r}
+  # YOUR CODE HERE
+```
+
+YOUR ANSWERS GO HERE 
+
+2. Repeat the code in the first task 100 times by adding a for loop around it. In each loop iteration you generate the two datasets as before (both with probability of disease of 0.5), place the counts in a data matrix and perform a chi-squared test for independence of 'genotype' and 'phenotype' (disease). Report how many of the 100 chi-squared tests result in rejection of the null hypothesis at the 0.1 and 0.05 significance level by using *test.output$p.value* to put the p-values in a vector *p.vec* and report how many of the p-values are less than the significance level a (the command *sum(p.vec<a)* will do this.) Based on how you generated the datasets, how many of the test conclusions are **wrong** for each significance level? Explain whether the definition of p-value applies in this situation.
+
+```{r}
+  # YOUR CODE HERE
+```
+
+YOUR ANSWERS GO HERE 
+
+3. Now let us change the two data sets so they are different, and thus the data are not independent. For the first data set (with genotype A), let the probability of disease be 0.4 and for the second data set (genotype B) let disease occur with probability 0.6. Count how many of the 100 chi-squared tests result in rejecting the null hypothesis at the 0.1 and 0.05 significance level.  Based on how you generated the datasets, how many of the test conclusions are **wrong** for each significance level? Explain whether the definition of p-value applies in this situation.
+
+```{r}
+  # YOUR CODE HERE
+```
+
+YOUR ANSWERS GO HERE 
+
+4. Finally, let's make it really easy for the chi-squared test, and generate data from very different distributions. For the first data set (with genotype A), let the probability of disease be 0.2 and for the second data set (genotype B) let disease occur with probability 0.8. Count how many of the 100 chi-squared tests result in rejecting the null hypothesis at the 0.1 and 0.05 significance level. Based on how you generated the datasets, how many of the test conclusions are **wrong** for each significance level? Explain whether the definition of p-value applies in this situation.
+
+```{r}
+  # YOUR CODE HERE
+```
+
+YOUR ANSWERS GO HERE 
+
+
+
+## Part 3: Effect of prior probability on predictive value of a test
+
+This simulation illustrates the paper by Ioannidis ``Why most published research findings are wrong.''  The basic idea is that if a hypothesis has a small prior probability of being true (e.g. looking through an entire genome for SNPs that are linked with a disease) then a positive result has a low predictive value. We will simulate this by controlling the *prior probability* of the hypothesis being true and the *sensitivity* and *specificity* of the test.  
+
+The following script uses a random number to decide whether a particular SNP is linked, according to a prior probability and the simulates running a hypothesis test for linkage of SNP and disease with a sensitivity (rate of true positive) and specificity (rate of true negative). It checks if the null hypothesis is true (link==0) or false (link==1) and randomly decides if the test gets the correct result or not.
+
+```{r}
+spec <- 0.7 # set specificity
+sens <- 0.8 # set sensitivity
+prior.prob <- 0.1 # set the prior probability of the SNP being linked to disease
+FP <- 0
+TN <- 0
+FN <- 0
+TP <- 0
+
+decider <- runif(1) # generate a uniform random number between 0 and 1
+if (decider < prior.prob) { # if the random number is less than prob
+  link <- 1 # SNP is linked to disease
+} else { 
+  link <- 0 # SNP is independent of disease
+}
+
+decider <- runif(1) # generate a uniform random number between 0 and 1
+if (link==1) { # SNP is linked to disease (null is false)
+  if (decider < sens) { # the test correctly identifies the linkage
+    TP <- TP+1 # increment the number of true positives
+  } else {
+    FN <- FN+1 # increment the number of false negatives
+  }  
+} else { # SNP is not linked (null is true)
+  if (decider < spec) { # the test correctly says there is no linkage
+    TN <- TN+1 # increment the number of true negatives
+  } else { 
+    FP <- FP+1 # increment the number of true negativess
+  }
+}
+print(paste("The number of true positives is",TP))
+print(paste("The number of true negatives is",TN))
+print(paste("The number of false positives is",FP))
+print(paste("The number of false negatives is",FN))
+```
+
+However, both of the scripts above contain errors. Identify and fix the mistakes before proceeding to the rest of the lab assignment.
+
+
+1. Use the provided script to randomly simulate drawing SNPs with the prior probability 0.01 that a SNP is linked to the disease to simulate the hypothesis test. Use the same sensitivity and specificity values as above and use a for loop to run the script through 1000 tests, each with a different SNP. Based on your counts of the different test outcomes, report the positive predictive value of the test (the probability that the SNP is linked to disease, given that the test result is positive, or the fraction of true positives out of all positives).
+
+```{r}
+# YOUR CODE HERE
+```
+  
+YOUR ANSWERS GO HERE 
+ 
+2. Let us investigate the effect of changing the prior probability of the hypothesis being true. Change the prior probability to 0.1, use the same sensitivity and specificity values as before, and run the loop for 1000 trials and report the positive predictive value of the test. Now change the prior probability to 0.001, use the same sensitivity and specificity values as before, and run the loop for 1000 trials and report the positive predictive value of the test. How does the prior probability affect the positive predictive value? What implication does this have for testing a large number of hypotheses with low prior probabilities, such as thousands of SNPs in the human genome?
+
+```{r}
+# YOUR CODE HERE
+```
+  
+YOUR ANSWERS GO HERE 
+ 
+  
+3. Let us investigate the effect of changing the sensitivity and specificity of the test. Set the prior probability to 0.1 and report the PPV for the following combinations of sensitivity and specificity, based on 1000 simulated tests:
+
+sensitivity 0.9, specificity 0.9
+sensitivity 0.99, specificity 0.9
+sensitivity 0.9, specificity 0.99
+sensitivity 0.9, specificity 0.8
+sensitivity 0.8, specificity 0.9
+
+Which parameter (sensitivity or specificity) has the largest effect of the positive predictive value?
+
+```{r}
+# YOUR CODE HERE
+```
+  
+YOUR ANSWERS GO HERE 
+ 
+
+
+
