@@ -1,0 +1,61 @@
+---
+title: "Week 1: basics of data and its visualization"
+author: "Dmitry Kondrashov & Stefano Allesina"
+date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
+output:
+  html_document:
+    theme: cosmo
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+urlcolor: blue
+---
+
+```{r knitr, echo=FALSE}
+knitr::opts_chunk$set(
+  eval      = TRUE,
+  comment   = "#",
+  results   = "hold",
+  # collapse  = TRUE,
+  fig.align = "center")
+```
+
+## Reading:  Chapter 1 of Hadley and Wickham
+
+
+
+# Logistics and goals of the course
+
+
+# Review of sample spaces and random variables
+
+A random experiment can result in a range of outcomes (at least two and possibly infinitely many.) The collection of all outcomes of an experiment is called its sample space or probability space.
+
+Example:
+
+The result of a measurement made from a random experiment is called a random variable. Sometimes the measurement simply reports the outcome, but usually it reports some aspect of the outcome and so several outcomes can have the same value of the random variable. The random variable can then be seen as condensing the sample space into a smaller range of values (numeric or categorical).
+
+Example:
+
+# Distributions, means, and variances: probability
+
+
+# Data as samples from distributions: statistics
+
+
+# Students introduce their own data sets
+
+
+# Structure of data sets, variables and observations, data types
+
+
+# Solicit suggestions for questions that they would like to address using their data sets
+
+
+
+
+
+
+
+
