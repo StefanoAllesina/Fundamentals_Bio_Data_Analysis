@@ -1,5 +1,5 @@
 ---
-title: "ENTER TITLE"
+title: "Week 2: distributions and their properties"
 author: "Dmitry Kondrashov & Stefano Allesina"
 date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
 output:
@@ -21,4 +21,26 @@ knitr::opts_chunk$set(
   fig.align = "center")
 ```
 
-## Goal
+
+# Conditional probability: restriction of sample space
+Examples: Genotype (A or B) and Phenotype (Healthy or Disease) Genotype (AA, AA, Aa) and Phenotype (Pink or White)
+
+Lesson: $P(X | Y ) \neq P(Y | X)$
+
+# Independence: product rule
+
+$P(X \& Y) = P(X)P(Y)$ if X and Y are independent, otherwise need to calculate joint distribution.
+
+# Probability distribution examples (discrete)
+ 
+* Uniform
+* Bernoulli and binomial (sum of independent Bernoulli random variables)
+* Geometric - infinite state space
+* Poisson (number of independent occurrences within a time interval) - infinite state space
+
+# Probability distribution examples (continuous)
+
+* Uniform (finite interval)
+* Exponential
+* Normal (central limit theorem - distribution of the mean of a sample of IID random variables)
+* Log-normal (product of IID random variables)
