@@ -1,5 +1,5 @@
 ---
-title: "ENTER TITLE"
+title: "Week 3: hypothesis testing and errors"
 author: "Dmitry Kondrashov & Stefano Allesina"
 date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
 output:
@@ -21,4 +21,22 @@ knitr::opts_chunk$set(
   fig.align = "center")
 ```
 
-## Goal
+# Basics of hypothesis testing
+Null hypothesis can be true or false, test can reject (positive) or not reject (negative)
+
+Example: comparison of the means of two data sets, comparison of the proportions in two data sets
+
+# Types of errors, ROC curves
+type 1 and type 2 and the confusing terminology of false positive and false negative
+
+# What is a p-value
+difference between pre-test and post-test probability
+sensitivity and specificity
+
+# Likelihood of a parameter
+
+$ P (Data | \theta)$ vs $ P(\theta | Data)$
+
+Example using the binomial distribution: probability of {HHHHH} for a fair coin is 1/32, which is the likelihood of p=1/2 based on this data set. But while the probabilities of all possible strings of heads and tails add up to 1 (given p=1/2), the likelihoods of all possible values of p, given the string {HHHHH} do not add up to 1 - all values between 0 and 1 are possible and the sum is infinite!
+
+Lesson: define the state space carefully and remember what is given and what is unknown!
