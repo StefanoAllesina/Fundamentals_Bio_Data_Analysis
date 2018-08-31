@@ -225,7 +225,7 @@ div.tocify {
 
 <div id="goal" class="section level1">
 <h1>Goal</h1>
-<p>Introduce the stastical software <code>R</code>, and show how it can be used to analyze biological data in an automated, replicable way. Showcase the <code>RStudio</code> development environment, illustrate the notion of assignment, present the main data structures available in <code>R</code>. Show how to read and write data, how to execute simple programs, and how to modify the stream of execution of a program through conditional branching and looping. Introduce the use of packages, and how to write user-defined functions.</p>
+<p>Introduce the stastical software <code>R</code>, and show how it can be used to analyze biological data in an automated, replicable way. Showcase the <code>RStudio</code> development environment, illustrate the notion of assignment, present the main data structures available in <code>R</code>. Show how to read and write data, how to execute simple programs, and how to modify the stream of execution of a program through conditional branching and looping. Introduce the use of packages and user-defined functions.</p>
 </div>
 <div id="motivation" class="section level1">
 <h1>Motivation</h1>
@@ -242,7 +242,7 @@ div.tocify {
 <div id="what-is-r" class="section level1">
 <h1>What is R?</h1>
 <p><code>R</code> is a statistical software that is completely programmable. This means that one can write a program (script) containing a series of commands for the analysis of data, and execute them automatically. This approach is especially good as it makes the analysis of data well-documented, and completely replicable.</p>
-<p><code>R</code> is free software: anyone can download its source code, modify it, and improve it. The <code>R</code> community of users is vast and very active. In particular, scientists have enthusiastically embraced the program, creating thousands of packages to perform specific types of analysis, and adding many new capabilities. You can find a list of official packages (which have been vetted by <code>R</code> core developers) at <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html"><code>goo.gl/S0SDWA</code></a>; many more are available on GitHub and other websites.</p>
+<p><code>R</code> is free software: anyone can download its source code, modify it, and improve it. The <code>R</code> community of users is vast and very active. In particular, scientists have enthusiastically embraced the program, creating thousands of packages to perform specific types of analysis, and adding many new capabilities. You can find a list of official packages (which have been vetted by <code>R</code> core developers) <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html">here</a>; many more are available on GitHub and other websites.</p>
 <p>The main hurdle new users face when approaching <code>R</code> is that it is based on a command line interface: when you launch <code>R</code>, you simply open a console with the character <code>&gt;</code> signaling that <code>R</code> is ready to accept an input. When you write a command and press <code>Enter</code>, the command is interpreted by <code>R</code>, and the result is printed immediately after the command. For example,</p>
 <pre class="r"><code>1 + 1</code></pre>
 <pre><code># [1] 2</code></pre>
@@ -363,7 +363,7 @@ as.numeric(v) * 2 </code></pre>
 # [1] TRUE</code></pre>
 <blockquote>
 <p><strong>Exercise:</strong></p>
-<p>Why are two equal signs (<code>==</code>) used to check that two numbers are equal? What happens if you use only one sign?</p>
+<p>Why are two equal signs (<code>==</code>) used to check that two values are equal? What happens if you use only one sign?</p>
 </blockquote>
 <p>Similarly, you can concatenate several comparison and logical variables using <code>&amp;</code> (and), <code>|</code> (or), and <code>!</code> (not):</p>
 <pre class="r"><code>(2 &gt; 3) &amp; (3 &gt; 1)
@@ -373,8 +373,7 @@ as.numeric(v) * 2 </code></pre>
 </div>
 <div id="getting-help" class="section level2">
 <h2>Getting help</h2>
-<p>If you want to know more about a function, type <code>?my_function_name</code> in the console (e.g., <code>?abs</code>). This will open the help page in one of the panels on the right.</p>
-<p>Stackoverflow is also great for help on <code>R</code>.</p>
+<p>If you want to know more about a function, type <code>?my_function_name</code> in the console (e.g., <code>?abs</code>). This will open the help page in one of the panels on the right. The same can be accomplished calling <code>help(abs)</code>. For more complex questions, check out stackoverflow.</p>
 </div>
 <div id="data-structures" class="section level2">
 <h2>Data structures</h2>
@@ -593,7 +592,7 @@ mylist[[&quot;Values&quot;]][3]  # access third element in second vector</code><
 <p>Data frames contain data organized like in a spreadsheet. The columns (typically representing different measurements) can be of different types (e.g., a column could be the date of measurement, another the weight of the individual, or the volume of the cell, or the treatment of the sample), while the rows typically represent different samples.</p>
 <p>When you read a spreadsheet file in <code>R</code>, it is automatically stored as a data frame. The difference between a matrix and a data frame is that in a matrix all the values are of the same type (e.g., all numeric), while in a data frame each column can be of a different type.</p>
 <p>Because typing a data frame by hand would be tedious, let’s use a data set that is already available in <code>R</code>:</p>
-<pre class="r"><code>data(trees) # Girth, height and volume of cherry trees
+<pre class="r"><code>data(trees) # girth, height and volume of cherry trees
 str(trees) # structure of data frame
 ncol(trees)
 nrow(trees)
@@ -662,7 +661,7 @@ write.csv(MyDF, &quot;MyFile.csv&quot;, col.names = FALSE) # Do not include colu
 <p>Let’s look at an example: Read a file containing data on the 6th chromosome for a number of Europeans (Data adapted from <a href="hagsc.org/hgdp/">Stanford HGDP SNP Genotyping Data</a> by John Novembre). This example shows that you can read data directly from the internet!</p>
 <pre class="r"><code># The actual URL is
 # https://github.com/StefanoAllesina/BSD-QBio4/raw/master/tutorials/basic_computing_1/data/H938_Euro_chr6.geno
-ch6 &lt;- read.table(&quot;https://tinyurl.com/y7vctq3v&quot;, header = TRUE)</code></pre>
+ch6 &lt;- read.table(&quot;https://tinyurl.com/y7vctq3v&quot;, header = TRUE, stringsAsFactors = FALSE)</code></pre>
 <p>where <code>header = TRUE</code> means that we want to take the first line to be a header containing the column names. How big is this table?</p>
 <pre class="r"><code>dim(ch6)</code></pre>
 <pre><code># [1] 43141     7</code></pre>
@@ -875,7 +874,7 @@ while (my_amount &gt; 0){
 <h2>Installing a package</h2>
 <p>To install a package type</p>
 <pre class="r"><code>install.packages(&quot;name_of_package&quot;)</code></pre>
-<p>in the Console, or choose the panel <strong>Packages</strong> and then click on <em>Install</em> in <code>RStudio</code>.</p>
+<p>in the <strong>Console</strong>, or choose the panel <strong>Packages</strong> and then click on <em>Install</em> in <code>RStudio</code>.</p>
 </div>
 <div id="loading-a-package" class="section level2">
 <h2>Loading a package</h2>
@@ -908,24 +907,24 @@ bacteria[1:3,]</code></pre>
 runif(5, min = 1, max = 9) # set the limits of the uniform distribution
 rnorm(3) # three values from standard normal
 rnorm(3, mean = 5, sd = 4) # specify mean and standard deviation</code></pre>
-<pre><code># [1] 0.13233793 0.04243389 0.50024836 0.56653367 0.65198678
-# [1] 2.857107 4.104016 4.854671 2.580561 5.042839
-# [1] -0.72733964  0.04748761  0.19266132
-# [1] 9.185370 7.412274 3.493202</code></pre>
+<pre><code># [1] 0.5498572 0.2101280 0.7708711 0.3942663 0.1855742
+# [1] 8.014887 6.605171 5.682952 6.509042 2.382132
+# [1] -0.2336429 -0.5255085 -0.6826110
+# [1] 8.110863 1.897821 7.311933</code></pre>
 <p>To sample from a set of values, use <code>sample</code>:</p>
 <pre class="r"><code>v &lt;- c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;)
 sample(v, 2) # without replacement
 sample(v, 6, replace = TRUE) # with replacement
 sample(v) # simply shuffle the elements</code></pre>
-<pre><code># [1] &quot;a&quot; &quot;c&quot;
-# [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;b&quot; &quot;c&quot; &quot;c&quot;
-# [1] &quot;b&quot; &quot;c&quot; &quot;a&quot; &quot;d&quot;</code></pre>
+<pre><code># [1] &quot;a&quot; &quot;b&quot;
+# [1] &quot;b&quot; &quot;d&quot; &quot;a&quot; &quot;d&quot; &quot;c&quot; &quot;d&quot;
+# [1] &quot;d&quot; &quot;b&quot; &quot;c&quot; &quot;a&quot;</code></pre>
 </div>
 <div id="writing-functions" class="section level1">
 <h1>Writing functions</h1>
 <p>The <code>R</code> community provides about 7,000 packages. Still, sometimes there isn’t an already made function capable of doing what you need. In these cases, you can write your own functions. In fact, it is in general a good idea to always divide your analysis into functions, and then write a small “master” program that calls the functions and performs the analysis. In this way, the code will be much more legible, and you will be able to recycle the functions for your other projects.</p>
 <p>A function in <code>R</code> has this form:</p>
-<pre class="r"><code>my_function_name &lt;- function(arguments of the function){
+<pre class="r"><code>my_function_name &lt;- function(optional, arguments, separated, by_commas){
   # Body of the function
   # ...
   # 
@@ -972,17 +971,125 @@ my_factorial(10)</code></pre>
 }
 
 order_two_numbers(runif(1), runif(1))</code></pre>
-<pre><code># [1] 0.1191165 0.1172933</code></pre>
+<pre><code># [1] 0.6717086 0.1452110</code></pre>
 </div>
 <div id="organizing-and-running-code" class="section level1">
 <h1>Organizing and running code</h1>
-<p>This is a good place to pause and introduce how to go about writing programs that are well-organized, easy to write, and easy to debug.</p>
+<p>During the class, we will write a lot of code, of increasing complexity. Here is what you should do to write programs that are well-organized, easy to understand, and easy to debug.</p>
 <ol style="list-style-type: decimal">
-<li>Take the problem, and divide it into its basic building blocks</li>
+<li>Take the problem, and divide it into its basic building blocks. Each block should be its own function.</li>
 <li>Write the code for each building block separately, and test it thoroughly.</li>
 <li>Extensively document the code, so that you can understand what you did, how you did it, and why.</li>
 <li>Combine the building blocks into a master program.</li>
 </ol>
+<p>For example, let’s write code that takes the data on Chromosome 6 we have seen above, and try to identify which SNPs deviate the most from Hardy-Weinberg equilibrium. Remember that in an infinite population, where mating is random, there is no selection and no mutations, then the proportion of people carrying the alleles <span class="math inline">\(A1A1\)</span> should be approximately <span class="math inline">\(p_{11} = p^2\)</span> (where <span class="math inline">\(p\)</span> is the frequency of the first allele in the population), those carrying <span class="math inline">\(A1A2\)</span> should be <span class="math inline">\(p_{12} = 2 p q\)</span> (where <span class="math inline">\(q = 1-p\)</span>) and finally those carrying <span class="math inline">\(A2A2\)</span> should be <span class="math inline">\(p_{22} = q^2\)</span>. This is called the Hardy-Weinberg equilibrium.</p>
+<p>We want to test this on a number of different SNPs. First, we write a function that takes as input the data and a given SNP, and computes the probability <span class="math inline">\(p\)</span> of carrying the first allele.</p>
+<pre class="r"><code>compute_probabilities_HW &lt;- function(my_data, my_SNP = &quot;rs1535053&quot;){
+  my_SNP_data &lt;- my_data[my_data$&quot;SNP&quot; == my_SNP,]
+  AA &lt;- my_SNP_data$nA1A1
+  AB &lt;- my_SNP_data$nA1A2
+  BB &lt;- my_SNP_data$nA2A2
+  tot_observations &lt;- AA + AB + BB
+  p11 &lt;- AA / tot_observations
+  p12 &lt;- AB / tot_observations
+  p22 &lt;- BB / tot_observations
+  p &lt;- p11 + p12 / 2
+  q &lt;- 1 - p
+  return(list(SNP = my_SNP,
+              p11 = p11,
+              p12 = p12,
+              p22 = p22,
+              p = p,
+              q = q,
+              tot = tot_observations,
+              AA = AA,
+              AB = AB,
+              BB = BB))
+}</code></pre>
+<p>Now we can test our function:</p>
+<pre class="r"><code>compute_probabilities_HW(ch6)</code></pre>
+<pre><code># $SNP
+# [1] &quot;rs1535053&quot;
+# 
+# $p11
+# [1] 0.04032258
+# 
+# $p12
+# [1] 0.3145161
+# 
+# $p22
+# [1] 0.6451613
+# 
+# $p
+# [1] 0.1975806
+# 
+# $q
+# [1] 0.8024194
+# 
+# $tot
+# [1] 124
+# 
+# $AA
+# [1] 5
+# 
+# $AB
+# [1] 39
+# 
+# $BB
+# [1] 80</code></pre>
+<p>If the allele conformed to Hardy-Weinberg, we should find approximately <span class="math inline">\(p^2 \cdot n\)</span> people with <span class="math inline">\(A1A1\)</span>, where <span class="math inline">\(n\)</span> is the number of people sampled. Let’s see whether these assumptions are met by the data:</p>
+<pre class="r"><code>observed_vs_expected_HW &lt;- function(SNP_data){
+  observed &lt;- c(&quot;AA&quot; = SNP_data$AA, &quot;AB&quot; = SNP_data$AB, &quot;BB&quot; = SNP_data$BB)
+  expected &lt;- c(&quot;AA&quot; = SNP_data$p^2 * SNP_data$tot, 
+                &quot;AB&quot; = 2 * SNP_data$p * SNP_data$q * SNP_data$tot, 
+                &quot;BB&quot; = SNP_data$q^2 * SNP_data$tot)
+  return(rbind(observed, expected))
+}</code></pre>
+<p>And test it:</p>
+<pre class="r"><code>my_SNP_data &lt;- compute_probabilities_HW(ch6)
+observed_vs_expected_HW(my_SNP_data)</code></pre>
+<pre><code>#                AA       AB       BB
+# observed 5.000000 39.00000 80.00000
+# expected 4.840726 39.31855 79.84073</code></pre>
+<p>Pretty good! This SNP seems very close to the theoretical expectation.</p>
+<p>Let’s try another one</p>
+<pre class="r"><code>observed_vs_expected_HW(compute_probabilities_HW(ch6, &quot;rs1316662&quot;))</code></pre>
+<pre><code>#                AA       AB       BB
+# observed 26.00000 62.00000 36.00000
+# expected 26.20161 61.59677 36.20161</code></pre>
+<p>Because we have so many SNPs, we will surely find some that do not comply with the expectation. For example:</p>
+<pre class="r"><code>my_SNP_data &lt;- compute_probabilities_HW(ch6, &quot;rs6596835&quot;)
+observed_vs_expected_HW(my_SNP_data)</code></pre>
+<pre><code>#                 AA      AB      BB
+# observed 17.000000 24.0000 82.0000
+# expected  6.837398 44.3252 71.8374</code></pre>
+<p>To find those with the largest deviations, we can compute for each:</p>
+<p><span class="math display">\[
+\sum_i \frac{(e_i - o_i)^2}{e_i}
+\]</span> In genetics, this is called <span class="math inline">\(\chi^2\)</span> statistics, because if the data were to follow the assumptions, these quantities would follow the <span class="math inline">\(\chi^2\)</span> distribution.</p>
+<pre class="r"><code>compute_chi_sq_stat &lt;- function(my_obs_vs_expected){
+  observed &lt;- my_obs_vs_expected[&quot;observed&quot;,]
+  expected &lt;- my_obs_vs_expected[&quot;expected&quot;,]
+  return(sum((expected - observed)^2 / expected))
+}</code></pre>
+<p>Now let’s compute the statistic for each SNPs:</p>
+<pre class="r"><code># because this might take a while, we're going to only analyze the first 1000 SNPs
+all_SNPs &lt;- ch6$SNP[1:1000]
+results &lt;- data.frame(SNP = all_SNPs, ChiSq = 0)
+for (i in 1:nrow(results)){
+  results[i, 2] &lt;- compute_chi_sq_stat(observed_vs_expected_HW(compute_probabilities_HW(ch6, results[i, 1])))
+}</code></pre>
+<p>To find the ones with the largest discrepancy, run</p>
+<pre class="r"><code>results &lt;- results[order(results$ChiSq, decreasing = TRUE),]
+head(results)</code></pre>
+<pre><code>#           SNP     ChiSq
+# 10  rs2281351 53.993853
+# 221 rs1933650 27.724832
+# 36  rs6596835 25.862675
+# 681  rs689035  9.802277
+# 178 rs6930805  9.491511
+# 179 rs1737539  9.491511</code></pre>
+<p>This example showed how a seemingly difficuly problem can be decomposed in smaller problems that are easier to solve.</p>
 </div>
 <div id="documenting-the-code-using-knitr" class="section level1">
 <h1>Documenting the code using <code>knitr</code></h1>
@@ -994,7 +1101,7 @@ order_two_numbers(runif(1), runif(1))</code></pre>
 </blockquote>
 <p>When doing experiments, we typically keep track of everything we do in a laboratory notebook, so that when writing the manuscript, or responding to queries, we can go back to our documentation to find exactly what we did, how we did it, and possibly why we did it. The same should be true for computational work.</p>
 <p><code>RStudio</code> makes it very easy to build a computational laboratory notebook. First, create a new <code>R Markdown</code> file (choose <code>File</code> -&gt; <code>New File</code> -&gt; <code>R Markdown</code> from the menu).</p>
-<p>The gist of it is that you write a text file (<code>.Rmd</code>). The file is then read by an iterpreter that transforms it into an <code>.html</code> or <code>.pdf</code> file, or even into a Word document. You can use special syntax to render the text in different ways. For example,</p>
+<p>The gist of it is that you write a text file (<code>.Rmd</code>). The file is then read by an iterpreter that transforms it into an <code>.html</code> or <code>.pdf</code> file, or even into a Word document. You can use special syntax to render the text in different ways. For example, type</p>
 <pre><code>***********
 
 *Test* **Test2**
@@ -1056,7 +1163,7 @@ print(&quot;hello world!&quot;)
 <pre><code># [1] &quot;hello world!&quot;</code></pre>
 <p>If you don’t want to run the <code>R</code> code, but just display it, use <code>{r, eval = FALSE}</code>; if you want to show the output but not the code, use <code>{r, echo = FALSE}</code>.</p>
 <p>You can include plots, tables, and even render equations using LaTeX. In summary, when exploring your data or writing the methods of your paper, give <code>R Markdown</code> a try!</p>
-<p>You can find inspiration in the notes for the Boot Camp: both the notes for Basic and Advanced Computing are written in <code>R MarkDown</code>.</p>
+<p>You can find inspiration in the notes for this class: all are written in <code>R Markdown</code>.</p>
 </div>
 </div>
 

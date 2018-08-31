@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 
 # Goal
 
-Introduce the stastical software `R`, and show how it can be used to analyze biological data in an automated, replicable way. Showcase the `RStudio` development environment, illustrate the notion of assignment, present the main data structures available in `R`. Show how to read and write data, how to execute simple programs, and how to modify the stream of execution of a program through conditional branching and looping. Introduce the use of packages, and how to write user-defined functions.
+Introduce the stastical software `R`, and show how it can be used to analyze biological data in an automated, replicable way. Showcase the `RStudio` development environment, illustrate the notion of assignment, present the main data structures available in `R`. Show how to read and write data, how to execute simple programs, and how to modify the stream of execution of a program through conditional branching and looping. Introduce the use of packages and  user-defined functions. 
 
 # Motivation
 
@@ -45,10 +45,9 @@ Here we introduce `R`, which can help you write simple programs to analyze your 
 
 `R` is a statistical software that is completely programmable. This means that one can write a program (script) containing a series of commands for the analysis of data, and execute them automatically. This approach is especially good as it makes the analysis of data well-documented, and completely replicable. 
 
-`R` is free software: anyone can download its source code, modify it, and improve it. The `R` community of users is vast and very active. In particular, scientists have enthusiastically embraced the program, creating thousands of packages to perform specific types of analysis, and adding many new capabilities. You can find a list of official packages (which have been vetted by `R` core developers) at [`goo.gl/S0SDWA`](https://cran.r-project.org/web/packages/available_packages_by_name.html); many more are available on GitHub and other websites.
+`R` is free software: anyone can download its source code, modify it, and improve it. The `R` community of users is vast and very active. In particular, scientists have enthusiastically embraced the program, creating thousands of packages to perform specific types of analysis, and adding many new capabilities. You can find a list of official packages (which have been vetted by `R` core developers) [here](https://cran.r-project.org/web/packages/available_packages_by_name.html); many more are available on GitHub and other websites.
 
 The main hurdle new users face when approaching `R` is that it is based on a command line interface: when you launch `R`, you simply open a console with the character `>` signaling that `R` is ready to accept an input. When you write a command and press `Enter`, the command is interpreted by `R`, and the result is printed immediately after the command. For example, 
-
 ```{r, echo=TRUE, message=FALSE, eval=TRUE}
 1 + 1
 ```
@@ -190,10 +189,9 @@ If sensible, you can use the comparison operators `>` (greater), `<` (lower), `=
 
 > **Exercise:** 
 > 
-> Why are two equal signs (`==`) used to check that two numbers are equal? What happens if you use only one sign?
+> Why are two equal signs (`==`) used to check that two values are equal? What happens if you use only one sign?
 
 Similarly, you can concatenate several comparison and logical variables using `&` (and), `|` (or), and `!` (not):
-
 ```{r}
 (2 > 3) & (3 > 1)
 (2 > 3) | (3 > 1)
@@ -201,9 +199,7 @@ Similarly, you can concatenate several comparison and logical variables using `&
 
 ## Getting help
 
-If you want to know more about a function, type `?my_function_name` in the console (e.g., `?abs`). This will open the help page in one of the panels on the right.
-
-Stackoverflow is also great for help on `R`. 
+If you want to know more about a function, type `?my_function_name` in the console (e.g., `?abs`). This will open the help page in one of the panels on the right. The same can be accomplished calling `help(abs)`. For more complex questions, check out stackoverflow. 
 
 ## Data structures
 
@@ -388,7 +384,7 @@ When you read a spreadsheet file in `R`, it is automatically stored as a data fr
 
 Because typing a data frame by hand would be tedious, let's use a data set that is already available in `R`:
 ```{r}
-data(trees) # Girth, height and volume of cherry trees
+data(trees) # girth, height and volume of cherry trees
 str(trees) # structure of data frame
 ncol(trees)
 nrow(trees)
@@ -435,7 +431,7 @@ Let's look at an example: Read a file containing data on the 6th chromosome for 
 ```{r}
 # The actual URL is
 # https://github.com/StefanoAllesina/BSD-QBio4/raw/master/tutorials/basic_computing_1/data/H938_Euro_chr6.geno
-ch6 <- read.table("https://tinyurl.com/y7vctq3v", header = TRUE)
+ch6 <- read.table("https://tinyurl.com/y7vctq3v", header = TRUE, stringsAsFactors = FALSE)
 ```
 
 where `header = TRUE` means that we want to take the first line to be a header containing the column names. How big is this table?
@@ -687,7 +683,7 @@ To install a package type
 install.packages("name_of_package")
 ```
 
-in the Console, or choose the panel **Packages** and then click on *Install* in `RStudio`.
+in the **Console**, or choose the panel **Packages** and then click on *Install* in `RStudio`.
 
 ## Loading a package
 
@@ -745,7 +741,7 @@ The `R` community provides about 7,000 packages. Still, sometimes there isn't an
 
 A function in `R` has this form:
 ```{r, eval = FALSE}
-my_function_name <- function(arguments of the function){
+my_function_name <- function(optional, arguments, separated, by_commas){
   # Body of the function
   # ...
   # 
@@ -802,13 +798,110 @@ order_two_numbers(runif(1), runif(1))
 
 # Organizing and running code
 
-This is a good place to pause and introduce how to go about writing programs that are well-organized, easy to write, and easy to debug.
+During the class, we will write a lot of code, of increasing complexity. Here is what you should do to write programs that are well-organized, easy to understand, and easy to debug.
 
-1. Take the problem, and divide it into its basic building blocks
+1. Take the problem, and divide it into its basic building blocks. Each block should be its own function.
 2. Write the code for each building block separately, and test it thoroughly.
 3. Extensively document the code, so that you can understand what you did, how you did it, and why.
 4. Combine the building blocks into a master program.
 
+For example, let's write code that takes the data on Chromosome 6 we have seen above, and try to identify which SNPs deviate the most from Hardy-Weinberg equilibrium. Remember that in an infinite population, where mating is random, there is no selection and no mutations, then the proportion of people carrying the alleles $A1A1$ should be approximately $p_{11} = p^2$ (where $p$ is the frequency of the first allele in the population), those carrying $A1A2$ should be $p_{12} = 2 p q$ (where $q = 1-p$) and finally those carrying $A2A2$ should be $p_{22} = q^2$. This is called the Hardy-Weinberg equilibrium.
+
+We want to test this on a number of different SNPs. First, we write a function that takes as input the data and a given SNP, and computes the probability $p$ of carrying the first allele.
+
+```{r}
+compute_probabilities_HW <- function(my_data, my_SNP = "rs1535053"){
+  my_SNP_data <- my_data[my_data$"SNP" == my_SNP,]
+  AA <- my_SNP_data$nA1A1
+  AB <- my_SNP_data$nA1A2
+  BB <- my_SNP_data$nA2A2
+  tot_observations <- AA + AB + BB
+  p11 <- AA / tot_observations
+  p12 <- AB / tot_observations
+  p22 <- BB / tot_observations
+  p <- p11 + p12 / 2
+  q <- 1 - p
+  return(list(SNP = my_SNP,
+              p11 = p11,
+              p12 = p12,
+              p22 = p22,
+              p = p,
+              q = q,
+              tot = tot_observations,
+              AA = AA,
+              AB = AB,
+              BB = BB))
+}
+```
+
+Now we can test our function:
+```{r}
+compute_probabilities_HW(ch6)
+```
+
+If the allele conformed to Hardy-Weinberg, we should find approximately $p^2 \cdot n$ people with $A1A1$, where $n$ is the number of people sampled. Let's see whether these assumptions are met by the data:
+
+```{r}
+observed_vs_expected_HW <- function(SNP_data){
+  observed <- c("AA" = SNP_data$AA, "AB" = SNP_data$AB, "BB" = SNP_data$BB)
+  expected <- c("AA" = SNP_data$p^2 * SNP_data$tot, 
+                "AB" = 2 * SNP_data$p * SNP_data$q * SNP_data$tot, 
+                "BB" = SNP_data$q^2 * SNP_data$tot)
+  return(rbind(observed, expected))
+}
+```
+
+And test it:
+```{r}
+my_SNP_data <- compute_probabilities_HW(ch6)
+observed_vs_expected_HW(my_SNP_data)
+```
+
+Pretty good! This SNP seems very close to the theoretical expectation.
+
+Let's try another one
+```{r}
+observed_vs_expected_HW(compute_probabilities_HW(ch6, "rs1316662"))
+```
+
+Because we have so many SNPs, we will surely find some that do not comply with the expectation. For example:
+```{r}
+my_SNP_data <- compute_probabilities_HW(ch6, "rs6596835")
+observed_vs_expected_HW(my_SNP_data)
+```
+
+To find those with the largest deviations, we can compute for each:
+
+$$
+\sum_i \frac{(e_i - o_i)^2}{e_i}
+$$
+In genetics, this is called $\chi^2$ statistics, because if the data were to follow the assumptions, these quantities would follow the $\chi^2$ distribution.
+
+```{r}
+compute_chi_sq_stat <- function(my_obs_vs_expected){
+  observed <- my_obs_vs_expected["observed",]
+  expected <- my_obs_vs_expected["expected",]
+  return(sum((expected - observed)^2 / expected))
+}
+```
+
+Now let's compute the statistic for each SNPs:
+```{r}
+# because this might take a while, we're going to only analyze the first 1000 SNPs
+all_SNPs <- ch6$SNP[1:1000]
+results <- data.frame(SNP = all_SNPs, ChiSq = 0)
+for (i in 1:nrow(results)){
+  results[i, 2] <- compute_chi_sq_stat(observed_vs_expected_HW(compute_probabilities_HW(ch6, results[i, 1])))
+}
+```
+
+To find the ones with the largest discrepancy, run
+```{r}
+results <- results[order(results$ChiSq, decreasing = TRUE),]
+head(results)
+```
+
+This example showed how a seemingly difficuly problem can be decomposed in smaller problems that are easier to solve. 
 
 # Documenting the code using `knitr`
 
@@ -820,7 +913,7 @@ When doing experiments, we typically keep track of everything we do in a laborat
 
 `RStudio` makes it very easy to build a computational laboratory notebook. First, create a new `R Markdown`  file (choose `File` -> `New File` -> `R Markdown` from the menu). 
 
-The gist of it is that you write a text file (`.Rmd`). The file is then read by an iterpreter that transforms it into an `.html` or `.pdf` file, or even into a Word document. You can use special syntax to render the text in different ways. For example,
+The gist of it is that you write a text file (`.Rmd`). The file is then read by an iterpreter that transforms it into an `.html` or `.pdf` file, or even into a Word document. You can use special syntax to render the text in different ways. For example, type
 
 ```
 ***********
@@ -892,4 +985,4 @@ If you don't want to run the `R` code, but just display it, use `{r, eval = FALS
 
 You can include plots, tables, and even render equations using LaTeX. In summary, when exploring your data or writing the methods of your paper, give `R Markdown` a try!
 
-You can find inspiration in the notes for the Boot Camp: both the notes for Basic and Advanced Computing are written in `R MarkDown`.
+You can find inspiration in the notes for this class: all are written in `R Markdown`.
