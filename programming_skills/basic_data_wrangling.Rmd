@@ -1,0 +1,194 @@
+---
+title: "Basic data wrangling"
+author: "Dmitry Kondrashov & Stefano Allesina"
+date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
+output:
+  html_document:
+    theme: cosmo
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+urlcolor: blue
+---
+
+```{r knitr, echo=FALSE}
+knitr::opts_chunk$set(
+  eval      = TRUE,
+  comment   = "#",
+  results   = "hold",
+  # collapse  = TRUE,
+  fig.align = "center")
+```
+
+# Goal
+Learn how to manipulate large data sets by writing efficient, consistent, and compact code. Introduce the use of `dplyr`, `tidyr`, and the "pipeline" operator `%>%`. Effortlessly produce statistics for grouped data. Massage data into tidy form.
+
+# What is data wrangling?
+As biologists living in the XXI century, we are often faced with tons of data, possibly replicated over several organisms, treatments, or locations. We would like to streamline and automate our analysis as much as possible, writing scripts that are easy to read, fast to run, and easy to debug. Base `R` can get the job done, but often the code contains complicated operations, and a lot of `$` signs and brackets.
+
+We're going to learn about the packages `dplyr` and `tidyr`, which are part of `tidyverse` and can be used to manipulate large data frames in a simple and straightforward way. These tools are also much faster than the corresponding base `R` commands, are very compact, and can be concatenated into "pipelines". 
+
+To start, we need to import the libraries:
+```{r, message=FALSE}
+library(tidyverse) # this loads them both, along with other packages
+```
+
+Then, we need a dataset to play with. We take a simple dataset from:
+
+> Lippens C, Faivre B, Lechenault C, Sorci G (2017) [Aging parasites produce offspring with poor fitness prospects](https://doi.org/10.1098/rsbl.2016.0888). Biology Letters 13(2): 20160888. 
+
+The Authors have found that senescing parasites produce offspring with lower survival probability and lower fertility. To produce this result, they have infected mice with the parasite nematode * Heligmosomoides polygyrus*. They collected the eggs found in the faeces at different times, corresponding to the age of the worm (in days). Then they used the hatched larvae to infect mice, and counted the eggs shedded by the newly infected mice for 28 days. At that point, mice were sacrificed and adult worms in the intestine counted.
+
+```{r}
+# to read Excel files
+source("../general_code/read_xls_from_url.R")
+# original URL:
+# https://datadryad.org/bitstream/handle/10255/dryad.135877/dryad_data.xlsx
+dt <- read_xlsx_from_url("https://tinyurl.com/yclwadb8") 
+```
+
+# A new data type, `tibble`
+
+This is now a :
+```{r}
+class(dt)
+```
+
+`dplyr` ships with a new data type, called a `tibble`. To convert from data frame, use
+```{r, eval=FALSE}
+divvy <- tbl_df(divvy)
+divvy
+```
+
+The nice feature of `tbl` objects is that they will print only what fits on the screen, and also give you useful information on the size of the data, as well as the type of data  in each column. Other than that, a `tbl` object behaves very much like a `data.frame`. In some rare cases, you want to transform the `tbl` back into a `data.frame`. For this, use the function `as.data.frame(tbl_object)`.
+
+We can take a look at the data using one of several functions:
+
+* `head(divvy)` shows the first few (10 by default) rows
+* `tail(divvy)` shows the last few (10 by default) rows
+* `glimpse(divvy)` a summary of the data (similar to `str` in base R)
+* `View(divvy)` open in spreadsheet-like window
+
+## Selecting rows and columns
+
+There are many ways to subset the data, either by row (subsetting the *observations*), or by column (subsetting the *variables*). For example, suppose we want to count how many trips (of the > 410k) are very short. The column `tripduration` contains the length of the trip in seconds. Let's select only the trips that lasted less than 3 minutes:
+
+```{r, eval=FALSE}
+filter(divvy, tripduration < 180)
+```
+
+You can see that "only" 11,099 trips lasted less than three minutes. We have used the command `filter(tbl, conditions)` to select certain observations. We can combine several conditions, by listing them side by side, possibly using logical operators.
+
+> **Exercise:** what does this do?
+>```{r, eval=FALSE}
+ filter(divvy, gender == "Male", tripduration > 60, tripduration < 180)
+ ```
+
+We can also select particular variables using the function `select(tbl, cols to select)`. For example, select `from_station_name` and `from_station_id`:
+
+```{r, eval=FALSE}
+select(divvy, from_station_name, from_station_id)
+```
+
+How many stations are represented in the data set? We can use the function `distinct(tbl)` to retain only the rows that differ from each other:
+
+```{r, eval=FALSE}
+distinct(select(divvy, from_station_name, from_station_id))
+```
+
+Showing that there are 300 stations, once we removed the duplicates. 
+
+Other ways to subset observations:
+
+- `sample_n(tbl, howmany, replace = TRUE)` sample `howmany` rows at random with replacement
+
+- `sample_frac(tbl, proportion, replace = FALSE)` sample a certain proportion (e.g. `0.2` for 20%) of rows at random without replacement
+
+- `slice(tbl, 50:100)` extract the rows between `50` and `100`
+
+- `top_n(tbl, 10, tripduration)` extract the first `10` rows, once ordered by `tripduration`
+
+More ways to select columns:
+
+- `select(divvy, contains("station"))` select all columns containing the word `station`
+
+- `select(divvy, -gender, -tripduration)` exclude the columns `gender` and `tripduration`
+
+- `select(divvy, matches("year|time"))` select all columns whose names match a regular expression
+
+## Creating pipelines using `%>%`
+
+We've been calling nested functions, such as `distinct(select(divvy, ...))`. If you have to add another layer or two, the code would become unreadable. `dplyr` allows you to "un-nest" these functions and create a "pipeline", in which you concatenate commands separated by the special operator `%>%`. For example:
+
+```{r, eval=FALSE}
+divvy %>% # take a data table
+  select(from_station_name, from_station_id) %>% # select two columns
+  distinct() # remove duplicates
+```
+
+does exactly the same as the command above, but is much more readable. By concatenating many commands, you can create incredibly complex pipelines while retaining readability.
+
+## Producing summaries
+
+Sometimes we need to calculate statistics on certain columns. For example, calculate the average trip duration. We can do this using `summarise`:
+```{r, eval=FALSE}
+divvy %>% summarise(avg = mean(tripduration))
+```
+
+which returns a `tbl` object with just the average trip duration. You can combine multiple statistics (use `first`, `last`, `min`, `max`, `n` [count the number of rows], `n_distinct` [count the number of distinct rows], `mean`, `median`, `var`, `sd`, etc.):
+
+```{r, eval=FALSE}
+divvy %>% summarise(avg = mean(tripduration), 
+                    sd = sd(tripduration), 
+                    median = median(tripduration))
+```
+
+## Summaries by group
+
+One of the most useful features of `dplyr` is the ability to produce statistics for the data once subsetted by *groups*. For example, we would like to measure whether men take longer trips than women. We can then group the data by `gender`, and calculate the mean `tripduration` once the data is split into groups:
+
+```{r, eval=FALSE}
+divvy %>% group_by(gender) %>% summarise(mean = mean(tripduration))
+```
+
+showing that women tend to take longer trips than men. 
+
+> **Exercise:** count the number of trips for Male, Female, and unspecified gender.
+
+## Ordering the data 
+To order the data according to one or more variables, use `arrange()`:
+```{r, eval=FALSE}
+divvy %>% select(trip_id, tripduration) %>% arrange(tripduration)
+divvy %>% select(trip_id, tripduration) %>% arrange(desc(tripduration))
+```
+
+## Renaming columns
+To rename one or more columns, use `rename()`:
+```{r, eval=FALSE}
+divvy %>% rename(tt = tripduration)
+```
+
+## Adding new variables using mutate
+If you want to add one or more new columns, use the function `mutate`:
+
+```{r, eval=FALSE}
+divvy %>% select(from_station_id, to_station_id) %>% 
+  mutate(mylink = paste0(from_station_id, "->", to_station_id))
+```
+
+use the function `transmute()` to create a new column and drop the original columns. You can also use `mutate` and `transmute` on grouped data:
+
+```{r, eval=FALSE}
+# A more complex pipeline
+divvy %>% 
+  select(trip_id, gender, tripduration) %>%  # select only three columns
+  rename(t = tripduration) %>% # rename a column
+  group_by(gender) %>% # create a group for each gender value
+  mutate(zscore = (t - mean(t) ) / sd(t)) %>% # compute z-score for t, according to gender
+  ungroup() %>% # remove group information
+  arrange(desc(t), zscore, gender) %>% # order by t (decreasing), zscore, and gender
+  head(20) # display first 20 rows
+```
+
+

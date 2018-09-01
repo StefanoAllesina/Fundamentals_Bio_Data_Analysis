@@ -41,6 +41,13 @@ A few motivating examples:
 
 Here we introduce `R`, which can help you write simple programs to analyze your data, perform statistical analysis, and draw beautiful figures.
 
+# Before we start
+To follow this tutorial, you will need to install `R` and `RStudio`
+
+* Install `R`: download and install `R` from [this page](https://cran.r-project.org/). Choose the right architecture (Windows, Mac, Linux). If possible, install `R` 3.5.1 or above.
+* Install `RStudio`: go to [this page](https://www.rstudio.com/products/rstudio/download/) and download the "RStudio Desktop Open Source License".
+* Install `R` packages: launch `RStudio`. Click on "Packages" in the bottow-right panel. Click on "Install": a dialog window will open. Type `tidyverse` in the field "Packages" and click on "Install". This might take a few minutes, and ask you to download further packages.
+
 # What is R?
 
 `R` is a statistical software that is completely programmable. This means that one can write a program (script) containing a series of commands for the analysis of data, and execute them automatically. This approach is especially good as it makes the analysis of data well-documented, and completely replicable. 
@@ -798,19 +805,25 @@ order_two_numbers(runif(1), runif(1))
 
 # Organizing and running code
 
-During the class, we will write a lot of code, of increasing complexity. Here is what you should do to write programs that are well-organized, easy to understand, and easy to debug.
+During the class, we will write a lot of code, of increasing complexity. Here is what you should do to ensure that your programs are well-organized, easy to understand, and easy to debug.
 
 1. Take the problem, and divide it into its basic building blocks. Each block should be its own function.
 2. Write the code for each building block separately, and test it thoroughly.
 3. Extensively document the code, so that you can understand what you did, how you did it, and why.
 4. Combine the building blocks into a master program.
 
-For example, let's write code that takes the data on Chromosome 6 we have seen above, and try to identify which SNPs deviate the most from Hardy-Weinberg equilibrium. Remember that in an infinite population, where mating is random, there is no selection and no mutations, then the proportion of people carrying the alleles $A1A1$ should be approximately $p_{11} = p^2$ (where $p$ is the frequency of the first allele in the population), those carrying $A1A2$ should be $p_{12} = 2 p q$ (where $q = 1-p$) and finally those carrying $A2A2$ should be $p_{22} = q^2$. This is called the Hardy-Weinberg equilibrium.
+For example, let's write code that takes the data on Chromosome 6 we have seen above, and tries to identify which SNPs deviate the most from Hardy-Weinberg equilibrium. Remember that in an infinite population, where mating is random, there is no selection and no mutations, the proportion of people carrying the alleles $A1A1$ should be approximately $p_{11} = p^2$ (where $p$ is the frequency of the first allele in the population $p = p_{11} + \frac{1}{2} p_{12}$), those carrying $A1A2$ should be $p_{12} = 2 p q$ (where $q = 1-p$) and finally those carrying $A2A2$ should be $p_{22} = q^2$. This is called the Hardy-Weinberg equilibrium.
 
 We want to test this on a number of different SNPs. First, we write a function that takes as input the data and a given SNP, and computes the probability $p$ of carrying the first allele.
 
 ```{r}
 compute_probabilities_HW <- function(my_data, my_SNP = "rs1535053"){
+  # Take a SNP and compute the probabilities
+  # p = frequency of first allele
+  # q = frequency of second allele (1 - p)
+  # p11 = proportion homozygous first allele
+  # p12 = proportion heterozygous
+  # p22 = proportion homozygous second allele
   my_SNP_data <- my_data[my_data$"SNP" == my_SNP,]
   AA <- my_SNP_data$nA1A1
   AB <- my_SNP_data$nA1A2
@@ -843,6 +856,8 @@ If the allele conformed to Hardy-Weinberg, we should find approximately $p^2 \cd
 
 ```{r}
 observed_vs_expected_HW <- function(SNP_data){
+  # compute expectations under Hardy-Weinberg equilibrium
+  # organize expected and observed in a table
   observed <- c("AA" = SNP_data$AA, "AB" = SNP_data$AB, "BB" = SNP_data$BB)
   expected <- c("AA" = SNP_data$p^2 * SNP_data$tot, 
                 "AB" = 2 * SNP_data$p * SNP_data$q * SNP_data$tot, 
@@ -870,13 +885,12 @@ my_SNP_data <- compute_probabilities_HW(ch6, "rs6596835")
 observed_vs_expected_HW(my_SNP_data)
 ```
 
-To find those with the largest deviations, we can compute for each:
+To find those with the largest deviations, we can compute for the statistic:
 
 $$
 \sum_i \frac{(e_i - o_i)^2}{e_i}
 $$
 In genetics, this is called $\chi^2$ statistics, because if the data were to follow the assumptions, these quantities would follow the $\chi^2$ distribution.
-
 ```{r}
 compute_chi_sq_stat <- function(my_obs_vs_expected){
   observed <- my_obs_vs_expected["observed",]
@@ -986,3 +1000,17 @@ If you don't want to run the `R` code, but just display it, use `{r, eval = FALS
 You can include plots, tables, and even render equations using LaTeX. In summary, when exploring your data or writing the methods of your paper, give `R Markdown` a try!
 
 You can find inspiration in the notes for this class: all are written in `R Markdown`.
+
+# Resources
+There are very many excellent books and tutorials you can read to become a proficient programmer in `R`. For example:
+
+* [Intro to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.html)
+* [Advanced R](http://adv-r.had.co.nz/)
+* [DataCamp](https://www.datacamp.com/courses/free-introduction-to-r)
+* [ComputerWorld](https://www.computerworld.com/article/2497143/business-intelligence/business-intelligence-beginner-s-guide-to-r-introduction.html)
+* [R Style guide](http://adv-r.had.co.nz/Style.html)
+* [R for Data Science](https://hackr.io/tutorial/r-for-data-science)
+* [RStudio Cheat Sheet](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf)
+* [Base R Cheat Sheet](http://github.com/rstudio/cheatsheets/raw/master/base-r.pdf)
+* [Advanced R Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2016/02/advancedR.pdf)
+* [X in Y minutes](https://learnxinyminutes.com/docs/r/)
