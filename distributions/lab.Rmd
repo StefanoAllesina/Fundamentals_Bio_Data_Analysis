@@ -1,5 +1,5 @@
 ---
-  title: "ENTER TITLE --- Data lab"
+title: "Visualizing distributions --- Data lab"
 author: "Dmitry Kondrashov & Stefano Allesina"
 date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
 output:
@@ -26,3 +26,100 @@ library(tidyverse) # our friend the tidyverse
 library(readxl) # to read excel files
 source("../general_code/read_xls_from_url.R") # function  to read excel from URL
 ```
+
+# Visualizing 1-dimensional distributions
+
+We start by analyzing a dataset reporting the incubation period of a novel type of influenza A of avian origin that emerged in China in 2013. The data are taken from:
+
+> Virlogeux V, Yang J, Fang VJ, Feng L, Tsang TK, Jiang H, Wu P, Zheng J, Lau EHY, Qin Y, Peng Z, Peiris JSM, Yu H, Cowling BJ (2016) [Association between the severity of influenza A(H7N9) virus infections and length of the incubation period.](https://doi.org/10.1371/journal.pone.0148506) PLOS ONE 11(2): e0148506. 
+
+We can read the data in directly from the internet:
+```{r}
+# Original URL
+# datadryad.org/bitstream/handle/10255/dryad.104362/data_h7n9_severity.csv
+dat <- read.csv("https://tinyurl.com/y8yfnq5t")
+head(dat)
+```
+where `Case.No.` is an identifier of the record, `IncP_min` and `IncP_max` are the minimum (maximum) incubation period, `age` is the age of the patient, `sex_status` is `0` for female and `1` for male, and `death_status` reports whether the patient died. 
+
+Because we're going to work with only a few columns, let's select drop the rest:
+
+```{r}
+dat <- select(dat, IncP_max, age, sex_status, death_status)
+```
+
+## Histograms
+A simple way to visualize a distribution is to plot a histogram: data are binned, and the height of the bin represents counts (or frequencies). 
+
+```{r}
+ggplot(data = dat) + aes(x = age) + geom_histogram()
+# you can control the width of the bins
+ggplot(data = dat) + aes(x = age) + geom_histogram(binwidth = 4)
+# or set the desired number of bins
+ggplot(data = dat) + aes(x = age) + geom_histogram(bins = 40)
+# you can control the color of the boxes (both border and fill)
+ggplot(data = dat) + aes(x = age) + 
+  geom_histogram(bins = 40, fill = "lightblue", color = "darkred")
+```
+In many cases, a density plot (i.e., where the bins have been "interpolated") can be used instead:
+```{r}
+ggplot(data = dat) + aes(x = age) + geom_density()
+```
+In this case, we can see clearly that the distribution is bimodal (i.e., has two peaks).
+You can also combine both the histogram and the density calling:
+```{r}
+ggplot(data = dat) + aes(x = age) + 
+  geom_histogram(bins = 40,  aes(y = ..density..)) + 
+  geom_density()
+```
+
+where the command `aes(y = ..density..)` transforms the height of the bars from counts to densities. 
+
+## Adding features to the histogram
+Suppose we want to show where the mean (median, etc.) of the distribution is. We can combine the histogram with a vertical line:
+
+```{r}
+ggplot(data = dat) + aes(x = age) +
+  geom_histogram() + 
+  geom_vline(aes(xintercept = mean(age)), linetype = 2) +
+  geom_vline(aes(xintercept = median(age)), linetype = 3, color = "red")
+```
+
+
+# Contrasting 1-dimensional distributions
+We can plot more than one histogram on the same plot. For example, let's see whether the distribution of ages differs between men and women:
+
+```{r}
+ggplot(data = dat) + 
+  aes(x = age, fill = as.factor(sex_status)) + 
+  geom_histogram(position = "identity", alpha = 0.4)
+```
+
+where we colored the bars by sex (`as.factor` transfoms the numbers `0` and `1` into "categories"), and we set the transparency (`alpha = 0.4`) to be able to see both distributions. When we set the position to `identity` the bars are located at the same position. To put them side-to-side we can use `dodge`:
+
+```{r}
+ggplot(data = dat) + 
+  aes(x = age, fill = as.factor(sex_status)) + 
+  geom_histogram(position = "dodge", alpha = 0.4)
+```
+
+Another way to contrast distributions is by using box-, dot- or violin-plots. In this case, we look at the distribution "from above", allowing to quickly assess whether the distributions differ:
+
+```{r}
+# boxplot
+ggplot(data = dat) + 
+  aes(x = as.factor(sex_status), y = age) + 
+  geom_boxplot()
+# dotplot
+ggplot(data = dat) + 
+  aes(x = as.factor(sex_status), y = age) + 
+  geom_dotplot(stackdir = "center", binaxis = "y", dotsize = 0.5)
+# violin plot
+ggplot(data = dat) + 
+  aes(x = as.factor(sex_status), y = age) + 
+  geom_violin()
+```
+
+
+# Visualizing 2-dimensional distributions
+Now let's look at the 
