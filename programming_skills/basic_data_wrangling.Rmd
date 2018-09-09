@@ -38,7 +38,7 @@ Then, we need a dataset to play with. We take a simple dataset from:
 
 > Lippens C, Faivre B, Lechenault C, Sorci G (2017) [Aging parasites produce offspring with poor fitness prospects](https://doi.org/10.1098/rsbl.2016.0888). Biology Letters 13(2): 20160888. 
 
-The Authors have found that senescing parasites produce offspring with lower survival probability and lower fertility. To produce this result, they have infected mice with the parasite nematode * Heligmosomoides polygyrus*. They collected the eggs found in the faeces at different times, corresponding to the age of the worm (in days). Then they used the hatched larvae to infect mice, and counted the eggs shedded by the newly infected mice for 28 days. At that point, mice were sacrificed and adult worms in the intestine counted.
+The Authors have found that senescing parasites produce offspring with lower survival probability and lower fertility. To produce this result, they have infected mice with the parasite nematode *Heligmosomoides polygyrus*. They collected the eggs found in the faeces at different times, corresponding to the age of the worm (in days). Then they used the hatched larvae to infect mice, and counted the eggs shedded by the newly infected mice for 28 days. At that point, mice were sacrificed and adult worms in the intestine counted.
 
 ```{r}
 # to read Excel files
@@ -57,138 +57,124 @@ class(dt)
 
 `dplyr` ships with a new data type, called a `tibble`. To convert from data frame, use
 ```{r, eval=FALSE}
-divvy <- tbl_df(divvy)
-divvy
+# load a data frame
+data("trees")
+class(trees)
+trees <- as_tibble(trees)
+class(trees)
 ```
 
 The nice feature of `tbl` objects is that they will print only what fits on the screen, and also give you useful information on the size of the data, as well as the type of data  in each column. Other than that, a `tbl` object behaves very much like a `data.frame`. In some rare cases, you want to transform the `tbl` back into a `data.frame`. For this, use the function `as.data.frame(tbl_object)`.
 
 We can take a look at the data using one of several functions:
 
-* `head(divvy)` shows the first few (10 by default) rows
-* `tail(divvy)` shows the last few (10 by default) rows
-* `glimpse(divvy)` a summary of the data (similar to `str` in base R)
-* `View(divvy)` open in spreadsheet-like window
+* `head(dt)` shows the first few rows
+* `tail(dt)` shows the last few rows
+* `glimpse(dt)` a summary of the data (similar to `str` in base R)
+* `View(dt)` open in spreadsheet-like window
 
-## Selecting rows and columns
+# Selecting rows and columns
+There are many ways to subset the data, either by row (subsetting the *observations*), or by column (subsetting the *variables*). For example, suppose we want to count how many rows contain data for `time post-infection` 28. When reading data using `tidyverse`, the column names are not altered (contrary to what happens using `read.csv`). As such, they might be difficult to type. No problem: simply enclose the names with "back tickmarks" "`":
 
-There are many ways to subset the data, either by row (subsetting the *observations*), or by column (subsetting the *variables*). For example, suppose we want to count how many trips (of the > 410k) are very short. The column `tripduration` contains the length of the trip in seconds. Let's select only the trips that lasted less than 3 minutes:
-
-```{r, eval=FALSE}
-filter(divvy, tripduration < 180)
+```{r}
+filter(dt, `time post-infection` == 28)
 ```
 
-You can see that "only" 11,099 trips lasted less than three minutes. We have used the command `filter(tbl, conditions)` to select certain observations. We can combine several conditions, by listing them side by side, possibly using logical operators.
+We have 20 observations. We have used the command `filter(tbl, conditions)` to select certain observations. We can combine several conditions, by listing them side by side, possibly using logical operators.
 
 > **Exercise:** what does this do?
->```{r, eval=FALSE}
- filter(divvy, gender == "Male", tripduration > 60, tripduration < 180)
- ```
-
-We can also select particular variables using the function `select(tbl, cols to select)`. For example, select `from_station_name` and `from_station_id`:
-
-```{r, eval=FALSE}
-select(divvy, from_station_name, from_station_id)
+```{r}
+filter(dt, `Parental age` > 20, 
+           `number of adult worms` > 20, 
+           `fecal egg count` < 10)
 ```
 
-How many stations are represented in the data set? We can use the function `distinct(tbl)` to retain only the rows that differ from each other:
-
-```{r, eval=FALSE}
-distinct(select(divvy, from_station_name, from_station_id))
+We can also select particular variables (columns) using the function `select(tbl, cols to select)`. For example, select `id` and `number of adult worms`:
+```{r}
+select(dt, id, `number of adult worms`)
 ```
 
-Showing that there are 300 stations, once we removed the duplicates. 
+How many `id`s are represented in the data set? We can use the function `distinct(tbl, cols to sellect)` to retain only the rows that differ from each other:
+
+```{r}
+distinct(select(dt, id))
+```
+
+Showing that there are 20 replicates, once we removed the duplicates. 
 
 Other ways to subset observations:
 
 - `sample_n(tbl, howmany, replace = TRUE)` sample `howmany` rows at random with replacement
-
 - `sample_frac(tbl, proportion, replace = FALSE)` sample a certain proportion (e.g. `0.2` for 20%) of rows at random without replacement
-
-- `slice(tbl, 50:100)` extract the rows between `50` and `100`
-
-- `top_n(tbl, 10, tripduration)` extract the first `10` rows, once ordered by `tripduration`
+- `slice(tbl, 5:20)` extract the rows `5` to `20`
+- ``top_n(tbl, 10, `number of adult worms`)`` extract the first `10` rows, once ordered by `number of adult worms`
 
 More ways to select columns:
 
-- `select(divvy, contains("station"))` select all columns containing the word `station`
+- `select(dt, contains("time"))` select all columns containing the word `time`
+- ``select(dt, -id, -`Parental age`)`` exclude the columns `id` and `Parental age`
+- `select(dt, matches("count|time"))` select all columns whose names match a regular expression
 
-- `select(divvy, -gender, -tripduration)` exclude the columns `gender` and `tripduration`
+# Creating pipelines using `%>%`
+We've been calling nested functions, such as `distinct(select(dt, id))`. If you have to add another layer or two, the code would become unreadable. `dplyr` allows you to "un-nest" these functions and create a "pipeline", in which you concatenate commands separated by the special operator `%>%`. For example:
 
-- `select(divvy, matches("year|time"))` select all columns whose names match a regular expression
-
-## Creating pipelines using `%>%`
-
-We've been calling nested functions, such as `distinct(select(divvy, ...))`. If you have to add another layer or two, the code would become unreadable. `dplyr` allows you to "un-nest" these functions and create a "pipeline", in which you concatenate commands separated by the special operator `%>%`. For example:
-
-```{r, eval=FALSE}
-divvy %>% # take a data table
-  select(from_station_name, from_station_id) %>% # select two columns
+```{r}
+dt %>% # take a data table
+  select(id) %>% # select a column
   distinct() # remove duplicates
 ```
 
 does exactly the same as the command above, but is much more readable. By concatenating many commands, you can create incredibly complex pipelines while retaining readability.
 
-## Producing summaries
+Another advantage of pipelines is that they help with name completion. In fact, `RStudio` is running in the background your pipeline while you type it. Try typing `dt %>% filter(` and then start typing `time` and press `Tab`: you will see the options to complete the column name; choose it with your arrows and hit `Return`. The back tickmarks will be added automatically.
 
-Sometimes we need to calculate statistics on certain columns. For example, calculate the average trip duration. We can do this using `summarise`:
-```{r, eval=FALSE}
-divvy %>% summarise(avg = mean(tripduration))
+# Producing summaries
+Sometimes we need to calculate statistics on certain columns. For example, calculate the average number of eggs shedded by the infected mice. We can do this using `summarize`:
+```{r}
+dt %>% summarize(avg = mean(`fecal egg count`, na.rm = TRUE))
 ```
 
-which returns a `tbl` object with just the average trip duration. You can combine multiple statistics (use `first`, `last`, `min`, `max`, `n` [count the number of rows], `n_distinct` [count the number of distinct rows], `mean`, `median`, `var`, `sd`, etc.):
+where we used `na.rm = TRUE` to ignore missing values. This command returns a `tbl` object with just the average egg count. You can combine multiple statistics (use `first`, `last`, `min`, `max`, `n` [count the number of rows], `n_distinct` [count the number of distinct rows], `mean`, `median`, `var`, `sd`, etc.):
 
-```{r, eval=FALSE}
-divvy %>% summarise(avg = mean(tripduration), 
-                    sd = sd(tripduration), 
-                    median = median(tripduration))
+```{r}
+dt %>% summarize(avg = mean(`fecal egg count`, na.rm = TRUE), 
+                 sd = sd(`fecal egg count`, na.rm = TRUE), 
+                 median = median(`fecal egg count`, na.rm = TRUE))
 ```
 
-## Summaries by group
+# Summaries by group
+One of the most useful features of `dplyr` is the ability to produce statistics for the data once subsetted by *groups*. For example, we would like to measure whether older worms produce less virulent offspring. We can then group the data by `Parental age`, and calculate the mean `fecal egg count` once the data are split into groups:
 
-One of the most useful features of `dplyr` is the ability to produce statistics for the data once subsetted by *groups*. For example, we would like to measure whether men take longer trips than women. We can then group the data by `gender`, and calculate the mean `tripduration` once the data is split into groups:
-
-```{r, eval=FALSE}
-divvy %>% group_by(gender) %>% summarise(mean = mean(tripduration))
+```{r}
+dt %>% group_by(`Parental age`) %>% summarize(mean = mean(`fecal egg count`, na.rm = TRUE))
 ```
 
-showing that women tend to take longer trips than men. 
+showing that younger worms produce highly virulent offspring.
 
-> **Exercise:** count the number of trips for Male, Female, and unspecified gender.
+> **Exercise:** find the average `number of adult worms` by `Parental age`. Filter the data to consider only 28 days for `time post-infection`.   
 
-## Ordering the data 
+# Ordering the data 
 To order the data according to one or more variables, use `arrange()`:
-```{r, eval=FALSE}
-divvy %>% select(trip_id, tripduration) %>% arrange(tripduration)
-divvy %>% select(trip_id, tripduration) %>% arrange(desc(tripduration))
+```{r}
+dt %>% arrange(`number of adult worms`)
+dt %>% arrange(desc(`number of adult worms`))
 ```
 
-## Renaming columns
+# Renaming columns
 To rename one or more columns, use `rename()`:
-```{r, eval=FALSE}
-divvy %>% rename(tt = tripduration)
+```{r}
+dt %>% rename(pa = `Parental age`)
 ```
 
-## Adding new variables using mutate
-If you want to add one or more new columns, use the function `mutate`:
+# Adding new variables using mutate
+If you want to add one or more new columns, with the content being a function of other columns, use the function `mutate`:
 
-```{r, eval=FALSE}
-divvy %>% select(from_station_id, to_station_id) %>% 
-  mutate(mylink = paste0(from_station_id, "->", to_station_id))
+```{r}
+#HERE
 ```
 
 use the function `transmute()` to create a new column and drop the original columns. You can also use `mutate` and `transmute` on grouped data:
 
 ```{r, eval=FALSE}
-# A more complex pipeline
-divvy %>% 
-  select(trip_id, gender, tripduration) %>%  # select only three columns
-  rename(t = tripduration) %>% # rename a column
-  group_by(gender) %>% # create a group for each gender value
-  mutate(zscore = (t - mean(t) ) / sd(t)) %>% # compute z-score for t, according to gender
-  ungroup() %>% # remove group information
-  arrange(desc(t), zscore, gender) %>% # order by t (decreasing), zscore, and gender
-  head(20) # display first 20 rows
 ```
-
 
