@@ -1,20 +1,20 @@
 ---
-title: "Visualizing distributions --- Data lab"
+title: "Distributions and their properties: Data Lab"
 author: "Dmitry Kondrashov & Stefano Allesina"
 date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
 output:
   html_document:
-  theme: cosmo
-toc: yes
-toc_float: yes
-pdf_document:
-  toc: yes
+    theme: cosmo
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
 urlcolor: blue
 ---
-  
+
 ```{r knitr, echo=FALSE}
 knitr::opts_chunk$set(
-  eval      = TRUE,
+  eval      = FALSE,
   comment   = "#",
   #results   = "asis",
   # collapse  = TRUE,
@@ -22,13 +22,13 @@ knitr::opts_chunk$set(
 ```
 
 ```{r, message = FALSE}
+library(MASS) # to fit distributions
 library(tidyverse) # our friend the tidyverse
 library(readxl) # to read excel files
 source("../general_code/read_xls_from_url.R") # function  to read excel from URL
 ```
 
 # Visualizing 1-dimensional distributions
-
 We start by analyzing a dataset reporting the incubation period of a novel type of influenza A of avian origin that emerged in China in 2013. The data are taken from:
 
 > Virlogeux V, Yang J, Fang VJ, Feng L, Tsang TK, Jiang H, Wu P, Zheng J, Lau EHY, Qin Y, Peng Z, Peiris JSM, Yu H, Cowling BJ (2016) [Association between the severity of influenza A(H7N9) virus infections and length of the incubation period.](https://doi.org/10.1371/journal.pone.0148506) PLOS ONE 11(2): e0148506. 
@@ -43,14 +43,14 @@ head(dat)
 where `Case.No.` is an identifier of the record, `IncP_min` and `IncP_max` are the minimum (maximum) incubation period, `age` is the age of the patient, `sex_status` is `0` for female and `1` for male, and `death_status` reports whether the patient died. 
 
 Because we're going to work with only a few columns, let's select drop the rest:
-
 ```{r}
+# we will see this in more details later in the course
+# as the name of the command implies, we're selecting certain cols
 dat <- select(dat, IncP_max, age, sex_status, death_status)
 ```
 
 ## Histograms
 A simple way to visualize a distribution is to plot a histogram: data are binned, and the height of the bin represents counts (or frequencies). 
-
 ```{r}
 ggplot(data = dat) + aes(x = age) + geom_histogram()
 # you can control the width of the bins
@@ -66,6 +66,8 @@ In many cases, a density plot (i.e., where the bins have been "interpolated") ca
 ggplot(data = dat) + aes(x = age) + geom_density()
 ```
 In this case, we can see clearly that the distribution is bimodal (i.e., has two peaks).
+
+
 You can also combine both the histogram and the density calling:
 ```{r}
 ggplot(data = dat) + aes(x = age) + 
@@ -74,7 +76,6 @@ ggplot(data = dat) + aes(x = age) +
 ```
 
 where the command `aes(y = ..density..)` transforms the height of the bars from counts to densities. 
-
 ## Adding features to the histogram
 Suppose we want to show where the mean (median, etc.) of the distribution is. We can combine the histogram with a vertical line:
 
@@ -85,17 +86,15 @@ ggplot(data = dat) + aes(x = age) +
   geom_vline(aes(xintercept = median(age)), linetype = 3, color = "red")
 ```
 
-
 # Contrasting 1-dimensional distributions
 We can plot more than one histogram on the same plot. For example, let's see whether the distribution of ages differs between men and women:
-
 ```{r}
 ggplot(data = dat) + 
   aes(x = age, fill = as.factor(sex_status)) + 
   geom_histogram(position = "identity", alpha = 0.4)
 ```
 
-where we colored the bars by sex (`as.factor` transfoms the numbers `0` and `1` into "categories"), and we set the transparency (`alpha = 0.4`) to be able to see both distributions. When we set the position to `identity` the bars are located at the same position. To put them side-to-side we can use `dodge`:
+where we colored the bars by sex (`as.factor` transfoms the numbers `0` and `1` into "categories"), and we set the transparency (`alpha = 0.4`) to be able to see both distributions. When we set the position to `identity` the bars for the two histogram are located at the same positions. To arrange them side-to-side we can use `dodge`:
 
 ```{r}
 ggplot(data = dat) + 
@@ -103,8 +102,7 @@ ggplot(data = dat) +
   geom_histogram(position = "dodge", alpha = 0.4)
 ```
 
-Another way to contrast distributions is by using box-, dot- or violin-plots. In this case, we look at the distribution "from above", allowing to quickly assess whether the distributions differ:
-
+Another way to contrast distributions is by using box-, dot- or violin-plots. In this case, we look at the distribution "from above", and concentrate on the location of the median, and the width of the distribution. These plots allow to quickly assess whether the distributions differ:
 ```{r}
 # boxplot
 ggplot(data = dat) + 
@@ -123,3 +121,79 @@ ggplot(data = dat) +
 
 # Visualizing 2-dimensional distributions
 Now let's look at the 
+
+
+# Types of distributions in biological data
+
+# Overlay distributions to histograms
+
+
+
+
+# Do the data follow a certain distribution?
+Suppose we want to check whether our data is well matched by a certain distribution. For example, let's produce data that should follow a normal distribution with mean 3 and standard deviation 1.5:
+
+```{r}
+set.seed(101)
+test_data <- tibble(x = rnorm(n = 500, mean = 3, sd = 1.5))
+```
+
+We can find the best-fitting parameters for our data and a distribution of choice:
+```{r}
+# example: find best-fitting Normal
+my_normal <- fitdistr(test_data$x, densfun = "normal")
+# note the slight discrepancies
+my_normal
+```
+
+And produce a so-called Q-Q plot (quantile-quantile plot): for each quantile of our data, the theoretical value is computed for the best-fitting "theoretical" distribution. If the data were to follow the distribution closely, you should find all the points lying on the 1:1 line:
+```{r}
+ggplot(test_data, aes(sample = x)) +
+  stat_qq(distribution = qnorm, dparams = my_normal$estimate) +
+  stat_qq_line(distribution = qnorm, dparams = my_normal$estimate) + 
+  geom_abline(intercept = 0, slope = 1, linetype = 2, col = "red") +
+  ggtitle("Q-Q plot assuming best-fitting Normal distribution")
+```
+
+## But what if we choose the wrong distribution?
+Suppose that we choose the values from a Uniform distribution:
+```{r}
+test_data <- tibble(x = runif(n = 500))
+```
+
+And that we fit an exponential distribution:
+```{r}
+my_exponential <- fitdistr(test_data$x, densfun = "exponential")
+ggplot(test_data, aes(sample = x)) +
+  stat_qq(distribution = qexp, dparams = my_exponential$estimate) +
+  stat_qq_line(distribution = qexp, dparams = my_exponential$estimate) + 
+  ggtitle("Q-Q plot assuming best-fitting Exponential distribution")
+```
+
+Or a Weibull distribution:
+```{r}
+my_weibull <- fitdistr(test_data$x, densfun = "weibull")
+ggplot(test_data, aes(sample = x)) +
+  stat_qq(distribution = qweibull, dparams = my_weibull$estimate) +
+  stat_qq_line(distribution = qweibull, dparams = my_weibull$estimate) + 
+  ggtitle("Q-Q plot assuming best-fitting Weibull distribution")
+```
+
+On the other hand, if we use a distribution that can be made into a Uniform distribution by setting parameters to particular values (e.g., $\Beta(1,1)$ is equal to Uniform between 0 and 1), we find a good agreement:
+```{r}
+# for some distributions, you need to provide a starting point 
+# for the search of parameters
+my_beta <- fitdistr(test_data$x, densfun = "beta", 
+                    start = list(shape1 = 1.5, shape2 = 2.1))
+ggplot(test_data, aes(sample = x)) +
+  stat_qq(distribution = qbeta, dparams = my_beta$estimate) +
+  stat_qq_line(distribution = qbeta, dparams = my_beta$estimate) + 
+  ggtitle("Q-Q plot assuming best-fitting Beta distribution")
+```
+
+```{r}
+# and in fact the best-fitting Beta is close to Uniform
+my_beta
+```
+
+

@@ -438,7 +438,8 @@ Let's look at an example: Read a file containing data on the 6th chromosome for 
 ```{r}
 # The actual URL is
 # https://github.com/StefanoAllesina/BSD-QBio4/raw/master/tutorials/basic_computing_1/data/H938_Euro_chr6.geno
-ch6 <- read.table("https://tinyurl.com/y7vctq3v", header = TRUE, stringsAsFactors = FALSE)
+ch6 <- read.table("https://tinyurl.com/y7vctq3v", 
+                  header = TRUE, stringsAsFactors = FALSE)
 ```
 
 where `header = TRUE` means that we want to take the first line to be a header containing the column names. How big is this table?

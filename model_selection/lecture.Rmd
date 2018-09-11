@@ -79,7 +79,7 @@ A possible simple model is one that says that all tree heights have heights take
 $$
 h_i = \theta_1 + \epsilon_i
 $$
-where we assume that the errors $\epsilon_i \overset{\text{iid}}{\sim} N(0, \sigma^2)$. Now fit the model, obtaining $\hat{\theta_1}$, and compute the maximum log-likelihood $\mathcal L_0(\hat{\theta_1} | h)$. 
+where we assume that the errors $\epsilon_i \overset{\text{iid}}{\sim} \mathcal N(0, \sigma^2)$. Now fit the model, obtaining $\hat{\theta_1}$, and compute the maximum log-likelihood $\mathcal L_0(\hat{\theta_1} | h)$. 
 
 In `R`, we would call:
 ```{r}

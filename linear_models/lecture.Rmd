@@ -1,5 +1,5 @@
 ---
-title: "ENTER TITLE"
+title: "Linear models"
 author: "Dmitry Kondrashov & Stefano Allesina"
 date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
 output:
@@ -21,4 +21,158 @@ knitr::opts_chunk$set(
   fig.align = "center")
 ```
 
-## Goal
+# Goal
+Learn how to perform linear regression, how to make sure that the assumptions of the model are not violated, and how to interpret the results. Showcase Generalized Linear Models, to deal with cases in which the response variable has particular features.
+
+# Regression toward the mean
+Francis Galton (Darwin's half-cousin) was a biologist interested in evolution, and one of the main proponents of eugenics (he coined the term himself). To advance his research program, he set out to measure several features in human populations, and started trying to explain the variation he observed, incidentally becoming one of the founding fathers of modern statistics. 
+
+In his "Regression towards mediocrity in hereditary stature" he showed an interesting trend: children of tall parents tended to be shorter than their parents, while children of short parents tended to be taller than their parents. He called this phenomoenon "regression toward mediocrity" (now called regression toward the mean). 
+
+We're going to explore this phenomenon using Karl Pearson's (another founding father of statistics) data, recording the height of fathers and sons:
+```{r, message=FALSE}
+library(tidyverse)
+heights <- read_tsv("http://www.randomservices.org/random/data/Pearson.txt")
+pl <- ggplot(data = heights) + aes(x = Father, y = Son) + geom_point() + coord_equal()
+pl
+```
+
+Let's add the 1:1 line for comparison:
+```{r}
+pl <- pl + geom_abline(slope = 1, intercept = 0, linetype = 2, color = "red")
+pl
+```
+
+You can see that the 1:1 line does not divide the cloud of points evenly: even though tall fathers tend to produce tall sons, and short fathers short sons, the sons of short fathers tend to be taller than their fathers, while the sons of tall fathers tend to be shorter than their fathers.
+
+# Finding the best fitting line: Linear Regression
+How can we explain the relationship between the height of the faters and those of their sons? One of the simplest models we can use is called a "Linear Model". Basically, we want to express the height of the son as a function of the height of the father:
+
+$$
+y_i = \beta_0 + \beta_1 x_i + \epsilon_i
+$$
+where $Y_i$ is the height of the son (**response variable**), $x_i$ is the height of the father (**explanatory variable**), $\beta_0$ and $\beta_1$ are two numbers (intercept and slope of the line) that do not vary within the population (these are the parameters we want to fit), and finally the term $\epsilon_i$ measures the "error" we are making for the ith son. For simplicity, we assume the $\epsilon_i \overset{\text{iid}}{\sim} \mathcal N(0, \sigma^2)$ (and $\sigma$ is another parameter we want to fit).
+
+When we have multiple explanatory variables (for example, if we had recorded also the height of the mother, whether the son was born at full term or premature, the average caloric intake for the family, etc.), we speak of *Multiple Linear Regression*:
+
+$$
+y_i = \beta_0 + \sum_{k=1}^n \beta_k x_{ik} + \epsilon_i
+$$
+## Solving a linear model --- some linear algebra
+Suppose that for simplicity we have a single explanatory variable, then we can write the linear model in compact form as:
+$$
+\mathbf{Y} = \mathbf{X} \mathbf{\beta} + \mathbf{\epsilon}
+$$
+where:
+$$
+\mathbf{Y} = \begin{pmatrix} y_1\\ y_2\\ \vdots \\ y_n \end{pmatrix} \;\;\; 
+\mathbf{X} = \begin{pmatrix} 1 & x_1\\ 1 & x_2\\ \vdots & \vdots \\ 1 & x_n \end{pmatrix}
+ \;\;\; 
+\mathbf{\beta} = \begin{pmatrix} \beta_0 \\ \beta_1\end{pmatrix} \;\;\; \mathbf{\epsilon} = \begin{pmatrix} \epsilon_1 \\ \epsilon_2 \\ \vdots \\ \epsilon_n \end{pmatrix}
+$$
+
+
+Solving the linear regression means finding the best-fitting $\beta_0$, $\beta_1$ and $\sigma$ (controlling the spread of the distribution of the $\epsilon_i$). Our goal is to find the values of $\beta$ that minimize $\sigma$ (meaning that points fall closer to the line). Rearranging:
+$$
+\frac{1}{n}\sum_i \epsilon_i^2 = \sigma^2  = \frac{1}{n} \sum_i (y_i - \beta_0 - \beta_1 x_i)^2 = \frac{1}{n} \Vert \mathbf{Y} - \mathbf{X} \mathbf{\beta} \Vert
+$$
+
+It can be proved that this is accomplished using 
+$$
+\hat{\mathbf{\beta}} = \left( \mathbf{X}^T \mathbf{X} \right)^{-1} \mathbf{X}^T \mathbf{Y}
+$$
+
+Where the matrix $\left( \mathbf{X}^T \mathbf{X} \right)^{-1} \mathbf{X}^T$ is known as the (left) Moore-Penrose pseudo-inverse of $\mathbf{X}$. Let's try to do this in `R` (the "hard" way):
+```{r}
+X <- cbind(1, heights$Father)
+Y <- cbind(heights$Son)
+best_beta <- solve(t(X) %*% X) %*% t(X) %*% Y
+best_beta
+```
+
+Finding that the best fitting line has an intercept of about 34 inches, and a slope of 0.51. Of course, `R` can do this for you with just one command:
+```{r}
+best_beta_easy <- lm(Son ~ Father, data = heights)
+best_beta_easy
+```
+
+But it feels good to know that this is not black magic! In fact, plotting it on top of the data does not even require computing the coefficients:
+```{r}
+pl + geom_smooth(method = "lm") # lm stands for linear model
+```
+
+# Minimizing sum of squares
+What we just did is called "ordinary least-squares": we are trying to minimize the distance from the data points to their projection on the best-fitting line. We can compute the "predicted" heights as:
+$$
+\hat{\mathbf{Y}} = \mathbf{X}\hat{\mathbf{\beta}}
+$$
+Then, we're minimizing $\Vert \mathbf{Y} - \hat{\mathbf{Y}}\Vert$. We call $\hat{\mathbf{\epsilon}} = \mathbf{Y} - \hat{\mathbf{Y}}$ the vector of **residuals**. From this, we can estimate the final parameter, $\sigma$:
+
+$$
+\sigma = \sqrt{\frac{\sum_i \hat{\epsilon_i}^2}{n -  p}}
+$$
+where $n$ is the number of data points, and $p$ is the number of parameters in $\mathbf{\beta}$ (2 in this case); this measures the number of **degrees of freedom**. Let's try and compute it:
+```{r}
+degrees_of_freedom <- length(Y) - 2
+degrees_of_freedom
+epsilon_hat <- X %*% best_beta - Y
+sigma <- sqrt(sum(epsilon_hat^2) / degrees_of_freedom)
+sigma
+```
+
+In `R`, you will find this reported as the `Residual standard error` when you call `summary` on your model:
+```{r}
+summary(best_beta_easy)
+```
+
+Finally, the **coefficient of determination** $R^2$ is computed as:
+
+$$
+R^2 = \frac{\sum_i (\hat{y}_i - \bar{y})^2}{\sum_i ({y}_i - \bar{y})^2}
+$$
+where $\bar{y}$ is the mean of $y_i$. If the regression has an intercept, then the $R^2$ can vary between 0 and 1, with values close to 1 indicating a good fit to the data. Again, let's compute it the hard way and then the easy way:
+```{r}
+y_bar <- mean(Y)
+R_2 <- sum((X %*% best_beta - y_bar)^2) / sum((Y - y_bar)^2)
+R_2
+```
+```{r}
+# look for Multiple R-squared:
+summary(best_beta_easy)
+```
+
+# Assumptions of linear regression
+In practice, when we are performing a linear regression, we are making a number of assumptions about the data. Here are the main assumptions:
+
+* Model structure: we believe that the process generating the data is linear.
+* Strict exogeneity: the residuals should have conditional mean of 0. 
+$$
+\mathbb E[\epsilon_i | x_i] = 0
+$$
+* No linear dependence: the columns of $\mathbb{X}$ should be linearly independent.
+* Homoscedasticity: the variance of the residuals is independent of $x_i$.
+$$
+\mathbb V[\epsilon_i | x_i] =  \sigma_2
+$$
+* Errors are uncorrelated between observations. 
+$$
+\mathbb E[\epsilon_i \epsilon_j | x] = 0 \; \forall j \neq i
+$$
+
+# Regression toward the mean reprise
+```{r}
+# data from 
+# https://github.com/llimllib/bostonmarathon
+# data Boston marathon 2014
+b2014 <- read.csv("https://tinyurl.com/yausuqpm", stringsAsFactors = FALSE) %>% 
+  select(name, official) %>% rename(res2014 = official)
+# data Boston marathon 2013
+b2013 <- read.csv("https://tinyurl.com/ya6a4e2t", stringsAsFactors = FALSE) %>% 
+  select(name, official) %>% rename(res2013 = official)
+dat <- inner_join(b2013, b2014) %>% filter(res2013 < 150)
+ggplot(data = dat) + aes(x = res2013, y = res2014) + 
+  geom_point() + geom_smooth(method = "lm") + 
+  geom_abline(slope = 1, intercept = 0, linetype = 2, col = "red") +
+  scale_y_sqrt() + scale_x_sqrt()
+```
+

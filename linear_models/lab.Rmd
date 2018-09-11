@@ -26,3 +26,21 @@ library(tidyverse) # our friend the tidyverse
 library(readxl) # to read excel files
 source("../general_code/read_xls_from_url.R") # function  to read excel from URL
 ```
+```{r}
+olympics <- read_csv("data/100m_dash.csv")
+```
+
+```{r}
+ggplot(data = olympics) + aes(x = Year, y = Result, colour = Gender) + geom_point() + geom_smooth(method = "lm")
+```
+
+As in the paper!
+```{r}
+ggplot(data = olympics %>% filter(Year > 1899, Year < 2004)) + aes(x = Year, y = Result, colour = Gender) + geom_point() + geom_smooth(method = "lm", fullrange = TRUE, se = FALSE)  + xlim(c(1890, 2200)) + ylim(c(0, 13))
+```
+
+But not really...
+```{r}
+ggplot(data = olympics %>% filter(Year > 1899)) + aes(x = Year, y = Result, colour = Gender) + geom_point() + geom_smooth(method = "lm", fullrange = TRUE, se = FALSE)  + xlim(c(1890, 2400)) + ylim(c(0, 13))
+```
+

@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 ```
 
 # Goal
-Learn how to manipulate large data sets by writing efficient, consistent, and compact code. Introduce the use of `dplyr`, `tidyr`, and the "pipeline" operator `%>%`. Effortlessly produce statistics for grouped data. Massage data into tidy form.
+Learn how to manipulate large data sets by writing efficient, consistent, and compact code. Introduce the use of `dplyr`, `tidyr`, and the "pipeline" operator `%>%`. Effortlessly produce statistics for grouped data. Massage data into "tidy" form.
 
 # What is data wrangling?
 As biologists living in the XXI century, we are often faced with tons of data, possibly replicated over several organisms, treatments, or locations. We would like to streamline and automate our analysis as much as possible, writing scripts that are easy to read, fast to run, and easy to debug. Base `R` can get the job done, but often the code contains complicated operations, and a lot of `$` signs and brackets.
@@ -55,7 +55,7 @@ This is now a :
 class(dt)
 ```
 
-`dplyr` ships with a new data type, called a `tibble`. To convert from data frame, use
+`dplyr` ships with a new data type, called a `tibble`. To convert a `data.frame` into a tibble, use
 ```{r, eval=FALSE}
 # load a data frame
 data("trees")
@@ -64,7 +64,7 @@ trees <- as_tibble(trees)
 class(trees)
 ```
 
-The nice feature of `tbl` objects is that they will print only what fits on the screen, and also give you useful information on the size of the data, as well as the type of data  in each column. Other than that, a `tbl` object behaves very much like a `data.frame`. In some rare cases, you want to transform the `tbl` back into a `data.frame`. For this, use the function `as.data.frame(tbl_object)`.
+The nice feature of `tbl` objects is that they will print only what fits on the screen, and also give you useful information on the size of the data, as well as the type of data in each column. Other than that, a `tbl` object behaves very much like a `data.frame`. In some rare cases, you want to transform the `tbl` back into a `data.frame`. For this, use the function `as.data.frame(tbl_object)`.
 
 We can take a look at the data using one of several functions:
 
@@ -94,7 +94,7 @@ We can also select particular variables (columns) using the function `select(tbl
 select(dt, id, `number of adult worms`)
 ```
 
-How many `id`s are represented in the data set? We can use the function `distinct(tbl, cols to sellect)` to retain only the rows that differ from each other:
+How many `id`s are represented in the data set? We can use the function `distinct(tbl, cols to select)` to retain only the rows that differ from each other:
 
 ```{r}
 distinct(select(dt, id))
@@ -104,7 +104,7 @@ Showing that there are 20 replicates, once we removed the duplicates.
 
 Other ways to subset observations:
 
-- `sample_n(tbl, howmany, replace = TRUE)` sample `howmany` rows at random with replacement
+- `sample_n(tbl, howmany, replace = TRUE)` sample `howmany` rows at random (with replacement)
 - `sample_frac(tbl, proportion, replace = FALSE)` sample a certain proportion (e.g. `0.2` for 20%) of rows at random without replacement
 - `slice(tbl, 5:20)` extract the rows `5` to `20`
 - ``top_n(tbl, 10, `number of adult worms`)`` extract the first `10` rows, once ordered by `number of adult worms`
@@ -146,7 +146,8 @@ dt %>% summarize(avg = mean(`fecal egg count`, na.rm = TRUE),
 One of the most useful features of `dplyr` is the ability to produce statistics for the data once subsetted by *groups*. For example, we would like to measure whether older worms produce less virulent offspring. We can then group the data by `Parental age`, and calculate the mean `fecal egg count` once the data are split into groups:
 
 ```{r}
-dt %>% group_by(`Parental age`) %>% summarize(mean = mean(`fecal egg count`, na.rm = TRUE))
+dt %>% group_by(`Parental age`) %>% 
+  summarize(mean = mean(`fecal egg count`, na.rm = TRUE))
 ```
 
 showing that younger worms produce highly virulent offspring.
@@ -177,4 +178,9 @@ use the function `transmute()` to create a new column and drop the original colu
 
 ```{r, eval=FALSE}
 ```
+
+# Mutate by group
+
+# Data wrangling
+
 

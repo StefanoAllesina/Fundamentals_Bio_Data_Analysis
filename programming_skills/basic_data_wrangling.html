@@ -225,7 +225,7 @@ div.tocify {
 
 <div id="goal" class="section level1">
 <h1>Goal</h1>
-<p>Learn how to manipulate large data sets by writing efficient, consistent, and compact code. Introduce the use of <code>dplyr</code>, <code>tidyr</code>, and the “pipeline” operator <code>%&gt;%</code>. Effortlessly produce statistics for grouped data. Massage data into tidy form.</p>
+<p>Learn how to manipulate large data sets by writing efficient, consistent, and compact code. Introduce the use of <code>dplyr</code>, <code>tidyr</code>, and the “pipeline” operator <code>%&gt;%</code>. Effortlessly produce statistics for grouped data. Massage data into “tidy” form.</p>
 </div>
 <div id="what-is-data-wrangling" class="section level1">
 <h1>What is data wrangling?</h1>
@@ -249,7 +249,7 @@ dt &lt;- read_xlsx_from_url(&quot;https://tinyurl.com/yclwadb8&quot;) </code></p
 <p>This is now a :</p>
 <pre class="r"><code>class(dt)</code></pre>
 <pre><code># [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
-<p><code>dplyr</code> ships with a new data type, called a <code>tibble</code>. To convert from data frame, use</p>
+<p><code>dplyr</code> ships with a new data type, called a <code>tibble</code>. To convert a <code>data.frame</code> into a tibble, use</p>
 <pre class="r"><code># load a data frame
 data(&quot;trees&quot;)
 class(trees)
@@ -269,29 +269,28 @@ class(trees)</code></pre>
 <p>There are many ways to subset the data, either by row (subsetting the <em>observations</em>), or by column (subsetting the <em>variables</em>). For example, suppose we want to count how many rows contain data for <code>time post-infection</code> 28. When reading data using <code>tidyverse</code>, the column names are not altered (contrary to what happens using <code>read.csv</code>). As such, they might be difficult to type. No problem: simply enclose the names with “back tickmarks” “`”:</p>
 <pre class="r"><code>filter(dt, `time post-infection` == 28)</code></pre>
 <pre><code># # A tibble: 20 x 5
-#    `Parental age`     id `time post-infection` `fecal egg count`
-#             &lt;dbl&gt;  &lt;chr&gt;                 &lt;dbl&gt;             &lt;dbl&gt;
-#  1             15 ES11/A                    28             19.24
-#  2             15 ES12/B                    28             21.91
-#  3             15 ES13/C                    28             16.39
-#  4             15 ES14/D                    28             28.61
-#  5             15 ES15/E                    28             14.93
-#  6             45 ES21/A                    28             17.55
-#  7             45 ES22/B                    28             35.38
-#  8             45 ES23/C                    28             17.86
-#  9             45 ES24/D                    28             30.47
-# 10             45 ES25/E                    28             20.33
-# 11            105 ES31/A                    28              5.31
-# 12            105 ES32/B                    28             23.65
-# 13            105 ES33/C                    28              9.66
-# 14            105 ES34/D                    28             11.96
-# 15            105 ES35/E                    28             39.82
-# 16            165 ES41/A                    28              4.33
-# 17            165 ES42/B                    28              9.27
-# 18            165 ES43/C                    28             10.04
-# 19            165 ES44/D                    28             11.59
-# 20            165 ES45/E                    28             13.67
-# # ... with 1 more variables: `number of adult worms` &lt;dbl&gt;</code></pre>
+#    `Parental age` id    `time post-infe… `fecal egg coun… `number of adul…
+#             &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+#  1             15 ES11…               28            19.2                39
+#  2             15 ES12…               28            21.9                54
+#  3             15 ES13…               28            16.4                44
+#  4             15 ES14…               28            28.6                49
+#  5             15 ES15…               28            14.9                38
+#  6             45 ES21…               28            17.6                26
+#  7             45 ES22…               28            35.4                49
+#  8             45 ES23…               28            17.9                51
+#  9             45 ES24…               28            30.5                43
+# 10             45 ES25…               28            20.3                43
+# 11            105 ES31…               28             5.31               21
+# 12            105 ES32…               28            23.6                39
+# 13            105 ES33…               28             9.66               24
+# 14            105 ES34…               28            12.0                27
+# 15            105 ES35…               28            39.8                32
+# 16            165 ES41…               28             4.33               12
+# 17            165 ES42…               28             9.27               26
+# 18            165 ES43…               28            10.0                25
+# 19            165 ES44…               28            11.6                28
+# 20            165 ES45…               28            13.7                28</code></pre>
 <p>We have 20 observations. We have used the command <code>filter(tbl, conditions)</code> to select certain observations. We can combine several conditions, by listing them side by side, possibly using logical operators.</p>
 <blockquote>
 <p><strong>Exercise:</strong> what does this do?</p>
@@ -300,17 +299,16 @@ class(trees)</code></pre>
            `number of adult worms` &gt; 20, 
            `fecal egg count` &lt; 10)</code></pre>
 <pre><code># # A tibble: 3 x 5
-#   `Parental age`     id `time post-infection` `fecal egg count`
-#            &lt;dbl&gt;  &lt;chr&gt;                 &lt;dbl&gt;             &lt;dbl&gt;
-# 1            105 ES31/A                    28              5.31
-# 2            105 ES33/C                    28              9.66
-# 3            165 ES42/B                    28              9.27
-# # ... with 1 more variables: `number of adult worms` &lt;dbl&gt;</code></pre>
+#   `Parental age` id     `time post-infe… `fecal egg coun… `number of adul…
+#            &lt;dbl&gt; &lt;chr&gt;             &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+# 1            105 ES31/A               28             5.31               21
+# 2            105 ES33/C               28             9.66               24
+# 3            165 ES42/B               28             9.27               26</code></pre>
 <p>We can also select particular variables (columns) using the function <code>select(tbl, cols to select)</code>. For example, select <code>id</code> and <code>number of adult worms</code>:</p>
 <pre class="r"><code>select(dt, id, `number of adult worms`)</code></pre>
 <pre><code># # A tibble: 120 x 2
-#        id `number of adult worms`
-#     &lt;chr&gt;                   &lt;dbl&gt;
+#    id     `number of adult worms`
+#    &lt;chr&gt;                    &lt;dbl&gt;
 #  1 ES11/A                      NA
 #  2 ES11/A                      NA
 #  3 ES11/A                      NA
@@ -322,11 +320,11 @@ class(trees)</code></pre>
 #  9 ES12/B                      NA
 # 10 ES12/B                      NA
 # # ... with 110 more rows</code></pre>
-<p>How many <code>id</code>s are represented in the data set? We can use the function <code>distinct(tbl, cols to sellect)</code> to retain only the rows that differ from each other:</p>
+<p>How many <code>id</code>s are represented in the data set? We can use the function <code>distinct(tbl, cols to select)</code> to retain only the rows that differ from each other:</p>
 <pre class="r"><code>distinct(select(dt, id))</code></pre>
 <pre><code># # A tibble: 20 x 1
-#        id
-#     &lt;chr&gt;
+#    id    
+#    &lt;chr&gt; 
 #  1 ES11/A
 #  2 ES12/B
 #  3 ES13/C
@@ -350,7 +348,7 @@ class(trees)</code></pre>
 <p>Showing that there are 20 replicates, once we removed the duplicates.</p>
 <p>Other ways to subset observations:</p>
 <ul>
-<li><code>sample_n(tbl, howmany, replace = TRUE)</code> sample <code>howmany</code> rows at random with replacement</li>
+<li><code>sample_n(tbl, howmany, replace = TRUE)</code> sample <code>howmany</code> rows at random (with replacement)</li>
 <li><code>sample_frac(tbl, proportion, replace = FALSE)</code> sample a certain proportion (e.g. <code>0.2</code> for 20%) of rows at random without replacement</li>
 <li><code>slice(tbl, 5:20)</code> extract the rows <code>5</code> to <code>20</code></li>
 <li><code>top_n(tbl, 10, `number of adult worms`)</code> extract the first <code>10</code> rows, once ordered by <code>number of adult worms</code></li>
@@ -369,8 +367,8 @@ class(trees)</code></pre>
   select(id) %&gt;% # select a column
   distinct() # remove duplicates</code></pre>
 <pre><code># # A tibble: 20 x 1
-#        id
-#     &lt;chr&gt;
+#    id    
+#    &lt;chr&gt; 
 #  1 ES11/A
 #  2 ES12/B
 #  3 ES13/C
@@ -399,29 +397,30 @@ class(trees)</code></pre>
 <p>Sometimes we need to calculate statistics on certain columns. For example, calculate the average number of eggs shedded by the infected mice. We can do this using <code>summarize</code>:</p>
 <pre class="r"><code>dt %&gt;% summarize(avg = mean(`fecal egg count`, na.rm = TRUE))</code></pre>
 <pre><code># # A tibble: 1 x 1
-#        avg
-#      &lt;dbl&gt;
-# 1 18.44882</code></pre>
+#     avg
+#   &lt;dbl&gt;
+# 1  18.4</code></pre>
 <p>where we used <code>na.rm = TRUE</code> to ignore missing values. This command returns a <code>tbl</code> object with just the average egg count. You can combine multiple statistics (use <code>first</code>, <code>last</code>, <code>min</code>, <code>max</code>, <code>n</code> [count the number of rows], <code>n_distinct</code> [count the number of distinct rows], <code>mean</code>, <code>median</code>, <code>var</code>, <code>sd</code>, etc.):</p>
 <pre class="r"><code>dt %&gt;% summarize(avg = mean(`fecal egg count`, na.rm = TRUE), 
                  sd = sd(`fecal egg count`, na.rm = TRUE), 
                  median = median(`fecal egg count`, na.rm = TRUE))</code></pre>
 <pre><code># # A tibble: 1 x 3
-#        avg       sd median
-#      &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;
-# 1 18.44882 10.03481  16.17</code></pre>
+#     avg    sd median
+#   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+# 1  18.4  10.0   16.2</code></pre>
 </div>
 <div id="summaries-by-group" class="section level1">
 <h1>Summaries by group</h1>
 <p>One of the most useful features of <code>dplyr</code> is the ability to produce statistics for the data once subsetted by <em>groups</em>. For example, we would like to measure whether older worms produce less virulent offspring. We can then group the data by <code>Parental age</code>, and calculate the mean <code>fecal egg count</code> once the data are split into groups:</p>
-<pre class="r"><code>dt %&gt;% group_by(`Parental age`) %&gt;% summarize(mean = mean(`fecal egg count`, na.rm = TRUE))</code></pre>
+<pre class="r"><code>dt %&gt;% group_by(`Parental age`) %&gt;% 
+  summarize(mean = mean(`fecal egg count`, na.rm = TRUE))</code></pre>
 <pre><code># # A tibble: 4 x 2
-#   `Parental age`     mean
-#            &lt;dbl&gt;    &lt;dbl&gt;
-# 1             15 26.09655
-# 2             45 16.83533
-# 3            105 16.28867
-# 4            165 14.82967</code></pre>
+#   `Parental age`  mean
+#            &lt;dbl&gt; &lt;dbl&gt;
+# 1             15  26.1
+# 2             45  16.8
+# 3            105  16.3
+# 4            165  14.8</code></pre>
 <p>showing that younger worms produce highly virulent offspring.</p>
 <blockquote>
 <p><strong>Exercise:</strong> find the average <code>number of adult worms</code> by <code>Parental age</code>. Filter the data to consider only 28 days for <code>time post-infection</code>.</p>
@@ -433,61 +432,64 @@ class(trees)</code></pre>
 <pre class="r"><code>dt %&gt;% arrange(`number of adult worms`)
 dt %&gt;% arrange(desc(`number of adult worms`))</code></pre>
 <pre><code># # A tibble: 120 x 5
-#    `Parental age`     id `time post-infection` `fecal egg count`
-#             &lt;dbl&gt;  &lt;chr&gt;                 &lt;dbl&gt;             &lt;dbl&gt;
-#  1            165 ES41/A                    28              4.33
-#  2            105 ES31/A                    28              5.31
-#  3            105 ES33/C                    28              9.66
-#  4            165 ES43/C                    28             10.04
-#  5             45 ES21/A                    28             17.55
-#  6            165 ES42/B                    28              9.27
-#  7            105 ES34/D                    28             11.96
-#  8            165 ES44/D                    28             11.59
-#  9            165 ES45/E                    28             13.67
-# 10            105 ES35/E                    28             39.82
-# # ... with 110 more rows, and 1 more variables: `number of adult
-# #   worms` &lt;dbl&gt;
+#    `Parental age` id    `time post-infe… `fecal egg coun… `number of adul…
+#             &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+#  1            165 ES41…               28             4.33               12
+#  2            105 ES31…               28             5.31               21
+#  3            105 ES33…               28             9.66               24
+#  4            165 ES43…               28            10.0                25
+#  5             45 ES21…               28            17.6                26
+#  6            165 ES42…               28             9.27               26
+#  7            105 ES34…               28            12.0                27
+#  8            165 ES44…               28            11.6                28
+#  9            165 ES45…               28            13.7                28
+# 10            105 ES35…               28            39.8                32
+# # ... with 110 more rows
 # # A tibble: 120 x 5
-#    `Parental age`     id `time post-infection` `fecal egg count`
-#             &lt;dbl&gt;  &lt;chr&gt;                 &lt;dbl&gt;             &lt;dbl&gt;
-#  1             15 ES12/B                    28             21.91
-#  2             45 ES23/C                    28             17.86
-#  3             15 ES14/D                    28             28.61
-#  4             45 ES22/B                    28             35.38
-#  5             15 ES13/C                    28             16.39
-#  6             45 ES24/D                    28             30.47
-#  7             45 ES25/E                    28             20.33
-#  8             15 ES11/A                    28             19.24
-#  9            105 ES32/B                    28             23.65
-# 10             15 ES15/E                    28             14.93
-# # ... with 110 more rows, and 1 more variables: `number of adult
-# #   worms` &lt;dbl&gt;</code></pre>
+#    `Parental age` id    `time post-infe… `fecal egg coun… `number of adul…
+#             &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+#  1             15 ES12…               28             21.9               54
+#  2             45 ES23…               28             17.9               51
+#  3             15 ES14…               28             28.6               49
+#  4             45 ES22…               28             35.4               49
+#  5             15 ES13…               28             16.4               44
+#  6             45 ES24…               28             30.5               43
+#  7             45 ES25…               28             20.3               43
+#  8             15 ES11…               28             19.2               39
+#  9            105 ES32…               28             23.6               39
+# 10             15 ES15…               28             14.9               38
+# # ... with 110 more rows</code></pre>
 </div>
 <div id="renaming-columns" class="section level1">
 <h1>Renaming columns</h1>
 <p>To rename one or more columns, use <code>rename()</code>:</p>
 <pre class="r"><code>dt %&gt;% rename(pa = `Parental age`)</code></pre>
 <pre><code># # A tibble: 120 x 5
-#       pa     id `time post-infection` `fecal egg count`
-#    &lt;dbl&gt;  &lt;chr&gt;                 &lt;dbl&gt;             &lt;dbl&gt;
-#  1    15 ES11/A                    11             14.62
-#  2    15 ES11/A                    14             21.12
-#  3    15 ES11/A                    18             16.75
-#  4    15 ES11/A                    21             31.05
-#  5    15 ES11/A                    25             21.75
-#  6    15 ES11/A                    28             19.24
-#  7    15 ES12/B                    11             25.86
-#  8    15 ES12/B                    14             19.43
-#  9    15 ES12/B                    18             22.35
-# 10    15 ES12/B                    21             61.45
-# # ... with 110 more rows, and 1 more variables: `number of adult
-# #   worms` &lt;dbl&gt;</code></pre>
+#       pa id     `time post-infection` `fecal egg count` `number of adult …
+#    &lt;dbl&gt; &lt;chr&gt;                  &lt;dbl&gt;             &lt;dbl&gt;              &lt;dbl&gt;
+#  1    15 ES11/A                    11              14.6                 NA
+#  2    15 ES11/A                    14              21.1                 NA
+#  3    15 ES11/A                    18              16.8                 NA
+#  4    15 ES11/A                    21              31.0                 NA
+#  5    15 ES11/A                    25              21.8                 NA
+#  6    15 ES11/A                    28              19.2                 39
+#  7    15 ES12/B                    11              25.9                 NA
+#  8    15 ES12/B                    14              19.4                 NA
+#  9    15 ES12/B                    18              22.4                 NA
+# 10    15 ES12/B                    21              61.4                 NA
+# # ... with 110 more rows</code></pre>
 </div>
 <div id="adding-new-variables-using-mutate" class="section level1">
 <h1>Adding new variables using mutate</h1>
 <p>If you want to add one or more new columns, with the content being a function of other columns, use the function <code>mutate</code>:</p>
 <pre class="r"><code>#HERE</code></pre>
 <p>use the function <code>transmute()</code> to create a new column and drop the original columns. You can also use <code>mutate</code> and <code>transmute</code> on grouped data:</p>
+</div>
+<div id="mutate-by-group" class="section level1">
+<h1>Mutate by group</h1>
+</div>
+<div id="data-wrangling" class="section level1">
+<h1>Data wrangling</h1>
 </div>
 
 
