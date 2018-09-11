@@ -176,3 +176,24 @@ ggplot(data = dat) + aes(x = res2013, y = res2014) +
   scale_y_sqrt() + scale_x_sqrt()
 ```
 
+# Linear regression in action
+Piwowar HA, Day RS, Fridsma DB (2007) Sharing detailed research data is associated with increased citation rate. PLoS ONE 2(3): e308. https://doi.org/10.1371/journal.pone.0000308
+
+
+```{r}
+# original url 
+# https://datadryad.org/bitstream/handle/10255/dryad.33867/rawdata.csv
+dat <- read_csv("https://tinyurl.com/y8oqbdvq") 
+dat <- dat %>% rename(IF = `Impact factor of journal`, 
+                      NCIT = `Number of Citations in first 24 months after publication`, 
+                      SHARE = `Is the microarray data publicly available`) %>% 
+      select(NCIT, IF, SHARE)
+my_model <- lm(log(NCIT + 1) ~ log(IF + 1), data = dat)
+summary(my_model)
+```
+Adding information on sharing
+```{r}
+my_model2 <- lm(log(NCIT + 1) ~ log(IF + 1) + SHARE, data = dat)
+summary(my_model2)
+```
+
