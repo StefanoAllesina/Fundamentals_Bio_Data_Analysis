@@ -1,5 +1,5 @@
 ---
-  title: "ENTER TITLE --- Data lab"
+title: "Linear models --- Data lab"
 author: "Dmitry Kondrashov & Stefano Allesina"
 date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
 output:
@@ -26,21 +26,76 @@ library(tidyverse) # our friend the tidyverse
 library(readxl) # to read excel files
 source("../general_code/read_xls_from_url.R") # function  to read excel from URL
 ```
+
+# Regression diagnostics
+```{r, message = FALSE}
+dat <- read_csv("data/Anscombe_1973.csv")
+```
+
 ```{r}
+ggplot(data = dat) + aes(x = X, y = Y, colour = Data_set) + 
+  geom_point() + geom_smooth(method = "lm", se = FALSE) + 
+  facet_wrap(~Data_set)
+```
+
+
+# Transforming the data 
+
+# A regression gone wild
+Even when the fit is good, and assumptions are met, one can still end up with a fantastic blunder. To show this, we are going to repeat a study published in *Nature* (no less!) by Tatem *et al*. You can find the study [here](https://www.nature.com/articles/431525a). Briefly, the Authors gathered data on the 100m sprint at the Olympics from 1900 to 2004, for both man and women. We can do the same:
+
+```{r, message = FALSE}
 olympics <- read_csv("data/100m_dash.csv")
 ```
 
+Then, they fitted a linear regression through the points, for both men and women. So far, so good:
 ```{r}
-ggplot(data = olympics) + aes(x = Year, y = Result, colour = Gender) + geom_point() + geom_smooth(method = "lm")
+ggplot(data = olympics %>% filter(Year > 1899, Year < 2005)) + 
+  aes(x = Year, y = Result, colour = Gender) + 
+  geom_point() + geom_smooth(method = "lm")
+```
+The fit is quite good:
+```{r}
+summary(lm(Result ~ Year*Gender,
+  data = olympics %>% filter(Year > 1899, Year < 2005)))
 ```
 
-As in the paper!
+An $R^2$ of 0.93, the pinnacle of a good linear regression. Now however, comes the problem. The Authors noticed that the times recorded for women are falling faster than those for men, meaning that the gender gap is reducing. Will it ever disappear? Just extend the regression and project forward: 
+
 ```{r}
-ggplot(data = olympics %>% filter(Year > 1899, Year < 2004)) + aes(x = Year, y = Result, colour = Gender) + geom_point() + geom_smooth(method = "lm", fullrange = TRUE, se = FALSE)  + xlim(c(1890, 2200)) + ylim(c(0, 13))
+ggplot(data = olympics %>% filter(Year > 1899, Year < 2005)) + 
+  aes(x = Year, y = Result, colour = Gender) + 
+  geom_point() + geom_smooth(method = "lm", fullrange = TRUE, se = FALSE) +
+  xlim(c(1890, 2200)) + ylim(c(0, 13))
 ```
 
-But not really...
+You can see that the lines are touching in sometimes before 2200! Then women will overrun men. 
+
+There are a number of things that are wrong with this result. First, by the same logic, computers will soon go faster than the speed of light, the number of people on planet Earth will be in the hundreds of billions, and the price of sequencing will drop so much that we will be paid instead of paying to get our samples sequenced...
+
+Second, if we extend backwards, rather than forward, we would find that Roman women would take more than a minute to run 100m (possibly, because of the uncomfortable tunics and sandals...).
 ```{r}
-ggplot(data = olympics %>% filter(Year > 1899)) + aes(x = Year, y = Result, colour = Gender) + geom_point() + geom_smooth(method = "lm", fullrange = TRUE, se = FALSE)  + xlim(c(1890, 2400)) + ylim(c(0, 13))
+ggplot(data = olympics %>% filter(Year > 1899, Year < 2005)) + 
+  aes(x = Year, y = Result, colour = Gender) + 
+  geom_point() + geom_smooth(method = "lm", fullrange = TRUE, se = FALSE) +
+  xlim(c(-2000, 2200)) + ylim(c(0, 75))
 ```
 
+As Neil Bohr allegedly said (but this is disputed), "Prediction is very difficult, especially about the future". The fact is that any non-linear curve looks quite linear if we are only considering a small range of values on the x-axis. To prove this point, let's add the data from 2004 to today:
+```{r}
+ggplot(data = olympics %>% filter(Year > 1899)) + 
+  aes(x = Year, y = Result, colour = Gender) + 
+  geom_point() + geom_smooth(method = "lm", fullrange = TRUE, se = FALSE) +
+  xlim(c(1890, 2400)) + ylim(c(0, 13))
+```
+
+You can see that the process has already slowed down: now it would take an extra century before the "momentous sprint".
+
+So many things were wrong with this short paper, that *Nature* was showered with replies. My favorite is from a Cambridge statistician (the Authors were from Oxford, ça va sans dire); it is perfectly short and venomous---a good candidate for the Nobel prize in Literature!
+
+> Sir — A. J. Tatem and colleagues calculate that women may outsprint men by the
+middle of the twenty-second century (Nature 431, 525; 2004). They omit to mention, however, that (according to their analysis) a far more interesting race should
+occur in about 2636, when times of less than zero seconds will be recorded.
+In the intervening 600 years, the authors may wish to address the obvious
+challenges raised for both time-keeping and the teaching of basic statistics.
+— Kenneth Rice
