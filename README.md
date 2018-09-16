@@ -7,6 +7,7 @@ Materials for the class *Fundamentals of Biological Data Analysis*, by Dmitry Ko
   * `tidyverse` (data wrangling and visualization)
   * `httr` (download files from the internet; installed with tidyverse)
   * `readxl` (read Excel files; installed with tidyverse)
+  * `lindia` (linear regression diagnostics in `ggplot2`)
   
 
 ## Useful links
