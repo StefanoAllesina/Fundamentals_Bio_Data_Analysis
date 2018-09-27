@@ -14,7 +14,7 @@ urlcolor: blue
 
 ```{r knitr, echo=FALSE}
 knitr::opts_chunk$set(
-  eval      = FALSE,
+  eval      = TRUE,
   comment   = "#",
   #results   = "asis",
   # collapse  = TRUE,
@@ -51,7 +51,7 @@ dat <- select(dat, IncP_max, age, sex_status, death_status)
 
 ## Histograms
 A simple way to visualize a distribution is to plot a histogram: data are binned, and the height of the bin represents counts (or frequencies). 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 ggplot(data = dat) + aes(x = age) + geom_histogram()
 # you can control the width of the bins
 ggplot(data = dat) + aes(x = age) + geom_histogram(binwidth = 4)
@@ -67,7 +67,6 @@ ggplot(data = dat) + aes(x = age) + geom_density()
 ```
 In this case, we can see clearly that the distribution is bimodal (i.e., has two peaks).
 
-
 You can also combine both the histogram and the density calling:
 ```{r}
 ggplot(data = dat) + aes(x = age) + 
@@ -76,10 +75,11 @@ ggplot(data = dat) + aes(x = age) +
 ```
 
 where the command `aes(y = ..density..)` transforms the height of the bars from counts to densities. 
+
 ## Adding features to the histogram
 Suppose we want to show where the mean (median, etc.) of the distribution is. We can combine the histogram with a vertical line:
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 ggplot(data = dat) + aes(x = age) +
   geom_histogram() + 
   geom_vline(aes(xintercept = mean(age)), linetype = 2) +
@@ -88,7 +88,7 @@ ggplot(data = dat) + aes(x = age) +
 
 # Contrasting 1-dimensional distributions
 We can plot more than one histogram on the same plot. For example, let's see whether the distribution of ages differs between men and women:
-```{r}
+```{r, message=FALSE, warning=FALSE}
 ggplot(data = dat) + 
   aes(x = age, fill = as.factor(sex_status)) + 
   geom_histogram(position = "identity", alpha = 0.4)
@@ -118,16 +118,58 @@ ggplot(data = dat) +
   geom_violin()
 ```
 
-
 # Visualizing 2-dimensional distributions
-Now let's look at the 
+Now let's look at the incubation period vs. age
+```{r}
+ggplot(data = dat) + aes(x = IncP_max, y = age) + geom_bin2d() + scale_x_sqrt()
+```
+
+What we've produced is a 2D histogram. Maybe a density plot would be more informative:
+
+```{r}
+ggplot(data = dat) + aes(x = IncP_max, y = age) + geom_density_2d() + scale_x_sqrt()
+```
 
 
 # Types of distributions in biological data
 
-# Overlay distributions to histograms
+Whenever you want to model your data using a statistical distribution, you need to think about the characteristics of your data. 
 
+## Discrete vs. continuous
+Discrete means that the quantity can only assume certain values (e.g., number of births can only be integrer, age in years is integer, male/female is categorical, taking only two values, etc.). Continuous means that you value can fall in between any two values (e.g., height, age when measured continuously, weight, solar radiance, temperature, etc.).
 
+To see the difference, we're going to look at number of offspring and weight of the mother using the data from:
+
+> O'Dea RE, Vega-Trejo R, Head ML, Jennions MD (2015) [Maternal effects on offspring size and number in mosquitofish](https://doi.org/10.1002/ece3.1577), Gambusia holbrooki. Ecology and Evolution 5(14): 2945-2955. 
+
+```{r}
+# Original URL
+#https://datadryad.org/bitstream/handle/10255/dryad.90634/DryadData.xlsx
+dat <- read_xlsx_from_url("https://tinyurl.com/y9v8lmks")
+dat
+```
+
+You can see that the `Number_of_Offspring` is discrete, while the `Female_Size` is continuous.
+
+For example:
+```{r}
+table(dat$Number_of_Offspring)
+ggplot(data = dat) + aes(x = Female_Size) + geom_histogram(binwidth = 2)
+ggplot(data = dat) + aes(x = Offspring_Size) + geom_histogram(binwidth = 0.05)
+```
+
+Note that in some cases, it is convenient to treat discrete variables as continuous (e.g., when you have very many possible values, such as number of individual ants across several nests).
+
+## Support
+The second thing you need to determine is whether the variable can take values in the whole number line (i.e., unbounded), or rather has some bounds. For example, the number of offspring, the weight and height cannot be negative; a probability can only assume values between 0 and 1; the number of heads in $k$ flips of a coin is bounded by $0$ and $k$; etc.
+
+Again, in some cases you might want to treat as unbounded quantities that have natural bounds: for example, a Normal distribution well describes the height of the people in this room, though clearly no one can be -2.5m tall (or even 5m tall).
+
+## Multimodality
+When we plot the histogram of the variable, we can observe a single "peak" (unimodal) or more than one (multi-modal). Often, observing two peaks means that we are observing a mixture of two distributions (e.g., the influenza case above). In such cases, we want to try and find what the origin of the multi-modality seems to be.
+
+## Skewness
+Finally, you want to check whether your variable shows a distribution that is symmetric about the mean, or rather has a thicker upper tail than lower tail (positive skew) or vice versa (negative skew). 
 
 
 # Do the data follow a certain distribution?

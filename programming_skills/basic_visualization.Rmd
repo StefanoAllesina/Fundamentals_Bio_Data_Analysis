@@ -316,7 +316,6 @@ pl
 ```
 
 # Setting features
-
 Often, you want to simply set a feature (e.g., the color of the points, or their shape), rather than using it to display information (i.e., mapping some aestethic). In such cases, simply declare the feature outside the `aes`:
 
 ```{r}

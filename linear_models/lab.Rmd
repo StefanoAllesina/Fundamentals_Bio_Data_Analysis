@@ -25,19 +25,77 @@ knitr::opts_chunk$set(
 library(tidyverse) # our friend the tidyverse
 library(readxl) # to read excel files
 source("../general_code/read_xls_from_url.R") # function  to read excel from URL
+library(lindia) # regression diagnostic in ggplot2
 ```
 
 # Regression diagnostics
+Now that we know the mechanics of linear regression, we turn to diagnostics: how can we make sure that the model fits the data "well"? We start by analyzing a data set assembled by Anscombe (*The American Statistician*, 1973)
 ```{r, message = FALSE}
 dat <- read_csv("data/Anscombe_1973.csv")
 ```
 
+The file comprised four data sets. We perform a linear regression using each data set separately:
+```{r}
+lm(Y ~ X, data = dat %>% filter(Data_set == "Data_1"))
+lm(Y ~ X, data = dat %>% filter(Data_set == "Data_2"))
+lm(Y ~ X, data = dat %>% filter(Data_set == "Data_3"))
+lm(Y ~ X, data = dat %>% filter(Data_set == "Data_4"))
+```
+As you can see, each data set is best fit by the same line, with intercept 3 and slope $\frac{1}{2}$. Plotting the data, however, shows that the situation is more complicated:
 ```{r}
 ggplot(data = dat) + aes(x = X, y = Y, colour = Data_set) + 
   geom_point() + geom_smooth(method = "lm", se = FALSE) + 
   facet_wrap(~Data_set)
 ```
 
+`Data_1` is fitted quite well; `Data_2` shows a marked nonlinearity; all points but one in `Data_3` are on the same line, but a single **outlier** shifts the line considerably; finally, in `Data_4` a single point is responsible for the fitting line: all other values of `X` are exactly the same. Inspecting the graphs, we would conclude that we can trust our model only in the first case. When you are performing a multiple regression, however, it is hard to see whether we're in case 1, or one of the other cases. `R` provides a number of diagnostic tools which can help you decide whether the fit to the data is good.
+
+## Plotting the residuals
+The first thing you want to do is to plot the residuals as a function of the fitted values. This plot should make it apparent whether the data was linear or not. The package `lindia` (linear regression diagnostics) makes it easy to produce this type of plot using `ggplot2`:
+```{r}
+gg_resfitted(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_1"))) + geom_smooth(method = "loess")
+```
+What you are looking for is an approximately flat line, meaning that the residuals are approximately normally distributed with mean zero for each fitted value. This is not the case in the other data sets:
+```{r, message = FALSE, warning = FALSE}
+gg_resfitted(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_2"))) + geom_smooth(method = "loess")
+gg_resfitted(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_3"))) + geom_smooth(method = "loess")
+gg_resfitted(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_4"))) + geom_smooth(method = "loess")
+```
+
+## Q-Q Plot
+We can take this further, and test whether the residuals follow a normal distribution. In particular, we can estimate the density of the residuals, and plot it against the density of a normal distribution:
+```{r}
+gg_qqplot(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_1")))
+gg_qqplot(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_2")))
+gg_qqplot(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_3")))
+gg_qqplot(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_4")))
+```
+
+Here, you are looking for a good match to the 1:1 line; outliers will be found far from the line (e.g., case 3).
+
+## Cook's distance
+Another way to detect outliers is to compute the Cook's distance for every point. Briefly, this statistic measures the effect on the regression we would obtain if we were to remove a point. 
+```{r}
+gg_cooksd(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_1")))
+gg_cooksd(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_2")))
+gg_cooksd(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_3")))
+gg_cooksd(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_4")))
+```
+
+## Leverage
+Points that strongly influence the regression are said to have much "leverage":
+```{r}
+gg_resleverage(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_1")))
+gg_resleverage(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_2")))
+gg_resleverage(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_3")))
+gg_resleverage(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_4")))
+```
+
+## Running all diagnostics
+These are but a few of the diagnostics available. To run all diagnostics on a given model, call
+```{r}
+gg_diagnose(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_2")))
+```
 
 # Transforming the data 
 
