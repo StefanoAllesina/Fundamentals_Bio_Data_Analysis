@@ -1,28 +1,147 @@
 ---
-  title: "ENTER TITLE --- Data lab"
-author: "Dmitry Kondrashov & Stefano Allesina"
-date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
-output:
-  html_document:
-  theme: cosmo
-toc: yes
-toc_float: yes
-pdf_document:
-  toc: yes
-urlcolor: blue
+title: "Week 3 lab activity: hypothesis testing and p-values"
+author: "Dmitry Kondrashov"
+date: "8/15/2018"
+output: html_document
 ---
-  
-```{r knitr, echo=FALSE}
-knitr::opts_chunk$set(
-  eval      = TRUE,
-  comment   = "#",
-  #results   = "asis",
-  # collapse  = TRUE,
-  fig.align = "center")
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r, message = FALSE}
-library(tidyverse) # our friend the tidyverse
-library(readxl) # to read excel files
-source("../general_code/read_xls_from_url.R") # function  to read excel from URL
+## Independence hypothesis testing for generated data
+
+The script below uses random numbers to produce a simulated 2 by 2 contingency table. Suppose that you have two groups of people: one with genotype A and the other with genotype B. The question is: are people with one of the genotypes more more likely to have some disease? In other words, are the variables of genotype and phenotype linked?
+
+The function indep_test defined in the code chunk generates a data set of people with genotype A and genotype B by using the binomial random number generator to produce a sample of length size of 0s (represetings healthy) and 1s (representing disease) with a specifed probability (probA and probB) of disease. The two resulting vectors dis.genA and dis.genB are used to produce a contingency table, which is fed into the chisq.test function. The chi-squared test results in a p-value, which is returned by the function. 
+
+The script uses a for loop to generate multiple samples and test them using the chi-squared test. The p-values are saved to a vector p.vec and 
+
+
+```{r} 
+# function to generate a two-way data table from two samples with specified probabilities of disease with specified sample size and test for independence
+indep_test <- function(probA, probB, size) {
+  dis.genA <- rbinom(size,1,probA) # generate sammple for genotype A
+  dis.genB <- rbinom(size,1,probB) # generate sample for genotype B
+  data.mat <- matrix(c(table(dis.genA),table(dis.genB)),nrow=2,ncol=2) # assign data matrix
+  chisq.result <- chisq.test(data.mat) # run chi-squared test
+  return(chisq.result$p.value) # return the p-value
+}
+
+size <- 200  # sample size for both genotypes
+probA <- 0.3 # probability of disease for genotype A
+probB <- 0.32 # probability of disease for genotype B
+num.tests <- 1000
+p.vec <- rep(0, num.tests) # initialize p.vec
+for (i in 1:num.tests) {
+  p.vec[i] <- indep_test(probA, probB, size)
+}
+hist(p.vec) # histogram of p-values
+sum(p.vec < 0.05) # number of p-values below a threshold
 ```
+
+1. Set the probability of disease to 0.5 for both genotypes and run the test 1000 times for sample size of 100.  What does the histogram of p-values look like? Compare the resulting p-values to significance cutoffs of 0.1, 0.05, and 0.01. How many p-values result in rejection in each case? Knowing the truth about the hypothesis, is it correct to reject it? How frequently do errors occur?
+
+```{r}
+  # YOUR CODE HERE
+```
+
+YOUR ANSWERS GO HERE 
+
+2. Now let us change the probabilities so the disease actually depends on the genotype. Set the probability of disease for genotype A to 0.45 and for genotype B to 0.55 and again run the test 1000 times  for sample size of 100. Compare the resulting p-values to significance cutoffs of 0.1, 0.05, and 0.01. How many p-values result in rejection in each case? Knowing the truth about the hypothesis, how frequently is the correct decision made? Now change the sample size to 500 and report how frequently errors are made. 
+
+```{r}
+  # YOUR CODE HERE
+```
+
+YOUR ANSWERS GO HERE 
+
+3. Finally, let's make it really easy for the chi-squared test, and generate data from very different distributions. Set the probability of disease for genotype A to be 0.3 and for tgenotype B to probability 0.7 and again run the test 1000 times for sample size of 100. Compare the resulting p-values to significance cutoffs of 0.1, 0.05, and 0.01. How many p-values result in rejection in each case? Knowing the truth about the hypothesis, how frequently is the correct decision made?
+
+```{r}
+  # YOUR CODE HERE
+```
+
+YOUR ANSWERS GO HERE 
+
+
+
+## Effect of prior probability on predictive value of a test
+
+This simulation illustrates the paper by Ioannidis ``Why most published research findings are wrong.''  The basic idea is that if a hypothesis has a small prior probability of being true (e.g. looking through an entire genome for SNPs that are linked with a disease) then a positive result has a low predictive value. We will simulate this by controlling the *prior probability* of the hypothesis being true and the *sensitivity* and *specificity* of the test.  
+
+The function below uses a random number to decide whether a particular SNP is linked, according to a prior probability and the simulates running a hypothesis test for linkage of SNP and disease with a sensitivity (rate of true positive) and specificity (rate of true negative). It checks if the null hypothesis is true (link==0) or false (link==1) and randomly decides if the test gets the correct result or not. It repeats the test independenty for a specified number of SNPs and counts the number of true positives, true negatives, false positives, and false negatives. It returns the positive predictive value, or the fraction of true positives out of all positives. An example function call is included in the end. 
+
+```{r}
+
+gwas_simulator <- function (spec, sens, prior, num.snps){
+  FP <- 0
+  TN <- 0
+  FN <- 0
+  TP <- 0
+  for (i in 1:num.snps) {
+    decider <- runif(1) # generate a uniform random number between 0 and 1
+    if (decider < prior) { # if the random number is less than prior
+      link <- 1 # SNP is linked to disease
+    } else { 
+      link <- 0 # SNP is independent of disease
+    }
+    decider <- runif(1) # generate a uniform random number between 0 and 1
+    if (link==1) { # SNP is linked to disease (null is false)
+      if (decider < sens) { # the test correctly identifies the linkage
+        TP <- TP+1 # increment the number of true positives
+      } else {
+        FN <- FN+1 # increment the number of false negatives
+      }  
+    } else { # SNP is not linked (null is true)
+      if (decider < spec) { # the test correctly says there is no linkage
+        TN <- TN+1 # increment the number of true negatives
+      } else { 
+        FP <- FP+1 # increment the number of true negativess
+      }
+    }
+  }
+  print(paste("The number of true positives is",TP))
+  print(paste("The number of true negatives is",TN))
+  print(paste("The number of false positives is",FP))
+  print(paste("The number of false negatives is",FN))
+  return (TP/(TP+FP))
+}
+
+spec <- 0.8 # set specificity
+sens <- 0.8 # set sensitivity
+prior <- 0.01 # set the prior probability of the SNP being linked to disease
+num.snps <- 1000
+ppv <- gwas_simulator(spec, sens, prior, num.snps)
+print(ppv)
+```
+
+ 
+1. Investigate the effect of changing the prior probability of the SNP being linked. Change the prior probability to 0.1, use the same sensitivity and specificity values as before, test 1000 SNPs and report the positive predictive value of the test. Then change the prior probability to 0.001, use the same sensitivity and specificity values as before and again test 1000 SNPs and report the positive predictive value of the test. How does the prior probability affect the positive predictive value? What implication does this have for testing a large number of hypotheses with low prior probabilities, such as thousands of SNPs in the human genome?
+
+```{r}
+# YOUR CODE HERE
+```
+  
+YOUR ANSWERS GO HERE 
+ 
+  
+2. Investigate the effect of changing the sensitivity and specificity of the test. Set the prior probability to 0.01 and report the PPV for the following combinations of sensitivity and specificity, based on 1000 simulated tests:
+
+sensitivity 0.9, specificity 0.9
+sensitivity 0.99, specificity 0.9
+sensitivity 0.9, specificity 0.99
+sensitivity 0.9, specificity 0.8
+sensitivity 0.8, specificity 0.9
+
+Which parameter (sensitivity or specificity) has the largest effect of the positive predictive value? Now set the prior to 0.7 and see again which parameter has a greater impact on PPV. 
+
+```{r}
+# YOUR CODE HERE
+```
+  
+YOUR ANSWERS GO HERE 
+ 
+
+
+
