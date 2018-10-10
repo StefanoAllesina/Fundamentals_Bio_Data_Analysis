@@ -55,7 +55,7 @@ This is now a :
 class(dt)
 ```
 
-`dplyr` ships with a new data type, called a `tibble`. To convert a `data.frame` into a tibble, use
+`dplyr` ships with a new data type, called a `tibble`. To convert a `data.frame` into a tibble, use `as.tibble`:
 ```{r, eval=FALSE}
 # load a data frame
 data("trees")

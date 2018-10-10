@@ -16,6 +16,8 @@ urlcolor: blue
 knitr::opts_chunk$set(
   eval      = TRUE,
   comment   = "#",
+  warning = FALSE,
+  message = FALSE,
   #results   = "asis",
   # collapse  = TRUE,
   fig.align = "center")
@@ -24,7 +26,7 @@ knitr::opts_chunk$set(
 ```{r, message = FALSE}
 library(tidyverse) # our friend the tidyverse
 library(readxl) # to read excel files
-source("../general_code/read_xls_from_url.R") # function  to read excel from URL
+source("general_code/read_xls_from_url.R") # function to read excel from URL
 library(lindia) # regression diagnostic in ggplot2
 ```
 
@@ -99,8 +101,53 @@ gg_diagnose(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_2")))
 
 # Transforming the data 
 
+Often, one needs to transform the data before running a linear regression, in order to fulfill the assumptions. We're going to look at the salary of professors at the University of California to show how this is done.
+
+```{r}
+# read the data
+# Original URL
+# https://raw.githubusercontent.com/raleighlittles/UC-Employee-Salaries/master/UCOP%20Database_Parsed_2017.txt
+dt <- read_csv("https://tinyurl.com/y6uq8zgj", quote = "'") # this will fail on about 1% of the data, but it's ok
+# rename cols for easy access
+dt <- dt %>% rename(loc = `'location'`, title = `'title'`, pay = `'gross pay'`) %>% select(id, loc, title, pay)
+# get only profs
+dt <- dt %>% filter(title %in% c("PROF-AY", "ASSOC PROF-AY", "ASST PROF-AY", 
+                                 "PROF-AY-B/E/E", "PROF-HCOMP", "ASST PROF-AY-B/E/E", 
+                                 "ASSOC PROF-AY-B/E/E", "ASSOC PROF-HCOMP", "ASST PROF-HCOMP"))
+# remove those making less than 30k (probably there only for a period)
+dt <- dt %>% filter(pay > 30000)
+dt
+```
+
+The distribution of salaries is very skewed --- it looks like a log-normal distribution:
+```{r}
+dt %>% ggplot() + aes(x = pay) + geom_histogram(binwidth = 10000)
+```
+
+If we set consider the log of pay, we get closer to a normal:
+```{r}
+dt %>% ggplot() + aes(x = log2(pay)) + geom_histogram(binwidth = 0.5)
+```
+
+We can try to explain the pay as a combination of title and location:
+```{r}
+unscaled <- lm(pay ~ title + loc, data = dt)
+summary(unscaled)
+gg_diagnose(lm(pay ~ title + loc, data = dt))
+```
+
+To note: Berkeley has been taken as the baseline location. Similarly, `ASSOC-PROF AY` has been taken as the baseline title. 
+The Q-Q plot shows that this is a terrible model! Now let's try with the transformed data:
+```{r}
+scaled <- lm(log2(pay) ~ title + loc, data = dt)
+summary(scaled)
+gg_diagnose(lm(log2(pay) ~ title + loc, data = dt))
+```
+
+Much better! Rembeber to inspect your explanatory and response variables. Ideally, you want the response to be normally distributed. Sometimes one or many covariates can have a nonlinear relationship with the response variable, and you should transform them prior to analysis.
+
 # A regression gone wild
-Even when the fit is good, and assumptions are met, one can still end up with a fantastic blunder. To show this, we are going to repeat a study published in *Nature* (no less!) by Tatem *et al*. You can find the study [here](https://www.nature.com/articles/431525a). Briefly, the Authors gathered data on the 100m sprint at the Olympics from 1900 to 2004, for both man and women. We can do the same:
+Even when the fit is good, and assumptions are met, one can still end up with a fantastic blunder. To show this, we are going to repeat a study published in *Nature* (no less!) by Tatem *et al*. You can find the study [here](https://www.nature.com/articles/431525a). Briefly, the Authors gathered data on the 100m sprint at the Olympics from 1900 to 2004, for both men and women. We can do the same:
 
 ```{r, message = FALSE}
 olympics <- read_csv("data/100m_dash.csv")

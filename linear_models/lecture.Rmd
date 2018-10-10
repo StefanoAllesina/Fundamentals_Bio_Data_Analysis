@@ -57,7 +57,15 @@ pl
 
 You can see that the line does not divide the cloud of points evenly: even though tall fathers tend to produce tall sons, and short fathers short sons, the sons of short fathers tend to be taller than their fathers (for example, look at the sons of fathers less than 60 inches tall), while the sons of tall fathers tend to be shorter than their fathers (for example, the sons of fathers taller than 75 inches).
 
-This phenomenon is called "regression toward the mean": when you take two measurement on the same sample (or related samples, as here), if a variable is extreme on its first measurement, it will tend to be closer to the average on its second measurement; if it is extreme on its second measurement, it will tend to have been closer to the average on its first. This phenomemon gave the name to one of the simplest statistical models: the linear regression.
+This phenomenon is called "regression toward the mean": when you take two measurement on the same sample (or related samples, as here), if a variable is extreme on its first measurement, it will tend to be closer to the average on its second measurement; if it is extreme on its second measurement, it will tend to have been closer to the average on its first. 
+
+> **Regression to the mean: dangers of interpretation** 
+
+- A city sees an unusual growth of crime in a given neighborhood, and they decide to patrol the neighborhood more heavily. The next year, crime rates are close to normal. Was this due to heavy presence of police?
+- A teacher sees that scolding students who've had a very low score in a test makes them perform better in the next test. (But would praising those with unusually high scores lead to slacking off in the next test?)
+- A huge problem in science: effect sizes tend to decrease through time. Problem of selective reporting?
+
+This phenomemon gave the name to one of the simplest statistical models: the linear regression.
 
 # Finding the best fitting line: Linear Regression
 How can we explain the relationship between the height of the faters and those of their sons? One of the simplest models we can use is called a "Linear Model". Basically, we want to express the height of the son as a function of the height of the father:
@@ -156,7 +164,9 @@ summary(best_beta_easy)
 ## Assumptions of linear regression
 In practice, when we are performing a linear regression, we are making a number of assumptions about the data. Here are the main ones:
 
-* Model structure: we believe that the process generating the data is linear.
+* Model structure: we assume that the process generating the data is linear.
+* Explanatory variable: we assume that this is measured without errors (!).
+* Residuals: we assume that residuals are i.i.d. Normal.
 * Strict exogeneity: the residuals should have conditional mean of 0. 
 
 $$
@@ -169,8 +179,8 @@ $$
 $$
 \mathbb V[\epsilon_i | x_i] =  \sigma^2
 $$
-* Errors are uncorrelated between observations. 
 
+* Errors are uncorrelated between observations. 
 $$
 \mathbb E[\epsilon_i \epsilon_j | x] = 0 \; \forall j \neq i
 $$
@@ -217,7 +227,7 @@ $$
 
 In this case, the variable SHARE takes values of 1 or 0. As such, when the data were not shared (SHARE = 0) the model reduces to the previous one, in which $\beta_2$ was absent. The coefficient $\beta_2$ measures the increase in the log of citation count when data are shared. 
 
-The same approach can be taken whenever you have categorical values: `R` will automatically create **dummy variables** each encoding whether the ith data point belongs to a particular category. For example, suppose you want to predict height based on the height of the father, and that you also collected the gender, in three categories: `F` for female, `M` for male, `U` for unknown. Then you could use this information to build the model:
+The same approach can be taken whenever you have categorical values: `R` will automatically create **dummy variables** each encoding whether the ith data point belongs to a particular category. For example, suppose you want to predict the height of a child based on the height of the father, and that you also collected the gender, in three categories: `F` for female, `M` for male, `U` for unknown. Then you could use this information to build the model:
 $$
  \text{height}_i = \beta_0 + \beta_1 \text{(height of father)}_i + \beta_2 (\text{gender is M})_i + \beta_3 (\text{gender is U})_i + \epsilon_i
 $$
@@ -233,7 +243,7 @@ $$
 \text{BMI}_i = \beta_0 + \beta_h \text{height}_i + \beta_c \text{calories}_i + \beta_g \text{gender}_i + \beta_d \text{diet}_i + \epsilon_i
 $$
 
-However, suppose that we believe the type of diet to affect differentially men and women. Then, we would like to create an "interaction" (e.g., vegan-female, paleo-man):
+However, suppose that we believe the type of diet to affect differentially men and women. Then, we would like to create an "interaction" (e.g., paleo-female, vegan-male):
 
 $$
 \text{BMI}_i = \beta_0 + \beta_h \text{height}_i + \beta_c \text{calories}_i + \beta_g \text{gender}_i + \beta_d \text{diet}_i + \beta_{gd} \text{gender:diet}_i + \epsilon_i
