@@ -16,6 +16,8 @@ urlcolor: blue
 knitr::opts_chunk$set(
   eval      = TRUE,
   comment   = "#",
+  warning = FALSE,
+  message = FALSE,
   #results   = "asis",
   # collapse  = TRUE,
   fig.align = "center")
@@ -24,7 +26,7 @@ knitr::opts_chunk$set(
 ```{r, message = FALSE}
 library(tidyverse) # our friend the tidyverse
 library(readxl) # to read excel files
-source("../general_code/read_xls_from_url.R") # function  to read excel from URL
+source("general_code/read_xls_from_url.R") # function  to read excel from URL
 ```
 
 ## Litter size
