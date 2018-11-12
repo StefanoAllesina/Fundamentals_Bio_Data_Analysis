@@ -91,7 +91,33 @@ exp(1.67730)
 Cleaning messy output with `broom`
 ```{r}
 library(broom)
-model1 <- glm(dat$litter_size ~ 1., family = "poisson")
+model1 <- glm(litter_size ~ 1., family = "poisson", data = dat)
 model1_fit <- tidy(model1)
+```
+Compute AIC:
+```{r}
+AIC(model1)
+```
+
+Now let's see whether the infection status can help us explain the litter size:
+
+```{r}
+model2 <- glm(litter_size ~ PUUV_INF, family = "poisson", data = dat)
+summary(model2)
+AIC(model2)
+```
+
+Not really! In fact, the effect is to simply add a parameter.
+
+Now let's look at over/underdispersion:
+```{r}
+summary(glm(litter_size ~ 1., family = "quasipoisson", data = dat))
+```
+The data is highly underdispersed! The variance is about 1/4 of what expected using a Poisson distribution. Hence, using a more flexible distribution should help considerably:
+
+```{r}
+model3 <- MASS::glm.nb(litter_size ~ 1., data = dat)
+summary(model3)
+AIC(model3)
 ```
 
