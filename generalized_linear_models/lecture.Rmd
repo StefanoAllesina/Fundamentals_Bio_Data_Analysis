@@ -28,10 +28,10 @@ Learn about Generalized Linear Models (GLMs), and be able to decide which model 
 
 Let's load some packages:
 ```{r}
+library(VGAM)
 library(MASS) # negative binom regression
 library(tidyverse) # our friend the tidyverse
 library(pscl) # zero-inflated and zero-hurdle models
-library(ggfortify) # nice diagnostic plots for GLMs
 source("general_code/read_xls_from_url.R") # function to read excel from URL
 ```
 
