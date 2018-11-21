@@ -1,0 +1,605 @@
+id,name,latitude,longitude
+2,Buckingham Fountain,41.87647,-87.62034
+3,Shedd Aquarium,41.86722595682,-87.6153553902
+4,Burnham Harbor,41.856268,-87.613348
+5,State St & Harrison St,41.874053,-87.627716
+6,Dusable Harbor,41.886976,-87.612813
+7,Field Blvd & South Water St,41.88634906269,-87.6175165471
+9,Leavitt St & Archer Ave,41.82879201994,-87.6806044594
+11,Jeffery Blvd & 71st St,41.76663823695,-87.5764501141
+12,South Shore Dr & 71st St,41.7664094567,-87.5656875719
+13,Wilton Ave & Diversey Pkwy,41.932418,-87.652705
+14,Morgan St & 18th St,41.858086,-87.651073
+15,Racine Ave & 18th St,41.858166,-87.656495
+16,Paulina Ave & North Ave,41.910337,-87.670072
+17,Honore St & Division St,41.903119,-87.673935
+18,Wacker Dr & Washington St,41.883132,-87.637321
+19,Loomis St & Taylor St (*),41.868968,-87.659141
+20,Sheffield Ave & Kingsbury St,41.910522,-87.653106
+21,Aberdeen St & Jackson Blvd,41.87772613,-87.65478743
+22,May St & Taylor St,41.8694821,-87.6554864
+23,Orleans St & Elm St (*),41.902924,-87.637715
+24,Fairbanks Ct & Grand Ave,41.89186,-87.62062
+25,Michigan Ave & Pearson St,41.89766,-87.62351
+26,McClurg Ct & Illinois St,41.890359,-87.617532
+27,Larrabee St & North Ave,41.91021,-87.6435
+28,Larrabee St & Menomonee St,41.91468,-87.64332
+29,Noble St & Milwaukee Ave,41.90068,-87.6626
+30,Ashland Ave & Augusta Blvd,41.899643,-87.6677
+31,Franklin St & Chicago Ave,41.896776,-87.635633
+32,Racine Ave & Congress Pkwy,41.87464,-87.65703
+33,State St & Van Buren St,41.877181,-87.627844
+34,Cannon Dr & Fullerton Ave,41.9267559875,-87.6344287848
+35,Streeter Dr & Grand Ave,41.892278,-87.612043
+36,Franklin St & Jackson Blvd,41.8777079559,-87.6353211408
+37,Dearborn St & Adams St,41.8793563587,-87.6297910363
+38,Clark St & Lake St,41.88602082773,-87.6308760584
+39,Wabash Ave & Adams St,41.87947235235,-87.6256886059
+40,LaSalle St & Adams St,41.87934437346,-87.6319852213
+41,Federal St & Polk St,41.87207763285,-87.6295437729
+42,Wabash Ave & Cermak Rd,41.852619,-87.626488
+43,Michigan Ave & Washington St,41.8838927658,-87.6246491409
+44,State St & Randolph St,41.8847302006,-87.6277335692
+45,Michigan Ave & Congress Pkwy,41.876243,-87.624426
+46,Wells St & Walton St,41.89993001,-87.63443007
+47,State St & Kinzie St,41.889187,-87.627754
+48,Larrabee St & Kingsbury St,41.897764,-87.642884
+49,Dearborn St & Monroe St,41.881319815,-87.6295209193
+50,Clark St & Congress Pkwy,41.8759326655,-87.6305845355
+51,Clark St & Randolph St,41.884576228,-87.63188991
+52,Michigan Ave & Lake St,41.886024,-87.624117
+53,Wells St & Huron St,41.894722,-87.634362
+54,Ogden Ave & Chicago Ave,41.896362458,-87.6540612729
+55,Halsted St & Roosevelt Rd,41.867324000000004,-87.648625
+56,Desplaines St & Kinzie St,41.888716036,-87.6444478533
+57,Clinton St & Roosevelt Rd,41.8671177825,-87.6410879593
+58,Marshfield Ave & Cortland St,41.916017,-87.668879
+59,Wabash Ave & Roosevelt Rd,41.867227,-87.625961
+60,Dayton St & North Ave,41.9105780349,-87.6494219288
+61,Wood St & Milwaukee Ave,41.907655,-87.672552
+62,McCormick Place,41.8513751729,-87.6188346489
+66,Clinton St & Lake St,41.885637,-87.641823
+67,Sheffield Ave & Fullerton Ave,41.9256018819,-87.6537080423
+68,Clinton St & Tilden St,41.875885,-87.640795
+69,Damen Ave & Pierce Ave,41.9093960065,-87.6776919292
+71,Morgan St & Lake St,41.8854833079,-87.6523048564
+72,Wabash Ave & 16th St,41.860384,-87.625813
+73,Jefferson St & Monroe St,41.880422,-87.642746
+74,Kingsbury St & Erie St,41.893626,-87.641527
+75,Canal St & Jackson Blvd,41.877245,-87.639366
+76,Lake Shore Dr & Monroe St,41.880958,-87.616743
+77,Clinton St & Madison St,41.882242,-87.641066
+80,Aberdeen St & Monroe St,41.880419,-87.655519
+81,Daley Center Plaza,41.884241,-87.629634
+84,Milwaukee Ave & Grand Ave,41.891578,-87.648384
+85,Michigan Ave & Oak St,41.90096039,-87.62377664
+86,Eckhart Park,41.89637337,-87.66098386
+87,Racine Ave & Fullerton Ave,41.92556258,-87.65840426
+88,Racine Ave & Randolph St,41.884069,-87.656853
+89,Financial Pl & Congress Pkwy (Temp),41.874618,-87.632882
+90,Millennium Park,41.8810317,-87.62408432
+91,Clinton St & Washington Blvd,41.88338,-87.64117
+92,Carpenter St & Huron St,41.894556,-87.653449
+93,Sheffield Ave & Willow St,41.913688,-87.652855
+94,Clark St & Armitage Ave,41.918306,-87.636282
+95,Stony Island Ave & 64th St,41.778881,-87.586647
+96,Desplaines St & Randolph St,41.88461618962,-87.6445705849
+97,Field Museum,41.865312,-87.617867
+98,LaSalle St & Washington St,41.882664,-87.63253
+99,Lake Shore Dr & Ohio St,41.89257,-87.614492
+100,Orleans St & Merchandise Mart Plaza,41.888243,-87.63639
+101,63rd St Beach,41.78101637196,-87.5761197602
+102,Stony Island Ave & 67th St,41.77345849948,-87.5853397391
+103,Clinton St & Polk St (*),41.87146651779,-87.6409491327
+106,State St & Pearson St,41.897448,-87.628722
+107,Desplaines St & Jackson Blvd,41.878287,-87.643909
+108,Halsted St & Polk St,41.87184,-87.64664
+109,900 W Harrison St,41.874754,-87.649807
+110,Dearborn St & Erie St,41.893992,-87.629318
+111,Sedgwick St & Huron St,41.894666,-87.638437
+112,Green St & Randolph St,41.883668,-87.64867
+113,Bissell St & Armitage Ave,41.91844,-87.65222
+114,Sheffield Ave & Waveland Ave,41.949399,-87.654529
+115,Sheffield Ave & Wellington Ave,41.936266,-87.652662
+116,Western Ave & Winnebago Ave,41.91552,-87.687022
+117,Wilton Ave & Belmont Ave,41.94018,-87.65304
+118,Sedgwick St & North Ave,41.911386,-87.638677
+119,Ashland Ave & Lake St (Temp),41.88592,-87.66717
+120,Wentworth Ave & Cermak Rd (Temp),41.853005,-87.630578
+121,Blackstone Ave & Hyde Park Blvd,41.802562,-87.590368
+122,Ogden Ave & Congress Pkwy,41.87501,-87.67328
+123,California Ave & Milwaukee Ave,41.922695,-87.697153
+124,Damen Ave & Cullerton St,41.855048,-87.675726
+125,Rush St & Hubbard St,41.890173,-87.626185
+126,Clark St & North Ave,41.911974,-87.631942
+127,Lincoln Ave & Fullerton Ave,41.925905,-87.64926
+128,Damen Ave & Chicago Ave,41.895769,-87.67722
+129,Blue Island Ave & 18th St,41.857556,-87.661535
+130,Damen Ave & Division St,41.903266,-87.678435
+131,Lincoln Ave & Belmont Ave,41.939365,-87.668385
+132,Wentworth Ave & 24th St,41.849237,-87.631715
+133,Kingsbury St & Kinzie St,41.88917683258,-87.6385057718
+134,Peoria St & Jackson Blvd,41.877749,-87.649633
+135,Halsted St & 21st St,41.85378,-87.64665
+136,Racine Ave & 13th St,41.865054,-87.656959
+137,Morgan Ave & 14th Pl,41.862378,-87.651062
+138,Clybourn Ave & Division St,41.904613,-87.640552
+140,Dearborn Pkwy & Delaware Pl,41.898969,-87.629912
+141,Clark St & Lincoln Ave,41.915689,-87.6346
+142,McClurg Ct & Erie St,41.894503,-87.617854
+143,Sedgwick St & Webster Ave,41.922167,-87.638888
+144,Larrabee St & Webster Ave,41.921822,-87.64414
+145,Mies van der Rohe Way & Chestnut St,41.8985866514,-87.6219152258
+146,Loomis St & Jackson Blvd,41.877945,-87.662007
+147,Indiana Ave & 26th St,41.845687,-87.622481
+148,State St & 33rd St,41.834734,-87.625813
+149,Calumet Ave & 33rd St,41.8349,-87.61793
+150,Fort Dearborn Dr & 31st St,41.838556,-87.608218
+152,Lincoln Ave & Diversey Pkwy,41.932225,-87.658617
+153,Southport Ave & Wellington Ave,41.935733,-87.663576
+154,Southport Ave & Belmont Ave,41.93949,-87.66378
+156,Clark St & Wellington Ave,41.9364968219,-87.6475386582
+157,Lake Shore Dr & Wellington Ave,41.936669,-87.636794
+158,Milwaukee Ave & Wabansia Ave,41.912616,-87.681391
+159,Claremont Ave & Hirsch St,41.907781,-87.685854
+160,Campbell Ave & North Ave,41.910535,-87.689556
+161,Rush St & Superior St,41.89576474564,-87.6259080327
+162,Damen Ave & Wellington Ave,41.93588,-87.67842
+163,Damen Ave & Clybourn Ave,41.931931,-87.677856
+164,Franklin St & Lake St,41.885837,-87.6355
+165,Clark St & Grace St,41.95078,-87.659172
+166,Ashland Ave & Wrightwood Ave,41.92883,-87.668507
+167,Damen Ave & Coulter St,41.8492,-87.67564
+168,Michigan Ave & 14th St,41.864059,-87.623727
+169,Canal St & Harrison St,41.874255,-87.639573
+170,Clinton St & 18th St,41.85795,-87.640826
+171,May St & Cullerton St,41.855136,-87.654127
+172,Rush St & Cedar St,41.90230870122,-87.627690528
+173,Mies van der Rohe Way & Chicago Ave,41.89691,-87.621743
+174,Canal St & Madison St,41.882091,-87.639833
+175,Wells St & Polk St,41.872596,-87.633501999999993
+176,Clark St & Elm St,41.902973,-87.63128
+177,Theater on the Lake,41.926277,-87.630834
+178,State St & 19th St,41.856594,-87.627542
+179,MLK Jr Dr & Pershing Rd,41.8246,-87.61678
+180,Ritchie Ct & Banks St,41.906866,-87.626217
+181,LaSalle St & Illinois St,41.890762,-87.631697
+182,Wells St & Elm St,41.903222,-87.634324
+183,Damen Ave & Thomas St (Augusta Blvd),41.901315,-87.677409
+184,State St & 35th St,41.83104,-87.62688
+185,Stave St & Armitage Ave,41.917741,-87.691392
+186,Ogden Ave & Race Ave,41.891795,-87.658751
+188,Greenview Ave & Fullerton Ave,41.92533,-87.6658
+190,Southport Ave & Wrightwood Ave,41.928773,-87.663913
+191,Canal St & Monroe St (*),41.880381,-87.639507
+192,Canal St & Adams St,41.879255,-87.639904
+193,State St & 29th St,41.841707,-87.626938
+194,Wabash Ave & Wacker Pl,41.886875,-87.62603
+195,Columbus Dr & Randolph St,41.884728,-87.619521
+196,Cityfront Plaza Dr & Pioneer Ct,41.890573,-87.622072
+197,Michigan Ave & Madison St,41.882134,-87.625125
+198,Green St & Madison St,41.881892,-87.648789
+199,Wabash Ave & Grand Ave,41.891466,-87.626761
+200,MLK Jr Dr & 47th St,41.809851,-87.616279
+201,Indiana Ave & 40th St,41.82168,-87.6216
+202,Halsted St & 18th St,41.857499,-87.646277
+203,Western Ave & 21st St,41.854109,-87.685838
+204,Prairie Ave & Garfield Blvd,41.794354,-87.619304
+205,Paulina St & 18th St,41.857901,-87.668745
+206,Halsted St & Archer Ave,41.847203,-87.646795
+207,Emerald Ave & 28th St,41.84358,-87.645368
+208,Ashland Ave & 21st St,41.85381,-87.665897
+209,Normal Ave & Archer Ave,41.849527,-87.640591
+210,Ashland Ave & Division St,41.90345,-87.667747
+211,St. Clair St & Erie St,41.894448,-87.622663
+212,Wells St & Hubbard St,41.889906,-87.634266
+213,Leavitt St & North Ave,41.910153,-87.68229
+214,Damen Ave & Grand Ave,41.89122,-87.67686
+215,Damen Ave & Madison St,41.88137,-87.67493
+216,California Ave & Division St,41.903029,-87.697474
+217,Racine Ave (May St) & Fulton St,41.886926,-87.656919
+218,Wells St & 19th St,41.856802,-87.633879
+219,Damen Ave & Cortland St,41.915972,-87.677652
+220,Clark St & Drummond Pl,41.931248,-87.644336
+222,Milwaukee Ave & Rockwell St,41.920195,-87.693033
+223,Clifton Ave & Armitage Ave,41.918216,-87.656936
+224,Halsted St & Willow St,41.913865,-87.648755
+225,Halsted St & Dickens Ave,41.919936,-87.64883
+226,Racine Ave & Belmont Ave,41.939743,-87.658865
+227,Southport Ave & Waveland Ave,41.94815,-87.66394
+228,Damen Ave & Melrose Ave,41.9406,-87.6785
+229,Southport Ave & Roscoe St,41.943739,-87.66402
+230,Lincoln Ave & Roscoe St,41.94334,-87.67097
+231,Sheridan Rd & Montrose Ave,41.96167,-87.65464
+232,Pine Grove Ave & Waveland Ave,41.949275,-87.646303
+233,Sangamon St & Washington Blvd (*),41.883165,-87.6511
+234,Clark St & Montrose Ave,41.961588,-87.666036
+236,Sedgwick St & Schiller St,41.907626,-87.638566
+237,MLK Jr Dr & 29th St,41.842052,-87.617
+238,Wolcott (Ravenswood) Ave & Montrose Ave (*),41.961406,-87.676169
+239,Western Ave & Leland Ave,41.966555,-87.688487
+240,Sheridan Rd & Irving Park Rd,41.954245,-87.654406
+241,Morgan St & Polk St,41.871737,-87.65103
+242,Damen Ave & Leland Ave,41.967094,-87.679028
+243,Lincoln Ave & Sunnyside Ave,41.963004,-87.684781
+244,Ravenswood Ave & Irving Park Rd,41.95469,-87.67393
+245,Clarendon Ave & Junior Ter,41.961004,-87.649603
+246,Ashland Ave & Belle Plaine Ave,41.956057,-87.668835
+247,Shore Dr & 55th St,41.795212,-87.580715
+248,Woodlawn Ave & 55th St,41.795264,-87.596471
+249,Montrose Harbor,41.963982,-87.638181
+250,Ashland Ave & Wellington Ave,41.936083000000004,-87.669807
+251,Clarendon Ave & Leland Ave,41.967968,-87.650001
+252,Greenwood Ave & 47th St,41.809835,-87.599383
+253,Winthrop Ave & Lawrence Ave,41.968812,-87.657659
+254,Pine Grove Ave & Irving Park Rd,41.954383,-87.648043
+255,Indiana Ave & Roosevelt Rd,41.867888,-87.623041
+256,Broadway & Sheridan Rd,41.952833,-87.649993
+257,Lincoln Ave & Waveland Ave,41.948797,-87.675278
+258,Logan Blvd & Elston Ave,41.929465,-87.684158
+259,California Ave & Francis Pl,41.918121,-87.696972
+260,Kedzie Ave & Milwaukee Ave,41.929567,-87.707857
+261,Hermitage Ave & Polk St,41.871514,-87.669886
+262,Halsted St & 37th St,41.827059,-87.64572
+263,Rhodes Ave & 32nd St,41.836208,-87.613533
+264,Stetson Ave & South Water St,41.886835,-87.62232
+265,Cottage Grove Ave & Oakwood Blvd,41.822985,-87.6071
+267,Lake Park Ave & 47th St,41.809443,-87.591875
+268,Lake Shore Dr & North Blvd,41.911722,-87.626804
+270,Stony Island Ave & 75th St,41.7586696704,-87.586882871
+271,Cottage Grove Ave & 43rd St,41.816499,-87.606582
+272,Indiana Ave & 31st St,41.838842,-87.621857
+273,Michigan Ave & 18th St,41.857813,-87.62455
+274,Racine Ave & 15th St,41.861267,-87.656625
+275,Ashland Ave & 13th St,41.865234,-87.666507
+276,California Ave & North Ave,41.91044,-87.6972
+277,Ashland Ave & Grand Ave,41.891072,-87.666611
+278,Wallace St & 35th St,41.830629,-87.64129
+279,Halsted St & 35th St (*),41.830661,-87.647172
+280,Morgan St & 31st St,41.8378,-87.65114
+281,Western Ave & 24th St,41.84847,-87.685109
+282,Halsted St & Maxwell St,41.864883,-87.647071
+283,LaSalle St & Jackson Blvd,41.878166,-87.631929
+284,Michigan Ave & Jackson Blvd,41.87785,-87.62408
+285,Wood St & Hubbard St,41.889587,-87.671956
+286,Franklin St & Quincy St,41.878724,-87.634793
+287,Franklin St & Monroe St,41.880317,-87.635185
+288,Larrabee St & Armitage Ave,41.918084,-87.643749
+289,Wells St & Concord Ln,41.912133,-87.634656
+290,Kedzie Ave & Palmer Ct,41.921525,-87.707322
+291,Wells St & Evergreen Ave,41.906724,-87.63483
+292,Southport Ave & Clark St,41.957081,-87.664199
+293,Broadway & Wilson Ave,41.965221,-87.658139
+294,Broadway & Berwyn Ave,41.978353,-87.659753
+295,Broadway & Argyle St,41.973815,-87.65966
+296,Broadway & Belmont Ave,41.940106,-87.645451
+297,Paulina St & Montrose Ave,41.961507,-87.671387
+298,Lincoln Ave & Belle Plaine Ave,41.955927,-87.679259
+299,Halsted St & Roscoe St,41.94367,-87.64895
+300,Broadway & Barry Ave,41.937725,-87.644095
+301,Clark St & Schiller St,41.907993,-87.631501
+302,Sheffield Ave & Wrightwood Ave,41.928712,-87.653833
+303,Broadway & Cornelia Ave,41.945529,-87.646439
+304,Broadway & Waveland Ave,41.949074,-87.648636
+305,Western Ave & Division St,41.902893,-87.687275
+306,Sheridan Rd & Buena Ave,41.958494,-87.654966
+307,Southport Ave & Clybourn Ave,41.920771,-87.663712
+308,Seeley Ave & Roscoe St,41.943403000000004,-87.679618
+309,Leavitt St & Armitage Ave,41.917805,-87.682437
+310,Damen Ave & Charleston St,41.920082,-87.677855
+311,Leavitt St & Lawrence Ave,41.968885,-87.684001
+312,Clarendon Ave & Gordon Ter,41.957879,-87.649519
+313,Lakeview Ave & Fullerton Pkwy,41.925858,-87.638973
+314,Ravenswood Ave & Berteau Ave,41.957921,-87.673567
+315,Elston Ave & Wabansia Ave,41.912919,-87.664169
+316,Damen Ave & Sunnyside Ave,41.96325,-87.679258
+317,Wood St & Taylor St,41.869154,-87.671045
+318,Southport Ave & Irving Park Rd,41.954177,-87.664357999999993
+319,Greenview Ave & Diversey Pkwy,41.932595,-87.665939
+320,Loomis St & Lexington St,41.872187,-87.661501
+321,Wabash Ave & 9th St,41.870769,-87.625734
+322,Kimbark Ave & 53rd St,41.799568,-87.594747
+323,Sheridan Rd & Lawrence Ave,41.969517,-87.654691
+324,Stockton Dr & Wrightwood Ave,41.93132,-87.638742
+325,Clark St & Winnemac Ave (Temp),41.973255,-87.6697
+326,Clark St & Leland Ave,41.967096,-87.667429
+327,Sheffield Ave & Webster Ave,41.92154,-87.653818
+328,Ellis Ave & 58th St,41.788746,-87.601334
+329,Lake Shore Dr & Diversey Pkwy,41.932588,-87.636427
+330,Lincoln Ave & Addison St,41.946176,-87.673308
+331,Halsted St & Clybourn Ave (*),41.909668,-87.648128
+332,Burling St (Halsted) & Diversey Pkwy (Temp),41.93314,-87.64776
+333,Ashland Ave & Blackhawk St,41.907066,-87.667252
+334,Lake Shore Dr & Belmont Ave,41.940775,-87.639192
+335,Calumet Ave & 35th St,41.831379,-87.618034
+336,Cottage Grove Ave & 47th St,41.809855,-87.606755
+337,Clark St & Chicago Ave,41.896544,-87.630931
+338,Calumet Ave & 18th St,41.857611,-87.619407
+339,Emerald Ave & 31st St,41.838198,-87.645143
+340,Clark St & Wrightwood Ave,41.929546,-87.643118
+341,Adler Planetarium,41.866095,-87.607267
+342,Wolcott Ave & Polk St,41.871262,-87.673688
+343,Racine Ave & Wrightwood Ave,41.928887,-87.658971
+344,Ravenswood Ave & Lawrence Ave,41.96909,-87.674237
+345,Lake Park Ave & 56th St,41.793242,-87.587782
+346,Ada St & Washington Blvd,41.88283,-87.661206
+347,Ashland Ave & Grace St,41.950687,-87.6687
+348,California Ave & 21st St,41.854016,-87.695445
+349,Halsted St & Wrightwood Ave,41.929143,-87.649077
+350,Ashland Ave & Chicago Ave,41.895966,-87.667747
+351,Cottage Grove Ave & 51st St,41.803038,-87.606615
+352,Jeffery Blvd & 67th St,41.77351755125,-87.5771428255
+353,Clark St & Touhy Ave,42.01256011541,-87.6743671152
+354,Sheridan Rd & Greenleaf Ave,42.01058656284,-87.6624120948
+355,South Shore Dr & 67th St,41.773643,-87.567514
+356,Stony Island Ave & 71st St,41.7664929373,-87.5864608775
+359,Larrabee St & Division St,41.90348607004,-87.6433534936
+364,Larrabee St & Oak St,41.90021949323,-87.6429854676
+365,Halsted St & North Branch St,41.89936843921,-87.6484798752
+366,Loomis St & Archer Ave,41.84163253965,-87.6574349533
+367,Racine Ave & 35th St,41.83069611252,-87.6559759116
+368,Ashland Ave & Archer Ave,41.83920868403,-87.6656098589
+369,Wood St & 35th St,41.83010465416,-87.6702983089
+370,Calumet Ave & 21st St,41.85418424947,-87.6191537415
+373,Kedzie Ave & Chicago Ave,41.89546530305,-87.7061278837
+374,Western Ave & Walton St,41.89841768945,-87.6865960164
+375,Sacramento Blvd & Franklin Blvd,41.889727,-87.70103
+376,Artesian Ave & Hubbard St,41.88949181977,-87.6882193648
+377,Kedzie Ave & Lake St,41.88460328501,-87.7063037436
+378,California Ave & Lake St,41.88445395657,-87.6962981368
+381,Western Ave & Monroe St,41.8797877089,-87.686112808
+382,Western Ave & Congress Pkwy,41.87474885079,-87.6864452757
+383,Ashland Ave & Harrison St,41.874291,-87.667246
+384,Halsted St & 51st St,41.80183164049,-87.645213904
+385,Princeton Ave & Garfield Blvd,41.794982,-87.633124
+386,Halsted St & 56th St,41.79292964599,-87.6449900565
+388,Halsted St & 63rd St,41.77938114228,-87.6446208145
+390,Wentworth Ave & 63rd St,41.78007963264,-87.6297463052
+391,Halsted St & 69th St,41.76906172032,-87.6446135779
+392,Perry Ave & 69th St,41.76929308995,-87.6281959291
+393,Calumet Ave & 71st St,41.76550800581,-87.616917925
+394,Clark St & 9th St (AMLI),41.870816,-87.631246
+395,Jeffery Blvd & 76th St,41.75712006802,-87.5758393587
+396,Yates Blvd & 75th St,41.758768,-87.56644
+398,Rainbow Beach,41.75787144829,-87.54938625
+399,South Shore Dr & 74th St,41.76218896038,-87.55927465
+400,Cottage Grove Ave & 71st St,41.76571903697,-87.604959713
+401,Shields Ave & 28th Pl,41.842733,-87.635491
+402,Shields Ave & 31st St,41.838464,-87.635406
+403,Wentworth Ave & 33rd St,41.83452988563,-87.6318229814
+405,Wentworth Ave & 35th St,41.830777,-87.632504
+406,Lake Park Ave & 35th St,41.83127423549,-87.6087991946
+407,State St & Pershing Rd,41.82301523798,-87.6265680185
+408,Union Ave & Root St,41.819102,-87.643278
+409,Shields Ave & 43rd St,41.81620767856,-87.6348193497
+410,Prairie Ave & 43rd St,41.81665889302,-87.6194124619
+411,Halsted St & 47th Pl,41.80813391481,-87.6456165545
+412,Princeton Ave & 47th St,41.80931770924,-87.633449288
+413,Woodlawn Ave & Lake Park Ave,41.81409271048,-87.5970051479
+414,Canal St & Taylor St,41.870257,-87.639474
+415,Calumet Ave & 51st St,41.80229465088,-87.6180535802
+416,Dorchester Ave & 49th St,41.805772,-87.592464
+417,Cornell Ave & Hyde Park Blvd,41.802406,-87.586924
+418,Ellis Ave & 53rd St,41.79933626261,-87.6009581145
+419,Lake Park Ave & 53rd St,41.79949429373,-87.5864498959
+420,Ellis Ave & 55th St,41.79430062054,-87.6014497734
+421,MLK Jr Dr & 56th St (*),41.79342945658,-87.6158532619
+422,DuSable Museum,41.79156801058,-87.6078521774
+423,University Ave & 57th St,41.791478,-87.599861
+424,Museum of Science and Industry,41.79172820953,-87.583945009
+425,Harper Ave & 59th St,41.78794281287,-87.5883151702
+426,Ellis Ave & 60th St,41.78509714636,-87.6010727606
+427,Cottage Grove Ave & 63rd St,41.78059901484,-87.606112388
+428,Dorchester Ave & 63rd St,41.7804056457,-87.5914159893
+429,Cottage Grove Ave & 67th St,41.77372095205,-87.60563486
+430,MLK Jr Dr & 63rd St,41.78008063659,-87.6159428567
+431,Eberhart Ave & 61st St,41.78414169317,-87.6133078304
+432,Clark St & Lunt Ave,42.009074,-87.67419
+433,Kedzie Ave & Harrison St,41.87359967462,-87.7048707493
+434,Ogden Ave & Roosevelt Rd,41.86650148316,-87.68469707
+435,Kedzie Ave & Roosevelt Rd,41.86649278172,-87.7064961757
+436,Fairfield Ave & Roosevelt Rd,41.866624,-87.694521
+437,Washtenaw Ave & Ogden Ave (*),41.861894,-87.693511
+438,Central Park Ave & Ogden Ave,41.85420431327,-87.7154058381
+439,Kedzie Ave & 21st St,41.85353363213,-87.7050730318
+440,Central Park Ave & 24th St,41.8481,-87.715068
+441,Kedzie Ave & 24th St,41.84819094491,-87.7054137458
+442,California Ave & 23rd Pl,41.84910969176,-87.6951398068
+443,Millard Ave & 26th St,41.84456684891,-87.7159103081
+444,Albany Ave & 26th St,41.84447501366,-87.7020130128
+445,California Ave & 26th St,41.84404003127,-87.6952959227
+446,Western Ave & 28th St,41.84151770807,-87.6851314409
+447,Glenwood Ave & Morse Ave,42.00797192287,-87.6655023944
+448,Warren Park East,42.00454962194,-87.6806661451
+449,Clark St & Columbia Ave,42.00445062934,-87.6724024047
+450,Warren Park West,42.001785,-87.688829
+451,Sheridan Rd & Loyola Ave,42.00104377979,-87.6611982433
+452,Western Ave & Granville Ave,41.99416136902,-87.689438282
+453,Clark St & Schreiber Ave,41.99925182186,-87.6713773393
+454,Broadway & Granville Ave,41.9947796884,-87.6602845349
+455,Maplewood Ave & Peterson Ave,41.99023602867,-87.6933696402
+456,2112 W Peterson Ave,41.991178,-87.683593
+457,Clark St & Elmdale Ave,41.990887,-87.669758
+458,Broadway & Thorndale Ave,41.98974251144,-87.6601406209
+459,Lakefront Trail & Bryn Mawr Ave,41.98403669612,-87.6523104689
+460,Clark St & Bryn Mawr Ave,41.983593,-87.669154
+461,Broadway & Ridge Ave,41.9840446107,-87.6602738295
+462,Winchester (Ravenswood) Ave & Balmoral Ave,41.979762,-87.67753
+463,Clark St & Berwyn Ave,41.9779966544,-87.6680471047
+464,Damen Ave & Foster Ave,41.97561480459,-87.6794590387
+465,Marine Dr & Ainslie St,41.9716,-87.650154
+466,Ridge Blvd & Touhy Ave,42.01213227742,-87.6829126443
+467,Western Ave & Lunt Ave,42.0085943972,-87.6904922389
+468,Budlong Woods Library,41.98366470886,-87.6964225611
+469,St. Louis Ave & Balmoral Ave,41.98039423475,-87.7161149615
+470,Kedzie Ave & Foster Ave,41.975672,-87.709261
+471,Francisco Ave & Foster Ave,41.97563272521,-87.7014194389
+472,Lincoln Ave & Winona St,41.97491129677,-87.6925025594
+474,Christiana Ave & Lawrence Ave,41.96835449363,-87.7118306675
+475,Washtenaw Ave & Lawrence Ave,41.968987,-87.696027
+476,Kedzie Ave & Leland Ave,41.96668636205,-87.7080519806
+477,Manor Ave & Leland Ave,41.965875,-87.700825
+478,Rockwell St & Eastwood Ave,41.96590013976,-87.6936384935
+479,Drake Ave & Montrose Ave,41.96115407569,-87.7165690733
+480,Albany Ave & Montrose Ave,41.961041,-87.705866
+481,California Ave & Montrose Ave,41.961068,-87.695439
+482,Campbell Ave & Montrose Ave,41.96152593287,-87.6911650414
+483,Avondale Ave & Irving Park Rd,41.953393,-87.732002
+484,Monticello Ave & Irving Park Rd,41.95400483876,-87.7191281797
+485,Sawyer Ave & Irving Park Rd,41.95358617895,-87.7093107999
+486,Oakley Ave & Irving Park Rd,41.95434085219,-87.6860796243
+487,California Ave & Byron St,41.95216219326,-87.698051113
+488,Pulaski Rd & Eddy St (Temp),41.946264,-87.731023
+489,Drake Ave & Addison St,41.947326,-87.717582
+490,Troy St & Elston Ave,41.94524356848,-87.7066499009
+491,Talman Ave & Addison St,41.9466358306,-87.694614758
+492,Leavitt St & Addison St,41.946655,-87.683359
+493,Western Ave & Roscoe St,41.943034,-87.687288
+494,Kedzie Ave & Bryn Mawr Ave,41.98239708485,-87.7089225202
+495,Keystone Ave & Montrose Ave,41.96110801623,-87.7289701012
+496,Avers Ave & Belmont Ave,41.939408,-87.723574
+497,Kimball Ave & Belmont Ave,41.939398,-87.711561
+498,California Ave & Fletcher St,41.93842879148,-87.698007756
+499,Kosciuszko Park,41.93058537138,-87.7237773635
+500,Central Park Ave & Elbridge Ave,41.93533728263,-87.7168892935
+501,Richmond St & Diversey Ave,41.93190196886,-87.7011951301
+502,California Ave & Altgeld St,41.92669,-87.697668
+503,Drake Ave & Fullerton Ave,41.924398819,-87.7154410355
+504,Campbell Ave & Fullerton Ave,41.92463247165,-87.6893070063
+505,Winchester Ave & Elston Ave,41.92409085038,-87.6764600747
+506,Spaulding Ave & Armitage Ave,41.91718375155,-87.7103566522
+507,Humboldt Blvd & Armitage Ave,41.91751339399,-87.7018089555
+508,Central Park Ave & North Ave,41.90965687563,-87.7166319516
+509,Troy St & North Ave,41.90976930169,-87.7052804871
+510,Spaulding Ave & Division St,41.90270659438,-87.709219571
+511,Albany Ave & Bloomingdale Ave,41.91402671273,-87.705126462
+514,Ridge Blvd & Howard St,42.019276,-87.68452
+515,Paulina St & Howard St,42.019159,-87.673573
+517,Clark St & Jarvis Ave,42.015963,-87.675005
+518,Conservatory Dr & Lake St,41.885502,-87.716866
+519,Wolcott Ave & Fargo Ave,42.016977,-87.677725
+520,Greenview Ave & Jarvis Ave,42.015962,-87.66857
+522,Bosworth Ave & Howard St,42.019537,-87.669563
+523,Eastlake Ter & Rogers Ave,42.021019,-87.665086
+524,Austin Blvd & Chicago Ave,41.894887,-87.774704
+525,Glenwood Ave & Touhy Ave,42.012701,-87.666058
+526,Oakley Ave & Touhy Ave,42.012342,-87.688243
+527,Western Ave & Howard St,42.018901,-87.690048
+528,Pulaski Rd & Lake St,41.885409,-87.726491
+529,Cicero Ave & Lake St,41.886841,-87.745261
+530,Laramie Ave & Kinzie St,41.887832,-87.755527
+531,Central Ave & Lake St,41.887664,-87.765469
+532,Austin Blvd & Lake St,41.887919,-87.774446
+533,Central Park Blvd & 5th Ave,41.875679,-87.71547
+534,Karlov Ave & Madison St,41.88085,-87.727907
+535,Pulaski Rd & Congress Pkwy,41.874325,-87.725704
+536,Kostner Ave & Lake St,41.885928,-87.73541
+537,Kenton Ave & Madison St,41.880708,-87.741018
+538,Cicero Ave & Flournoy St,41.872131,-87.746619
+539,Cicero Ave & Quincy St,41.877613,-87.745405
+540,Laramie Ave & Madison St,41.880207,-87.755337
+541,Central Ave & Harrison St,41.872993,-87.764499
+542,Central Ave & Madison St,41.880121,-87.763238
+543,Laramie Ave & Gladys Ave,41.875806,-87.755285
+544,Austin Blvd & Madison St,41.880281,-87.774453
+545,Kostner Ave & Adams St,41.877917,-87.735737
+546,Damen Ave & Pershing Rd,41.823192,-87.676597
+547,Ashland Ave & Pershing Rd,41.823465,-87.665577
+548,Morgan St & Pershing Rd,41.823613,-87.650931
+549,Marshfield Ave & 44th St,41.813996,-87.666589
+550,Central Ave & Chicago Ave,41.894958,-87.764902
+551,Hoyne Ave & 47th St,41.808227,-87.67718
+552,Ashland Ave & McDowell Ave,41.80887,-87.66454
+553,Elizabeth St & 47th St,41.80839,-87.656526
+554,Damen Ave & 51st St,41.800908,-87.674684
+555,Ashland Ave & 50th St,41.803023,-87.664699
+556,Throop St & 52nd St,41.799659,-87.657195
+557,Seeley Ave & Garfield Blvd,41.794087,-87.675478
+558,Ashland Ave & Garfield Blvd,41.792822,-87.664429
+559,Racine Ave & Garfield Blvd,41.794228,-87.655073
+560,Marshfield Ave & 59th St,41.786833,-87.666215
+561,Damen Ave & 59th St,41.78602,-87.674167
+562,Racine Ave & 61st St,41.783189,-87.654372
+563,Ashland Ave & 63rd St,41.779374,-87.664843
+564,Racine Ave & 65th St,41.775393,-87.654308
+565,Ashland Ave & 66th St,41.774074,-87.663815
+566,Ashland Ave & 69th St,41.768726,-87.664069
+567,May St & 69th St,41.768938,-87.652934
+568,Normal Ave & 72nd St,41.763462,-87.637297
+569,Woodlawn Ave & 75th St,41.75916,-87.595751
+570,Evans Ave & 75th St,41.758308,-87.606685
+571,Vernon Ave & 75th St,41.758361,-87.614138
+572,State St & 76th St,41.756971,-87.624621
+573,State St & 79th St,41.750794,-87.624424
+574,Eberhart (Vernon) Ave & 79th St,41.751345,-87.612568
+575,Cottage Grove Ave & 78th St,41.753174,-87.605026
+576,Greenwood Ave & 79th St,41.751294,-87.597552
+577,Stony Island Ave & South Chicago Ave,41.751173,-87.585337
+578,Bennett Ave & 79th St,41.751785,-87.578496
+579,Phillips Ave & 79th St,41.75182,-87.565211
+580,Exchange Ave & 79th St,41.751731,-87.552812
+581,Commercial Ave & 83rd St,41.744615,-87.551208
+582,Phillips Ave & 83rd St,41.744531,-87.56506
+583,Stony Island Ave & 82nd St,41.746559,-87.586005
+584,Ellis Ave & 83rd St,41.744123,-87.599034
+585,Cottage Grove Ave & 83rd St,41.744053,-87.604786
+586,MLK Jr Dr & 83rd St,41.743116,-87.6148
+587,Wabash Ave & 83rd St,41.743316,-87.622849
+588,South Chicago Ave & 83rd St,41.743921,-87.575225
+589,Milwaukee Ave & Cuyler Ave,41.954468,-87.749594
+590,Kilbourn Ave & Irving Park Rd,41.953733,-87.740569
+591,Kilbourn Ave & Milwaukee Ave,41.948818,-87.74002
+592,Knox Ave & Montrose Ave,41.960631,-87.745359
+593,Halsted St & 59th St,41.787539,-87.644874
+594,Western Blvd & 48th Pl,41.805661,-87.683392
+595,Wabash Ave & 87th St,41.736646,-87.622634
+596,Benson Ave & Church St,42.048214,-87.683485
+597,Chicago Ave & Washington St,42.032562,-87.679101
+598,Elmwood Ave & Austin St,42.025784,-87.684107
+599,Valli Produce - Evanston Plaza,42.039742,-87.699413
+600,Dodge Ave & Church St,42.048308,-87.698224
+601,Central St Metra,42.063598,-87.69873
+602,Central St & Girard Ave,42.064313,-87.686152
+603,Chicago Ave & Sheridan Rd,42.050491,-87.677821
+604,Sheridan Rd & Noyes St (NU),42.058239,-87.677432
+605,University Library (NU),42.052939,-87.673447
+619,Keystone Ave & Fullerton Ave,41.924377,-87.728231
+620,Orleans St & Chestnut St (NEXT Apts),41.898203,-87.637536
+621,Aberdeen St & Randolph St,41.884114,-87.654264
+622,California Ave & Cortez St,41.900363,-87.696704
+623,Michigan Ave & 8th St,41.872773,-87.623981
+624,Dearborn St & Van Buren St (*),41.876268,-87.629155
+625,Chicago Ave & Dempster St,42.041691,-87.680687
+626,Delano Ct & Roosevelt Rd,41.867491,-87.63219
+627,LaSalle Dr & Huron St (*),41.894877,-87.632326
+628,Walsh Park,41.91461,-87.667968
+630,Kildare Ave & Montrose Ave,41.96108,-87.73569
+631,Malcolm X College,41.877618,-87.673895
+632,Clark St & Newport St,41.94454,-87.654678
+635,Fairbanks St & Superior St (*),41.895748,-87.620104
+636,Orleans St & Hubbard St (*),41.890028,-87.636618
+637,Wood St & Chicago Ave (*),41.895634,-87.672069
+638,Clinton St & Jackson Blvd (*),41.878419,-87.640977
+639,Lakefront Trail & Wilson Ave,41.965845,-87.645361
+640,Bernard St & Elston Ave,41.949923,-87.713949
+641,Central Park Ave & Bloomingdale Ave,41.914166,-87.716755
+642,Latrobe Ave & Chicago Ave,41.894745,-87.756895
+643,Smith Park (*),41.892048,-87.689397
+644,Western Ave & Fillmore St (*),41.868563,-87.686234
+646,State St & 54th St,41.796642,-87.625923
+647,Elizabeth St & 59th St,41.786691,-87.655859
+648,Carpenter St & 63rd St,41.77987,-87.650919
+649,Stewart Ave & 63rd St (*),41.779835,-87.634774
+650,Eggleston Ave & 69th St (*),41.768898,-87.635876
+651,Michigan Ave & 71st St,41.765286,-87.621748
+652,Rhodes Ave & 71st St,41.766,-87.611726
+654,Racine Ave & Washington Blvd (*),41.883073,-87.656952
+655,Hoyne Ave & Balmoral Ave,41.979851,-87.681932
+656,Damen Ave & Walnut (Lake) St (*),41.885951,-87.677009
+657,Wood St & Augusta Blvd,41.899181,-87.6722
+658,Leavitt St & Division St (*),41.902997,-87.683825
+659,Leavitt St & Chicago Ave,41.895501,-87.682017
+660,Sheridan Rd & Columbia Ave,42.004583,-87.661406
+661,Evanston Civic Center,42.057044,-87.686554
+662,Dodge Ave & Mulford St,42.023463,-87.699595
+663,Lincolnwood Dr & Central St,42.064854,-87.715297
