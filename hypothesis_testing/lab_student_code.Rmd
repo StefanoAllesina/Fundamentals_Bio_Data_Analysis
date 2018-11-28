@@ -39,19 +39,18 @@ For this, we will build a contingency table, detailing the number of people in t
 
 ```{r}
 build_data <- function(probA = 0.1, probB = 0.1, size){
+  # Build a contingency table
+  #     Has_disease Does_not
+  #  A     A yes     A no
+  #  B     B yes     B no
+  # #################################################
+  # assume that there are "size" patients for each 
+  # phenotype and that association is random with
+  # probability probA (probB)
   contingency <- data.frame()
-  # PATIENTS WITH GENOTYPE A:
-  # the number of patients with the disease is binomially distributed with probability probA
-  disease_A <- rbinom(n = 1, size = size, prob = probA)
-  no_disease_A <- size - disease_A
-  contingency <- rbind(contingency, data.frame("disease" = disease_A, "no_disease" = no_disease_A))
-  # PATIENTS WITH GENOTYPE B:
-  # the number of patients with the disease is binomially distributed with probability probB
-  disease_B <- rbinom(n = 1, size = size, prob = probB)
-  no_disease_B <- size - disease_B
-  contingency <- rbind(contingency, data.frame("disease" = disease_B, "no_disease" = no_disease_B))
-  # add row names for clarity
-  rownames(contingency) <- c("A", "B")
+  # ....
+  # YOUR CODE HERE
+  # ....
   return(contingency)
 }
 
@@ -174,23 +173,28 @@ The function below uses a random number to decide whether a particular SNP is li
 
 ```{r}
 gwas_simulator <- function (test_specificity, test_sensitivity, prior, num_snps){
-  # first, let's decide which SNPs are associated with the disease
-  true_association <- runif(num_snps) <= prior
-  # then, let's see whether our test can detect the difference.
-  # for each SNPs, we simulate the test by drawing a random number between 0 and 1
-  random_tests <- runif(num_snps)
-  # if there is a true association, we check the specificity to determine whether we can pick it up
-  # TRUE POSITIVES: there is an association and our test is sensitive enough to detect it
-  TP <- sum(random_tests[true_association] < test_sensitivity)
-  # FALSE NEGATIVES: there is an association, but we cannot detect it (TYPE II ERROR)
-  FN <- sum(true_association) - TP
-  # TRUE NEGATIVES: there is no association, and we are correct because we have enough specificity
-  TN <- sum(random_tests[!true_association] < test_specificity)
-  # FALSE POSITIVES: there is no association, but we find one anyway (TYPE I ERROR)
-  FP <- sum(!true_association) - TN
-  print(paste("True Positives:", TP, "False Positives (Type I):", FP))
-  print(paste("True Negatives:", TN, "False Negative (Type II):", FN))
-  # the False Discovery Rate (FDR) is the proportion of false positives over the total number of "discoveries"
+  # Input:
+  # test_sensitivity: 
+  # probability of calling the SNP when it is associated with the disease
+  # test_specificity:
+  # probability of not calling the SNP when it is not associated with the disease
+  # prior:
+  # frequency of association between SNPs and disease
+  # assume that each SNP has prob. prior of being associated
+  # and that they are independent
+  # num_snps:
+  # number of SNPs
+  #
+  # Outline:
+  # for each SNP, determine whether it's associated with the disease (using prior)
+  # if it is associated, then it is TRUE POSITIVE w.p. test_sensitivity;
+  # otherwise it is a FALSE NEGATIVE
+  # if it is not associated, then it is TRUE NEGATIVE w.p. test_specificity;
+  # otherwise it is a FALSE POSTIVE
+  # Return False Discovery Rate: FP / (FP + TP)
+  # 
+  # Notes: there's an obvious way to do this using a for loop
+  # try to do using vectors to make it faster
   return (FP / (TP + FP))
 }
 

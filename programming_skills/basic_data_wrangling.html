@@ -237,9 +237,9 @@ div.tocify {
 <blockquote>
 <p>Lippens C, Faivre B, Lechenault C, Sorci G (2017) <a href="https://doi.org/10.1098/rsbl.2016.0888">Aging parasites produce offspring with poor fitness prospects</a>. Biology Letters 13(2): 20160888.</p>
 </blockquote>
-<p>The Authors have found that senescing parasites produce offspring with lower survival probability and lower fertility. To produce this result, they have infected mice with the parasite nematode <em>Heligmosomoides polygyrus</em>. They collected the eggs found in the faeces at different times, corresponding to the age of the worm (in days). Then they used the hatched larvae to infect mice, and counted the eggs shedded by the newly infected mice for 28 days. At that point, mice were sacrificed and adult worms in the intestine counted.</p>
+<p>The Authors have found that senescing parasites produce offspring with lower survival probability and lower fertility. To produce this result, they have infected mice with the parasite nematode <em>Heligmosomoides polygyrus</em>. They collected the eggs found in the faeces at different times, corresponding to the age of the worm (in days). Then they used the hatched larvae to infect mice, and counted the eggs shed by the newly infected mice for 28 days. At that point, mice were sacrificed and adult worms in the intestine counted.</p>
 <pre class="r"><code># to read Excel files
-source(&quot;../general_code/read_xls_from_url.R&quot;)
+source(&quot;general_code/read_xls_from_url.R&quot;)
 # original URL:
 # https://datadryad.org/bitstream/handle/10255/dryad.135877/dryad_data.xlsx
 dt &lt;- read_xlsx_from_url(&quot;https://tinyurl.com/yclwadb8&quot;) </code></pre>
@@ -249,7 +249,7 @@ dt &lt;- read_xlsx_from_url(&quot;https://tinyurl.com/yclwadb8&quot;) </code></p
 <p>This is now a :</p>
 <pre class="r"><code>class(dt)</code></pre>
 <pre><code># [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
-<p><code>dplyr</code> ships with a new data type, called a <code>tibble</code>. To convert a <code>data.frame</code> into a tibble, use</p>
+<p><code>dplyr</code> ships with a new data type, called a <code>tibble</code>. To convert a <code>data.frame</code> into a tibble, use <code>as.tibble</code>:</p>
 <pre class="r"><code># load a data frame
 data(&quot;trees&quot;)
 class(trees)
@@ -266,7 +266,7 @@ class(trees)</code></pre>
 </div>
 <div id="selecting-rows-and-columns" class="section level1">
 <h1>Selecting rows and columns</h1>
-<p>There are many ways to subset the data, either by row (subsetting the <em>observations</em>), or by column (subsetting the <em>variables</em>). For example, suppose we want to count how many rows contain data for <code>time post-infection</code> 28. When reading data using <code>tidyverse</code>, the column names are not altered (contrary to what happens using <code>read.csv</code>). As such, they might be difficult to type. No problem: simply enclose the names with “back tickmarks” “`”:</p>
+<p>There are many ways to subset the data, either by row (subsetting the <em>observations</em>), or by column (subsetting the <em>variables</em>). For example, suppose we want to count how many rows contain data for <code>time post-infection</code> 28. When reading data using <code>tidyverse</code>, the column names are not altered (contrary to what happens using <code>read.csv</code>). As such, they might be difficult to type. No problem: simply enclose the names with back tickmarks (“`”):</p>
 <pre class="r"><code>filter(dt, `time post-infection` == 28)</code></pre>
 <pre><code># # A tibble: 20 x 5
 #    `Parental age` id    `time post-infe… `fecal egg coun… `number of adul…
@@ -293,17 +293,8 @@ class(trees)</code></pre>
 # 20            165 ES45…               28            13.7                28</code></pre>
 <p>We have 20 observations. We have used the command <code>filter(tbl, conditions)</code> to select certain observations. We can combine several conditions, by listing them side by side, possibly using logical operators.</p>
 <blockquote>
-<p><strong>Exercise:</strong> what does this do?</p>
+<p><strong>Exercise:</strong> what does this do? <code>filter(dt, `Parental age` &gt; 20,  `number of adult worms` &gt; 20,  `fecal egg count` &lt; 10)</code></p>
 </blockquote>
-<pre class="r"><code>filter(dt, `Parental age` &gt; 20, 
-           `number of adult worms` &gt; 20, 
-           `fecal egg count` &lt; 10)</code></pre>
-<pre><code># # A tibble: 3 x 5
-#   `Parental age` id     `time post-infe… `fecal egg coun… `number of adul…
-#            &lt;dbl&gt; &lt;chr&gt;             &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
-# 1            105 ES31/A               28             5.31               21
-# 2            105 ES33/C               28             9.66               24
-# 3            165 ES42/B               28             9.27               26</code></pre>
 <p>We can also select particular variables (columns) using the function <code>select(tbl, cols to select)</code>. For example, select <code>id</code> and <code>number of adult worms</code>:</p>
 <pre class="r"><code>select(dt, id, `number of adult worms`)</code></pre>
 <pre><code># # A tibble: 120 x 2
@@ -345,8 +336,7 @@ class(trees)</code></pre>
 # 18 ES43/C
 # 19 ES44/D
 # 20 ES45/E</code></pre>
-<p>Showing that there are 20 replicates, once we removed the duplicates.</p>
-<p>Other ways to subset observations:</p>
+<p>Showing that there are 20 replicates, once we removed the duplicates. There are many other ways to subset observations:</p>
 <ul>
 <li><code>sample_n(tbl, howmany, replace = TRUE)</code> sample <code>howmany</code> rows at random (with replacement)</li>
 <li><code>sample_frac(tbl, proportion, replace = FALSE)</code> sample a certain proportion (e.g. <code>0.2</code> for 20%) of rows at random without replacement</li>
@@ -362,7 +352,7 @@ class(trees)</code></pre>
 </div>
 <div id="creating-pipelines-using" class="section level1">
 <h1>Creating pipelines using <code>%&gt;%</code></h1>
-<p>We’ve been calling nested functions, such as <code>distinct(select(dt, id))</code>. If you have to add another layer or two, the code would become unreadable. <code>dplyr</code> allows you to “un-nest” these functions and create a “pipeline”, in which you concatenate commands separated by the special operator <code>%&gt;%</code>. For example:</p>
+<p>We’ve been calling nested functions, such as <code>distinct(select(dt, id))</code>. If you have to add another layer or two, the code would become unreadable. <code>dplyr</code> allows you to “un-nest” these functions and create a “pipeline” in which you concatenate commands separated by a special operator, <code>%&gt;%</code>. For example:</p>
 <pre class="r"><code>dt %&gt;% # take a data table
   select(id) %&gt;% # select a column
   distinct() # remove duplicates</code></pre>
@@ -389,19 +379,19 @@ class(trees)</code></pre>
 # 18 ES43/C
 # 19 ES44/D
 # 20 ES45/E</code></pre>
-<p>does exactly the same as the command above, but is much more readable. By concatenating many commands, you can create incredibly complex pipelines while retaining readability.</p>
+<p>does exactly the same operations as the command above, but is much more readable. By concatenating many commands, you can create incredibly complex pipelines while retaining readability.</p>
 <p>Another advantage of pipelines is that they help with name completion. In fact, <code>RStudio</code> is running in the background your pipeline while you type it. Try typing <code>dt %&gt;% filter(</code> and then start typing <code>time</code> and press <code>Tab</code>: you will see the options to complete the column name; choose it with your arrows and hit <code>Return</code>. The back tickmarks will be added automatically.</p>
 </div>
 <div id="producing-summaries" class="section level1">
 <h1>Producing summaries</h1>
-<p>Sometimes we need to calculate statistics on certain columns. For example, calculate the average number of eggs shedded by the infected mice. We can do this using <code>summarize</code>:</p>
-<pre class="r"><code>dt %&gt;% summarize(avg = mean(`fecal egg count`, na.rm = TRUE))</code></pre>
+<p>Sometimes we need to calculate statistics on certain columns. For example, calculate the average number of eggs shedded by the infected mice. We can do this using <code>summarise</code> (you can use British or American spelling):</p>
+<pre class="r"><code>dt %&gt;% summarise(avg = mean(`fecal egg count`, na.rm = TRUE))</code></pre>
 <pre><code># # A tibble: 1 x 1
 #     avg
 #   &lt;dbl&gt;
 # 1  18.4</code></pre>
 <p>where we used <code>na.rm = TRUE</code> to ignore missing values. This command returns a <code>tbl</code> object with just the average egg count. You can combine multiple statistics (use <code>first</code>, <code>last</code>, <code>min</code>, <code>max</code>, <code>n</code> [count the number of rows], <code>n_distinct</code> [count the number of distinct rows], <code>mean</code>, <code>median</code>, <code>var</code>, <code>sd</code>, etc.):</p>
-<pre class="r"><code>dt %&gt;% summarize(avg = mean(`fecal egg count`, na.rm = TRUE), 
+<pre class="r"><code>dt %&gt;% summarise(avg = mean(`fecal egg count`, na.rm = TRUE), 
                  sd = sd(`fecal egg count`, na.rm = TRUE), 
                  median = median(`fecal egg count`, na.rm = TRUE))</code></pre>
 <pre><code># # A tibble: 1 x 3
@@ -413,7 +403,7 @@ class(trees)</code></pre>
 <h1>Summaries by group</h1>
 <p>One of the most useful features of <code>dplyr</code> is the ability to produce statistics for the data once subsetted by <em>groups</em>. For example, we would like to measure whether older worms produce less virulent offspring. We can then group the data by <code>Parental age</code>, and calculate the mean <code>fecal egg count</code> once the data are split into groups:</p>
 <pre class="r"><code>dt %&gt;% group_by(`Parental age`) %&gt;% 
-  summarize(mean = mean(`fecal egg count`, na.rm = TRUE))</code></pre>
+  summarise(mean = mean(`fecal egg count`, na.rm = TRUE))</code></pre>
 <pre><code># # A tibble: 4 x 2
 #   `Parental age`  mean
 #            &lt;dbl&gt; &lt;dbl&gt;
@@ -429,8 +419,7 @@ class(trees)</code></pre>
 <div id="ordering-the-data" class="section level1">
 <h1>Ordering the data</h1>
 <p>To order the data according to one or more variables, use <code>arrange()</code>:</p>
-<pre class="r"><code>dt %&gt;% arrange(`number of adult worms`)
-dt %&gt;% arrange(desc(`number of adult worms`))</code></pre>
+<pre class="r"><code>dt %&gt;% arrange(`number of adult worms`)</code></pre>
 <pre><code># # A tibble: 120 x 5
 #    `Parental age` id    `time post-infe… `fecal egg coun… `number of adul…
 #             &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
@@ -444,8 +433,9 @@ dt %&gt;% arrange(desc(`number of adult worms`))</code></pre>
 #  8            165 ES44…               28            11.6                28
 #  9            165 ES45…               28            13.7                28
 # 10            105 ES35…               28            39.8                32
-# # ... with 110 more rows
-# # A tibble: 120 x 5
+# # ... with 110 more rows</code></pre>
+<pre class="r"><code>dt %&gt;% arrange(desc(`number of adult worms`))</code></pre>
+<pre><code># # A tibble: 120 x 5
 #    `Parental age` id    `time post-infe… `fecal egg coun… `number of adul…
 #             &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
 #  1             15 ES12…               28             21.9               54
@@ -481,15 +471,335 @@ dt %&gt;% arrange(desc(`number of adult worms`))</code></pre>
 </div>
 <div id="adding-new-variables-using-mutate" class="section level1">
 <h1>Adding new variables using mutate</h1>
-<p>If you want to add one or more new columns, with the content being a function of other columns, use the function <code>mutate</code>:</p>
-<pre class="r"><code>#HERE</code></pre>
-<p>use the function <code>transmute()</code> to create a new column and drop the original columns. You can also use <code>mutate</code> and <code>transmute</code> on grouped data:</p>
-</div>
-<div id="mutate-by-group" class="section level1">
-<h1>Mutate by group</h1>
+<p>If you want to add one or more new columns, with the content being a function of other columns, use the function <code>mutate</code>. For example, we are going to take the samples at <code>time post-infection</code> 28, and add a column containing the ratio between <code>fecal egg count</code> and <code>number of adult worms</code> , calling the new column <code>worms_per_egg</code>:</p>
+<pre class="r"><code>dt %&gt;% 
+  filter(`time post-infection` == 28) %&gt;% 
+  mutate(worms_per_egg = `fecal egg count` / `number of adult worms`)</code></pre>
+<pre><code># # A tibble: 20 x 6
+#    `Parental age` id    `time post-infe… `fecal egg coun… `number of adul…
+#             &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+#  1             15 ES11…               28            19.2                39
+#  2             15 ES12…               28            21.9                54
+#  3             15 ES13…               28            16.4                44
+#  4             15 ES14…               28            28.6                49
+#  5             15 ES15…               28            14.9                38
+#  6             45 ES21…               28            17.6                26
+#  7             45 ES22…               28            35.4                49
+#  8             45 ES23…               28            17.9                51
+#  9             45 ES24…               28            30.5                43
+# 10             45 ES25…               28            20.3                43
+# 11            105 ES31…               28             5.31               21
+# 12            105 ES32…               28            23.6                39
+# 13            105 ES33…               28             9.66               24
+# 14            105 ES34…               28            12.0                27
+# 15            105 ES35…               28            39.8                32
+# 16            165 ES41…               28             4.33               12
+# 17            165 ES42…               28             9.27               26
+# 18            165 ES43…               28            10.0                25
+# 19            165 ES44…               28            11.6                28
+# 20            165 ES45…               28            13.7                28
+# # ... with 1 more variable: worms_per_egg &lt;dbl&gt;</code></pre>
+<p>We can pipe the results to <code>ggplot</code> for plotting!</p>
+<pre class="r"><code>dt %&gt;% 
+  filter(`time post-infection` == 28) %&gt;% 
+  mutate(worms_per_egg = `fecal egg count` / `number of adult worms`) %&gt;% 
+  ggplot() + aes(x = `Parental age`, y = worms_per_egg) + geom_col(position = &quot;dodge&quot;)</code></pre>
+<p><img src="data:image/png;base64,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" width="672" style="display: block; margin: auto;" /></p>
+<p>You can use the function <code>transmute()</code> to create a new column and drop the original columns.</p>
+<p>Most importantly, you can use <code>mutate</code> and <code>transmute</code> on grouped data. For example, let’s compute a z-score of the <code>fecal egg count</code> once the data is grouped by parental age:</p>
+<pre class="r"><code>dt %&gt;% select(`Parental age`, `time post-infection`, `fecal egg count`) %&gt;% 
+  group_by(`Parental age`) %&gt;% 
+  mutate(zscore = scale(`fecal egg count`)) %&gt;% 
+  arrange(`time post-infection`)</code></pre>
 </div>
 <div id="data-wrangling" class="section level1">
 <h1>Data wrangling</h1>
+<p>Data is rarely in a format that is good for computing, and much effort goes into reading the data and wrestling with it to make it into a good format. As the name implies, <code>tidyverse</code> strongly advocates for the use of data in <em>tidy</em> form. What does this mean?</p>
+<ul>
+<li>Each variable forms a column</li>
+<li>Each observation forms a row</li>
+<li>Each type of observational unit forms a table</li>
+</ul>
+<p>This is often called <em>narrow table</em> format. Any other form of data (e.g., <em>wide table</em> format) is considered <em>messy</em>. However, often data are not organized in tidy form, or we want to produce tables for human consumption rather than computer consumption. The package <code>tidyr</code> allows to accomplish just that. It contains only a few, very powerful functions:</p>
+<div id="gather-from-columns-to-rows" class="section level2">
+<h2>Gather: from columns to rows</h2>
+<pre class="r"><code>test &lt;- tibble(&quot;indivudual&quot; = c(&quot;ind1&quot;, &quot;ind2&quot;), &quot;Task A&quot; = c(1, 3), &quot;Task B&quot; = c(4, 1))
+test</code></pre>
+<pre><code># # A tibble: 2 x 3
+#   indivudual `Task A` `Task B`
+#   &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt;
+# 1 ind1              1        4
+# 2 ind2              3        1</code></pre>
+<p>Make it into tidy form:</p>
+<pre class="r"><code>test %&gt;% gather(Task, Score, 2:3)</code></pre>
+<pre><code># # A tibble: 4 x 3
+#   indivudual Task   Score
+#   &lt;chr&gt;      &lt;chr&gt;  &lt;dbl&gt;
+# 1 ind1       Task A     1
+# 2 ind2       Task A     3
+# 3 ind1       Task B     4
+# 4 ind2       Task B     1</code></pre>
+</div>
+<div id="spread-turn-rows-into-columns" class="section level2">
+<h2>Spread: turn rows into columns</h2>
+<pre class="r"><code>test &lt;- tibble(location = c(&quot;one&quot;, &quot;one&quot;, &quot;two&quot;, &quot;two&quot;), 
+               month = c(&quot;June&quot;, &quot;July&quot;, &quot;June&quot;, &quot;July&quot;), 
+               rainfall = c(12, 14, 6, 8))
+test</code></pre>
+<pre><code># # A tibble: 4 x 3
+#   location month rainfall
+#   &lt;chr&gt;    &lt;chr&gt;    &lt;dbl&gt;
+# 1 one      June        12
+# 2 one      July        14
+# 3 two      June         6
+# 4 two      July         8</code></pre>
+<p>Make it into wide-table (messy) format:</p>
+<pre class="r"><code>test %&gt;% spread(month, rainfall)</code></pre>
+<pre><code># # A tibble: 2 x 3
+#   location  July  June
+#   &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;
+# 1 one         14    12
+# 2 two          8     6</code></pre>
+</div>
+<div id="separate-split-a-column-into-two-or-more" class="section level2">
+<h2>Separate: split a column into two or more</h2>
+<pre class="r"><code>test &lt;- tibble(name = c(&quot;Allesina, Stefano&quot;, &quot;Kondrashov, Dmitry&quot;, &quot;Miller, Zach&quot;))
+test</code></pre>
+<pre><code># # A tibble: 3 x 1
+#   name              
+#   &lt;chr&gt;             
+# 1 Allesina, Stefano 
+# 2 Kondrashov, Dmitry
+# 3 Miller, Zach</code></pre>
+<pre class="r"><code>test %&gt;% separate(name, into = c(&quot;last_name&quot;, &quot;first_name&quot;), sep = &quot;, &quot;)</code></pre>
+<pre><code># # A tibble: 3 x 2
+#   last_name  first_name
+#   &lt;chr&gt;      &lt;chr&gt;     
+# 1 Allesina   Stefano   
+# 2 Kondrashov Dmitry    
+# 3 Miller     Zach</code></pre>
+<p>The complement of <code>separate</code> is called <code>unite</code>.</p>
+</div>
+<div id="separate-rows-from-one-row-to-many" class="section level2">
+<h2>Separate rows: from one row to many</h2>
+<pre class="r"><code>test &lt;- tibble(id = c(1, 2, 3, 4), records = c(&quot;a;b;c&quot;, &quot;c;d&quot;, &quot;a;e&quot;, &quot;f&quot;))
+test</code></pre>
+<pre><code># # A tibble: 4 x 2
+#      id records
+#   &lt;dbl&gt; &lt;chr&gt;  
+# 1     1 a;b;c  
+# 2     2 c;d    
+# 3     3 a;e    
+# 4     4 f</code></pre>
+<p>To make it into tidy form, only one record per row:</p>
+<pre class="r"><code>test %&gt;% separate_rows(records, sep = &quot;;&quot;)</code></pre>
+<pre><code># # A tibble: 8 x 2
+#      id records
+#   &lt;dbl&gt; &lt;chr&gt;  
+# 1     1 a      
+# 2     1 b      
+# 3     1 c      
+# 4     2 c      
+# 5     2 d      
+# 6     3 a      
+# 7     3 e      
+# 8     4 f</code></pre>
+</div>
+</div>
+<div id="an-example-from-tidy-to-messy" class="section level1">
+<h1>An example: from tidy to messy</h1>
+<p>The data we are using are in tidy format, but suppose you want to produce a table for your paper. For each parental age, you want to show the mean number of eggs by <code>time post-infection</code>. We know how to compute the statistics:</p>
+<pre class="r"><code>for_table &lt;- dt %&gt;% group_by(`Parental age`, `time post-infection`) %&gt;% summarise(eggs = mean(`fecal egg count`))
+for_table</code></pre>
+<pre><code># # A tibble: 24 x 3
+# # Groups:   Parental age [?]
+#    `Parental age` `time post-infection`  eggs
+#             &lt;dbl&gt;                 &lt;dbl&gt; &lt;dbl&gt;
+#  1             15                    11  22.4
+#  2             15                    14  NA  
+#  3             15                    18  19.0
+#  4             15                    21  40.5
+#  5             15                    25  29.6
+#  6             15                    28  20.2
+#  7             45                    11  13.1
+#  8             45                    14  16.0
+#  9             45                    18  14.2
+# 10             45                    21  15.6
+# # ... with 14 more rows</code></pre>
+<p>Now the data is in narrow (tidy) format, and we would like to produce a wide table that is better for human consumption. All we need to do is to <code>spread</code> the column <code>time post-infection</code> so that each time becomes a different column. For each combination of <code>Parental age</code> and <code>time post-infection</code>, we report the mean number of eggs:</p>
+<pre class="r"><code>for_table %&gt;% spread(`time post-infection`, eggs)</code></pre>
+<pre><code># # A tibble: 4 x 7
+# # Groups:   Parental age [4]
+#   `Parental age`  `11`  `14`  `18`  `21`  `25`  `28`
+#            &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+# 1             15  22.4  NA    19.0  40.5  29.6 20.2 
+# 2             45  13.1  16.0  14.2  15.6  17.8 24.3 
+# 3            105  12.4  11.5  17.0  18.2  20.6 18.1 
+# 4            165  18.0  16.8  11.8  18.7  13.9  9.78</code></pre>
+<blockquote>
+<p><strong>Exercise</strong>: how do we produce a table in which the <code>time post-infection</code> is in the rows, and <code>Parental age</code> in the columns?</p>
+</blockquote>
+</div>
+<div id="a-more-difficult-case-from-very-messy-to-tidy" class="section level1">
+<h1>A more difficult case: from (very) messy to tidy</h1>
+<p>We now are going to turn a data set that is almost impossible to use. You can read the data using:</p>
+<pre class="r"><code># Original URL
+# https://datadryad.org/bitstream/handle/10255/dryad.193139/Derocles%20et%20al%20Networks.xlsx
+a &lt;- read_xlsx_from_url(&quot;https://tinyurl.com/y9oqmztr&quot;)</code></pre>
+<p>These data are taken from:</p>
+<blockquote>
+<p>Derocles SAP, Lunt DH, Berthe SCF, Nichols PC, Moss ED, Evans DM (2018) Climate-warming alters the structure of farmland tri-trophic ecological networks and reduces crop yield. Molecular Ecology (to appear)</p>
+</blockquote>
+<p>The data is composed of 24 matrices (one for each experimental plot) showing the frequency of interaction between plants, aphids and parasitoids. Take a look using <code>View(a)</code>: you can see that there are several matrices in the same sheet. We would like to produce the tidy data: <code>plot</code> (number of the plot), <code>from</code> (species from), <code>to</code> (species to), <code>frequency</code> (what is reported in the matrix). First, we need to find whether plot 2, 3, etc. start:</p>
+<pre class="r"><code>starting &lt;- a %&gt;% transmute(plot = `plot 1`, 
+                            start = ifelse(grepl(&quot;plot&quot;, `plot 1`), 
+                                           row_number(), NA)) %&gt;% 
+  filter(!is.na(start))</code></pre>
+<p>Now let’s add 1 to the starting point (because that is the row containing the names), and add at the front a new row for plot 1:</p>
+<pre class="r"><code>starting &lt;- rbind(tibble(plot = &quot;plot 1&quot;, start = 1), 
+                  starting %&gt;% mutate(start = start + 1))
+starting</code></pre>
+<pre><code># # A tibble: 24 x 2
+#    plot    start
+#    &lt;chr&gt;   &lt;dbl&gt;
+#  1 plot 1      1
+#  2 plot 2     17
+#  3 plot 3     33
+#  4 plot 4     49
+#  5 plot 5     65
+#  6 plot 6     81
+#  7 plot 7     97
+#  8 plot 8    113
+#  9 plot 9    129
+# 10 plot 10   145
+# # ... with 14 more rows</code></pre>
+<p>Now we want to find where each data sets end. It will be the starting point of the next one minus 3:</p>
+<pre class="r"><code>starting &lt;- starting %&gt;% mutate(end = lead(start) - 3)
+starting</code></pre>
+<pre><code># # A tibble: 24 x 3
+#    plot    start   end
+#    &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+#  1 plot 1      1    14
+#  2 plot 2     17    30
+#  3 plot 3     33    46
+#  4 plot 4     49    62
+#  5 plot 5     65    78
+#  6 plot 6     81    94
+#  7 plot 7     97   110
+#  8 plot 8    113   126
+#  9 plot 9    129   142
+# 10 plot 10   145   158
+# # ... with 14 more rows</code></pre>
+<p>Note that we’re missing the end for the last plot:</p>
+<pre class="r"><code>tail(starting)</code></pre>
+<pre><code># # A tibble: 6 x 3
+#   plot    start   end
+#   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+# 1 plot 19   289   302
+# 2 plot 20   305   318
+# 3 plot 21   321   334
+# 4 plot 22   337   350
+# 5 plot 23   353   366
+# 6 plot 24   369    NA</code></pre>
+<p>We can fix this easily:</p>
+<pre class="r"><code>starting[starting$plot == &quot;plot 24&quot;, &quot;end&quot;] &lt;- nrow(a)
+tail(starting)</code></pre>
+<pre><code># # A tibble: 6 x 3
+#   plot    start   end
+#   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+# 1 plot 19   289   302
+# 2 plot 20   305   318
+# 3 plot 21   321   334
+# 4 plot 22   337   350
+# 5 plot 23   353   366
+# 6 plot 24   369   382</code></pre>
+<p>Wonderful! Now let’s try to transform the first plot:</p>
+<pre class="r"><code>my_plot &lt;- &quot;plot 1&quot;
+my_start  &lt;- 1
+my_end &lt;- 14
+# build this line by line!
+a %&gt;% slice(my_start:my_end) %&gt;% 
+  gather(to, frequency, -`plot 1`) %&gt;% 
+  rename(from = `plot 1`) %&gt;% 
+  add_column(plot = my_plot) %&gt;% 
+  mutate(frequency = as.numeric(frequency)) %&gt;% 
+  filter(frequency &gt; 0) %&gt;% 
+  select(plot, from, to, frequency)</code></pre>
+<pre><code># # A tibble: 20 x 4
+#    plot   from                   to                     frequency
+#    &lt;chr&gt;  &lt;chr&gt;                  &lt;chr&gt;                      &lt;dbl&gt;
+#  1 plot 1 Sonchus_oleracerus     Uroleucon_sonchi              20
+#  2 plot 1 Sonchus_oleracerus     Hyperomyzus_lactucae           8
+#  3 plot 1 Triticum_aestivum      Sitobion_avenae               29
+#  4 plot 1 Triticum_aestivum      Metopolophium_dirhodum        10
+#  5 plot 1 Sitobion_avenae        Dendrocerus_carpenteri         3
+#  6 plot 1 Sitobion_avenae        Alloxysta_victrix              1
+#  7 plot 1 Sitobion_avenae        Aphidius_rhopalosiphi          5
+#  8 plot 1 Metopolophium_dirhodum Aphidius_rhopalosiphi          1
+#  9 plot 1 Sitobion_avenae        Aphidius_avenae                2
+# 10 plot 1 Hyperomyzus_lactucae   Aphidius_ervi                  2
+# 11 plot 1 Sitobion_avenae        Aphidius_ervi                  1
+# 12 plot 1 Metopolophium_dirhodum Aphidius_ervi                  1
+# 13 plot 1 Sitobion_avenae        Aphidus_uzbekistanicus         1
+# 14 plot 1 Sitobion_avenae        Ephedrus_plagiator             1
+# 15 plot 1 Metopolophium_dirhodum Ephedrus_plagiator             1
+# 16 plot 1 Uroleucon_sonchi       Praon_volucre                  2
+# 17 plot 1 Sitobion_avenae        Praon_volucre                  1
+# 18 plot 1 Sitobion_avenae        Toxares_deltiger               1
+# 19 plot 1 Sitobion_avenae        Praon_gallicum                 1
+# 20 plot 1 Uroleucon_sonchi       Aphidius_funebris              6</code></pre>
+<p>Now let’s put this all together!</p>
+<pre class="r"><code>my_data &lt;- tibble()
+for (i in 1:nrow(starting)){
+  my_plot &lt;- starting$plot[i]
+  my_start  &lt;- starting$start[i]
+  my_end &lt;- starting$end[i]
+  # build this line by line!
+  my_data &lt;- rbind(my_data,
+    a %&gt;% slice(my_start:my_end) %&gt;% 
+    gather(to, frequency, -`plot 1`) %&gt;% 
+    rename(from = `plot 1`) %&gt;% 
+    add_column(plot = my_plot) %&gt;% 
+    mutate(frequency = as.numeric(frequency)) %&gt;% 
+    filter(frequency &gt; 0) %&gt;% 
+    select(plot, from, to, frequency))
+}</code></pre>
+<p>Now it is easy to compute statistics on the data set. For example:</p>
+<pre class="r"><code>my_data %&gt;% 
+  group_by(from, to) %&gt;% 
+  summarise(num = n(), 
+            mean = mean(frequency), 
+            sd = sd(frequency)) %&gt;% 
+  arrange(desc(mean))</code></pre>
+<pre><code># # A tibble: 37 x 5
+# # Groups:   from [14]
+#    from               to                       num  mean    sd
+#    &lt;chr&gt;              &lt;chr&gt;                  &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+#  1 Triticum_aestivum  Sitobion_avenae           24  50.4 39.0 
+#  2 Cirsium_arvense    Uroleucon_sp               4  41.2 48.7 
+#  3 Sonchus_oleracerus Uroleucon_sonchi           2  37   24.0 
+#  4 Chenopodium_album  Aphis_fabae                5  26   19.5 
+#  5 Rumex_sp           Aphis_fabae                1  21   NA   
+#  6 Uroleucon_sp       Aphidius_funebris          4  15.5 22.4 
+#  7 Triticum_aestivum  Metopolophium_dirhodum    21  11.5  7.48
+#  8 Sitobion_avenae    Aphidius_rhopalosiphi     24  10.0  7.87
+#  9 Galium_aparine     Aphis_fabae                1  10   NA   
+# 10 Uroleucon_sp       Binodoxys_centaureae       2   9.5  7.78
+# # ... with 27 more rows</code></pre>
+<p>This was a lot of work! Now you should appreciate why you need to think about how to organize your data such that they are easy to use!!</p>
+<blockquote>
+<p><strong>Exercise</strong>: write code to build a matrix for each plot (i.e., that takes the tidy data and builds the tables such as in the original).</p>
+</blockquote>
+</div>
+<div id="resources" class="section level1">
+<h1>Resources</h1>
+<ul>
+<li><a href="https://hackr.io/tutorial/r-for-data-science">R for Data Science</a></li>
+<li>A <a href="https://cfss.uchicago.edu/syllabus.html">cool class</a> at U of C in Social Sciences</li>
+<li><a href="https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf">Data transformation</a> cheat sheet</li>
+<li><a href="https://github.com/rstudio/cheatsheets/raw/master/lubridate.pdf">Dealing with dates</a> cheat sheet</li>
+<li><a href="https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf">Data import</a> cheat sheet</li>
+</ul>
 </div>
 
 
