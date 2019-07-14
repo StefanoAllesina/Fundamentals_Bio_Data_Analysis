@@ -1,0 +1,262 @@
+---
+title: "Clustering methods"
+author: "Dmitry Kondrashov & Stefano Allesina"
+date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
+output:
+  html_document:
+    theme: cosmo
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+urlcolor: blue
+---
+
+```{r knitr, echo=FALSE}
+knitr::opts_chunk$set(
+  eval      = TRUE,
+  comment   = "#",
+  warning = FALSE,
+  message = FALSE,
+  #results   = "asis",
+  # collapse  = TRUE,
+  fig.align = "center")
+```
+
+https://docs.google.com/presentation/d/1DK8279VCHu-IUNoGzRX5L1XxYho1d9k3-yboWeM33cU/edit#slide=id.g3cf67b7a5c_2_4
+
+https://docs.google.com/presentation/d/1ygmO9ECtNGzh7bK9yPR07gpfzgUGvnxahffEzeHosqQ/edit#slide=id.g3e1c96e5a7_3_0
+
+# Goals
+
+  * Learn about partitional clustering
+  * Learn about hierarchical clustering
+  * Use clustering validation methods
+  * Apply different methods to larger data sets
+
+```{r}
+library(tidyverse) # our friend the tidyverse
+library(ggfortify) 
+library(factoextra) 
+library(NbClust)
+library(fpc)
+library(clustertend)
+#source("general_code/read_xls_from_url.R") # function to read excel from URL
+```
+
+
+# Partitional clustering
+
+## K-means algorithm
+
+ * divide data into K clusters
+ * calculate centroids for each
+ * go through each data point until nothing changes
+   + calculate distance to each centroid
+   + assign to nearest centroid
+   + recalculate centroids for the two affected clusters
+
+```{r}
+#set.seed(20)
+iris.scaled <- scale(iris[, -5])
+iris_km <- kmeans(iris.scaled, 3)
+iris_km
+table(iris_km$cluster, iris$Species)
+#irisCluster$cluster <- as.factor(irisCluster$cluster)
+#ggplot(iris, aes(Petal.Length, Petal.Width, color = iris$cluster)) + geom_point()
+
+fviz_cluster(list(data = iris.scaled, cluster = iris_km$cluster),
+ellipse.type = "norm", geom = "point", stand = FALSE, palette = "jco", ggtheme = theme_classic())
+```
+
+
+### Assumptions of K-means algorithm
+
+  * There is a meaningful distance measure
+  * Clusters are roughly spherical
+  * Clusters are of similar size
+  
+https://www.r-bloggers.com/exploring-assumptions-of-k-means-clustering-using-r/
+
+```{r}
+#Generate random data which will be first cluster
+clust1 <- data_frame(x = rnorm(200), y = rnorm(200))
+#Generate the second cluster which will ‘surround’ the first cluster
+clust2 <- data_frame(r = rnorm(200, 15, .5), theta = runif(200, 0, 2 * pi),
+                 x = r * cos(theta), y = r * sin(theta)) %>%
+  dplyr::select(x, y)
+#Combine the data
+dataset_cir <- rbind(clust1, clust2)
+#see the plot
+dataset_cir %>% ggplot() + aes(x=x, y=y) + geom_point()
+```
+
+
+
+```{r}
+#Fit the k-means model
+k_clust_spher1 <- kmeans(dataset_cir, centers=2)
+#Plot the data and clusters
+fviz_cluster(list(data = dataset_cir, cluster = k_clust_spher1$cluster),
+ellipse.type = "norm", geom = "point", stand = FALSE, palette = "jco", ggtheme = theme_classic())
+
+```
+
+```{r}
+#Make the first cluster with 1000 random values
+clust1 <- data_frame(x = rnorm(1000), y = rnorm(1000))
+#Keep 10 values together to make the second cluster
+clust2 <- data_frame(x=c(5,5.1,5.2,5.3,5.4,5,5.1,5.2,5.3,5.4),y=c(5,5,5,5,5,4.9,4.9,4.9,4.9,4.9))
+#Combine the data
+dataset_uneven <- rbind(clust1,clust2)
+dataset_uneven %>% ggplot() + aes(x=x, y=y) + geom_point()
+```
+```{r}
+k_clust_spher3 <- kmeans(dataset_uneven, centers=2)
+fviz_cluster(list(data = dataset_uneven, cluster = k_clust_spher3$cluster),
+ellipse.type = "norm", geom = "point", stand = FALSE, palette = "jco", ggtheme = theme_classic())
+```
+
+
+
+## Fuzzy C-means
+
+https://cran.r-project.org/web/packages/ppclust/vignettes/fcm.html#cluster-plot-with-fviz_cluster
+
+# Hierarchical clustering
+
+https://github.com/hhundiwala/hierarchical-clustering
+
+## Agglomerative clustering
+
+Start with single data points as "clusters," then iteratively combine the closest pair of clusters. The closenest may be defined in the following ways:
+
+ 1. Single Linkage: In single linkage, we define the distance between two clusters as the minimum distance between any single data point in the first cluster and any single data point in the second cluster. 
+
+ 2. Complete Linkage: In complete linkage, we define the distance between two clusters to be the maximum distance between any single data point in the first cluster and any single data point in the second cluster.
+
+ 3. Average Linkage: In average linkage, we define the distance between two clusters to be the average distance between data points in the first cluster and data points in the second cluster. 
+
+4. Centroid Method: In centroid method, the distance between two clusters is the distance between the two mean vectors of the clusters.  
+
+ 5. Ward’s Method: This method does not directly define a measure of distance between two points or clusters. It is an ANOVA based approach. One-way univariate ANOVAs are done for each variable with groups defined by the clusters at that stage of the process.  At each stage, two clusters merge that provide the smallest increase in the combined error sum of squares. 
+
+
+https://onlinecourses.science.psu.edu/stat505/node/143/
+```{r}
+# Hierarchical clustering
+# ++++++++++++++++++++++++
+# Use hcut() which compute hclust and cut the tree
+iris_hc <- hcut(iris.scaled, k = 3, hc_method = "complete")
+# Visualize dendrogram
+fviz_dend(iris_hc, show_labels = FALSE, rect = TRUE)
+# Visualize cluster
+fviz_cluster(iris_hc, ellipse.type = "convex")
+table(iris_hc$cluster, iris$Species)
+```
+```{r}
+# Use hcut() which compute hclust and cut the tree
+cir_hc <- hcut(dataset_cir, k = 2, hc_method = "single")
+# Visualize dendrogram
+fviz_dend(cir_hc, show_labels = FALSE, rect = TRUE)
+# Visualize cluster
+fviz_cluster(cir_hc, ellipse.type = "convex")
+```
+
+```{r}
+# Use hcut() which compute hclust and cut the tree
+uneven_hc <- hcut(dataset_uneven, k = 2, hc_method = "single")
+# Visualize dendrogram
+#fviz_dend(uneven_hc, show_labels = FALSE, rect = TRUE)
+# Visualize cluster
+fviz_cluster(uneven_hc, ellipse.type = "convex")
+```
+
+
+
+# Clustering validation and analysis
+
+### Hopkins statistic
+Comparing the mean nearest-neighbor distance between uniformly generated sample points and mean nearest-neighbor distance within the data set. 
+$$
+H = 1 - \frac{\sum u^d_i}{\sum u^d_i + \sum w^d_i}
+$$
+This quantifies the "clustering tendency" of the data set.
+```{r}
+# Check Cluster Tendency--Hopkins Statistic
+hopkins(iris.scaled, n = 30) # n should be about 20% of the data
+# run a couple times to sample repeatedly
+```
+
+If H is below 0.5 reject the null hypothesis, which is that the data are generated by a Poisson point process (uniformly distributed.)
+
+```{r}
+# Visual Assessment of Cluster Tendency
+fviz_dist(dist(iris.scaled), show_labels = FALSE)+ labs(title = "Iris Data")
+```
+- Red is high similarity (low dissimilarity)
+- Blue is low similarity (high dissimilarity)
+
+### Elbow method
+
+```{r}
+# Elbow method
+fviz_nbclust(iris.scaled, kmeans, method = "wss") + geom_vline(xintercept = 2, linetype = 2)+
+labs(subtitle = "Elbow method for K-means")
+```
+### Silhouette Plot
+Measures how similar an object $i$ is to the other objects in its same cluster versus the objects outside of its cluster; $S_i$ values range from -1 to 1. Close to 1 means very similar to objects in its own group and dissimilar to others
+```{r}
+# Silhouette method
+fviz_nbclust(iris.scaled, kmeans, method = "silhouette")+ labs(subtitle = "Silhouette method for k-means")
+```
+
+### Lazy way: use all the methods!
+
+```{r}
+nb <- NbClust(iris.scaled, distance = "euclidean", min.nc = 2,
+        max.nc = 10, method = "kmeans")
+fviz_nbclust(nb)
+```
+
+# Application to breast cancer data
+
+```{r}
+# Import Breast Cancer Data Set
+fulldata <- read_csv("Wisconsin_Breast_Cancers.csv")
+bcdata <- fulldata[,2:10]
+class <- array(data= fulldata[,11])
+head(fulldata)
+```
+
+```{r}
+# Visually Inspect Data (PCA)
+fviz_pca_ind(prcomp(bcdata), title = "PCA - Breast Cancer data", geom = "point", ggtheme = theme_classic())
+```
+
+```{r}
+bc_km <- kmeans(scale(bcdata), 2)
+bc_km
+table(bc_km$cluster, fulldata$Class)
+#irisCluster$cluster <- as.factor(irisCluster$cluster)
+#ggplot(iris, aes(Petal.Length, Petal.Width, color = iris$cluster)) + geom_point()
+
+fviz_cluster(list(data = bcdata, cluster = bc_km$cluster),
+ellipse.type = "norm", geom = "point", stand = FALSE, palette = "jco", ggtheme = theme_classic())
+```
+
+```{r}
+# Use hcut() which compute hclust and cut the tree
+bc_hc <- hcut(scale(bcdata), k = 2, hc_method = "ward")
+# Visualize dendrogram
+fviz_dend(bc_hc, show_labels = FALSE, rect = TRUE)
+# Visualize cluster
+fviz_cluster(bc_hc, ellipse.type = "convex")
+table(bc_hc$cluster, fulldata$Class)
+```
+
+## Validation
+```{r}
+
+```
+

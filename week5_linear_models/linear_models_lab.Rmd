@@ -1,0 +1,206 @@
+---
+title: "Linear models --- Data lab"
+author: "Dmitry Kondrashov & Stefano Allesina"
+date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
+output:
+  html_document:
+  theme: cosmo
+toc: yes
+toc_float: yes
+pdf_document:
+  toc: yes
+urlcolor: blue
+---
+  
+```{r knitr, echo=FALSE}
+knitr::opts_chunk$set(
+  eval      = TRUE,
+  comment   = "#",
+  warning = FALSE,
+  message = FALSE,
+  #results   = "asis",
+  # collapse  = TRUE,
+  fig.align = "center")
+```
+
+```{r, message = FALSE}
+library(tidyverse) # our friend the tidyverse
+library(readxl) # to read excel files
+source("general_code/read_xls_from_url.R") # function to read excel from URL
+library(lindia) # regression diagnostic in ggplot2
+```
+
+# Regression diagnostics
+Now that we know the mechanics of linear regression, we turn to diagnostics: how can we make sure that the model fits the data "well"? We start by analyzing a data set assembled by Anscombe (*The American Statistician*, 1973)
+```{r, message = FALSE}
+dat <- read_csv("data/Anscombe_1973.csv")
+```
+
+The file comprised four data sets. We perform a linear regression using each data set separately:
+```{r}
+lm(Y ~ X, data = dat %>% filter(Data_set == "Data_1"))
+lm(Y ~ X, data = dat %>% filter(Data_set == "Data_2"))
+lm(Y ~ X, data = dat %>% filter(Data_set == "Data_3"))
+lm(Y ~ X, data = dat %>% filter(Data_set == "Data_4"))
+```
+As you can see, each data set is best fit by the same line, with intercept 3 and slope $\frac{1}{2}$. Plotting the data, however, shows that the situation is more complicated:
+```{r}
+ggplot(data = dat) + aes(x = X, y = Y, colour = Data_set) + 
+  geom_point() + geom_smooth(method = "lm", se = FALSE) + 
+  facet_wrap(~Data_set)
+```
+
+`Data_1` is fitted quite well; `Data_2` shows a marked nonlinearity; all points but one in `Data_3` are on the same line, but a single **outlier** shifts the line considerably; finally, in `Data_4` a single point is responsible for the fitting line: all other values of `X` are exactly the same. Inspecting the graphs, we would conclude that we can trust our model only in the first case. When you are performing a multiple regression, however, it is hard to see whether we're in case 1, or one of the other cases. `R` provides a number of diagnostic tools which can help you decide whether the fit to the data is good.
+
+## Plotting the residuals
+The first thing you want to do is to plot the residuals as a function of the fitted values. This plot should make it apparent whether the data was linear or not. The package `lindia` (linear regression diagnostics) makes it easy to produce this type of plot using `ggplot2`:
+```{r}
+gg_resfitted(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_1"))) + geom_smooth(method = "loess")
+```
+What you are looking for is an approximately flat line, meaning that the residuals are approximately normally distributed with mean zero for each fitted value. This is not the case in the other data sets:
+```{r, message = FALSE, warning = FALSE}
+gg_resfitted(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_2"))) + geom_smooth(method = "loess")
+gg_resfitted(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_3"))) + geom_smooth(method = "loess")
+gg_resfitted(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_4"))) + geom_smooth(method = "loess")
+```
+
+## Q-Q Plot
+We can take this further, and test whether the residuals follow a normal distribution. In particular, we can estimate the density of the residuals, and plot it against the density of a normal distribution:
+```{r}
+gg_qqplot(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_1")))
+gg_qqplot(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_2")))
+gg_qqplot(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_3")))
+gg_qqplot(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_4")))
+```
+
+Here, you are looking for a good match to the 1:1 line; outliers will be found far from the line (e.g., case 3).
+
+## Cook's distance
+Another way to detect outliers is to compute the Cook's distance for every point. Briefly, this statistic measures the effect on the regression we would obtain if we were to remove a point. 
+```{r}
+gg_cooksd(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_1")))
+gg_cooksd(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_2")))
+gg_cooksd(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_3")))
+gg_cooksd(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_4")))
+```
+
+## Leverage
+Points that strongly influence the regression are said to have much "leverage":
+```{r}
+gg_resleverage(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_1")))
+gg_resleverage(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_2")))
+gg_resleverage(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_3")))
+gg_resleverage(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_4")))
+```
+
+## Running all diagnostics
+These are but a few of the diagnostics available. To run all diagnostics on a given model, call
+```{r}
+gg_diagnose(lm(Y ~ X, data = dat %>% filter(Data_set == "Data_2")))
+```
+
+# Transforming the data 
+
+Often, one needs to transform the data before running a linear regression, in order to fulfill the assumptions. We're going to look at the salary of professors at the University of California to show how this is done.
+
+```{r}
+# read the data
+# Original URL
+# https://raw.githubusercontent.com/raleighlittles/UC-Employee-Salaries/master/UCOP%20Database_Parsed_2017.txt
+dt <- read_csv("https://tinyurl.com/y6uq8zgj", quote = "'") # this will fail on about 1% of the data, but it's ok
+# rename cols for easy access
+dt <- dt %>% rename(loc = `'location'`, title = `'title'`, pay = `'gross pay'`) %>% select(id, loc, title, pay)
+# get only profs
+dt <- dt %>% filter(title %in% c("PROF-AY", "ASSOC PROF-AY", "ASST PROF-AY", 
+                                 "PROF-AY-B/E/E", "PROF-HCOMP", "ASST PROF-AY-B/E/E", 
+                                 "ASSOC PROF-AY-B/E/E", "ASSOC PROF-HCOMP", "ASST PROF-HCOMP"))
+# remove those making less than 30k (probably there only for a period)
+dt <- dt %>% filter(pay > 30000)
+dt
+```
+
+The distribution of salaries is very skewed --- it looks like a log-normal distribution:
+```{r}
+dt %>% ggplot() + aes(x = pay) + geom_histogram(binwidth = 10000)
+```
+
+If we set consider the log of pay, we get closer to a normal:
+```{r}
+dt %>% ggplot() + aes(x = log2(pay)) + geom_histogram(binwidth = 0.5)
+```
+
+We can try to explain the pay as a combination of title and location:
+```{r}
+unscaled <- lm(pay ~ title + loc, data = dt)
+summary(unscaled)
+gg_diagnose(lm(pay ~ title + loc, data = dt))
+```
+
+To note: Berkeley has been taken as the baseline location. Similarly, `ASSOC-PROF AY` has been taken as the baseline title. 
+The Q-Q plot shows that this is a terrible model! Now let's try with the transformed data:
+```{r}
+scaled <- lm(log2(pay) ~ title + loc, data = dt)
+summary(scaled)
+gg_diagnose(lm(log2(pay) ~ title + loc, data = dt))
+```
+
+Much better! Rembeber to inspect your explanatory and response variables. Ideally, you want the response to be normally distributed. Sometimes one or many covariates can have a nonlinear relationship with the response variable, and you should transform them prior to analysis.
+
+# A regression gone wild
+Even when the fit is good, and assumptions are met, one can still end up with a fantastic blunder. To show this, we are going to repeat a study published in *Nature* (no less!) by Tatem *et al*. You can find the study [here](https://www.nature.com/articles/431525a). Briefly, the Authors gathered data on the 100m sprint at the Olympics from 1900 to 2004, for both men and women. We can do the same:
+
+```{r, message = FALSE}
+olympics <- read_csv("data/100m_dash.csv")
+```
+
+Then, they fitted a linear regression through the points, for both men and women. So far, so good:
+```{r}
+ggplot(data = olympics %>% filter(Year > 1899, Year < 2005)) + 
+  aes(x = Year, y = Result, colour = Gender) + 
+  geom_point() + geom_smooth(method = "lm")
+```
+The fit is quite good:
+```{r}
+summary(lm(Result ~ Year*Gender,
+  data = olympics %>% filter(Year > 1899, Year < 2005)))
+```
+
+An $R^2$ of 0.93, the pinnacle of a good linear regression. Now however, comes the problem. The Authors noticed that the times recorded for women are falling faster than those for men, meaning that the gender gap is reducing. Will it ever disappear? Just extend the regression and project forward: 
+
+```{r}
+ggplot(data = olympics %>% filter(Year > 1899, Year < 2005)) + 
+  aes(x = Year, y = Result, colour = Gender) + 
+  geom_point() + geom_smooth(method = "lm", fullrange = TRUE, se = FALSE) +
+  xlim(c(1890, 2200)) + ylim(c(0, 13))
+```
+
+You can see that the lines are touching in sometimes before 2200! Then women will overrun men. 
+
+There are a number of things that are wrong with this result. First, by the same logic, computers will soon go faster than the speed of light, the number of people on planet Earth will be in the hundreds of billions, and the price of sequencing will drop so much that we will be paid instead of paying to get our samples sequenced...
+
+Second, if we extend backwards, rather than forward, we would find that Roman women would take more than a minute to run 100m (possibly, because of the uncomfortable tunics and sandals...).
+```{r}
+ggplot(data = olympics %>% filter(Year > 1899, Year < 2005)) + 
+  aes(x = Year, y = Result, colour = Gender) + 
+  geom_point() + geom_smooth(method = "lm", fullrange = TRUE, se = FALSE) +
+  xlim(c(-2000, 2200)) + ylim(c(0, 75))
+```
+
+As Neil Bohr allegedly said (but this is disputed), "Prediction is very difficult, especially about the future". The fact is that any non-linear curve looks quite linear if we are only considering a small range of values on the x-axis. To prove this point, let's add the data from 2004 to today:
+```{r}
+ggplot(data = olympics %>% filter(Year > 1899)) + 
+  aes(x = Year, y = Result, colour = Gender) + 
+  geom_point() + geom_smooth(method = "lm", fullrange = TRUE, se = FALSE) +
+  xlim(c(1890, 2400)) + ylim(c(0, 13))
+```
+
+You can see that the process has already slowed down: now it would take an extra century before the "momentous sprint".
+
+So many things were wrong with this short paper, that *Nature* was showered with replies. My favorite is from a Cambridge statistician (the Authors were from Oxford, ça va sans dire); it is perfectly short and venomous---a good candidate for the Nobel prize in Literature!
+
+> Sir — A. J. Tatem and colleagues calculate that women may outsprint men by the
+middle of the twenty-second century (Nature 431, 525; 2004). They omit to mention, however, that (according to their analysis) a far more interesting race should
+occur in about 2636, when times of less than zero seconds will be recorded.
+In the intervening 600 years, the authors may wish to address the obvious
+challenges raised for both time-keeping and the teaching of basic statistics.
+— Kenneth Rice

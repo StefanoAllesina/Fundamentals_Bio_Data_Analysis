@@ -1,0 +1,185 @@
+---
+title: "Multidimensional Scaling"
+author: "Dmitry Kondrashov & Stefano Allesina"
+date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
+output:
+  html_document:
+    theme: cosmo
+    toc: yes
+    toc_float: yes
+    urlcolor: blue
+---
+  
+```{r knitr, echo=FALSE}
+knitr::opts_chunk$set(
+  eval      = TRUE,
+  comment   = "#",
+  warning = FALSE,
+  message = FALSE,
+  #results   = "asis",
+  # collapse  = TRUE,
+  fig.align = "center")
+```
+
+# Goal
+
+Introduce Multidimensional Scaling (MDS). Given a set of "distances" between samples, MDS attempts to arrange the samples in a $k$-dimensional space, such that distances are preserved. In practice, MDS is not picky on the notion of a distance (i.e., needs not to be a metric).
+
+Let's import some libraries:
+
+```{r}
+library(tidyverse) # our friend the tidyverse
+library(vegan) # for procrustes analysis
+```
+
+# Mathematical approach
+
+The input is the matrix of dissimilarities $D$, potentially representing distances $d_{ij} = d(x_i, x_j)$. A distance function is "metric" if:
+
+- $d(x_i, x_j) \geq 0$ (non-negativity)
+- $d(x_i, x_j) = 0$ only if $x_i = x_j$ (identity)
+- $d(x_i, x_j) = d(x_j, x_i)$ (symmetry)
+- $d(x_i, x_k) \leq d(x_i, x_j) + d(x_j, x_k)$ (triangle inequality)
+
+Given a set of dissimilarities, we can therefore ask whether they are distances, and particularly whether they represent Euclidean distances.
+
+## Goal of MDS
+
+Given the $n \times n$  matrix $D$, find a set of coordinates $x_i, \ldots x_n \in \mathbb R^p$, such that $d_{ij} \approx \lVert x_i - x_j \rVert_2$ (as close as possible). The operator $\lVert \cdot \rVert_2$ is the Euclidean norm, measuring Euclidean distance.
+
+As such, if we can find a perfect solution, then the dissimilarities can be mapped into Euclidean distances in a $k$-dimensional space.
+
+## Classic MDS
+
+Suppose that the elements of $D$ measure Euclidean distances. Between $n$ points, each of which has $k$ coordinates:
+
+$$
+X = \begin{bmatrix}
+    x_{11} & x_{12} &  \dots  & x_{1k} \\
+    x_{21} & x_{22} &  \dots  & x_{2k} \\
+    \vdots & \vdots &  \ddots & \vdots \\
+    x_{n1} & x_{n2} &  \dots  & x_{nk}
+\end{bmatrix}
+$$
+We consider the centered coordinates:
+
+$$
+\sum_i x_{ij} = 0
+$$
+And the matrix $B = X X^t$, whose coefficients are $B_{ij} = \sum_k x_{ik} x_{jk}$. We can write the square of the distance between point $i$ and $j$ as:
+
+$$ d_{ij}^2 = \sum_k (x_{ik} - x_{jk})^2  = \sum_k x_{ik}^2 + \sum_k x_{jk}^2 -2 \sum_k x_{ik} x_{jk} = B_{ii} + B_{jj} - 2 B_{ij}$$
+
+Note that, because of the centering:
+
+$$
+\sum_i B_{ij} = \sum_i \sum_k x_{ik} x_{jk} = \sum_k x_{jk} \sum_i x_{ik} = 0
+$$
+
+Now we compute:
+
+$$
+\sum_i d_{ij}^2 = \sum_i (B_{ii} + B_{jj} - 2 B_{ij}) = \sum_i B_{ii} + \sum_i B_{jj} - 2 \sum_i B_{ij} = \text{Tr}(B) + n B_{jj} 
+$$
+
+Similarly (distances are symmetric):
+
+$$
+\sum_j d_{ij}^2 = \text{Tr}(B) + n B_{ii} 
+$$
+And, finally:
+
+$$
+\sum_i \sum_j d_{ij}^2 = 2 n \text{Tr}(B)
+$$
+
+From these three equations, we obtain:
+
+$$
+B_{ii} = \frac{\sum_j d_{ij}^2}{n} - \frac{\sum_i \sum_j d_{ij}^2 }{2 n^2}
+$$
+and
+
+$$
+B_{jj} = \frac{\sum_i d_{ij}^2}{n} - \frac{\sum_i \sum_j d_{ij}^2 }{2 n^2}
+$$
+
+Therefore:
+
+$$ 
+B_{ij} = -\frac{1}{2}(d_{ij}^2 - B_{ii} - B_{jj}) = -\frac{1}{2}\left(d_{ij}^2 - \frac{\sum_i d_{ij}^2}{n} - \frac{\sum_j d_{ij}^2}{n}  + \frac{\sum_i \sum_j d_{ij}^2 }{n^2} \right)
+$$
+
+With some algebra, one can show that this is equivalent to:
+
+$$B = -\frac{1}{2} C D^{(2)} C$$ 
+
+Where $D^{(2)}$ is the matrix of squared distances, and $C$ is the centering matrix $C = 1 - \frac{1}{n}\mathcal O$ (and $\mathcal O$ is the matrix of all ones). Thus, we can obtain $B$ directly from the distance matrix. Once we've done this, $X$ can be found by taking the eigenvalue decomposition:
+
+$$
+B = X X^t = Q \Lambda Q^t
+$$
+
+(where $Q$ is the matrix of eigenvectors of $B$, and $\Lambda$ a diagonal matrix of the eigenvalues of $B$). Therefore:  
+
+$$ X = Q \Lambda^{\frac{1}{2}}$$
+
+# Reconstructing the map of Chicago
+
+To test MDS, I have built a matrix expressing the distances between the 604 Divvy bikes station in Chicago. 
+
+The distances are measured in degrees of latitude/longitude. We 
+introduce some noise to see how robust our estimate is.
+
+```{r}
+# load distance matrix 
+load("data/divvy_stations_distances.RData")
+# add some noise to make it more fun
+n <- nrow(distance_matrix)
+distance_matrix <- distance_matrix * 
+  matrix(runif(n * n, min = 0.8, max = 1.2), n, n)
+# plot distances
+distance_matrix %>% reshape2::melt() %>% 
+  ggplot(aes(x = Var1, y = Var2, fill = value)) + geom_tile()
+```
+
+Now we perform classical MDS, and plot the coordinates we've recovered:
+
+```{r}
+# classical MDS
+mds_fit <- cmdscale(distance_matrix, k = 2) # k is the dimension of the embedding
+mds_fit <- tibble(id = rownames(distance_matrix), 
+                  longitude = mds_fit[,1], latitude = mds_fit[,2])
+mds_fit %>% ggplot() + aes(x = latitude, y = longitude) + geom_point()
+```
+
+And now let's do it the "hard way":
+
+```{r}
+D2 <- distance_matrix^2
+CM <- diag(rep(1, n)) - 1 / n
+B <- -(1/2) * CM %*% D2 %*% CM
+eB <- eigen(B)
+mds_hard <- Re(eB$vectors) %*% diag(sqrt(Re(abs(eB$values))))
+ggplot(data = tibble(latitude = mds_hard[,2], longitude = mds_hard[,1])) +  aes(x = latitude, y = longitude) + geom_point()
+```
+
+As we were saying, distances are invariant to rotation, translation and reflection. As such, the coordinates can be rotated and centered arbitrarily. To find the best matching rotation, we use [procrustes analysis](https://en.wikipedia.org/wiki/Procrustes_analysis):
+
+```{r}
+# this is the actual location of the stations
+actual_locations <- read_csv("data/divvy_stations.csv")
+# aligning coordinates using Procrustes rotation and centering
+procr <- procrustes(actual_locations %>% select(latitude, longitude),
+                        mds_fit %>% select(latitude, longitude), scale = FALSE)
+new_coord <- t(t(as.matrix(mds_fit %>% select(latitude, longitude))  %*% procr$rotation) + procr$translation[1,])
+ggplot(actual_locations) + aes(x = longitude, y = latitude) + geom_point() + 
+  geom_point(aes(x = new_coord[,2], y = new_coord[,1]), colour = "red", shape = 1)
+```
+
+You can see that we've been doing really well. The largest discrepancies are around the borders, where we have less information. To show how much should we shift the points to recover the actual data, you can use
+
+```{r}
+plot(procr)
+```
+

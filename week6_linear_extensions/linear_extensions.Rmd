@@ -1,0 +1,243 @@
+---
+title: "Linear models plus: polynomial regression and ANOVA"
+author: "Dmitry Kondrashov & Stefano Allesina"
+date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
+output:
+  html_document:
+    theme: cosmo
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+urlcolor: blue
+---
+
+```{r knitr, echo=FALSE}
+knitr::opts_chunk$set(
+  eval      = TRUE,
+  comment   = "#",
+  results   = "hold",
+  # collapse  = TRUE,
+  fig.align = "center")
+```
+
+# Goal
+
+```{r}
+library(MASS) # negative binom regression
+library(tidyverse) # our friend the tidyverse
+library(pscl) # zero-inflated and zero-hurdle models
+source("../general_code/read_xls_from_url.R") # function to read excel from URL
+```
+
+
+# Linear least squares fitting for polynomials
+
+
+
+
+## Assumptions of linear least squares fitting
+In practice, when we are performing a linear regression, we are making a number of assumptions about the data. Here are the main ones:
+
+* Model structure: we assume that the process generating has the functional form that is being fitted
+* Explanatory variable: we assume that this is measured without errors (!).
+* Residuals: we assume that residuals are i.i.d. Normal with mean of 0. 
+* Homoscedasticity: the variance of the residuals is independent of $x_i$.
+* Errors are uncorrelated between observations. 
+* No linear dependence: the columns of $\mathbf{X}$ should be linearly independent.
+
+## Normal equations again
+
+Suppose we want to use a polynomial function to fit the data, for example the quadratic function: $y = \beta_2x^2 + \beta_1 x + \beta_0$. The data set is a set of $n$ pairs of observations, $(x_i, y_i)$ for $i = 1, ..., n$. The same way we set up equations for fitting a linear function, we have a set of $n$ equations, one for each data point, assuming each point lies exactly on the parabola:
+
+$$
+\begin{eqnarray*}
+\beta_2x_1^2 + \beta_1x_1 + \beta_0  &=&  y_1 \\
+\beta_2x_2^2 + \beta_1x_2 + \beta_0  &=&  y_2 \\
+... \\
+\beta_2x_n^2 + \beta_1x_n + \beta_0  &=&  y_n
+\end{eqnarray*}
+$$
+Of course, points don't lie exactly on idealized curves, but this gives us the relationship that we want to match by choosing the parameters that come closest to these equations in the least square sense. The set of linear equations above can be written as the following linear algebra equation:
+$$  
+\mathbf{X}\hat{\beta} = \mathbf{Y}
+$$
+
+
+where:
+
+$$ 
+\mathbf{X} = \left(\begin{array}{ccc} x_1^2 & x_1 & 1 \\... & ... & ... \\x_n^2 & x_n & 1\end{array}\right); \; \mathbf{Y} = \left(\begin{array}{c}y_1 \\... \\y_n\end{array}\right); \; \hat \beta = \left(\begin{array}{c}\beta_2 \\ \beta_1 \\ \beta_0\end{array}\right)
+$$
+Since $\mathbf{X}$ is not a square matrix (it is $n$ by 3), we cannot multiply both sides by the inverse. However, the 2 by 2 matrix $\mathbf{X}^T \mathbf{X}$ is invertible, so long as the columns of $X$ are linearly independent (non-parallel). Under those conditions, we can find a least-squares linear fit to a set of $n$ data points by using the generalized inverse or projection matrix to solve for the parameter vector $\hat{\mathbf{\beta}}$: 
+$$
+\hat{\mathbf{\beta}} = \left( \mathbf{X}^T \mathbf{X} \right)^{-1} \mathbf{X}^T \mathbf{Y}
+$$
+
+
+Thus, we can find the best fit parameters for the quadratic function, and it is straightforward to extend this to higher order polynomials, just by adding columns of higher powers of $x$ data to the matrix $\mathbf{X}$. The basic structure of the solution remains the same.
+
+
+
+```{r}
+a <- 3
+b <- -25
+c <- 10
+x.data <- seq(1,10,0.1)
+y.data <- a*x.data^2 +b*x.data + c + 10*rnorm(length(x.data))
+my_data <- tibble(x.data, y.data)
+
+myfit <- lm(y.data ~ poly(x.data,2,raw=TRUE), data = my_data)
+af <- myfit$coefficients[3]
+bf <- myfit$coefficients[2]
+cf <- myfit$coefficients[1]
+summary(myfit)
+
+my_data %>% ggplot() + aes(x=x.data, y=y.data) + geom_point() + geom_smooth(method = "lm", formula = y ~ poly(x,2))
+```
+
+# Log transformation following by linear regression
+Many biological processes exhibit an exponential dependence: for instance, biochemical reactions are frequently governed by exponential decay over time, and the rates of reactions are found by fitting the data to exponential function. The functional form of a exponential is $y = a e^{kx}$, where $y$ the dependent variable, $x$ the independent variable, $k$ is the exponential rate and $a$ is the multiplicative constant. One can take the logarithm of the dependent variable and of the right hand side to produce the following transformed equation:
+$$
+\ln (y) = \ln (a e^{kx}) = \ln (a) + k x
+$$ 
+This shows that the logarithm of $y$ has a linear relationship with $x$. Thus, one can use the linear least-squares fit between the log-transformed variable $y$ and the original variable $x$ to find the slope $k$, which corresponds to the exponential growth parameter, and the intercept, which is the logarithm of the constant multiplier parameter $a$. When the variable $\ln(y)$ is plotted against $x$, it is called a semi-log plot.
+
+Other variables have another kind of relationship called a power law. The functional form appears to be similar to an exponential one, with one important distinction: the independent variable is the base and not in the exponent of the expression. The general formula for a power law is: $y = a x^n$, where $y$  is the dependent variable, $x$ the independent variable, $n$ is the power parameter and $a$ is the multiplicative constant. Once again, we can transform this expression by taking the logarithm (of any base) of both sides:
+$$
+\log (y) = \log (a x^{n}) = \log (a) + n \log(x)
+$$ 
+The transformation demonstrates that the logarithm of $y$ has a linear relationship with the logarithm of $x$. To obtain the values of the power law parameter, one can perform the linear least-squares fit between $\log(y)$ and $\log(x)$. The slope of this regression is the power parameter $n$ and the intercept is the logarithm of the multiplicative constant $a$. When the variable $\ln(y)$ is plotted against $\log(x)$, it is called a log-log plot. 
+
+xample of transforming a data based on the power law $y = 0.3x^{1.7}$ with added noise.
+```{r}
+a <- 30
+n <- 1.7
+x.data <- seq(0.1,10,0.1)
+y.data <-  abs(a*x.data^n+100*rnorm(length(x.data)))
+my_data <- tibble(x.data, y.data)
+myfit <- lm(log(y.data) ~ log(x.data), data = my_data)
+summary(myfit)
+
+paste(exp(myfit$coefficients[1]), myfit$coefficients[2])
+my_data %>% ggplot() + aes(x=x.data, y=y.data) + geom_point() 
+```
+
+
+The following script contains the 
+```{r}
+a <- 30
+k <- -0.5
+x.data <- seq(0,10,0.1)
+y.data <-  abs(a*exp(k*x.data)+rnorm(length(x.data)))
+my_data <- tibble(x.data, y.data)
+myfit <- lm(log(y.data) ~ x.data, data = my_data)
+summary(myfit)
+
+my_data %>% ggplot() + aes(x=x.data, y=y.data) + geom_point() 
+
+myfit %>% ggplot() + aes(y=resid(myfit), x=x.data) + geom_point() 
+```
+
+
+
+While logarithmic transforms followed by linear regression fitting are common in science, one should use a great deal of caution in their use. One problem is that the logarithm changes the scale of the variables in a nonlinear fashion and this transformation can lead to violation of the assumptions of homoscedasticity of noise across all the data points. Log-transforming the dependent variable in either of the two transformations above the noise is magnified for the small values of $y$ and diminished for the large values.  In short, while this is a convenient and commonly used technique, it often produces dubious results, with exponential fits tending to underestimate the true exponential rates. A better approach is to use a fully nonlinear fitting algorithm, such as the Levenberg-Marquardt method.
+
+
+## Linear regression in action
+To perform a slightly more complicated linear regression, we take the data from:
+
+> Piwowar HA, Day RS, Fridsma DB (2007) [Sharing detailed research data is associated with increased citation rate](https://doi.org/10.1371/journal.pone.0000308). PLoS ONE 2(3): e308. 
+
+The authors set out to demonstrate that sharing data accompanying papers increases the number of citations received by the paper.
+
+```{r, warning=FALSE, message=FALSE}
+# original url 
+# https://datadryad.org/bitstream/handle/10255/dryad.33867/rawdata.csv
+dat <- read_csv("https://tinyurl.com/y8oqbdvq") 
+# rename variables for easier handling
+dat <- dat %>% rename(IF = `Impact factor of journal`, 
+                      NCIT = `Number of Citations in first 24 months after publication`, 
+                      SHARE = `Is the microarray data publicly available`) %>% 
+      select(NCIT, IF, SHARE)
+```
+
+First, let's run a model in which the logarithm of the number of citations + 1 is regressed against the "Impact Factor" of the journal (which is a measure of "prestige" based on the average number of citations per paper received):
+
+```{r}
+my_model <- lm(log(NCIT + 1) ~ log(IF + 1), data = dat)
+summary(my_model)
+```
+
+You can see that the higher the impact factor, the higher the number of citations received (unsurprisingly!). Now let's add another variable, detailing whether publicly available data accompany the paper:
+
+```{r}
+my_model2 <- lm(log(NCIT + 1) ~ log(IF + 1) + SHARE, data = dat)
+summary(my_model2)
+```
+
+We find that sharing data is associated with a larger number of citations.
+
+# Analysis of variance
+
+ANOVA is a method for testing the hypothesis that there is no difference in means of subsets of measurements grouped by factors. For example, the following data contains measurements of weights of individuals before starting a diet, after 6 weeks of dieting, the type of diet (1, 2, 3), and other variables. 
+
+```{r}
+# Original URL: "https://www.sheffield.ac.uk/polopoly_fs/1.570199!/file/stcp-Rdataset-Diet.csv"
+diet <- read_csv("https://tinyurl.com/ydzya2no") 
+diet$weight.loss <- diet$pre.weight - diet$weight6weeks 
+```
+
+Write a script below using ggplot to generate boxplots for the weights after three different diets.
+
+```{r}
+diet %>% ggplot() + aes(y = weight.loss, x=as.factor(Diet)) + geom_boxplot()
+```
+
+We can see that there weight loss outcomes vary for each diet, but diet 3 seems to produce a larger effect on average. But it that a difference between the means actually due to the diet or could it have been produced by sampling from the same distribution, since we see substantial variation within each diet group?
+
+To address this, ANOVA makes one important assumption, that the total squared error (sum of squared differences from the total mean of all the data) is a sum of the squared errors within each group and the squared errors between the groups, denoted as follows:
+
+$$
+SS = SSG + SSE
+$$
+
+
+outside of the variation that is common to all three groups (diets?) If we denote the set of means of $k$ different groups to be $\{\bar Y_i\}$ and the "grand mean" to be $ \mathbf{\bar Y}$ and the variance of the means, also called the mean square differences for treatments is defined as:
+$$  MST  = \frac{1}{k-1} \sum_i n_i (\bar Y_i -\mathbf{\bar Y})^2 $$
+and this is compared to the mean square noise within the groups, which if we denote the set of measurements in group $i$ to be $\{y_{ij}\}$, is defined as
+$$
+MSE = \frac{1}{N-k} \sum_j \sum_i (\bar Y_i - y_{ij})^2
+$$
+
+where $N$ is the total number of points in all the groups. 
+
+To answer this question posed by the hypothesis, one computes the *F-statistic* defined as follows:
+$$
+F = \frac{MSE}{MST}
+$$
+
+The big idea is that if there is no effect produced by group, the variation within groups and between groups should be about the same, and F should be close to 1. The F-distribution is then used to quantify the likelihood of that hypothesis for a given F score. Here is the result of running ANOVA on the given data set:
+
+```{r message = FALSE, warning = FALSE, echo = TRUE} 
+diet.fisher  = aov(weight.loss ~ factor(Diet),data=diet)
+summary(diet.fisher)
+print(diet.fisher$coefficients)
+```
+
+At first glance, this process is not the same as fitting parameters for linear regression, but it turns out to be based on exactly the same assumptions: additive noise and additive effect of the factors, with the only difference being that factors are not numeric, so the effect of each one is added separately. One can run linear regression and calculate coefficients that are identical to the mean and the differences between means computed by ANOVA (and note the p-values too!)
+
+```{r message = FALSE, warning = FALSE, echo = TRUE} 
+diet.lm  = lm(weight.loss ~ factor(Diet),data=diet)
+summary(diet.lm)
+print(diet.lm$coefficients)
+```
+## Two-way ANOVA
+
+One can compare the effect of two different factors simultaneously and see if considering both explains more of the variance than of one. This is equivalent to the multiple linear regression with two interacting variables. How would you interpret these results?
+
+```{r message = FALSE, warning = FALSE, echo = TRUE} 
+diet.fisher = aov(weight.loss~factor(Diet)*factor(gender),data=diet)
+summary(diet.fisher)
+
+```
