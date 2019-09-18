@@ -280,7 +280,7 @@ This fit is excellent!
 Does the musical genre a musician has chosen influence her life expectancy? To find out, we have compiled a data set containing the `Age_at_death` of [Romantic composers](https://en.wikipedia.org/wiki/List_of_Romantic-era_composers), [Jazz vocalists](https://en.wikipedia.org/wiki/List_of_jazz_vocalists), and [Rap artists](https://www.hiphoplifted.com/Deceased-Rappers.html). 
 
 You can load the data
-```{r, message=FALSE}
+```{r, echo=FALSE, message=FALSE}
 musicians <- read_csv("data/music_deaths.csv")
 head(musicians)
 ```
