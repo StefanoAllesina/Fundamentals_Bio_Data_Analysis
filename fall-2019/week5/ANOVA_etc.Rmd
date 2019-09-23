@@ -84,6 +84,9 @@ Assume that we have 3 groups (A, B, C) to compare:
   * Produce F-statistic as the ratio of S2between/S2within
 .
 
+
+
+
 ANOVA makes one important assumption, that the total squared error (sum of squared differences from the total mean of all the data) is a sum of the squared errors within each group and the squared errors between the groups, denoted as follows:
 
 $$
@@ -110,6 +113,9 @@ $$
 The big idea is that if there is no effect produced by group, the variation within groups and between groups should be about the same, and F should be close to 1. The F-distribution is then used to quantify the likelihood of that hypothesis for a given F score. 
 
 ## Back to diets
+
+
+
 Here is the result of running ANOVA on the given data set:
 
 ```{r message = FALSE, warning = FALSE, echo = TRUE} 
@@ -117,6 +123,24 @@ diet.fisher  = aov(weight.loss ~ factor(Diet),data=diet)
 summary(diet.fisher)
 print(diet.fisher$coefficients)
 ```
+
+
+Let's compare this with the calculations from the data set:
+
+```{r}
+# The "grand mean" 
+grand_mean <- mean(diet$weight.loss)
+grad_var <- mean(diet$weight.loss)
+diet1 <- filter(diet, Diet == 1)
+diet2 <- filter(diet, Diet == 2)
+diet3 <- filter(diet, Diet == 3)
+mean1 <- mean(diet1$weight.loss)
+mean2 <- mean(diet2$weight.loss)
+mean3 <- mean(diet3$weight.loss)
+var_of_means <- var(c(mean1, mean2, mean3))
+
+```
+
 
 At first glance, this process is not the same as fitting parameters for linear regression, but it turns out to be based on exactly the same assumptions: additive noise and additive effect of the factors, with the only difference being that factors are not numeric, so the effect of each one is added separately. One can run linear regression and calculate coefficients that are identical to the mean and the differences between means computed by ANOVA (and note the p-values too!)
 
@@ -128,8 +152,7 @@ print(diet.lm$coefficients)
 
 ## Example of plant growth data
 
-Example taken from: [http://www.sthda.com/english/wiki/one-way-anova-test-in-r](One-Way ANOVA Test in R)
-
+Example taken from: [One-Way ANOVA Test in R](http://www.sthda.com/english/wiki/one-way-anova-test-in-r)
 ```{r}
 my_data <- PlantGrowth # import built-in data
 str(my_data)
