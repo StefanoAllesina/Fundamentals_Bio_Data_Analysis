@@ -1,0 +1,328 @@
+---
+title: "Week 2 exercises"
+author: "Dmitry Kondrashov and Stefano Allesina"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Goals: 
+In this assignment you will do the following:
+
+  * Calculate conditional probabilities from data sets in tibble format using logical statements
+  * Use probability distribution functions and random number generators for calculations
+  * Generate sample means and calculate confidence intervals to investigate their performance
+
+
+## Grading:
+Part 1: 3 pts each, 6 total
+Part 2: 4 pts each, 12 total
+Part 3: 5 pts each, 10 total
++ 2 pts for submission
+Total: 30 pts
+
+## Part 1: Conditional probabilities
+
+Let us use the Titanic passenger data set, specifically the titanic_train tibble:
+
+```{r}
+library(titanic)
+head(titanic_train)
+```
+
+
+1. Calculate and report the conditional probability of survival for men and women and compare with the survival probability for all passengers. 
+
+```{r}
+ans <- sum((titanic_train$Survived))/length(titanic_train$Survived)
+paste("overall survival rate for passengers:", ans)
+
+ans <- sum((titanic_train$Sex == 'male')*(titanic_train$Survived))/sum(titanic_train$Sex == 'male')
+paste("survival rate for all males:", ans)
+
+ans <- sum((titanic_train$Sex == 'female')*(titanic_train$Survived))/sum(titanic_train$Sex == 'female')
+
+paste("survival rate for all females:", ans)
+
+```
+
+There is clearly a huge difference between survival probabilities for men and women.
+
+2. Suppose there is a hypothesis that the difference in survival rates for different passenger classes is due to different fractions of males and females. To check if this is plausible, calculate the survival rates for males and females separately for three passenger classes.
+
+```{r}
+ans <- sum((titanic_train$Sex == 'male')*(titanic_train$Survived)*(titanic_train$Pclass==1))/sum((titanic_train$Sex == 'male')*(titanic_train$Pclass==1))
+paste("survival rate for males in first class:", ans)
+
+
+ans <- sum((titanic_train$Sex == 'female')*(titanic_train$Pclass==1)*(titanic_train$Survived))/sum((titanic_train$Sex == 'female')*(titanic_train$Pclass==1))
+paste("survival rate for females in first class:", ans)
+
+ans <- sum((titanic_train$Sex == 'male')*(titanic_train$Survived)*(titanic_train$Pclass==2))/sum((titanic_train$Sex == 'male')*(titanic_train$Pclass==2))
+paste("survival rate for males in second class:", ans)
+
+ans <- sum((titanic_train$Sex == 'female')*(titanic_train$Pclass==2)*(titanic_train$Survived))/sum((titanic_train$Sex == 'female')*(titanic_train$Pclass==2))
+paste("survival rate for females in second class:", ans)
+
+ans <- sum((titanic_train$Sex == 'male')*(titanic_train$Survived)*(titanic_train$Pclass==3))/sum((titanic_train$Sex == 'male')*(titanic_train$Pclass==3))
+paste("survival rate for males in third class:", ans)
+
+ans <- sum((titanic_train$Sex == 'female')*(titanic_train$Pclass==3)*(titanic_train$Survived))/sum((titanic_train$Sex == 'female')*(titanic_train$Pclass==3))
+paste("survival rate for females in third class:", ans)
+
+```
+
+Simply comparing the survival probabilities for men and women conditioned on class, there is a very large difference between survival rate of men in first class compared to men in other classes, and a huge difference between survival of women in third class compared to women in the other classes. This suggests that survival, even separated by sex, still depended on class.
+
+
+## Part 2: Distributions and their properties
+
+Use scripts from the Tuesday lecture.Rmd file to plot the distributions and calculate their expectations and variances and compare them to the theoretical predictions.
+
+1. Uniform distribution (discrete). Plot the distribution over the ranges [0,20] and [-10, 30],  report the respective expectations and variances and compare them to the theoretical values (look it up if you can't calculate or deduce the relationship by experimenting).
+
+```{r}
+low <- 0 # minimum value
+high <- 20 # maximum value
+values <- low:high # vactor of discrete values of the RV
+num <- length(values)
+probs <- rep(1/num, num) # uniform mass function vector
+barplot(probs, names.arg = values, xlab = 'values', ylab = 'probability',
+        main = paste("uniform  distribution on integers from ", low, "to ", high))
+unif.exp <- sum(values*probs)
+paste("The expected value of uniform distribution is", unif.exp)
+paste("The theoretical expected value is", (high+low)/2)
+unif.var <- sum((unif.exp - values)^2*probs)
+paste("The variance of uniform distribution is", unif.var)
+paste("The theoretical variance is", ((high-low+1)^2-1)/12)
+
+low <- -10 # minimum value
+high <- 30 # maximum value
+values <- low:high # vactor of discrete values of the RV
+num <- length(values)
+probs <- rep(1/num, num) # uniform mass function vector
+barplot(probs, names.arg = values, xlab = 'values', ylab = 'probability',
+        main = paste("uniform  distribution on integers from ", low, "to ", high))
+unif.exp <- sum(values*probs)
+paste("The expected value of uniform distribution is", unif.exp)
+paste("The theoretical expected value is", (high+low)/2)
+unif.var <- sum((unif.exp - values)^2*probs)
+paste("The variance of uniform distribution is", unif.var)
+paste("The theoretical variance is", ((high-low+1)^2-1)/12)
+```
+
+For a uniform random variable $X$ on the set of consecutive integers $X={a,...,b}$, the expected value is $E(X) = (b+a)/2$. The variance is a bit more tricky and turns out to have the following relationship: $Var(X) = ((b-a+1)^2 -1)/12$. Calculations in the script above show agreement between these general formulas and the expectations and variances for specific parameter values.
+
+
+2. Binomial distribution. Plot the distribution for n=20 and p=0.3, for n=10 and p=0.6, and for n= 40 and p = 0.5; report the respective expectations and variances and  compare them to theoretical dependence on n and p (look it up if you can't calculate or deduce the relationship by experimenting).
+
+```{r}
+n <- 20 # the number of trials
+p <- 0.3 # the probability of success in one trial
+values <- 0:n # vactor of discrete values of the binomial
+probs <- dbinom(values, n, p)
+barplot(probs, names.arg = values, xlab = 'values', ylab = 'probability',
+        main = paste("binomial distribution with n=", n, "and p=", p))
+bin.exp <- sum(values*probs)
+paste("The expected value of binomial distribution is", bin.exp)
+paste("The theoretical expected value is", n*p)
+bin.var <- sum((bin.exp - values)^2*probs)
+paste("The variance of binomial distribution is", bin.var)
+paste("The theoretical variance is", n*p*(1-p))
+
+n <- 10 # the number of trials
+p <- 0.6 # the probability of success in one trial
+values <- 0:n # vactor of discrete values of the binomial
+probs <- dbinom(values, n, p)
+barplot(probs, names.arg = values, xlab = 'values', ylab = 'probability',
+        main = paste("binomial distribution with n=", n, "and p=", p))
+bin.exp <- sum(values*probs)
+paste("The expected value of binomial distribution is", bin.exp)
+paste("The theoretical expected value is", n*p)
+bin.var <- sum((bin.exp - values)^2*probs)
+paste("The variance of binomial distribution is", bin.var)
+paste("The theoretical variance is", n*p*(1-p))
+
+n <- 40 # the number of trials
+p <- 0.5 # the probability of success in one trial
+values <- 0:n # vactor of discrete values of the binomial
+probs <- dbinom(values, n, p)
+barplot(probs, names.arg = values, xlab = 'values', ylab = 'probability',
+        main = paste("binomial distribution with n=", n, "and p=", p))
+bin.exp <- sum(values*probs)
+paste("The expected value of binomial distribution is", bin.exp)
+paste("The theoretical expected value is", n*p)
+bin.var <- sum((bin.exp - values)^2*probs)
+paste("The variance of binomial distribution is", bin.var)
+paste("The theoretical variance is", n*p*(1-p))
+```
+For a binomial random variable $X$ with number of trials $n$ and probability $p$, the expected value is $E(X) = np$. The variance (which can be calculated as sum of the variances of $n$ identical Bernoulli processes) is: $Var(X) = np(1-p)$. Calculations in the script above show agreement between these general formulas and the expectations and variances for specific parameter values.
+
+
+
+3. Geometric distribution. Plot the distribution for p=0.2, p = 0.5, and p=0.7, report the respective expectations and variances and  compare them to theoretical dependence on p (look it up if you can't calculate or deduce the relationship by experimenting).
+
+```{r}
+p <- 0.2 # the probability of success
+low <- 0 # minimum value
+high <- 100 # maximum value
+values <- low:high # vactor of discrete values of the RV
+probs <- dgeom(values, p)
+barplot(probs, names.arg = values, xlab = 'values', ylab = 'probability',
+        main = paste("geometric distribution with p=", p))
+geom.exp <- sum(values*probs)
+paste("The expected value of geometric distribution is", geom.exp)
+paste("The theoretical expected value is", (1-p)/p)
+geom.var <- sum((geom.exp - values)^2*probs)
+paste("The variance of geometric distribution is", geom.var)
+paste("The theoretical variance is", (1-p)/p^2)
+
+
+p <- 0.5 # the probability of success
+low <- 0 # minimum value
+high <- 20 # maximum value
+values <- low:high # vactor of discrete values of the RV
+probs <- dgeom(values, p)
+barplot(probs, names.arg = values, xlab = 'values', ylab = 'probability',
+        main = paste("geometric distribution with p=", p))
+geom.exp <- sum(values*probs)
+paste("The expected value of geometric distribution is", geom.exp)
+paste("The theoretical expected value is", (1-p)/p)
+geom.var <- sum((geom.exp - values)^2*probs)
+paste("The variance of geometric distribution is", geom.var)
+paste("The theoretical variance is", (1-p)/p^2)
+
+
+p <- 0.7 # the probability of success
+low <- 0 # minimum value
+high <- 20 # maximum value
+values <- low:high # vactor of discrete values of the RV
+probs <- dgeom(values, p)
+barplot(probs, names.arg = values, xlab = 'values', ylab = 'probability',
+        main = paste("geometric distribution with p=", p))
+geom.exp <- sum(values*probs)
+paste("The expected value of geometric distribution is", geom.exp)
+paste("The theoretical expected value is", (1-p)/p)
+geom.var <- sum((geom.exp - values)^2*probs)
+paste("The variance of geometric distribution is", geom.var)
+paste("The theoretical variance is", (1-p)/p^2)
+```
+There are two different versions of the geometric distribution: the one that represents the number of trials before the first success (which can take values starting at 0) and the number of trials at the first success (which can take values starting at 1). The geometric distribution as implemented in R is the first version, and its expectation is $E(X) = 1/p - 1 = (1-p)/p$. The variance of either version is the same: $Var(X) = (1-p)/p^2$. Calculations in the script above show agreement between these general formulas and the expectations and variances for specific parameter values.
+
+
+
+## Part 3: Confidence intervals vs reality
+
+1. The script below generates samples from the discrete uniform distribution between 0 and 10, plots the distribution of sample means, and compared it with the normal distribution with the theoretical mean and standard error. Modify the script to produce samples from the binomial distribution with different values of p and n, and report how well the sample means agree with the theoretical normal distribution. Remember to change the calculations for mu and sigma.
+
+
+```{r}
+numsamples <- 1000
+samplemeans<-rep(NA, numsamples)
+size<-100
+n <- 20
+p <- 0.1
+for (i in 1:numsamples) {
+  sample <- rbinom(size, n, p)
+  samplemeans[i] <- mean(sample)
+}
+break_points <- seq(min(samplemeans),max(samplemeans), 
+                    (max(samplemeans)-min(samplemeans))/20)
+hist(samplemeans, breaks=break_points, freq=FALSE, cex.axis=1.5, cex.lab=1.5,
+     main= paste(numsamples, 'means of samples of size', size))
+sigma<-sqrt(n*p*(1-p)/size) # standard error for the distribution
+mu<-n*p # true mean of the distribution
+range <- seq(min(samplemeans),max(samplemeans), sigma/100)
+lines(range,dnorm(range,mu,sigma),t='l',lwd=3,col=2,lty=1,cex.axis=1.5,cex.lab=1.5)
+```
+
+For a skewed population distribution, e.g. with $p=0.1$, the sampling distribution of means looks pretty ragged for 100 samples, but it converges nicely to the normal distribution with mean $\mu = np$ and standard deviation (standard error) $\sigma = \sqrt{np(1-p)/N}$, where $N$ is the number of samples.
+
+
+2. The following script calculates a confidence interval based on a sample. The z-value is the width of the interval measured in multiples of standard deviations of the normal distribution (standard errors) required for the interval to contain the probability density equal to the significance level $\alpha$, which theoretically should be the fraction of confidence intervals (out of many) that contain the true mean.
+
+Modify the script to report whether the confidence interval contains the true mean. Use a loop structure (as in the script above) to generate 1000 sample means and report how many of them are within the theoretical confidence interval. Does this match the fraction you expect from the significance level? Try different significance levels and sample sizes and report what you discover.
+
+
+```{r}
+# function for computing confidence intervals based on the uniform distribution between 0 and 1 and reporting the fraction correct
+CI_report <- function(size, alpha, numsamples) {
+  correct <- rep(0, numsamples)
+  mu <- 0.5 # expectation of uniform distribution on (0,1)
+  for (i in 1:numsamples) {
+    sample<-runif(size) # generate sample from uniform distribution
+    s <- sd(sample)/sqrt(size) # standard error
+    z <- qnorm((1-alpha)/2) # z-value
+    left <- mean(sample)+s*z # left boundary of the interval
+    right <- mean(sample)-s*z # right boundary of the interval
+    correct[i] <- (mu > left)&(mu < right) # is the mean between left and right
+  }
+  return(sum(correct)/numsamples) # fraction of correct confidence intervals
+}
+size <- 100 # sample size
+alpha <- 0.95 # significance level
+numsamples <- 1000
+paste ("The fraction of intervals containing the true mean with sample size", size, "for alpha=",alpha, "is", CI_report(size, alpha, numsamples))
+
+size <- 100 # sample size
+alpha <- 0.99 # significance level
+numsamples <- 1000
+paste ("The fraction of intervals containing the true mean with sample size", size, "for alpha=",alpha, "is", CI_report(size, alpha, numsamples))
+
+size <- 1000 # sample size
+alpha <- 0.95 # significance level
+numsamples <- 1000
+paste ("The fraction of intervals containing the true mean with sample size", size, "for alpha=",alpha, "is", CI_report(size, alpha, numsamples))
+
+size <- 1000 # sample size
+alpha <- 0.99 # significance level
+numsamples <- 1000
+paste ("The fraction of intervals containing the true mean with sample size", size, "for alpha=",alpha, "is", CI_report(size, alpha, numsamples))
+```
+
+Generally speaking, the fraction of confidence intervals containing the true mean is close to what it should be (the confidence level $\alpha$) but for smaller sample size (100) the fraction is systematically a bit lower than it should be. For larger sample size (1000) the fraction is generally close to the correct one, and is no longer systematically lower. This observation is explained by the distinction between the *theoretical confidence interval*, which is centered at the true mean of the distribution and the standard error computed from the true standard deviation, and the *confidence interval in practice*, which uses the sample mean and sample standard deviations as approximations of the true parameters.
+
+
+One can do this calculation using any other population distribution, for example, the binomial (but students can use whichever they prefer since the Central Limit Theorem applies to any population distribution):
+
+```{r}
+# function for computing confidence intervals based on the binomial distribution and reporting the fraction correct
+CI_report <- function(size, alpha, numsamples) {
+  correct <- rep(0, numsamples)
+  n <- 20
+  p <- 0.1
+  mu <- n*p # expectation of binomial distribution with n and p
+  for (i in 1:numsamples) {
+    sample <- rbinom(size, n, p) # generate sample from binomial distribution
+    s <- sd(sample)/sqrt(size) # standard error
+    z <- qnorm((1-alpha)/2) # z-value for given confidence level
+    left <- mean(sample)+s*z # left boundary of the interval
+    right <- mean(sample)-s*z # right boundary of the interval
+    correct[i] <- (mu > left)&(mu < right) # is the mean between left and right
+  }
+  return(sum(correct)/numsamples) # fraction of correct confidence intervals
+}
+size <- 100 # sample size
+alpha <- 0.95 # significance level
+numsamples <- 1000
+paste ("The fraction of intervals containing the true mean with sample size", size, "for alpha=",alpha, "is", CI_report(size, alpha, numsamples))
+
+size <- 100 # sample size
+alpha <- 0.99 # significance level
+numsamples <- 1000
+paste ("The fraction of intervals containing the true mean with sample size", size, "for alpha=",alpha, "is", CI_report(size, alpha, numsamples))
+
+size <- 1000 # sample size
+alpha <- 0.95 # significance level
+numsamples <- 1000
+paste ("The fraction of intervals containing the true mean with sample size", size, "for alpha=",alpha, "is", CI_report(size, alpha, numsamples))
+
+size <- 1000 # sample size
+alpha <- 0.99 # significance level
+numsamples <- 1000
+paste ("The fraction of intervals containing the true mean with sample size", size, "for alpha=",alpha, "is", CI_report(size, alpha, numsamples))
+```
+The results should be essentially the same (CLT works!)

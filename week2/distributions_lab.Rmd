@@ -1,0 +1,316 @@
+---
+title: "Distributions and their properties: Data Lab"
+author: "Dmitry Kondrashov & Stefano Allesina"
+date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
+output:
+  html_document:
+    theme: cosmo
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+urlcolor: blue
+---
+
+```{r knitr, echo=FALSE}
+knitr::opts_chunk$set(
+  eval      = TRUE,
+  comment   = "#",
+  #results   = "asis",
+  # collapse  = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center")
+```
+
+```{r, message = FALSE}
+library(MASS) # to fit distributions
+library(tidyverse) # our friend the tidyverse
+library(readxl) # to read excel files
+source("general_code/read_xls_from_url.R") # function  to read excel from URL
+library(fitdistrplus) # simple plotting of fit
+```
+
+# Visualizing 1-dimensional distributions
+We start by analyzing a dataset reporting the incubation period of a novel type of influenza A of avian origin that emerged in China in 2013. The data are taken from:
+
+> Virlogeux V, Yang J, Fang VJ, Feng L, Tsang TK, Jiang H, Wu P, Zheng J, Lau EHY, Qin Y, Peng Z, Peiris JSM, Yu H, Cowling BJ (2016) [Association between the severity of influenza A(H7N9) virus infections and length of the incubation period.](https://doi.org/10.1371/journal.pone.0148506) PLOS ONE 11(2): e0148506. 
+
+We can read the data in directly from the internet:
+```{r}
+# Original URL
+# datadryad.org/bitstream/handle/10255/dryad.104362/data_h7n9_severity.csv
+dat <- read_csv("https://tinyurl.com/y8yfnq5t")
+head(dat)
+```
+where `Case.No.` is an identifier of the record, `IncP_min` and `IncP_max` are the minimum (maximum) incubation period, `age` is the age of the patient, `sex_status` is `0` for female and `1` for male, and `death_status` reports whether the patient died. 
+
+Because we're going to work with only a few columns, let's drop the rest:
+```{r}
+# we will see this in more details later in the course
+# as the name of the command implies, we're selecting certain cols
+dat <- select(dat, IncP_max, age, sex_status, death_status)
+```
+
+## Histograms
+A simple way to visualize a distribution is to plot a histogram: data are binned, and the height of the bin represents counts (or frequencies). 
+```{r, message=FALSE, warning=FALSE}
+ggplot(data = dat) + aes(x = age) + geom_histogram()
+# you can control the width of the bins
+ggplot(data = dat) + aes(x = age) + geom_histogram(binwidth = 4)
+# or set the desired number of bins
+ggplot(data = dat) + aes(x = age) + geom_histogram(bins = 40)
+# you can control the color of the boxes (both border and fill)
+ggplot(data = dat) + aes(x = age) + 
+  geom_histogram(bins = 40, fill = "lightblue", color = "darkred")
+```
+In many cases, a density plot (i.e., where the bins have been "interpolated") can be used instead:
+```{r}
+ggplot(data = dat) + aes(x = age) + geom_density()
+```
+In this case, we can see clearly that the distribution is bimodal (i.e., has two peaks).
+
+You can also combine both the histogram and the density calling:
+```{r}
+ggplot(data = dat) + aes(x = age) + 
+  geom_histogram(bins = 40,  aes(y = ..density..)) + 
+  geom_density()
+```
+
+where the command `aes(y = ..density..)` transforms the height of the bars from counts to densities. 
+
+## Adding features to the histogram
+Suppose we want to show where the mean (median, etc.) of the distribution is. We can combine the histogram with a vertical line:
+
+```{r, message=FALSE, warning=FALSE}
+ggplot(data = dat) + aes(x = age) +
+  geom_histogram() + 
+  geom_vline(aes(xintercept = mean(age)), linetype = 2) +
+  geom_vline(aes(xintercept = median(age)), linetype = 3, color = "red")
+```
+
+# Contrasting 1-dimensional distributions
+We can plot more than one histogram on the same plot. For example, let's see whether the distribution of ages differs between men and women:
+```{r, message=FALSE, warning=FALSE}
+ggplot(data = dat) + 
+  aes(x = age, fill = as.factor(sex_status)) + 
+  geom_histogram(position = "identity", alpha = 0.4)
+```
+
+where we colored the bars by sex (`as.factor` transfoms the numbers `0` and `1` into "categories"), and we set the transparency (`alpha = 0.4`) to be able to see both distributions. When we set the position to `identity` the bars for the two histogram are located at the same positions. To arrange them side-to-side we can use `dodge`:
+
+```{r, message=FALSE, warning=FALSE}
+ggplot(data = dat) + 
+  aes(x = age, fill = as.factor(sex_status)) + 
+  geom_histogram(position = "dodge", alpha = 0.4)
+```
+
+Another way to contrast distributions is by using box-, dot- or violin-plots. In this case, we look at the distribution "from above", and concentrate on the location of the median, and the width of the distribution. These plots allow to quickly assess whether the distributions differ:
+```{r, message=FALSE, warning=FALSE}
+# boxplot
+ggplot(data = dat) + 
+  aes(x = as.factor(sex_status), y = age) + 
+  geom_boxplot()
+# dotplot
+ggplot(data = dat) + 
+  aes(x = as.factor(sex_status), y = age) + 
+  geom_dotplot(stackdir = "center", binaxis = "y", dotsize = 0.5)
+# violin plot
+ggplot(data = dat) + 
+  aes(x = as.factor(sex_status), y = age) + 
+  geom_violin()
+```
+
+# Visualizing 2-dimensional distributions
+To inspect the relationship between two variables, you can plot the two-dimensional distribution. For example, we take data on individual damselflies from the paper:
+
+> Svensson EI, Nordén A, Waller JT, Runemark A (2016) [Linking intra- and interspecific assortative mating: consequences for asymmetric sexual isolation. Evolution](https://doi.org/10.1111/evo.12939) 70(6): 1165–1179. 
+
+They have measured several properties of each individual. Load the data:
+```{r}
+# Original URL
+# https://datadryad.org/bitstream/handle/10255/dryad.114888/AssortativeMatingCompletePairsKlingavalsan.csv
+dt <- read_delim("https://tinyurl.com/y72k5uml", delim = ";")
+```
+Now we can produce a 2-d histogram of the length of the thorax vs. its width:
+```{r}
+ggplot(dt) + aes(x = ThoraxLength, y = ThoraxWidth) + geom_bin2d()
+```
+This is hard to see, because the data are quite sparse. We can interpolate between the bins using densities:
+
+```{r}
+ggplot(dt) + aes(x = ThoraxLength, y = ThoraxWidth) + geom_density_2d()
+```
+
+As expected, the two quantities are positively correlated.
+
+# Types of distributions in biological data
+Whenever you want to model your data using a statistical distribution, you need to think about the characteristics of your data. 
+
+## Discrete vs. continuous
+Discrete means that the quantity can only assume certain values (e.g., number of births can only be integer, age in years is integer, male/female is categorical, taking only two values, etc.). Continuous means that your values can fall in between any two values (e.g., height, age when measured continuously, weight, solar radiance, temperature, etc.).
+
+To see the difference, we're going to look at number of offspring and weight of the mother using the data from:
+
+> O'Dea RE, Vega-Trejo R, Head ML, Jennions MD (2015) [Maternal effects on offspring size and number in mosquitofish](https://doi.org/10.1002/ece3.1577), Gambusia holbrooki. Ecology and Evolution 5(14): 2945-2955. 
+
+```{r}
+# Original URL
+# https://datadryad.org/bitstream/handle/10255/dryad.90634/DryadData.xlsx
+dat <- read_xlsx_from_url("https://tinyurl.com/y9v8lmks")
+dat
+```
+
+You can see that the `Number_of_Offspring` can be treated as discrete, while `Female_Size` as continuous.
+
+For example:
+```{r}
+table(dat$Number_of_Offspring)
+ggplot(data = dat) + aes(x = Female_Size) + geom_histogram(binwidth = 2)
+```
+
+Note that in some cases, it is convenient to treat discrete variables as continuous (e.g., when you have very many possible values, such as if you were to count the number of individual ants across several nests).
+
+## Support
+The second thing you need to determine is whether the variable can take values in the whole number line (i.e., unbounded), or rather has some bounds. For example, the number of offspring, the weight and height cannot be negative; a probability can only assume values between 0 and 1; the number of heads in $k$ flips of a coin is bounded by $0$ and $k$; etc.
+
+Again, in some cases you might want to treat as unbounded quantities that have natural bounds: for example, a Normal distribution well-describes the height of the people in this room, though clearly no one can be -2.5m tall (or even 5m tall).
+
+## Multimodality
+When we plot the histogram of the variable, we can observe a single "peak" (unimodal) or more than one (multi-modal). Often, observing two peaks means that we are observing a mixture of two distributions (e.g., the influenza case above). In such cases, we want to try and find what the origin of the multi-modality might to be.
+
+## Skewness
+Finally, you want to check whether your variable shows a distribution that is symmetric about the mean, or rather has a thicker upper tail than lower tail (positive skew) or vice versa (negative skew). 
+
+# Do the data follow a certain distribution?
+Suppose we want to check whether our data is well matched by a certain distribution. For example, let's produce data that should follow a normal distribution with mean 3 and standard deviation 1.5:
+
+```{r}
+set.seed(101)
+test_data <- tibble(x = rnorm(n = 500, mean = 3, sd = 1.5))
+```
+
+We can find the best-fitting parameters for our data and a distribution of choice:
+```{r}
+# example: find best-fitting Normal
+my_normal <- fitdistr(test_data$x, densfun = "normal")
+# note the slight discrepancies
+my_normal
+```
+
+And produce a so-called Q-Q plot (quantile-quantile plot): for each quantile of our data, the theoretical value is computed for the best-fitting "theoretical" distribution. If the data were to follow the distribution closely, you should find all the points lying on the 1:1 line:
+```{r}
+ggplot(test_data, aes(sample = x)) +
+  stat_qq(distribution = qnorm, dparams = my_normal$estimate) +
+  stat_qq_line(distribution = qnorm, dparams = my_normal$estimate) + 
+  geom_abline(intercept = 0, slope = 1, linetype = 2, col = "red") +
+  ggtitle("Q-Q plot assuming best-fitting Normal distribution")
+```
+
+## But what if we choose the wrong distribution?
+Suppose that we choose the values from a Uniform distribution:
+```{r}
+test_data <- tibble(x = runif(n = 500))
+```
+
+And that we fit an exponential distribution:
+```{r}
+my_exponential <- fitdistr(test_data$x, densfun = "exponential")
+ggplot(test_data, aes(sample = x)) +
+  stat_qq(distribution = qexp, dparams = my_exponential$estimate) +
+  stat_qq_line(distribution = qexp, dparams = my_exponential$estimate) + 
+  ggtitle("Q-Q plot assuming best-fitting Exponential distribution")
+```
+
+Or a Weibull distribution:
+```{r}
+my_weibull <- fitdistr(test_data$x, densfun = "weibull")
+ggplot(test_data, aes(sample = x)) +
+  stat_qq(distribution = qweibull, dparams = my_weibull$estimate) +
+  stat_qq_line(distribution = qweibull, dparams = my_weibull$estimate) + 
+  ggtitle("Q-Q plot assuming best-fitting Weibull distribution")
+```
+
+On the other hand, if we use a distribution that can be made into a Uniform distribution by setting parameters to particular values (e.g., $\beta(1,1)$ is equal to Uniform between 0 and 1), we find a good agreement:
+```{r}
+# for some distributions, you need to provide a starting point 
+# for the search of parameters
+my_beta <- fitdistr(test_data$x, densfun = "beta", 
+                    start = list(shape1 = 1.5, shape2 = 2.1))
+ggplot(test_data, aes(sample = x)) +
+  stat_qq(distribution = qbeta, dparams = my_beta$estimate) +
+  stat_qq_line(distribution = qbeta, dparams = my_beta$estimate) + 
+  ggtitle("Q-Q plot assuming best-fitting Beta distribution")
+```
+
+```{r}
+# and in fact the best-fitting Beta is close to Uniform
+my_beta
+```
+
+## A good fit to the data
+Now we're ready to fit some actual biological data. For this exercise, we are going to look at extra-pair mating in passerines. The data comes from the paper
+
+> Brommer JE, Alho JS, Biard C, Chapman JR, Charmantier A, Dreiss A, Hartley IR, Hjernquist MB, Kempenaers B, Komdeur J, Laaksonen T, Lehtonen PK, Lubjuhn T, Patrick SC, Rosivall B, Tinbergen JM, van der Velde M, van Oers K, Wilk T, Winkel W (2010) [Passerine extrapair mating dynamics: a Bayesian modeling approach comparing four species](https://doi.org/10.1086/653660). American Naturalist 176: 178-187. 
+
+We can read the data, and select only the 9 populations (`pop`) recording extra-pair youngs (`epy`) of blue tit.
+
+```{r}
+# original URL
+# https://datadryad.org/bitstream/handle/10255/dryad.1418/RawDataFile.txt
+dat <- read_tsv("https://tinyurl.com/y7bvrp5y", col_names = c("pop", "epy", "brood"))
+dat <- filter(dat, pop < 10) # blue tit populations
+``` 
+
+For this fit, we're going to try the plotting capabilities of the package `fitdistrplus`, which makes the fitting and visualization easier. Because the number of young in a non-negative integer, we start by fitting a Poisson distribution:
+
+```{r}
+plot(fitdist(dat$epy, "pois"))
+```
+
+As you can see, the fit is not great: we greatly underestimate the number of 0s, while we overestimate the number of females with a handful of extra-pair youngs. Rarely do biological data follow a Poisson distribution: in this distribution, the mean and the variance are equal, while in real data often the variance is larger than the mean (overdispersion). In this cases, biologists often use a negative binomial distribution, which can be thought of as a Poisson with inflated variance:
+
+```{r}
+plot(fitdist(dat$epy, "nbinom"))
+```
+
+This fit is excellent!
+
+## Musical genres and life expectancy
+Does the musical genre a musician has chosen influence her life expectancy? To find out, we have compiled a data set containing the `Age_at_death` of [Romantic composers](https://en.wikipedia.org/wiki/List_of_Romantic-era_composers), [Jazz vocalists](https://en.wikipedia.org/wiki/List_of_jazz_vocalists), and [Rap artists](https://www.hiphoplifted.com/Deceased-Rappers.html). 
+
+You can load the data
+```{r, echo=FALSE, message=FALSE}
+musicians <- read_csv("data/music_deaths.csv")
+head(musicians)
+```
+
+Let's plot the distribution of the age at death for the romantic composers:
+```{r}
+# more on how to subset data in a few weeks!
+romantic <- filter(musicians, Genre == "Romantic composer") 
+# produce a histogram with densitites instead of counts
+pl <- ggplot(romantic) + aes(x = Age_at_death) + 
+  geom_histogram(aes(y = ..density..), binwidth = 3)
+pl
+```
+
+This looks fairly close to a normal distribution (though there is an excess of musicians dying young). Let's try to find the best-fitting normal:
+```{r}
+plot(fitdist(romantic$Age_at_death, "norm"))
+```
+
+Not too bad, but maybe a Weibull can fit the data better?
+```{r}
+plot(fitdist(romantic$Age_at_death, "weibull"))
+```
+
+A little better! We're going to learn how to choose between two models when we will talk about likelihoods. 
+Now we're going to produce a boxplot to contrast the age at death of the different musicians:
+
+```{r}
+ggplot(data = musicians) + aes(x = Genre, y = Age_at_death, fill = Genre) + geom_boxplot()
+```
+
+Rap is literally killing people! How can it be? Is it really that bad? When you've thought of an answer, read [here](https://callingbullshit.org/case_studies/case_study_musician_mortality.html). In case you're wondering, the correct way to analyze these data would be a [survival analysis](https://en.wikipedia.org/wiki/Survival_analysis).
+

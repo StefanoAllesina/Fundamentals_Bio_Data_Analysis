@@ -1,0 +1,28 @@
+---
+  title: "ENTER TITLE --- Data lab"
+author: "Dmitry Kondrashov & Stefano Allesina"
+date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
+output:
+  html_document:
+  theme: cosmo
+toc: yes
+toc_float: yes
+pdf_document:
+  toc: yes
+urlcolor: blue
+---
+  
+```{r knitr, echo=FALSE}
+knitr::opts_chunk$set(
+  eval      = TRUE,
+  comment   = "#",
+  #results   = "asis",
+  # collapse  = TRUE,
+  fig.align = "center")
+```
+
+```{r, message = FALSE}
+library(tidyverse) # our friend the tidyverse
+library(readxl) # to read excel files
+source("../general_code/read_xls_from_url.R") # function  to read excel from URL
+```

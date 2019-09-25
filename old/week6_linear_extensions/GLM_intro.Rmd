@@ -1,0 +1,416 @@
+---
+title: "Generalized Linear models"
+author: "Dmitry Kondrashov & Stefano Allesina"
+date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
+output:
+  html_document:
+    theme: cosmo
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+urlcolor: blue
+---
+
+```{r knitr, echo=FALSE}
+knitr::opts_chunk$set(
+  eval      = TRUE,
+  comment   = "#",
+  warning = FALSE,
+  message = FALSE,
+  #results   = "asis",
+  # collapse  = TRUE,
+  fig.align = "center")
+```
+
+# Goal
+Learn about Generalized Linear Models (GLMs), and be able to decide which model is most appropriate for the problem at hand.
+
+Let's load some packages:
+```{r}
+library(VGAM)
+library(MASS) # negative binom regression
+library(tidyverse) # our friend the tidyverse
+library(pscl) # zero-inflated and zero-hurdle models
+source("general_code/read_xls_from_url.R") # function to read excel from URL
+```
+
+# Beyond linear regression
+
+The basic framework of linear regression has been extended in several directions. For example, 
+
+- **Polynomial regression** which we have discussed briefly.
+
+- [**Nonlinear regression**](https://en.wikipedia.org/wiki/Nonlinear_regression) where the parameters cannot be mapped into a linear transformation.
+
+- [**Models with fixed and random effects**](http://support.sas.com/documentation/cdl/en/statug/63033/HTML/default/viewer.htm#statug_intromod_a0000000337.htm) where measurements are made over several "related groups", you can introduce effects associated with each group. These models are part of the more general [**hierarchical models**](https://en.wikipedia.org/wiki/Multilevel_model).
+
+- [**Models with latent variables**](http://www.econ.upf.edu/~michael/latentvariables/lecture1.pdf) where unmeasured variables need to be included to explain the data.
+
+- [**Measurement error models**](https://en.wikipedia.org/wiki/Errors-in-variables_models) are used when the independent variables are measured with errors (i.e., are not known precisely).
+
+- And many others!
+
+# Generalized linear models (GLMs)
+
+The linear regression we've explored during the past weeks attempts to estimate the expected value for **response** (dependent) variable $Y$ given the **predictors** $X$. It assumes that the response variable changes continuously, and that errors are normally distributed around the mean. In many cases, however, the response variable does not have support in the whole real line, or errors are not normally distributed. In these cases, one can use **Generalized Linear Models** to fit the data.
+
+In GLMs,
+
+- The response variable is modeled by a single-parameter distribution from the exponential family (Gaussian, Gamma, Binomial, Poisson, etc.)
+- A **link function** linearizes the relationship between the fitted value and the predictors.
+- Parameters are estimated through a least squares algorithm.
+
+
+## Model structure
+
+In practice, we need to determine three parts of the model:
+
+- **Random component** the entries of the response variable ($Y$) are assumed to be independently drawn from a certain distribution (e.g., Binomial).
+
+- **Systematic component** the explanatory variables ($X_1$, $X_2$, $\ldots$) are combined in a linear combination to form a **linear predictor** (e.g., $\beta_0 + \beta_1 X_1 + \beta_2 X_2 + \ldots$). The explanatory variables can be continuous, categorical, or mixed.
+
+- **Link function** $g(u)$ specifies how the random and systematic components are connected. 
+
+# Binary data
+
+The most extreme case of departure from normality is when the response variable can assume only values 0 or 1 (no/yes, survived/deceased, lost/won, etc.). A Bernoulli random variable can take values 0 or 1, and therefore provides the **Random component** of the model:
+
+$$
+P(Y_i = y_i | \pi_i) = \pi_i^{y_i} (1 - \pi_i)^{1 - y_i}
+$$
+
+Saying that the probability $P(Y_i = 1) = \pi_i$, and $P(Y_i = 0) = 1 - \pi_i$. Now we want to relate the parameter $\pi_i$ to the **linear predictor** (i.e., choose a link function). This can be accomplished in a number of ways.
+
+## Logistic regression
+
+The most popular choice is to use the *Logit* function as the link function:
+
+$$
+\text{Logit}(\pi_i) = \beta_0 + \beta_1 x_i 
+$$
+
+where the function can be written as:
+
+$$
+\text{Logit}(\pi_i) = \log\left( \frac{\pi_i}{1 - \pi_i} \right) = \log(\pi_i) - \log(1 - \pi_i)
+$$
+
+Practically, this means that 
+
+$$
+\pi_i = \frac{e^{\beta_0 + \beta_1 x_i}}{1 + e^{\beta_0 + \beta_1 x_i}}
+$$
+
+For example:
+
+```{r}
+# some random data
+X <- rnorm(100)
+beta_0 <- 0.35
+beta_1 <- -3.2
+linear_predictor <- beta_0 + beta_1 * X
+predicted_pi_i <- exp(linear_predictor) / (1 + exp(linear_predictor))
+ggplot(data = tibble(linear_predictor = linear_predictor, probability = predicted_pi_i)) + 
+  aes(x = linear_predictor, y = probability) + 
+  geom_point() + geom_line()
+```
+
+As you can see, this is a logistic curve, hence the name. The parameters $\beta_0$ and $\beta_1$ control the location of the inflection point and the steepness of the curve. To test this type of analysis, we are going to examine the data from:
+
+> Long DS, Hou W, Taylor RS, McCowan LME (2016) [Serum levels of endothelial glycocalyx constituents in women at 20 weeks' gestation who later develop gestational diabetes mellitus compared to matched controls: a pilot study](https://doi.org/10.1136/bmjopen-2016-011244). BMJ Open 6: e011244. 
+ 
+The Authors show that serum concentration of certain chemicals could predict the onset of Gestational Diabetes Mellitus (GDM). Load the data:
+
+```{r}
+long <- read_csv("data/Long_2016.csv")
+head(long)
+```
+
+```{r}
+logistic <- glm(data = long, formula = GDM ~ BMI + Ha + Maternal_Age, family = "binomial")
+summary(logistic)
+```
+
+In this case the model cannot explain much: let's compute what is the differential probability for those with and without GDM.
+
+```{r}
+long$predictor <- logistic$fitted.values
+long <- long %>% mutate(prob = exp(predictor) / (1 + exp(predictor)))
+long %>% ggplot() + aes(x = factor(GDM), y = prob) + geom_boxplot()
+```
+
+You can see that we cannot clealry separate the two cases.
+
+## Probit regression
+
+A similar model often used in econometric is the **probit**, which uses the c.d.f. of a normal distribution as the **link function**. In practice, the difference with the logistic regression is small. 
+
+```{r}
+probit <- glm(data = long, formula = GDM ~ BMI + Ha + Maternal_Age, family = binomial(link = "probit"))
+summary(probit)
+```
+
+As you can see from AIC, the quality of the fit is about the same as for the logit model.
+
+# Count data
+## Poisson regression
+
+Suppose your response variables are nonnegative integers. For example, we are counting the number of eggs females lay as a function of their age, body size, etc. A possible model for this case is to think of the response variable as being sampled from a Poisson distribution:
+
+$$
+Y_i \sim \text{Pois}(\lambda_i)
+$$
+
+and that the logarithm of the parameter $\lambda_i$ depends linearly on the predictors:
+
+$$
+\mathbb E[\lambda_i] = \mathbb E[\log(Y_i|X_i)] = \beta_0 + \beta_1 X_i
+$$
+
+In this case, our *link function* is the logarithm, transforming the relationship between the fitted values and the predictors into a linear regression. 
+
+For a simple example, we look at the effect of wearing seatbelts on the number of drivers killed in accidents. Load the data:
+
+```{r}
+data("Seatbelts")
+seat <- as.data.frame(Seatbelts)
+```
+
+and plot the histograms for before and after the law:
+
+```{r}
+library(tidyverse)
+ggplot(data = seat) + aes(DriversKilled, fill = law, group = law) + geom_histogram(alpha = 0.5)
+```
+
+Now let's perform a Poisson Regression using the predictor `law` to determine two different distributions:
+
+```{r}
+pois_reg <- glm(formula = DriversKilled ~ law, data = seat, family = "poisson")
+summary(pois_reg)
+```
+
+Suggesting that the law significantly decreased deaths. 
+
+## Underdispersed and Overdispersed data
+
+The main feature of the Poisson distribution is that the mean and the variance are both equal to $\lambda$. You might remember (Taylor expansion) that:
+
+$$
+e^x = \sum_{n = 0}^{\infty} \frac{x^n}{n!}
+$$
+
+Then, for $X$ sampled from a Poisson distribution:
+
+$$
+\begin{aligned}
+\mathbb E[X] &= \sum_{x = 0}^{\infty} x P(X = x) \\
+&= \sum_{x = 0}^{\infty} x e^{-\lambda} \frac{\lambda^x}{x!} \\
+&= \lambda e^{-\lambda} \sum_{(x - 1) = 0}^{\infty} \frac{\lambda^{(x-1)}}{(x-1)!} \\
+&= \lambda e^{-\lambda}e^{\lambda} \\
+&= \lambda
+\end{aligned}
+$$
+
+Similarly,
+$$
+\begin{aligned}
+\mathbb V[X] &= \mathbb E[X^2]-\mathbb E[X]^2\\
+&= \left(\sum_{x = 0}^{\infty} x^2 e^{-\lambda} \frac{\lambda^x}{x!} \right) - \lambda^2 \\
+&= \left(\lambda e^{-\lambda} \sum_{(x - 1) = 0}^{\infty} x \frac{\lambda^{(x-1)}}{(x-1)!}\right) - \lambda^2 \\
+&= \left(\lambda e^{-\lambda} \left(\sum_{(x - 1) = 0}^{\infty} (x-1) \frac{\lambda^{(x-1)}}{(x-1)!} + \sum_{(x - 1) = 0}^{\infty}  \frac{\lambda^{(x-1)}}{(x-1)!} \right) \right) - \lambda^2 \\ 
+&= \left(
+  \lambda e^{-\lambda} 
+  \left(
+    \lambda \sum_{(x - 2) = 0}^{\infty} (x-2) \frac{\lambda^{(x-2)}}{(x-2)!} + e^\lambda \right)\right) - \lambda^2 \\ 
+&= \left(\lambda e^{-\lambda} (\lambda e^\lambda + e^\lambda) \right) - \lambda^2\\
+&= \lambda
+\end{aligned}
+$$
+
+But do the data comply with this property? Let's find out:
+
+```{r}
+seat %>% group_by(law) %>% summarise(avg_deaths = mean(DriversKilled), sd_deaths = var(DriversKilled))
+```
+
+Not really. We have **overdispersed** data (i.e., the variance is much larger than what assumed by Poisson). This happens very often, and the main tool to use is a **Negative Binomial Regression** (a negative binomial distribution can be thought of as a Poisson with a scaled variance):
+
+```{r}
+# the function is contained in the MASS package
+nb_reg <- MASS::glm.nb(formula = DriversKilled ~ law, data = seat)
+summary(nb_reg)
+```
+
+Another option is a "quasipoisson" family, in which an extra parameter is fit to account for over-/under-dispersion:
+
+```{r}
+qpois_reg <- glm(formula = DriversKilled ~ law, data = seat, family = "quasipoisson")
+summary(qpois_reg)
+```
+
+Given that for a Poisson the overdispersion parameter would be 1, and we obtain 4.7 when we allow our model to tune dispersion, we have a strong overdispersion. Always check this when relying on Poisson regression!
+
+## Separate distribution for the zeros
+
+In several cases, we have an excess of zeros. For example, you might have animals, that, if they reach the age of 1, will go on to a live a number of years---say well-described by a Poisson distribution. However, mortality immediately after birth is high. In such cases, you can use zero-inflated or zero-hurdle models. 
+
+In zero-inflated models, you can think of having a conditional branching: with probability $p_z$ your count is zero; if not (prob. $1-p_z$) it is sampled from a given distribution. As such a count of zero can stem from two different processes: either because you got a zero at the first step, or because you have sampled a zero from the distribution.
+
+Zero-hurdle models are slightly different: you first decide whether you're going to have a zero; if not, you sample your data from a truncated distribution, such that you cannot sample a zero from this second source.
+
+To test this type of models, we're going to use data from:
+
+> Costanzo A, Ambrosini R, Caprioli M, Gatti E, Parolini M, Canova L, Rubolini D, Romano A, Gianfranceschi L, Saino N (2017) [Lifetime reproductive success, selection on lifespan, and multiple sexual ornaments in male European barn swallows](https://doi.org/10.1111/evo.13312). Evolution 71(10): 2457-2468. 
+
+```{r}
+# Original URL
+# https://datadryad.org/bitstream/handle/10255/dryad.151697/evolution_data_17-0084.R2.xls
+dt <- read_xls_from_url("https://tinyurl.com/y8kvkwjp")
+# select only interesting cols
+dt <- dt %>% select(ID_male, tot_offspring, tail_l)
+# remove NAs
+dt <- dt %>% filter(!is.na(tot_offspring), !is.na(tail_l))
+```
+
+Let's take a look:
+```{r}
+dt %>% ggplot() + aes(x = tot_offspring) + geom_histogram()
+```
+
+You can clearly see the excess of zeros. Let's start with a Poisson, and work our way up:
+```{r}
+# Poisson
+model1 <- glm(data = dt, tot_offspring ~ tail_l, family = "poisson")
+model1
+# Negative Binomial
+model2 <- MASS::glm.nb(data = dt, tot_offspring ~ tail_l)
+model2
+# Zero-inflated Poisson
+model3 <- zeroinfl(data = dt, tot_offspring ~ tail_l, dist = "pois")
+model3
+AIC(model3)
+# Zero-inflated Negative Binomial
+model4 <- zeroinfl(data = dt, tot_offspring ~ tail_l, dist = "negbin")
+model4
+AIC(model4)
+# Zero-hurdle Poisson
+model5 <- hurdle(data = dt, tot_offspring ~ tail_l, dist = "pois")
+model5
+AIC(model5)
+# Zero-hurdle Negative Binomial
+model6 <- hurdle(data = dt, tot_offspring ~ tail_l, dist = "negbin")
+model6
+AIC(model6)
+```
+
+Zero-inflated and zero-hurdle models are examples of [**mixture models**](https://en.wikipedia.org/wiki/Mixture_model).
+
+# Other GLMs
+
+Historically, GLMs have been defined for the canonical families:
+
+- Gaussian: linear regression
+- Gamma and Inverse Gaussian: Positive, continuous
+- Poisson: count data
+- Negative Binomial: count data (fit an ancillary parameter for overdispersion)
+- Binary/Binomial (logistic): binary responses; number of successes
+
+However, the same basic idea led to the development of "non-canonical" GLMs:
+
+- Lognormal: Positive, continuous
+- Log-gamma: survival models
+- Probit: binary
+
+and many others. Fitting the models can be done using Maximum Likelihoods, or in a Bayesian framework (typically, through MCMC).
+
+# Example
+
+[Data](https://doi.org/10.5061/dryad.g4q84) from the paper:
+
+> Kallio ER, Helle H, Koskela E, Mappes T, Vapalahti O (2015) [Age-related effects of chronic hantavirus infection on female host fecundity](https://doi.org/10.1111/1365-2656.12387). Journal of Animal Ecology 84(5): 1264–1272. 
+
+```{r}
+# read the data
+# use short URL
+# original: datadryad.org/bitstream/handle/10255/dryad.84805/Litter_data.xlsx
+dat <- read_xlsx_from_url("https://tinyurl.com/y88w7xe6")
+# show the data
+head(dat)
+# plot litter sizes
+dat %>% ggplot(aes(x = litter_size)) + geom_histogram(binwidth = 1)
+```
+
+Let's write the likelihood function for the Poisson distribution
+```{r}
+log_likelihood_Poisson <- function(my_data, my_lambda){
+  return(sum(log(dpois(my_data, my_lambda))))
+}
+```
+
+For example:
+```{r}
+log_likelihood_Poisson(dat$litter_size, 3)
+log_likelihood_Poisson(dat$litter_size, 5)
+```
+
+But what is the maximum likelihood estimate for $\lambda$?
+
+```{r}
+# use optim(initial guess, function to maximize, other named parameters)
+# we use method Brent that looks for the maximum in an interval
+# we set control = list(fnscale = -1) 
+# to maximize instead of minimize (default) the function
+find_lambda <- optim(5, log_likelihood_Poisson, 
+                     my_data = dat$litter_size, 
+                     method = "Brent", lower = 0, upper = 10,
+                     control = list(fnscale = -1))
+find_lambda
+```
+
+Let's store the best parameter and maximum likelihood:
+```{r}
+lambda_hat <- find_lambda$par
+max_likelihood_Poisson <- find_lambda$value
+```
+
+Using Poisson regression
+
+```{r}
+model1 <- glm(litter_size ~ 1., family = "poisson", data = dat)
+exp(model1$coefficients[1])
+```
+
+Compute AIC:
+
+```{r}
+AIC(model1)
+```
+
+Now let's see whether the infection status can help us explain the litter size:
+
+```{r}
+model2 <- glm(litter_size ~ PUUV_INF, family = "poisson", data = dat)
+summary(model2)
+AIC(model2)
+```
+
+Not really! In fact, the effect is to simply add a parameter.
+Now let's look at over/underdispersion:
+
+```{r}
+summary(glm(litter_size ~ PUUV_INF, family = "quasipoisson", data = dat))
+```
+
+The data is highly underdispersed! The variance is about 1/4 of what expected using a Poisson distribution. Hence, using a more flexible distribution should help considerably. When the data are overdispersed, we've used the negative binomial regression. When they're underdispersed, a possible choice is the Generalized Poisson regression:
+
+```{r}
+model3 <- VGAM::vglm(litter_size ~ 1, family = "genpoisson", data = dat)
+summary(model3)
+AIC(model3)
+```
+
+# Readings
+
+- [Regression Models for Count Data in R](https://cran.r-project.org/web/packages/pscl/vignettes/countreg.pdf)

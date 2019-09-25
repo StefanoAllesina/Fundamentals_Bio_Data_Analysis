@@ -1,0 +1,22 @@
+---
+title: "Data analysis - week 1"
+author: "Dmitry Kondrashov"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Examples from chapter 3
+
+```{r cars}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy))
+```
+
+```{r}
+
+```
+

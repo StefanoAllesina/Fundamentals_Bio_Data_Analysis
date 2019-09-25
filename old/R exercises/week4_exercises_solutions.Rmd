@@ -1,0 +1,125 @@
+---
+title: "Week 4 exercises"
+author: "Dmitry Kondrashov and Stefano Allesina"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Exercises based on the Basic Data Wrangling tutorial by Stefano Allesina.
+
+## Goals: 
+In this assignment you will do the following:
+
+ * Filter and summarize data
+ * Wrangle data between rows and columns
+ * Go through a large tibble and produce summary tables
+
+## Grading:
+
+ * 7 pts for question 1 
+ * 7 pts for question 2 
+ * 14 pts for question 3
+ * 2 pts for submission
+## Filtering data
+
+1. Find the average `number of adult worms` by `Parental age` (see example under "summaries by group".) Repeat this calculation, but filter the data using `time post-infection` to be less than 28, and then greater than or equal to 28. Report the differences in these two results.
+
+```{r}
+library(tidyverse)
+source("general_code/read_xls_from_url.R")
+# original URL:
+# https://datadryad.org/bitstream/handle/10255/dryad.135877/dryad_data.xlsx
+dt <- read_xlsx_from_url("https://tinyurl.com/yclwadb8") 
+
+head(dt)
+
+# The calculation from the tutorial for all post-infection times
+dt %>% group_by(`Parental age`) %>% 
+  summarise(mean = mean(`number of adult worms`, na.rm = TRUE))
+
+# The filtered calculation for less than 28 days
+dt %>%  group_by(`Parental age`) %>% filter(`time post-infection` < 28) %>%
+  summarise(mean = mean(`number of adult worms`, na.rm = TRUE))
+
+# The filtered calculation for 28 days (or more, which does not exist in the data set)
+dt  %>% group_by(`Parental age`) %>% filter(`time post-infection` == 28) %>% 
+  summarise(mean = mean(`fecal egg count`, na.rm = TRUE))
+```
+
+There are no entries number of adult worms for post-infection time of less than 28 days.
+
+## Data wrangling
+
+2. Start with the example of the publiction table produced in the data wrangling tutorial (under "An example: from tidy to messy".) Modify the code to produce a table containing mean fecal egg counts in which the `time post-infection` is in the rows, and `Parental age` in the columns. Then produce a table containing mean number of adult worms with `time post-infection` in the rows and `Paternal age` in the columns. Comment on whether each table is an appropriate summary of the data.
+
+```{r}
+for_table <- dt %>% group_by(`time post-infection`, `Parental age`) %>% summarise(eggs = mean(`fecal egg count`))
+for_table %>% spread(`Parental age`, eggs) # spread the parental age with eggs in the table
+
+for_table <- dt %>% group_by(`time post-infection`, `Parental age`) %>% summarise(worms = mean(`number of adult worms`))
+for_table %>% spread(`Parental age`, worms) # spread the parental age with worms in the table
+
+```
+
+The first table (for eggs) is appropriate, while the second contains a lot of NAs for the same reason as above. So to report the mean number of adults worms, just report the last row (post-infection time of 28.)
+
+## From very messy to tidy
+Here is the code from the tutorial (under "A more difficult case: from (very) messy to tidy") that takes multiple excel tables and puts them into a tidy tibble:
+
+```{r}
+# Original URL
+# https://datadryad.org/bitstream/handle/10255/dryad.193139/Derocles%20et%20al%20Networks.xlsx
+a <- read_xlsx_from_url("https://tinyurl.com/y9oqmztr")
+
+starting <- a %>% transmute(plot = `plot 1`, 
+                            start = ifelse(grepl("plot", `plot 1`), 
+                                           row_number(), NA)) %>% 
+  filter(!is.na(start))
+
+starting <- rbind(tibble(plot = "plot 1", start = 1), 
+                  starting %>% mutate(start = start + 1))
+starting <- starting %>% mutate(end = lead(start) - 3)
+starting[starting$plot == "plot 24", "end"] <- nrow(a)
+
+
+my_data <- tibble()
+for (i in 1:nrow(starting)){
+  my_plot <- starting$plot[i]
+  my_start  <- starting$start[i]
+  my_end <- starting$end[i]
+  # build this line by line!
+  my_data <- rbind(my_data,
+    a %>% slice(my_start:my_end) %>% 
+    gather(to, frequency, -`plot 1`) %>% 
+    rename(from = `plot 1`) %>% 
+    add_column(plot = my_plot) %>% 
+    mutate(frequency = as.numeric(frequency)) %>% 
+    filter(frequency > 0) %>% 
+    select(plot, from, to, frequency))
+}
+```
+
+
+3. Write code to take the tidy data (calculated as tibble my_data above) and reproduce the tables in the original excel file (for plot1, plot2, etc.). However, since the rows and columns that contain only zeros were filtered out in the calculation above, you will not get them back, so the tables will have different numbers of rows and columns (to and from species.)
+
+```{r}
+num_lines <- rep(0, nrow(starting))
+# calculate how many lines belong to each plot
+for (i in 1:nrow(starting)) {
+  num_lines[i] <- sum(my_data$plot == starting$plot[i])
+}
+# initialize the variable of the line number at the end
+my_end <- 0
+for (i in 1:nrow(starting)) {
+  my_start <- my_end + 1 # the beginning is the next line
+  my_end <- my_start + num_lines[i] - 1 # the end is num_lines after the beginning
+  my_table <- my_data %>% slice(my_start:my_end) %>% spread(to, frequency) # take those rows and spread them
+  my_table[is.na(my_table)] <- 0 # replace NAs with 0s
+  print(my_table) # show the table
+}
+```
+
+The issue here is that many entries with 0 frequencies were removed, so the different tables have different numbers of rows and columns (for the from and to species.) Thus I can only generate separate tables and not a single tibble. Maybe there is a way of combining them together, but rbind does not work for this.

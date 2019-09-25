@@ -1,0 +1,164 @@
+---
+title: "Week 3 lab activity: hypothesis testing and p-values"
+author: "Dmitry Kondrashov"
+date: "8/15/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Goals: 
+In this assignment you will do the following:
+
+  * Simulate p-hacking by testing the independence hypothesis on increasing samples
+  * Investigate the effect of prior probability on the positive predictive value of a test
+  * Investigate the effect of changing the sensitivity on the positive predictive value of a test
+  * Investigate the effect of changing the specificity on the positive predictive value of a test
+
+
+## Grading:
+Part 1: 6 pts each, 12 total
+Part 2: 8 pts each, 18 total
+Total: 30 pts
+
+
+
+## P-hacking by increasing sample size
+
+Let us consider one simple p-hacking method: simply keep adding data and look for a low p-value. To be clear, in this scenario we're not generating multiple new data sets, but starting with a moderate sample, keep adding more data and look for the lowest p-value.
+
+The function provided below generates vectors dis_genA and dis_genB of length size with probabilities probA and probB of having disease (disease is indicated by 1 and healthy by 0). It runs the chi squared test on successively larger subsets of the data and saves all of the p-values into p_vec, and returns a data frame of pvalues and corresponding sample sizes.
+
+```{r} 
+# function to generate two samples with specified probabilities of disease and test for independence using increasing subsets of the data
+p_hack <- function(probA, probB, size) {
+  dis_genA <- rbinom(size,1,probA) # generate sample for genotype A
+  dis_genB <- rbinom(size,1,probB) # generate sample for genotype B
+  sample_sizes <- seq(50, size, 10)
+  p_vec <- rep(0, length(sample_sizes))
+  for (i in 1:length(sample_sizes)) {
+     data_mat <- matrix(c(table(dis_genA[1:sample_sizes[i]]),table(dis_genB[1:sample_sizes[i]])),nrow=2,ncol=2) # assign data matrix
+    rownames(data_mat) <- c('healthy','disease')
+    colnames(data_mat) <- c('A', 'B')
+    chisq_result <- chisq.test(data_mat) # run chi-squared test
+    p_vec[i] <- chisq_result$p.value # return the p-value
+  }
+ # Return a data frame containinng the p-values and sample sizes for the tests
+ return(data.frame(pvalues = p_vec, size = sample_sizes))
+}
+```
+
+1. Run this function for prob of disease for both genotypes at 0.3 and max_size = 500 and plot the p-values as a function of sample size. Report what you see and describe when would a careless or disonest researcher stop collecting data. Run it a few more times and describe different patterns you see.
+
+```{r}
+max_size <- 500  # max sample size for both genotypes
+prob <- 0.3 # probability of disease for both genotypes
+
+p_vals <- p_hack(probA = prob, probB = prob, size = max_size)
+ggplot(data = p_vals) + aes(x = size, y = pvalues) + geom_line()
+
+```
+
+The plots of p-values as a function of sample sizes vary a lot, sometimes they jump dramatically, other times they hover around 1 or another value. Usually one can find a minimal value that is much smaller than the mean.  
+
+
+2. Run this function 100 times (use replicate like we did in class on Thursday) and report how many times the *lowest p-value* is below the 0.05 significance threshold. How does this compare with the false discovery rate expected for this significance level if the experiment were performed with a set sample size? What are your conclusions about this practice?
+
+```{r}
+fish_significance <- function(max_size, prob, alpha) {
+  result <- p_hack(probA = prob, probB = prob, size = max_size)
+  return(min(result$pvalue)<alpha)
+}
+
+max_size <- 500  # max sample size for both genotypes
+prob <- 0.3 # probability of disease for both genotypes
+alpha <- 0.05
+num <- 100
+
+false_positive <- replicate (n = num, fish_significance(max_size, prob, alpha))
+paste("The false discovery rate is", sum(false_positive)/num)
+```
+
+The false discovery rate obtained by fishing for the lowest p-value out of successively larger sample sizes hovers around 0.2, much higher than 0.05 expected for a single experiment with a set sample size.
+
+
+## Effect of prior probability on predictive value of a test
+Use the function you created in class on Thursday to simulate a GWAS looking for a connection between SNPs and a phenotype, given a certain prior probability of a SNP being linked to this phenotype.
+
+```{r}
+gwas_simulator <- function (test_specificity, test_sensitivity, prior, num_snps){
+  # first, let's decide which SNPs are associated with the disease
+  true_association <- runif(num_snps) <= prior
+  # then, let's see whether our test can detect the difference.
+  # for each SNPs, we simulate the test by drawing a random number between 0 and 1
+  random_tests <- runif(num_snps)
+  # if there is a true association, we check the specificity to determine whether we can pick it up
+  # TRUE POSITIVES: there is an association and our test is sensitive enough to detect it
+  TP <- sum(random_tests[true_association] < test_sensitivity)
+  # FALSE NEGATIVES: there is an association, but we cannot detect it (TYPE II ERROR)
+  FN <- sum(true_association) - TP
+  # TRUE NEGATIVES: there is no association, and we are correct because we have enough specificity
+  TN <- sum(random_tests[!true_association] < test_specificity)
+  # FALSE POSITIVES: there is no association, but we find one anyway (TYPE I ERROR)
+  FP <- sum(!true_association) - TN
+  # return the PPV (positive predictive value) 
+  return (TP / (TP + FP))
+}
+```
+
+1. Investigate the effect of changing the prior probability of the SNP being linked on the accuracy of test results. The GWAS simulator function returns both the PPV (positive predictive values) and NPV (negative predictive values). Use specificity and sensitivity of 0.8 and number of SNPs of 1000 for a range of of prior probabilities (e.g. from 0.01 to 0.9) and calculate PPV for each prior. Generate a plot of PPV vs the prior probability and comment on what you learn from these curves.
+
+```{r}
+spec <- 0.8 # set specificity
+sens <- 0.8 # set sensitivity
+num.snps <- 1000 # number of SNPs
+prior <- seq(0.01, 0.9, 0.01) # set the prior probability of the SNP being linked to disease
+PPV <- rep(0,length(prior))
+for (i in 1:length(prior)){
+  result <- gwas_simulator(spec, sens, prior[i], num.snps)
+  PPV[i] <- result
+}
+ggplot(data = data.frame(PPV = PPV, prior = prior)) + aes(x = prior, y = PPV) + geom_line()
+```
+  
+
+PPV increases as the prior probability increases - it is more likely to correctly detect a more common effect than a more rare effect.
+  
+2. Investigate the effect of changing the sensitivity (recall) of the test on PPV. Set the prior probability to 0.01 and the specificity to 0.8, and run the GWAS simulator for a range of sensitivities (e.g. from 0.5 to 0.99) and save the results into a vector of PPV. Generate a plot of PPV vs the sensitivity and comment on the relationship you observe.
+
+```{r}
+spec <- 0.8 # set specificity
+sens <- seq(0.5, 0.99, 0.01) # set sensitivity
+num.snps <- 1000 # number of SNPs
+prior <- 0.01 # set the prior probability of the SNP being linked to disease
+PPV <- rep(0,length(sens))
+for (i in 1:length(sens)){
+  result <- gwas_simulator(spec, sens[i], prior, num.snps)
+  PPV[i] <- result
+}
+ggplot(data = data.frame(PPV = PPV, sensitivity = sens)) + aes(x = sensitivity, y = PPV) + geom_line()
+```
+  
+There seems to be no relationship between sensitivity and PPV for a rare/unlikely effect. 
+
+3. Investigate the effect of changing the specificity (precision) of the test on both the PPV. Set the prior probability to 0.01 and the sensitivity to 0.8, and run the simulation for a range of specificities (e.g. from 0.5 to 0.99). Generate a plot of PPV vs the sensitivity and comment on the relationship you observe. Expain which parameter (sensitivity or specificity) makes a bigger difference for PPV.
+
+```{r}
+spec <- seq(0.5, 0.99, 0.01) # set specificity
+sens <- 0.8 # set sensitivity
+num.snps <- 1000 # number of SNPs
+prior <- 0.01 # set the prior probability of the SNP being linked to disease
+PPV <- rep(0,length(spec))
+NPV <- rep(0,length(spec))
+for (i in 1:length(spec)){
+  result <- gwas_simulator(spec[i], sens, prior, num.snps)
+  PPV[i] <- result
+}
+ggplot(data = data.frame(PPV = PPV, specificity = spec)) + aes(x = specificity, y = PPV) + geom_line()
+```
+  
+For larger specificity, the PPV increases dramatically from less than 5% to above 40%. For a rare/unlikely effect, false discovery is primarily due to the number of false positives, which is governed by the specificity, rather than the number of true positives, which is governed by the sensitivity.
+

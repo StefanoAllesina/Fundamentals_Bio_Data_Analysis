@@ -1,0 +1,287 @@
+---
+title: "Model Selection, Part II"
+author: "Dmitry Kondrashov & Stefano Allesina"
+date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
+output:
+  html_document:
+  theme: cosmo
+toc: yes
+toc_float: yes
+pdf_document:
+  toc: yes
+urlcolor: blue
+---
+  
+```{r knitr, echo=FALSE}
+knitr::opts_chunk$set(
+  eval      = TRUE,
+  comment   = "#",
+  warning = FALSE,
+  message = FALSE,
+  #results   = "asis",
+  # collapse  = TRUE,
+  fig.align = "center")
+```
+
+# Bayesian inference
+
+As an alternative to frequentist and maximum likelihood approaches to modeling biological data, Bayesian statistics has seen and impressive growth in recent years, due to the improved computational power. 
+
+At the hearth of Bayesian inference is an application of Bayes' theorem: take a model (say a linear model) with parameters $\theta$, and some data $X$. Bayes' theorem gives us a disciplined way to "update" our belief in the distribution of $\theta$ once we've seen the data $X$:
+
+$$
+P(\theta | X) = \frac{P(X|\theta) P(\theta)}{P(X)}
+$$
+where:
+
+- $P(\theta|X)$ is the **posterior distribution** of $\theta$, i.e., our updated belief in the values of $\theta$.
+- $P(X|\theta)$ is the **likelihood function**: $P(X|\theta) = L(\theta | X)$.
+- $P(\theta)$ is the **prior distribution**, i.e. our belief on the distribution of $\theta$ before seeing the data.
+- $P(X)$ is caled the **evidence**: $P(X) = \int P(X|\theta) d \theta$ (in practice, this needs not to be calculated).
+
+### Example: capture recapture
+
+We mark $n$ individuals in a population and after a year we recapture $m$ of them. We assume that the probability $p$ of recapturing an individual is the same for all individuals. Then our likelihood function is:
+
+$$
+L(p | m, n) = \binom{n}{m}p^m (1-p)^{n-m}
+$$
+and our maximum likelihood estimate is $\hat{p} = m /n$. Let's plot the likelihood as a function of $p$ for the case in which $n = 100$ and $m = 33$
+
+```{r}
+library(tidyverse)
+n <- 100
+m <- 33
+pl <- ggplot(data = data.frame(x = 0, y = 0)) + xlim(c(0,1))
+likelihood_function <- function(p) {
+  lik <- choose(n, m) * p^m * (1-p)^(n - m)
+  # divide by the evidence to make into density function
+  return(lik * (n + 1))
+}
+pl <- pl + stat_function(fun = likelihood_function)
+show(pl)
+```
+
+Now we choose a prior. For convenience, we choose a Beta distribution, $P(p) = \text{Beta}(\alpha, \beta) = \frac{p^{\alpha - 1} (1-p)^{\beta - 1}}{B(\alpha, \beta)}$, where $B(\alpha, \beta)$ is the Beta function, $B(\alpha, \beta) = \int_0^1 t^{\alpha -1} (1-t)^{\beta - 1} dt$.
+
+Therefore:
+
+$$
+P(p | m,n) \propto L(p | m,n) P(p) = \left(\binom{n}{m} p^m (1-p)^{n-m} \right) \left( \frac{p^{\alpha - 1} (1-p)^{\beta - 1}}{B(\alpha, \beta)} \right) \propto p^{m+\alpha -1} (1-p)^{n-m + \beta -1} \propto \text{Beta}(m + \alpha, \beta + m - n)
+$$
+
+We can explore the effect of choosing a prior on the posterior. Suppose that in the past we have seen probabilities close to 50%. Then we could choose a prior $\text{Beta}(10,10)$ (this is what is called a "strong" or "informative" prior). Let's see what happens to the posterior:
+
+```{r}
+# a strong prior
+alpha <- 10
+beta <- 10
+prior_function <- function(p) dbeta(p, alpha, beta)
+posterior_function <- function(p) dbeta(p, alpha + m, beta + n - m)
+pl + stat_function(fun = prior_function, colour = "blue") + 
+  stat_function(fun = posterior_function, colour = "red")
+```
+
+You can see that the posterior "mediates" between the prior and the likelihood curve. 
+
+> "A Bayesian is one who, vaguely expecting a horse, and catching a glimpse of a donkey, strongly believes he has seen a mule."
+
+When we are using a weak prior, then our posterior will be closer to the likelihood function:
+
+```{r}
+# a weak prior
+alpha <- 1/2
+beta <- 1/2
+pl + stat_function(fun = prior_function, colour = "blue") + 
+  stat_function(fun = posterior_function, colour = "red")
+```
+
+The fact that the posterior depends on the prior is the most controversial aspect of Bayesian inference. Different schools of thought treat this feature differently (e.g., "Subjective Bayes" interprets priors as beliefs before seeing the data; "Empirical Bayes" relies on previous experiments or on the data themselves to derive the prior; "Objective Bayes" tries to derive the least-informative prior given the data). In practice, the larger the data, the cleaner the signal, the lesser the influence of the prior on the resulting posterior.
+
+## MCMC
+
+The type of calculation performed above is feasible only for very simple models, and for appropriately chosen priors (called "conjugate priors"). For more complex models, we rely on simulations. In particular, one can use Markov-Chain Monte Carlo (MCMC) to sample from the posterior distribution of complex models. Very briefly, one builds a Markov-Chain in which the states represent sets of parameters; parameters are sampled from the prior, and the probability of moving to one state to another is proportional to the difference in their likelihood. When the MC "converges", then one obtains the posterior distribution of the parameters. [See DK's notes for more details on this.]
+
+## Bayesian approaches to model selection
+
+The approaches we've examined before are based on "point-estimates", i.e., only consider the parameters at their maximum likelihood estimate. Bayesian approaches, on the other hand, consider distributions of parameters. As such, parameters that give high likelihoods for a restricted range of values are deemed "more expensive" (because they are "more important" or need to be "fine-tuned") than those yielding about the same likelihood for a wide range of values.
+
+### Marginal likelihoods
+
+A very beautiful approach is based on marginal likelihoods, i.e., likelihoods obtained integrating the parameters out. Unfortunately, the calculation becomes difficult to perform by hand for complex models, but it provides a good approach for simple models. In general, we want to assess the "goodness" of a model. Then, using Bayes' rule:
+  
+$$
+  P(M|D) = \frac{P(D|M) P(M)}{P(D)}
+$$
+
+Where $P(M|D)$ is the probability of the model given the data; and $P(D)$ is the "probability of the data" (don't worry, this need not to be calculated), and $P(M)$ is the prior (the probability that we choose the model before seeing the data). $P(D|M)$ is a marginal likelihood: we cannot compute this directly, because the model requires the parameters $\theta$, however, we can write
+
+$$
+P(D|M) = \int P(D|M,\theta)P(\theta|M) d\theta
+$$
+
+where $P(D|M,\theta)$ is the likelihood, and $P(\theta|M)$ is a distribution over the parameter values (typically, the priors).
+  
+For example, let's compute the marginal likelihood for the case in which we flip a coin $n = a + b$ times, and we obtain $a$ heads and $b$ tails. Call $\theta$ the probability of obtaining a head, and suppose that $P(\theta|M)$ is a uniform distribution. Then:
+  
+$$
+P(a,b|M) = \int_0^1 P(a,b|M,\theta) d\theta = \int_0^1 \binom{a+b}{a} \theta^{a} (1-\theta)^{b} d\theta  = \frac{1}{a+b+1} = \frac{1}{n+1}
+$$
+  
+Interestingly, the marginal likelihood can be interpreted as the expected likelihood when parameters are sampled from the prior.
+  
+### Bayes factors
+  
+Take two models, and assume that initially we have no preference $P(M_1) = P(M_2)$, then:
+  
+$$
+  \frac{P(M_1|D)}{P(M_2|D)} = \frac{P(D|M_1)P(M_1)}{P(D|M_2)P(M_2)} = \frac{P(D|M_1)}{P(D|M_2)}
+$$
+  
+The ratio is called the "Bayes factor" and provides a rigorous way to perform model selection.
+  
+### Bayes factors in practice
+  
+In practice, Bayes Factors can be estimated from MCMC. While we're not going to get into this here, we can use a package that a) automatically sets the priors for all the variables (close to the philosophy known as "Objective Bayes"); b) performs the calculation of the Bayes Factors for us.
+
+Let's build very many models. Load the data:
+
+```{r, message=FALSE}
+library(BayesFactor) # need installation!!
+data(trees)
+head(trees)
+trees$Radius <- trees$Girth / (2 * 12)
+trees$Guess <- trees$Volume / trees$Radius^2
+```
+
+And build the models:
+
+```{r}
+lm_all <- lm(Height ~ ., data = trees) # . means use all cols besides Height
+summary(lm_all)
+logLik(lm_all)
+```
+
+Perform selection among all models nested into `lm_all`:
+
+```{r}
+bf_analysis <- regressionBF(Height ~ ., data = trees)
+plot(bf_analysis)
+```
+
+These ratios measure how many times more probable the model is compared to that with only the intercept (assuming initially that all models are equiprobable). Note that the Bayes Factors automatically penalize for overly complex models (triplets/quadruplets are ranked after pairs or even only `Guess`).
+
+* **Pros**: Elegant, straigthforward interpretation.
+* **Cons**: Difficult to compute for complex models; requires priors.
+
+## Other approaches
+
+### Cross validation
+
+One very robust method to perform model selection, often used in machine learning, is cross-validation. The idea is simple: split the data in three parts: a small data set for exploring; a large set for fitting; a small set for testing (for example, 5\%, 75\%, 20\%). You can use the first data set to explore freely and get inspired for a good model. These data are then discarded. You use the largest data set for accurately fitting your model(s). Finally, you validate your model or select over competing models using the last data set. 
+
+Because you haven't used the test data for fitting, this should dramatically reduce the risk of overfitting. The downside of this is that we're wasting precious data. There are less expensive methods for cross validation, but if you have much data, or data is cheap, then this has the virtue of being fairly robust.
+
+#### Do shorter titles lead to more citations?
+
+To test the power of cross-validation, we are going to examine a bold claim by Letchford *et al.*, 2015: that papers with shorter titles attract more citations than those with longer titles. We are going to use their original data:
+
+> Letchford A, Moat HS, Preis T (2015) [The advantage of short paper titles](https://doi.org/10.1098/rsos.150266). Royal Society Open Science 2(8): 150266. 
+
+```{r}
+# original URL
+# https://datadryad.org/bitstream/handle/10255/dryad.92859/LMP2015.csv
+dt <- read_csv("https://tinyurl.com/y7orpuuc")
+```
+
+The data set reports information on the top 20000 articles for each year from 2007 to 2013. The Author's claim is that shorter titles lead to more citations:
+  
+```{r}
+dt %>% group_by(year) %>% summarise(correlation = cor(title_length, cites, method = "kendall"))
+```
+
+As you can see, title length is anti-correlated (using rank correlation) with the number of citations.
+
+There are several problems with this claim:
+  - The authors selected papers based on their citations. As such their claim would need to be stated as "among top-cited papers there is a correlation".
+- The journals cover a wide array of disciplines. The title length could reflect different publishing cultures.
+- Most importantly, different journals have different requirements for title lengths. For example, Nature requires titles to be less than 90 characters:
+  
+```{r}
+dt%>% filter(journal %in% c("Nature", "Science")) %>% 
+  ggplot() + aes(x = journal, y = title_length) + geom_violin()
+```
+
+But then, is the effect the Authors are reporting only due to the fact that high-profile journals mandate short titles? Let's see whether their claims hold water when considering specific journals:
+
+```{r}
+# only consider journals with more than 1000 papers in the data set
+dt <- dt %>% group_by(journal) %>% mutate(num_papers = n())
+dt <- dt %>% filter(num_papers > 1000)
+dt %>% group_by(year, journal) %>% 
+summarise(correlation = cor(title_length, cites, method = "kendall")) %>% 
+ggplot() + aes(x = substr(journal, 1, 30), y = correlation) + geom_boxplot() + 
+geom_hline(yintercept = 0, colour = "red") +
+theme(axis.text.x = element_text(angle = 90, hjust = 1)) # rotate labels x axis
+```
+
+It seems that in medical journals (Blood, Circulation, J Clin Oncology, NEJM) longer titles fare better than shorter ones. In Nature and PNAS we see a negative correlation, while Science gives no clear trend.
+
+Let's look at the mean and standard deviation of citations by journal/year
+
+```{r}
+dt %>% group_by(journal, year) %>% summarize(mean = mean(log(cites + 1)), sd = sd(log(cites + 1))) %>% 
+  ggplot() + aes(x = year, y = mean) + geom_point() + facet_wrap(~journal)
+
+dt %>% group_by(journal, year) %>% summarize(mean = mean(log(cites + 1)), sd = sd(log(cites + 1))) %>% 
+  ggplot() + aes(x = year, y = sd) + geom_point() + facet_wrap(~journal)
+```
+
+#### Two models
+
+Let's consider two competing models.
+
+Model1: each journal year has its mean 
+
+$\log(\text{cits} + 1) \sim \text{journal}:\text{year}$
+
+Model2: the length of titles influences citations
+
+$\log(\text{cits} + 1) \sim \text{journal}:\text{year} + \text{title-length}$
+
+We are going to fit the model using 90% of the data; we are going to use the remaining data for cross-validation.
+
+```{r}
+set.seed(4)
+dt <- dt %>% mutate(logcit = log(cites + 1))
+# sample 10% of the data
+data_test <- dt %>% sample_frac(0.1)
+data_fit  <- anti_join(dt, data_test) # get all those not in data_test
+```
+
+Now fit the models:
+
+```{r}
+M1 <- lm(logcit ~ factor(year)*journal, data = data_fit)
+M2 <- lm(logcit ~ factor(year)*journal + title_length, data = data_fit)
+```
+
+Now let's try to predict out-of-fit the data that we haven't used:
+
+```{r}
+M1_predictions <- predict(M1, newdata = data_test)
+SSQ_M1 <- sum((log(data_test$cites + 1) - M1_predictions)^2)
+M2_predictions <- predict(M2, newdata = data_test)
+SSQ_M2 <- sum((log(data_test$cites + 1) - M2_predictions)^2)
+print(SSQ_M1)
+print(SSQ_M2)
+```
+
+We do not gain anything by including the information on titles.
+
+* **Pros**: Easy to use; quite general; asymptotically equivalent to AIC.
+* **Cons**: Sensitive to how the data was split (you can average over multiple partitions); need much data (instability in parameter estimates due to "data loss")
+
+### Minimum description length
+
+Another completely different way to perform model selection is based on the idea on "Minimum Description Length", where models are seen as a way to "compress" the data, and the model leading to the strongest compression should be favored. While we do not cover it here, you can read about it in [this paper](https://www.tandfonline.com/doi/abs/10.1198/016214501753168398).

@@ -1,0 +1,90 @@
+---
+title: "Week 4 exercises"
+author: "Dmitry Kondrashov and Stefano Allesina"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Exercises based on the Basic Data Wrangling tutorial by Stefano Allesina.
+
+## Goals: 
+In this assignment you will do the following:
+
+ * Filter and summarize data
+ * Wrangle data between rows and columns
+ * Go through a large tibble and produce summary tables
+
+## Grading:
+
+ * 7 pts for question 1 
+ * 7 pts for question 2 
+ * 14 pts for question 3
+ * 2 pts for submission
+
+## Filtering data
+
+1. Find the average `number of adult worms` by `Parental age` (see example under "summaries by group".) Repeat this calculation, but filter the data using `time post-infection` to be less than 28, and then greater than or equal to 28. Report the differences in these two results.
+
+```{r}
+library(tidyverse)
+source("general_code/read_xls_from_url.R")
+# original URL:
+# https://datadryad.org/bitstream/handle/10255/dryad.135877/dryad_data.xlsx
+dt <- read_xlsx_from_url("https://tinyurl.com/yclwadb8") 
+head(dt)
+```
+
+## Data wrangling
+
+2. Start with the example of the publiction table produced in the data wrangling tutorial (under "An example: from tidy to messy".) Modify the code to produce a table containing mean fecal egg counts in which the `time post-infection` is in the rows, and `Parental age` in the columns. Then produce a table containing mean number of adult worms with `time post-infection` in the rows and `Paternal age` in the columns. Comment on whether each table is an appropriate summary of the data.
+
+```{r}
+
+```
+
+## From very messy to tidy
+Here is the code from the tutorial (under "A more difficult case: from (very) messy to tidy") that takes multiple excel tables and puts them into a tidy tibble:
+
+```{r}
+# Original URL
+# https://datadryad.org/bitstream/handle/10255/dryad.193139/Derocles%20et%20al%20Networks.xlsx
+a <- read_xlsx_from_url("https://tinyurl.com/y9oqmztr")
+
+starting <- a %>% transmute(plot = `plot 1`, 
+                            start = ifelse(grepl("plot", `plot 1`), 
+                                           row_number(), NA)) %>% 
+  filter(!is.na(start))
+
+starting <- rbind(tibble(plot = "plot 1", start = 1), 
+                  starting %>% mutate(start = start + 1))
+starting <- starting %>% mutate(end = lead(start) - 3)
+starting[starting$plot == "plot 24", "end"] <- nrow(a)
+
+
+my_data <- tibble()
+for (i in 1:nrow(starting)){
+  my_plot <- starting$plot[i]
+  my_start  <- starting$start[i]
+  my_end <- starting$end[i]
+  # build this line by line!
+  my_data <- rbind(my_data,
+    a %>% slice(my_start:my_end) %>% 
+    gather(to, frequency, -`plot 1`) %>% 
+    rename(from = `plot 1`) %>% 
+    add_column(plot = my_plot) %>% 
+    mutate(frequency = as.numeric(frequency)) %>% 
+    filter(frequency > 0) %>% 
+    select(plot, from, to, frequency))
+}
+```
+
+
+3. Write code to take the tidy data (calculated as tibble my_data above) and reproduce the tables in the original excel file (for plot1, plot2, etc.). However, since the rows and columns that contain only zeros were filtered out in the calculation above, you will not get them back, so the tables will have different numbers of rows and columns (to and from species.)
+
+```{r}
+
+```
+

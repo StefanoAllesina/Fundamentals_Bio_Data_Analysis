@@ -1,0 +1,375 @@
+---
+title: "Hypothesis testing --- Data lab"
+author: "Dmitry Kondrashov & Stefano Allesina"
+date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
+output:
+  html_document:
+    theme: cosmo
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+urlcolor: blue
+---
+
+```{r knitr, echo=FALSE}
+knitr::opts_chunk$set(
+  eval      = TRUE,
+  comment   = "#",
+  #results   = "asis",
+  # collapse  = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center")
+```
+
+# Before we start
+
+Let's load our favorite packages:
+
+```{r}
+library(tidyverse)
+```
+
+# Independence hypothesis testing for generated data
+
+We have two groups of people: those with genotype A, and those with genotype B. For each person, we record the disease state (has person $i$ experienced the disease $x$ in their lifetime?). We want to know whether people with a given genotype are more likely to have experienced the disease, i.e., whether the genotype (A or B) and the phenotype (has the disease or not) are linked. 
+
+For this, we will build a contingency table, detailing the number of people in the four categories. We will then run a $\chi^2$ test to determine the probability of seeing a more extreme association under the null hypothesis of no connection between genotype and phenotype. For starters, we write a function that builds simulated data, and another that runs the test and extracts the $p$-value:
+
+```{r}
+build_data <- function(probA = 0.1, probB = 0.1, size){
+  contingency <- data.frame()
+  # PATIENTS WITH GENOTYPE A:
+  # the number of patients with the disease is binomially distributed with probability probA
+  disease_A <- rbinom(n = 1, size = size, prob = probA)
+  no_disease_A <- size - disease_A
+  contingency <- rbind(contingency, data.frame("disease" = disease_A, "no_disease" = no_disease_A))
+  # PATIENTS WITH GENOTYPE B:
+  # the number of patients with the disease is binomially distributed with probability probB
+  disease_B <- rbinom(n = 1, size = size, prob = probB)
+  no_disease_B <- size - disease_B
+  contingency <- rbind(contingency, data.frame("disease" = disease_B, "no_disease" = no_disease_B))
+  # add row names for clarity
+  rownames(contingency) <- c("A", "B")
+  return(contingency)
+}
+
+extract_pvalue <- function(contingency){
+  return(chisq.test(contingency)$p.value)
+}
+
+# test:
+size <- 200  # sample size for both genotypes
+probA <- 0.2 # probability of disease for genotype A
+probB <- 0.1 # probability of disease for genotype B
+
+contingency <- build_data(probA = probA, probB = probB, size = size)
+contingency
+chisq.test(contingency)
+extract_pvalue(contingency = contingency)
+```
+
+With these functions in place, we're going to perform very many tests, varying the probabilities of association and the size of the cohort. We're going to count how many times we've discovered a "significant association" between genotype and phenotype. For this, we build a little function that gathers all $p$-values and scores them as signficant or nonsignificant when using a certain *level of significance*, $\alpha$:
+
+```{r}
+run_many_times <- function(probA = 0.1, probB = 0.1, size = 100, num_replicates = 1000, alpha = 0.05){
+  all_pvalues <- replicate(n = num_replicates, extract_pvalue(build_data(probA = probA, probB = probB, size = size)))
+  return(data.frame(pvalue = all_pvalues, significant = all_pvalues < alpha))
+}
+```
+
+Let's see what happens when there are no differences between genotypes:
+```{r}
+set.seed(1)
+# test: equal probabilities
+dt_equal <- run_many_times(probA = 0.1, probB = 0.1, size = 10000, num_replicates = 1000, alpha = 0.05)
+# now plot the p-values
+ggplot(data = dt_equal) + aes(x = pvalue) + geom_density()
+```
+
+You can see that the density of the distribution of $p$-values is approximately uniform. How many times are we discovering a "significant association" (though we know there is none)? This is the proportion of Type I errors:
+
+```{r}
+mean(dt_equal$significant)
+```
+About 5% of the cases, as expected. Now let's give gentotype A a slightly higher incidence and see what happens to the $p$-values:
+
+```{r}
+set.seed(1)
+# test: equal probabilities
+dt_unequal <- run_many_times(probA = 0.12, probB = 0.1, size = 10000, num_replicates = 1000, alpha = 0.05)
+ggplot(data = dt_unequal) + aes(x = pvalue) + geom_density()
+```
+
+Wow, that's quite a change! How many times are we calling the right result?
+
+```{r}
+mean(dt_unequal$significant)
+```
+We're almost always right (we are making very few Type II errors). How does this depend on the size of the cohort of patients we're examining? Let's use a much smaller size:
+
+```{r}
+set.seed(1)
+# test: equal probabilities
+dt_unequal <- run_many_times(probA = 0.12, probB = 0.1, size = 100, num_replicates = 1000, alpha = 0.05)
+ggplot(data = dt_unequal) + aes(x = pvalue) + geom_density()
+```
+
+You can see that now we're having much more trouble detecting the small difference in the incidence of the disease between phenotypes:
+
+```{r}
+mean(dt_unequal$significant)
+```
+
+With smaller sizes, we can detect differences only when they are big enough:
+```{r}
+set.seed(1)
+# test: equal probabilities
+dt_unequal <- run_many_times(probA = 0.25, probB = 0.1, size = 100, num_replicates = 1000, alpha = 0.05)
+ggplot(data = dt_unequal) + aes(x = pvalue) + geom_density()
+mean(dt_unequal$significant)
+```
+
+We have shown that with large sample sizes, we can detect significant associations even when effect sizes (i.e., the difference in the incidence of the disease) are small. Even when there are no differences, if we repeat the test many times, we are going to make a number of Type I errors. This is the problem of "Multiple Hypothesis Testing", which has important implications for biology.
+
+- **Gene expression** In a typical microarray experiment, we contrast the differential expression of tens of thousands of genes in treatment and control tissues. 
+
+- **GWAS** In Genomewide Association Studies we want to find SNPs associated with a given phenotype. It is common to test tens of thousands or even millions of SNPs for signficant associations.  
+
+- **Identifying binding sites** Identifying candidate binding sites for a transcriptional regulator requires scanning the whole genome, yielding tens of millions of tests. 
+
+The funniest example of this problem is the fMRI of the [dead salmon](http://prefrontal.org/files/posters/Bennett-Salmon-2009.pdf): a dead salmon "was shown a series of photographs depicting human individuals in social situations with a specified emotional valence. The salmon was asked to determine what emotion the individual in the photo must have been experiencing." The researchers showed that if multiple comparisons were not accounted for, one would detect a cluster of active voxels in the brain, with a cluster-level significance of p = 0.001.
+
+# Reproducibility of scientific results
+
+$p$-values and hypothesis testing contribute considerably to the so-called *reproducibility crisis* in the sciences. A [survey](https://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970) promoted by *Nature* magazine found that "More than 70% of researchers have tried and failed to reproduce another scientist's experiments, and more than half have failed to reproduce their own experiments."
+
+This problem is due to a number of factors, and addressing it will likely be one of the main goals of science in the next decade. 
+
+## Problem: selective reporting
+
+Articles reporting positive results are easier to publish than those containing negative results. Authors might have little incentive to publish negative results, which could go directly into the file-drawer. 
+
+This tendency is evidenced in the distribution of $p$-values in the literature: in many disciplines, one finds a sharp decrease in the number of tests with $p$-values just above 0.05 (which is customarily--and arbitrarily--chosen as a threshold for "significant results"). For example, we find a sharp decrease in the number of reported $p$-values of 0.051 compared to 0.049--while we expect the $p$-value distribution to decrease smoothly.
+
+Selective reporting leads to irreproducible results: we always have a (small) probability of finding a "positive" result by chance alone. For example, suppose we toss a fair coin many times, until we find a "signficant" result...
+
+## Problem: p-hacking
+
+The problem is well-described by Simonsohn et al. ([J. Experimental Psychology, 2014](http://pages.ucsd.edu/~cmckenzie/Simonsohnetal2014JEPGeneral.pdf)): "While collecting and analyzing data, researchers have many decisions to make, including whether to collect more data, which outliers to exclude, which measure(s) to analyze, which covariates to use, and so on. If these decisions are not made in advance but rather are made as the data are being analyzed, then researchers may make them in ways that self-servingly increase their odds of publishing. Thus, rather than placing entire studies in the file-drawer, researchers may file merely the subsets of analyses that produce nonsignificant results. We refer to such behavior as *p-hacking*."
+
+The same authors showed that with careful p-hacking, almost anything can become significant (read their hylarious article in [Psychological Science](http://journals.sagepub.com/doi/pdf/10.1177/0956797611417632), where they show that listening to a song can change the listeners' age!).
+
+P-hacking, besides producing results that are impossible to replicate, can have [terrible consequences on your career](https://www.sciencemag.org/news/2018/09/cornell-nutrition-scientist-resigns-after-retractions-and-research-misconduct-finding).
+
+Of course, there is an XKCD to cheer us up:
+
+![There's an XKCD strip for any occasion](https://imgs.xkcd.com/comics/significant.png)
+
+# Effect of prior probability on predictive value of a test
+
+This simulation illustrates the paper by Ioannidis [Why most published research findings are false](https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.0020124). The basic idea is that if a hypothesis has a small prior probability of being true (e.g., looking through an entire genome for SNPs that are linked with a disease) then a positive result has a low predictive value. We will simulate this by controlling the *prior probability* of the hypothesis being true and the *sensitivity* and *specificity* of the test.  
+The function below uses a random number to decide whether a particular SNP is linked to the disease, according to a prior probability and the simulates running a test for linkage of SNP and disease. The test has a given a sensitivity (rate of True Positive) and specificity (rate of True Negative). It checks if the null hypothesis is true (no association) or false (association) and randomly decides if the test gets the correct result or not. It repeats the test independenty for a specified number of SNPs and counts the number of true positives, true negatives, false positives, and false negatives. It returns the False Discover Rate: the probability of having a False Positive among our "discoveries":
+
+```{r}
+gwas_simulator <- function (test_specificity, test_sensitivity, prior, num_snps){
+  # first, let's decide which SNPs are associated with the disease
+  true_association <- runif(num_snps) <= prior
+  # then, let's see whether our test can detect the difference.
+  # for each SNPs, we simulate the test by drawing a random number between 0 and 1
+  random_tests <- runif(num_snps)
+  # if there is a true association, we check the specificity to determine whether we can pick it up
+  # TRUE POSITIVES: there is an association and our test is sensitive enough to detect it
+  TP <- sum(random_tests[true_association] < test_sensitivity)
+  # FALSE NEGATIVES: there is an association, but we cannot detect it (TYPE II ERROR)
+  FN <- sum(true_association) - TP
+  # TRUE NEGATIVES: there is no association, and we are correct because we have enough specificity
+  TN <- sum(random_tests[!true_association] < test_specificity)
+  # FALSE POSITIVES: there is no association, but we find one anyway (TYPE I ERROR)
+  FP <- sum(!true_association) - TN
+  print(paste("True Positives:", TP, "False Positives (Type I):", FP))
+  print(paste("True Negatives:", TN, "False Negative (Type II):", FN))
+  # the False Discovery Rate (FDR) is the proportion of false positives over the total number of "discoveries"
+  return (FP / (TP + FP))
+}
+
+test_specificity <- 0.8 # set specificity
+test_sensitivity <- 0.8 # set sensitivity
+prior <- 0.01 # set the prior probability of the SNP being linked to disease
+num_snps <- 1000
+gwas_simulator(test_specificity, test_sensitivity, prior, num_snps)
+```
+
+We have have a huge False Discovery Rate: of the 205 SNPs detected in our analysis, only 8 are actually linked to the disease. Let's repeat this, using a higher prior probability---now 10% of the SNPs are linked with the disease:
+
+```{r}
+gwas_simulator(test_specificity, test_sensitivity, 0.1, num_snps)
+```
+
+You can see that we're doing better. The problem of weeding false positives is aggravated when we're looking for a needle in a haystack. For GWAS and similar problems, we need to walk a tight rope:
+
+- We want to have high specificity: we don't want to claim that something is significantly linked to a disease, only to find out we're wrong.
+- We want to have high sensitivity: we still want to make discoveries!
+- Unfortunately, there is a trade-off between the two: we cannot at the same time minimize the number of Type I and Type II errors.
+- In practice, scientists have devised statistical techniques to strongly cap the number of Type I errors (considered somehow "worse"), and then control Type II errors as best as they can.
+
+> Exercise (at home): change the specificity, sensitivity and prior in a systematic fashion. Which parameters have the strongest impact on FDR?
+
+
+# Correcting for multiple comparisons
+
+As we've seen, if the null hypothesis were true, then about 5% of the $p$-values would be below 0.05. As such, if we are scanning many SNPs, we would call 5% of them significantly associated with the disease even when none of them are. Suppose that 1% of the SNPs are strongly linked with the disease, while 99% are not, and that we have 10000 SNPs. For the truly linked SNPs, we sample $p$-values between 0 and 0.0005 at random; for the unlinked we sample $p$-values between 0 and 1:
+
+```{r}
+pvalues <- c(runif(100, 0, 0.0005), runif(9900, 0, 1))
+```
+
+How many results are "significant" at a 5% level?
+
+```{r}
+# total 
+sum(pvalues < 0.05)
+# TRUE positives
+sum(pvalues[1:100] < 0.05)
+# FALSE positives
+sum(pvalues[101:10000] < 0.05)
+```
+
+About 5 in 6 are false discoveries. One way to reduce Type I errors is to control for the *Family Wise Error Rate*, rather than controlling  the *Per Comparison Error Rate* (i.e., set an $\alpha$ for each test separately). For example, Bonferroni correction takes the unadjusted $p$-values and multiply them by the number of tests:
+
+$p' = min(p n, 1)$
+
+In `R`, you can adjust a series of $p$-values using
+
+```{r}
+pvalues_Bonf <- p.adjust(pvalues, method = "bonferroni")
+```
+
+Now we're controlling for Type I errors:
+
+```{r}
+# total 
+sum(pvalues_Bonf < 0.05)
+# TRUE positives
+sum(pvalues_Bonf[1:100] < 0.05)
+# FALSE positives
+sum(pvalues_Bonf[101:10000] < 0.05)
+```
+
+But as you can see we have thown the baby with the bathwater! We are making too many errors of Type II. There are more sophisticated corrections, that try walking the tight rope:
+
+```{r}
+pvalues_fdr <- p.adjust(pvalues, method = "fdr")
+```
+
+Now we're controlling less strictly for Type I errors, but are making a lot more discoveries (i.e., fewer Type II errors):
+
+```{r}
+# total 
+sum(pvalues_fdr < 0.05)
+# TRUE positives
+sum(pvalues_fdr[1:100] < 0.05)
+# FALSE positives
+sum(pvalues_fdr[101:10000] < 0.05)
+```
+
+Not bad! This example shows that controlling for multiple testing is essential when performing this type of analysis (lest ending up with a "dead salmon result"). You can read about the problem of multiple comparisons [here](https://www.stat.berkeley.edu/~mgoldman/Section0402.pdf). A very good history of the problem, with neat explanations and examples is [here](https://onlinelibrary.wiley.com/doi/full/10.1002/bimj.200900299).
+
+# How to fool yourself with p-hacking (and possibly get fired!)
+
+We are going to try our hand at p-hacking, to show how easy it is to get fooled when you have a sufficiently large and complex data set. The file `data/medals.csv` contains the total number of medals won at the Olympic games (Summer or Winter) by country, sport and gender. We have a simple, and reasonable (?) hypothesis: because the amount of money available to Olympic teams is finite, whenever a country invests in the male team, this will be at the detriment of the female team. To test this hypothesis, we measure whether the number of medals won by a national female team in a year is negatively correlated with the number of medals won by the male team.
+
+Let's read the data, and take a peak:
+
+```{r}
+dt <- read_csv("data/medals.csv")
+dt
+```
+
+First, let's see whether our hypothesis works for the whole data:
+
+```{r}
+cor(dt$F, dt$M)
+```
+
+The correlation is positive: more medals for the men tend to correspond to more medals for the women. This correlation is not very strong, but is it "significant"? We can run a correlation test:
+
+```{r}
+cor.test(dt$F, dt$M)
+```
+
+Indeed! The confidence intervals are far from 0: the correlation is definitely positive. Should we give up? Of course not! Just as for the jelly beans, we can p-hack our way to glory by subsetting the data. We are going to test each discipline independently, and see whether we can get a robustly negative correlation for any discipline. Because we are serious scientists, we are going to consider only disciplines for which we have at least 50 data points, to avoid results that are due to small sample sizes. Let's write a little function that does the subsetting and testing:
+
+```{r}
+test_correlation_sport <- function(dt, sport, minimum_size = 50){
+  # subset the data
+  tmp <- dt[dt$Sport == sport, ]
+  my_cor <- NA
+  my_pvalue <- NA
+  if (nrow(tmp) >= minimum_size){
+    my_cor <- cor(tmp$F, tmp$M)
+    my_test <- cor.test(tmp$F, tmp$M)
+    my_pvalue <- my_test$p.value
+  }
+  return(list(sport = sport, correlation = my_cor, pvalue = my_pvalue))
+}
+```
+
+Let's test our function:
+
+```{r}
+test_correlation_sport(dt, "Rowing")
+```
+
+To get a better sense of the data, let's also write a little function to plot our data:
+
+```{r}
+plot_data <- function(dt, sport, correlation, pvalue){
+  # subset the data
+  tmp <- dt[dt$Sport == sport, ]
+  pl <- ggplot(data = tmp) + aes(x = `F`, y = `M`) + 
+    geom_point() + geom_smooth(method = "lm") + 
+    ggtitle(paste(sport, "correlation:", round(correlation, 3), "pvalue:", round(pvalue, 3)))
+  show(pl)
+}
+```
+
+And let's try to plot the results for `Rowing`:
+
+```{r}
+my_res <- test_correlation_sport(dt, "Rowing")
+plot_data(dt, "Rowing", my_res$correlation, my_res$pvalue)
+```
+
+Ok, we're ready to roll: let's run this and print only significant results at a 5% level.
+
+```{r}
+sports <- sort(unique(dt$Sport))
+for (sp in sports){
+  res <- test_correlation_sport(dt, sp)
+  if (!is.na(res$correlation) & res$pvalue < 0.05){
+    if (res$correlation < 0){
+      print(unlist(res))
+      plot_data(dt, sp, res$correlation, res$pvalue)
+    }
+  }
+}
+```
+
+That's it! Should we rush to publish our results? Not quite: we have p-hacked our way to some highly significant results, but we did not correct for the number of tests we've made, and what we would do is to selectively reporting our strong results. In fact, we can do something very simple to convince ourselves that our results do not make much sense: just run the code again, but reporting significant positive correlations...
+
+```{r}
+for (sp in sports){
+  res <- test_correlation_sport(dt, sp)
+  if (!is.na(res$correlation) & res$pvalue < 0.05){
+    if (res$correlation > 0){
+      print(unlist(res))
+      plot_data(dt, sp, res$correlation, res$pvalue)
+    }
+  }
+}
+```
+
+You can see that we've got about the same number of sports testing significant for positive correlation!
+

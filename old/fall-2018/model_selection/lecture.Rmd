@@ -1,0 +1,305 @@
+---
+title: "Model Selection, Part I"
+author: "Dmitry Kondrashov & Stefano Allesina"
+date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
+output:
+  html_document:
+    theme: cosmo
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+urlcolor: blue
+---
+
+```{r knitr, echo=FALSE}
+knitr::opts_chunk$set(
+  eval      = TRUE,
+  comment   = "#",
+  warning = FALSE,
+  message = FALSE,
+  #results   = "asis",
+  # collapse  = TRUE,
+  fig.align = "center")
+```
+
+> Cchiù longa è a pinsata cchiù grossa è a minchiata 
+>
+> [the longer the thought, the bigger the bullshit] 
+> 
+> --- Sicilian proverb
+
+
+# Goal
+
+For any data you might want to fit, several competing statistical models seem to do a fairly good job. But which model should you use then? 
+
+The goal of model selection is to provide you with a disciplined way to choose among competing models. While there is no consensus on a single technique to perform model selection (we will examine some of the alternative paradigms below), all techniques are inspired by Occam's razor: given models of similar explanatory power, choose the simplest.
+
+But what does "simplest" mean? Measuring a model's "complexity" is far from trivial, hence the different schools of thought. Some approaches simply count the number of free parameters, and penalize models with more parameters; others take into account how much each parameter should be "fine-tuned" to fit the data; other approaches are based on entirely different premises.
+
+But why should you choose the simplest model? First, simpler models are easier to analyze, so that for example you could make analytical headway into the mechanics of the process you want to model; simpler models are also considered more beautiful. Second, you want to avoid *overfitting*: each biological data set---however carefully crafted---is noisy, and you want to fit the signal, not the noise. If you include too much flexibility in your model, you will get what looks like an excellent fit for the specific data set, but you will be unable to fit other data sets to which your model should also apply.
+
+# Problems
+
+1. Overfitting can lead to wrong inference. (The problem is similar to that of spurious correlations).
+2. Identifiability of parameters. Sometimes it is hard/impossible to find the best value for a set of parameters. For example, when parameters only appear as sums or products in the model. In general, it is difficult to prove that the set of parameters leading to the maximum likelihood is unique.
+3. Finding best estimates. For complex models, it might be difficult to find the best estimates for a set of parameters. For example, several areas of the parameter space could yield a good fit, and the good sets of parameters could be separated by areas with poor fit. Then, we might get "stuck" in a sub-optimal region of the parameters space.
+
+# Approaches based on maximum-likelihoods
+We start by examining methods that are based on maximum likelihoods. For each data set and model, you find the best fitting parameters (those maximizing the likelihood).  The parameters are said to be at their maximum-likelihood estimate. 
+
+## Likelihood function
+
+Some notation:
+
+* $D \to$ the observed data
+* $\theta \to$ the free parameter(s) of the statistical model
+* $L(\theta | D) \to$ the likelihood function, read "the likelihood of $\theta$ given the data"
+* $\hat{\theta} \to$ the maximum-likelihood estimates (m.l.e.) of the parameters
+* $\mathcal L(\theta | D) = \log L(\theta | D) \to$ the log-likelihood
+* $L(\hat{\theta} | D) \to$ the maximum likelihood
+
+
+### Discrete probability distributions
+
+The simplest case is that of a probability distribution function that takes discrete values. Then, the likelihood of $\theta$ given the data is simply the probability of obtaining the data when parameterizing the model with parameters $\theta$:
+
+$$L(\theta | x_j) = P(X = x_j; \theta)$$
+
+Finding the m.l.e. of $\theta$ simply means finding the value(s) maximizing the probability of recovering the data under the model.
+
+### Continuous probability distributions
+
+The definition is more complex for continuous variables (because $P(X = x; \theta) = 0$ as there are infinitely many values...). What is commonly done is to use the *density function* $f(x; \theta)$ and considering the probability of obtaining a value $x \in [x_j, x_j + h]$, where $x_j$ is our observed data point, and $h$ is small. Then:
+
+$$
+L(\theta | x_j) = \lim_{h \to 0^+} \frac{1}{h} \int_{x_j}^{x_j + h} f(x ; \theta) dx = f(x_j ; \theta)
+$$
+Note that, contrary to probabilities, density values can take values greater than 1. As such, when the dispersion is small, one could end up with values of likelihood greater than 1 (or positive log-likelihoods). In fact, the likelihood function is proportional to but not necessarily equal to the probability of generating the data given the parameters: $L(\theta| X) \propto P(X; \theta)$.
+
+In many cases, maximizing the likelihood is equivalent to minimizing the sum of square errors (residuals).
+
+## Likelihoods for linear regression
+
+As you remember, we have considered the normal equations:
+
+$$
+Y_i = \beta_0 + \beta_1 X_i + \epsilon_i
+$$
+Where the residuals have variance $\sigma^2$. The likelihood of the parameters is simply the product of the likelihood for each point:
+
+$$
+L(\beta_0, \beta_1, \sigma^2 | Y) = \prod_i L(\beta_0, \beta_1, \sigma^2 | Y_i) = \prod_i f(Y_i; \beta_0, \beta_1, \sigma^2) = 
+\prod_i \frac{1}{\sqrt{2 \pi \sigma^2}} \exp\left(-\frac{(Y_i - \beta_0 + \beta_1 X_i)^2}{2 \sigma^2}\right)
+$$
+We want to choose the parameters such that they maximize the likelihood. Because the logarithm is monotonic then maximizing the likelihood is equivalent to maximizing the log-likelihood:
+
+$$
+\mathcal L(\beta_0, \beta_1, \sigma^2 | Y) = -\log\left(\sqrt{2 \pi \sigma^2}\right) -\frac{1}{{2 \sigma^2}} \sum_i {(Y_i - \beta_0 + \beta_1 X_i)^2}
+$$
+Showing that by minimizing the sum of squares, we are maximizing the likelihood.
+
+## Likelihood-ratio tests
+
+These approaches contrast two models by taking the ratio of the maximum likelihoods of the sample data based on the models (i.e., when you evaluate the likelihood by setting the parameters to their m.l.e.). The two models are usually termed the *null* model (i.e., the "simpler" model), and the *alternative* model. The ratio of $L_a / L_n$ tells us how many times more likely the data are under the alternative model vs. the null model. We want to determine whether this ratio is large enough to reject the null model and favor the alternative.
+
+Likelihood-ratio is especially easy to perform for *nested* models.
+
+#### Two nested models
+
+*Nested* means that model $\mathcal M_1$ has parameters $\theta_1$, and model $\mathcal M_2$ has parameters $\theta_2$, such that $\theta_1 \in \theta_2$ --- by setting some of the parameters of $\mathcal M_2$ to particular values, we recover $\mathcal M_1$.
+
+For example, suppose we want to model the height of trees. We measure the response variable (height of tree $i$, $h_i$) as well as the girth ($g_i$). We actually have a data set that ships with `R` that contains exactly this type of data:
+
+```{r, message=FALSE}
+library(tidyverse) # our friend 
+library(BayesFactor) # need installation!!
+data(trees)
+head(trees)
+```
+
+The `Height` of these cherry trees is measured in feet; the `Girth` is the diameter in inches, and the `Volume` is the measuring the amount of timber in cubic feet. Let's add a `Radius` measured in feet:
+
+```{r}
+trees$Radius <- trees$Girth / (2 * 12) # diameter to radius; inches to feet
+```
+
+Let's look at the distribution of three heights:
+```{r}
+trees %>% ggplot(aes(x = Height)) + geom_density()
+```
+
+A possible simple model is one that says that all tree heights have heights taken from a Gaussian distribution with a given mean. In the context of linear regression, we can write the model $\mathcal M_0$:
+
+$$
+h_i = \theta_0 + \epsilon_i
+$$
+where we assume that the errors $\epsilon_i \overset{\text{iid}}{\sim} \mathcal N(0, \sigma^2)$. Now fit the model, obtaining $\hat{\theta_0}$, and compute the maximum log-likelihood $\mathcal L_0(\hat{\theta_0}, \hat{\sigma}^2 | h)$. 
+
+In `R`, we would call:
+```{r}
+M0 <- lm(data = trees, Height ~ 1) # only intercept
+# the m.l.e. of theta_0
+theta0_M0 <- M0$coefficients[1]
+theta0_M0
+# log likelihood
+logLik(M0)
+```
+
+Now let's plot the height of the trees vs. their radius:
+```{r}
+trees %>% ggplot(aes(x = Radius, y = Height)) + 
+  geom_point()
+```
+
+And compute their correlation:
+```{r}
+cor(trees$Radius, trees$Height)
+```
+
+Given the positive correlation between radius and height, we can build a more complex model in which the height also depends on radius ($\mathcal M_1$):
+
+$$
+h_i = \theta_0 + \theta_1 r_i + \epsilon_i
+$$
+as for model $\mathcal M_0$, fit the parameters (note that $\hat{\theta_0}$ for model $\mathcal M_0$ will in general be different from $\hat{\theta_0}$ for model $\mathcal M_1$), and compute $\mathcal L_1(\hat{\theta_0},\hat{\theta_1},\hat{\sigma}^2 | h)$. These two models are nested, because when setting $\theta_1 = 0$  we recover $\mathcal M_0$.
+
+In `R`:
+```{r}
+M1 <- lm(data = trees, Height ~ Radius) # intercept and slope
+theta0_M1 <- M1$coefficients[1]
+theta1_M1 <- M1$coefficients[2]
+# theta_0 takes a different value:
+print(c(theta0_M0, theta0_M1))
+# the log likelihood should improve
+logLik(M1)
+```
+
+Which model should we use? You can see that adding an extra parameter improved the likelihood somewhat.
+
+Enter the likelihood-ratio test. We want to know whether it's worth using the more complex model, and to do this we need to calculate a likelihood-ratio statistics. We're helped by *Wilks' theorem*: as the sample size $n \to \infty$, the test statistics $2 \log(L_1 / L_0)$ is asymptotically $\chi^2$ distributed with degrees of freedom equal to the difference in the number of parameters between $\mathcal M_1$ and $\mathcal M_0$.
+
+While there are many caveats [^1] this method is commonly used in practice.
+```{r}
+# 2 * log-likelihood ratio
+lrt <- as.numeric(2 * (logLik(M1) - logLik(M0)))
+print("2 log(L1 / L0)")
+print(lrt)
+
+# difference in parameters
+df0 <- length(M0$coefficients)
+df1 <- length(M1$coefficients)
+k <- df1 - df0
+print("Number of extra parameters")
+print(k)
+
+# calculate (approximate) p-value
+res <- pchisq(lrt, k, lower.tail = FALSE)
+print(paste("p-value using Chi^2 with", k, "degrees of freedom"))
+print(round(res, 4))
+```
+
+In this case, the likelihood-ratio test would favor the use of the more complex model.
+
+* **Pros**: Straightforward; well-studied for nested models.
+* **Cons**: Difficult to generalize to more complex cases.
+
+## Adding more models
+
+The data also contains a column with the volume. Let's take a look:
+```{r}
+trees %>% ggplot() + aes(x = Volume, y = Height) + geom_point()
+```
+
+And look at the correlation
+```{r}
+cor(trees$Volume, trees$Height)
+```
+
+We can build another model:
+```{r}
+M2 <- lm(data = trees, Height ~ Volume) # intercept and slope
+```
+
+Compute the log likelihood:
+```{r}
+logLik(M2)
+```
+
+and test whether that's better than the (nested) model 0:
+
+```{r}
+# 2 * log-likelihood ratio
+lrt <- as.numeric(2 * (logLik(M2) - logLik(M0)))
+print("2 log(L2 / L0)")
+print(lrt)
+
+# difference in parameters
+df0 <- length(M0$coefficients)
+df1 <- length(M2$coefficients)
+k <- df1 - df0
+print("Number of extra parameters")
+print(k)
+
+# calculate (approximate) p-value
+res <- pchisq(lrt, k, lower.tail = FALSE)
+print(paste("p-value using Chi^2 with", k, "degrees of freedom"))
+print(round(res, 4))
+```
+
+Also in this case, the likelihood-ratio test would favor the use of the more complex model. But how can we contrast the two more complex models $\mathcal M_1$ and $\mathcal M_2$? They are not nested!
+
+In fact, we can even concoct another model that uses a mix of radius and volume. If we assume that trees are cylinders, then we have $V = \pi r^2 h$, and as such $h = V / (\pi r^2)$. We can test whether this is a good approximation by creating a new variable:
+
+```{r}
+trees$Guess <- trees$Volume / trees$Radius^2 # (we can omit \pi)
+```
+
+```{r}
+trees %>% ggplot() + aes(x = Guess, y = Height) + geom_point()
+```
+
+```{r}
+cor(trees$Guess, trees$Height)
+```
+
+Pretty good! Let's add it to our list of models:
+
+```{r}
+M3 <- lm(Height ~ Guess, data = trees)
+logLik(M3)
+```
+
+
+## AIC
+
+Of course, in most cases the models that we want to contrast need not to be nested. Then, we can try to penalize models according to the number of free parameters, such that more complex models (those with many free parameters) should be associated with much better likelihoods to be favored. 
+
+In the early 1970s, Hirotugu Akaike proposed "an information criterion" (AIC, now known as Akaike's Information Criterion), based, as the name implies, on information theory. Basically, AIC is measuring (asymptotically) the information loss when using the model in lieu of the actual data. Philosophically, it is rooted in the idea that there is a "true model" that generated the data, and that several possible models can serve as its approximation. Practically, it is very easy to compute:
+
+$$AIC = -2 \mathcal L(\theta | D) + 2 k$$
+
+where $k$ is the number of free parameters (e.g., 3 for the simplest linear regression [intercept, slope, variance of the residuals]). In `R`, many models provide a way to access their AIC score:
+
+```{r}
+AIC(M0) # only intercept
+AIC(M1) # use radius
+AIC(M2) # use volume
+AIC(M3) # use cylinder
+```
+
+You can see that AIC favors the cylinder model over the others. Typically, a difference of about 2 is considered "significant", though of course this really depends on the size of the data, the values of AIC, etc. 
+
+* **Pros**: Easy to calculate; very popular.
+* **Cons**: Sometimes it is difficult to "count" parameters; why should each parameter cost the same, when they have different effects on the likelihood?
+
+### Other information-based criteria
+
+The approach spearheaded by Akaike has been followed by a number of researchers, giving rise to many similar criteria for model selection. Without getting too much into the details, here are a few pointers:
+
+* Bayesian Information Criterion $BIC = -2 \mathcal L(\theta | D) + k \log(n)$ where $n$ is the number of data points. Penalizes parameters more strongly when there are much data.
+* Hannan–Quinn information criterion $HQC = -2 \mathcal L(\theta | D) + k \log(\log(n))$
+
+
+[^1]: see Pinheiro, José C.; Bates, Douglas M. (2000), Mixed-Effects Models in S and S-PLUS, Springer-Verlag, pp. 82–93

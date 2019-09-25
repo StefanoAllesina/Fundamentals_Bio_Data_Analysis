@@ -1,0 +1,257 @@
+---
+title: "Linear models"
+author: "Dmitry Kondrashov & Stefano Allesina"
+date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
+output:
+  html_document:
+    theme: cosmo
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+urlcolor: blue
+---
+
+```{r knitr, echo=FALSE}
+knitr::opts_chunk$set(
+  eval      = TRUE,
+  comment   = "#",
+  results   = "hold",
+  # collapse  = TRUE,
+  fig.align = "center")
+```
+
+# Goal
+Learn how to perform linear regression, how to make sure that the assumptions of the model are not violated, and how to interpret the results.
+
+# Regression toward the mean
+Francis Galton (Darwin's half-cousin) was a biologist interested in evolution, and one of the main proponents of eugenics (he coined the term himself). To advance his research program, he set out to measure several features in human populations, and started trying to explain the variation he observed, incidentally becoming one of the founding fathers of modern statistics. 
+
+In his "Regression towards mediocrity in hereditary stature" he showed an interesting pattern: children of tall parents tended to be shorter than their parents, while children of short parents tended to be taller than their parents. He called this phenomoenon "regression toward mediocrity" (now called regression toward [to] the mean). 
+
+We're going to explore this phenomenon using Karl Pearson's (another founding father of statistics) data from 1903, recording the height of fathers and sons:
+```{r, message=FALSE}
+library(tidyverse)
+heights <- read_tsv("http://www.randomservices.org/random/data/Pearson.txt")
+pl <- ggplot(data = heights) + aes(x = Father, y = Son) + geom_point() + coord_equal()
+pl
+```
+
+Let's add the 1:1 line for comparison:
+```{r}
+pl + geom_abline(slope = 1, intercept = 0, linetype = 2, color = "red")
+```
+You can see that the sons tend to be taller than their fathers. Let's see of how much:
+```{r}
+mean(heights$Father)
+mean(heights$Son)
+# difference
+mean(heights$Son) - mean(heights$Father)
+```
+
+So let's add a line with an intercept of 1:
+```{r}
+pl <- pl + geom_abline(slope = 1, intercept = 1, linetype = 2, color = "blue")
+pl
+```
+
+You can see that the line does not divide the cloud of points evenly: even though tall fathers tend to produce tall sons, and short fathers short sons, the sons of short fathers tend to be taller than their fathers (for example, look at the sons of fathers less than 60 inches tall), while the sons of tall fathers tend to be shorter than their fathers (for example, the sons of fathers taller than 75 inches).
+
+This phenomenon is called "regression toward the mean": when you take two measurement on the same sample (or related samples, as here), if a variable is extreme on its first measurement, it will tend to be closer to the average on its second measurement; if it is extreme on its second measurement, it will tend to have been closer to the average on its first. 
+
+> **Regression to the mean: dangers of interpretation** 
+
+- A city sees an unusual growth of crime in a given neighborhood, and they decide to patrol the neighborhood more heavily. The next year, crime rates are close to normal. Was this due to heavy presence of police?
+- A teacher sees that scolding students who've had a very low score in a test makes them perform better in the next test. (But would praising those with unusually high scores lead to slacking off in the next test?)
+- A huge problem in science: effect sizes tend to decrease through time. Problem of selective reporting?
+
+This phenomemon gave the name to one of the simplest statistical models: the linear regression.
+
+# Finding the best fitting line: Linear Regression
+How can we explain the relationship between the height of the faters and those of their sons? One of the simplest models we can use is called a "Linear Model". Basically, we want to express the height of the son as a function of the height of the father:
+$$
+y_i = \beta_0 + \beta_1 x_i + \epsilon_i
+$$
+where $y_i$ is the height of the son (**response variable**), $x_i$ is the height of the father (**explanatory variable**), $\beta_0$ and $\beta_1$ are two numbers (intercept and slope of the line) that do not vary within the population (these are the parameters we want to fit). Finally, the term $\epsilon_i$ measures the "error" we are making for the $i^{th}$ son. For simplicity, we assume the $\epsilon_i \overset{\text{iid}}{\sim} \mathcal N(0, \sigma^2)$ (and $\sigma$ is therefore another parameter we want to fit).
+
+When we have multiple explanatory variables (for example, if we had recorded also the height of the mother, whether the son was born at full term or premature, the average caloric intake for the family, etc.), we speak of **Multiple Linear Regression**:
+
+$$
+y_i = \beta_0 + \sum_{k=1}^n \beta_k x_{ik} + \epsilon_i
+$$
+
+## Solving a linear model --- some linear algebra
+In this section, we're going to look at the mechanics of linear regression. Suppose that for simplicity we have a single explanatory variable, then we can write the linear model in compact form as:
+$$
+\mathbf{Y} = \mathbf{X} \mathbf{\beta} + \mathbf{\epsilon}
+$$
+where:
+$$
+\mathbf{Y} = \begin{pmatrix} y_1\\ y_2\\ \vdots \\ y_n \end{pmatrix} \;\;\; 
+\mathbf{X} = \begin{pmatrix} 1 & x_1\\ 1 & x_2\\ \vdots & \vdots \\ 1 & x_n \end{pmatrix}
+ \;\;\; 
+\mathbf{\beta} = \begin{pmatrix} \beta_0 \\ \beta_1\end{pmatrix} \;\;\; \mathbf{\epsilon} = \begin{pmatrix} \epsilon_1 \\ \epsilon_2 \\ \vdots \\ \epsilon_n \end{pmatrix}
+$$
+
+Solving the linear regression means finding the best-fitting $\beta_0$, $\beta_1$ and $\sigma$ (controlling the spread of the distribution of the $\epsilon_i$). Our goal is to find the values of $\beta$ that minimize $\sigma$ (meaning that the points fall closer to the line). Rearranging:
+$$
+\sum_i \epsilon_i^2 = \sum_i (y_i - \beta_0 - \beta_1 x_i)^2 =  \Vert \mathbf{Y} - \mathbf{X} \mathbf{\beta} \Vert
+$$
+
+As such, we want to find the vector $\beta$ that minimizes the norm $\Vert \mathbf{Y} - \mathbf{X} \mathbf{\beta} \Vert$. One can prove that this is accomplished using:
+$$
+\hat{\mathbf{\beta}} = \left( \mathbf{X}^T \mathbf{X} \right)^{-1} \mathbf{X}^T \mathbf{Y}
+$$
+
+Where the matrix $\left( \mathbf{X}^T \mathbf{X} \right)^{-1} \mathbf{X}^T$ is known as the (left) Moore-Penrose pseudo-inverse of $\mathbf{X}$. Let's try to do this in `R` (the "hard" way):
+```{r}
+X <- cbind(1, heights$Father)
+Y <- cbind(heights$Son)
+best_beta <- solve(t(X) %*% X) %*% t(X) %*% Y
+best_beta
+```
+
+We find that the best fitting line has an intercept of about 34 inches, and a slope of 0.51. Of course, `R` can do this calculation for you with just one command:
+```{r}
+best_beta_easy <- lm(Son ~ Father, data = heights)
+best_beta_easy
+```
+
+But it feels good to know that this is not black magic! In fact, plotting it on top of the data does not even require computing the coefficients:
+```{r}
+pl + geom_smooth(method = "lm") # lm stands for linear model
+```
+
+## Minimizing the sum of squares
+What we just did is called "ordinary least-squares": we are trying to minimize the distance from the data points to their projection on the best-fitting line. We can compute the "predicted" heights as:
+$$
+\hat{\mathbf{Y}} = \mathbf{X}\hat{\mathbf{\beta}}
+$$
+Then, we're minimizing $\Vert \mathbf{Y} - \hat{\mathbf{Y}}\Vert$. We call $\hat{\mathbf{\epsilon}} = \mathbf{Y} - \hat{\mathbf{Y}}$ the vector of **residuals**. From this, we can estimate the final parameter, $\sigma$:
+
+$$
+\sigma = \sqrt{\frac{\sum_i \hat{\epsilon_i}^2}{n -  p}}
+$$
+where $n$ is the number of data points, and $p$ is the number of parameters in $\mathbf{\beta}$ (2 in this case); this measures the number of **degrees of freedom**. Let's try to compute it:
+```{r}
+degrees_of_freedom <- length(Y) - 2
+degrees_of_freedom
+epsilon_hat <- X %*% best_beta - Y
+sigma <- sqrt(sum(epsilon_hat^2) / degrees_of_freedom)
+sigma
+```
+
+In `R`, you will find this reported as the `Residual standard error` when you call `summary` on your model:
+```{r}
+summary(best_beta_easy)
+```
+
+Finally, the **coefficient of determination** $R^2$ is computed as:
+$$
+R^2 = \frac{\sum_i (\hat{y}_i - \bar{y})^2}{\sum_i ({y}_i - \bar{y})^2}
+$$
+where $\bar{y}$ is the mean of $y_i$. If the regression has an intercept, then the $R^2$ can vary between 0 and 1, with values close to 1 indicating a good fit to the data. Again, let's compute it the hard way and then the easy way:
+```{r}
+y_bar <- mean(Y)
+R_2 <- sum((X %*% best_beta - y_bar)^2) / sum((Y - y_bar)^2)
+R_2
+```
+```{r}
+# look for Multiple R-squared:
+summary(best_beta_easy)
+```
+
+## Assumptions of linear regression
+In practice, when we are performing a linear regression, we are making a number of assumptions about the data. Here are the main ones:
+
+* Model structure: we assume that the process generating the data is linear.
+* Explanatory variable: we assume that this is measured without errors (!).
+* Residuals: we assume that residuals are i.i.d. Normal.
+* Strict exogeneity: the residuals should have conditional mean of 0. 
+
+$$
+\mathbb E[\epsilon_i | x_i] = 0
+$$
+
+* No linear dependence: the columns of $\mathbf{X}$ should be linearly independent.
+* Homoscedasticity: the variance of the residuals is independent of $x_i$.
+
+$$
+\mathbb V[\epsilon_i | x_i] =  \sigma^2
+$$
+
+* Errors are uncorrelated between observations. 
+$$
+\mathbb E[\epsilon_i \epsilon_j | x] = 0 \; \forall j \neq i
+$$
+
+# Linear regression in action
+To perform a slightly more complicated linear regression, we take the data from:
+
+> Piwowar HA, Day RS, Fridsma DB (2007) [Sharing detailed research data is associated with increased citation rate](https://doi.org/10.1371/journal.pone.0000308). PLoS ONE 2(3): e308. 
+
+The authors set out to demonstrate that sharing data accompanying papers increases the number of citations received by the paper.
+
+```{r, warning=FALSE, message=FALSE}
+# original url 
+# https://datadryad.org/bitstream/handle/10255/dryad.33867/rawdata.csv
+dat <- read_csv("https://tinyurl.com/y8oqbdvq") 
+# rename variables for easier handling
+dat <- dat %>% rename(IF = `Impact factor of journal`, 
+                      NCIT = `Number of Citations in first 24 months after publication`, 
+                      SHARE = `Is the microarray data publicly available`) %>% 
+      select(NCIT, IF, SHARE)
+```
+
+First, let's run a model in which the logarithm of the number of citations + 1 is regressed against the "Impact Factor" of the journal (which is a measure of "prestige" based on the average number of citations per paper received):
+
+```{r}
+my_model <- lm(log(NCIT + 1) ~ log(IF + 1), data = dat)
+summary(my_model)
+```
+
+You can see that the higher the impact factor, the higher the number of citations received (unsurprisingly!). Now let's add another variable, detailing whether publicly available data accompany the paper:
+
+```{r}
+my_model2 <- lm(log(NCIT + 1) ~ log(IF + 1) + SHARE, data = dat)
+summary(my_model2)
+```
+
+We find that sharing data is associated with a larger number of citations.
+
+# Categorical variables in linear models
+In the example above, we have built the model:
+$$
+ \log(\text{NCIT} + 1) = \beta_0 + \beta_1 (\log(\text{IF} + 1))_i + \beta_2 (\text{SHARE})_i + \epsilon_i
+$$
+
+In this case, the variable SHARE takes values of 1 or 0. As such, when the data were not shared (SHARE = 0) the model reduces to the previous one, in which $\beta_2$ was absent. The coefficient $\beta_2$ measures the increase in the log of citation count when data are shared. 
+
+The same approach can be taken whenever you have categorical values: `R` will automatically create **dummy variables** each encoding whether the ith data point belongs to a particular category. For example, suppose you want to predict the height of a child based on the height of the father, and that you also collected the gender, in three categories: `F` for female, `M` for male, `U` for unknown. Then you could use this information to build the model:
+$$
+ \text{height}_i = \beta_0 + \beta_1 \text{(height of father)}_i + \beta_2 (\text{gender is M})_i + \beta_3 (\text{gender is U})_i + \epsilon_i
+$$
+where the variable `gender is M` takes value 1 when the gender is `M` and 0 otherwise, and `gender is U` takes value 1 when the gender is unknown and 0 otherwise. As such, when the gender is `F` both variables will be zero, and $\beta_2$ and $\beta_3$ measure the increase (or decrease) in height for males and those with unspecified gender, respectively. While `R` does this for you automatically, understanding what is going on "under the hood" is essential for interpreting the results.
+
+# Interactions in linear models
+Sometimes we think that our explanatory variables could "interact". For example, suppose you want to predict the BMI of people. What we have available is the average caloric intake, the height, gender, and whether they are vegetarian, vegan, or omnivores. A simple model could be:
+$$
+\text{BMI}_i = \beta_0 + \beta_h \text{height}_i + \beta_c \text{calories}_i + \beta_g \text{gender}_i + \epsilon_i
+$$
+We could add the type of diet as a factor:
+$$
+\text{BMI}_i = \beta_0 + \beta_h \text{height}_i + \beta_c \text{calories}_i + \beta_g \text{gender}_i + \beta_d \text{diet}_i + \epsilon_i
+$$
+
+However, suppose that we believe the type of diet to affect differentially men and women. Then, we would like to create an "interaction" (e.g., paleo-female, vegan-male):
+
+$$
+\text{BMI}_i = \beta_0 + \beta_h \text{height}_i + \beta_c \text{calories}_i + \beta_g \text{gender}_i + \beta_d \text{diet}_i + \beta_{gd} \text{gender:diet}_i + \epsilon_i
+$$
+
+where the colon signals "interaction". In `R`, this would be coded as `lm(BMI ~ height + calories + gender * diet)`. A simpler model is one in which we only account for the `gender:diet` interaction, but not for the separate effects of gender and diet:
+$$
+\text{BMI}_i = \beta_0 + \beta_h \text{height}_i + \beta_c \text{calories}_i + \beta_{gd}\text{gender:diet}_i + \epsilon_i
+$$
+which in `R` can be coded as `lm(BMI ~ height + calories + gender:diet)`. Finally, for some models you believe the intercept should be 0 (note that this makes the $R^2$ statistics uninterpretable!). In `R`, just put `-1` at the end of the definition of the model (e.g., `lm(BMI ~ height + calories + gender:diet - 1)`).
+

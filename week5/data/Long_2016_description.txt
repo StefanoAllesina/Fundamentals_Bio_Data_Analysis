@@ -1,0 +1,13 @@
+# Data modified from
+https://doi.org/10.5061/dryad.5h2s7
+(reformatted for ease of access)
+
+GDM_Status (1 = GDM, 0 = No GDM)
+Ethnicity (1 = Asian, 2 = European, 3 = Other (including African), 4 = Polynesian, 5 = Indian)
+Maternal_Age (years)
+BMI (kg/m^2)
+H (Heparan Sulfate Concentration (ng/ml))
+C (Chondroitin Sulfate Concentration (ng/ml))
+Ha (Hyaluronan Concentration (ng/ml))
+S (Syndecan-1 Concentration (ng/ml))
+
