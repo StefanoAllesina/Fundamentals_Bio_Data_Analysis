@@ -14,7 +14,7 @@ output:
 urlcolor: blue
 ---
 
-```{r knitr, echo=FALSE}
+```{r knitr, echo=FALSE, warning=FALSE, include=FALSE}
 knitr::opts_chunk$set(
   eval      = TRUE,
   comment   = "#",
@@ -37,22 +37,30 @@ library(tidyverse)
 
 # Sample spaces and random variables
 
-A random experiment can result in a range of *outcomes* (at least two and possibly infinitely many.) The collection of all outcomes of an experiment is called its *sample space* or *probability space*. 
+No observation or measurement in our world is perfectly reproducible, no matter how carefully planned and executed. The level of uncertainly varies, but randomness always finds a way to creep into a data set. Where does the "random" factor come from? From the classical physics perspective, as articulated by Laplace, most natural phenomena are theoretically deterministic for an omniscient being with an unlimited computational power. Quantum mechanics is (theoretically) truly random, but it does not apply on the scales of biology or social science. The lack of predictability in the data we work with is usually due either to complexity (e.g. biomolecular systems, prediction of animal behavior) or of some external noise (e.g. measurement error, weather affecting food availability).
 
-Where does the "random" factor come from? Few things are inherently unpredictable in the physical sense (the exception being quantum phenomena governed by the undertainty principle). Most phenomena are theoretically deterministic for an omniscient being with an unlimited computational power. The observed randomness/unpredictability is usually the result of either complexity (e.g. biomolecular systems, prediction of animal behavior) or of some external noise (e.g. measurement error, weather affecting food availability).
+In probability terminology, a *random experiment* produces *outcomes* and the collection of all outcomes of an experiment is called its *sample space*. 
 
-**Example:** The specifics of the experiment can affect whether a variable is random. For example, measuring the height of a person should be deterministic, modulo measurement error, if one measures the height of the same person within a short amount of time. However, measuring the height of different people is a random experiment, where the source of randomness is external (the selection of person) rather than inherent to the person.
+**Example:** The specifics of the experiment can affect the degree of uncertainty of the outcomes and thus whether randomness is important to consider. For example, measuring the height of a person should be deterministic, if one measures the height of the same person within a short amount of time. So unless you're interested in studying the error in [stadiometer](https://www.quickmedical.com/measure/stadiometer.html) results, you probably won't consider this a random experiment. However, measuring the heights of different people is a random experiment, where the source of randomness is external (the selection of people for your study, called *sampling error*) rather than something inherent to the measurement of one person.
 
-The result of a measurement made from a random experiment is called a *random variable*. Sometimes the measurement simply reports the outcome, but usually it reports some aspect of the outcome and so several outcomes can have the same value of the random variable. The random variable can then be seen as condensing the sample space into a smaller range of values (numeric or categorical). Random variables can be numeric or categorical, with the difference that categorical variables cannot be assigned meaningful numbers. For instance, one may report an individual by phenotype (e.g. white or purple flowers), or having a nucleotide A, T, G, C in a particular position, and although one could assign numbers to these categories (e.g. 1, 2, 3, 4) they could not be used in sensical way - one can compare and do arithmetic with numbers, but A is not less than T and A + T does not equal G. Thus there are different tools for describing and working with categorical random variables. 
+The result of a measurement made from a random experiment is called a *random variable*. Sometimes the measurement is simply the outcome, but usually it reports some aspect of the outcome and so several outcomes can have the same value of the random variable. The random variable can then be seen as condensing the sample space into a smaller range of values (numeric or categorical). Random variables can be *numeric* or *categorical*, with the difference that categorical variables cannot be assigned meaningful numbers. For instance, one may report an individual by phenotype (e.g. white or purple flowers), or having a nucleotide A, T, G, C in a particular position, and although one could assign numbers to these categories (e.g. 1, 2, 3, 4) they could not be used in sensical way - one can compare and do arithmetic with numbers, but A is not less than T and A + T does not equal G. Thus there are different tools for describing and working with numeric and categorical random variables. 
 
-**Exercise:** In the mpg dataset in dplyr, certain variables are numeric and others are categorical; identify them. Specific which numeric variables are discrete and continuous. 
 
-**Example:** In a DNA sequence a codon triplet represents a specific amino acid, but there is redundancy (several triplets may code for the same amino acid). One may think of a coding DNA sequence as an outcome, but the amino acid (sequence or single one) as a random variable. Extending this framework, one may think of genotype as an outcome, but a phenotype (e.g. eye color) as a random variable.
+**Example:** In a DNA sequence a codon triplet represents a specific amino acid, but there is redundancy (several triplets may code for the same amino acid). One may think of a coding DNA sequence as an outcome, but the amino acid (sequence or single one) as a random variable. Extending this framework, one may think of genotype as an outcome, but a phenotype (e.g. eye color) as a random variable - although this is not correct for any phenotype that is not strictly determined by the genotype, because then there are other factors (e.g. environmental or epigenetic) that influence the value of the random variable besides the outcome (genotype.)
+
+
+**Exercise:** In the mpg dataset in dplyr, identify numeric and categorical variables, and specify whether numeric variables are discrete and continuous. 
+
+```{r}
+str(mpg) # print out the variables in the data frame (tibble) mpg
+```
+
+
 
 # Probability distributions
 
 ## Probability concepts and axioms
-An outcome in sample space can be assigned a *probability* depending on its frequency of occurrence out of many trials, each is a number between 0 and 1. Combinations of outcomes (*events*) can be assigned probabilities by building them out of individual outcomes.  These probabilities have a few rules, called the *axioms of probability*:
+An outcome in sample space can be assigned a *probability* depending on its frequency of occurrence out of many trials, each is a number between 0 and 1. Combinations of outcomes (*events*) can be assigned probabilities by building them out of individual outcomes.  These probabilities have a few rules, called the *axioms of probability*, expressed using set theory notation.
 
 1. The total probability of all outcomes in sample space is 1. $P(\Omega) = 1$
 
@@ -142,7 +150,7 @@ Samples of values from data sets can be plotted as *histograms* and the frequenc
 
 3. Solicit suggestions for questions you would like to address using your data set
 
-# Examples of mistakes and surprising data sets (maybe move to Friday?)
+# Examples of mistakes and surprising data sets
 
 Simpson's paradox (misleading means):
 
@@ -158,9 +166,15 @@ Use the library titanic and combine the data sets for all passangers and crew in
 ```{r}
 library(titanic)
 titanic_total <- bind_rows(titanic_test, titanic_train)
+str(titanic_total)
 ggplot(data = titanic_train) + 
   geom_bar(mapping = aes(x = Pclass, fill = as.character(Survived)), position="fill") 
 ```
 
 First, calculate the probability of survival for passengers by class (1, 2, 3, and crew). Then calculate the same by sex and. Then compare the survival rates of men and women separately by class. Do you observe  anything unexpected? How would you explain the apparent disagreement between the survival rates?
+
+```{r}
+
+```
+
 
