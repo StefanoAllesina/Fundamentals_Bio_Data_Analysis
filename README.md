@@ -1,5 +1,6 @@
 Materials for the class *Fundamentals of Biological Data Analysis*, by Dmitry Kondrashov & Stefano Allesina.
 
+The (public) webpage for the course is [here](https://stefanoallesina.github.io/Fundamentals_Bio_Data_Analysis/)
 ## Useful info
 ### Requirements
 - `R` and `RStudio`
