@@ -24,15 +24,28 @@ knitr::opts_chunk$set(
 library(tidyverse)
 ```
 
-## Reading:  Chapter 1 of Hadley and Wickham
 
 
-# Logistics and goals of the course
 
-* R tools for working with data
-* Theory to know how to set up a question
-* Avoid common mistakes
-* Apply this to your own data
+# Goals of the course
+
+* Learn R tools for working with data 
+* Become familiar with probability theory and assumptions of model
+* Encounter and learn to avoid common statistical mistakes
+* Apply this to your own data set
+
+Course outline by week:
+
+1. Review of probability, basic data visualization 
+2. Probability distributions, data wrangling with dplyr
+3. Summary of linear algebra, hypothesis testing
+4. Likelihood and modeling, linear regression
+5. ANOVA, Generalized linear models
+6. Model selection, time series modeling
+7. Principal component analysis, clustering
+8. Student presentations 
+9. Student presentations
+10. Student presentations
 
 
 # Sample spaces and random variables
@@ -41,18 +54,18 @@ No observation or measurement in our world is perfectly reproducible, no matter 
 
 In probability terminology, a *random experiment* produces *outcomes* and the collection of all outcomes of an experiment is called its *sample space*. 
 
-**Example:** The specifics of the experiment can affect the degree of uncertainty of the outcomes and thus whether randomness is important to consider. For example, measuring the height of a person should be deterministic, if one measures the height of the same person within a short amount of time. So unless you're interested in studying the error in [stadiometer](https://www.quickmedical.com/measure/stadiometer.html) results, you probably won't consider this a random experiment. However, measuring the heights of different people is a random experiment, where the source of randomness is external (the selection of people for your study, called *sampling error*) rather than something inherent to the measurement of one person.
+**Example:** The specifics of the experiment can affect the degree of uncertainty in the outcome; the same measurement may be random or not, depending on context. For example, measuring the height of a person should be deterministic, if one measures the height of the same person within a short amount of time. So unless you're interested in studying the error in [stadiometer](https://www.quickmedical.com/measure/stadiometer.html) results, you probably won't consider this a random experiment. However, measuring the heights of different people is a random experiment, where the source of randomness is primarily due to the selection of people for your study, called *sampling error*, rather than due to the measurement noise of any one person.
 
-The result of a measurement made from a random experiment is called a *random variable*. Sometimes the measurement is simply the outcome, but usually it reports some aspect of the outcome and so several outcomes can have the same value of the random variable. The random variable can then be seen as condensing the sample space into a smaller range of values (numeric or categorical). Random variables can be *numeric* or *categorical*, with the difference that categorical variables cannot be assigned meaningful numbers. For instance, one may report an individual by phenotype (e.g. white or purple flowers), or having a nucleotide A, T, G, C in a particular position, and although one could assign numbers to these categories (e.g. 1, 2, 3, 4) they could not be used in sensical way - one can compare and do arithmetic with numbers, but A is not less than T and A + T does not equal G. Thus there are different tools for describing and working with numeric and categorical random variables. 
+The measurement of interest from a random experiment is called a *random variable*. Sometimes the measurement is simply the outcome, but usually it reports some aspect of the outcome and so several outcomes can have the same value of the random variable. The random variable can then be seen as condensing the sample space into a smaller range of values (numeric or categorical). Random variables can be *numeric* or *categorical*, with the difference that categorical variables cannot be assigned meaningful numbers. For instance, one may report an individual by phenotype (e.g. white or purple flowers), or having a nucleotide A, T, G, C in a particular position, and although one could assign numbers to these categories (e.g. 1, 2, 3, 4) they could not be used in sensical way - one can compare and do arithmetic with numbers, but A is not less than T and A + T does not equal G. Thus there are different tools for describing and working with numeric and categorical random variables. 
 
 
 **Example:** In a DNA sequence a codon triplet represents a specific amino acid, but there is redundancy (several triplets may code for the same amino acid). One may think of a coding DNA sequence as an outcome, but the amino acid (sequence or single one) as a random variable. Extending this framework, one may think of genotype as an outcome, but a phenotype (e.g. eye color) as a random variable - although this is not correct for any phenotype that is not strictly determined by the genotype, because then there are other factors (e.g. environmental or epigenetic) that influence the value of the random variable besides the outcome (genotype.)
 
 
-**Exercise:** In the mpg dataset in dplyr, identify numeric and categorical variables, and specify whether numeric variables are discrete and continuous. 
+**Exercise:** In the diamonds dataset in dplyr, identify numeric and categorical variables, and specify whether numeric variables are discrete and continuous. 
 
 ```{r}
-str(mpg) # print out the variables in the data frame (tibble) mpg
+str(diamonds) # print out the variables in the data frame (tibble) mpg
 ```
 
 
@@ -100,6 +113,21 @@ $$ E(X) = \sum_i a_i f(a_i)$$
 And for a density function it is defined using the integral:
 $$ E(Y) =  \int_R y g(y) dy $$
 
+**Example:** The data set diamonds contains many variables, and the factors (categorical variables) cannot be described using means and medians, but can be plotted by counts:
+```{r}
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, fill = clarity), position = "fill")
+```
+One can plot and measure the mean and median of the numeric variables like depth, with separate box plots for different cut qualities:
+
+```{r}
+ggplot(data = diamonds) + aes(x = as.factor(cut), y=depth) + geom_boxplot()
+diamonds %>% group_by(cut) %>% summarise(mean = mean(depth))
+diamonds %>% group_by(cut) %>% summarise(median = median(depth))
+
+```
+Comment on how the descriptive statistics correspond to the box plots. 
+
 
 
 ## Measures of spread: quartiles and variances
@@ -115,6 +143,16 @@ $$ Var(Y) =  E[ Y - E(Y)]^2 = \int_R (y-E(Y))^2 g(y) dy $$
 
 Variances have squared units so they are not directly comparable to the values of the random variable. Taking the square root of the variance converts it into the same units and is called the standard deviation of the distribution:
 $$ \sigma_X = \sqrt (Var (X))$$
+**Example:** Let's go back to  data set diamonds and the numeric variable depth plotted for different cut qualities
+
+
+```{r}
+ggplot(data = diamonds) + aes(x = as.factor(cut), y=depth) + geom_boxplot()
+diamonds %>% group_by(cut) %>% summarise(var = var(depth))
+diamonds %>% group_by(cut) %>% summarise(first_quart = quantile(depth,0.25))
+diamonds %>% group_by(cut) %>% summarise(third_quart = quantile(depth,0.75))
+```
+Comment on how the descriptive statistics of spread correspond to the box plots. 
 
 
 # Data as samples from distributions: statistics
@@ -129,11 +167,23 @@ In scientific practice, we collect data from one or more random variables, calle
 
 4. Describe and test a relationship between two or more variables.
 
-First, the sample has to be *unbiased*, that is, no outcomes should be systematically over- or under-represented. But even an unbiased sample will differ from the population because of randomness. The **law of large numbers** states that as the *sample size* increases, the mean of the sample converges to the true mean of the population (provided the sample is a collection of independent, identically distributed random variables.)
+First, the sample has to be *unbiased*, that is, no outcomes should be systematically over- or under-represented. But even an unbiased sample will differ from the population because of randomness. The **law of large numbers** states that as the *sample size* increases, the mean of the sample converges to the true mean of the population. Formally, for a set of $n$ indepdenent, identically distributed random variable (the sample) $\{X_n\}$ with distribution mean $\mu$:
 
-That is nice to know, but doesn't say exactly how large a sample is needed to estimate, for example, the mean of the population to a given precision. For that, we have the **Central Limit Theorem**, which states that the distribution of sample means (from samples of independent, identically distributed random variables) as sample size increases, approaches the normal (Gaussian) distribution with mean equal to the population mean and standard deviation equal to the standard deviation of the population divided by the square root of the sample size. This is an amazing result because it applies to any distribution, so it allows for the estimation of means for any situation, as long as the condition of independent, identically disributed variables in the sample is satisfied. There are other central limit theorems that apply to other situations, including cases where the random variables in the sample are not independent (e.g. Markov models.)
+$$ 
+\lim _{n \to \infty} \frac{\sum_{i=1}^n {X_i}}{n} = \mu
+$$
 
-Essentially, an unbiased sample contains a reflection of the true population, but it is always distorted by uncertainty. Larger sample sizes decrease the uncertainty, but are more difficult and expensive to obtain.
+That is nice to know, but doesn't say exactly how large a sample is needed to estimate, for example, the mean of the population to a given precision. For that, we have the **Central Limit Theorem**, which states that the distribution of sample means (from samples of independent, identically distributed random variables) as sample size increases, approaches the normal (Gaussian) distribution with mean equal to the population mean and standard deviation equal to the standard deviation of the population divided by the square root of the sample size. Formally, it states that for a set of $n$ indepdenent, identically distributed random variable (the sample) $\{X_n\}$ with distribution mean $\mu$ and standard deviation $\sigma$, the probability density function of the sample mean $\bar X_n$ converges for large sample size $n$ to the normal distribution:
+
+$$ 
+P(\bar X_n) \to N(\mu, \sigma^2/n)
+$$
+
+where $N(\mu, \sigma^2/n$) stands for the normal distribution with mean $\mu$ and variance $\sigma^2/n$.
+
+This is an amazing result because it applies to any distribution, so it allows for the estimation of means for any situation, as long as the condition of independent, identically disributed variables in the sample is satisfied (the identical distributed conditional can actually be relaxed.) There are other central limit theorems that apply to other situations, including cases where the random variables in the sample are not independent (e.g. Markov models.)
+
+The bottom line is that an unbiased sample contains a reflection of the true population, but it is always distorted by uncertainty. Larger sample sizes decrease the uncertainty, but are more difficult and expensive to obtain.
 
 Samples of values from data sets can be plotted as *histograms* and the frequency/fraction of each value should be an approximation of the underlying probability distribution. In addition, descriptive statistics of the sample data (means, variances, medians, etc.) can be used to estimate the true parameters such as the mean and the variance of the population distribution.
 
@@ -152,15 +202,6 @@ Samples of values from data sets can be plotted as *histograms* and the frequenc
 
 # Examples of mistakes and surprising data sets
 
-Simpson's paradox (misleading means):
-
-https://medium.com/@nikhilborkar/the-simpsons-paradox-and-where-to-find-them-cfcec6c2d8b3
-
-
-```{r}
-ggplot(data = diamonds) + 
-  geom_bar(mapping = aes(x = cut, fill = clarity), position = "fill")
-```
 
 Use the library titanic and combine the data sets for all passangers and crew into the following tibble:
 ```{r}
@@ -171,10 +212,13 @@ ggplot(data = titanic_train) +
   geom_bar(mapping = aes(x = Pclass, fill = as.character(Survived)), position="fill") 
 ```
 
-First, calculate the probability of survival for passengers by class (1, 2, 3, and crew). Then calculate the same by sex and. Then compare the survival rates of men and women separately by class. Do you observe  anything unexpected? How would you explain the apparent disagreement between the survival rates?
+* Calculate the probability of survival for passengers by class (1, 2, 3, and crew). 
+* Calculate the survival probability by sex. 
+* Compare the survival rates of men and women separately by class. Do you observe anything unexpected? How would you explain the apparent disagreement between the survival rates?
 
-```{r}
+# References  
 
-```
-
-
+* [Chapter 1 of R for Data Science](https://r4ds.had.co.nz/introduction.html)
+* [Simpson's paradox](https://medium.com/@nikhilborkar/the-simpsons-paradox-and-where-to-find-them-cfcec6c2d8b3)
+* [Central Limit Theorem in R](https://medium.com/@ODSC/exploring-the-central-limit-theorem-in-r-e2a2f7091606)
+* [Exploration of the Central Limit Theorem](https://genomicsclass.github.io/book/pages/clt_in_practice.html)
