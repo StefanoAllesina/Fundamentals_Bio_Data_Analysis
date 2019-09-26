@@ -1551,9 +1551,11 @@ div.tocify {
 <li>Student presentations</li>
 </ol>
 </div>
-<div id="sample-spaces-and-random-variables" class="section level1">
-<h1>Sample spaces and random variables</h1>
-<p>No observation or measurement in our world is perfectly reproducible, no matter how carefully planned and executed. The level of uncertainly varies, but randomness always finds a way to creep into a data set. Where does the “random” factor come from? From the classical physics perspective, as articulated by Laplace, most natural phenomena are theoretically deterministic for an omniscient being with an unlimited computational power. Quantum mechanics is (theoretically) truly random, but it does not apply on the scales of biology or social science. The lack of predictability in the data we work with is usually due either to complexity (e.g. biomolecular systems, prediction of animal behavior) or of some external noise (e.g. measurement error, weather affecting food availability).</p>
+<div id="fundamentals-of-probability" class="section level1">
+<h1>Fundamentals of probability</h1>
+<div id="sample-spaces-and-random-variables" class="section level2">
+<h2>Sample spaces and random variables</h2>
+<p>No observation or measurement in our world is perfectly reproducible, no matter how carefully planned and executed. The level of uncertainly varies, but randomness always finds a way to creep into a data set. Where does the “random” factor come from? From the classical physics perspective, as articulated by Laplace, most natural phenomena are theoretically deterministic for an omniscient being with an unlimited computational power. Quantum mechanical phenomena are (theoretically) truly random, but the randomness is not observable on the scales of biology or social science. The lack of predictability in the data we work with is usually due either to its intrinsic complexity (e.g. biomolecular systems, prediction of animal behavior), which essentially makes it impossible to know every detail of the system, or to some external source of noise (e.g. measurement error, weather affecting food availability) that is outside of our control.</p>
 <p>In probability terminology, a <em>random experiment</em> produces <em>outcomes</em> and the collection of all outcomes of an experiment is called its <em>sample space</em>.</p>
 <p><strong>Example:</strong> The specifics of the experiment can affect the degree of uncertainty in the outcome; the same measurement may be random or not, depending on context. For example, measuring the height of a person should be deterministic, if one measures the height of the same person within a short amount of time. So unless you’re interested in studying the error in <a href="https://www.quickmedical.com/measure/stadiometer.html">stadiometer</a> results, you probably won’t consider this a random experiment. However, measuring the heights of different people is a random experiment, where the source of randomness is primarily due to the selection of people for your study, called <em>sampling error</em>, rather than due to the measurement noise of any one person.</p>
 <p>The measurement of interest from a random experiment is called a <em>random variable</em>. Sometimes the measurement is simply the outcome, but usually it reports some aspect of the outcome and so several outcomes can have the same value of the random variable. The random variable can then be seen as condensing the sample space into a smaller range of values. Random variables can be <em>numeric</em> or <em>categorical</em>, with the difference that categorical variables cannot be assigned meaningful numbers. For instance, one may report an individual by phenotype (e.g. white or purple flowers), or having a nucleotide A, T, G, C in a particular position, and although one could assign numbers to these categories (e.g. 1, 2, 3, 4) they could not be used in sensical way - one can compare and do arithmetic with numbers, but A is not less than T and A + T does not equal G. Thus there are different tools for describing and working with numeric and categorical random variables.</p>
@@ -1572,10 +1574,8 @@ div.tocify {
 #  $ y      : num  3.98 3.84 4.07 4.23 4.35 3.96 3.98 4.11 3.78 4.05 ...
 #  $ z      : num  2.43 2.31 2.31 2.63 2.75 2.48 2.47 2.53 2.49 2.39 ...</code></pre>
 </div>
-<div id="probability-distributions" class="section level1">
-<h1>Probability distributions</h1>
-<div id="probability-concepts-and-axioms" class="section level2">
-<h2>Probability concepts and axioms</h2>
+<div id="probability-axioms" class="section level2">
+<h2>Probability axioms</h2>
 <p>An outcome in sample space can be assigned a <em>probability</em> depending on its frequency of occurrence out of many trials, each is a number between 0 and 1. Combinations of outcomes (<em>events</em>) can be assigned probabilities by building them out of individual outcomes. These probabilities have a few rules, called the <em>axioms of probability</em>, expressed using set theory notation.</p>
 <ol style="list-style-type: decimal">
 <li><p>The total probability of all outcomes in sample space is 1. <span class="math inline">\(P(\Omega) = 1\)</span></p></li>
@@ -1584,7 +1584,7 @@ div.tocify {
 </ol>
 <p><strong>Example:</strong> Let’s assign a probability to every possible three-letter codon. There are <span class="math inline">\(4^3 = 64\)</span> codons, so if one assumes that each one has equal probability, then they they all equal <span class="math inline">\(1/64\)</span> (by axiom 1.) The probability of a codon having A as the first letter is 1/4, and so is the probability of A as the second letter. Axiom 3 allows us to calculate the probability of A in either the first or the second letter: <span class="math display">\[ P(AXX \cup \ XAX ) =  P(AXX) + P(XAX) - P(AAX) = 1/4 + 1/4 - 1/16 = 7/16\]</span></p>
 </div>
-<div id="probability-distributions-1" class="section level2">
+<div id="probability-distributions" class="section level2">
 <h2>Probability distributions</h2>
 <p>The probability of each value of a random variable can be calculated from the probability of the event that corresponds to each value of the random variable. The collection of the probabilities of all of the values of the random variable is called the <em>probability distribution function</em> of the random variable, more formally the <em>mass function</em> for a discrete random variable or the <em>density function</em> for a continuous random variable.</p>
 <p>For a discrete random variable (let’s call it <span class="math inline">\(X\)</span>) with a probability mass function <span class="math inline">\(f\)</span>, the probability of <span class="math inline">\(X\)</span> taking the value of <span class="math inline">\(a\)</span> can be written either as <span class="math inline">\(f(X=a)\)</span> or <span class="math inline">\(f(a)\)</span>, as long as it’s clear that <span class="math inline">\(f\)</span> is the probability distriution function of <span class="math inline">\(X\)</span>.The one ironclad rule of probability is that all values of the mass function have to add up to 1. To state this mathematically, if all the possible values of <span class="math inline">\(X\)</span> can be written as <span class="math inline">\(a_1, a_2, ...\)</span> (there may be finitely or infinitely many of them, as long as it’s a countable infinity), this sum has to be equal to 1: <span class="math display">\[ \sum_i f(a_i) = 1 \]</span></p>
@@ -1676,10 +1676,15 @@ diamonds %&gt;% group_by(cut) %&gt;% summarise(third_quart = quantile(depth,0.75
 <li><p>Test a hypothesis, e.g. whether two samples were drawn from the same distribution.</p></li>
 <li><p>Describe and test a relationship between two or more variables.</p></li>
 </ol>
+<div id="law-of-large-numbers" class="section level2">
+<h2>Law of large numbers</h2>
 <p>First, the sample has to be <em>unbiased</em>, that is, no outcomes should be systematically over- or under-represented. But even an unbiased sample will differ from the population due to the inherent randomness of selection (sampling error.) The <strong>law of large numbers</strong> states that as the <em>sample size</em> increases, the mean of the sample converges to the true mean of the population. Formally, for a set of <span class="math inline">\(n\)</span> indepdenent, identically distributed random variable (the sample) <span class="math inline">\(\{X_i\}\)</span> the sample mean <span class="math inline">\(\bar X_n\)</span> converges to the mean of the distribution <span class="math inline">\(\mu\)</span>:</p>
 <p><span class="math display">\[ 
 \lim _{n \to \infty} \frac{\sum_{i=1}^n {X_i}}{n} = \lim _{n \to \infty} \bar X_n = \mu
 \]</span></p>
+</div>
+<div id="central-limit-theorem" class="section level2">
+<h2>Central Limit Theorem</h2>
 <p>That is nice to know, but doesn’t say exactly how large a sample is needed to estimate, for example, the mean of the population to a given precision. For that, we have the <strong>Central Limit Theorem</strong>, which states that the distribution of sample means (from samples of independent, identically distributed random variables) as sample size increases, approaches the normal (Gaussian) distribution with mean equal to the population mean and standard deviation equal to the standard deviation of the population divided by the square root of the sample size. Formally, it states that for a set of <span class="math inline">\(n\)</span> indepdenent, identically distributed random variable (the sample) <span class="math inline">\(\{X_i\}\)</span> with distribution mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>, the probability density function of the sample mean <span class="math inline">\(\bar X_n\)</span> converges for large sample size <span class="math inline">\(n\)</span> to the normal distribution:</p>
 <p><span class="math display">\[ 
 P(\bar X_n) \to N(\mu, \sigma^2/n)
@@ -1687,6 +1692,7 @@ P(\bar X_n) \to N(\mu, \sigma^2/n)
 <p>where <span class="math inline">\(N(\mu, \sigma^2/n\)</span>) stands for the normal distribution with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2/n\)</span>. One extremely useful consequence of this theorem is that the variance of the sample mean is reciprocally related to the sample size <span class="math inline">\(n\)</span>. More precicely, it allows the calculation of <em>confidence intervals</em> by using the normal distribution to generate an interval around the observed sample mean in which the true mean <span class="math inline">\(\mu\)</span> lies with a given likelihood.</p>
 <p>This is an amazing result because it applies to any distribution, so it allows for the estimation of means for any situation, as long as the condition of independent, identically disributed variables in the sample is satisfied (the identical distributed condition can actually be relaxed.) There are other central limit theorems that apply to other situations, including cases where the random variables in the sample are not independent (e.g. Markov models.) The bottom line is that an unbiased sample contains a reflection of the true population, but it is always distorted by uncertainty. Larger sample sizes decrease the uncertainty, but are more difficult and expensive to obtain.</p>
 <p><strong>Discussion:</strong> Suggest examples of biological data sets which are not made up of independent identically distributed random variables.</p>
+</div>
 </div>
 <div id="over-to-the-students" class="section level1">
 <h1>Over to the students</h1>
@@ -1696,8 +1702,8 @@ P(\bar X_n) \to N(\mu, \sigma^2/n)
 <li><p>State the questions you would like to address using the data</p></li>
 </ol>
 </div>
-<div id="examples-of-mistakes-and-surprising-data-sets" class="section level1">
-<h1>Examples of mistakes and surprising data sets</h1>
+<div id="in-class-exploration-misleading-means" class="section level1">
+<h1>In-class exploration: misleading means</h1>
 <p>Use the library titanic and combine the data sets for all passangers and crew into the following tibble:</p>
 <pre class="r"><code>library(titanic)
 titanic_total &lt;- bind_rows(titanic_test, titanic_train)

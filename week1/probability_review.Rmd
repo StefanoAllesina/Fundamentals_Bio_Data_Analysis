@@ -47,10 +47,11 @@ Course outline by week:
 9. Student presentations
 10. Student presentations
 
+# Fundamentals of probability
 
-# Sample spaces and random variables
+## Sample spaces and random variables
 
-No observation or measurement in our world is perfectly reproducible, no matter how carefully planned and executed. The level of uncertainly varies, but randomness always finds a way to creep into a data set. Where does the "random" factor come from? From the classical physics perspective, as articulated by Laplace, most natural phenomena are theoretically deterministic for an omniscient being with an unlimited computational power. Quantum mechanics is (theoretically) truly random, but it does not apply on the scales of biology or social science. The lack of predictability in the data we work with is usually due either to complexity (e.g. biomolecular systems, prediction of animal behavior) or of some external noise (e.g. measurement error, weather affecting food availability).
+No observation or measurement in our world is perfectly reproducible, no matter how carefully planned and executed. The level of uncertainly varies, but randomness always finds a way to creep into a data set. Where does the "random" factor come from? From the classical physics perspective, as articulated by Laplace, most natural phenomena are theoretically deterministic for an omniscient being with an unlimited computational power. Quantum mechanical phenomena are (theoretically) truly random, but the randomness is not observable on the scales of biology or social science. The lack of predictability in the data we work with is usually due either to its intrinsic complexity (e.g. biomolecular systems, prediction of animal behavior), which essentially makes it impossible to know every detail of the system, or to some external source of noise (e.g. measurement error, weather affecting food availability) that is outside of our control.
 
 In probability terminology, a *random experiment* produces *outcomes* and the collection of all outcomes of an experiment is called its *sample space*. 
 
@@ -70,9 +71,8 @@ str(diamonds) # print out the variables in the data frame (tibble) mpg
 
 
 
-# Probability distributions
 
-## Probability concepts and axioms
+## Probability axioms
 An outcome in sample space can be assigned a *probability* depending on its frequency of occurrence out of many trials, each is a number between 0 and 1. Combinations of outcomes (*events*) can be assigned probabilities by building them out of individual outcomes.  These probabilities have a few rules, called the *axioms of probability*, expressed using set theory notation.
 
 1. The total probability of all outcomes in sample space is 1. $P(\Omega) = 1$
@@ -169,12 +169,15 @@ Some of the fundamental questions about the population include:
 
 4. Describe and test a relationship between two or more variables.
 
+
+## Law of large numbers
 First, the sample has to be *unbiased*, that is, no outcomes should be systematically over- or under-represented. But even an unbiased sample will differ from the population due to the inherent randomness of selection (sampling error.) The **law of large numbers** states that as the *sample size* increases, the mean of the sample converges to the true mean of the population. Formally, for a set of $n$ indepdenent, identically distributed random variable (the sample) $\{X_i\}$ the sample mean $\bar X_n$ converges to the mean of the distribution $\mu$:
 
 $$ 
 \lim _{n \to \infty} \frac{\sum_{i=1}^n {X_i}}{n} = \lim _{n \to \infty} \bar X_n = \mu
 $$
 
+## Central Limit Theorem
 
 That is nice to know, but doesn't say exactly how large a sample is needed to estimate, for example, the mean of the population to a given precision. For that, we have the **Central Limit Theorem**, which states that the distribution of sample means (from samples of independent, identically distributed random variables) as sample size increases, approaches the normal (Gaussian) distribution with mean equal to the population mean and standard deviation equal to the standard deviation of the population divided by the square root of the sample size. Formally, it states that for a set of $n$ indepdenent, identically distributed random variable (the sample) $\{X_i\}$ with distribution mean $\mu$ and variance $\sigma^2$, the probability density function of the sample mean $\bar X_n$ converges for large sample size $n$ to the normal distribution:
 
@@ -199,8 +202,7 @@ This is an amazing result because it applies to any distribution, so it allows f
 
 3. State the questions you would like to address using the data
 
-# Examples of mistakes and surprising data sets
-
+# In-class exploration: misleading means
 
 Use the library titanic and combine the data sets for all passangers and crew into the following tibble:
 ```{r}
