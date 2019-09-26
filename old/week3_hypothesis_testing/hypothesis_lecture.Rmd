@@ -1,0 +1,159 @@
+---
+title: "Week 3: hypothesis testing and errors"
+author: "Dmitry Kondrashov & Stefano Allesina"
+date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
+output:
+  html_document:
+    theme: cosmo
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+urlcolor: blue
+---
+
+```{r knitr, echo=FALSE}
+knitr::opts_chunk$set(
+  eval      = TRUE,
+  comment   = "#",
+  results   = "hold",
+  # collapse  = TRUE,
+  fig.align = "center")
+```
+
+# Hypothesis testing
+
+A good fraction of statistical questions can be expressed as hypothesis tests, essentially any time a yes/no answer is needed, e.g.: Are two samples drawn from distributions with the same mean? Is the frequency of an allele in a population greater than 0.1? Different tests exist to answer their corresponding questions, which use different probability distribution functions in the calculation. There is a dangerous tendency to view statistics as a collection of tests, and to practice it by plugging in your data set into the correct one, expecting that it will spit out the correct decision. The purpose of this lesson is to demonstrate that using and interpreting statistical tests requires careful thinking to avoid serious errors.
+
+
+## Test results vs. the truth
+
+A statistical test begins by stating the null hypothesis, usually one that is expected or that shows no effect: for example, that two samples come from a distribution with the same mean, or that a rare allele has frequency of less than 0.1. One may state the alternative hypothesis explicitly, although it's usually the logical converse of the null, e.g. the two samples have different population means, or the allele has frequency greater than 0.1.
+
+After the hypothesis is stated, the data is collected and is used to test the hypothesis. By default, the null hypothesis is assumed to be true, and the test assesses whether the data provides sufficient evidence against the null hypothesis that it can be rejected. There is an adversarial relationship: either the data knocks off the hypothesis, or else it fails to do so. Standard terminology reflects this somewhat counterintuitive setup: rejecting the null hypothesis is called a *positive test result*, while not rejecting it is called a *negative result*.
+
+**The fundamental assumption of this process is that the truth value of the hypothesis is set prior to  the collection data and the test decision.** For example, if one could observe all of the genomes, the frequency of the allele would be known exactly, so this truth exists prior to the hypothesis testing. Whether the hypothesis is true or false, the test may end up rejecting or not rejecting it, so there are actually four possible outcomes of hypothesis testing:
+
+$H_0$ | True | False
+----|-----|------
+Reject | False Positive | True Positive
+Not Reject | True Negative | False Negative
+
+The values at the top describe the truth status of the hypothesis, while the decisions in the left column are the result of using data to test the hypothesis. Note: the words false and true in describing the test result do not refer to the hypothesis, but to whether the result is correct! For example, if the frequency of the allele were 0.09 but the test for the hypothesis that the frequency is less than 0.1 resulted in rejecting that hypothesis, that would be a false positive result (the null hypothesis is true but the test rejected it.) 
+
+## Types of errors
+As mentioned above, sometimes a hypothesis test makes the wrong decision, which is called an error. There are two different kinds of errors: rejecting a true null hypothesis, called a Type 1 error, and not rejecting a false null hypothesis, called a Type 2 error. 
+
+**Example:** In the case above of testing for the same mean: if the samples have the same mean, but the hypothesis is rejected, this is called a false positive (Type 1 error). If the two samples come from different distributions, but the hypothesis is not rejected, this is called a false negative (Type 2 error.)
+
+
+## Test parameters and p-values
+
+The *sensitivity* of a test is the probability of obtaining the positive result, given a false hypothesis; and the  *specificity* of a test is the probability of obtaining the negative result, given a true hypothesis. The *type I error rate* is the probability of obtaining the positive result, given a true hypothesis (complementary to specificity), and the  *type II error rate* is the probability of obtaining the negative result, given a false hypothesis (complementary to sensitivity). 
+
+All four parameters (rates) of a binary test are summarized as follows:
+$$ Sen = \frac{TP}{TP+FN};  \; Spec = \frac{TN}{TN+FP}$$
+$$ FPR = \frac{FP}{TN+FP};  \; FNR = \frac{FN}{TP+FN}$$
+The notation TP, FP, etc. represents the frequency or count of true positives, false positives, etc., out of a large number of experiments with known truth status of the hypothesis.
+
+Knowledge of sensitivity and specificity determine the type I and type II error rates of a test since they are complementary events.  
+
+Of course, it is desirable for a test to be both very sensitive (reject false null hypotheses, detect disease, convict guilty defendants) and very specific (not reject true null hypotheses, correctly identify healthy patients, acquit innocent defendants), but no test is perfect, and sometimes it makes the wrong decision. This is where statistical inference comes into play: given some information about these parameters,  a statistician can calculate the error rate in making different decisions.
+
+
+The probability that a given data set is produced from the model of the null hypothesis is called the *p-value* of a test. More precicely:
+
+
+> **Definition:** For a given data set $D$ and a null hypothesis $H_0$, the  *p-value* is the probability of obtaining a result *as far from expectation or farther than the data, given the null hypothesis.* 
+
+In short, it can be written as $p = P(D | H_0)$ although it's not completely clear what the probability of a data set means. 
+
+The p-value is the most used, misused, and even abused quantity is statistics, so please think carefully about its definition. One reason this notion is frequently misused is because it is very tempting to conclude that the p-value is the probability of the null hypothesis being true, based on the data. That is not true! The definition has the opposite direction of conditionality - we assume that the null hypothesis is true, and based on that calculate the probability of obtaining the data. There is no way (according to classical "frequentist" statistics) of assigning a probability to the truth of a hypothesis, because it is not the result of an experiment. 
+```{r}
+# Let us test data that we generate with dice rolls
+data_mat <- matrix(c(1,1,1,1),nrow = 2 )
+chisq.result <- chisq.test(data_mat) # run chi-squared test
+```
+
+```{r}
+size <- 100
+probA <- 0.1
+probB <- 0.1
+dis.genA <- rbinom(size,1,probA) # generate sammple for genotype A
+dis.genB <- rbinom(size,1,probB) # generate sample for genotype B
+data_mat <- matrix(c(table(dis.genA),table(dis.genB)),nrow=2,ncol=2) # assign data matrix
+result <- chisq.test(data_mat) # run chi-squared test
+print(result$p.value)
+```
+
+# Bayesian thinking
+
+We will formalize the process of incorporation of prior knowledge into probabilistic inference by going back to the notion of conditional probability introduced in week 2. First, if you multiply both sides of the definition by $P(B)$, then we obtain the probability of the intersection of events $A$ and $B$:
+$$P(A \cap B) = P(A|B) P(B); \;  P(A \cap B) = P(B|A) P(A) $$
+Second, we can partition a sample space into two complementary sets, $A$ and $\bar A$, and then the set of $B$ can be partitioned into two parts, that intersect with $A$ and $\bar A$, respectively, so that the probability of $B$ is
+$$P(B) = P(A \cap B) + P( \bar A\cap B)$$
+
+The two formulas together lead to a very important result called the *law of total probability*:
+$$
+P(B) =  P(B|A) P(A) + P(B|\bar A)P(\bar A)
+$$
+
+It may not be clear at first glance why this is useful: after all, we replaced something simple ($P(B)$) with something much more complex on the right hand side. You will see how this formula enables us to calculate quantities that are not otherwise accessible. 
+
+**Example:** Suppose we know that the probability of a patient having a disease is 1% (called the prevalence of the disease in a population), and the sensitivity and specificity of the test are both 80%. What is the probability of obtaining a negative test result for a randomly selected patient? Let us call $P(H) = 0.99$ the probability of a healthy patient and $P(D) = 0.01$ the probability of a diseased patient. Then:
+$$ P(Neg) =  P(Neg | H) P(H) + P(Neg | D)P(D)  = $$
+$$ = 0.8 \times 0.99 + 0.2 \times 0.01 = 0.794$$
+
+## Bayes' formula
+Take the first formula in this section, which expresses the probability $P(A \cap B)$ in two different ways.  Since the expressions are equal, we can combine them into one equation, and by dividing both sides by $P(B)$, we obtain what's known as *Bayes' formula*:
+$$ P(A|B) = \frac{P(B|A) P(A)}{P(B) }$$
+
+Another version of Bayes' formula  re-writes the denominator using the Law of total probability above:
+$$
+P(A|B) = \frac{P(B|A)P(A)}{P(B|A) P(A) + P(B|\bar A)P( \bar A)}
+$$
+
+Bayes' formula gives us the probability of $A$ given $B$ from probabilities of $B$ given $A$ and given $-A$, and the prior (baseline) probability of $P(A)$. This is enormously useful when it is easy to calculate the conditionals one way and not the other. Among its many applications, it computes the effect of a test result with given sensitivity and specificity (conditional probabilities) on the probability of the hypothesis being true.
+
+![xkcd on Bayes' formula](https://imgs.xkcd.com/comics/modified_bayes_theorem.png)
+
+
+## Positive predictive value
+
+In reality, a doctor doesn't have the true information about the patient's health,  but rather the information from the test and hopefully some information about the population where she is working.  Let us assume we know the rate of false positives $P(Pos|H$) and the rate of false negatives $P(Neg | D)$, as well as the prevalence of the disease in the whole population $P(D)$. Then we can use Bayes' formula to answer the practical question, if the test result is positive, what is the probability the patient is actually sick? This is called the *positive predictive value* of a test. The deep Bayesian fact is that one cannot make inferences about the health of the patient after the test without some prior knowledge, specifically the prevalence of the disease in the population:
+$$ P(D | Pos) =  \frac{P(Pos|D)P(D)}{P(Pos|D) P(D) + P(Pos | H)P(H)}$$
+
+**Example.** Suppose the test has a 0.01 probability of both false positive and false negatives, and the overall prevalence of the disease in the population 0.02. You may be surprised that from an epidemiological perspective, a positive result is far from definitive:
+$$ P(D | Pos)  = \frac{0.99 \times 0.02}{0.99 \times 0.02 + 0.01 \times 0.98} = 0.67 $$
+This is because the disease is so rare, that even though the test is quite accurate, there are going to be a lot of false positives (about 1/3 of the time) since 98% of the patients are healthy.
+
+We can also calculate the probability of a patient who tests negative of actually being healthy, which is called the  *negative predictive value*. In this example, it is far more definitive:
+$$ P(H | Neg)  = \frac{P(Neg|H)P(H)}{P(Neg|H) P(H) + P(Neg | D)P(D)} = $$
+$$ = \frac{0.99 \times 0.98}{0.99 \times 0.98 + 0.01 \times 0.02} =  0.9998$$
+This is again because this disease is quite rare in this population, so a negative test result is almost guaranteed to be correct. In another population, where disease is more prevalent, this may not be the case.
+
+![Frequentists vs Bayesians](https://imgs.xkcd.com/comics/frequentists_vs_bayesians.png)
+
+**Exercise:** Simulate medical testing by rolling dice for a rare disease (1/6 prevalence) and a common disease (1/2 prevalence), with both sensitivity and specificity of 5/6. Compare the positive predictive values for the two cases.
+
+## Reproducibility of studies
+
+In 2005 John Ioannidis published a paper entitled ["Why most published research findings are false"](https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.0020124). The paper, as you can see by its title, was intended to be provocative, but it is based solidly on the classic formula of Bayes. The motivation for the paper came from the observation that too often in modern science, big, splashy studies that were published could not be reproduced or verified by other researchers. What could be behind this epidemic of questionable scientific work?
+
+The problem as described by Ioannidis and many others, in a nutshell, is that unthinking use of traditional hypothesis testing leads to a high probability of false positive results being published. The paper outlines several ways in which this can occur.
+
+### Prior knowledge
+
+Too often, a hypothesis is tested and if the resultant p-value is less than some arbitrary threshold (very often 0.05, an absurdly high number), then the results are published. However, if one is testing a hypothesis with low prior probability, a positive hypothesis test result is very likely a false positive. Very often, modern biomedical research involves digging through a large amount of information, like an entire human genome, in search for associations between different genes and a phenotype, like a disease. It is a priori unlikely that any specific gene is linked to a given phenotype, because most genes have very specific functions, and are expressed quite selectively, only at specific times or in specific types of cells. However, publishing such studies results in splashy headlines ("Scientists find a gene linked to autism!") and so a lot of false positive results are reported, only to be refuted later, in much less publicized studies.
+
+### Multiple studies
+This should be a good thing, but it can lead to a higher volume of false positive results. Suppose that 20 groups are all testing the same hypothesis, and are using the same p-value cutoff of 0.05 to decide whether their results is ``significant''. Even if their null hypothesis is true, and there is no effect, 1 out 20 groups is likely to obtain a p-value less than 0.05, simply by random variation. What do you think that group will do? Yes, they should compare its results with the other groups, or try to repeat the experiment multiple times. But repeating experiments is costly and boring, and telling your competitors about your results can lead to your getting scooped. Better publish fast!
+
+## P-hacking and forking paths
+One big violation of good experimental design is known as p-value fishing: repeating the experiment, or increasing the sample size, until the p-value is below the desired threshold, and then stopping the experiment. Using such defective design dramatically lowers the likelihood that the result is a true positive. And of course there is actual fraud, or fudging of data, which contributes to some bogus results.
+
+An insidious cousin of p-hacking was dubbed by Andrew Gelman "the garden of forking paths" in this [paper](http://www.stat.columbia.edu/~gelman/research/unpublished/p_hacking.pdf). The issue arises in complex problems with multi-variable noisy datasets (aren't all interesting ones like that?) Essentially, with many choices and degrees of freedom in a problem, it is easy to convince yourself that the choice you made (data cleaning, parameter combinations, etc.) is the correct one because it gives the strongest results. Without a clearly stated hypothesis, experimental design, and data processing details prior to data collection, this enchanted garden can lead even a well-intentioned researcher astray.
+
+Ioannidis performed basic calculations of the probability that a published study is true (that is, that a positive reported result is a true positive), and how it is affected by pre-study (prior) probability, number of conducted studies on the same hypothesis, and the level of bias. His prediction is that for fairly typical scenario (e.g. pre-study probability of 10%, ten groups working simultaneously, and a reasonable amount of bias) the probability that a published result is correct is less than 50%. He then followed up with another paper that investigated 49 top-cited medical research publications over a decade, and looked at whether follow-up studies could replicate the results, and found that a very significant fraction of their findings could not be replicated by subsequent investigations.
+
+

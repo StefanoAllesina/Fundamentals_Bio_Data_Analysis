@@ -1,0 +1,198 @@
+---
+title: "Week 1 exercises"
+author: "Dmitry Kondrashov and Stefano Allesina"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+
+Selected exercises taken from Grolemund & Wickham, Chapter 3.
+
+## Goals: 
+In this assignment you will learn the following:
+
+* Use ggplot to plot several geom(etries)
+* Map variables to aes(thetics)
+* Plot trend curves
+* Make multiple plots using facet
+* Make barplots and histograms
+* Summarize distributions of variables
+
+
+## Grading:
+
+30 pts: 14 questions, 2 pts each + 2 pts for submission.
+
+## Section 3.2.4
+
+4. Make a scatterplot of hwy vs cyl.
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = cyl, y = hwy))
+```
+
+5. What happens if you make a scatterplot of class vs drv? Why is the plot not useful?
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = drv, y = class))
+```
+
+The variables are categorical, so a scatterplot doesn't show a relationship or trend.
+
+## Section 3.3.1
+
+1. What’s gone wrong with this code? Why are the points not blue?
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, color = "blue"))
+```
+
+Misplaced parenthesis, the correct code should be:
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy), color = "blue")
+```
+2. Which variables in mpg are categorical? Which variables are continuous? (Hint: type ?mpg to read the documentation for the dataset). How can you see this information when you run mpg?
+
+```{r}
+?mpg
+#View(mpg)
+```
+
+
+3. Map a continuous variable to color, size, and shape. How do these aesthetics behave differently for categorical vs. continuous variables?
+
+```{r}
+
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, color = cty))
+
+```
+What does it mean to "map a variable"? For R it means adding the color to the aes() call, and that way it will be used to assign a color to the data point. If the variable is continuous (meaning, has a lot of numeric values), it will be mapped to a range of aesthetic instances, like colors.
+
+
+6. What happens if you map an aesthetic to something other than a variable name, like aes(colour = displ < 5)?
+
+```{r}
+
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = cty, y = hwy, color = displ < 5))
+
+```
+
+It uses the results of the expression, in this case a Boolean variable, to map to the color.
+
+## Section 3.5.1
+
+1. What happens if you facet on a continuous variable?
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = cyl)) +
+  facet_wrap(~ cty, nrow = 2)
+```
+
+Way too many panels, not enough info!
+
+
+
+3. What plots does the following code make? What does . do?
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_grid(drv ~ .)
+
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_grid(. ~ cyl)
+```
+The period stands for either row or column.
+
+
+## Section 3.6.1
+
+
+2. Run this code in your head and predict what the output will look like. Then, run the code in R and check your predictions.
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv)) + 
+  geom_point() + 
+  geom_smooth(se = FALSE)
+```
+
+It is instructive to compare the above plot with the result of the code from the book:
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+  geom_point(mapping = aes(color = class)) + 
+  geom_smooth()
+```
+
+The difference is that geom_smooth draws different curves if the aesthetic is mapped to discrete values. In the second example, I think the reason is that the points are colored separately from the plotting, so the grouping is not passed on to geom_smooth.
+
+4. What does the se argument to geom_smooth() do?
+
+Shows the standard error around the fitted curve.
+
+
+## Section 3.7.1
+
+
+1. What is the default geom associated with stat_summary()? How could you rewrite the previous plot to use that geom function instead of the stat function?
+
+```{r}
+ggplot(data = diamonds) + 
+  stat_summary(mapping = aes(x = cut, y = depth))
+```
+
+I think this  uses mean_se, which just shows the mean and standard errors.
+
+5. In our proportion bar chart, we need to set group = 1. Why? In other words what is the problem with these two graphs?
+
+```{r}
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, y = ..prop..))
+
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, fill = color, y = ..prop..))
+```
+```{r}
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, y = ..prop.., group = 1))
+
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, y = ..prop.., group = 1, fill = color))
+```
+The first line is missing group = 1, without which the proportions are not computed properly. The second script I'm not sure about, because I can't make the fill work.
+
+## Section 3.8.1
+
+1. What is the problem with this plot? How could you improve it?
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) + 
+  geom_point()
+```
+Too many identical values preventing from displaying all the data, geom_jitter would solve the problem.
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) + 
+  geom_jitter()
+```
+
+4. What’s the default position adjustment for geom_boxplot()? Create a visualisation of the mpg dataset that demonstrates it.
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = year, y = hwy, group = class)) + 
+  geom_boxplot()
+```
+
+The default is "dodge2". The example above shows how to visualize different subsets of cars by class, while also splitting them by year. The position adjustment put different barplots from the same year side by side. I don't know how to make a legend for this.

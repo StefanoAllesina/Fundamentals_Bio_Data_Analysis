@@ -1,0 +1,123 @@
+---
+title: "Model Selection --- Data lab"
+author: "Dmitry Kondrashov & Stefano Allesina"
+date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
+output:
+  html_document:
+    theme: cosmo
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+urlcolor: blue
+---
+
+```{r knitr, echo=FALSE}
+knitr::opts_chunk$set(
+  eval      = TRUE,
+  comment   = "#",
+  warning = FALSE,
+  message = FALSE,
+  #results   = "asis",
+  # collapse  = TRUE,
+  fig.align = "center")
+```
+
+```{r, message = FALSE}
+library(tidyverse) # our friend the tidyverse
+library(readxl) # to read excel files
+source("general_code/read_xls_from_url.R") # function  to read excel from URL
+```
+
+## Litter size
+
+[Data](https://doi.org/10.5061/dryad.g4q84) from the paper:
+
+> Kallio ER, Helle H, Koskela E, Mappes T, Vapalahti O (2015) [Age-related effects of chronic hantavirus infection on female host fecundity](https://doi.org/10.1111/1365-2656.12387). Journal of Animal Ecology 84(5): 1264–1272. 
+
+```{r}
+# read the data
+# use short URL
+# original: datadryad.org/bitstream/handle/10255/dryad.84805/Litter_data.xlsx
+dat <- read_xlsx_from_url("https://tinyurl.com/y88w7xe6")
+# show the data
+head(dat)
+# plot litter sizes
+dat %>% ggplot(aes(x = litter_size)) + geom_histogram(binwidth = 1)
+```
+
+### Poisson
+
+Let's write the likelihood function for the Poisson distribution
+```{r}
+log_likelihood_Poisson <- function(my_data, my_lambda){
+  return(sum(log(dpois(my_data, my_lambda))))
+}
+```
+
+For example:
+```{r}
+log_likelihood_Poisson(dat$litter_size, 3)
+log_likelihood_Poisson(dat$litter_size, 5)
+```
+
+But what is the maximum likelihood estimate for $\lambda$?
+
+```{r}
+# use optim(initial guess, function to maximize, other named parameters)
+# we use method Brent that looks for the maximum in an interval
+# we set control = list(fnscale = -1) 
+# to maximize instead of minimize (default) the function
+find_lambda <- optim(5, log_likelihood_Poisson, 
+                     my_data = dat$litter_size, 
+                     method = "Brent", lower = 0, upper = 10,
+                     control = list(fnscale = -1))
+find_lambda
+```
+
+Let's store the best parameter and maximum likelihood:
+```{r}
+lambda_hat <- find_lambda$par
+max_likelihood_Poisson <- find_lambda$value
+```
+
+Using Poisson regression
+
+```{r}
+summary(glm(dat$litter_size ~ 1., family = "poisson"))
+exp(1.67730)
+```
+
+Cleaning messy output with `broom`
+```{r}
+library(broom)
+model1 <- glm(litter_size ~ 1., family = "poisson", data = dat)
+model1_fit <- tidy(model1)
+```
+Compute AIC:
+```{r}
+AIC(model1)
+```
+
+Now let's see whether the infection status can help us explain the litter size:
+
+```{r}
+model2 <- glm(litter_size ~ PUUV_INF, family = "poisson", data = dat)
+summary(model2)
+AIC(model2)
+```
+
+Not really! In fact, the effect is to simply add a parameter.
+
+Now let's look at over/underdispersion:
+```{r}
+summary(glm(litter_size ~ 1., family = "quasipoisson", data = dat))
+```
+The data is highly underdispersed! The variance is about 1/4 of what expected using a Poisson distribution. Hence, using a more flexible distribution should help considerably:
+
+```{r}
+model3 <- MASS::glm.nb(litter_size ~ 1., data = dat)
+summary(model3)
+AIC(model3)
+```
+

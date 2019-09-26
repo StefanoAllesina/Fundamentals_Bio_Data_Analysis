@@ -1,0 +1,6916 @@
+NOC,Year,Sport,F,M
+AFG,2008,Taekwondo,0,1
+AFG,2012,Taekwondo,0,1
+AHO,1988,Sailing,0,1
+ALG,1984,Boxing,0,2
+ALG,1992,Athletics,1,0
+ALG,1992,Boxing,0,1
+ALG,1996,Athletics,0,1
+ALG,1996,Boxing,0,2
+ALG,2000,Athletics,1,3
+ALG,2000,Boxing,0,1
+ALG,2008,Judo,1,1
+ALG,2012,Athletics,0,1
+ALG,2016,Athletics,0,2
+ANZ,1908,Athletics,0,1
+ANZ,1908,Boxing,0,1
+ANZ,1908,Rugby,0,15
+ANZ,1908,Swimming,0,2
+ANZ,1912,Swimming,2,7
+ANZ,1912,Tennis,0,1
+ARG,1924,Athletics,0,1
+ARG,1924,Boxing,0,4
+ARG,1924,Polo,0,5
+ARG,1928,Boxing,0,4
+ARG,1928,Fencing,0,5
+ARG,1928,Football,0,16
+ARG,1928,Swimming,0,1
+ARG,1932,Athletics,0,1
+ARG,1932,Boxing,0,3
+ARG,1936,Boxing,0,4
+ARG,1936,Polo,0,4
+ARG,1936,Rowing,0,2
+ARG,1936,Swimming,1,0
+ARG,1948,Athletics,1,1
+ARG,1948,Boxing,0,3
+ARG,1948,Sailing,0,5
+ARG,1948,Shooting,0,1
+ARG,1952,Athletics,0,1
+ARG,1952,Boxing,0,2
+ARG,1952,Rowing,0,2
+ARG,1952,Weightlifting,0,1
+ARG,1956,Boxing,0,1
+ARG,1956,Weightlifting,0,1
+ARG,1960,Boxing,0,1
+ARG,1960,Sailing,0,3
+ARG,1964,Equestrianism,0,1
+ARG,1968,Boxing,0,1
+ARG,1968,Rowing,0,1
+ARG,1972,Rowing,0,1
+ARG,1988,Tennis,1,0
+ARG,1988,Volleyball,0,12
+ARG,1992,Tennis,0,2
+ARG,1996,Boxing,0,1
+ARG,1996,Football,0,18
+ARG,1996,Sailing,0,1
+ARG,2000,Hockey,16,0
+ARG,2000,Sailing,1,3
+ARG,2004,Basketball,0,12
+ARG,2004,Football,0,16
+ARG,2004,Hockey,16,0
+ARG,2004,Sailing,0,2
+ARG,2004,Swimming,1,0
+ARG,2004,Tennis,2,0
+ARG,2008,Basketball,0,12
+ARG,2008,Cycling,0,2
+ARG,2008,Football,0,18
+ARG,2008,Hockey,16,0
+ARG,2008,Judo,1,0
+ARG,2008,Sailing,0,2
+ARG,2012,Hockey,15,0
+ARG,2012,Sailing,0,2
+ARG,2012,Taekwondo,0,1
+ARG,2012,Tennis,0,1
+ARG,2016,Hockey,0,18
+ARG,2016,Judo,1,0
+ARG,2016,Sailing,1,1
+ARG,2016,Tennis,0,1
+ARM,1996,Wrestling,0,2
+ARM,2000,Weightlifting,0,1
+ARM,2008,Boxing,0,1
+ARM,2008,Weightlifting,0,3
+ARM,2008,Wrestling,0,2
+ARM,2012,Weightlifting,1,0
+ARM,2012,Wrestling,0,2
+ARM,2016,Weightlifting,0,2
+ARM,2016,Wrestling,0,2
+AUS,1896,Athletics,0,2
+AUS,1896,Tennis,0,1
+AUS,1900,Athletics,0,4
+AUS,1900,Swimming,0,2
+AUS,1904,Swimming,0,4
+AUS,1906,Athletics,0,2
+AUS,1906,Swimming,0,1
+AUS,1920,Athletics,0,1
+AUS,1920,Swimming,0,6
+AUS,1924,Alpinism,0,1
+AUS,1924,Athletics,0,1
+AUS,1924,Diving,0,1
+AUS,1924,Swimming,0,8
+AUS,1928,Cycling,0,1
+AUS,1928,Rowing,0,1
+AUS,1928,Swimming,0,2
+AUS,1932,Cycling,0,1
+AUS,1932,Rowing,0,1
+AUS,1932,Swimming,2,0
+AUS,1932,Wrestling,0,1
+AUS,1936,Athletics,0,1
+AUS,1948,Athletics,6,3
+AUS,1948,Rowing,0,1
+AUS,1948,Swimming,2,2
+AUS,1948,Wrestling,0,2
+AUS,1952,Athletics,4,0
+AUS,1952,Cycling,0,4
+AUS,1952,Rowing,0,10
+AUS,1952,Swimming,0,1
+AUS,1952,Weightlifting,0,1
+AUS,1956,Athletics,10,9
+AUS,1956,Boxing,0,1
+AUS,1956,Canoeing,0,2
+AUS,1956,Cycling,0,3
+AUS,1956,Rowing,0,12
+AUS,1956,Sailing,0,5
+AUS,1956,Swimming,11,14
+AUS,1960,Athletics,1,3
+AUS,1960,Boxing,0,2
+AUS,1960,Equestrianism,0,6
+AUS,1960,Swimming,14,20
+AUS,1964,Athletics,5,1
+AUS,1964,Hockey,0,14
+AUS,1964,Judo,0,1
+AUS,1964,Sailing,0,3
+AUS,1964,Swimming,6,14
+AUS,1968,Athletics,4,2
+AUS,1968,Equestrianism,0,4
+AUS,1968,Hockey,0,14
+AUS,1968,Rowing,0,9
+AUS,1968,Swimming,7,11
+AUS,1972,Athletics,2,0
+AUS,1972,Cycling,0,3
+AUS,1972,Sailing,0,5
+AUS,1972,Swimming,8,2
+AUS,1976,Equestrianism,0,4
+AUS,1976,Hockey,0,15
+AUS,1976,Sailing,0,3
+AUS,1976,Swimming,0,1
+AUS,1980,Athletics,0,1
+AUS,1980,Canoeing,0,1
+AUS,1980,Swimming,2,9
+AUS,1984,Athletics,2,1
+AUS,1984,Canoeing,0,2
+AUS,1984,Cycling,0,4
+AUS,1984,Rowing,5,13
+AUS,1984,Sailing,0,2
+AUS,1984,Shooting,1,0
+AUS,1984,Swimming,3,17
+AUS,1984,Weightlifting,0,2
+AUS,1988,Athletics,2,0
+AUS,1988,Boxing,0,1
+AUS,1988,Canoeing,0,3
+AUS,1988,Cycling,0,8
+AUS,1988,Hockey,16,0
+AUS,1988,Swimming,1,2
+AUS,1988,Tennis,2,0
+AUS,1992,Athletics,1,1
+AUS,1992,Canoeing,1,5
+AUS,1992,Cycling,2,6
+AUS,1992,Equestrianism,1,4
+AUS,1992,Hockey,0,16
+AUS,1992,Rowing,0,6
+AUS,1992,Sailing,0,3
+AUS,1992,Swimming,5,4
+AUS,1992,Tennis,2,0
+AUS,1994,Short Track Speed Skating,0,4
+AUS,1996,Athletics,2,0
+AUS,1996,Basketball,12,0
+AUS,1996,Beach Volleyball,2,0
+AUS,1996,Canoeing,2,3
+AUS,1996,Cycling,2,7
+AUS,1996,Equestrianism,2,2
+AUS,1996,Hockey,16,16
+AUS,1996,Rowing,4,12
+AUS,1996,Sailing,0,4
+AUS,1996,Shooting,1,2
+AUS,1996,Softball,15,0
+AUS,1996,Swimming,14,11
+AUS,1996,Tennis,0,2
+AUS,1996,Weightlifting,0,1
+AUS,1998,Alpine Skiing,1,0
+AUS,2000,Archery,0,1
+AUS,2000,Athletics,2,1
+AUS,2000,Basketball,12,0
+AUS,2000,Beach Volleyball,2,0
+AUS,2000,Canoeing,1,2
+AUS,2000,Cycling,1,8
+AUS,2000,Diving,2,2
+AUS,2000,Equestrianism,0,5
+AUS,2000,Hockey,16,16
+AUS,2000,Judo,1,0
+AUS,2000,Rowing,2,19
+AUS,2000,Sailing,2,5
+AUS,2000,Shooting,1,2
+AUS,2000,Softball,15,0
+AUS,2000,Swimming,17,29
+AUS,2000,Taekwondo,1,1
+AUS,2000,Tennis,0,2
+AUS,2000,Trampolining,0,1
+AUS,2000,Triathlon,1,0
+AUS,2000,Water Polo,13,0
+AUS,2002,Freestyle Skiing,1,0
+AUS,2002,Short Track Speed Skating,0,1
+AUS,2004,Archery,0,1
+AUS,2004,Athletics,1,5
+AUS,2004,Baseball,0,24
+AUS,2004,Basketball,12,0
+AUS,2004,Canoeing,0,3
+AUS,2004,Cycling,4,13
+AUS,2004,Diving,4,5
+AUS,2004,Hockey,0,16
+AUS,2004,Rowing,4,15
+AUS,2004,Shooting,1,1
+AUS,2004,Softball,15,0
+AUS,2004,Swimming,19,12
+AUS,2004,Tennis,1,0
+AUS,2004,Triathlon,1,0
+AUS,2006,Freestyle Skiing,1,1
+AUS,2008,Athletics,1,3
+AUS,2008,Basketball,12,0
+AUS,2008,Canoeing,5,3
+AUS,2008,Cycling,1,0
+AUS,2008,Diving,2,1
+AUS,2008,Equestrianism,3,2
+AUS,2008,Hockey,0,17
+AUS,2008,Rowing,0,8
+AUS,2008,Sailing,2,4
+AUS,2008,Shooting,0,1
+AUS,2008,Softball,15,0
+AUS,2008,Swimming,29,25
+AUS,2008,Triathlon,2,0
+AUS,2008,Water Polo,13,0
+AUS,2010,Freestyle Skiing,1,1
+AUS,2010,Snowboarding,1,0
+AUS,2012,Athletics,1,2
+AUS,2012,Basketball,12,0
+AUS,2012,Canoeing,1,4
+AUS,2012,Cycling,4,6
+AUS,2012,Diving,1,0
+AUS,2012,Hockey,0,16
+AUS,2012,Rowing,5,8
+AUS,2012,Sailing,3,5
+AUS,2012,Swimming,24,8
+AUS,2012,Triathlon,1,0
+AUS,2012,Water Polo,13,0
+AUS,2014,Freestyle Skiing,1,1
+AUS,2014,Snowboarding,1,0
+AUS,2016,Archery,0,3
+AUS,2016,Athletics,0,2
+AUS,2016,Canoeing,1,2
+AUS,2016,Cycling,1,5
+AUS,2016,Diving,2,0
+AUS,2016,Equestrianism,0,4
+AUS,2016,Modern Pentathlon,1,0
+AUS,2016,Rowing,1,8
+AUS,2016,Rugby Sevens,12,0
+AUS,2016,Sailing,1,6
+AUS,2016,Shooting,1,0
+AUS,2016,Swimming,19,13
+AUT,1896,Cycling,0,3
+AUT,1896,Swimming,0,2
+AUT,1900,Fencing,0,2
+AUT,1900,Swimming,0,4
+AUT,1904,Gymnastics,0,3
+AUT,1904,Swimming,0,1
+AUT,1906,Diving,0,1
+AUT,1906,Swimming,0,2
+AUT,1906,Weightlifting,0,2
+AUT,1906,Wrestling,0,4
+AUT,1908,Swimming,0,1
+AUT,1912,Fencing,0,8
+AUT,1912,Swimming,4,0
+AUT,1912,Tennis,0,2
+AUT,1924,Figure Skating,2,2
+AUT,1924,Weightlifting,0,4
+AUT,1928,Art Competitions,0,1
+AUT,1928,Figure Skating,3,3
+AUT,1928,Rowing,0,2
+AUT,1928,Weightlifting,0,2
+AUT,1932,Fencing,1,0
+AUT,1932,Figure Skating,1,1
+AUT,1932,Weightlifting,0,2
+AUT,1932,Wrestling,0,2
+AUT,1936,Art Competitions,0,5
+AUT,1936,Canoeing,0,11
+AUT,1936,Equestrianism,0,1
+AUT,1936,Fencing,1,0
+AUT,1936,Figure Skating,1,3
+AUT,1936,Football,0,13
+AUT,1936,Handball,0,22
+AUT,1936,Rowing,0,1
+AUT,1936,Speed Skating,0,1
+AUT,1936,Weightlifting,0,1
+AUT,1948,Alpine Skiing,5,1
+AUT,1948,Art Competitions,0,4
+AUT,1948,Athletics,2,0
+AUT,1948,Canoeing,1,0
+AUT,1948,Fencing,1,0
+AUT,1948,Figure Skating,1,1
+AUT,1952,Alpine Skiing,2,5
+AUT,1952,Canoeing,1,2
+AUT,1952,Figure Skating,0,1
+AUT,1956,Alpine Skiing,3,6
+AUT,1956,Canoeing,0,2
+AUT,1956,Figure Skating,2,1
+AUT,1956,Rowing,0,2
+AUT,1960,Alpine Skiing,1,4
+AUT,1960,Rowing,0,2
+AUT,1960,Shooting,0,1
+AUT,1960,Ski Jumping,0,1
+AUT,1964,Alpine Skiing,3,4
+AUT,1964,Bobsleigh,0,4
+AUT,1964,Figure Skating,1,0
+AUT,1964,Luge,1,4
+AUT,1968,Alpine Skiing,2,3
+AUT,1968,Athletics,2,0
+AUT,1968,Bobsleigh,0,4
+AUT,1968,Canoeing,0,2
+AUT,1968,Figure Skating,0,1
+AUT,1968,Luge,0,3
+AUT,1968,Sailing,0,1
+AUT,1968,Ski Jumping,0,2
+AUT,1972,Alpine Skiing,3,1
+AUT,1972,Athletics,1,0
+AUT,1972,Canoeing,0,1
+AUT,1972,Figure Skating,1,0
+AUT,1972,Shooting,0,1
+AUT,1976,Alpine Skiing,1,1
+AUT,1976,Luge,0,2
+AUT,1976,Shooting,0,1
+AUT,1976,Ski Jumping,0,3
+AUT,1980,Alpine Skiing,1,3
+AUT,1980,Equestrianism,1,0
+AUT,1980,Luge,0,2
+AUT,1980,Sailing,0,3
+AUT,1980,Shooting,0,1
+AUT,1980,Ski Jumping,0,2
+AUT,1984,Alpine Skiing,0,1
+AUT,1984,Judo,0,2
+AUT,1984,Shooting,0,1
+AUT,1988,Alpine Skiing,2,4
+AUT,1988,Judo,0,1
+AUT,1988,Nordic Combined,0,4
+AUT,1988,Speed Skating,0,2
+AUT,1992,Alpine Skiing,5,3
+AUT,1992,Bobsleigh,0,4
+AUT,1992,Equestrianism,0,4
+AUT,1992,Luge,2,2
+AUT,1992,Nordic Combined,0,4
+AUT,1992,Rowing,0,2
+AUT,1992,Ski Jumping,0,8
+AUT,1992,Speed Skating,1,0
+AUT,1994,Alpine Skiing,1,2
+AUT,1994,Luge,1,1
+AUT,1994,Ski Jumping,0,5
+AUT,1994,Speed Skating,2,0
+AUT,1996,Athletics,1,0
+AUT,1996,Shooting,0,2
+AUT,1998,Alpine Skiing,3,8
+AUT,1998,Cross Country Skiing,0,2
+AUT,1998,Luge,1,0
+AUT,1998,Ski Jumping,0,5
+AUT,1998,Snowboarding,1,0
+AUT,2000,Athletics,1,0
+AUT,2000,Sailing,0,3
+AUT,2002,Alpine Skiing,2,7
+AUT,2002,Biathlon,0,1
+AUT,2002,Cross Country Skiing,0,2
+AUT,2002,Luge,0,1
+AUT,2002,Nordic Combined,0,6
+AUT,2002,Skeleton,0,1
+AUT,2004,Judo,1,0
+AUT,2004,Sailing,0,3
+AUT,2004,Shooting,0,1
+AUT,2004,Swimming,0,2
+AUT,2004,Triathlon,1,0
+AUT,2006,Alpine Skiing,6,8
+AUT,2006,Cross Country Skiing,0,1
+AUT,2006,Luge,0,2
+AUT,2006,Nordic Combined,0,6
+AUT,2006,Ski Jumping,0,6
+AUT,2006,Snowboarding,0,1
+AUT,2008,Canoeing,1,0
+AUT,2008,Judo,0,1
+AUT,2008,Swimming,1,0
+AUT,2010,Alpine Skiing,4,0
+AUT,2010,Biathlon,0,5
+AUT,2010,Freestyle Skiing,0,1
+AUT,2010,Luge,1,2
+AUT,2010,Nordic Combined,0,5
+AUT,2010,Ski Jumping,0,6
+AUT,2010,Snowboarding,1,1
+AUT,2014,Alpine Skiing,6,3
+AUT,2014,Biathlon,0,5
+AUT,2014,Luge,0,2
+AUT,2014,Nordic Combined,0,4
+AUT,2014,Ski Jumping,1,4
+AUT,2014,Snowboarding,1,1
+AUT,2016,Sailing,1,1
+AZE,1996,Wrestling,0,1
+AZE,2000,Boxing,0,1
+AZE,2000,Shooting,1,0
+AZE,2000,Wrestling,0,1
+AZE,2004,Boxing,0,2
+AZE,2004,Shooting,2,0
+AZE,2004,Wrestling,0,1
+AZE,2008,Boxing,0,1
+AZE,2008,Judo,0,2
+AZE,2008,Wrestling,1,3
+AZE,2012,Boxing,0,2
+AZE,2012,Weightlifting,0,1
+AZE,2012,Wrestling,2,5
+AZE,2016,Boxing,0,2
+AZE,2016,Canoeing,1,1
+AZE,2016,Judo,0,2
+AZE,2016,Taekwondo,1,2
+AZE,2016,Wrestling,2,7
+BAH,1956,Sailing,0,2
+BAH,1964,Sailing,0,2
+BAH,1992,Athletics,0,1
+BAH,1996,Athletics,5,0
+BAH,2000,Athletics,6,5
+BAH,2004,Athletics,2,0
+BAH,2008,Athletics,0,7
+BAH,2012,Athletics,0,4
+BAH,2016,Athletics,1,5
+BAR,2000,Athletics,0,1
+BDI,1996,Athletics,0,1
+BDI,2016,Athletics,1,0
+BEL,1900,Archery,0,7
+BEL,1900,Equestrianism,0,5
+BEL,1900,Football,0,9
+BEL,1900,Rowing,0,9
+BEL,1900,Shooting,0,3
+BEL,1900,Water Polo,0,10
+BEL,1906,Athletics,0,1
+BEL,1906,Cycling,0,1
+BEL,1906,Fencing,0,6
+BEL,1906,Rowing,0,2
+BEL,1906,Wrestling,0,1
+BEL,1908,Cycling,0,1
+BEL,1908,Fencing,0,7
+BEL,1908,Rowing,0,9
+BEL,1908,Sailing,0,3
+BEL,1908,Shooting,0,6
+BEL,1908,Water Polo,0,7
+BEL,1912,Equestrianism,0,1
+BEL,1912,Fencing,0,8
+BEL,1912,Rowing,0,1
+BEL,1912,Water Polo,0,9
+BEL,1920,Archery,0,45
+BEL,1920,Art Competitions,0,6
+BEL,1920,Cycling,0,5
+BEL,1920,Equestrianism,0,12
+BEL,1920,Fencing,0,7
+BEL,1920,Football,0,14
+BEL,1920,Gymnastics,0,48
+BEL,1920,Hockey,0,14
+BEL,1920,Sailing,0,11
+BEL,1920,Shooting,0,6
+BEL,1920,Swimming,0,1
+BEL,1920,Tug-Of-War,0,8
+BEL,1920,Water Polo,0,8
+BEL,1920,Weightlifting,0,3
+BEL,1924,Bobsleigh,0,5
+BEL,1924,Boxing,0,2
+BEL,1924,Cycling,0,9
+BEL,1924,Fencing,0,14
+BEL,1924,Sailing,0,1
+BEL,1924,Swimming,0,1
+BEL,1924,Water Polo,0,11
+BEL,1924,Wrestling,0,1
+BEL,1928,Boxing,0,1
+BEL,1928,Figure Skating,0,1
+BEL,1928,Rowing,0,3
+BEL,1928,Wrestling,0,1
+BEL,1932,Art Competitions,0,1
+BEL,1936,Art Competitions,0,1
+BEL,1936,Cycling,0,4
+BEL,1936,Water Polo,0,9
+BEL,1948,Athletics,0,2
+BEL,1948,Bobsleigh,0,4
+BEL,1948,Boxing,0,1
+BEL,1948,Cycling,0,6
+BEL,1948,Fencing,0,6
+BEL,1948,Figure Skating,1,1
+BEL,1952,Cycling,0,6
+BEL,1952,Rowing,0,2
+BEL,1956,Sailing,0,1
+BEL,1956,Wrestling,0,1
+BEL,1960,Athletics,0,1
+BEL,1960,Cycling,0,2
+BEL,1960,Sailing,0,1
+BEL,1964,Athletics,0,1
+BEL,1964,Cycling,0,2
+BEL,1968,Cycling,0,2
+BEL,1968,Weightlifting,0,1
+BEL,1972,Athletics,0,2
+BEL,1976,Athletics,0,3
+BEL,1976,Cycling,0,1
+BEL,1976,Equestrianism,0,5
+BEL,1980,Judo,0,1
+BEL,1984,Cycling,0,1
+BEL,1984,Rowing,1,2
+BEL,1984,Swimming,1,0
+BEL,1988,Judo,0,1
+BEL,1988,Shooting,0,1
+BEL,1992,Cycling,0,1
+BEL,1992,Judo,1,0
+BEL,1992,Rowing,1,0
+BEL,1996,Judo,3,1
+BEL,1996,Sailing,0,1
+BEL,1996,Swimming,0,1
+BEL,1998,Speed Skating,0,1
+BEL,2000,Cycling,0,3
+BEL,2000,Judo,2,0
+BEL,2000,Tennis,2,0
+BEL,2004,Cycling,0,1
+BEL,2004,Judo,1,0
+BEL,2004,Tennis,1,0
+BEL,2008,Athletics,5,0
+BEL,2012,Judo,1,0
+BEL,2012,Sailing,1,0
+BEL,2012,Shooting,0,1
+BEL,2016,Athletics,1,0
+BEL,2016,Cycling,1,1
+BEL,2016,Hockey,0,16
+BEL,2016,Judo,0,1
+BEL,2016,Swimming,0,1
+BER,1976,Boxing,0,1
+BLR,1994,Biathlon,1,0
+BLR,1994,Speed Skating,0,1
+BLR,1996,Athletics,2,2
+BLR,1996,Gymnastics,0,4
+BLR,1996,Rowing,10,0
+BLR,1996,Shooting,0,1
+BLR,1996,Wrestling,0,4
+BLR,1998,Biathlon,0,1
+BLR,1998,Freestyle Skiing,0,1
+BLR,2000,Athletics,4,1
+BLR,2000,Judo,0,1
+BLR,2000,Modern Pentathlon,0,1
+BLR,2000,Rhythmic Gymnastics,7,0
+BLR,2000,Rowing,1,0
+BLR,2000,Shooting,1,3
+BLR,2000,Weightlifting,0,2
+BLR,2000,Wrestling,0,1
+BLR,2002,Freestyle Skiing,0,1
+BLR,2004,Athletics,1,0
+BLR,2004,Boxing,0,2
+BLR,2004,Canoeing,0,2
+BLR,2004,Cycling,1,0
+BLR,2004,Judo,0,1
+BLR,2004,Rowing,3,0
+BLR,2004,Shooting,0,1
+BLR,2004,Weightlifting,2,1
+BLR,2004,Wrestling,0,1
+BLR,2006,Freestyle Skiing,0,1
+BLR,2008,Athletics,3,3
+BLR,2008,Canoeing,0,8
+BLR,2008,Rhythmic Gymnastics,7,0
+BLR,2008,Rowing,3,0
+BLR,2008,Weightlifting,1,2
+BLR,2008,Wrestling,0,2
+BLR,2010,Biathlon,1,1
+BLR,2010,Freestyle Skiing,0,1
+BLR,2012,Canoeing,4,4
+BLR,2012,Rhythmic Gymnastics,7,0
+BLR,2012,Shooting,0,1
+BLR,2012,Swimming,2,0
+BLR,2012,Tennis,2,1
+BLR,2012,Weightlifting,2,0
+BLR,2014,Biathlon,4,0
+BLR,2014,Freestyle Skiing,1,1
+BLR,2016,Athletics,0,1
+BLR,2016,Canoeing,4,0
+BLR,2016,Swimming,1,0
+BLR,2016,Trampolining,0,1
+BLR,2016,Weightlifting,1,1
+BLR,2016,Wrestling,1,2
+BOH,1900,Athletics,0,1
+BOH,1900,Tennis,2,0
+BOH,1906,Tennis,0,3
+BOH,1908,Fencing,0,6
+BOT,2012,Athletics,0,1
+BRA,1920,Shooting,0,7
+BRA,1948,Basketball,0,10
+BRA,1952,Athletics,0,2
+BRA,1952,Swimming,0,1
+BRA,1956,Athletics,0,1
+BRA,1960,Basketball,0,12
+BRA,1960,Swimming,0,1
+BRA,1964,Basketball,0,12
+BRA,1968,Athletics,0,1
+BRA,1968,Boxing,0,1
+BRA,1968,Sailing,0,2
+BRA,1972,Athletics,0,1
+BRA,1972,Judo,0,1
+BRA,1976,Athletics,0,1
+BRA,1976,Sailing,0,2
+BRA,1980,Athletics,0,1
+BRA,1980,Sailing,0,4
+BRA,1980,Swimming,0,4
+BRA,1984,Athletics,0,1
+BRA,1984,Football,0,16
+BRA,1984,Judo,0,3
+BRA,1984,Sailing,0,3
+BRA,1984,Swimming,0,1
+BRA,1984,Volleyball,0,12
+BRA,1988,Athletics,0,2
+BRA,1988,Football,0,16
+BRA,1988,Judo,0,1
+BRA,1988,Sailing,0,4
+BRA,1992,Judo,0,1
+BRA,1992,Swimming,0,1
+BRA,1992,Volleyball,0,12
+BRA,1996,Athletics,0,4
+BRA,1996,Basketball,12,0
+BRA,1996,Beach Volleyball,4,0
+BRA,1996,Equestrianism,0,4
+BRA,1996,Football,0,17
+BRA,1996,Judo,0,2
+BRA,1996,Sailing,0,5
+BRA,1996,Swimming,0,3
+BRA,1996,Volleyball,12,0
+BRA,2000,Athletics,0,5
+BRA,2000,Basketball,12,0
+BRA,2000,Beach Volleyball,4,2
+BRA,2000,Equestrianism,0,4
+BRA,2000,Judo,0,2
+BRA,2000,Sailing,0,3
+BRA,2000,Swimming,0,4
+BRA,2000,Volleyball,12,0
+BRA,2004,Athletics,0,1
+BRA,2004,Beach Volleyball,2,2
+BRA,2004,Equestrianism,0,1
+BRA,2004,Football,17,0
+BRA,2004,Judo,0,2
+BRA,2004,Sailing,0,3
+BRA,2004,Volleyball,0,12
+BRA,2008,Athletics,1,4
+BRA,2008,Beach Volleyball,0,4
+BRA,2008,Football,18,17
+BRA,2008,Judo,1,2
+BRA,2008,Sailing,2,2
+BRA,2008,Swimming,0,2
+BRA,2008,Taekwondo,1,0
+BRA,2008,Volleyball,12,12
+BRA,2012,Beach Volleyball,2,2
+BRA,2012,Boxing,1,2
+BRA,2012,Football,0,18
+BRA,2012,Gymnastics,0,1
+BRA,2012,Judo,2,2
+BRA,2012,Modern Pentathlon,1,0
+BRA,2012,Sailing,0,2
+BRA,2012,Swimming,0,2
+BRA,2012,Volleyball,12,12
+BRA,2016,Athletics,0,1
+BRA,2016,Beach Volleyball,2,2
+BRA,2016,Boxing,0,1
+BRA,2016,Canoeing,0,4
+BRA,2016,Football,0,17
+BRA,2016,Gymnastics,0,3
+BRA,2016,Judo,2,1
+BRA,2016,Sailing,2,0
+BRA,2016,Shooting,0,1
+BRA,2016,Swimming,1,0
+BRA,2016,Taekwondo,0,1
+BRA,2016,Volleyball,0,12
+BRN,2012,Athletics,1,0
+BRN,2016,Athletics,2,0
+BUL,1952,Boxing,0,1
+BUL,1956,Football,0,14
+BUL,1956,Wrestling,0,4
+BUL,1960,Gymnastics,0,1
+BUL,1960,Wrestling,0,6
+BUL,1964,Boxing,0,1
+BUL,1964,Shooting,0,1
+BUL,1964,Wrestling,0,8
+BUL,1968,Boxing,0,2
+BUL,1968,Football,0,18
+BUL,1968,Wrestling,0,6
+BUL,1972,Athletics,4,0
+BUL,1972,Boxing,0,2
+BUL,1972,Canoeing,0,2
+BUL,1972,Weightlifting,0,6
+BUL,1972,Wrestling,0,8
+BUL,1976,Athletics,4,0
+BUL,1976,Basketball,12,0
+BUL,1976,Boxing,0,1
+BUL,1976,Rowing,9,0
+BUL,1976,Weightlifting,0,6
+BUL,1976,Wrestling,0,7
+BUL,1980,Athletics,1,1
+BUL,1980,Basketball,12,0
+BUL,1980,Boxing,0,2
+BUL,1980,Canoeing,1,8
+BUL,1980,Cross Country Skiing,0,1
+BUL,1980,Equestrianism,0,3
+BUL,1980,Gymnastics,0,2
+BUL,1980,Judo,0,2
+BUL,1980,Rowing,12,4
+BUL,1980,Shooting,0,2
+BUL,1980,Volleyball,10,12
+BUL,1980,Weightlifting,0,8
+BUL,1980,Wrestling,0,10
+BUL,1988,Athletics,3,1
+BUL,1988,Boxing,0,2
+BUL,1988,Canoeing,7,2
+BUL,1988,Gymnastics,1,1
+BUL,1988,Rhythmic Gymnastics,1,0
+BUL,1988,Rowing,5,0
+BUL,1988,Shooting,1,1
+BUL,1988,Swimming,3,0
+BUL,1988,Tennis,1,0
+BUL,1988,Weightlifting,0,4
+BUL,1988,Wrestling,0,8
+BUL,1992,Athletics,2,0
+BUL,1992,Boxing,0,2
+BUL,1992,Canoeing,0,4
+BUL,1992,Shooting,3,0
+BUL,1992,Weightlifting,0,4
+BUL,1992,Wrestling,0,2
+BUL,1996,Athletics,1,0
+BUL,1996,Boxing,0,3
+BUL,1996,Canoeing,0,2
+BUL,1996,Gymnastics,0,1
+BUL,1996,Rhythmic Gymnastics,6,0
+BUL,1996,Shooting,2,2
+BUL,1996,Weightlifting,0,3
+BUL,1996,Wrestling,0,1
+BUL,1998,Biathlon,1,0
+BUL,2000,Athletics,1,0
+BUL,2000,Canoeing,0,2
+BUL,2000,Gymnastics,0,2
+BUL,2000,Rowing,1,0
+BUL,2000,Shooting,1,1
+BUL,2000,Weightlifting,0,3
+BUL,2000,Wrestling,0,2
+BUL,2002,Biathlon,1,0
+BUL,2002,Short Track Speed Skating,2,0
+BUL,2004,Boxing,0,1
+BUL,2004,Gymnastics,0,2
+BUL,2004,Judo,0,1
+BUL,2004,Rhythmic Gymnastics,6,0
+BUL,2004,Rowing,1,1
+BUL,2004,Shooting,2,0
+BUL,2004,Weightlifting,0,2
+BUL,2004,Wrestling,0,1
+BUL,2006,Short Track Speed Skating,1,0
+BUL,2008,Rowing,1,0
+BUL,2008,Wrestling,1,3
+BUL,2012,Boxing,0,1
+BUL,2012,Wrestling,1,0
+BUL,2016,Athletics,1,0
+BUL,2016,Rhythmic Gymnastics,5,0
+BUL,2016,Wrestling,1,0
+CAN,1900,Athletics,0,2
+CAN,1904,Athletics,0,1
+CAN,1904,Football,0,13
+CAN,1904,Golf,0,1
+CAN,1904,Lacrosse,0,24
+CAN,1904,Rowing,0,9
+CAN,1906,Athletics,0,2
+CAN,1908,Athletics,0,6
+CAN,1908,Cycling,0,4
+CAN,1908,Lacrosse,0,12
+CAN,1908,Rowing,0,15
+CAN,1908,Shooting,0,14
+CAN,1908,Wrestling,0,1
+CAN,1912,Athletics,0,5
+CAN,1912,Rowing,0,1
+CAN,1912,Swimming,0,2
+CAN,1920,Athletics,0,1
+CAN,1920,Boxing,0,5
+CAN,1920,Ice Hockey,0,8
+CAN,1920,Swimming,0,2
+CAN,1924,Boxing,0,1
+CAN,1924,Ice Hockey,0,9
+CAN,1924,Rowing,0,13
+CAN,1924,Shooting,0,6
+CAN,1928,Athletics,7,7
+CAN,1928,Boxing,0,1
+CAN,1928,Ice Hockey,0,12
+CAN,1928,Rowing,0,11
+CAN,1928,Swimming,0,4
+CAN,1928,Wrestling,0,3
+CAN,1932,Art Competitions,0,1
+CAN,1932,Athletics,6,9
+CAN,1932,Boxing,0,1
+CAN,1932,Figure Skating,0,1
+CAN,1932,Ice Hockey,0,14
+CAN,1932,Rowing,0,11
+CAN,1932,Sailing,0,10
+CAN,1932,Speed Skating,0,5
+CAN,1932,Wrestling,0,1
+CAN,1936,Athletics,5,2
+CAN,1936,Basketball,0,9
+CAN,1936,Canoeing,0,5
+CAN,1936,Ice Hockey,0,13
+CAN,1936,Wrestling,0,1
+CAN,1948,Art Competitions,0,1
+CAN,1948,Athletics,4,0
+CAN,1948,Canoeing,0,2
+CAN,1948,Figure Skating,2,1
+CAN,1948,Ice Hockey,0,12
+CAN,1952,Canoeing,0,2
+CAN,1952,Ice Hockey,0,16
+CAN,1952,Shooting,0,1
+CAN,1952,Speed Skating,0,1
+CAN,1952,Weightlifting,0,1
+CAN,1956,Alpine Skiing,1,0
+CAN,1956,Diving,1,0
+CAN,1956,Equestrianism,0,3
+CAN,1956,Figure Skating,1,1
+CAN,1956,Ice Hockey,0,17
+CAN,1956,Rowing,0,13
+CAN,1956,Shooting,0,2
+CAN,1960,Alpine Skiing,1,0
+CAN,1960,Figure Skating,1,2
+CAN,1960,Ice Hockey,0,17
+CAN,1960,Rowing,0,9
+CAN,1964,Athletics,0,2
+CAN,1964,Bobsleigh,0,4
+CAN,1964,Figure Skating,2,1
+CAN,1964,Judo,0,1
+CAN,1964,Rowing,0,2
+CAN,1968,Alpine Skiing,2,0
+CAN,1968,Equestrianism,0,3
+CAN,1968,Ice Hockey,0,18
+CAN,1968,Swimming,6,1
+CAN,1972,Figure Skating,1,0
+CAN,1972,Sailing,0,3
+CAN,1972,Swimming,2,6
+CAN,1976,Alpine Skiing,1,0
+CAN,1976,Athletics,0,1
+CAN,1976,Canoeing,0,1
+CAN,1976,Equestrianism,0,1
+CAN,1976,Figure Skating,0,1
+CAN,1976,Speed Skating,1,0
+CAN,1976,Swimming,15,5
+CAN,1980,Alpine Skiing,0,1
+CAN,1980,Speed Skating,0,1
+CAN,1984,Athletics,10,5
+CAN,1984,Boxing,0,3
+CAN,1984,Canoeing,6,6
+CAN,1984,Cycling,0,2
+CAN,1984,Diving,1,0
+CAN,1984,Figure Skating,0,1
+CAN,1984,Judo,0,1
+CAN,1984,Rhythmic Gymnastics,1,0
+CAN,1984,Rowing,9,14
+CAN,1984,Sailing,0,6
+CAN,1984,Shooting,1,0
+CAN,1984,Speed Skating,0,3
+CAN,1984,Swimming,6,10
+CAN,1984,Synchronized Swimming,3,0
+CAN,1984,Weightlifting,0,1
+CAN,1984,Wrestling,0,2
+CAN,1988,Alpine Skiing,2,0
+CAN,1988,Athletics,0,1
+CAN,1988,Boxing,0,3
+CAN,1988,Equestrianism,4,0
+CAN,1988,Figure Skating,2,2
+CAN,1988,Sailing,0,2
+CAN,1988,Swimming,6,4
+CAN,1988,Synchronized Swimming,3,0
+CAN,1992,Alpine Skiing,1,0
+CAN,1992,Athletics,1,2
+CAN,1992,Biathlon,1,0
+CAN,1992,Boxing,0,2
+CAN,1992,Cycling,0,1
+CAN,1992,Figure Skating,1,1
+CAN,1992,Ice Hockey,0,22
+CAN,1992,Judo,0,1
+CAN,1992,Rowing,16,9
+CAN,1992,Sailing,0,2
+CAN,1992,Short Track Speed Skating,4,6
+CAN,1992,Swimming,0,6
+CAN,1992,Synchronized Swimming,3,0
+CAN,1992,Wrestling,0,1
+CAN,1994,Alpine Skiing,0,1
+CAN,1994,Biathlon,2,0
+CAN,1994,Figure Skating,1,2
+CAN,1994,Freestyle Skiing,0,3
+CAN,1994,Ice Hockey,0,21
+CAN,1994,Short Track Speed Skating,5,1
+CAN,1994,Speed Skating,1,0
+CAN,1996,Athletics,0,6
+CAN,1996,Beach Volleyball,0,2
+CAN,1996,Boxing,0,1
+CAN,1996,Canoeing,1,0
+CAN,1996,Cycling,3,2
+CAN,1996,Diving,1,0
+CAN,1996,Rowing,16,5
+CAN,1996,Swimming,1,2
+CAN,1996,Synchronized Swimming,9,0
+CAN,1996,Wrestling,0,1
+CAN,1998,Bobsleigh,0,2
+CAN,1998,Curling,5,5
+CAN,1998,Figure Skating,0,1
+CAN,1998,Ice Hockey,20,0
+CAN,1998,Short Track Speed Skating,5,5
+CAN,1998,Snowboarding,0,1
+CAN,1998,Speed Skating,3,2
+CAN,2000,Canoeing,1,1
+CAN,2000,Diving,3,0
+CAN,2000,Judo,0,1
+CAN,2000,Rowing,9,0
+CAN,2000,Swimming,0,1
+CAN,2000,Synchronized Swimming,8,0
+CAN,2000,Taekwondo,1,0
+CAN,2000,Tennis,0,2
+CAN,2000,Trampolining,1,1
+CAN,2000,Triathlon,0,1
+CAN,2000,Wrestling,0,1
+CAN,2002,Cross Country Skiing,1,0
+CAN,2002,Curling,5,5
+CAN,2002,Figure Skating,1,1
+CAN,2002,Freestyle Skiing,2,0
+CAN,2002,Ice Hockey,20,22
+CAN,2002,Short Track Speed Skating,5,9
+CAN,2002,Speed Skating,3,0
+CAN,2004,Canoeing,1,2
+CAN,2004,Cycling,2,0
+CAN,2004,Diving,2,1
+CAN,2004,Gymnastics,0,1
+CAN,2004,Rowing,0,4
+CAN,2004,Sailing,0,2
+CAN,2004,Trampolining,1,0
+CAN,2004,Wrestling,1,0
+CAN,2006,Bobsleigh,0,2
+CAN,2006,Cross Country Skiing,3,0
+CAN,2006,Curling,5,5
+CAN,2006,Figure Skating,0,1
+CAN,2006,Freestyle Skiing,1,0
+CAN,2006,Ice Hockey,20,0
+CAN,2006,Short Track Speed Skating,6,6
+CAN,2006,Skeleton,1,2
+CAN,2006,Snowboarding,1,0
+CAN,2006,Speed Skating,11,5
+CAN,2008,Athletics,1,1
+CAN,2008,Canoeing,0,2
+CAN,2008,Diving,1,1
+CAN,2008,Equestrianism,1,4
+CAN,2008,Rowing,2,15
+CAN,2008,Swimming,0,1
+CAN,2008,Taekwondo,1,0
+CAN,2008,Trampolining,1,1
+CAN,2008,Triathlon,0,1
+CAN,2008,Wrestling,2,0
+CAN,2010,Bobsleigh,4,4
+CAN,2010,Curling,5,5
+CAN,2010,Figure Skating,2,1
+CAN,2010,Freestyle Skiing,2,1
+CAN,2010,Ice Hockey,21,22
+CAN,2010,Short Track Speed Skating,5,7
+CAN,2010,Skeleton,0,1
+CAN,2010,Snowboarding,1,2
+CAN,2010,Speed Skating,4,3
+CAN,2012,Athletics,0,1
+CAN,2012,Canoeing,0,3
+CAN,2012,Cycling,3,0
+CAN,2012,Diving,4,0
+CAN,2012,Football,18,0
+CAN,2012,Judo,0,1
+CAN,2012,Rowing,9,9
+CAN,2012,Swimming,0,3
+CAN,2012,Trampolining,1,0
+CAN,2012,Weightlifting,1,0
+CAN,2012,Wrestling,2,0
+CAN,2014,Alpine Skiing,0,1
+CAN,2014,Bobsleigh,2,0
+CAN,2014,Curling,4,4
+CAN,2014,Figure Skating,5,7
+CAN,2014,Freestyle Skiing,6,3
+CAN,2014,Ice Hockey,20,24
+CAN,2014,Short Track Speed Skating,4,2
+CAN,2014,Snowboarding,1,1
+CAN,2014,Speed Skating,0,2
+CAN,2016,Athletics,1,9
+CAN,2016,Cycling,6,0
+CAN,2016,Diving,3,0
+CAN,2016,Equestrianism,0,1
+CAN,2016,Football,18,0
+CAN,2016,Rowing,2,0
+CAN,2016,Rugby Sevens,12,0
+CAN,2016,Swimming,15,0
+CAN,2016,Trampolining,1,0
+CAN,2016,Wrestling,1,0
+CHI,1928,Athletics,0,1
+CHI,1952,Equestrianism,0,4
+CHI,1956,Athletics,1,0
+CHI,1956,Boxing,0,3
+CHI,1988,Shooting,0,1
+CHI,2000,Football,0,17
+CHI,2004,Tennis,0,4
+CHI,2008,Tennis,0,1
+CHN,1984,Archery,1,0
+CHN,1984,Athletics,0,1
+CHN,1984,Basketball,12,0
+CHN,1984,Diving,1,2
+CHN,1984,Fencing,1,0
+CHN,1984,Gymnastics,7,14
+CHN,1984,Handball,13,0
+CHN,1984,Shooting,2,4
+CHN,1984,Volleyball,10,0
+CHN,1984,Weightlifting,0,6
+CHN,1988,Athletics,1,0
+CHN,1988,Diving,3,3
+CHN,1988,Gymnastics,0,2
+CHN,1988,Rowing,14,0
+CHN,1988,Shooting,0,2
+CHN,1988,Swimming,4,0
+CHN,1988,Table Tennis,5,2
+CHN,1988,Volleyball,11,0
+CHN,1988,Weightlifting,0,5
+CHN,1992,Archery,3,0
+CHN,1992,Athletics,4,0
+CHN,1992,Badminton,6,2
+CHN,1992,Basketball,11,0
+CHN,1992,Diving,2,3
+CHN,1992,Fencing,1,0
+CHN,1992,Gymnastics,2,11
+CHN,1992,Judo,3,0
+CHN,1992,Rowing,2,0
+CHN,1992,Sailing,1,0
+CHN,1992,Shooting,2,2
+CHN,1992,Short Track Speed Skating,1,0
+CHN,1992,Speed Skating,2,0
+CHN,1992,Swimming,13,0
+CHN,1992,Table Tennis,6,3
+CHN,1992,Weightlifting,0,4
+CHN,1992,Wrestling,0,1
+CHN,1994,Figure Skating,1,0
+CHN,1994,Short Track Speed Skating,1,0
+CHN,1994,Speed Skating,1,0
+CHN,1996,Archery,1,0
+CHN,1996,Athletics,4,0
+CHN,1996,Badminton,5,2
+CHN,1996,Diving,2,3
+CHN,1996,Football,15,0
+CHN,1996,Gymnastics,2,10
+CHN,1996,Judo,2,0
+CHN,1996,Rowing,2,0
+CHN,1996,Shooting,1,4
+CHN,1996,Softball,15,0
+CHN,1996,Swimming,12,0
+CHN,1996,Table Tennis,6,6
+CHN,1996,Volleyball,9,0
+CHN,1996,Weightlifting,0,4
+CHN,1996,Wrestling,0,1
+CHN,1998,Figure Skating,1,0
+CHN,1998,Freestyle Skiing,1,0
+CHN,1998,Short Track Speed Skating,6,6
+CHN,2000,Athletics,1,0
+CHN,2000,Badminton,9,3
+CHN,2000,Cycling,1,0
+CHN,2000,Diving,7,7
+CHN,2000,Fencing,3,3
+CHN,2000,Gymnastics,4,8
+CHN,2000,Judo,4,0
+CHN,2000,Shooting,4,4
+CHN,2000,Table Tennis,6,6
+CHN,2000,Taekwondo,1,0
+CHN,2000,Weightlifting,4,3
+CHN,2000,Wrestling,0,1
+CHN,2002,Figure Skating,1,1
+CHN,2002,Short Track Speed Skating,8,6
+CHN,2004,Archery,3,0
+CHN,2004,Athletics,1,1
+CHN,2004,Badminton,7,1
+CHN,2004,Boxing,0,1
+CHN,2004,Canoeing,0,2
+CHN,2004,Cycling,1,0
+CHN,2004,Diving,7,5
+CHN,2004,Fencing,1,5
+CHN,2004,Gymnastics,1,2
+CHN,2004,Judo,5,0
+CHN,2004,Sailing,1,0
+CHN,2004,Shooting,4,5
+CHN,2004,Swimming,6,0
+CHN,2004,Table Tennis,5,4
+CHN,2004,Taekwondo,2,0
+CHN,2004,Tennis,2,0
+CHN,2004,Trampolining,1,0
+CHN,2004,Volleyball,12,0
+CHN,2004,Weightlifting,4,4
+CHN,2004,Wrestling,1,0
+CHN,2006,Figure Skating,2,2
+CHN,2006,Freestyle Skiing,1,1
+CHN,2006,Short Track Speed Skating,4,1
+CHN,2006,Speed Skating,2,0
+CHN,2008,Archery,4,3
+CHN,2008,Athletics,2,0
+CHN,2008,Badminton,7,5
+CHN,2008,Beach Volleyball,4,0
+CHN,2008,Boxing,0,4
+CHN,2008,Canoeing,0,2
+CHN,2008,Cycling,1,0
+CHN,2008,Diving,8,7
+CHN,2008,Fencing,4,1
+CHN,2008,Gymnastics,11,13
+CHN,2008,Hockey,16,0
+CHN,2008,Judo,4,0
+CHN,2008,Rhythmic Gymnastics,6,0
+CHN,2008,Rowing,6,0
+CHN,2008,Sailing,2,0
+CHN,2008,Shooting,3,5
+CHN,2008,Swimming,13,1
+CHN,2008,Synchronized Swimming,9,0
+CHN,2008,Table Tennis,6,6
+CHN,2008,Taekwondo,1,1
+CHN,2008,Tennis,2,0
+CHN,2008,Trampolining,1,2
+CHN,2008,Volleyball,12,0
+CHN,2008,Weightlifting,4,5
+CHN,2008,Wrestling,2,1
+CHN,2010,Curling,4,0
+CHN,2010,Figure Skating,2,2
+CHN,2010,Freestyle Skiing,2,1
+CHN,2010,Short Track Speed Skating,7,0
+CHN,2010,Speed Skating,1,0
+CHN,2012,Archery,3,1
+CHN,2012,Athletics,3,3
+CHN,2012,Badminton,6,6
+CHN,2012,Boxing,2,1
+CHN,2012,Cycling,4,0
+CHN,2012,Diving,7,7
+CHN,2012,Fencing,5,1
+CHN,2012,Gymnastics,3,9
+CHN,2012,Judo,2,0
+CHN,2012,Modern Pentathlon,0,1
+CHN,2012,Rowing,2,0
+CHN,2012,Sailing,1,0
+CHN,2012,Shooting,5,2
+CHN,2012,Swimming,6,9
+CHN,2012,Synchronized Swimming,11,0
+CHN,2012,Table Tennis,5,5
+CHN,2012,Taekwondo,2,1
+CHN,2012,Trampolining,2,2
+CHN,2012,Weightlifting,3,4
+CHN,2012,Wrestling,1,0
+CHN,2014,Freestyle Skiing,1,1
+CHN,2014,Short Track Speed Skating,3,6
+CHN,2014,Speed Skating,1,0
+CHN,2016,Athletics,3,3
+CHN,2016,Badminton,1,4
+CHN,2016,Boxing,3,1
+CHN,2016,Cycling,2,0
+CHN,2016,Diving,8,6
+CHN,2016,Fencing,5,0
+CHN,2016,Golf,1,0
+CHN,2016,Gymnastics,5,5
+CHN,2016,Judo,1,1
+CHN,2016,Rowing,3,0
+CHN,2016,Sailing,1,0
+CHN,2016,Shooting,5,2
+CHN,2016,Swimming,2,4
+CHN,2016,Synchronized Swimming,11,0
+CHN,2016,Table Tennis,5,5
+CHN,2016,Taekwondo,1,1
+CHN,2016,Trampolining,1,2
+CHN,2016,Volleyball,12,0
+CHN,2016,Weightlifting,3,4
+CHN,2016,Wrestling,2,0
+CIV,1984,Athletics,0,1
+CIV,2016,Taekwondo,1,1
+CMR,1968,Boxing,0,1
+CMR,1984,Boxing,0,1
+CMR,2000,Football,0,18
+CMR,2004,Athletics,1,0
+CMR,2008,Athletics,1,0
+COL,1900,Tug-Of-War,0,1
+COL,1972,Boxing,0,2
+COL,1972,Shooting,0,1
+COL,1984,Shooting,0,1
+COL,1988,Boxing,0,1
+COL,1992,Athletics,1,0
+COL,2000,Weightlifting,1,0
+COL,2004,Cycling,1,0
+COL,2004,Weightlifting,1,0
+COL,2008,Weightlifting,0,1
+COL,2008,Wrestling,1,0
+COL,2012,Athletics,1,0
+COL,2012,Cycling,1,2
+COL,2012,Judo,1,0
+COL,2012,Taekwondo,0,1
+COL,2012,Weightlifting,0,1
+COL,2012,Wrestling,1,0
+COL,2016,Athletics,1,0
+COL,2016,Boxing,1,1
+COL,2016,Cycling,1,1
+COL,2016,Judo,1,0
+COL,2016,Weightlifting,0,2
+CRC,1988,Swimming,1,0
+CRC,1996,Swimming,1,0
+CRC,2000,Swimming,2,0
+CRO,1992,Basketball,0,12
+CRO,1992,Tennis,0,3
+CRO,1996,Handball,0,16
+CRO,1996,Water Polo,0,12
+CRO,2000,Rowing,0,9
+CRO,2000,Weightlifting,0,1
+CRO,2002,Alpine Skiing,4,0
+CRO,2004,Handball,0,15
+CRO,2004,Rowing,0,2
+CRO,2004,Swimming,0,1
+CRO,2004,Tennis,0,2
+CRO,2004,Weightlifting,0,1
+CRO,2006,Alpine Skiing,2,1
+CRO,2008,Athletics,1,0
+CRO,2008,Gymnastics,0,1
+CRO,2008,Shooting,1,0
+CRO,2008,Taekwondo,2,0
+CRO,2010,Alpine Skiing,0,2
+CRO,2010,Biathlon,0,1
+CRO,2012,Athletics,1,0
+CRO,2012,Handball,0,15
+CRO,2012,Rowing,0,4
+CRO,2012,Shooting,0,1
+CRO,2012,Taekwondo,1,0
+CRO,2012,Water Polo,0,13
+CRO,2014,Alpine Skiing,0,1
+CRO,2016,Athletics,3,0
+CRO,2016,Boxing,0,1
+CRO,2016,Rowing,0,3
+CRO,2016,Sailing,0,3
+CRO,2016,Shooting,0,1
+CRO,2016,Water Polo,0,13
+CUB,1900,Fencing,0,2
+CUB,1904,Fencing,0,5
+CUB,1948,Sailing,0,2
+CUB,1964,Athletics,0,1
+CUB,1968,Athletics,4,4
+CUB,1968,Boxing,0,2
+CUB,1972,Athletics,5,0
+CUB,1972,Basketball,0,12
+CUB,1972,Boxing,0,5
+CUB,1976,Athletics,0,3
+CUB,1976,Boxing,0,8
+CUB,1976,Judo,0,1
+CUB,1976,Volleyball,0,12
+CUB,1980,Athletics,1,3
+CUB,1980,Boxing,0,10
+CUB,1980,Judo,0,3
+CUB,1980,Shooting,0,1
+CUB,1980,Weightlifting,0,2
+CUB,1992,Athletics,3,10
+CUB,1992,Baseball,0,20
+CUB,1992,Boxing,0,9
+CUB,1992,Fencing,0,6
+CUB,1992,Judo,4,1
+CUB,1992,Volleyball,10,0
+CUB,1992,Weightlifting,0,1
+CUB,1992,Wrestling,0,5
+CUB,1996,Athletics,1,1
+CUB,1996,Baseball,0,20
+CUB,1996,Boxing,0,7
+CUB,1996,Fencing,0,4
+CUB,1996,Judo,5,1
+CUB,1996,Swimming,0,2
+CUB,1996,Volleyball,10,0
+CUB,1996,Weightlifting,0,1
+CUB,1996,Wrestling,0,3
+CUB,2000,Athletics,1,8
+CUB,2000,Baseball,0,24
+CUB,2000,Boxing,0,6
+CUB,2000,Canoeing,0,3
+CUB,2000,Fencing,0,3
+CUB,2000,Judo,4,1
+CUB,2000,Taekwondo,1,1
+CUB,2000,Volleyball,8,0
+CUB,2000,Wrestling,0,5
+CUB,2004,Athletics,4,1
+CUB,2004,Baseball,0,24
+CUB,2004,Boxing,0,8
+CUB,2004,Canoeing,0,2
+CUB,2004,Judo,5,1
+CUB,2004,Shooting,0,1
+CUB,2004,Taekwondo,1,0
+CUB,2004,Volleyball,12,0
+CUB,2004,Wrestling,0,3
+CUB,2008,Athletics,2,3
+CUB,2008,Baseball,0,24
+CUB,2008,Boxing,0,8
+CUB,2008,Cycling,1,0
+CUB,2008,Judo,4,2
+CUB,2008,Shooting,1,0
+CUB,2008,Taekwondo,1,0
+CUB,2008,Wrestling,0,1
+CUB,2012,Athletics,1,1
+CUB,2012,Boxing,0,4
+CUB,2012,Judo,2,1
+CUB,2012,Shooting,0,1
+CUB,2012,Taekwondo,0,1
+CUB,2012,Weightlifting,0,1
+CUB,2012,Wrestling,0,2
+CUB,2016,Athletics,1,0
+CUB,2016,Boxing,0,6
+CUB,2016,Judo,1,0
+CUB,2016,Wrestling,0,3
+CYP,2012,Sailing,0,1
+CZE,1996,Athletics,1,2
+CZE,1996,Canoeing,1,5
+CZE,1996,Shooting,0,1
+CZE,1996,Tennis,3,0
+CZE,1998,Cross Country Skiing,2,0
+CZE,1998,Ice Hockey,0,21
+CZE,2000,Athletics,0,2
+CZE,2000,Boxing,0,1
+CZE,2000,Canoeing,1,2
+CZE,2000,Shooting,0,2
+CZE,2000,Triathlon,0,1
+CZE,2002,Cross Country Skiing,2,0
+CZE,2002,Freestyle Skiing,0,1
+CZE,2004,Athletics,1,2
+CZE,2004,Canoeing,0,2
+CZE,2004,Modern Pentathlon,0,1
+CZE,2004,Rowing,0,4
+CZE,2004,Sailing,1,0
+CZE,2004,Shooting,2,0
+CZE,2006,Cross Country Skiing,2,1
+CZE,2006,Ice Hockey,0,24
+CZE,2008,Athletics,1,0
+CZE,2008,Canoeing,0,2
+CZE,2008,Rowing,0,1
+CZE,2008,Shooting,2,1
+CZE,2010,Alpine Skiing,1,0
+CZE,2010,Cross Country Skiing,0,5
+CZE,2010,Speed Skating,3,0
+CZE,2012,Athletics,2,0
+CZE,2012,Canoeing,0,5
+CZE,2012,Cycling,0,1
+CZE,2012,Modern Pentathlon,0,1
+CZE,2012,Rowing,1,1
+CZE,2012,Shooting,1,0
+CZE,2012,Tennis,2,0
+CZE,2014,Biathlon,3,5
+CZE,2014,Snowboarding,1,0
+CZE,2014,Speed Skating,2,0
+CZE,2016,Athletics,1,0
+CZE,2016,Canoeing,0,6
+CZE,2016,Cycling,0,1
+CZE,2016,Judo,0,1
+CZE,2016,Rowing,0,1
+CZE,2016,Tennis,4,1
+DEN,1896,Fencing,0,1
+DEN,1896,Shooting,0,3
+DEN,1896,Weightlifting,0,2
+DEN,1900,Athletics,0,1
+DEN,1900,Shooting,0,4
+DEN,1900,Swimming,0,1
+DEN,1900,Tug-Of-War,0,3
+DEN,1906,Football,0,12
+DEN,1906,Gymnastics,0,18
+DEN,1906,Wrestling,0,4
+DEN,1908,Football,0,13
+DEN,1908,Swimming,0,1
+DEN,1908,Wrestling,0,3
+DEN,1912,Fencing,0,1
+DEN,1912,Football,0,15
+DEN,1912,Gymnastics,0,48
+DEN,1912,Rowing,0,10
+DEN,1912,Sailing,0,3
+DEN,1912,Shooting,0,8
+DEN,1912,Tennis,1,0
+DEN,1912,Wrestling,0,1
+DEN,1920,Athletics,0,1
+DEN,1920,Boxing,0,3
+DEN,1920,Diving,1,0
+DEN,1920,Gymnastics,0,45
+DEN,1920,Hockey,0,12
+DEN,1920,Shooting,0,7
+DEN,1920,Wrestling,0,2
+DEN,1924,Art Competitions,0,2
+DEN,1924,Boxing,0,3
+DEN,1924,Cycling,0,2
+DEN,1924,Equestrianism,0,1
+DEN,1924,Fencing,2,0
+DEN,1924,Sailing,0,3
+DEN,1924,Shooting,0,1
+DEN,1928,Art Competitions,0,3
+DEN,1928,Boxing,0,1
+DEN,1928,Cycling,0,7
+DEN,1928,Sailing,0,4
+DEN,1932,Art Competitions,0,2
+DEN,1932,Boxing,0,1
+DEN,1932,Cycling,0,5
+DEN,1932,Swimming,1,0
+DEN,1932,Weightlifting,0,1
+DEN,1932,Wrestling,0,1
+DEN,1936,Boxing,0,1
+DEN,1936,Equestrianism,0,1
+DEN,1936,Rowing,0,2
+DEN,1936,Swimming,2,0
+DEN,1948,Art Competitions,0,2
+DEN,1948,Athletics,1,0
+DEN,1948,Boxing,0,1
+DEN,1948,Canoeing,1,3
+DEN,1948,Cycling,0,1
+DEN,1948,Diving,1,0
+DEN,1948,Fencing,1,0
+DEN,1948,Football,0,13
+DEN,1948,Rowing,0,14
+DEN,1948,Sailing,0,4
+DEN,1948,Swimming,8,0
+DEN,1948,Wrestling,0,1
+DEN,1952,Boxing,0,1
+DEN,1952,Canoeing,0,2
+DEN,1952,Equestrianism,1,0
+DEN,1952,Fencing,1,0
+DEN,1952,Rowing,0,3
+DEN,1952,Sailing,0,1
+DEN,1956,Canoeing,1,0
+DEN,1956,Equestrianism,1,0
+DEN,1956,Sailing,0,4
+DEN,1960,Canoeing,0,5
+DEN,1960,Football,0,12
+DEN,1960,Sailing,0,6
+DEN,1964,Canoeing,0,2
+DEN,1964,Cycling,0,2
+DEN,1964,Rowing,0,4
+DEN,1964,Sailing,0,4
+DEN,1968,Canoeing,0,1
+DEN,1968,Cycling,0,8
+DEN,1968,Rowing,0,5
+DEN,1968,Sailing,0,3
+DEN,1972,Cycling,0,1
+DEN,1976,Cycling,0,5
+DEN,1976,Sailing,0,3
+DEN,1980,Cycling,0,1
+DEN,1980,Sailing,0,5
+DEN,1980,Shooting,0,1
+DEN,1980,Swimming,1,0
+DEN,1984,Canoeing,0,2
+DEN,1984,Equestrianism,1,0
+DEN,1984,Rowing,5,4
+DEN,1984,Shooting,0,1
+DEN,1988,Cycling,0,1
+DEN,1988,Sailing,0,5
+DEN,1988,Swimming,0,1
+DEN,1992,Badminton,0,1
+DEN,1992,Boxing,0,1
+DEN,1992,Canoeing,0,2
+DEN,1992,Cycling,0,5
+DEN,1992,Sailing,0,5
+DEN,1996,Badminton,0,1
+DEN,1996,Cycling,0,1
+DEN,1996,Handball,15,0
+DEN,1996,Rowing,1,4
+DEN,1996,Sailing,1,0
+DEN,1998,Curling,5,0
+DEN,2000,Athletics,0,1
+DEN,2000,Badminton,1,0
+DEN,2000,Handball,15,0
+DEN,2000,Rowing,0,4
+DEN,2000,Sailing,0,3
+DEN,2000,Shooting,0,1
+DEN,2004,Athletics,0,2
+DEN,2004,Badminton,1,1
+DEN,2004,Handball,15,0
+DEN,2004,Rowing,0,4
+DEN,2004,Sailing,4,0
+DEN,2004,Table Tennis,0,2
+DEN,2008,Canoeing,0,2
+DEN,2008,Cycling,0,5
+DEN,2008,Equestrianism,2,1
+DEN,2008,Rowing,0,6
+DEN,2008,Sailing,0,2
+DEN,2008,Swimming,1,0
+DEN,2012,Badminton,1,3
+DEN,2012,Cycling,0,1
+DEN,2012,Rowing,1,6
+DEN,2012,Sailing,0,3
+DEN,2012,Shooting,0,1
+DEN,2016,Athletics,1,0
+DEN,2016,Badminton,2,1
+DEN,2016,Canoeing,1,0
+DEN,2016,Cycling,0,7
+DEN,2016,Handball,0,14
+DEN,2016,Rowing,2,4
+DEN,2016,Sailing,3,0
+DEN,2016,Swimming,5,0
+DEN,2016,Wrestling,0,1
+DJI,1988,Athletics,0,1
+DOM,1984,Boxing,0,1
+DOM,2004,Athletics,0,1
+DOM,2008,Boxing,0,1
+DOM,2008,Taekwondo,0,1
+DOM,2012,Athletics,0,2
+DOM,2016,Taekwondo,0,1
+ECU,1996,Athletics,0,1
+ECU,2008,Athletics,0,1
+EGY,1928,Diving,0,2
+EGY,1928,Weightlifting,0,1
+EGY,1928,Wrestling,0,1
+EGY,1936,Weightlifting,0,5
+EGY,1948,Weightlifting,0,3
+EGY,1948,Wrestling,0,2
+EGY,1952,Wrestling,0,1
+EGY,1984,Judo,0,1
+EGY,2004,Boxing,0,3
+EGY,2004,Taekwondo,0,1
+EGY,2004,Wrestling,0,1
+EGY,2008,Judo,0,1
+EGY,2012,Fencing,0,1
+EGY,2012,Wrestling,0,1
+EGY,2016,Taekwondo,1,0
+EGY,2016,Weightlifting,1,1
+ERI,2004,Athletics,0,1
+ESP,1900,Basque Pelota,0,2
+ESP,1920,Football,0,18
+ESP,1920,Polo,0,5
+ESP,1928,Equestrianism,0,3
+ESP,1932,Sailing,0,1
+ESP,1948,Equestrianism,0,3
+ESP,1952,Shooting,0,1
+ESP,1960,Hockey,0,14
+ESP,1972,Alpine Skiing,0,1
+ESP,1972,Boxing,0,1
+ESP,1976,Canoeing,0,4
+ESP,1976,Sailing,0,2
+ESP,1980,Athletics,0,1
+ESP,1980,Canoeing,0,4
+ESP,1980,Hockey,0,16
+ESP,1980,Sailing,0,2
+ESP,1980,Swimming,0,1
+ESP,1984,Athletics,0,1
+ESP,1984,Basketball,0,12
+ESP,1984,Canoeing,0,2
+ESP,1984,Rowing,0,2
+ESP,1984,Sailing,0,2
+ESP,1988,Sailing,0,1
+ESP,1988,Shooting,0,1
+ESP,1988,Swimming,0,1
+ESP,1988,Tennis,0,2
+ESP,1992,Alpine Skiing,1,0
+ESP,1992,Archery,0,3
+ESP,1992,Athletics,0,4
+ESP,1992,Boxing,0,1
+ESP,1992,Cycling,0,1
+ESP,1992,Football,0,17
+ESP,1992,Hockey,15,0
+ESP,1992,Judo,2,0
+ESP,1992,Rhythmic Gymnastics,1,0
+ESP,1992,Sailing,3,5
+ESP,1992,Swimming,0,1
+ESP,1992,Tennis,3,1
+ESP,1992,Water Polo,0,12
+ESP,1996,Athletics,0,2
+ESP,1996,Boxing,0,1
+ESP,1996,Cycling,0,2
+ESP,1996,Handball,0,16
+ESP,1996,Hockey,0,16
+ESP,1996,Judo,2,1
+ESP,1996,Rhythmic Gymnastics,6,0
+ESP,1996,Sailing,2,2
+ESP,1996,Tennis,3,1
+ESP,1996,Water Polo,0,12
+ESP,2000,Athletics,1,0
+ESP,2000,Boxing,0,1
+ESP,2000,Cycling,1,1
+ESP,2000,Football,0,17
+ESP,2000,Gymnastics,0,1
+ESP,2000,Handball,0,15
+ESP,2000,Judo,1,0
+ESP,2000,Swimming,1,0
+ESP,2000,Taekwondo,0,1
+ESP,2000,Tennis,0,2
+ESP,2004,Athletics,0,3
+ESP,2004,Beach Volleyball,0,2
+ESP,2004,Canoeing,0,2
+ESP,2004,Cycling,0,8
+ESP,2004,Equestrianism,2,3
+ESP,2004,Gymnastics,1,1
+ESP,2004,Sailing,2,3
+ESP,2004,Shooting,1,0
+ESP,2004,Tennis,2,0
+ESP,2008,Basketball,0,12
+ESP,2008,Canoeing,0,4
+ESP,2008,Cycling,1,4
+ESP,2008,Fencing,0,1
+ESP,2008,Gymnastics,0,1
+ESP,2008,Handball,0,14
+ESP,2008,Hockey,0,16
+ESP,2008,Sailing,0,4
+ESP,2008,Synchronized Swimming,10,0
+ESP,2008,Tennis,2,1
+ESP,2012,Basketball,0,12
+ESP,2012,Canoeing,1,2
+ESP,2012,Handball,15,0
+ESP,2012,Sailing,4,0
+ESP,2012,Swimming,2,0
+ESP,2012,Synchronized Swimming,10,0
+ESP,2012,Taekwondo,1,2
+ESP,2012,Triathlon,0,1
+ESP,2012,Water Polo,12,0
+ESP,2012,Wrestling,1,0
+ESP,2016,Athletics,1,1
+ESP,2016,Badminton,1,0
+ESP,2016,Basketball,12,12
+ESP,2016,Canoeing,1,4
+ESP,2016,Cycling,0,1
+ESP,2016,Rhythmic Gymnastics,5,0
+ESP,2016,Swimming,2,0
+ESP,2016,Taekwondo,1,1
+ESP,2016,Tennis,0,2
+ESP,2016,Weightlifting,1,0
+EST,1920,Athletics,0,1
+EST,1920,Weightlifting,0,2
+EST,1924,Athletics,0,1
+EST,1924,Weightlifting,0,3
+EST,1924,Wrestling,0,2
+EST,1928,Sailing,0,5
+EST,1928,Weightlifting,0,1
+EST,1928,Wrestling,0,3
+EST,1936,Boxing,0,1
+EST,1936,Weightlifting,0,1
+EST,1936,Wrestling,0,5
+EST,1992,Cycling,1,0
+EST,1992,Sailing,0,2
+EST,2000,Athletics,0,1
+EST,2000,Judo,0,2
+EST,2002,Cross Country Skiing,0,3
+EST,2004,Athletics,0,1
+EST,2004,Judo,0,1
+EST,2004,Rowing,0,1
+EST,2006,Cross Country Skiing,2,1
+EST,2008,Athletics,0,1
+EST,2008,Rowing,0,2
+EST,2010,Cross Country Skiing,1,0
+EST,2012,Athletics,0,1
+EST,2012,Wrestling,0,1
+EST,2016,Rowing,0,4
+ETH,1960,Athletics,0,1
+ETH,1964,Athletics,0,1
+ETH,1968,Athletics,0,2
+ETH,1972,Athletics,0,2
+ETH,1980,Athletics,0,4
+ETH,1992,Athletics,1,2
+ETH,1996,Athletics,2,1
+ETH,2000,Athletics,3,5
+ETH,2004,Athletics,4,3
+ETH,2008,Athletics,3,4
+ETH,2012,Athletics,5,2
+ETH,2016,Athletics,5,3
+EUN,1992,Archery,4,0
+EUN,1992,Athletics,22,7
+EUN,1992,Basketball,12,0
+EUN,1992,Biathlon,6,5
+EUN,1992,Boxing,0,2
+EUN,1992,Canoeing,0,3
+EUN,1992,Cross Country Skiing,12,0
+EUN,1992,Diving,2,1
+EUN,1992,Fencing,1,12
+EUN,1992,Figure Skating,4,5
+EUN,1992,Freestyle Skiing,1,0
+EUN,1992,Gymnastics,11,17
+EUN,1992,Handball,13,12
+EUN,1992,Ice Hockey,0,22
+EUN,1992,Judo,1,3
+EUN,1992,Modern Pentathlon,0,4
+EUN,1992,Rhythmic Gymnastics,2,0
+EUN,1992,Rowing,4,0
+EUN,1992,Shooting,2,6
+EUN,1992,Short Track Speed Skating,4,0
+EUN,1992,Swimming,6,24
+EUN,1992,Tennis,2,1
+EUN,1992,Volleyball,8,0
+EUN,1992,Water Polo,0,13
+EUN,1992,Weightlifting,0,9
+EUN,1992,Wrestling,0,16
+FIJ,2016,Rugby Sevens,0,13
+FIN,1906,Athletics,0,2
+FIN,1906,Wrestling,0,2
+FIN,1908,Athletics,0,1
+FIN,1908,Gymnastics,0,26
+FIN,1908,Wrestling,0,3
+FIN,1912,Athletics,0,20
+FIN,1912,Gymnastics,0,20
+FIN,1912,Sailing,0,19
+FIN,1912,Shooting,0,5
+FIN,1912,Wrestling,0,7
+FIN,1920,Athletics,0,21
+FIN,1920,Figure Skating,1,1
+FIN,1920,Shooting,0,15
+FIN,1920,Swimming,0,2
+FIN,1920,Wrestling,0,12
+FIN,1924,Athletics,0,27
+FIN,1924,Cross Country Skiing,0,1
+FIN,1924,Figure Skating,1,1
+FIN,1924,Military Ski Patrol,0,4
+FIN,1924,Sailing,0,1
+FIN,1924,Shooting,0,8
+FIN,1924,Speed Skating,0,8
+FIN,1924,Wrestling,0,16
+FIN,1928,Athletics,0,14
+FIN,1928,Gymnastics,0,1
+FIN,1928,Sailing,0,1
+FIN,1928,Speed Skating,0,4
+FIN,1928,Wrestling,0,9
+FIN,1932,Athletics,0,11
+FIN,1932,Boxing,0,1
+FIN,1932,Cross Country Skiing,0,3
+FIN,1932,Gymnastics,0,9
+FIN,1932,Wrestling,0,8
+FIN,1936,Art Competitions,0,1
+FIN,1936,Athletics,0,10
+FIN,1936,Boxing,0,1
+FIN,1936,Cross Country Skiing,0,5
+FIN,1936,Gymnastics,0,9
+FIN,1936,Speed Skating,0,4
+FIN,1936,Wrestling,0,6
+FIN,1948,Art Competitions,1,3
+FIN,1948,Athletics,1,2
+FIN,1948,Canoeing,0,5
+FIN,1948,Cross Country Skiing,0,5
+FIN,1948,Gymnastics,0,17
+FIN,1948,Nordic Combined,0,2
+FIN,1948,Shooting,0,1
+FIN,1948,Speed Skating,0,2
+FIN,1948,Wrestling,0,3
+FIN,1952,Athletics,0,1
+FIN,1952,Boxing,0,5
+FIN,1952,Canoeing,1,7
+FIN,1952,Cross Country Skiing,3,8
+FIN,1952,Gymnastics,0,8
+FIN,1952,Modern Pentathlon,0,3
+FIN,1952,Nordic Combined,0,1
+FIN,1952,Rowing,0,4
+FIN,1952,Sailing,0,5
+FIN,1952,Shooting,0,2
+FIN,1952,Wrestling,0,4
+FIN,1956,Athletics,0,3
+FIN,1956,Boxing,0,1
+FIN,1956,Cross Country Skiing,3,6
+FIN,1956,Gymnastics,0,6
+FIN,1956,Modern Pentathlon,0,5
+FIN,1956,Rowing,0,5
+FIN,1956,Shooting,0,2
+FIN,1956,Ski Jumping,0,2
+FIN,1956,Speed Skating,0,1
+FIN,1956,Wrestling,0,4
+FIN,1960,Athletics,0,1
+FIN,1960,Biathlon,0,1
+FIN,1960,Boxing,0,1
+FIN,1960,Cross Country Skiing,3,7
+FIN,1960,Gymnastics,0,1
+FIN,1960,Rowing,0,2
+FIN,1960,Shooting,0,1
+FIN,1960,Ski Jumping,0,1
+FIN,1960,Speed Skating,1,0
+FIN,1964,Athletics,0,1
+FIN,1964,Boxing,0,1
+FIN,1964,Cross Country Skiing,4,7
+FIN,1964,Gymnastics,0,1
+FIN,1964,Shooting,0,2
+FIN,1964,Ski Jumping,0,2
+FIN,1964,Speed Skating,2,0
+FIN,1968,Athletics,0,1
+FIN,1968,Boxing,0,1
+FIN,1968,Cross Country Skiing,0,6
+FIN,1968,Gymnastics,0,1
+FIN,1968,Speed Skating,2,0
+FIN,1968,Weightlifting,0,1
+FIN,1972,Archery,0,1
+FIN,1972,Athletics,0,4
+FIN,1972,Biathlon,0,4
+FIN,1972,Boxing,0,1
+FIN,1972,Cross Country Skiing,5,0
+FIN,1972,Modern Pentathlon,0,3
+FIN,1972,Nordic Combined,0,1
+FIN,1972,Wrestling,0,1
+FIN,1976,Athletics,0,4
+FIN,1976,Biathlon,0,5
+FIN,1976,Cross Country Skiing,6,5
+FIN,1976,Rowing,0,1
+FIN,1976,Wrestling,0,1
+FIN,1980,Archery,1,1
+FIN,1980,Athletics,0,2
+FIN,1980,Cross Country Skiing,3,6
+FIN,1980,Nordic Combined,0,1
+FIN,1980,Rowing,0,1
+FIN,1980,Sailing,0,3
+FIN,1980,Ski Jumping,0,2
+FIN,1980,Wrestling,0,1
+FIN,1984,Athletics,1,3
+FIN,1984,Boxing,0,1
+FIN,1984,Cross Country Skiing,7,7
+FIN,1984,Nordic Combined,0,2
+FIN,1984,Rowing,0,1
+FIN,1984,Shooting,0,1
+FIN,1984,Ski Jumping,0,3
+FIN,1984,Weightlifting,0,2
+FIN,1984,Wrestling,0,3
+FIN,1988,Athletics,0,2
+FIN,1988,Cross Country Skiing,6,0
+FIN,1988,Ice Hockey,0,22
+FIN,1988,Ski Jumping,0,6
+FIN,1988,Wrestling,0,2
+FIN,1992,Archery,0,3
+FIN,1992,Athletics,0,1
+FIN,1992,Biathlon,0,1
+FIN,1992,Boxing,0,1
+FIN,1992,Canoeing,0,1
+FIN,1992,Cross Country Skiing,2,4
+FIN,1992,Ski Jumping,0,6
+FIN,1992,Swimming,0,1
+FIN,1994,Cross Country Skiing,2,6
+FIN,1994,Ice Hockey,0,22
+FIN,1996,Athletics,1,1
+FIN,1996,Swimming,0,1
+FIN,1996,Wrestling,0,1
+FIN,1998,Biathlon,0,1
+FIN,1998,Cross Country Skiing,0,6
+FIN,1998,Freestyle Skiing,0,2
+FIN,1998,Ice Hockey,20,22
+FIN,1998,Nordic Combined,0,5
+FIN,1998,Ski Jumping,0,2
+FIN,2000,Athletics,0,1
+FIN,2000,Sailing,0,2
+FIN,2000,Shooting,0,1
+FIN,2000,Wrestling,0,1
+FIN,2002,Freestyle Skiing,0,1
+FIN,2002,Nordic Combined,0,7
+FIN,2002,Ski Jumping,0,5
+FIN,2004,Shooting,0,1
+FIN,2004,Wrestling,0,1
+FIN,2006,Alpine Skiing,1,0
+FIN,2006,Cross Country Skiing,2,0
+FIN,2006,Curling,0,4
+FIN,2006,Freestyle Skiing,0,1
+FIN,2006,Ice Hockey,0,23
+FIN,2006,Nordic Combined,0,4
+FIN,2006,Ski Jumping,0,5
+FIN,2006,Snowboarding,0,1
+FIN,2008,Athletics,0,1
+FIN,2008,Rowing,2,0
+FIN,2008,Shooting,1,1
+FIN,2010,Cross Country Skiing,5,0
+FIN,2010,Ice Hockey,19,22
+FIN,2010,Snowboarding,0,1
+FIN,2012,Athletics,0,1
+FIN,2012,Sailing,4,0
+FIN,2014,Cross Country Skiing,6,2
+FIN,2014,Ice Hockey,0,24
+FIN,2014,Snowboarding,1,0
+FIN,2016,Boxing,1,0
+FRA,1896,Athletics,0,2
+FRA,1896,Cycling,0,6
+FRA,1896,Fencing,0,3
+FRA,1900,Archery,0,13
+FRA,1900,Athletics,0,10
+FRA,1900,Cricket,0,3
+FRA,1900,Croquet,0,8
+FRA,1900,Cycling,0,5
+FRA,1900,Equestrianism,0,8
+FRA,1900,Fencing,0,15
+FRA,1900,Football,0,13
+FRA,1900,Gymnastics,0,3
+FRA,1900,Polo,0,4
+FRA,1900,Rowing,0,16
+FRA,1900,Rugby,0,15
+FRA,1900,Sailing,0,72
+FRA,1900,Shooting,0,14
+FRA,1900,Swimming,0,12
+FRA,1900,Tennis,2,3
+FRA,1900,Tug-Of-War,0,5
+FRA,1900,Water Polo,0,14
+FRA,1904,Athletics,0,2
+FRA,1906,Athletics,0,1
+FRA,1906,Cycling,0,7
+FRA,1906,Fencing,0,8
+FRA,1906,Football,0,3
+FRA,1906,Gymnastics,0,4
+FRA,1906,Rowing,0,18
+FRA,1906,Shooting,0,16
+FRA,1906,Tennis,1,5
+FRA,1906,Weightlifting,0,1
+FRA,1908,Archery,0,3
+FRA,1908,Athletics,0,6
+FRA,1908,Cycling,0,6
+FRA,1908,Fencing,0,10
+FRA,1908,Gymnastics,0,1
+FRA,1908,Motorboating,0,1
+FRA,1908,Sailing,0,3
+FRA,1908,Shooting,0,10
+FRA,1912,Art Competitions,0,1
+FRA,1912,Athletics,0,5
+FRA,1912,Equestrianism,0,6
+FRA,1912,Gymnastics,0,1
+FRA,1912,Sailing,0,3
+FRA,1912,Shooting,0,2
+FRA,1912,Tennis,2,6
+FRA,1920,Archery,0,27
+FRA,1920,Art Competitions,1,0
+FRA,1920,Athletics,0,10
+FRA,1920,Boxing,0,3
+FRA,1920,Cycling,0,5
+FRA,1920,Equestrianism,0,4
+FRA,1920,Fencing,0,24
+FRA,1920,Gymnastics,0,28
+FRA,1920,Rowing,0,5
+FRA,1920,Rugby,0,15
+FRA,1920,Sailing,0,3
+FRA,1920,Shooting,0,6
+FRA,1920,Tennis,4,3
+FRA,1920,Weightlifting,0,3
+FRA,1924,Art Competitions,0,3
+FRA,1924,Athletics,0,8
+FRA,1924,Boxing,0,1
+FRA,1924,Curling,0,4
+FRA,1924,Cycling,0,10
+FRA,1924,Equestrianism,0,1
+FRA,1924,Fencing,0,19
+FRA,1924,Figure Skating,1,1
+FRA,1924,Gymnastics,0,13
+FRA,1924,Military Ski Patrol,0,4
+FRA,1924,Rowing,0,9
+FRA,1924,Rugby,0,19
+FRA,1924,Sailing,0,5
+FRA,1924,Shooting,0,6
+FRA,1924,Tennis,1,5
+FRA,1924,Water Polo,0,7
+FRA,1924,Weightlifting,0,2
+FRA,1924,Wrestling,0,1
+FRA,1928,Art Competitions,0,4
+FRA,1928,Athletics,0,3
+FRA,1928,Boxing,0,1
+FRA,1928,Cycling,0,1
+FRA,1928,Equestrianism,0,2
+FRA,1928,Fencing,0,15
+FRA,1928,Figure Skating,1,1
+FRA,1928,Rowing,0,3
+FRA,1928,Sailing,1,5
+FRA,1928,Water Polo,0,9
+FRA,1928,Weightlifting,0,3
+FRA,1928,Wrestling,0,3
+FRA,1932,Art Competitions,0,3
+FRA,1932,Athletics,0,1
+FRA,1932,Cycling,0,8
+FRA,1932,Equestrianism,0,5
+FRA,1932,Fencing,0,13
+FRA,1932,Figure Skating,1,1
+FRA,1932,Rowing,0,3
+FRA,1932,Sailing,0,1
+FRA,1932,Swimming,0,1
+FRA,1932,Weightlifting,0,3
+FRA,1932,Wrestling,0,2
+FRA,1936,Alpine Skiing,0,1
+FRA,1936,Boxing,0,2
+FRA,1936,Canoeing,0,1
+FRA,1936,Cycling,0,14
+FRA,1936,Equestrianism,0,3
+FRA,1936,Fencing,0,13
+FRA,1936,Rowing,0,8
+FRA,1936,Shooting,0,1
+FRA,1936,Weightlifting,0,1
+FRA,1936,Wrestling,0,1
+FRA,1948,Alpine Skiing,0,5
+FRA,1948,Art Competitions,0,3
+FRA,1948,Athletics,4,7
+FRA,1948,Basketball,0,14
+FRA,1948,Canoeing,0,6
+FRA,1948,Cycling,0,12
+FRA,1948,Equestrianism,0,6
+FRA,1948,Fencing,0,14
+FRA,1948,Swimming,0,5
+FRA,1948,Wrestling,0,1
+FRA,1952,Athletics,0,2
+FRA,1952,Boxing,0,1
+FRA,1952,Canoeing,0,3
+FRA,1952,Cycling,0,4
+FRA,1952,Diving,1,0
+FRA,1952,Equestrianism,0,3
+FRA,1952,Fencing,0,13
+FRA,1952,Figure Skating,1,0
+FRA,1952,Rowing,0,7
+FRA,1952,Swimming,0,6
+FRA,1956,Athletics,0,1
+FRA,1956,Boxing,0,2
+FRA,1956,Canoeing,0,2
+FRA,1956,Cycling,0,10
+FRA,1956,Fencing,1,12
+FRA,1956,Rowing,0,4
+FRA,1956,Weightlifting,0,1
+FRA,1960,Alpine Skiing,0,3
+FRA,1960,Athletics,0,2
+FRA,1960,Equestrianism,0,4
+FRA,1960,Rowing,0,5
+FRA,1960,Wrestling,0,1
+FRA,1964,Alpine Skiing,4,2
+FRA,1964,Athletics,1,4
+FRA,1964,Boxing,0,1
+FRA,1964,Canoeing,0,2
+FRA,1964,Cycling,0,2
+FRA,1964,Equestrianism,1,3
+FRA,1964,Fencing,0,13
+FRA,1964,Figure Skating,0,1
+FRA,1964,Rowing,0,3
+FRA,1964,Swimming,1,0
+FRA,1968,Alpine Skiing,4,4
+FRA,1968,Athletics,1,4
+FRA,1968,Cycling,0,6
+FRA,1968,Equestrianism,1,3
+FRA,1968,Fencing,0,6
+FRA,1968,Figure Skating,0,1
+FRA,1968,Modern Pentathlon,0,3
+FRA,1968,Swimming,0,1
+FRA,1968,Wrestling,0,2
+FRA,1972,Alpine Skiing,2,0
+FRA,1972,Athletics,0,5
+FRA,1972,Canoeing,0,2
+FRA,1972,Cycling,0,1
+FRA,1972,Fencing,0,7
+FRA,1972,Figure Skating,0,1
+FRA,1972,Judo,0,3
+FRA,1972,Sailing,0,3
+FRA,1972,Shooting,0,1
+FRA,1976,Alpine Skiing,1,0
+FRA,1976,Athletics,0,1
+FRA,1976,Cycling,0,1
+FRA,1976,Equestrianism,0,4
+FRA,1976,Fencing,5,6
+FRA,1976,Gymnastics,0,1
+FRA,1976,Judo,0,1
+FRA,1976,Weightlifting,0,1
+FRA,1980,Alpine Skiing,1,0
+FRA,1980,Athletics,0,4
+FRA,1980,Canoeing,0,1
+FRA,1980,Cycling,0,2
+FRA,1980,Fencing,6,12
+FRA,1980,Judo,0,4
+FRA,1984,Alpine Skiing,2,1
+FRA,1984,Athletics,1,3
+FRA,1984,Boxing,0,1
+FRA,1984,Canoeing,0,9
+FRA,1984,Cycling,0,1
+FRA,1984,Fencing,5,18
+FRA,1984,Football,0,16
+FRA,1984,Gymnastics,0,1
+FRA,1984,Judo,0,3
+FRA,1984,Modern Pentathlon,0,3
+FRA,1984,Sailing,0,2
+FRA,1984,Shooting,0,2
+FRA,1984,Swimming,1,1
+FRA,1988,Alpine Skiing,0,2
+FRA,1988,Athletics,0,4
+FRA,1988,Boxing,0,1
+FRA,1988,Canoeing,0,2
+FRA,1988,Equestrianism,1,5
+FRA,1988,Fencing,0,7
+FRA,1988,Judo,0,2
+FRA,1988,Sailing,0,4
+FRA,1988,Shooting,0,1
+FRA,1988,Swimming,1,1
+FRA,1992,Alpine Skiing,2,1
+FRA,1992,Archery,0,1
+FRA,1992,Athletics,1,0
+FRA,1992,Biathlon,3,0
+FRA,1992,Canoeing,0,6
+FRA,1992,Cycling,1,4
+FRA,1992,Equestrianism,0,4
+FRA,1992,Fencing,0,9
+FRA,1992,Figure Skating,1,1
+FRA,1992,Freestyle Skiing,0,2
+FRA,1992,Handball,0,16
+FRA,1992,Judo,4,3
+FRA,1992,Nordic Combined,0,2
+FRA,1992,Sailing,0,3
+FRA,1992,Shooting,0,1
+FRA,1992,Swimming,1,2
+FRA,1992,Table Tennis,0,1
+FRA,1994,Biathlon,5,4
+FRA,1994,Figure Skating,0,1
+FRA,1994,Freestyle Skiing,0,1
+FRA,1996,Athletics,3,1
+FRA,1996,Canoeing,1,3
+FRA,1996,Cycling,5,7
+FRA,1996,Equestrianism,1,0
+FRA,1996,Fencing,5,6
+FRA,1996,Judo,2,4
+FRA,1996,Rowing,2,8
+FRA,1996,Shooting,0,2
+FRA,1996,Wrestling,0,1
+FRA,1998,Alpine Skiing,1,1
+FRA,1998,Bobsleigh,0,4
+FRA,1998,Figure Skating,1,2
+FRA,1998,Freestyle Skiing,0,1
+FRA,1998,Nordic Combined,0,4
+FRA,1998,Snowboarding,1,0
+FRA,2000,Basketball,0,12
+FRA,2000,Boxing,0,2
+FRA,2000,Canoeing,2,1
+FRA,2000,Cycling,4,6
+FRA,2000,Fencing,1,13
+FRA,2000,Gymnastics,0,2
+FRA,2000,Judo,2,4
+FRA,2000,Rowing,0,8
+FRA,2000,Shooting,1,1
+FRA,2000,Swimming,1,0
+FRA,2000,Synchronized Swimming,2,0
+FRA,2000,Table Tennis,0,2
+FRA,2000,Taekwondo,0,1
+FRA,2000,Tennis,0,1
+FRA,2002,Alpine Skiing,2,2
+FRA,2002,Biathlon,0,5
+FRA,2002,Figure Skating,1,1
+FRA,2002,Freestyle Skiing,0,1
+FRA,2002,Snowboarding,3,0
+FRA,2004,Athletics,4,1
+FRA,2004,Boxing,0,1
+FRA,2004,Canoeing,0,3
+FRA,2004,Cycling,0,5
+FRA,2004,Equestrianism,0,5
+FRA,2004,Fencing,6,8
+FRA,2004,Gymnastics,1,0
+FRA,2004,Judo,1,0
+FRA,2004,Rowing,0,4
+FRA,2004,Sailing,1,2
+FRA,2004,Swimming,5,1
+FRA,2004,Taekwondo,1,1
+FRA,2004,Tennis,1,0
+FRA,2004,Wrestling,2,0
+FRA,2006,Alpine Skiing,0,2
+FRA,2006,Biathlon,5,5
+FRA,2006,Cross Country Skiing,0,1
+FRA,2006,Freestyle Skiing,1,0
+FRA,2006,Snowboarding,0,1
+FRA,2008,Archery,3,0
+FRA,2008,Athletics,0,2
+FRA,2008,Boxing,0,3
+FRA,2008,Canoeing,2,1
+FRA,2008,Cycling,2,7
+FRA,2008,Fencing,0,8
+FRA,2008,Gymnastics,0,2
+FRA,2008,Handball,0,15
+FRA,2008,Judo,2,2
+FRA,2008,Rowing,0,8
+FRA,2008,Sailing,0,4
+FRA,2008,Shooting,0,1
+FRA,2008,Swimming,0,11
+FRA,2008,Taekwondo,1,0
+FRA,2008,Weightlifting,0,1
+FRA,2008,Wrestling,0,2
+FRA,2010,Biathlon,6,3
+FRA,2010,Freestyle Skiing,1,0
+FRA,2010,Nordic Combined,0,1
+FRA,2010,Snowboarding,1,2
+FRA,2012,Athletics,0,6
+FRA,2012,Basketball,12,0
+FRA,2012,Canoeing,1,1
+FRA,2012,Cycling,1,5
+FRA,2012,Gymnastics,0,1
+FRA,2012,Handball,0,15
+FRA,2012,Judo,5,2
+FRA,2012,Rowing,0,2
+FRA,2012,Sailing,0,1
+FRA,2012,Shooting,2,0
+FRA,2012,Swimming,8,13
+FRA,2012,Taekwondo,2,0
+FRA,2012,Tennis,0,4
+FRA,2012,Wrestling,0,1
+FRA,2014,Alpine Skiing,0,2
+FRA,2014,Biathlon,0,4
+FRA,2014,Cross Country Skiing,0,4
+FRA,2014,Freestyle Skiing,1,4
+FRA,2014,Ski Jumping,1,0
+FRA,2014,Snowboarding,1,1
+FRA,2016,Archery,0,1
+FRA,2016,Athletics,1,5
+FRA,2016,Boxing,2,4
+FRA,2016,Canoeing,0,4
+FRA,2016,Cycling,0,3
+FRA,2016,Equestrianism,1,8
+FRA,2016,Fencing,0,9
+FRA,2016,Handball,16,15
+FRA,2016,Judo,3,2
+FRA,2016,Modern Pentathlon,1,0
+FRA,2016,Rowing,0,6
+FRA,2016,Sailing,3,1
+FRA,2016,Shooting,0,2
+FRA,2016,Swimming,0,8
+FRA,2016,Taekwondo,1,0
+FRG,1968,Athletics,2,9
+FRG,1968,Bobsleigh,0,2
+FRG,1968,Boxing,0,1
+FRG,1968,Canoeing,3,1
+FRG,1968,Cycling,0,5
+FRG,1968,Equestrianism,1,7
+FRG,1968,Figure Skating,1,1
+FRG,1968,Luge,2,2
+FRG,1968,Nordic Combined,0,1
+FRG,1968,Rowing,0,11
+FRG,1968,Sailing,0,2
+FRG,1968,Shooting,0,3
+FRG,1968,Speed Skating,0,1
+FRG,1968,Swimming,4,1
+FRG,1968,Wrestling,0,1
+FRG,1972,Athletics,13,7
+FRG,1972,Bobsleigh,0,8
+FRG,1972,Boxing,0,2
+FRG,1972,Canoeing,2,4
+FRG,1972,Cycling,0,6
+FRG,1972,Equestrianism,3,10
+FRG,1972,Hockey,0,18
+FRG,1972,Judo,0,2
+FRG,1972,Rowing,0,9
+FRG,1972,Sailing,0,4
+FRG,1972,Shooting,0,1
+FRG,1972,Speed Skating,1,1
+FRG,1972,Swimming,11,7
+FRG,1972,Weightlifting,0,1
+FRG,1972,Wrestling,0,2
+FRG,1976,Alpine Skiing,3,0
+FRG,1976,Athletics,8,7
+FRG,1976,Bobsleigh,0,6
+FRG,1976,Boxing,0,1
+FRG,1976,Cycling,0,5
+FRG,1976,Equestrianism,1,14
+FRG,1976,Fencing,0,12
+FRG,1976,Gymnastics,0,1
+FRG,1976,Ice Hockey,0,18
+FRG,1976,Judo,0,1
+FRG,1976,Luge,1,3
+FRG,1976,Nordic Combined,0,1
+FRG,1976,Rowing,2,8
+FRG,1976,Sailing,0,6
+FRG,1976,Shooting,0,3
+FRG,1976,Swimming,0,7
+FRG,1976,Wrestling,0,2
+FRG,1980,Alpine Skiing,2,0
+FRG,1980,Biathlon,0,4
+FRG,1980,Figure Skating,1,0
+FRG,1980,Luge,0,1
+FRG,1984,Athletics,9,7
+FRG,1984,Biathlon,0,6
+FRG,1984,Boxing,0,1
+FRG,1984,Canoeing,3,1
+FRG,1984,Cycling,1,7
+FRG,1984,Equestrianism,1,11
+FRG,1984,Fencing,6,11
+FRG,1984,Handball,0,15
+FRG,1984,Hockey,16,16
+FRG,1984,Judo,0,3
+FRG,1984,Luge,0,2
+FRG,1984,Rhythmic Gymnastics,1,0
+FRG,1984,Rowing,2,5
+FRG,1984,Sailing,0,2
+FRG,1984,Shooting,1,0
+FRG,1984,Swimming,11,10
+FRG,1984,Water Polo,0,12
+FRG,1984,Weightlifting,0,3
+FRG,1984,Wrestling,0,3
+FRG,1988,Alpine Skiing,3,1
+FRG,1988,Athletics,1,8
+FRG,1988,Biathlon,0,4
+FRG,1988,Boxing,0,1
+FRG,1988,Cycling,1,3
+FRG,1988,Equestrianism,4,10
+FRG,1988,Fencing,8,11
+FRG,1988,Football,0,18
+FRG,1988,Hockey,0,16
+FRG,1988,Judo,0,2
+FRG,1988,Luge,0,3
+FRG,1988,Nordic Combined,0,3
+FRG,1988,Rowing,0,14
+FRG,1988,Shooting,2,1
+FRG,1988,Swimming,0,8
+FRG,1988,Tennis,3,0
+FRG,1988,Weightlifting,0,3
+FRG,1988,Wrestling,0,1
+GAB,2012,Taekwondo,0,1
+GBR,1896,Athletics,0,2
+GBR,1896,Cycling,0,2
+GBR,1896,Tennis,0,3
+GBR,1896,Weightlifting,0,2
+GBR,1900,Athletics,0,12
+GBR,1900,Cricket,0,21
+GBR,1900,Cycling,0,1
+GBR,1900,Football,0,12
+GBR,1900,Golf,0,2
+GBR,1900,Polo,0,6
+GBR,1900,Rowing,0,1
+GBR,1900,Rugby,0,15
+GBR,1900,Sailing,0,14
+GBR,1900,Swimming,0,3
+GBR,1900,Tennis,2,12
+GBR,1900,Water Polo,0,7
+GBR,1904,Athletics,0,2
+GBR,1906,Athletics,0,9
+GBR,1906,Cycling,0,6
+GBR,1906,Fencing,0,4
+GBR,1906,Football,0,8
+GBR,1906,Shooting,0,4
+GBR,1906,Swimming,0,8
+GBR,1908,Archery,3,2
+GBR,1908,Athletics,0,21
+GBR,1908,Boxing,0,14
+GBR,1908,Cycling,0,14
+GBR,1908,Fencing,0,6
+GBR,1908,Figure Skating,4,4
+GBR,1908,Football,0,11
+GBR,1908,Gymnastics,0,1
+GBR,1908,Hockey,0,45
+GBR,1908,Jeu De Paume,0,2
+GBR,1908,Lacrosse,0,12
+GBR,1908,Motorboating,0,6
+GBR,1908,Polo,0,12
+GBR,1908,Racquets,0,10
+GBR,1908,Rowing,0,32
+GBR,1908,Rugby,0,15
+GBR,1908,Sailing,1,36
+GBR,1908,Shooting,0,45
+GBR,1908,Swimming,0,10
+GBR,1908,Tennis,5,15
+GBR,1908,Tug-Of-War,0,24
+GBR,1908,Water Polo,0,7
+GBR,1908,Wrestling,0,11
+GBR,1912,Athletics,0,22
+GBR,1912,Cycling,0,13
+GBR,1912,Diving,1,0
+GBR,1912,Fencing,0,6
+GBR,1912,Football,0,14
+GBR,1912,Gymnastics,0,23
+GBR,1912,Rowing,0,24
+GBR,1912,Shooting,0,31
+GBR,1912,Swimming,5,7
+GBR,1912,Tennis,4,5
+GBR,1912,Tug-Of-War,0,8
+GBR,1912,Water Polo,0,7
+GBR,1920,Art Competitions,0,1
+GBR,1920,Athletics,0,25
+GBR,1920,Boxing,0,6
+GBR,1920,Cycling,0,9
+GBR,1920,Diving,1,0
+GBR,1920,Figure Skating,1,1
+GBR,1920,Hockey,0,14
+GBR,1920,Polo,0,4
+GBR,1920,Rowing,0,10
+GBR,1920,Sailing,1,3
+GBR,1920,Swimming,4,4
+GBR,1920,Tennis,7,3
+GBR,1920,Tug-Of-War,0,8
+GBR,1920,Water Polo,0,7
+GBR,1920,Wrestling,0,2
+GBR,1924,Alpinism,0,12
+GBR,1924,Art Competitions,1,0
+GBR,1924,Athletics,0,22
+GBR,1924,Bobsleigh,0,4
+GBR,1924,Boxing,0,4
+GBR,1924,Curling,0,4
+GBR,1924,Cycling,0,2
+GBR,1924,Diving,0,1
+GBR,1924,Fencing,1,0
+GBR,1924,Figure Skating,1,0
+GBR,1924,Ice Hockey,0,10
+GBR,1924,Polo,0,4
+GBR,1924,Rowing,0,5
+GBR,1924,Sailing,0,5
+GBR,1924,Shooting,0,6
+GBR,1924,Swimming,7,0
+GBR,1924,Tennis,5,0
+GBR,1924,Wrestling,0,1
+GBR,1928,Art Competitions,1,1
+GBR,1928,Athletics,0,8
+GBR,1928,Cycling,0,11
+GBR,1928,Fencing,1,0
+GBR,1928,Gymnastics,12,0
+GBR,1928,Rowing,0,16
+GBR,1928,Skeleton,0,1
+GBR,1928,Swimming,7,0
+GBR,1928,Wrestling,0,1
+GBR,1932,Art Competitions,0,1
+GBR,1932,Athletics,4,10
+GBR,1932,Cycling,0,6
+GBR,1932,Fencing,1,0
+GBR,1932,Rowing,0,6
+GBR,1932,Sailing,0,2
+GBR,1932,Swimming,5,0
+GBR,1936,Athletics,5,8
+GBR,1936,Bobsleigh,0,4
+GBR,1936,Cycling,0,4
+GBR,1936,Equestrianism,0,3
+GBR,1936,Figure Skating,1,0
+GBR,1936,Ice Hockey,0,12
+GBR,1936,Polo,0,4
+GBR,1936,Rowing,0,6
+GBR,1936,Sailing,0,6
+GBR,1948,Art Competitions,1,3
+GBR,1948,Athletics,4,6
+GBR,1948,Boxing,0,2
+GBR,1948,Cycling,0,12
+GBR,1948,Equestrianism,0,3
+GBR,1948,Figure Skating,1,0
+GBR,1948,Hockey,0,12
+GBR,1948,Rowing,0,13
+GBR,1948,Sailing,0,2
+GBR,1948,Skeleton,0,1
+GBR,1948,Swimming,1,0
+GBR,1948,Weightlifting,0,2
+GBR,1952,Athletics,6,2
+GBR,1952,Cycling,0,4
+GBR,1952,Equestrianism,0,3
+GBR,1952,Figure Skating,1,0
+GBR,1952,Hockey,0,13
+GBR,1952,Sailing,0,1
+GBR,1952,Swimming,1,0
+GBR,1952,Wrestling,0,1
+GBR,1956,Athletics,5,8
+GBR,1956,Boxing,0,5
+GBR,1956,Cycling,0,9
+GBR,1956,Equestrianism,1,6
+GBR,1956,Fencing,1,0
+GBR,1956,Sailing,0,9
+GBR,1956,Swimming,2,0
+GBR,1960,Athletics,4,7
+GBR,1960,Boxing,0,3
+GBR,1960,Diving,1,1
+GBR,1960,Equestrianism,0,1
+GBR,1960,Fencing,0,7
+GBR,1960,Swimming,3,0
+GBR,1960,Weightlifting,0,1
+GBR,1964,Athletics,8,10
+GBR,1964,Bobsleigh,0,2
+GBR,1964,Equestrianism,0,1
+GBR,1964,Fencing,0,1
+GBR,1964,Rowing,0,4
+GBR,1964,Sailing,0,2
+GBR,1964,Swimming,0,1
+GBR,1964,Weightlifting,0,1
+GBR,1968,Athletics,2,2
+GBR,1968,Boxing,0,1
+GBR,1968,Equestrianism,2,5
+GBR,1968,Sailing,0,5
+GBR,1968,Shooting,0,1
+GBR,1968,Swimming,0,1
+GBR,1972,Athletics,1,6
+GBR,1972,Boxing,0,3
+GBR,1972,Cycling,0,4
+GBR,1972,Equestrianism,3,3
+GBR,1972,Judo,0,3
+GBR,1972,Sailing,0,4
+GBR,1972,Shooting,0,1
+GBR,1972,Swimming,0,1
+GBR,1976,Athletics,0,1
+GBR,1976,Boxing,0,1
+GBR,1976,Cycling,0,4
+GBR,1976,Figure Skating,0,1
+GBR,1976,Judo,0,2
+GBR,1976,Modern Pentathlon,0,3
+GBR,1976,Rowing,0,11
+GBR,1976,Sailing,0,4
+GBR,1976,Swimming,0,6
+GBR,1980,Athletics,8,8
+GBR,1980,Boxing,0,1
+GBR,1980,Figure Skating,0,1
+GBR,1980,Judo,0,2
+GBR,1980,Rowing,0,15
+GBR,1980,Swimming,5,8
+GBR,1984,Athletics,10,12
+GBR,1984,Boxing,0,1
+GBR,1984,Equestrianism,4,5
+GBR,1984,Figure Skating,1,1
+GBR,1984,Hockey,0,15
+GBR,1984,Judo,0,3
+GBR,1984,Rowing,0,5
+GBR,1984,Sailing,0,2
+GBR,1984,Shooting,0,4
+GBR,1984,Swimming,3,5
+GBR,1984,Weightlifting,0,1
+GBR,1984,Wrestling,0,1
+GBR,1988,Archery,0,3
+GBR,1988,Athletics,3,9
+GBR,1988,Boxing,0,1
+GBR,1988,Equestrianism,3,3
+GBR,1988,Hockey,0,16
+GBR,1988,Judo,0,1
+GBR,1988,Modern Pentathlon,0,3
+GBR,1988,Rowing,0,5
+GBR,1988,Sailing,0,2
+GBR,1988,Shooting,0,2
+GBR,1988,Swimming,0,3
+GBR,1992,Archery,0,4
+GBR,1992,Athletics,5,9
+GBR,1992,Boxing,0,1
+GBR,1992,Canoeing,0,1
+GBR,1992,Cycling,0,1
+GBR,1992,Hockey,16,0
+GBR,1992,Judo,3,1
+GBR,1992,Rowing,0,5
+GBR,1992,Sailing,0,3
+GBR,1992,Swimming,0,1
+GBR,1994,Figure Skating,1,1
+GBR,1994,Short Track Speed Skating,0,1
+GBR,1996,Athletics,1,10
+GBR,1996,Cycling,0,2
+GBR,1996,Rowing,0,6
+GBR,1996,Sailing,0,3
+GBR,1996,Swimming,0,2
+GBR,1996,Tennis,0,2
+GBR,1998,Bobsleigh,0,4
+GBR,2000,Athletics,3,3
+GBR,2000,Badminton,1,1
+GBR,2000,Boxing,0,1
+GBR,2000,Canoeing,0,2
+GBR,2000,Cycling,1,9
+GBR,2000,Equestrianism,2,2
+GBR,2000,Judo,1,0
+GBR,2000,Modern Pentathlon,2,0
+GBR,2000,Rowing,4,13
+GBR,2000,Sailing,1,6
+GBR,2000,Shooting,0,2
+GBR,2002,Curling,5,0
+GBR,2002,Skeleton,1,0
+GBR,2004,Archery,1,0
+GBR,2004,Athletics,3,4
+GBR,2004,Badminton,1,1
+GBR,2004,Boxing,0,1
+GBR,2004,Canoeing,1,2
+GBR,2004,Cycling,0,10
+GBR,2004,Diving,0,2
+GBR,2004,Equestrianism,4,3
+GBR,2004,Modern Pentathlon,1,0
+GBR,2004,Rowing,8,4
+GBR,2004,Sailing,3,6
+GBR,2004,Swimming,0,2
+GBR,2006,Skeleton,1,0
+GBR,2008,Athletics,2,6
+GBR,2008,Boxing,0,3
+GBR,2008,Canoeing,0,3
+GBR,2008,Cycling,5,14
+GBR,2008,Equestrianism,5,1
+GBR,2008,Gymnastics,0,1
+GBR,2008,Modern Pentathlon,1,0
+GBR,2008,Rowing,6,17
+GBR,2008,Sailing,4,6
+GBR,2008,Swimming,5,1
+GBR,2008,Taekwondo,1,0
+GBR,2010,Skeleton,1,0
+GBR,2012,Athletics,2,4
+GBR,2012,Boxing,1,4
+GBR,2012,Canoeing,0,7
+GBR,2012,Cycling,7,12
+GBR,2012,Diving,0,1
+GBR,2012,Equestrianism,8,6
+GBR,2012,Gymnastics,1,7
+GBR,2012,Hockey,16,0
+GBR,2012,Judo,2,0
+GBR,2012,Modern Pentathlon,1,0
+GBR,2012,Rowing,6,22
+GBR,2012,Sailing,2,6
+GBR,2012,Shooting,0,1
+GBR,2012,Swimming,2,1
+GBR,2012,Taekwondo,1,1
+GBR,2012,Tennis,1,2
+GBR,2012,Triathlon,0,2
+GBR,2014,Curling,4,4
+GBR,2014,Skeleton,1,0
+GBR,2014,Snowboarding,1,0
+GBR,2016,Athletics,11,3
+GBR,2016,Badminton,0,2
+GBR,2016,Boxing,1,2
+GBR,2016,Canoeing,0,6
+GBR,2016,Cycling,8,12
+GBR,2016,Diving,0,5
+GBR,2016,Equestrianism,3,3
+GBR,2016,Golf,0,1
+GBR,2016,Gymnastics,1,5
+GBR,2016,Hockey,16,0
+GBR,2016,Judo,1,0
+GBR,2016,Rowing,13,13
+GBR,2016,Rugby Sevens,0,12
+GBR,2016,Sailing,2,2
+GBR,2016,Shooting,0,2
+GBR,2016,Swimming,3,10
+GBR,2016,Taekwondo,2,1
+GBR,2016,Tennis,0,1
+GBR,2016,Trampolining,1,0
+GBR,2016,Triathlon,1,2
+GDR,1968,Athletics,2,4
+GDR,1968,Boxing,0,1
+GDR,1968,Figure Skating,1,0
+GDR,1968,Gymnastics,8,6
+GDR,1968,Luge,0,4
+GDR,1968,Nordic Combined,0,1
+GDR,1968,Rowing,0,11
+GDR,1968,Sailing,0,3
+GDR,1968,Shooting,0,2
+GDR,1968,Swimming,7,6
+GDR,1968,Wrestling,0,2
+GDR,1972,Athletics,19,7
+GDR,1972,Biathlon,0,5
+GDR,1972,Boxing,0,1
+GDR,1972,Canoeing,3,5
+GDR,1972,Cycling,0,7
+GDR,1972,Diving,2,0
+GDR,1972,Figure Skating,1,1
+GDR,1972,Football,0,17
+GDR,1972,Gymnastics,12,7
+GDR,1972,Judo,0,1
+GDR,1972,Luge,3,7
+GDR,1972,Nordic Combined,0,2
+GDR,1972,Rowing,0,26
+GDR,1972,Sailing,0,3
+GDR,1972,Shooting,0,2
+GDR,1972,Ski Jumping,0,1
+GDR,1972,Swimming,13,11
+GDR,1972,Volleyball,0,12
+GDR,1972,Weightlifting,0,2
+GDR,1972,Wrestling,0,1
+GDR,1976,Athletics,25,11
+GDR,1976,Biathlon,0,4
+GDR,1976,Bobsleigh,0,6
+GDR,1976,Boxing,0,2
+GDR,1976,Canoeing,3,10
+GDR,1976,Cross Country Skiing,4,1
+GDR,1976,Cycling,0,3
+GDR,1976,Diving,1,0
+GDR,1976,Figure Skating,3,2
+GDR,1976,Football,0,17
+GDR,1976,Gymnastics,7,7
+GDR,1976,Handball,14,0
+GDR,1976,Luge,2,4
+GDR,1976,Nordic Combined,0,2
+GDR,1976,Rowing,24,30
+GDR,1976,Sailing,0,4
+GDR,1976,Shooting,0,4
+GDR,1976,Ski Jumping,0,3
+GDR,1976,Speed Skating,1,0
+GDR,1976,Swimming,27,1
+GDR,1976,Weightlifting,0,3
+GDR,1976,Wrestling,0,2
+GDR,1980,Athletics,21,17
+GDR,1980,Biathlon,0,7
+GDR,1980,Bobsleigh,0,12
+GDR,1980,Boxing,0,6
+GDR,1980,Canoeing,3,11
+GDR,1980,Cross Country Skiing,5,0
+GDR,1980,Cycling,0,10
+GDR,1980,Diving,3,1
+GDR,1980,Figure Skating,2,2
+GDR,1980,Football,0,17
+GDR,1980,Gymnastics,11,10
+GDR,1980,Handball,14,14
+GDR,1980,Judo,0,5
+GDR,1980,Luge,1,3
+GDR,1980,Nordic Combined,0,2
+GDR,1980,Rowing,25,30
+GDR,1980,Sailing,0,2
+GDR,1980,Shooting,0,6
+GDR,1980,Ski Jumping,0,1
+GDR,1980,Speed Skating,4,0
+GDR,1980,Swimming,34,8
+GDR,1980,Volleyball,12,0
+GDR,1980,Weightlifting,0,3
+GDR,1980,Wrestling,0,1
+GDR,1984,Biathlon,0,2
+GDR,1984,Bobsleigh,0,12
+GDR,1984,Figure Skating,1,0
+GDR,1984,Luge,3,2
+GDR,1984,Ski Jumping,0,2
+GDR,1984,Speed Skating,9,2
+GDR,1988,Athletics,25,9
+GDR,1988,Biathlon,0,2
+GDR,1988,Bobsleigh,0,8
+GDR,1988,Boxing,0,3
+GDR,1988,Canoeing,7,10
+GDR,1988,Cycling,1,12
+GDR,1988,Fencing,0,1
+GDR,1988,Figure Skating,1,0
+GDR,1988,Gymnastics,7,11
+GDR,1988,Judo,0,3
+GDR,1988,Luge,3,5
+GDR,1988,Rowing,21,17
+GDR,1988,Sailing,0,3
+GDR,1988,Shooting,0,2
+GDR,1988,Speed Skating,10,3
+GDR,1988,Swimming,32,13
+GDR,1988,Weightlifting,0,3
+GDR,1988,Wrestling,0,1
+GEO,1996,Judo,0,1
+GEO,1996,Wrestling,0,1
+GEO,2000,Boxing,0,1
+GEO,2000,Judo,0,1
+GEO,2000,Weightlifting,0,1
+GEO,2000,Wrestling,0,3
+GEO,2004,Judo,0,2
+GEO,2004,Weightlifting,0,1
+GEO,2004,Wrestling,0,1
+GEO,2008,Judo,0,1
+GEO,2008,Shooting,1,0
+GEO,2008,Wrestling,0,4
+GEO,2012,Judo,0,1
+GEO,2012,Wrestling,0,6
+GEO,2016,Judo,0,2
+GEO,2016,Weightlifting,0,2
+GEO,2016,Wrestling,0,3
+GER,1896,Athletics,0,1
+GER,1896,Cycling,0,1
+GER,1896,Gymnastics,0,28
+GER,1896,Tennis,0,1
+GER,1896,Wrestling,0,1
+GER,1900,Cycling,0,1
+GER,1900,Rowing,0,16
+GER,1900,Rugby,0,15
+GER,1900,Sailing,0,8
+GER,1900,Swimming,0,5
+GER,1904,Athletics,0,1
+GER,1904,Diving,0,1
+GER,1904,Gymnastics,0,2
+GER,1904,Swimming,0,8
+GER,1904,Tug-Of-War,0,1
+GER,1904,Weightlifting,0,2
+GER,1904,Wrestling,0,1
+GER,1906,Athletics,0,2
+GER,1906,Cycling,0,4
+GER,1906,Diving,0,2
+GER,1906,Fencing,0,7
+GER,1906,Swimming,0,4
+GER,1906,Tug-Of-War,0,8
+GER,1906,Weightlifting,0,3
+GER,1908,Athletics,0,5
+GER,1908,Cycling,0,5
+GER,1908,Diving,0,3
+GER,1908,Figure Skating,2,1
+GER,1908,Rowing,0,3
+GER,1908,Swimming,0,1
+GER,1908,Tennis,0,1
+GER,1912,Art Competitions,0,1
+GER,1912,Athletics,0,2
+GER,1912,Diving,0,4
+GER,1912,Equestrianism,0,10
+GER,1912,Rowing,0,14
+GER,1912,Shooting,0,7
+GER,1912,Swimming,4,6
+GER,1912,Tennis,2,2
+GER,1912,Wrestling,0,1
+GER,1928,Art Competitions,1,7
+GER,1928,Athletics,5,13
+GER,1928,Bobsleigh,0,5
+GER,1928,Boxing,0,1
+GER,1928,Cycling,0,2
+GER,1928,Equestrianism,0,5
+GER,1928,Fencing,2,1
+GER,1928,Hockey,0,19
+GER,1928,Modern Pentathlon,0,1
+GER,1928,Rowing,0,2
+GER,1928,Swimming,2,1
+GER,1928,Water Polo,0,8
+GER,1928,Weightlifting,0,3
+GER,1928,Wrestling,0,4
+GER,1932,Alpinism,0,2
+GER,1932,Art Competitions,0,3
+GER,1932,Athletics,2,6
+GER,1932,Bobsleigh,0,4
+GER,1932,Boxing,0,3
+GER,1932,Ice Hockey,0,10
+GER,1932,Rowing,0,11
+GER,1932,Shooting,0,1
+GER,1932,Water Polo,0,8
+GER,1932,Weightlifting,0,3
+GER,1932,Wrestling,0,4
+GER,1936,Alpine Skiing,2,2
+GER,1936,Art Competitions,0,14
+GER,1936,Athletics,7,15
+GER,1936,Boxing,0,5
+GER,1936,Canoeing,0,10
+GER,1936,Cycling,0,4
+GER,1936,Diving,1,1
+GER,1936,Equestrianism,0,13
+GER,1936,Fencing,1,12
+GER,1936,Figure Skating,1,2
+GER,1936,Gymnastics,8,19
+GER,1936,Handball,0,22
+GER,1936,Hockey,0,22
+GER,1936,Modern Pentathlon,0,1
+GER,1936,Rowing,0,26
+GER,1936,Sailing,0,9
+GER,1936,Shooting,0,3
+GER,1936,Swimming,7,1
+GER,1936,Water Polo,0,11
+GER,1936,Weightlifting,0,5
+GER,1936,Wrestling,0,7
+GER,1952,Alpine Skiing,4,0
+GER,1952,Athletics,6,8
+GER,1952,Bobsleigh,0,6
+GER,1952,Boxing,0,2
+GER,1952,Canoeing,0,5
+GER,1952,Cycling,0,2
+GER,1952,Diving,0,1
+GER,1952,Equestrianism,1,7
+GER,1952,Figure Skating,1,1
+GER,1952,Gymnastics,0,1
+GER,1952,Rowing,0,3
+GER,1952,Sailing,0,3
+GER,1952,Swimming,0,1
+GER,1956,Alpine Skiing,1,0
+GER,1956,Athletics,4,6
+GER,1956,Boxing,0,2
+GER,1956,Canoeing,1,5
+GER,1956,Cycling,0,4
+GER,1956,Equestrianism,4,8
+GER,1956,Gymnastics,0,1
+GER,1956,Hockey,0,11
+GER,1956,Rowing,0,3
+GER,1956,Ski Jumping,0,1
+GER,1956,Swimming,2,0
+GER,1956,Wrestling,0,1
+GER,1960,Alpine Skiing,2,1
+GER,1960,Athletics,9,13
+GER,1960,Boxing,0,1
+GER,1960,Canoeing,3,4
+GER,1960,Cycling,0,11
+GER,1960,Diving,2,0
+GER,1960,Equestrianism,0,4
+GER,1960,Fencing,1,4
+GER,1960,Figure Skating,1,1
+GER,1960,Nordic Combined,0,1
+GER,1960,Rowing,0,18
+GER,1960,Sailing,0,3
+GER,1960,Shooting,0,2
+GER,1960,Ski Jumping,0,1
+GER,1960,Speed Skating,2,0
+GER,1960,Swimming,10,0
+GER,1960,Wrestling,0,4
+GER,1964,Alpine Skiing,0,1
+GER,1964,Athletics,3,7
+GER,1964,Boxing,0,3
+GER,1964,Canoeing,2,7
+GER,1964,Cycling,0,6
+GER,1964,Diving,2,0
+GER,1964,Equestrianism,0,13
+GER,1964,Fencing,5,0
+GER,1964,Figure Skating,1,2
+GER,1964,Football,0,19
+GER,1964,Gymnastics,1,6
+GER,1964,Judo,0,2
+GER,1964,Luge,2,3
+GER,1964,Nordic Combined,0,1
+GER,1964,Rowing,0,17
+GER,1964,Sailing,0,4
+GER,1964,Swimming,0,15
+GER,1964,Wrestling,0,4
+GER,1992,Alpine Skiing,1,0
+GER,1992,Athletics,6,4
+GER,1992,Biathlon,5,7
+GER,1992,Bobsleigh,0,8
+GER,1992,Boxing,0,4
+GER,1992,Canoeing,8,14
+GER,1992,Cycling,2,11
+GER,1992,Diving,1,0
+GER,1992,Equestrianism,5,8
+GER,1992,Fencing,5,10
+GER,1992,Gymnastics,0,3
+GER,1992,Hockey,16,16
+GER,1992,Judo,0,2
+GER,1992,Luge,1,5
+GER,1992,Rowing,21,21
+GER,1992,Shooting,0,3
+GER,1992,Speed Skating,9,2
+GER,1992,Swimming,20,7
+GER,1992,Table Tennis,0,2
+GER,1992,Tennis,1,2
+GER,1992,Weightlifting,0,3
+GER,1992,Wrestling,0,3
+GER,1994,Alpine Skiing,2,2
+GER,1994,Biathlon,5,7
+GER,1994,Bobsleigh,0,8
+GER,1994,Luge,1,3
+GER,1994,Ski Jumping,0,6
+GER,1994,Speed Skating,6,0
+GER,1996,Archery,3,0
+GER,1996,Athletics,6,4
+GER,1996,Boxing,0,4
+GER,1996,Canoeing,6,14
+GER,1996,Cycling,1,1
+GER,1996,Diving,1,1
+GER,1996,Equestrianism,3,7
+GER,1996,Fencing,3,0
+GER,1996,Gymnastics,0,1
+GER,1996,Judo,1,4
+GER,1996,Rowing,4,14
+GER,1996,Sailing,0,3
+GER,1996,Shooting,2,2
+GER,1996,Swimming,18,12
+GER,1996,Table Tennis,0,1
+GER,1996,Tennis,0,2
+GER,1996,Weightlifting,0,3
+GER,1996,Wrestling,0,3
+GER,1998,Alpine Skiing,6,0
+GER,1998,Biathlon,7,4
+GER,1998,Bobsleigh,0,6
+GER,1998,Figure Skating,1,1
+GER,1998,Freestyle Skiing,1,0
+GER,1998,Luge,2,4
+GER,1998,Ski Jumping,0,4
+GER,1998,Snowboarding,2,0
+GER,1998,Speed Skating,6,0
+GER,2000,Archery,3,0
+GER,2000,Athletics,3,2
+GER,2000,Beach Volleyball,0,2
+GER,2000,Boxing,0,1
+GER,2000,Canoeing,6,11
+GER,2000,Cycling,1,13
+GER,2000,Diving,1,2
+GER,2000,Equestrianism,6,4
+GER,2000,Fencing,4,5
+GER,2000,Football,17,0
+GER,2000,Judo,1,0
+GER,2000,Rowing,9,5
+GER,2000,Sailing,1,5
+GER,2000,Swimming,6,5
+GER,2000,Taekwondo,0,1
+GER,2000,Tennis,0,1
+GER,2000,Triathlon,0,1
+GER,2000,Weightlifting,0,2
+GER,2002,Alpine Skiing,1,0
+GER,2002,Biathlon,8,7
+GER,2002,Bobsleigh,4,6
+GER,2002,Cross Country Skiing,6,5
+GER,2002,Luge,3,3
+GER,2002,Nordic Combined,0,5
+GER,2002,Ski Jumping,0,5
+GER,2002,Speed Skating,7,1
+GER,2004,Athletics,2,0
+GER,2004,Boxing,0,2
+GER,2004,Canoeing,6,13
+GER,2004,Cycling,2,6
+GER,2004,Diving,0,2
+GER,2004,Equestrianism,3,6
+GER,2004,Fencing,3,3
+GER,2004,Football,17,0
+GER,2004,Handball,0,15
+GER,2004,Hockey,16,16
+GER,2004,Judo,3,1
+GER,2004,Rowing,9,0
+GER,2004,Shooting,0,3
+GER,2004,Swimming,12,5
+GER,2004,Tennis,0,2
+GER,2004,Trampolining,1,1
+GER,2006,Biathlon,9,8
+GER,2006,Bobsleigh,2,6
+GER,2006,Cross Country Skiing,5,5
+GER,2006,Luge,3,2
+GER,2006,Nordic Combined,0,6
+GER,2006,Snowboarding,1,0
+GER,2006,Speed Skating,7,0
+GER,2008,Athletics,1,0
+GER,2008,Canoeing,5,13
+GER,2008,Cycling,1,4
+GER,2008,Diving,2,2
+GER,2008,Equestrianism,6,5
+GER,2008,Fencing,1,1
+GER,2008,Football,16,0
+GER,2008,Gymnastics,1,1
+GER,2008,Hockey,0,17
+GER,2008,Judo,0,1
+GER,2008,Modern Pentathlon,1,0
+GER,2008,Rowing,6,0
+GER,2008,Sailing,0,2
+GER,2008,Shooting,2,2
+GER,2008,Swimming,2,1
+GER,2008,Table Tennis,0,3
+GER,2008,Triathlon,0,1
+GER,2008,Weightlifting,0,1
+GER,2008,Wrestling,0,1
+GER,2010,Alpine Skiing,3,0
+GER,2010,Biathlon,8,0
+GER,2010,Bobsleigh,0,8
+GER,2010,Cross Country Skiing,6,4
+GER,2010,Figure Skating,1,1
+GER,2010,Luge,2,4
+GER,2010,Nordic Combined,0,4
+GER,2010,Skeleton,2,0
+GER,2010,Ski Jumping,0,4
+GER,2010,Speed Skating,7,0
+GER,2012,Athletics,4,4
+GER,2012,Beach Volleyball,0,2
+GER,2012,Canoeing,6,8
+GER,2012,Cycling,4,5
+GER,2012,Equestrianism,6,4
+GER,2012,Fencing,1,4
+GER,2012,Gymnastics,0,3
+GER,2012,Hockey,0,16
+GER,2012,Judo,1,3
+GER,2012,Rowing,4,13
+GER,2012,Swimming,0,1
+GER,2012,Table Tennis,0,4
+GER,2012,Taekwondo,1,0
+GER,2014,Alpine Skiing,3,0
+GER,2014,Biathlon,0,5
+GER,2014,Cross Country Skiing,4,0
+GER,2014,Figure Skating,1,1
+GER,2014,Luge,3,6
+GER,2014,Nordic Combined,0,6
+GER,2014,Ski Jumping,1,4
+GER,2014,Snowboarding,2,0
+GER,2016,Archery,1,0
+GER,2016,Athletics,0,3
+GER,2016,Beach Volleyball,2,0
+GER,2016,Boxing,0,1
+GER,2016,Canoeing,6,10
+GER,2016,Cycling,3,0
+GER,2016,Diving,0,1
+GER,2016,Equestrianism,9,6
+GER,2016,Football,18,17
+GER,2016,Gymnastics,1,1
+GER,2016,Handball,0,15
+GER,2016,Hockey,17,16
+GER,2016,Judo,1,0
+GER,2016,Rowing,4,13
+GER,2016,Sailing,0,2
+GER,2016,Shooting,2,2
+GER,2016,Table Tennis,3,3
+GER,2016,Tennis,1,0
+GER,2016,Wrestling,0,1
+GHA,1960,Boxing,0,1
+GHA,1964,Boxing,0,1
+GHA,1972,Boxing,0,1
+GHA,1992,Football,0,20
+GRE,1896,Athletics,0,10
+GRE,1896,Cycling,0,4
+GRE,1896,Fencing,0,5
+GRE,1896,Gymnastics,0,6
+GRE,1896,Shooting,0,9
+GRE,1896,Swimming,0,6
+GRE,1896,Tennis,0,4
+GRE,1896,Weightlifting,0,2
+GRE,1896,Wrestling,0,2
+GRE,1904,Athletics,0,1
+GRE,1904,Weightlifting,0,1
+GRE,1906,Athletics,0,7
+GRE,1906,Fencing,0,7
+GRE,1906,Football,0,11
+GRE,1906,Gymnastics,0,2
+GRE,1906,Rowing,0,49
+GRE,1906,Shooting,0,8
+GRE,1906,Tennis,5,4
+GRE,1906,Tug-Of-War,0,8
+GRE,1906,Weightlifting,0,1
+GRE,1908,Athletics,0,3
+GRE,1908,Shooting,0,1
+GRE,1912,Athletics,0,2
+GRE,1920,Shooting,0,5
+GRE,1924,Art Competitions,0,1
+GRE,1956,Athletics,0,1
+GRE,1960,Sailing,0,3
+GRE,1968,Wrestling,0,1
+GRE,1972,Sailing,0,1
+GRE,1972,Wrestling,0,1
+GRE,1980,Sailing,0,3
+GRE,1980,Wrestling,0,2
+GRE,1984,Wrestling,0,2
+GRE,1988,Wrestling,0,1
+GRE,1992,Athletics,1,0
+GRE,1992,Weightlifting,0,1
+GRE,1996,Athletics,1,0
+GRE,1996,Gymnastics,0,1
+GRE,1996,Sailing,0,1
+GRE,1996,Weightlifting,0,5
+GRE,2000,Athletics,3,1
+GRE,2000,Gymnastics,0,1
+GRE,2000,Rhythmic Gymnastics,6,0
+GRE,2000,Taekwondo,0,1
+GRE,2000,Weightlifting,1,4
+GRE,2000,Wrestling,0,1
+GRE,2004,Athletics,5,0
+GRE,2004,Diving,0,2
+GRE,2004,Gymnastics,0,1
+GRE,2004,Judo,0,1
+GRE,2004,Rowing,0,2
+GRE,2004,Sailing,2,1
+GRE,2004,Taekwondo,1,1
+GRE,2004,Water Polo,13,0
+GRE,2004,Weightlifting,0,1
+GRE,2004,Wrestling,0,1
+GRE,2008,Athletics,1,0
+GRE,2008,Rowing,0,2
+GRE,2008,Sailing,3,0
+GRE,2008,Taekwondo,0,1
+GRE,2012,Judo,0,1
+GRE,2012,Rowing,2,0
+GRE,2016,Athletics,1,0
+GRE,2016,Gymnastics,0,1
+GRE,2016,Sailing,0,2
+GRE,2016,Shooting,2,0
+GRE,2016,Swimming,0,1
+GRN,2012,Athletics,0,1
+GRN,2016,Athletics,0,1
+GUA,2012,Athletics,0,1
+GUY,1980,Boxing,0,1
+HAI,1900,Rugby,0,1
+HAI,1924,Shooting,0,5
+HAI,1928,Athletics,0,1
+HKG,1996,Sailing,1,0
+HKG,2004,Table Tennis,0,2
+HKG,2012,Cycling,1,0
+HUN,1896,Athletics,0,3
+HUN,1896,Swimming,0,2
+HUN,1896,Tennis,0,1
+HUN,1900,Athletics,0,2
+HUN,1900,Swimming,0,3
+HUN,1904,Swimming,0,4
+HUN,1906,Athletics,0,5
+HUN,1906,Fencing,0,1
+HUN,1906,Gymnastics,0,1
+HUN,1906,Swimming,0,5
+HUN,1906,Wrestling,0,1
+HUN,1908,Athletics,0,6
+HUN,1908,Fencing,0,7
+HUN,1908,Rowing,0,1
+HUN,1908,Swimming,0,5
+HUN,1908,Wrestling,0,1
+HUN,1912,Athletics,0,1
+HUN,1912,Fencing,0,11
+HUN,1912,Gymnastics,0,16
+HUN,1912,Shooting,0,1
+HUN,1912,Wrestling,0,1
+HUN,1924,Art Competitions,0,2
+HUN,1924,Athletics,0,1
+HUN,1924,Fencing,0,15
+HUN,1924,Shooting,0,1
+HUN,1924,Swimming,0,1
+HUN,1924,Wrestling,0,2
+HUN,1928,Art Competitions,0,1
+HUN,1928,Athletics,0,1
+HUN,1928,Boxing,0,1
+HUN,1928,Fencing,0,8
+HUN,1928,Swimming,0,1
+HUN,1928,Water Polo,0,7
+HUN,1928,Wrestling,0,2
+HUN,1932,Art Competitions,0,1
+HUN,1932,Boxing,0,1
+HUN,1932,Fencing,1,8
+HUN,1932,Figure Skating,1,1
+HUN,1932,Gymnastics,0,4
+HUN,1932,Shooting,0,1
+HUN,1932,Swimming,0,4
+HUN,1932,Water Polo,0,10
+HUN,1932,Wrestling,0,3
+HUN,1936,Athletics,1,0
+HUN,1936,Boxing,0,1
+HUN,1936,Equestrianism,0,1
+HUN,1936,Fencing,1,8
+HUN,1936,Figure Skating,1,1
+HUN,1936,Gymnastics,8,0
+HUN,1936,Shooting,0,1
+HUN,1936,Swimming,0,5
+HUN,1936,Water Polo,0,11
+HUN,1936,Wrestling,0,4
+HUN,1948,Art Competitions,1,0
+HUN,1948,Athletics,1,2
+HUN,1948,Boxing,0,2
+HUN,1948,Fencing,1,9
+HUN,1948,Figure Skating,1,1
+HUN,1948,Gymnastics,8,12
+HUN,1948,Rowing,0,3
+HUN,1948,Shooting,0,1
+HUN,1948,Swimming,1,6
+HUN,1948,Water Polo,0,11
+HUN,1948,Wrestling,0,4
+HUN,1952,Athletics,0,8
+HUN,1952,Boxing,0,1
+HUN,1952,Canoeing,0,4
+HUN,1952,Fencing,1,15
+HUN,1952,Figure Skating,1,1
+HUN,1952,Football,0,15
+HUN,1952,Gymnastics,22,0
+HUN,1952,Modern Pentathlon,0,5
+HUN,1952,Shooting,0,3
+HUN,1952,Swimming,11,0
+HUN,1952,Water Polo,0,13
+HUN,1952,Wrestling,0,4
+HUN,1956,Athletics,0,2
+HUN,1956,Boxing,0,1
+HUN,1956,Canoeing,0,10
+HUN,1956,Fencing,0,19
+HUN,1956,Figure Skating,1,1
+HUN,1956,Gymnastics,17,0
+HUN,1956,Swimming,1,1
+HUN,1956,Water Polo,0,11
+HUN,1956,Wrestling,0,2
+HUN,1960,Athletics,0,3
+HUN,1960,Boxing,0,1
+HUN,1960,Canoeing,2,10
+HUN,1960,Fencing,5,8
+HUN,1960,Football,0,16
+HUN,1960,Modern Pentathlon,0,5
+HUN,1960,Water Polo,0,14
+HUN,1960,Weightlifting,0,1
+HUN,1960,Wrestling,0,1
+HUN,1964,Athletics,1,3
+HUN,1964,Canoeing,0,1
+HUN,1964,Fencing,6,6
+HUN,1964,Football,0,14
+HUN,1964,Gymnastics,2,0
+HUN,1964,Modern Pentathlon,0,4
+HUN,1964,Shooting,0,2
+HUN,1964,Water Polo,0,12
+HUN,1964,Weightlifting,0,3
+HUN,1964,Wrestling,0,2
+HUN,1968,Athletics,3,4
+HUN,1968,Canoeing,2,10
+HUN,1968,Fencing,6,13
+HUN,1968,Football,0,17
+HUN,1968,Modern Pentathlon,0,4
+HUN,1968,Rowing,0,4
+HUN,1968,Shooting,0,1
+HUN,1968,Water Polo,0,11
+HUN,1968,Weightlifting,0,2
+HUN,1968,Wrestling,0,4
+HUN,1972,Boxing,0,4
+HUN,1972,Canoeing,1,4
+HUN,1972,Fencing,6,14
+HUN,1972,Football,0,17
+HUN,1972,Gymnastics,6,0
+HUN,1972,Modern Pentathlon,0,4
+HUN,1972,Shooting,0,1
+HUN,1972,Swimming,2,1
+HUN,1972,Water Polo,0,11
+HUN,1972,Weightlifting,0,5
+HUN,1972,Wrestling,0,5
+HUN,1976,Athletics,0,1
+HUN,1976,Canoeing,3,9
+HUN,1976,Fencing,6,1
+HUN,1976,Gymnastics,1,1
+HUN,1976,Handball,14,0
+HUN,1976,Judo,0,1
+HUN,1976,Modern Pentathlon,0,3
+HUN,1976,Water Polo,0,11
+HUN,1976,Weightlifting,0,2
+HUN,1976,Wrestling,0,2
+HUN,1980,Boxing,0,2
+HUN,1980,Canoeing,2,4
+HUN,1980,Fencing,6,7
+HUN,1980,Figure Skating,1,1
+HUN,1980,Gymnastics,0,7
+HUN,1980,Judo,0,2
+HUN,1980,Modern Pentathlon,0,4
+HUN,1980,Sailing,0,2
+HUN,1980,Shooting,0,1
+HUN,1980,Swimming,0,4
+HUN,1980,Water Polo,0,11
+HUN,1980,Weightlifting,0,2
+HUN,1980,Wrestling,0,7
+HUN,1988,Boxing,0,1
+HUN,1988,Canoeing,4,7
+HUN,1988,Fencing,5,10
+HUN,1988,Gymnastics,0,1
+HUN,1988,Modern Pentathlon,0,4
+HUN,1988,Shooting,0,2
+HUN,1988,Swimming,2,4
+HUN,1988,Weightlifting,0,2
+HUN,1988,Wrestling,0,2
+HUN,1992,Boxing,0,3
+HUN,1992,Canoeing,7,6
+HUN,1992,Fencing,0,11
+HUN,1992,Gymnastics,2,0
+HUN,1992,Judo,0,4
+HUN,1992,Modern Pentathlon,0,1
+HUN,1992,Swimming,4,5
+HUN,1992,Wrestling,0,2
+HUN,1996,Athletics,0,1
+HUN,1996,Boxing,0,1
+HUN,1996,Canoeing,1,10
+HUN,1996,Fencing,1,4
+HUN,1996,Gymnastics,0,1
+HUN,1996,Handball,16,0
+HUN,1996,Modern Pentathlon,0,1
+HUN,1996,Swimming,3,3
+HUN,1996,Weightlifting,0,1
+HUN,2000,Boxing,0,1
+HUN,2000,Canoeing,6,11
+HUN,2000,Fencing,1,0
+HUN,2000,Gymnastics,0,1
+HUN,2000,Handball,15,0
+HUN,2000,Modern Pentathlon,0,1
+HUN,2000,Shooting,1,0
+HUN,2000,Swimming,1,0
+HUN,2000,Water Polo,0,13
+HUN,2000,Weightlifting,1,0
+HUN,2000,Wrestling,0,1
+HUN,2004,Athletics,0,1
+HUN,2004,Canoeing,7,7
+HUN,2004,Fencing,1,5
+HUN,2004,Modern Pentathlon,1,0
+HUN,2004,Shooting,1,0
+HUN,2004,Swimming,0,2
+HUN,2004,Water Polo,0,13
+HUN,2004,Weightlifting,1,0
+HUN,2004,Wrestling,0,1
+HUN,2008,Canoeing,6,3
+HUN,2008,Fencing,1,0
+HUN,2008,Swimming,0,3
+HUN,2008,Water Polo,0,13
+HUN,2008,Wrestling,0,1
+HUN,2012,Athletics,0,1
+HUN,2012,Canoeing,8,6
+HUN,2012,Fencing,0,1
+HUN,2012,Gymnastics,0,1
+HUN,2012,Judo,1,1
+HUN,2012,Modern Pentathlon,0,1
+HUN,2012,Swimming,1,2
+HUN,2012,Wrestling,0,3
+HUN,2016,Athletics,1,0
+HUN,2016,Canoeing,7,0
+HUN,2016,Fencing,1,6
+HUN,2016,Swimming,5,2
+INA,1988,Archery,3,0
+INA,1992,Badminton,1,5
+INA,1996,Badminton,2,4
+INA,2000,Badminton,1,4
+INA,2000,Weightlifting,3,0
+INA,2004,Badminton,0,4
+INA,2004,Weightlifting,1,0
+INA,2008,Badminton,2,3
+INA,2008,Weightlifting,0,2
+INA,2012,Weightlifting,0,2
+INA,2016,Badminton,1,1
+INA,2016,Weightlifting,1,1
+IND,1900,Athletics,0,2
+IND,1924,Alpinism,0,7
+IND,1928,Hockey,0,14
+IND,1932,Hockey,0,15
+IND,1936,Hockey,0,19
+IND,1948,Hockey,0,20
+IND,1952,Hockey,0,14
+IND,1952,Wrestling,0,1
+IND,1956,Hockey,0,17
+IND,1960,Hockey,0,13
+IND,1964,Hockey,0,15
+IND,1968,Hockey,0,16
+IND,1972,Hockey,0,14
+IND,1980,Hockey,0,16
+IND,1996,Tennis,0,1
+IND,2000,Weightlifting,1,0
+IND,2004,Shooting,0,1
+IND,2008,Boxing,0,1
+IND,2008,Shooting,0,1
+IND,2008,Wrestling,0,1
+IND,2012,Badminton,1,0
+IND,2012,Boxing,1,0
+IND,2012,Shooting,0,2
+IND,2012,Wrestling,0,2
+IND,2016,Badminton,1,0
+IND,2016,Wrestling,1,0
+IOA,1992,Shooting,2,1
+IOA,2016,Shooting,0,2
+IRI,1948,Weightlifting,0,1
+IRI,1952,Weightlifting,0,2
+IRI,1952,Wrestling,0,5
+IRI,1956,Weightlifting,0,1
+IRI,1956,Wrestling,0,4
+IRI,1960,Weightlifting,0,1
+IRI,1960,Wrestling,0,3
+IRI,1964,Wrestling,0,2
+IRI,1968,Weightlifting,0,2
+IRI,1968,Wrestling,0,3
+IRI,1972,Weightlifting,0,1
+IRI,1972,Wrestling,0,2
+IRI,1976,Weightlifting,0,1
+IRI,1976,Wrestling,0,1
+IRI,1988,Wrestling,0,1
+IRI,1992,Wrestling,0,3
+IRI,1996,Wrestling,0,3
+IRI,2000,Taekwondo,0,1
+IRI,2000,Weightlifting,0,2
+IRI,2000,Wrestling,0,1
+IRI,2004,Taekwondo,0,2
+IRI,2004,Weightlifting,0,1
+IRI,2004,Wrestling,0,3
+IRI,2008,Taekwondo,0,1
+IRI,2008,Wrestling,0,1
+IRI,2012,Athletics,0,1
+IRI,2012,Taekwondo,0,1
+IRI,2012,Weightlifting,0,4
+IRI,2012,Wrestling,0,6
+IRI,2016,Taekwondo,1,0
+IRI,2016,Weightlifting,0,2
+IRI,2016,Wrestling,0,5
+IRL,1924,Art Competitions,0,2
+IRL,1928,Athletics,0,1
+IRL,1932,Athletics,0,2
+IRL,1948,Art Competitions,1,0
+IRL,1952,Boxing,0,1
+IRL,1956,Athletics,0,1
+IRL,1956,Boxing,0,4
+IRL,1964,Boxing,0,1
+IRL,1980,Boxing,0,1
+IRL,1980,Sailing,0,2
+IRL,1984,Athletics,0,1
+IRL,1992,Boxing,0,2
+IRL,1996,Swimming,4,0
+IRL,2000,Athletics,1,0
+IRL,2008,Boxing,0,3
+IRL,2012,Boxing,1,3
+IRL,2012,Equestrianism,0,1
+IRL,2016,Rowing,0,2
+IRL,2016,Sailing,1,0
+IRQ,1960,Weightlifting,0,1
+ISL,1956,Athletics,0,1
+ISL,1984,Judo,0,1
+ISL,2000,Athletics,1,0
+ISL,2008,Handball,0,14
+ISR,1992,Judo,1,1
+ISR,1996,Sailing,0,1
+ISR,2000,Canoeing,0,1
+ISR,2004,Judo,0,1
+ISR,2004,Sailing,0,1
+ISR,2008,Sailing,0,1
+ISR,2016,Judo,1,1
+ISV,1988,Sailing,0,1
+ITA,1900,Cycling,0,1
+ITA,1900,Equestrianism,0,2
+ITA,1900,Fencing,0,2
+ITA,1906,Cycling,0,3
+ITA,1906,Fencing,0,2
+ITA,1906,Gymnastics,0,11
+ITA,1906,Rowing,0,38
+ITA,1906,Shooting,0,1
+ITA,1906,Weightlifting,0,1
+ITA,1908,Athletics,0,1
+ITA,1908,Fencing,0,5
+ITA,1908,Gymnastics,0,1
+ITA,1908,Wrestling,0,1
+ITA,1912,Art Competitions,0,2
+ITA,1912,Athletics,0,1
+ITA,1912,Fencing,0,2
+ITA,1912,Gymnastics,0,20
+ITA,1920,Art Competitions,0,2
+ITA,1920,Athletics,0,4
+ITA,1920,Boxing,0,1
+ITA,1920,Cycling,0,4
+ITA,1920,Equestrianism,0,10
+ITA,1920,Fencing,0,28
+ITA,1920,Gymnastics,0,28
+ITA,1920,Rowing,0,5
+ITA,1920,Weightlifting,0,2
+ITA,1924,Athletics,0,2
+ITA,1924,Cycling,0,4
+ITA,1924,Equestrianism,0,5
+ITA,1924,Fencing,0,14
+ITA,1924,Gymnastics,0,10
+ITA,1924,Rowing,0,12
+ITA,1924,Tennis,0,1
+ITA,1924,Weightlifting,0,3
+ITA,1928,Art Competitions,0,1
+ITA,1928,Boxing,0,4
+ITA,1928,Cycling,0,4
+ITA,1928,Fencing,0,20
+ITA,1928,Football,0,17
+ITA,1928,Gymnastics,12,1
+ITA,1928,Rowing,0,9
+ITA,1928,Weightlifting,0,2
+ITA,1928,Wrestling,0,2
+ITA,1932,Athletics,0,6
+ITA,1932,Boxing,0,2
+ITA,1932,Cycling,0,10
+ITA,1932,Fencing,0,22
+ITA,1932,Gymnastics,0,11
+ITA,1932,Rowing,0,18
+ITA,1932,Shooting,0,2
+ITA,1932,Weightlifting,0,2
+ITA,1932,Wrestling,0,4
+ITA,1936,Art Competitions,0,5
+ITA,1936,Athletics,1,7
+ITA,1936,Boxing,0,2
+ITA,1936,Cycling,0,4
+ITA,1936,Fencing,0,24
+ITA,1936,Football,0,14
+ITA,1936,Modern Pentathlon,0,1
+ITA,1936,Rowing,0,12
+ITA,1936,Sailing,0,6
+ITA,1948,Art Competitions,0,4
+ITA,1948,Athletics,2,6
+ITA,1948,Boxing,0,5
+ITA,1948,Cycling,0,7
+ITA,1948,Fencing,0,21
+ITA,1948,Rowing,0,10
+ITA,1948,Skeleton,0,1
+ITA,1948,Water Polo,0,9
+ITA,1948,Wrestling,0,3
+ITA,1952,Alpine Skiing,1,1
+ITA,1952,Athletics,0,2
+ITA,1952,Boxing,0,3
+ITA,1952,Cycling,0,12
+ITA,1952,Fencing,1,22
+ITA,1952,Sailing,0,2
+ITA,1952,Water Polo,0,11
+ITA,1952,Wrestling,0,1
+ITA,1956,Bobsleigh,0,8
+ITA,1956,Boxing,0,2
+ITA,1956,Cycling,0,10
+ITA,1956,Equestrianism,0,5
+ITA,1956,Fencing,0,17
+ITA,1956,Rowing,0,5
+ITA,1956,Sailing,0,2
+ITA,1956,Shooting,0,2
+ITA,1956,Weightlifting,0,2
+ITA,1956,Wrestling,0,2
+ITA,1960,Alpine Skiing,1,0
+ITA,1960,Athletics,1,2
+ITA,1960,Boxing,0,7
+ITA,1960,Canoeing,0,2
+ITA,1960,Cycling,0,14
+ITA,1960,Equestrianism,0,5
+ITA,1960,Fencing,5,18
+ITA,1960,Gymnastics,0,8
+ITA,1960,Rowing,0,9
+ITA,1960,Sailing,0,3
+ITA,1960,Shooting,0,1
+ITA,1960,Water Polo,0,12
+ITA,1960,Weightlifting,0,1
+ITA,1964,Athletics,0,2
+ITA,1964,Bobsleigh,0,8
+ITA,1964,Boxing,0,5
+ITA,1964,Cycling,0,15
+ITA,1964,Diving,0,1
+ITA,1964,Equestrianism,0,8
+ITA,1964,Fencing,1,10
+ITA,1964,Gymnastics,0,3
+ITA,1964,Luge,0,2
+ITA,1964,Rowing,0,5
+ITA,1964,Shooting,0,1
+ITA,1968,Athletics,0,2
+ITA,1968,Bobsleigh,0,6
+ITA,1968,Boxing,0,1
+ITA,1968,Cross Country Skiing,0,1
+ITA,1968,Cycling,0,11
+ITA,1968,Diving,0,2
+ITA,1968,Fencing,0,6
+ITA,1968,Luge,1,0
+ITA,1968,Rowing,0,7
+ITA,1968,Sailing,0,3
+ITA,1968,Shooting,0,1
+ITA,1972,Alpine Skiing,0,3
+ITA,1972,Athletics,1,1
+ITA,1972,Bobsleigh,0,4
+ITA,1972,Diving,0,3
+ITA,1972,Equestrianism,0,6
+ITA,1972,Fencing,1,5
+ITA,1972,Luge,0,2
+ITA,1972,Shooting,0,2
+ITA,1972,Swimming,3,0
+ITA,1972,Weightlifting,0,1
+ITA,1972,Wrestling,0,2
+ITA,1976,Alpine Skiing,1,3
+ITA,1976,Archery,0,1
+ITA,1976,Athletics,1,0
+ITA,1976,Cycling,0,1
+ITA,1976,Diving,0,2
+ITA,1976,Fencing,1,11
+ITA,1976,Judo,0,1
+ITA,1976,Shooting,0,2
+ITA,1976,Water Polo,0,11
+ITA,1980,Archery,0,1
+ITA,1980,Athletics,1,6
+ITA,1980,Basketball,0,12
+ITA,1980,Boxing,0,1
+ITA,1980,Diving,0,1
+ITA,1980,Equestrianism,2,3
+ITA,1980,Fencing,0,5
+ITA,1980,Judo,0,1
+ITA,1980,Luge,0,3
+ITA,1980,Sailing,0,2
+ITA,1980,Shooting,0,1
+ITA,1980,Wrestling,0,1
+ITA,1984,Alpine Skiing,1,0
+ITA,1984,Athletics,2,5
+ITA,1984,Boxing,0,5
+ITA,1984,Cycling,0,4
+ITA,1984,Fencing,1,18
+ITA,1984,Judo,0,1
+ITA,1984,Luge,0,1
+ITA,1984,Modern Pentathlon,0,5
+ITA,1984,Rowing,0,3
+ITA,1984,Sailing,0,2
+ITA,1984,Shooting,1,2
+ITA,1984,Volleyball,0,12
+ITA,1984,Weightlifting,0,1
+ITA,1984,Wrestling,0,1
+ITA,1988,Alpine Skiing,0,2
+ITA,1988,Athletics,0,3
+ITA,1988,Biathlon,0,5
+ITA,1988,Boxing,0,1
+ITA,1988,Cross Country Skiing,0,1
+ITA,1988,Fencing,5,7
+ITA,1988,Modern Pentathlon,0,4
+ITA,1988,Rowing,0,7
+ITA,1988,Swimming,0,1
+ITA,1988,Wrestling,0,1
+ITA,1992,Alpine Skiing,1,4
+ITA,1992,Athletics,0,1
+ITA,1992,Canoeing,0,3
+ITA,1992,Cross Country Skiing,6,8
+ITA,1992,Cycling,0,6
+ITA,1992,Fencing,6,1
+ITA,1992,Judo,1,0
+ITA,1992,Luge,0,2
+ITA,1992,Modern Pentathlon,0,3
+ITA,1992,Rowing,0,7
+ITA,1992,Shooting,0,2
+ITA,1992,Swimming,0,2
+ITA,1992,Water Polo,0,12
+ITA,1992,Wrestling,0,1
+ITA,1994,Alpine Skiing,3,1
+ITA,1994,Bobsleigh,0,2
+ITA,1994,Cross Country Skiing,9,6
+ITA,1994,Luge,1,5
+ITA,1994,Short Track Speed Skating,0,5
+ITA,1996,Archery,0,3
+ITA,1996,Athletics,3,1
+ITA,1996,Canoeing,1,6
+ITA,1996,Cycling,3,2
+ITA,1996,Fencing,8,7
+ITA,1996,Gymnastics,0,1
+ITA,1996,Judo,1,1
+ITA,1996,Rowing,0,2
+ITA,1996,Sailing,1,0
+ITA,1996,Shooting,0,5
+ITA,1996,Swimming,0,1
+ITA,1996,Volleyball,0,12
+ITA,1996,Water Polo,0,13
+ITA,1998,Alpine Skiing,2,0
+ITA,1998,Biathlon,0,1
+ITA,1998,Bobsleigh,0,2
+ITA,1998,Cross Country Skiing,5,5
+ITA,1998,Luge,0,1
+ITA,1998,Snowboarding,0,1
+ITA,2000,Archery,0,3
+ITA,2000,Athletics,1,1
+ITA,2000,Boxing,0,1
+ITA,2000,Canoeing,1,3
+ITA,2000,Cycling,2,2
+ITA,2000,Fencing,5,8
+ITA,2000,Judo,2,2
+ITA,2000,Rowing,0,12
+ITA,2000,Sailing,1,1
+ITA,2000,Shooting,1,1
+ITA,2000,Swimming,0,6
+ITA,2000,Volleyball,0,12
+ITA,2002,Alpine Skiing,3,0
+ITA,2002,Cross Country Skiing,4,5
+ITA,2002,Figure Skating,1,1
+ITA,2002,Luge,0,1
+ITA,2002,Short Track Speed Skating,0,5
+ITA,2002,Snowboarding,1,0
+ITA,2004,Archery,0,1
+ITA,2004,Athletics,0,3
+ITA,2004,Basketball,0,12
+ITA,2004,Boxing,0,1
+ITA,2004,Canoeing,1,2
+ITA,2004,Cycling,0,1
+ITA,2004,Fencing,2,9
+ITA,2004,Football,0,17
+ITA,2004,Gymnastics,0,2
+ITA,2004,Judo,1,0
+ITA,2004,Rhythmic Gymnastics,6,0
+ITA,2004,Rowing,0,10
+ITA,2004,Sailing,1,0
+ITA,2004,Shooting,1,2
+ITA,2004,Swimming,1,6
+ITA,2004,Volleyball,0,12
+ITA,2004,Water Polo,13,0
+ITA,2006,Bobsleigh,2,0
+ITA,2006,Cross Country Skiing,4,6
+ITA,2006,Luge,0,3
+ITA,2006,Short Track Speed Skating,4,0
+ITA,2006,Speed Skating,0,6
+ITA,2008,Archery,0,3
+ITA,2008,Athletics,1,1
+ITA,2008,Boxing,0,3
+ITA,2008,Canoeing,1,2
+ITA,2008,Cycling,1,0
+ITA,2008,Fencing,6,10
+ITA,2008,Judo,1,0
+ITA,2008,Rowing,0,4
+ITA,2008,Sailing,1,1
+ITA,2008,Shooting,1,2
+ITA,2008,Swimming,2,0
+ITA,2008,Taekwondo,0,1
+ITA,2008,Wrestling,0,1
+ITA,2010,Alpine Skiing,0,1
+ITA,2010,Cross Country Skiing,0,1
+ITA,2010,Luge,0,1
+ITA,2010,Nordic Combined,0,1
+ITA,2010,Short Track Speed Skating,1,0
+ITA,2012,Archery,0,3
+ITA,2012,Athletics,0,1
+ITA,2012,Boxing,0,3
+ITA,2012,Canoeing,0,1
+ITA,2012,Cycling,0,1
+ITA,2012,Fencing,7,9
+ITA,2012,Gymnastics,0,1
+ITA,2012,Judo,1,0
+ITA,2012,Rhythmic Gymnastics,6,0
+ITA,2012,Rowing,0,2
+ITA,2012,Shooting,1,4
+ITA,2012,Swimming,1,0
+ITA,2012,Taekwondo,0,2
+ITA,2012,Volleyball,0,12
+ITA,2012,Water Polo,0,13
+ITA,2014,Alpine Skiing,0,2
+ITA,2014,Biathlon,2,2
+ITA,2014,Figure Skating,1,0
+ITA,2014,Luge,0,1
+ITA,2014,Short Track Speed Skating,6,0
+ITA,2016,Beach Volleyball,0,2
+ITA,2016,Cycling,1,1
+ITA,2016,Diving,3,0
+ITA,2016,Fencing,2,5
+ITA,2016,Judo,1,1
+ITA,2016,Rowing,0,6
+ITA,2016,Shooting,2,5
+ITA,2016,Swimming,1,3
+ITA,2016,Volleyball,0,12
+ITA,2016,Water Polo,13,13
+ITA,2016,Wrestling,0,1
+JAM,1948,Athletics,0,3
+JAM,1952,Athletics,0,8
+JAM,1968,Athletics,0,1
+JAM,1972,Athletics,0,1
+JAM,1976,Athletics,0,2
+JAM,1980,Athletics,1,1
+JAM,1980,Cycling,0,1
+JAM,1984,Athletics,2,5
+JAM,1988,Athletics,1,6
+JAM,1992,Athletics,3,1
+JAM,1996,Athletics,9,7
+JAM,2000,Athletics,16,7
+JAM,2004,Athletics,12,1
+JAM,2008,Athletics,12,2
+JAM,2012,Athletics,14,11
+JAM,2016,Athletics,16,14
+JOR,2016,Taekwondo,0,1
+JPN,1920,Tennis,0,3
+JPN,1924,Wrestling,0,1
+JPN,1928,Athletics,1,1
+JPN,1928,Swimming,0,7
+JPN,1932,Athletics,0,4
+JPN,1932,Equestrianism,0,1
+JPN,1932,Hockey,0,11
+JPN,1932,Swimming,1,14
+JPN,1936,Art Competitions,0,2
+JPN,1936,Athletics,0,7
+JPN,1936,Swimming,1,13
+JPN,1952,Gymnastics,0,4
+JPN,1952,Swimming,0,6
+JPN,1952,Wrestling,0,2
+JPN,1956,Alpine Skiing,0,1
+JPN,1956,Gymnastics,0,16
+JPN,1956,Swimming,0,5
+JPN,1956,Wrestling,0,3
+JPN,1960,Boxing,0,1
+JPN,1960,Gymnastics,0,14
+JPN,1960,Shooting,0,1
+JPN,1960,Swimming,1,12
+JPN,1960,Weightlifting,0,1
+JPN,1960,Wrestling,0,1
+JPN,1964,Athletics,0,1
+JPN,1964,Boxing,0,1
+JPN,1964,Gymnastics,6,14
+JPN,1964,Judo,0,4
+JPN,1964,Shooting,0,1
+JPN,1964,Swimming,0,5
+JPN,1964,Volleyball,12,9
+JPN,1964,Weightlifting,0,3
+JPN,1964,Wrestling,0,6
+JPN,1968,Athletics,0,1
+JPN,1968,Boxing,0,1
+JPN,1968,Football,0,16
+JPN,1968,Gymnastics,0,17
+JPN,1968,Volleyball,9,11
+JPN,1968,Weightlifting,0,3
+JPN,1968,Wrestling,0,5
+JPN,1972,Gymnastics,0,21
+JPN,1972,Judo,0,4
+JPN,1972,Ski Jumping,0,3
+JPN,1972,Swimming,1,2
+JPN,1972,Volleyball,12,12
+JPN,1972,Wrestling,0,4
+JPN,1976,Archery,0,1
+JPN,1976,Gymnastics,0,15
+JPN,1976,Judo,0,5
+JPN,1976,Volleyball,12,0
+JPN,1976,Weightlifting,0,2
+JPN,1976,Wrestling,0,6
+JPN,1980,Ski Jumping,0,1
+JPN,1984,Archery,0,1
+JPN,1984,Cycling,0,1
+JPN,1984,Gymnastics,0,14
+JPN,1984,Judo,0,5
+JPN,1984,Shooting,0,1
+JPN,1984,Speed Skating,0,1
+JPN,1984,Synchronized Swimming,3,0
+JPN,1984,Volleyball,12,0
+JPN,1984,Weightlifting,0,3
+JPN,1984,Wrestling,0,9
+JPN,1988,Gymnastics,0,7
+JPN,1988,Judo,0,4
+JPN,1988,Shooting,1,0
+JPN,1988,Speed Skating,0,1
+JPN,1988,Swimming,0,1
+JPN,1988,Synchronized Swimming,3,0
+JPN,1988,Wrestling,0,4
+JPN,1992,Athletics,1,1
+JPN,1992,Baseball,0,20
+JPN,1992,Figure Skating,1,0
+JPN,1992,Gymnastics,0,8
+JPN,1992,Judo,5,5
+JPN,1992,Nordic Combined,0,3
+JPN,1992,Shooting,0,2
+JPN,1992,Short Track Speed Skating,0,4
+JPN,1992,Speed Skating,1,3
+JPN,1992,Swimming,1,0
+JPN,1992,Synchronized Swimming,3,0
+JPN,1992,Wrestling,0,1
+JPN,1994,Nordic Combined,0,4
+JPN,1994,Ski Jumping,0,4
+JPN,1994,Speed Skating,1,1
+JPN,1996,Athletics,1,0
+JPN,1996,Baseball,0,20
+JPN,1996,Cycling,0,1
+JPN,1996,Judo,4,4
+JPN,1996,Sailing,2,0
+JPN,1996,Synchronized Swimming,9,0
+JPN,1996,Wrestling,0,1
+JPN,1998,Freestyle Skiing,1,0
+JPN,1998,Short Track Speed Skating,0,2
+JPN,1998,Ski Jumping,0,7
+JPN,1998,Speed Skating,1,2
+JPN,2000,Athletics,1,0
+JPN,2000,Judo,4,4
+JPN,2000,Softball,15,0
+JPN,2000,Swimming,7,0
+JPN,2000,Synchronized Swimming,11,0
+JPN,2000,Taekwondo,1,0
+JPN,2000,Wrestling,0,1
+JPN,2002,Freestyle Skiing,1,0
+JPN,2002,Speed Skating,0,1
+JPN,2004,Archery,0,1
+JPN,2004,Athletics,1,1
+JPN,2004,Baseball,0,24
+JPN,2004,Cycling,0,3
+JPN,2004,Gymnastics,0,9
+JPN,2004,Judo,6,4
+JPN,2004,Sailing,0,2
+JPN,2004,Softball,14,0
+JPN,2004,Swimming,3,8
+JPN,2004,Synchronized Swimming,11,0
+JPN,2004,Wrestling,4,2
+JPN,2006,Figure Skating,1,0
+JPN,2008,Athletics,0,4
+JPN,2008,Cycling,0,1
+JPN,2008,Fencing,0,1
+JPN,2008,Gymnastics,0,7
+JPN,2008,Judo,5,2
+JPN,2008,Softball,15,0
+JPN,2008,Swimming,1,7
+JPN,2008,Synchronized Swimming,2,0
+JPN,2008,Wrestling,4,2
+JPN,2010,Figure Skating,1,1
+JPN,2010,Speed Skating,3,2
+JPN,2012,Archery,3,1
+JPN,2012,Athletics,0,1
+JPN,2012,Badminton,2,0
+JPN,2012,Boxing,0,2
+JPN,2012,Fencing,0,4
+JPN,2012,Football,18,0
+JPN,2012,Gymnastics,0,7
+JPN,2012,Judo,3,4
+JPN,2012,Swimming,8,9
+JPN,2012,Table Tennis,3,0
+JPN,2012,Volleyball,12,0
+JPN,2012,Weightlifting,1,0
+JPN,2012,Wrestling,3,3
+JPN,2014,Figure Skating,0,1
+JPN,2014,Freestyle Skiing,1,0
+JPN,2014,Nordic Combined,0,1
+JPN,2014,Ski Jumping,0,5
+JPN,2014,Snowboarding,1,2
+JPN,2016,Athletics,0,5
+JPN,2016,Badminton,3,0
+JPN,2016,Canoeing,0,1
+JPN,2016,Gymnastics,0,7
+JPN,2016,Judo,5,7
+JPN,2016,Swimming,2,8
+JPN,2016,Synchronized Swimming,10,0
+JPN,2016,Table Tennis,3,4
+JPN,2016,Tennis,0,1
+JPN,2016,Weightlifting,1,0
+JPN,2016,Wrestling,5,2
+KAZ,1994,Cross Country Skiing,0,3
+KAZ,1996,Boxing,0,4
+KAZ,1996,Modern Pentathlon,0,1
+KAZ,1996,Shooting,0,3
+KAZ,1996,Weightlifting,0,1
+KAZ,1996,Wrestling,0,2
+KAZ,1998,Cross Country Skiing,0,1
+KAZ,1998,Speed Skating,1,0
+KAZ,2000,Athletics,1,0
+KAZ,2000,Boxing,0,4
+KAZ,2000,Cycling,0,1
+KAZ,2000,Wrestling,0,1
+KAZ,2004,Athletics,0,1
+KAZ,2004,Boxing,0,3
+KAZ,2004,Weightlifting,0,1
+KAZ,2004,Wrestling,0,3
+KAZ,2008,Boxing,0,2
+KAZ,2008,Judo,0,1
+KAZ,2008,Taekwondo,0,1
+KAZ,2008,Weightlifting,3,1
+KAZ,2008,Wrestling,1,4
+KAZ,2010,Biathlon,1,0
+KAZ,2012,Athletics,1,0
+KAZ,2012,Boxing,1,3
+KAZ,2012,Cycling,0,1
+KAZ,2012,Weightlifting,3,1
+KAZ,2012,Wrestling,1,2
+KAZ,2014,Figure Skating,0,1
+KAZ,2016,Athletics,1,0
+KAZ,2016,Boxing,1,4
+KAZ,2016,Judo,1,1
+KAZ,2016,Swimming,0,1
+KAZ,2016,Weightlifting,2,4
+KAZ,2016,Wrestling,3,0
+KEN,1964,Athletics,0,1
+KEN,1968,Athletics,0,11
+KEN,1968,Boxing,0,1
+KEN,1972,Athletics,0,9
+KEN,1972,Boxing,0,3
+KEN,1984,Athletics,0,2
+KEN,1984,Boxing,0,1
+KEN,1988,Athletics,0,7
+KEN,1988,Boxing,0,2
+KEN,1992,Athletics,0,8
+KEN,1996,Athletics,1,7
+KEN,2000,Athletics,1,6
+KEN,2004,Athletics,2,5
+KEN,2008,Athletics,6,9
+KEN,2012,Athletics,4,7
+KEN,2016,Athletics,7,6
+KGZ,2000,Judo,0,1
+KGZ,2008,Wrestling,0,2
+KOR,1948,Boxing,0,1
+KOR,1948,Weightlifting,0,1
+KOR,1952,Boxing,0,1
+KOR,1952,Weightlifting,0,1
+KOR,1956,Boxing,0,1
+KOR,1956,Weightlifting,0,1
+KOR,1964,Boxing,0,1
+KOR,1964,Judo,0,1
+KOR,1964,Wrestling,0,1
+KOR,1968,Boxing,0,2
+KOR,1972,Judo,0,1
+KOR,1976,Judo,0,3
+KOR,1976,Volleyball,12,0
+KOR,1976,Wrestling,0,2
+KOR,1984,Archery,2,0
+KOR,1984,Basketball,11,0
+KOR,1984,Boxing,0,3
+KOR,1984,Handball,13,0
+KOR,1984,Judo,0,5
+KOR,1984,Wrestling,0,7
+KOR,1988,Archery,6,4
+KOR,1988,Boxing,0,4
+KOR,1988,Gymnastics,0,1
+KOR,1988,Handball,12,13
+KOR,1988,Hockey,16,0
+KOR,1988,Judo,0,3
+KOR,1988,Shooting,0,1
+KOR,1988,Table Tennis,2,4
+KOR,1988,Weightlifting,0,2
+KOR,1988,Wrestling,0,9
+KOR,1992,Archery,5,1
+KOR,1992,Athletics,0,1
+KOR,1992,Badminton,5,2
+KOR,1992,Boxing,0,2
+KOR,1992,Gymnastics,0,1
+KOR,1992,Handball,13,0
+KOR,1992,Judo,1,3
+KOR,1992,Shooting,1,1
+KOR,1992,Short Track Speed Skating,0,6
+KOR,1992,Speed Skating,0,1
+KOR,1992,Table Tennis,3,5
+KOR,1992,Weightlifting,0,1
+KOR,1992,Wrestling,0,4
+KOR,1994,Short Track Speed Skating,6,3
+KOR,1996,Archery,4,4
+KOR,1996,Athletics,0,1
+KOR,1996,Badminton,5,2
+KOR,1996,Boxing,0,1
+KOR,1996,Gymnastics,0,1
+KOR,1996,Handball,16,0
+KOR,1996,Hockey,16,0
+KOR,1996,Judo,4,4
+KOR,1996,Table Tennis,2,2
+KOR,1996,Wrestling,0,4
+KOR,1998,Short Track Speed Skating,7,5
+KOR,2000,Archery,6,3
+KOR,2000,Badminton,0,4
+KOR,2000,Baseball,0,24
+KOR,2000,Fencing,0,2
+KOR,2000,Gymnastics,0,2
+KOR,2000,Hockey,0,16
+KOR,2000,Judo,3,2
+KOR,2000,Shooting,1,0
+KOR,2000,Table Tennis,2,0
+KOR,2000,Taekwondo,2,2
+KOR,2000,Wrestling,0,4
+KOR,2002,Short Track Speed Skating,7,0
+KOR,2004,Archery,5,3
+KOR,2004,Badminton,2,5
+KOR,2004,Boxing,0,2
+KOR,2004,Gymnastics,0,2
+KOR,2004,Handball,15,0
+KOR,2004,Judo,0,3
+KOR,2004,Shooting,2,1
+KOR,2004,Table Tennis,3,1
+KOR,2004,Taekwondo,2,2
+KOR,2004,Weightlifting,1,1
+KOR,2004,Wrestling,0,2
+KOR,2006,Short Track Speed Skating,8,10
+KOR,2006,Speed Skating,0,1
+KOR,2008,Archery,5,4
+KOR,2008,Badminton,3,3
+KOR,2008,Baseball,0,24
+KOR,2008,Boxing,0,1
+KOR,2008,Fencing,1,0
+KOR,2008,Gymnastics,0,1
+KOR,2008,Handball,14,0
+KOR,2008,Judo,1,3
+KOR,2008,Shooting,0,2
+KOR,2008,Swimming,0,2
+KOR,2008,Table Tennis,3,3
+KOR,2008,Taekwondo,2,2
+KOR,2008,Weightlifting,2,1
+KOR,2008,Wrestling,0,1
+KOR,2010,Figure Skating,1,0
+KOR,2010,Short Track Speed Skating,3,9
+KOR,2010,Speed Skating,1,4
+KOR,2012,Archery,4,4
+KOR,2012,Badminton,0,2
+KOR,2012,Boxing,0,1
+KOR,2012,Fencing,9,6
+KOR,2012,Football,0,18
+KOR,2012,Gymnastics,0,1
+KOR,2012,Judo,0,3
+KOR,2012,Shooting,1,4
+KOR,2012,Swimming,0,2
+KOR,2012,Table Tennis,0,3
+KOR,2012,Taekwondo,1,1
+KOR,2012,Wrestling,0,1
+KOR,2014,Figure Skating,1,0
+KOR,2014,Short Track Speed Skating,9,0
+KOR,2014,Speed Skating,1,3
+KOR,2016,Archery,5,4
+KOR,2016,Badminton,2,0
+KOR,2016,Fencing,0,2
+KOR,2016,Golf,1,0
+KOR,2016,Judo,1,2
+KOR,2016,Shooting,0,2
+KOR,2016,Taekwondo,2,3
+KOR,2016,Weightlifting,1,0
+KOR,2016,Wrestling,0,1
+KOS,2016,Judo,1,0
+KSA,2000,Athletics,0,1
+KSA,2000,Equestrianism,0,1
+KSA,2012,Equestrianism,0,4
+KUW,2000,Shooting,0,1
+KUW,2012,Shooting,0,1
+LAT,1932,Athletics,0,1
+LAT,1936,Athletics,0,1
+LAT,1936,Wrestling,0,1
+LAT,1992,Canoeing,0,1
+LAT,1992,Cycling,0,1
+LAT,1992,Shooting,0,1
+LAT,1996,Canoeing,0,1
+LAT,2000,Athletics,0,1
+LAT,2000,Gymnastics,0,1
+LAT,2000,Judo,0,1
+LAT,2004,Athletics,0,1
+LAT,2004,Gymnastics,0,1
+LAT,2004,Modern Pentathlon,1,0
+LAT,2004,Weightlifting,0,1
+LAT,2006,Luge,0,1
+LAT,2008,Athletics,0,1
+LAT,2008,Cycling,0,1
+LAT,2008,Weightlifting,0,1
+LAT,2010,Luge,0,2
+LAT,2010,Skeleton,0,1
+LAT,2012,Beach Volleyball,0,2
+LAT,2012,Cycling,0,1
+LAT,2014,Bobsleigh,0,4
+LAT,2014,Luge,1,5
+LAT,2014,Skeleton,0,1
+LIB,1952,Wrestling,0,2
+LIB,1972,Weightlifting,0,1
+LIB,1980,Wrestling,0,1
+LIE,1976,Alpine Skiing,1,1
+LIE,1980,Alpine Skiing,3,1
+LIE,1984,Alpine Skiing,1,1
+LIE,1988,Alpine Skiing,0,1
+LTU,1992,Athletics,0,1
+LTU,1992,Basketball,0,12
+LTU,1996,Basketball,0,11
+LTU,2000,Athletics,0,1
+LTU,2000,Basketball,0,12
+LTU,2000,Cycling,1,0
+LTU,2000,Rowing,2,0
+LTU,2000,Shooting,1,0
+LTU,2004,Athletics,1,1
+LTU,2004,Modern Pentathlon,0,1
+LTU,2008,Athletics,0,1
+LTU,2008,Modern Pentathlon,0,2
+LTU,2008,Sailing,1,0
+LTU,2008,Wrestling,0,1
+LTU,2012,Boxing,0,1
+LTU,2012,Canoeing,0,1
+LTU,2012,Modern Pentathlon,1,0
+LTU,2012,Swimming,1,0
+LTU,2012,Wrestling,0,1
+LTU,2016,Canoeing,0,2
+LTU,2016,Rowing,2,2
+LTU,2016,Weightlifting,0,1
+LUX,1900,Athletics,0,1
+LUX,1920,Weightlifting,0,1
+LUX,1924,Art Competitions,0,2
+LUX,1928,Art Competitions,0,1
+LUX,1952,Athletics,0,1
+LUX,1992,Alpine Skiing,0,2
+MAR,1960,Athletics,0,1
+MAR,1984,Athletics,1,1
+MAR,1988,Athletics,0,2
+MAR,1988,Boxing,0,1
+MAR,1992,Athletics,0,2
+MAR,1992,Boxing,0,1
+MAR,1996,Athletics,0,2
+MAR,2000,Athletics,1,3
+MAR,2000,Boxing,0,1
+MAR,2004,Athletics,1,2
+MAR,2008,Athletics,1,1
+MAR,2012,Athletics,0,1
+MAR,2016,Boxing,0,1
+MAS,1992,Badminton,0,2
+MAS,1996,Badminton,0,3
+MAS,2008,Badminton,0,1
+MAS,2012,Badminton,0,1
+MAS,2012,Diving,1,0
+MAS,2016,Badminton,1,4
+MAS,2016,Cycling,0,1
+MAS,2016,Diving,2,0
+MDA,1996,Canoeing,0,2
+MDA,1996,Wrestling,0,1
+MDA,2000,Boxing,0,1
+MDA,2000,Shooting,0,1
+MDA,2008,Boxing,0,1
+MDA,2012,Weightlifting,1,1
+MEX,1900,Polo,0,3
+MEX,1932,Boxing,0,1
+MEX,1932,Shooting,0,1
+MEX,1936,Basketball,0,11
+MEX,1936,Boxing,0,1
+MEX,1936,Polo,0,4
+MEX,1948,Diving,0,1
+MEX,1948,Equestrianism,0,8
+MEX,1952,Diving,0,1
+MEX,1956,Diving,0,2
+MEX,1960,Diving,0,1
+MEX,1964,Boxing,0,1
+MEX,1968,Athletics,0,1
+MEX,1968,Boxing,0,4
+MEX,1968,Diving,0,1
+MEX,1968,Fencing,1,0
+MEX,1968,Swimming,1,1
+MEX,1972,Boxing,0,1
+MEX,1976,Athletics,0,1
+MEX,1976,Boxing,0,1
+MEX,1980,Diving,0,1
+MEX,1980,Equestrianism,0,9
+MEX,1984,Athletics,0,3
+MEX,1984,Boxing,0,1
+MEX,1984,Cycling,0,1
+MEX,1984,Wrestling,0,1
+MEX,1988,Boxing,0,1
+MEX,1988,Diving,0,1
+MEX,1992,Athletics,0,1
+MEX,1996,Athletics,0,1
+MEX,2000,Athletics,0,2
+MEX,2000,Boxing,0,1
+MEX,2000,Diving,0,1
+MEX,2000,Taekwondo,0,1
+MEX,2000,Weightlifting,1,0
+MEX,2004,Athletics,1,0
+MEX,2004,Cycling,1,0
+MEX,2004,Taekwondo,1,1
+MEX,2008,Diving,2,0
+MEX,2008,Taekwondo,1,1
+MEX,2012,Archery,2,0
+MEX,2012,Diving,3,2
+MEX,2012,Football,0,16
+MEX,2012,Taekwondo,1,0
+MEX,2016,Athletics,1,0
+MEX,2016,Boxing,0,1
+MEX,2016,Diving,0,1
+MEX,2016,Modern Pentathlon,0,1
+MEX,2016,Taekwondo,1,0
+MGL,1968,Wrestling,0,4
+MGL,1972,Wrestling,0,1
+MGL,1976,Wrestling,0,1
+MGL,1980,Judo,0,2
+MGL,1980,Wrestling,0,2
+MGL,1988,Boxing,0,1
+MGL,1992,Boxing,0,1
+MGL,1992,Shooting,1,0
+MGL,1996,Judo,0,1
+MGL,2004,Judo,0,1
+MGL,2008,Boxing,0,2
+MGL,2008,Judo,0,1
+MGL,2008,Shooting,1,0
+MGL,2012,Boxing,0,2
+MGL,2012,Judo,0,2
+MGL,2012,Wrestling,1,0
+MGL,2016,Boxing,0,1
+MGL,2016,Judo,1,0
+MKD,2000,Wrestling,0,1
+MNE,2012,Handball,14,0
+MON,1924,Art Competitions,0,1
+MOZ,1996,Athletics,1,0
+MOZ,2000,Athletics,1,0
+MRI,2008,Boxing,0,1
+NAM,1992,Athletics,0,2
+NAM,1996,Athletics,0,2
+NED,1900,Football,0,1
+NED,1900,Rowing,0,17
+NED,1900,Sailing,0,3
+NED,1900,Shooting,0,5
+NED,1900,Swimming,0,1
+NED,1906,Fencing,0,6
+NED,1908,Football,0,12
+NED,1908,Rowing,0,4
+NED,1912,Fencing,0,11
+NED,1912,Football,0,15
+NED,1920,Archery,0,8
+NED,1920,Cycling,0,4
+NED,1920,Fencing,0,8
+NED,1920,Football,0,14
+NED,1920,Sailing,0,8
+NED,1920,Tug-Of-War,0,8
+NED,1924,Art Competitions,0,1
+NED,1924,Athletics,0,4
+NED,1924,Cycling,0,4
+NED,1924,Equestrianism,0,5
+NED,1924,Fencing,0,6
+NED,1924,Rowing,0,2
+NED,1924,Sailing,0,3
+NED,1924,Tennis,1,1
+NED,1928,Art Competitions,1,4
+NED,1928,Athletics,1,0
+NED,1928,Boxing,0,2
+NED,1928,Cycling,0,9
+NED,1928,Equestrianism,0,8
+NED,1928,Gymnastics,10,0
+NED,1928,Hockey,0,11
+NED,1928,Sailing,0,6
+NED,1928,Swimming,3,0
+NED,1928,Weightlifting,0,2
+NED,1932,Art Competitions,0,1
+NED,1932,Cycling,0,2
+NED,1932,Equestrianism,0,4
+NED,1932,Sailing,0,1
+NED,1932,Swimming,5,0
+NED,1936,Athletics,0,2
+NED,1936,Canoeing,0,5
+NED,1936,Cycling,0,4
+NED,1936,Equestrianism,0,3
+NED,1936,Hockey,0,12
+NED,1936,Sailing,0,3
+NED,1936,Swimming,8,0
+NED,1948,Athletics,7,2
+NED,1948,Canoeing,1,0
+NED,1948,Cycling,0,1
+NED,1948,Hockey,0,12
+NED,1948,Sailing,0,3
+NED,1948,Swimming,6,0
+NED,1948,Water Polo,0,9
+NED,1948,Weightlifting,0,1
+NED,1952,Athletics,1,0
+NED,1952,Hockey,0,11
+NED,1952,Speed Skating,0,3
+NED,1952,Swimming,6,0
+NED,1960,Figure Skating,1,0
+NED,1960,Speed Skating,0,1
+NED,1960,Swimming,2,1
+NED,1964,Canoeing,0,2
+NED,1964,Cycling,0,8
+NED,1964,Figure Skating,1,0
+NED,1964,Judo,0,1
+NED,1964,Rowing,0,10
+NED,1964,Speed Skating,0,1
+NED,1964,Swimming,10,0
+NED,1968,Athletics,1,0
+NED,1968,Cycling,0,6
+NED,1968,Rowing,0,6
+NED,1968,Speed Skating,5,4
+NED,1968,Swimming,1,0
+NED,1972,Canoeing,1,0
+NED,1972,Cycling,0,1
+NED,1972,Judo,0,2
+NED,1972,Rowing,0,2
+NED,1972,Speed Skating,5,4
+NED,1976,Cycling,0,1
+NED,1976,Figure Skating,1,0
+NED,1976,Shooting,0,1
+NED,1976,Speed Skating,0,5
+NED,1976,Swimming,2,0
+NED,1976,Water Polo,0,10
+NED,1980,Athletics,0,1
+NED,1980,Judo,0,1
+NED,1980,Speed Skating,2,2
+NED,1980,Swimming,4,0
+NED,1984,Athletics,1,0
+NED,1984,Boxing,0,1
+NED,1984,Canoeing,1,0
+NED,1984,Hockey,16,0
+NED,1984,Rowing,11,0
+NED,1984,Sailing,0,1
+NED,1984,Swimming,10,0
+NED,1988,Boxing,0,1
+NED,1988,Canoeing,2,0
+NED,1988,Cycling,1,1
+NED,1988,Hockey,16,16
+NED,1988,Judo,0,1
+NED,1988,Rowing,0,2
+NED,1988,Speed Skating,3,4
+NED,1988,Swimming,5,0
+NED,1992,Athletics,1,0
+NED,1992,Boxing,0,2
+NED,1992,Cycling,2,2
+NED,1992,Equestrianism,4,5
+NED,1992,Judo,1,1
+NED,1992,Rowing,0,2
+NED,1992,Sailing,1,0
+NED,1992,Speed Skating,0,4
+NED,1992,Volleyball,0,12
+NED,1994,Speed Skating,0,4
+NED,1996,Cycling,2,1
+NED,1996,Equestrianism,4,2
+NED,1996,Hockey,16,16
+NED,1996,Judo,2,1
+NED,1996,Rowing,2,11
+NED,1996,Sailing,1,1
+NED,1996,Swimming,2,0
+NED,1996,Volleyball,0,12
+NED,1998,Speed Skating,2,9
+NED,2000,Archery,0,1
+NED,2000,Cycling,4,0
+NED,2000,Equestrianism,4,3
+NED,2000,Hockey,16,16
+NED,2000,Judo,0,1
+NED,2000,Rowing,11,4
+NED,2000,Sailing,1,0
+NED,2000,Swimming,8,8
+NED,2000,Tennis,2,0
+NED,2002,Speed Skating,2,6
+NED,2004,Badminton,1,0
+NED,2004,Cycling,2,2
+NED,2004,Equestrianism,1,0
+NED,2004,Hockey,16,16
+NED,2004,Judo,2,2
+NED,2004,Rowing,11,9
+NED,2004,Swimming,8,7
+NED,2006,Speed Skating,4,9
+NED,2008,Cycling,1,0
+NED,2008,Equestrianism,3,1
+NED,2008,Hockey,16,0
+NED,2008,Judo,3,2
+NED,2008,Rowing,11,0
+NED,2008,Sailing,5,0
+NED,2008,Swimming,6,1
+NED,2008,Water Polo,12,0
+NED,2010,Snowboarding,1,0
+NED,2010,Speed Skating,3,7
+NED,2012,Cycling,2,1
+NED,2012,Equestrianism,3,6
+NED,2012,Gymnastics,0,1
+NED,2012,Hockey,16,17
+NED,2012,Judo,1,1
+NED,2012,Rowing,9,0
+NED,2012,Sailing,3,1
+NED,2012,Swimming,8,0
+NED,2014,Short Track Speed Skating,0,1
+NED,2014,Speed Skating,13,15
+NED,2016,Athletics,1,0
+NED,2016,Beach Volleyball,0,2
+NED,2016,Boxing,1,0
+NED,2016,Cycling,3,3
+NED,2016,Gymnastics,1,0
+NED,2016,Hockey,16,0
+NED,2016,Judo,1,0
+NED,2016,Rowing,6,9
+NED,2016,Sailing,1,1
+NED,2016,Swimming,1,1
+NEP,1924,Alpinism,0,1
+NGR,1964,Boxing,0,1
+NGR,1972,Boxing,0,1
+NGR,1984,Athletics,0,4
+NGR,1984,Boxing,0,1
+NGR,1992,Athletics,4,5
+NGR,1992,Boxing,0,2
+NGR,1996,Athletics,7,0
+NGR,1996,Boxing,0,1
+NGR,1996,Football,0,16
+NGR,2000,Athletics,1,6
+NGR,2000,Weightlifting,1,0
+NGR,2004,Athletics,0,8
+NGR,2008,Athletics,6,0
+NGR,2008,Football,0,16
+NGR,2008,Taekwondo,0,1
+NGR,2016,Football,0,18
+NIG,1972,Boxing,0,1
+NIG,2016,Taekwondo,0,1
+NOR,1900,Athletics,0,1
+NOR,1900,Shooting,0,8
+NOR,1904,Wrestling,0,2
+NOR,1906,Gymnastics,0,20
+NOR,1906,Shooting,0,5
+NOR,1908,Athletics,0,3
+NOR,1908,Gymnastics,0,30
+NOR,1908,Shooting,0,8
+NOR,1908,Wrestling,0,1
+NOR,1912,Athletics,0,1
+NOR,1912,Gymnastics,0,46
+NOR,1912,Rowing,0,10
+NOR,1912,Sailing,0,15
+NOR,1912,Shooting,0,7
+NOR,1912,Tennis,1,0
+NOR,1920,Art Competitions,0,1
+NOR,1920,Athletics,0,1
+NOR,1920,Boxing,0,1
+NOR,1920,Figure Skating,1,3
+NOR,1920,Gymnastics,0,25
+NOR,1920,Rowing,0,14
+NOR,1920,Sailing,0,59
+NOR,1920,Shooting,0,31
+NOR,1920,Wrestling,0,1
+NOR,1924,Athletics,0,1
+NOR,1924,Boxing,0,2
+NOR,1924,Cross Country Skiing,0,5
+NOR,1924,Nordic Combined,0,3
+NOR,1924,Sailing,0,9
+NOR,1924,Shooting,0,10
+NOR,1924,Ski Jumping,0,2
+NOR,1924,Speed Skating,0,7
+NOR,1928,Athletics,0,1
+NOR,1928,Cross Country Skiing,0,3
+NOR,1928,Equestrianism,0,3
+NOR,1928,Figure Skating,1,0
+NOR,1928,Nordic Combined,0,3
+NOR,1928,Sailing,0,5
+NOR,1928,Ski Jumping,0,2
+NOR,1928,Speed Skating,0,6
+NOR,1932,Cross Country Skiing,0,1
+NOR,1932,Figure Skating,1,0
+NOR,1932,Nordic Combined,0,3
+NOR,1932,Ski Jumping,0,3
+NOR,1932,Speed Skating,0,2
+NOR,1936,Alpine Skiing,1,0
+NOR,1936,Boxing,0,2
+NOR,1936,Cross Country Skiing,0,5
+NOR,1936,Figure Skating,1,0
+NOR,1936,Football,0,14
+NOR,1936,Nordic Combined,0,3
+NOR,1936,Sailing,0,11
+NOR,1936,Shooting,0,1
+NOR,1936,Ski Jumping,0,2
+NOR,1936,Speed Skating,0,6
+NOR,1948,Athletics,0,1
+NOR,1948,Canoeing,0,3
+NOR,1948,Cross Country Skiing,0,4
+NOR,1948,Rowing,0,9
+NOR,1948,Sailing,0,3
+NOR,1948,Shooting,0,1
+NOR,1948,Ski Jumping,0,3
+NOR,1948,Speed Skating,0,6
+NOR,1948,Wrestling,0,1
+NOR,1952,Alpine Skiing,0,3
+NOR,1952,Cross Country Skiing,0,6
+NOR,1952,Nordic Combined,0,2
+NOR,1952,Sailing,1,10
+NOR,1952,Shooting,0,2
+NOR,1952,Ski Jumping,0,2
+NOR,1952,Speed Skating,0,6
+NOR,1956,Athletics,0,3
+NOR,1956,Cross Country Skiing,0,1
+NOR,1956,Nordic Combined,0,1
+NOR,1956,Speed Skating,0,2
+NOR,1960,Cross Country Skiing,0,5
+NOR,1960,Nordic Combined,0,1
+NOR,1960,Sailing,0,2
+NOR,1960,Speed Skating,0,3
+NOR,1964,Biathlon,0,1
+NOR,1964,Cross Country Skiing,0,2
+NOR,1964,Nordic Combined,0,1
+NOR,1964,Ski Jumping,0,4
+NOR,1964,Speed Skating,0,7
+NOR,1968,Biathlon,0,5
+NOR,1968,Canoeing,0,4
+NOR,1968,Cross Country Skiing,5,7
+NOR,1968,Sailing,0,2
+NOR,1968,Ski Jumping,0,1
+NOR,1968,Speed Skating,0,4
+NOR,1972,Biathlon,0,1
+NOR,1972,Canoeing,0,4
+NOR,1972,Cross Country Skiing,3,9
+NOR,1972,Cycling,0,1
+NOR,1972,Rowing,0,2
+NOR,1972,Speed Skating,0,4
+NOR,1972,Weightlifting,0,1
+NOR,1976,Cross Country Skiing,0,5
+NOR,1976,Rowing,0,6
+NOR,1976,Speed Skating,1,4
+NOR,1980,Cross Country Skiing,4,4
+NOR,1980,Speed Skating,1,6
+NOR,1984,Athletics,1,0
+NOR,1984,Biathlon,0,6
+NOR,1984,Cross Country Skiing,7,0
+NOR,1984,Cycling,0,1
+NOR,1984,Nordic Combined,0,1
+NOR,1984,Rowing,0,2
+NOR,1984,Speed Skating,0,1
+NOR,1988,Cross Country Skiing,4,2
+NOR,1988,Handball,14,0
+NOR,1988,Rowing,0,4
+NOR,1988,Sailing,0,2
+NOR,1988,Shooting,0,1
+NOR,1988,Ski Jumping,0,5
+NOR,1988,Wrestling,0,1
+NOR,1992,Alpine Skiing,0,4
+NOR,1992,Canoeing,0,2
+NOR,1992,Cross Country Skiing,4,7
+NOR,1992,Freestyle Skiing,1,0
+NOR,1992,Handball,14,0
+NOR,1992,Nordic Combined,0,3
+NOR,1992,Rowing,0,4
+NOR,1992,Sailing,1,0
+NOR,1992,Shooting,0,1
+NOR,1992,Speed Skating,0,5
+NOR,1992,Wrestling,0,1
+NOR,1994,Alpine Skiing,0,5
+NOR,1994,Cross Country Skiing,5,5
+NOR,1994,Freestyle Skiing,2,0
+NOR,1994,Nordic Combined,0,5
+NOR,1994,Ski Jumping,0,3
+NOR,1994,Speed Skating,0,5
+NOR,1996,Athletics,1,1
+NOR,1996,Canoeing,0,2
+NOR,1996,Football,16,0
+NOR,1996,Rowing,0,2
+NOR,1996,Sailing,0,1
+NOR,1998,Alpine Skiing,0,4
+NOR,1998,Biathlon,4,7
+NOR,1998,Cross Country Skiing,6,5
+NOR,1998,Curling,0,5
+NOR,1998,Freestyle Skiing,1,0
+NOR,1998,Nordic Combined,0,5
+NOR,1998,Snowboarding,1,1
+NOR,1998,Speed Skating,0,1
+NOR,2000,Athletics,2,0
+NOR,2000,Canoeing,0,2
+NOR,2000,Football,17,0
+NOR,2000,Handball,15,0
+NOR,2000,Rowing,0,2
+NOR,2000,Sailing,0,3
+NOR,2000,Shooting,0,1
+NOR,2000,Taekwondo,1,0
+NOR,2002,Alpine Skiing,0,4
+NOR,2002,Biathlon,5,7
+NOR,2002,Cross Country Skiing,7,10
+NOR,2002,Curling,0,5
+NOR,2002,Freestyle Skiing,1,0
+NOR,2002,Speed Skating,0,2
+NOR,2004,Athletics,0,1
+NOR,2004,Canoeing,0,3
+NOR,2004,Cycling,1,0
+NOR,2004,Rowing,0,1
+NOR,2004,Sailing,1,0
+NOR,2006,Alpine Skiing,0,1
+NOR,2006,Biathlon,0,6
+NOR,2006,Cross Country Skiing,2,3
+NOR,2006,Freestyle Skiing,1,0
+NOR,2006,Nordic Combined,0,2
+NOR,2006,Ski Jumping,0,7
+NOR,2006,Snowboarding,1,0
+NOR,2008,Athletics,1,1
+NOR,2008,Canoeing,0,1
+NOR,2008,Handball,14,0
+NOR,2008,Rowing,0,1
+NOR,2008,Shooting,0,1
+NOR,2008,Swimming,1,1
+NOR,2008,Taekwondo,1,0
+NOR,2010,Alpine Skiing,0,4
+NOR,2010,Biathlon,1,7
+NOR,2010,Cross Country Skiing,8,8
+NOR,2010,Curling,0,4
+NOR,2010,Freestyle Skiing,1,1
+NOR,2010,Ski Jumping,0,4
+NOR,2010,Speed Skating,0,1
+NOR,2012,Canoeing,0,1
+NOR,2012,Cycling,0,1
+NOR,2012,Fencing,0,1
+NOR,2012,Handball,14,0
+NOR,2014,Alpine Skiing,0,3
+NOR,2014,Biathlon,8,4
+NOR,2014,Cross Country Skiing,10,2
+NOR,2014,Nordic Combined,0,7
+NOR,2014,Ski Jumping,0,1
+NOR,2014,Snowboarding,0,1
+NOR,2016,Handball,14,0
+NOR,2016,Rowing,0,4
+NOR,2016,Wrestling,0,1
+NZL,1900,Water Polo,0,1
+NZL,1920,Rowing,0,1
+NZL,1924,Athletics,0,1
+NZL,1928,Boxing,0,1
+NZL,1932,Rowing,0,2
+NZL,1936,Athletics,0,1
+NZL,1952,Athletics,1,1
+NZL,1952,Swimming,1,0
+NZL,1956,Athletics,0,1
+NZL,1956,Sailing,0,2
+NZL,1960,Athletics,0,3
+NZL,1964,Athletics,1,3
+NZL,1964,Sailing,0,2
+NZL,1968,Athletics,0,1
+NZL,1968,Rowing,0,5
+NZL,1968,Shooting,0,1
+NZL,1972,Athletics,0,1
+NZL,1972,Rowing,0,13
+NZL,1976,Athletics,0,2
+NZL,1976,Hockey,0,14
+NZL,1976,Rowing,0,9
+NZL,1984,Boxing,0,1
+NZL,1984,Canoeing,0,8
+NZL,1984,Equestrianism,0,1
+NZL,1984,Rowing,0,9
+NZL,1984,Sailing,0,4
+NZL,1988,Canoeing,0,5
+NZL,1988,Equestrianism,2,3
+NZL,1988,Rowing,2,6
+NZL,1988,Sailing,0,4
+NZL,1988,Swimming,0,2
+NZL,1992,Alpine Skiing,1,0
+NZL,1992,Athletics,1,0
+NZL,1992,Boxing,0,1
+NZL,1992,Cycling,0,1
+NZL,1992,Equestrianism,1,4
+NZL,1992,Sailing,3,3
+NZL,1992,Swimming,0,1
+NZL,1996,Equestrianism,2,4
+NZL,1996,Sailing,1,0
+NZL,1996,Swimming,0,2
+NZL,2000,Equestrianism,0,1
+NZL,2000,Rowing,0,1
+NZL,2000,Sailing,1,1
+NZL,2004,Canoeing,0,1
+NZL,2004,Cycling,1,0
+NZL,2004,Rowing,2,0
+NZL,2004,Triathlon,0,2
+NZL,2008,Athletics,1,1
+NZL,2008,Cycling,0,6
+NZL,2008,Rowing,2,3
+NZL,2008,Sailing,0,1
+NZL,2008,Triathlon,0,1
+NZL,2012,Athletics,1,0
+NZL,2012,Canoeing,1,0
+NZL,2012,Cycling,1,6
+NZL,2012,Equestrianism,2,3
+NZL,2012,Rowing,2,7
+NZL,2012,Sailing,2,2
+NZL,2016,Athletics,2,2
+NZL,2016,Canoeing,3,0
+NZL,2016,Cycling,0,3
+NZL,2016,Golf,1,0
+NZL,2016,Rowing,2,3
+NZL,2016,Rugby Sevens,12,0
+NZL,2016,Sailing,4,3
+NZL,2016,Shooting,1,0
+PAK,1956,Hockey,0,14
+PAK,1960,Hockey,0,13
+PAK,1960,Wrestling,0,1
+PAK,1964,Hockey,0,16
+PAK,1968,Hockey,0,13
+PAK,1972,Hockey,0,15
+PAK,1976,Hockey,0,16
+PAK,1984,Hockey,0,16
+PAK,1988,Boxing,0,1
+PAK,1992,Hockey,0,16
+PAN,1948,Athletics,0,2
+PAN,2008,Athletics,0,1
+PAR,2004,Football,0,17
+PER,1948,Shooting,0,1
+PER,1984,Shooting,0,1
+PER,1988,Volleyball,12,0
+PER,1992,Shooting,0,1
+PHI,1928,Swimming,0,1
+PHI,1932,Athletics,0,1
+PHI,1932,Boxing,0,1
+PHI,1932,Swimming,0,1
+PHI,1936,Athletics,0,1
+PHI,1964,Boxing,0,1
+PHI,1988,Boxing,0,1
+PHI,1992,Boxing,0,1
+PHI,1996,Boxing,0,1
+PHI,2016,Weightlifting,1,0
+POL,1924,Cycling,0,4
+POL,1924,Equestrianism,0,1
+POL,1928,Art Competitions,0,2
+POL,1928,Athletics,1,0
+POL,1928,Equestrianism,0,6
+POL,1928,Fencing,0,6
+POL,1928,Rowing,0,5
+POL,1932,Art Competitions,1,1
+POL,1932,Athletics,2,1
+POL,1932,Fencing,0,6
+POL,1932,Rowing,0,10
+POL,1936,Art Competitions,0,3
+POL,1936,Athletics,3,0
+POL,1936,Equestrianism,0,3
+POL,1936,Rowing,0,2
+POL,1936,Shooting,0,1
+POL,1948,Art Competitions,0,1
+POL,1948,Boxing,0,1
+POL,1952,Boxing,0,2
+POL,1952,Gymnastics,0,1
+POL,1952,Rowing,0,1
+POL,1956,Athletics,1,1
+POL,1956,Boxing,0,2
+POL,1956,Fencing,0,7
+POL,1956,Gymnastics,6,0
+POL,1956,Nordic Combined,0,1
+POL,1956,Shooting,0,1
+POL,1956,Weightlifting,0,1
+POL,1960,Athletics,6,4
+POL,1960,Boxing,0,7
+POL,1960,Canoeing,1,2
+POL,1960,Fencing,0,6
+POL,1960,Rowing,0,1
+POL,1960,Speed Skating,2,0
+POL,1960,Weightlifting,0,2
+POL,1960,Wrestling,0,1
+POL,1964,Athletics,8,6
+POL,1964,Boxing,0,7
+POL,1964,Fencing,0,11
+POL,1964,Volleyball,10,0
+POL,1964,Weightlifting,0,4
+POL,1968,Athletics,2,0
+POL,1968,Boxing,0,5
+POL,1968,Cycling,0,1
+POL,1968,Fencing,0,11
+POL,1968,Shooting,0,1
+POL,1968,Volleyball,12,0
+POL,1968,Weightlifting,0,5
+POL,1972,Archery,1,0
+POL,1972,Athletics,1,2
+POL,1972,Boxing,0,4
+POL,1972,Canoeing,0,2
+POL,1972,Cycling,0,6
+POL,1972,Fencing,0,6
+POL,1972,Football,0,17
+POL,1972,Judo,0,1
+POL,1972,Shooting,0,1
+POL,1972,Ski Jumping,0,1
+POL,1972,Weightlifting,0,3
+POL,1972,Wrestling,0,2
+POL,1976,Athletics,1,7
+POL,1976,Boxing,0,5
+POL,1976,Canoeing,0,2
+POL,1976,Cycling,0,5
+POL,1976,Football,0,17
+POL,1976,Handball,0,14
+POL,1976,Judo,0,1
+POL,1976,Modern Pentathlon,0,1
+POL,1976,Shooting,0,2
+POL,1976,Volleyball,0,12
+POL,1976,Weightlifting,0,3
+POL,1976,Wrestling,0,3
+POL,1980,Athletics,2,8
+POL,1980,Boxing,0,5
+POL,1980,Cycling,0,1
+POL,1980,Equestrianism,0,5
+POL,1980,Fencing,1,9
+POL,1980,Judo,0,1
+POL,1980,Rowing,2,5
+POL,1980,Swimming,1,0
+POL,1980,Weightlifting,0,3
+POL,1980,Wrestling,0,7
+POL,1988,Boxing,0,4
+POL,1988,Canoeing,1,4
+POL,1988,Cycling,0,4
+POL,1988,Fencing,0,1
+POL,1988,Judo,0,2
+POL,1988,Swimming,0,1
+POL,1988,Weightlifting,0,1
+POL,1988,Wrestling,0,3
+POL,1992,Athletics,0,1
+POL,1992,Boxing,0,1
+POL,1992,Canoeing,1,4
+POL,1992,Fencing,0,5
+POL,1992,Football,0,16
+POL,1992,Judo,0,1
+POL,1992,Modern Pentathlon,0,4
+POL,1992,Rowing,0,6
+POL,1992,Shooting,1,0
+POL,1992,Swimming,0,1
+POL,1992,Weightlifting,0,3
+POL,1992,Wrestling,0,2
+POL,1996,Archery,3,0
+POL,1996,Athletics,0,2
+POL,1996,Canoeing,0,1
+POL,1996,Fencing,0,4
+POL,1996,Judo,1,1
+POL,1996,Sailing,0,1
+POL,1996,Shooting,2,1
+POL,1996,Weightlifting,0,1
+POL,1996,Wrestling,0,5
+POL,2000,Athletics,1,3
+POL,2000,Canoeing,2,8
+POL,2000,Fencing,4,0
+POL,2000,Gymnastics,0,1
+POL,2000,Rowing,0,2
+POL,2000,Shooting,1,0
+POL,2000,Weightlifting,1,1
+POL,2002,Ski Jumping,0,2
+POL,2004,Athletics,1,1
+POL,2004,Canoeing,2,0
+POL,2004,Fencing,1,0
+POL,2004,Rowing,0,2
+POL,2004,Sailing,0,1
+POL,2004,Swimming,3,0
+POL,2004,Weightlifting,1,0
+POL,2006,Biathlon,0,1
+POL,2006,Cross Country Skiing,1,0
+POL,2008,Athletics,0,2
+POL,2008,Canoeing,2,0
+POL,2008,Cycling,1,0
+POL,2008,Fencing,0,4
+POL,2008,Gymnastics,0,1
+POL,2008,Rowing,0,8
+POL,2008,Weightlifting,0,1
+POL,2008,Wrestling,1,0
+POL,2010,Cross Country Skiing,3,0
+POL,2010,Ski Jumping,0,2
+POL,2010,Speed Skating,3,0
+POL,2012,Athletics,1,1
+POL,2012,Canoeing,2,0
+POL,2012,Rowing,2,0
+POL,2012,Sailing,1,1
+POL,2012,Shooting,1,0
+POL,2012,Weightlifting,0,2
+POL,2012,Wrestling,0,1
+POL,2014,Cross Country Skiing,1,0
+POL,2014,Ski Jumping,0,2
+POL,2014,Speed Skating,4,4
+POL,2016,Athletics,1,2
+POL,2016,Canoeing,3,0
+POL,2016,Cycling,1,1
+POL,2016,Modern Pentathlon,1,0
+POL,2016,Rowing,6,0
+POL,2016,Wrestling,1,0
+POR,1924,Equestrianism,0,4
+POR,1928,Fencing,0,6
+POR,1936,Equestrianism,0,3
+POR,1948,Equestrianism,0,3
+POR,1948,Sailing,0,2
+POR,1952,Sailing,0,2
+POR,1960,Sailing,0,2
+POR,1976,Athletics,0,1
+POR,1976,Shooting,0,1
+POR,1984,Athletics,1,2
+POR,1988,Athletics,1,0
+POR,1996,Athletics,1,0
+POR,1996,Sailing,0,2
+POR,2000,Athletics,1,0
+POR,2000,Judo,0,1
+POR,2004,Athletics,0,2
+POR,2004,Cycling,0,1
+POR,2008,Athletics,0,1
+POR,2008,Triathlon,1,0
+POR,2012,Canoeing,0,2
+POR,2016,Judo,1,0
+PRK,1964,Speed Skating,1,0
+PRK,1972,Boxing,0,1
+PRK,1972,Judo,0,1
+PRK,1972,Shooting,0,1
+PRK,1972,Volleyball,11,0
+PRK,1972,Wrestling,0,1
+PRK,1976,Boxing,0,2
+PRK,1980,Boxing,0,1
+PRK,1980,Weightlifting,0,2
+PRK,1980,Wrestling,0,2
+PRK,1992,Boxing,0,2
+PRK,1992,Gymnastics,0,1
+PRK,1992,Short Track Speed Skating,1,0
+PRK,1992,Table Tennis,3,0
+PRK,1992,Weightlifting,0,1
+PRK,1992,Wrestling,0,3
+PRK,1996,Judo,1,0
+PRK,1996,Weightlifting,0,2
+PRK,1996,Wrestling,0,2
+PRK,2000,Boxing,0,1
+PRK,2000,Judo,1,0
+PRK,2000,Weightlifting,1,0
+PRK,2000,Wrestling,0,1
+PRK,2004,Boxing,0,1
+PRK,2004,Judo,1,0
+PRK,2004,Shooting,0,1
+PRK,2004,Table Tennis,1,0
+PRK,2004,Weightlifting,1,0
+PRK,2008,Gymnastics,1,0
+PRK,2008,Judo,2,1
+PRK,2008,Weightlifting,2,0
+PRK,2012,Judo,1,0
+PRK,2012,Weightlifting,2,2
+PRK,2012,Wrestling,0,1
+PRK,2016,Gymnastics,0,1
+PRK,2016,Shooting,0,1
+PRK,2016,Table Tennis,1,0
+PRK,2016,Weightlifting,3,1
+PUR,1948,Boxing,0,1
+PUR,1976,Boxing,0,1
+PUR,1984,Boxing,0,2
+PUR,1992,Boxing,0,1
+PUR,1996,Boxing,0,1
+PUR,2012,Athletics,0,1
+PUR,2012,Wrestling,0,1
+PUR,2016,Tennis,1,0
+QAT,1992,Athletics,0,1
+QAT,2000,Weightlifting,0,1
+QAT,2012,Athletics,0,1
+QAT,2012,Shooting,0,1
+QAT,2016,Athletics,0,1
+ROU,1924,Rugby,0,16
+ROU,1936,Equestrianism,0,1
+ROU,1952,Boxing,0,2
+ROU,1952,Shooting,0,2
+ROU,1956,Boxing,0,4
+ROU,1956,Canoeing,0,4
+ROU,1956,Fencing,1,0
+ROU,1956,Gymnastics,7,0
+ROU,1956,Shooting,0,2
+ROU,1956,Wrestling,0,1
+ROU,1960,Athletics,2,0
+ROU,1960,Boxing,0,1
+ROU,1960,Canoeing,0,1
+ROU,1960,Fencing,1,0
+ROU,1960,Gymnastics,6,0
+ROU,1960,Shooting,0,1
+ROU,1960,Wrestling,0,3
+ROU,1964,Athletics,3,0
+ROU,1964,Canoeing,3,6
+ROU,1964,Shooting,0,1
+ROU,1964,Wrestling,0,3
+ROU,1968,Athletics,4,0
+ROU,1968,Bobsleigh,0,2
+ROU,1968,Boxing,0,2
+ROU,1968,Canoeing,1,6
+ROU,1968,Fencing,5,1
+ROU,1968,Shooting,0,1
+ROU,1968,Wrestling,0,3
+ROU,1972,Athletics,2,0
+ROU,1972,Boxing,0,1
+ROU,1972,Canoeing,2,7
+ROU,1972,Fencing,4,0
+ROU,1972,Handball,0,15
+ROU,1972,Rowing,0,3
+ROU,1972,Shooting,0,2
+ROU,1972,Wrestling,0,4
+ROU,1976,Athletics,0,1
+ROU,1976,Boxing,0,5
+ROU,1976,Canoeing,0,6
+ROU,1976,Fencing,0,5
+ROU,1976,Gymnastics,12,1
+ROU,1976,Handball,0,14
+ROU,1976,Rowing,5,0
+ROU,1976,Wrestling,0,6
+ROU,1980,Boxing,0,2
+ROU,1980,Canoeing,0,10
+ROU,1980,Equestrianism,1,2
+ROU,1980,Gymnastics,12,0
+ROU,1980,Handball,0,14
+ROU,1980,Rowing,12,0
+ROU,1980,Shooting,0,1
+ROU,1980,Volleyball,0,10
+ROU,1980,Wrestling,0,4
+ROU,1984,Athletics,10,0
+ROU,1984,Boxing,0,1
+ROU,1984,Canoeing,4,5
+ROU,1984,Fencing,5,5
+ROU,1984,Gymnastics,13,0
+ROU,1984,Handball,0,15
+ROU,1984,Judo,0,2
+ROU,1984,Rhythmic Gymnastics,1,0
+ROU,1984,Rowing,24,5
+ROU,1984,Shooting,0,1
+ROU,1984,Swimming,1,0
+ROU,1984,Weightlifting,0,8
+ROU,1984,Wrestling,0,6
+ROU,1988,Athletics,2,0
+ROU,1988,Boxing,0,1
+ROU,1988,Gymnastics,13,1
+ROU,1988,Rowing,28,8
+ROU,1988,Shooting,0,1
+ROU,1988,Swimming,2,0
+ROU,1988,Weightlifting,0,1
+ROU,1988,Wrestling,0,1
+ROU,1992,Athletics,1,0
+ROU,1992,Boxing,0,1
+ROU,1992,Fencing,5,0
+ROU,1992,Gymnastics,10,0
+ROU,1992,Rowing,16,17
+ROU,1992,Shooting,0,1
+ROU,1992,Weightlifting,0,1
+ROU,1992,Wrestling,0,1
+ROU,1996,Athletics,1,0
+ROU,1996,Boxing,0,2
+ROU,1996,Canoeing,0,4
+ROU,1996,Fencing,4,0
+ROU,1996,Gymnastics,13,2
+ROU,1996,Rowing,11,0
+ROU,1996,Weightlifting,0,1
+ROU,2000,Athletics,5,0
+ROU,2000,Boxing,0,2
+ROU,2000,Canoeing,4,4
+ROU,2000,Fencing,0,1
+ROU,2000,Gymnastics,10,1
+ROU,2000,Judo,1,0
+ROU,2000,Rowing,13,0
+ROU,2000,Shooting,0,1
+ROU,2000,Swimming,4,0
+ROU,2004,Athletics,2,1
+ROU,2004,Boxing,0,1
+ROU,2004,Gymnastics,11,9
+ROU,2004,Rowing,13,0
+ROU,2004,Swimming,1,1
+ROU,2008,Athletics,1,0
+ROU,2008,Fencing,1,1
+ROU,2008,Gymnastics,7,0
+ROU,2008,Judo,1,0
+ROU,2008,Rowing,11,0
+ROU,2012,Fencing,0,4
+ROU,2012,Gymnastics,7,0
+ROU,2012,Judo,2,0
+ROU,2012,Shooting,0,1
+ROU,2012,Weightlifting,1,1
+ROU,2016,Fencing,4,0
+ROU,2016,Rowing,9,0
+ROU,2016,Tennis,0,2
+ROU,2016,Wrestling,0,1
+RSA,1908,Athletics,0,2
+RSA,1912,Athletics,0,2
+RSA,1912,Cycling,0,1
+RSA,1912,Tennis,0,4
+RSA,1920,Athletics,0,6
+RSA,1920,Boxing,0,1
+RSA,1920,Cycling,0,7
+RSA,1920,Shooting,0,5
+RSA,1920,Tennis,0,2
+RSA,1924,Athletics,0,2
+RSA,1924,Boxing,0,1
+RSA,1928,Athletics,0,1
+RSA,1928,Boxing,0,1
+RSA,1928,Swimming,4,0
+RSA,1932,Athletics,1,0
+RSA,1932,Boxing,0,3
+RSA,1932,Swimming,1,0
+RSA,1936,Boxing,0,1
+RSA,1948,Art Competitions,0,2
+RSA,1948,Boxing,0,4
+RSA,1952,Athletics,2,0
+RSA,1952,Boxing,0,4
+RSA,1952,Cycling,0,7
+RSA,1952,Swimming,1,0
+RSA,1956,Boxing,0,2
+RSA,1956,Cycling,0,1
+RSA,1956,Swimming,4,0
+RSA,1960,Athletics,0,1
+RSA,1960,Boxing,0,2
+RSA,1992,Athletics,1,0
+RSA,1992,Tennis,0,2
+RSA,1996,Athletics,0,2
+RSA,1996,Swimming,3,0
+RSA,2000,Athletics,1,2
+RSA,2000,Swimming,1,1
+RSA,2004,Athletics,1,1
+RSA,2004,Rowing,0,2
+RSA,2004,Swimming,0,6
+RSA,2008,Athletics,0,1
+RSA,2012,Athletics,1,0
+RSA,2012,Canoeing,1,0
+RSA,2012,Rowing,0,4
+RSA,2012,Swimming,0,3
+RSA,2016,Athletics,2,2
+RSA,2016,Rowing,0,2
+RSA,2016,Rugby Sevens,0,13
+RSA,2016,Swimming,0,3
+RSA,2016,Triathlon,0,1
+RUS,1908,Figure Skating,0,1
+RUS,1908,Wrestling,0,2
+RUS,1912,Rowing,0,1
+RUS,1912,Sailing,0,7
+RUS,1912,Shooting,0,5
+RUS,1912,Wrestling,0,1
+RUS,1994,Alpine Skiing,1,0
+RUS,1994,Biathlon,4,7
+RUS,1994,Cross Country Skiing,8,0
+RUS,1994,Figure Skating,4,5
+RUS,1994,Freestyle Skiing,1,1
+RUS,1994,Speed Skating,2,3
+RUS,1996,Athletics,7,3
+RUS,1996,Boxing,0,4
+RUS,1996,Canoeing,0,4
+RUS,1996,Cycling,1,4
+RUS,1996,Diving,1,1
+RUS,1996,Fencing,3,12
+RUS,1996,Gymnastics,8,12
+RUS,1996,Modern Pentathlon,0,1
+RUS,1996,Rhythmic Gymnastics,7,0
+RUS,1996,Rowing,0,9
+RUS,1996,Sailing,0,3
+RUS,1996,Shooting,4,2
+RUS,1996,Swimming,0,19
+RUS,1996,Weightlifting,0,3
+RUS,1996,Wrestling,0,7
+RUS,1998,Biathlon,5,4
+RUS,1998,Cross Country Skiing,11,0
+RUS,1998,Figure Skating,4,5
+RUS,1998,Ice Hockey,0,22
+RUS,1998,Nordic Combined,0,1
+RUS,2000,Athletics,13,5
+RUS,2000,Boxing,0,7
+RUS,2000,Canoeing,0,1
+RUS,2000,Cycling,2,2
+RUS,2000,Diving,2,6
+RUS,2000,Fencing,4,5
+RUS,2000,Gymnastics,13,12
+RUS,2000,Handball,0,15
+RUS,2000,Judo,1,2
+RUS,2000,Modern Pentathlon,0,1
+RUS,2000,Rhythmic Gymnastics,8,0
+RUS,2000,Rowing,4,0
+RUS,2000,Shooting,3,3
+RUS,2000,Swimming,0,2
+RUS,2000,Synchronized Swimming,10,0
+RUS,2000,Taekwondo,1,0
+RUS,2000,Tennis,1,1
+RUS,2000,Trampolining,1,1
+RUS,2000,Volleyball,12,12
+RUS,2000,Water Polo,13,12
+RUS,2000,Weightlifting,1,2
+RUS,2000,Wrestling,0,9
+RUS,2002,Biathlon,5,1
+RUS,2002,Cross Country Skiing,3,1
+RUS,2002,Figure Skating,3,4
+RUS,2002,Ice Hockey,0,21
+RUS,2004,Athletics,22,5
+RUS,2004,Basketball,12,0
+RUS,2004,Boxing,0,6
+RUS,2004,Canoeing,0,5
+RUS,2004,Cycling,3,2
+RUS,2004,Diving,5,1
+RUS,2004,Fencing,4,9
+RUS,2004,Gymnastics,8,0
+RUS,2004,Handball,0,14
+RUS,2004,Judo,1,4
+RUS,2004,Modern Pentathlon,0,1
+RUS,2004,Rhythmic Gymnastics,8,0
+RUS,2004,Rowing,0,4
+RUS,2004,Shooting,2,8
+RUS,2004,Swimming,1,0
+RUS,2004,Synchronized Swimming,11,0
+RUS,2004,Trampolining,0,1
+RUS,2004,Volleyball,10,12
+RUS,2004,Water Polo,0,13
+RUS,2004,Weightlifting,3,4
+RUS,2004,Wrestling,1,9
+RUS,2006,Biathlon,7,4
+RUS,2006,Bobsleigh,0,4
+RUS,2006,Cross Country Skiing,7,4
+RUS,2006,Figure Skating,3,3
+RUS,2006,Freestyle Skiing,0,1
+RUS,2006,Luge,0,1
+RUS,2006,Speed Skating,6,1
+RUS,2008,Archery,0,1
+RUS,2008,Athletics,20,5
+RUS,2008,Basketball,12,0
+RUS,2008,Boxing,0,3
+RUS,2008,Canoeing,0,5
+RUS,2008,Cycling,1,3
+RUS,2008,Diving,3,5
+RUS,2008,Fencing,4,0
+RUS,2008,Gymnastics,0,2
+RUS,2008,Handball,14,0
+RUS,2008,Modern Pentathlon,0,1
+RUS,2008,Rhythmic Gymnastics,7,0
+RUS,2008,Shooting,2,2
+RUS,2008,Swimming,1,7
+RUS,2008,Synchronized Swimming,11,0
+RUS,2008,Tennis,3,0
+RUS,2008,Volleyball,0,12
+RUS,2008,Weightlifting,3,4
+RUS,2008,Wrestling,1,10
+RUS,2010,Biathlon,5,5
+RUS,2010,Bobsleigh,0,2
+RUS,2010,Cross Country Skiing,2,4
+RUS,2010,Figure Skating,1,2
+RUS,2010,Skeleton,0,1
+RUS,2010,Snowboarding,1,0
+RUS,2010,Speed Skating,0,2
+RUS,2012,Athletics,21,2
+RUS,2012,Badminton,2,0
+RUS,2012,Basketball,0,12
+RUS,2012,Boxing,2,4
+RUS,2012,Canoeing,0,5
+RUS,2012,Cycling,2,0
+RUS,2012,Diving,0,3
+RUS,2012,Fencing,5,1
+RUS,2012,Gymnastics,10,2
+RUS,2012,Judo,0,5
+RUS,2012,Rhythmic Gymnastics,8,0
+RUS,2012,Shooting,0,1
+RUS,2012,Swimming,2,7
+RUS,2012,Synchronized Swimming,11,0
+RUS,2012,Taekwondo,1,1
+RUS,2012,Tennis,3,0
+RUS,2012,Trampolining,0,1
+RUS,2012,Volleyball,0,12
+RUS,2012,Weightlifting,3,3
+RUS,2012,Wrestling,2,9
+RUS,2014,Biathlon,5,5
+RUS,2014,Bobsleigh,0,6
+RUS,2014,Cross Country Skiing,0,9
+RUS,2014,Figure Skating,9,8
+RUS,2014,Freestyle Skiing,0,1
+RUS,2014,Luge,1,4
+RUS,2014,Short Track Speed Skating,0,8
+RUS,2014,Skeleton,1,1
+RUS,2014,Snowboarding,1,3
+RUS,2014,Speed Skating,6,0
+RUS,2016,Archery,3,0
+RUS,2016,Boxing,1,3
+RUS,2016,Canoeing,0,2
+RUS,2016,Cycling,3,1
+RUS,2016,Fencing,11,4
+RUS,2016,Gymnastics,8,8
+RUS,2016,Handball,15,0
+RUS,2016,Judo,1,2
+RUS,2016,Modern Pentathlon,0,1
+RUS,2016,Rhythmic Gymnastics,7,0
+RUS,2016,Sailing,1,0
+RUS,2016,Shooting,1,3
+RUS,2016,Swimming,2,2
+RUS,2016,Synchronized Swimming,11,0
+RUS,2016,Taekwondo,0,1
+RUS,2016,Tennis,2,0
+RUS,2016,Water Polo,13,0
+RUS,2016,Wrestling,3,6
+SCG,1996,Basketball,0,12
+SCG,1996,Shooting,2,0
+SCG,1996,Volleyball,0,12
+SCG,2000,Shooting,1,0
+SCG,2000,Volleyball,0,11
+SCG,2000,Water Polo,0,13
+SCG,2004,Shooting,1,0
+SCG,2004,Water Polo,0,12
+SEN,1988,Athletics,0,1
+SGP,1960,Weightlifting,0,1
+SGP,2008,Table Tennis,3,0
+SGP,2012,Table Tennis,4,0
+SGP,2016,Swimming,0,1
+SLO,1992,Rowing,0,6
+SLO,1994,Alpine Skiing,2,1
+SLO,1996,Athletics,1,0
+SLO,1996,Canoeing,0,1
+SLO,2000,Rowing,0,2
+SLO,2000,Shooting,0,1
+SLO,2002,Ski Jumping,0,4
+SLO,2004,Athletics,1,0
+SLO,2004,Judo,1,0
+SLO,2004,Rowing,0,2
+SLO,2004,Sailing,0,1
+SLO,2008,Athletics,0,1
+SLO,2008,Judo,1,0
+SLO,2008,Sailing,0,1
+SLO,2008,Shooting,0,1
+SLO,2008,Swimming,1,0
+SLO,2010,Alpine Skiing,2,0
+SLO,2010,Cross Country Skiing,1,0
+SLO,2012,Athletics,0,1
+SLO,2012,Judo,1,0
+SLO,2012,Rowing,0,2
+SLO,2012,Shooting,0,1
+SLO,2014,Alpine Skiing,2,0
+SLO,2014,Biathlon,1,0
+SLO,2014,Cross Country Skiing,1,0
+SLO,2014,Ski Jumping,0,2
+SLO,2014,Snowboarding,0,2
+SLO,2016,Canoeing,0,1
+SLO,2016,Judo,2,0
+SLO,2016,Sailing,0,1
+SRB,2008,Swimming,0,1
+SRB,2008,Tennis,0,1
+SRB,2008,Water Polo,0,13
+SRB,2012,Shooting,1,1
+SRB,2012,Taekwondo,1,0
+SRB,2012,Water Polo,0,13
+SRB,2016,Athletics,1,0
+SRB,2016,Basketball,12,12
+SRB,2016,Canoeing,0,2
+SRB,2016,Taekwondo,1,0
+SRB,2016,Volleyball,12,0
+SRB,2016,Water Polo,0,13
+SRB,2016,Wrestling,0,1
+SRI,1948,Athletics,0,1
+SRI,2000,Athletics,1,0
+SUD,2008,Athletics,0,1
+SUI,1896,Gymnastics,0,3
+SUI,1900,Sailing,2,4
+SUI,1900,Shooting,0,15
+SUI,1904,Gymnastics,0,2
+SUI,1904,Wrestling,0,1
+SUI,1906,Shooting,0,12
+SUI,1912,Art Competitions,0,2
+SUI,1920,Rowing,0,8
+SUI,1920,Shooting,0,17
+SUI,1920,Weightlifting,0,2
+SUI,1920,Wrestling,0,2
+SUI,1924,Athletics,0,2
+SUI,1924,Bobsleigh,0,4
+SUI,1924,Equestrianism,0,5
+SUI,1924,Figure Skating,0,1
+SUI,1924,Football,0,15
+SUI,1924,Gymnastics,0,14
+SUI,1924,Military Ski Patrol,0,4
+SUI,1924,Rowing,0,16
+SUI,1924,Shooting,0,1
+SUI,1924,Weightlifting,0,2
+SUI,1924,Wrestling,0,5
+SUI,1928,Art Competitions,0,2
+SUI,1928,Equestrianism,0,1
+SUI,1928,Gymnastics,0,16
+SUI,1928,Ice Hockey,0,12
+SUI,1928,Rowing,0,8
+SUI,1928,Wrestling,0,3
+SUI,1932,Bobsleigh,0,2
+SUI,1932,Gymnastics,0,1
+SUI,1936,Aeronautics,0,1
+SUI,1936,Alpinism,1,1
+SUI,1936,Art Competitions,0,1
+SUI,1936,Athletics,0,1
+SUI,1936,Bobsleigh,0,10
+SUI,1936,Cycling,0,5
+SUI,1936,Gymnastics,0,16
+SUI,1936,Handball,0,17
+SUI,1936,Rowing,0,9
+SUI,1948,Alpine Skiing,2,4
+SUI,1948,Art Competitions,0,4
+SUI,1948,Athletics,0,2
+SUI,1948,Bobsleigh,0,4
+SUI,1948,Equestrianism,0,1
+SUI,1948,Fencing,0,1
+SUI,1948,Figure Skating,0,1
+SUI,1948,Gymnastics,0,16
+SUI,1948,Ice Hockey,0,17
+SUI,1948,Rowing,0,7
+SUI,1948,Shooting,0,2
+SUI,1948,Wrestling,0,3
+SUI,1952,Athletics,0,1
+SUI,1952,Bobsleigh,0,6
+SUI,1952,Equestrianism,0,3
+SUI,1952,Fencing,0,7
+SUI,1952,Gymnastics,0,14
+SUI,1952,Rowing,0,7
+SUI,1952,Shooting,0,1
+SUI,1956,Alpine Skiing,3,1
+SUI,1956,Bobsleigh,0,6
+SUI,1956,Equestrianism,0,3
+SUI,1960,Alpine Skiing,1,1
+SUI,1960,Equestrianism,0,6
+SUI,1960,Rowing,0,2
+SUI,1960,Sailing,0,3
+SUI,1960,Shooting,0,1
+SUI,1964,Equestrianism,1,3
+SUI,1964,Judo,0,1
+SUI,1964,Rowing,0,1
+SUI,1968,Alpine Skiing,1,2
+SUI,1968,Bobsleigh,0,4
+SUI,1968,Cross Country Skiing,0,1
+SUI,1968,Cycling,0,1
+SUI,1968,Equestrianism,1,2
+SUI,1968,Nordic Combined,0,1
+SUI,1968,Rowing,0,5
+SUI,1968,Sailing,0,3
+SUI,1968,Shooting,0,1
+SUI,1972,Alpine Skiing,2,4
+SUI,1972,Bobsleigh,0,6
+SUI,1972,Cross Country Skiing,0,4
+SUI,1972,Cycling,0,1
+SUI,1972,Fencing,0,5
+SUI,1972,Rowing,0,2
+SUI,1972,Ski Jumping,0,1
+SUI,1976,Alpine Skiing,0,3
+SUI,1976,Bobsleigh,0,6
+SUI,1976,Equestrianism,3,1
+SUI,1976,Fencing,0,5
+SUI,1976,Judo,0,1
+SUI,1980,Alpine Skiing,2,1
+SUI,1980,Bobsleigh,0,6
+SUI,1980,Cycling,0,1
+SUI,1980,Judo,0,1
+SUI,1984,Alpine Skiing,2,2
+SUI,1984,Athletics,0,1
+SUI,1984,Bobsleigh,0,4
+SUI,1984,Cycling,0,4
+SUI,1984,Equestrianism,3,2
+SUI,1984,Shooting,0,1
+SUI,1984,Swimming,0,1
+SUI,1984,Wrestling,0,1
+SUI,1988,Alpine Skiing,7,4
+SUI,1988,Athletics,0,1
+SUI,1988,Bobsleigh,0,4
+SUI,1988,Cross Country Skiing,0,1
+SUI,1988,Equestrianism,2,3
+SUI,1988,Nordic Combined,0,4
+SUI,1988,Rowing,0,2
+SUI,1992,Alpine Skiing,0,1
+SUI,1992,Bobsleigh,0,6
+SUI,1992,Tennis,0,1
+SUI,1994,Alpine Skiing,3,1
+SUI,1994,Bobsleigh,0,8
+SUI,1994,Freestyle Skiing,0,1
+SUI,1994,Nordic Combined,0,3
+SUI,1996,Canoeing,4,0
+SUI,1996,Cycling,0,2
+SUI,1996,Equestrianism,0,1
+SUI,1996,Gymnastics,0,1
+SUI,1996,Rowing,0,3
+SUI,1998,Alpine Skiing,0,2
+SUI,1998,Bobsleigh,0,4
+SUI,1998,Curling,0,5
+SUI,1998,Freestyle Skiing,1,0
+SUI,1998,Snowboarding,0,2
+SUI,2000,Cycling,1,1
+SUI,2000,Equestrianism,1,3
+SUI,2000,Fencing,4,0
+SUI,2000,Rowing,0,1
+SUI,2000,Shooting,0,1
+SUI,2000,Triathlon,2,0
+SUI,2002,Alpine Skiing,1,0
+SUI,2002,Bobsleigh,0,4
+SUI,2002,Cross Country Skiing,4,0
+SUI,2002,Curling,5,5
+SUI,2002,Skeleton,0,1
+SUI,2002,Ski Jumping,0,2
+SUI,2002,Snowboarding,1,1
+SUI,2004,Beach Volleyball,0,2
+SUI,2004,Cycling,1,2
+SUI,2004,Fencing,0,1
+SUI,2004,Triathlon,0,1
+SUI,2006,Alpine Skiing,1,2
+SUI,2006,Bobsleigh,0,6
+SUI,2006,Curling,4,0
+SUI,2006,Figure Skating,0,1
+SUI,2006,Freestyle Skiing,1,0
+SUI,2006,Skeleton,1,1
+SUI,2006,Snowboarding,2,2
+SUI,2008,Cycling,1,3
+SUI,2008,Equestrianism,1,3
+SUI,2008,Judo,0,1
+SUI,2008,Tennis,0,2
+SUI,2010,Alpine Skiing,0,3
+SUI,2010,Cross Country Skiing,0,1
+SUI,2010,Curling,0,4
+SUI,2010,Freestyle Skiing,0,1
+SUI,2010,Ski Jumping,0,2
+SUI,2010,Snowboarding,1,0
+SUI,2012,Cycling,0,1
+SUI,2012,Equestrianism,0,1
+SUI,2012,Tennis,0,1
+SUI,2012,Triathlon,1,0
+SUI,2014,Alpine Skiing,2,1
+SUI,2014,Biathlon,1,0
+SUI,2014,Bobsleigh,0,2
+SUI,2014,Cross Country Skiing,0,2
+SUI,2014,Ice Hockey,19,0
+SUI,2014,Snowboarding,1,2
+SUI,2016,Cycling,0,2
+SUI,2016,Gymnastics,1,0
+SUI,2016,Rowing,0,4
+SUI,2016,Shooting,1,0
+SUI,2016,Tennis,2,0
+SUI,2016,Triathlon,1,0
+SUR,1988,Swimming,0,1
+SUR,1992,Swimming,0,1
+SVK,1996,Canoeing,0,2
+SVK,1996,Shooting,0,1
+SVK,2000,Canoeing,0,4
+SVK,2000,Swimming,2,0
+SVK,2004,Canoeing,1,7
+SVK,2004,Judo,0,1
+SVK,2004,Shooting,0,1
+SVK,2006,Snowboarding,0,1
+SVK,2008,Canoeing,1,7
+SVK,2008,Shooting,1,0
+SVK,2008,Wrestling,0,1
+SVK,2010,Biathlon,2,1
+SVK,2012,Canoeing,0,3
+SVK,2012,Shooting,2,0
+SVK,2014,Biathlon,1,0
+SVK,2016,Athletics,0,1
+SVK,2016,Canoeing,0,7
+SWE,1900,Athletics,0,1
+SWE,1900,Tug-Of-War,0,3
+SWE,1906,Athletics,0,11
+SWE,1906,Shooting,0,2
+SWE,1906,Tug-Of-War,0,8
+SWE,1908,Athletics,0,5
+SWE,1908,Diving,0,3
+SWE,1908,Figure Skating,0,3
+SWE,1908,Gymnastics,0,38
+SWE,1908,Sailing,0,5
+SWE,1908,Shooting,0,16
+SWE,1908,Swimming,0,2
+SWE,1908,Tennis,1,2
+SWE,1908,Water Polo,0,7
+SWE,1908,Wrestling,0,2
+SWE,1912,Athletics,0,33
+SWE,1912,Cycling,0,12
+SWE,1912,Diving,2,5
+SWE,1912,Equestrianism,0,12
+SWE,1912,Gymnastics,0,24
+SWE,1912,Modern Pentathlon,0,3
+SWE,1912,Rowing,0,5
+SWE,1912,Sailing,0,26
+SWE,1912,Shooting,0,42
+SWE,1912,Swimming,0,1
+SWE,1912,Tennis,2,4
+SWE,1912,Tug-Of-War,0,8
+SWE,1912,Water Polo,0,7
+SWE,1912,Wrestling,0,4
+SWE,1920,Athletics,0,26
+SWE,1920,Cycling,0,5
+SWE,1920,Diving,1,4
+SWE,1920,Equestrianism,0,16
+SWE,1920,Figure Skating,2,1
+SWE,1920,Gymnastics,0,24
+SWE,1920,Modern Pentathlon,0,3
+SWE,1920,Sailing,0,11
+SWE,1920,Shooting,0,35
+SWE,1920,Swimming,4,4
+SWE,1920,Water Polo,0,10
+SWE,1920,Weightlifting,0,2
+SWE,1920,Wrestling,0,6
+SWE,1924,Athletics,0,8
+SWE,1924,Curling,0,8
+SWE,1924,Cycling,0,4
+SWE,1924,Diving,1,1
+SWE,1924,Equestrianism,0,10
+SWE,1924,Fencing,0,1
+SWE,1924,Figure Skating,0,1
+SWE,1924,Football,0,18
+SWE,1924,Modern Pentathlon,0,3
+SWE,1924,Shooting,0,10
+SWE,1924,Swimming,4,8
+SWE,1924,Wrestling,0,4
+SWE,1928,Athletics,2,5
+SWE,1928,Boxing,0,2
+SWE,1928,Cross Country Skiing,0,3
+SWE,1928,Cycling,0,5
+SWE,1928,Diving,1,0
+SWE,1928,Equestrianism,0,7
+SWE,1928,Figure Skating,0,1
+SWE,1928,Ice Hockey,0,12
+SWE,1928,Modern Pentathlon,0,2
+SWE,1928,Sailing,0,7
+SWE,1928,Swimming,0,2
+SWE,1928,Wrestling,0,4
+SWE,1932,Art Competitions,0,1
+SWE,1932,Athletics,0,1
+SWE,1932,Boxing,0,2
+SWE,1932,Cross Country Skiing,0,2
+SWE,1932,Cycling,0,4
+SWE,1932,Equestrianism,0,5
+SWE,1932,Figure Skating,0,1
+SWE,1932,Modern Pentathlon,0,2
+SWE,1932,Sailing,0,6
+SWE,1932,Shooting,0,1
+SWE,1932,Wrestling,0,10
+SWE,1936,Art Competitions,0,1
+SWE,1936,Athletics,0,2
+SWE,1936,Boxing,0,1
+SWE,1936,Canoeing,0,4
+SWE,1936,Cross Country Skiing,0,8
+SWE,1936,Equestrianism,0,3
+SWE,1936,Fencing,0,6
+SWE,1936,Figure Skating,1,0
+SWE,1936,Sailing,1,6
+SWE,1936,Shooting,0,2
+SWE,1936,Ski Jumping,0,1
+SWE,1936,Wrestling,0,9
+SWE,1948,Art Competitions,0,2
+SWE,1948,Athletics,1,15
+SWE,1948,Boxing,0,1
+SWE,1948,Canoeing,0,6
+SWE,1948,Cross Country Skiing,0,9
+SWE,1948,Equestrianism,0,5
+SWE,1948,Fencing,0,6
+SWE,1948,Football,0,12
+SWE,1948,Modern Pentathlon,0,2
+SWE,1948,Nordic Combined,0,1
+SWE,1948,Sailing,0,8
+SWE,1948,Shooting,0,3
+SWE,1948,Speed Skating,0,3
+SWE,1948,Weightlifting,0,1
+SWE,1948,Wrestling,0,13
+SWE,1952,Athletics,0,3
+SWE,1952,Boxing,0,2
+SWE,1952,Canoeing,0,6
+SWE,1952,Cross Country Skiing,0,4
+SWE,1952,Equestrianism,0,8
+SWE,1952,Fencing,0,6
+SWE,1952,Football,0,12
+SWE,1952,Gymnastics,8,1
+SWE,1952,Ice Hockey,0,17
+SWE,1952,Modern Pentathlon,0,4
+SWE,1952,Sailing,0,7
+SWE,1952,Shooting,0,3
+SWE,1952,Ski Jumping,0,1
+SWE,1952,Speed Skating,0,1
+SWE,1952,Swimming,0,2
+SWE,1952,Wrestling,0,8
+SWE,1956,Alpine Skiing,0,1
+SWE,1956,Athletics,0,1
+SWE,1956,Canoeing,0,2
+SWE,1956,Cross Country Skiing,4,7
+SWE,1956,Equestrianism,0,5
+SWE,1956,Gymnastics,7,1
+SWE,1956,Modern Pentathlon,0,1
+SWE,1956,Nordic Combined,0,1
+SWE,1956,Rowing,0,5
+SWE,1956,Sailing,0,6
+SWE,1956,Shooting,0,2
+SWE,1956,Speed Skating,0,2
+SWE,1956,Wrestling,0,4
+SWE,1960,Athletics,0,1
+SWE,1960,Biathlon,0,1
+SWE,1960,Canoeing,0,3
+SWE,1960,Cross Country Skiing,3,4
+SWE,1960,Speed Skating,0,1
+SWE,1960,Swimming,1,0
+SWE,1960,Wrestling,0,2
+SWE,1964,Athletics,0,1
+SWE,1964,Canoeing,0,3
+SWE,1964,Cross Country Skiing,3,7
+SWE,1964,Cycling,0,4
+SWE,1964,Ice Hockey,0,17
+SWE,1964,Sailing,0,5
+SWE,1964,Speed Skating,0,1
+SWE,1964,Wrestling,0,2
+SWE,1968,Biathlon,0,4
+SWE,1968,Cross Country Skiing,5,5
+SWE,1968,Cycling,0,5
+SWE,1968,Modern Pentathlon,0,1
+SWE,1968,Sailing,0,3
+SWE,1968,Speed Skating,0,2
+SWE,1972,Archery,0,1
+SWE,1972,Athletics,0,1
+SWE,1972,Biathlon,0,1
+SWE,1972,Boxing,0,1
+SWE,1972,Canoeing,0,1
+SWE,1972,Cross Country Skiing,0,1
+SWE,1972,Diving,2,0
+SWE,1972,Equestrianism,3,1
+SWE,1972,Sailing,0,6
+SWE,1972,Shooting,0,1
+SWE,1972,Speed Skating,0,2
+SWE,1972,Swimming,0,2
+SWE,1972,Weightlifting,0,1
+SWE,1972,Wrestling,0,2
+SWE,1976,Alpine Skiing,0,1
+SWE,1976,Athletics,0,1
+SWE,1976,Cross Country Skiing,0,1
+SWE,1976,Cycling,0,1
+SWE,1976,Diving,1,0
+SWE,1976,Fencing,0,5
+SWE,1976,Sailing,0,2
+SWE,1980,Alpine Skiing,0,2
+SWE,1980,Cross Country Skiing,0,1
+SWE,1980,Fencing,0,1
+SWE,1980,Ice Hockey,0,20
+SWE,1980,Modern Pentathlon,0,3
+SWE,1980,Sailing,0,2
+SWE,1980,Shooting,0,2
+SWE,1980,Swimming,6,4
+SWE,1980,Wrestling,0,2
+SWE,1984,Athletics,0,3
+SWE,1984,Canoeing,7,7
+SWE,1984,Cross Country Skiing,0,8
+SWE,1984,Equestrianism,3,0
+SWE,1984,Fencing,0,1
+SWE,1984,Ice Hockey,0,20
+SWE,1984,Modern Pentathlon,0,1
+SWE,1984,Shooting,0,1
+SWE,1984,Speed Skating,0,2
+SWE,1984,Swimming,0,7
+SWE,1984,Wrestling,0,4
+SWE,1988,Alpine Skiing,0,1
+SWE,1988,Athletics,0,1
+SWE,1988,Boxing,0,2
+SWE,1988,Cross Country Skiing,0,5
+SWE,1988,Cycling,0,4
+SWE,1988,Ice Hockey,0,22
+SWE,1988,Sailing,2,0
+SWE,1988,Shooting,0,1
+SWE,1988,Speed Skating,0,2
+SWE,1988,Swimming,0,1
+SWE,1988,Table Tennis,0,1
+SWE,1988,Tennis,0,3
+SWE,1988,Wrestling,0,1
+SWE,1992,Alpine Skiing,1,0
+SWE,1992,Athletics,0,1
+SWE,1992,Biathlon,0,5
+SWE,1992,Canoeing,6,2
+SWE,1992,Cross Country Skiing,0,1
+SWE,1992,Handball,0,16
+SWE,1992,Shooting,0,1
+SWE,1992,Swimming,0,6
+SWE,1992,Table Tennis,0,1
+SWE,1992,Wrestling,0,2
+SWE,1994,Alpine Skiing,1,0
+SWE,1994,Freestyle Skiing,1,0
+SWE,1994,Ice Hockey,0,22
+SWE,1996,Archery,0,1
+SWE,1996,Athletics,1,0
+SWE,1996,Canoeing,6,0
+SWE,1996,Handball,0,16
+SWE,1996,Sailing,0,2
+SWE,1996,Swimming,0,4
+SWE,1996,Wrestling,0,1
+SWE,1998,Alpine Skiing,1,0
+SWE,1998,Cross Country Skiing,0,1
+SWE,1998,Curling,5,0
+SWE,2000,Athletics,1,0
+SWE,2000,Canoeing,0,2
+SWE,2000,Handball,0,15
+SWE,2000,Sailing,0,1
+SWE,2000,Shooting,1,1
+SWE,2000,Swimming,8,1
+SWE,2000,Table Tennis,0,1
+SWE,2000,Wrestling,0,1
+SWE,2002,Alpine Skiing,2,0
+SWE,2002,Biathlon,2,0
+SWE,2002,Cross Country Skiing,0,1
+SWE,2002,Ice Hockey,20,0
+SWE,2002,Snowboarding,0,1
+SWE,2004,Athletics,1,2
+SWE,2004,Canoeing,0,2
+SWE,2004,Equestrianism,1,3
+SWE,2004,Sailing,2,0
+SWE,2004,Wrestling,0,1
+SWE,2006,Alpine Skiing,4,0
+SWE,2006,Biathlon,2,0
+SWE,2006,Cross Country Skiing,2,8
+SWE,2006,Curling,4,0
+SWE,2006,Ice Hockey,20,24
+SWE,2008,Cycling,1,1
+SWE,2008,Equestrianism,0,1
+SWE,2008,Sailing,0,2
+SWE,2008,Tennis,0,2
+SWE,2010,Alpine Skiing,1,1
+SWE,2010,Biathlon,0,1
+SWE,2010,Cross Country Skiing,4,7
+SWE,2010,Curling,4,0
+SWE,2012,Equestrianism,1,0
+SWE,2012,Handball,0,14
+SWE,2012,Sailing,0,3
+SWE,2012,Shooting,0,1
+SWE,2012,Triathlon,1,0
+SWE,2012,Wrestling,0,2
+SWE,2014,Cross Country Skiing,8,11
+SWE,2014,Curling,4,4
+SWE,2014,Freestyle Skiing,1,0
+SWE,2014,Ice Hockey,0,23
+SWE,2016,Cycling,2,0
+SWE,2016,Equestrianism,0,1
+SWE,2016,Football,18,0
+SWE,2016,Golf,0,1
+SWE,2016,Shooting,0,1
+SWE,2016,Swimming,3,0
+SWE,2016,Wrestling,2,0
+SYR,1984,Wrestling,0,1
+SYR,1996,Athletics,1,0
+SYR,2004,Boxing,0,1
+TAN,1980,Athletics,0,2
+TCH,1920,Ice Hockey,0,8
+TCH,1920,Tennis,1,1
+TCH,1924,Gymnastics,0,9
+TCH,1924,Weightlifting,0,1
+TCH,1928,Boxing,0,1
+TCH,1928,Equestrianism,0,1
+TCH,1928,Gymnastics,0,12
+TCH,1928,Ski Jumping,0,1
+TCH,1928,Weightlifting,0,1
+TCH,1928,Wrestling,0,1
+TCH,1932,Art Competitions,0,2
+TCH,1932,Athletics,0,1
+TCH,1932,Weightlifting,0,2
+TCH,1932,Wrestling,0,1
+TCH,1936,Art Competitions,0,1
+TCH,1936,Canoeing,0,5
+TCH,1936,Gymnastics,8,1
+TCH,1936,Weightlifting,0,1
+TCH,1936,Wrestling,0,2
+TCH,1948,Athletics,0,2
+TCH,1948,Boxing,0,1
+TCH,1948,Canoeing,0,6
+TCH,1948,Gymnastics,8,3
+TCH,1948,Ice Hockey,0,17
+TCH,1952,Athletics,1,4
+TCH,1952,Boxing,0,1
+TCH,1952,Canoeing,0,4
+TCH,1952,Gymnastics,8,0
+TCH,1952,Rowing,0,5
+TCH,1952,Wrestling,0,2
+TCH,1956,Athletics,1,1
+TCH,1956,Cycling,0,3
+TCH,1956,Gymnastics,1,0
+TCH,1956,Shooting,0,1
+TCH,1960,Athletics,1,0
+TCH,1960,Boxing,0,2
+TCH,1960,Figure Skating,0,1
+TCH,1960,Gymnastics,7,0
+TCH,1960,Rowing,0,11
+TCH,1960,Wrestling,0,1
+TCH,1964,Athletics,0,2
+TCH,1964,Cycling,0,1
+TCH,1964,Football,0,17
+TCH,1964,Gymnastics,9,0
+TCH,1964,Ice Hockey,0,17
+TCH,1964,Rowing,0,11
+TCH,1964,Shooting,0,1
+TCH,1964,Volleyball,0,11
+TCH,1964,Weightlifting,0,1
+TCH,1964,Wrestling,0,1
+TCH,1968,Athletics,1,1
+TCH,1968,Diving,1,0
+TCH,1968,Figure Skating,1,0
+TCH,1968,Gymnastics,11,0
+TCH,1968,Ice Hockey,0,18
+TCH,1968,Shooting,0,1
+TCH,1968,Ski Jumping,0,2
+TCH,1968,Volleyball,0,12
+TCH,1968,Wrestling,0,2
+TCH,1972,Athletics,1,1
+TCH,1972,Cross Country Skiing,1,0
+TCH,1972,Diving,1,0
+TCH,1972,Figure Skating,0,1
+TCH,1972,Handball,0,16
+TCH,1972,Ice Hockey,0,18
+TCH,1972,Rowing,0,8
+TCH,1972,Shooting,0,1
+TCH,1972,Wrestling,0,1
+TCH,1976,Athletics,1,0
+TCH,1976,Cycling,0,1
+TCH,1976,Ice Hockey,0,19
+TCH,1976,Modern Pentathlon,0,4
+TCH,1976,Rowing,0,7
+TCH,1976,Shooting,0,1
+TCH,1976,Wrestling,0,1
+TCH,1980,Athletics,1,1
+TCH,1980,Boxing,0,1
+TCH,1980,Cross Country Skiing,1,0
+TCH,1980,Cycling,0,8
+TCH,1980,Football,0,16
+TCH,1980,Gymnastics,0,1
+TCH,1980,Hockey,16,0
+TCH,1980,Judo,0,1
+TCH,1980,Rowing,0,2
+TCH,1980,Weightlifting,0,2
+TCH,1980,Wrestling,0,2
+TCH,1984,Alpine Skiing,1,0
+TCH,1984,Cross Country Skiing,5,0
+TCH,1984,Figure Skating,0,1
+TCH,1984,Ice Hockey,0,20
+TCH,1984,Ski Jumping,0,1
+TCH,1988,Athletics,0,2
+TCH,1988,Cross Country Skiing,0,4
+TCH,1988,Shooting,0,2
+TCH,1988,Ski Jumping,0,2
+TCH,1988,Tennis,2,3
+TCH,1988,Wrestling,0,1
+TCH,1992,Athletics,0,2
+TCH,1992,Canoeing,0,3
+TCH,1992,Figure Skating,0,1
+TCH,1992,Ice Hockey,0,22
+TCH,1992,Rowing,0,1
+TCH,1992,Shooting,0,2
+TCH,1992,Ski Jumping,0,4
+TGA,1996,Boxing,0,1
+THA,1976,Boxing,0,1
+THA,1984,Boxing,0,1
+THA,1988,Boxing,0,1
+THA,1992,Boxing,0,1
+THA,1996,Boxing,0,2
+THA,2000,Boxing,0,2
+THA,2000,Weightlifting,1,0
+THA,2004,Boxing,0,3
+THA,2004,Taekwondo,1,0
+THA,2004,Weightlifting,4,0
+THA,2008,Boxing,0,2
+THA,2008,Taekwondo,1,0
+THA,2008,Weightlifting,1,0
+THA,2012,Boxing,0,1
+THA,2012,Taekwondo,1,0
+THA,2012,Weightlifting,1,0
+THA,2016,Taekwondo,1,1
+THA,2016,Weightlifting,3,1
+TJK,2008,Judo,0,1
+TJK,2008,Wrestling,0,1
+TJK,2012,Boxing,1,0
+TJK,2016,Athletics,0,1
+TOG,2008,Canoeing,0,1
+TPE,1960,Athletics,0,1
+TPE,1968,Athletics,1,0
+TPE,1984,Weightlifting,0,1
+TPE,1992,Baseball,0,20
+TPE,1996,Table Tennis,1,0
+TPE,2000,Table Tennis,1,0
+TPE,2000,Taekwondo,1,1
+TPE,2000,Weightlifting,2,0
+TPE,2004,Archery,3,3
+TPE,2004,Taekwondo,1,2
+TPE,2008,Taekwondo,0,2
+TPE,2008,Weightlifting,2,0
+TPE,2012,Taekwondo,1,0
+TPE,2012,Weightlifting,1,0
+TPE,2016,Archery,3,0
+TPE,2016,Weightlifting,2,0
+TTO,1948,Weightlifting,0,1
+TTO,1952,Weightlifting,0,2
+TTO,1964,Athletics,0,6
+TTO,1976,Athletics,0,1
+TTO,1996,Athletics,0,2
+TTO,2000,Athletics,0,2
+TTO,2004,Swimming,0,1
+TTO,2008,Athletics,0,6
+TTO,2012,Athletics,0,10
+TTO,2016,Athletics,0,1
+TUN,1964,Athletics,0,1
+TUN,1964,Boxing,0,1
+TUN,1968,Athletics,0,2
+TUN,1972,Athletics,0,1
+TUN,1996,Boxing,0,1
+TUN,2008,Swimming,0,1
+TUN,2012,Athletics,1,0
+TUN,2012,Swimming,0,2
+TUN,2016,Fencing,1,0
+TUN,2016,Taekwondo,0,1
+TUN,2016,Wrestling,1,0
+TUR,1936,Wrestling,0,2
+TUR,1948,Athletics,0,1
+TUR,1948,Wrestling,0,11
+TUR,1952,Wrestling,0,3
+TUR,1956,Wrestling,0,7
+TUR,1960,Wrestling,0,9
+TUR,1964,Wrestling,0,6
+TUR,1968,Wrestling,0,2
+TUR,1972,Wrestling,0,1
+TUR,1984,Boxing,0,2
+TUR,1984,Wrestling,0,1
+TUR,1988,Weightlifting,0,1
+TUR,1988,Wrestling,0,1
+TUR,1992,Judo,1,0
+TUR,1992,Weightlifting,0,1
+TUR,1992,Wrestling,0,4
+TUR,1996,Boxing,0,1
+TUR,1996,Weightlifting,0,2
+TUR,1996,Wrestling,0,3
+TUR,2000,Judo,0,1
+TUR,2000,Taekwondo,1,0
+TUR,2000,Weightlifting,0,1
+TUR,2000,Wrestling,0,2
+TUR,2004,Athletics,0,1
+TUR,2004,Boxing,0,1
+TUR,2004,Taekwondo,0,1
+TUR,2004,Weightlifting,1,4
+TUR,2004,Wrestling,0,3
+TUR,2008,Athletics,1,0
+TUR,2008,Boxing,0,1
+TUR,2008,Taekwondo,1,1
+TUR,2008,Weightlifting,1,0
+TUR,2008,Wrestling,0,2
+TUR,2012,Athletics,2,0
+TUR,2012,Taekwondo,1,1
+TUR,2012,Wrestling,0,1
+TUR,2016,Athletics,0,1
+TUR,2016,Taekwondo,1,0
+TUR,2016,Weightlifting,0,1
+TUR,2016,Wrestling,0,5
+UAE,2004,Shooting,0,1
+UAE,2016,Judo,0,1
+UAR,1960,Boxing,0,1
+UAR,1960,Wrestling,0,1
+UGA,1968,Boxing,0,2
+UGA,1972,Athletics,0,1
+UGA,1972,Boxing,0,1
+UGA,1980,Boxing,0,1
+UGA,1996,Athletics,0,1
+UGA,2012,Athletics,0,1
+UKR,1994,Biathlon,1,0
+UKR,1994,Figure Skating,1,0
+UKR,1996,Archery,1,0
+UKR,1996,Athletics,2,2
+UKR,1996,Boxing,0,2
+UKR,1996,Gymnastics,3,8
+UKR,1996,Rhythmic Gymnastics,2,0
+UKR,1996,Rowing,4,0
+UKR,1996,Sailing,2,2
+UKR,1996,Weightlifting,0,2
+UKR,1996,Wrestling,0,4
+UKR,1998,Biathlon,1,0
+UKR,2000,Archery,3,0
+UKR,2000,Athletics,1,1
+UKR,2000,Boxing,0,5
+UKR,2000,Cycling,1,4
+UKR,2000,Diving,2,0
+UKR,2000,Gymnastics,0,7
+UKR,2000,Judo,0,1
+UKR,2000,Sailing,2,0
+UKR,2000,Shooting,0,1
+UKR,2000,Swimming,3,1
+UKR,2000,Trampolining,1,0
+UKR,2000,Wrestling,0,2
+UKR,2004,Archery,0,3
+UKR,2004,Athletics,3,0
+UKR,2004,Canoeing,4,0
+UKR,2004,Fencing,0,1
+UKR,2004,Gymnastics,0,1
+UKR,2004,Handball,15,0
+UKR,2004,Judo,0,1
+UKR,2004,Rhythmic Gymnastics,1,0
+UKR,2004,Rowing,0,4
+UKR,2004,Sailing,3,2
+UKR,2004,Shooting,1,0
+UKR,2004,Swimming,2,1
+UKR,2004,Trampolining,0,1
+UKR,2004,Weightlifting,1,1
+UKR,2004,Wrestling,1,1
+UKR,2006,Biathlon,1,0
+UKR,2006,Figure Skating,1,1
+UKR,2008,Archery,0,1
+UKR,2008,Athletics,4,1
+UKR,2008,Boxing,0,2
+UKR,2008,Canoeing,1,1
+UKR,2008,Cycling,1,0
+UKR,2008,Diving,0,2
+UKR,2008,Fencing,4,0
+UKR,2008,Gymnastics,0,1
+UKR,2008,Judo,0,1
+UKR,2008,Modern Pentathlon,1,0
+UKR,2008,Rhythmic Gymnastics,1,0
+UKR,2008,Shooting,0,3
+UKR,2008,Weightlifting,2,0
+UKR,2008,Wrestling,1,4
+UKR,2012,Athletics,5,1
+UKR,2012,Boxing,0,5
+UKR,2012,Canoeing,2,1
+UKR,2012,Fencing,2,0
+UKR,2012,Gymnastics,0,1
+UKR,2012,Rowing,4,0
+UKR,2012,Shooting,2,0
+UKR,2012,Weightlifting,1,1
+UKR,2012,Wrestling,0,1
+UKR,2014,Biathlon,5,0
+UKR,2016,Athletics,0,1
+UKR,2016,Canoeing,0,3
+UKR,2016,Fencing,5,0
+UKR,2016,Gymnastics,0,2
+UKR,2016,Modern Pentathlon,0,1
+UKR,2016,Rhythmic Gymnastics,1,0
+UKR,2016,Shooting,0,1
+UKR,2016,Wrestling,0,1
+URS,1952,Athletics,11,9
+URS,1952,Basketball,0,14
+URS,1952,Boxing,0,6
+URS,1952,Canoeing,1,0
+URS,1952,Gymnastics,25,18
+URS,1952,Rowing,0,12
+URS,1952,Shooting,0,4
+URS,1952,Weightlifting,0,7
+URS,1952,Wrestling,0,10
+URS,1956,Alpine Skiing,1,0
+URS,1956,Athletics,8,17
+URS,1956,Basketball,0,12
+URS,1956,Boxing,0,6
+URS,1956,Canoeing,1,9
+URS,1956,Cross Country Skiing,5,7
+URS,1956,Fencing,0,6
+URS,1956,Football,0,18
+URS,1956,Gymnastics,20,18
+URS,1956,Ice Hockey,0,17
+URS,1956,Modern Pentathlon,0,3
+URS,1956,Rowing,0,8
+URS,1956,Shooting,0,8
+URS,1956,Speed Skating,0,7
+URS,1956,Swimming,0,5
+URS,1956,Water Polo,0,10
+URS,1956,Weightlifting,0,7
+URS,1956,Wrestling,0,13
+URS,1960,Athletics,8,16
+URS,1960,Basketball,0,12
+URS,1960,Biathlon,0,1
+URS,1960,Boxing,0,5
+URS,1960,Canoeing,3,3
+URS,1960,Cross Country Skiing,6,5
+URS,1960,Cycling,0,12
+URS,1960,Diving,1,0
+URS,1960,Equestrianism,0,1
+URS,1960,Fencing,7,13
+URS,1960,Gymnastics,20,16
+URS,1960,Ice Hockey,0,17
+URS,1960,Modern Pentathlon,0,3
+URS,1960,Nordic Combined,0,1
+URS,1960,Rowing,0,12
+URS,1960,Sailing,0,3
+URS,1960,Shooting,0,7
+URS,1960,Speed Skating,6,6
+URS,1960,Water Polo,0,11
+URS,1960,Weightlifting,0,6
+URS,1960,Wrestling,0,10
+URS,1964,Athletics,8,10
+URS,1964,Basketball,0,12
+URS,1964,Biathlon,0,2
+URS,1964,Boxing,0,9
+URS,1964,Canoeing,1,7
+URS,1964,Cross Country Skiing,8,5
+URS,1964,Cycling,0,2
+URS,1964,Diving,1,0
+URS,1964,Equestrianism,0,4
+URS,1964,Fencing,5,13
+URS,1964,Figure Skating,1,1
+URS,1964,Gymnastics,15,14
+URS,1964,Ice Hockey,0,17
+URS,1964,Judo,0,4
+URS,1964,Modern Pentathlon,0,5
+URS,1964,Nordic Combined,0,1
+URS,1964,Rowing,0,3
+URS,1964,Shooting,0,2
+URS,1964,Speed Skating,9,3
+URS,1964,Swimming,7,1
+URS,1964,Volleyball,12,11
+URS,1964,Water Polo,0,11
+URS,1964,Weightlifting,0,7
+URS,1964,Wrestling,0,10
+URS,1968,Athletics,9,7
+URS,1968,Basketball,0,12
+URS,1968,Biathlon,0,6
+URS,1968,Boxing,0,6
+URS,1968,Canoeing,3,6
+URS,1968,Cross Country Skiing,5,1
+URS,1968,Diving,2,0
+URS,1968,Equestrianism,1,3
+URS,1968,Fencing,6,17
+URS,1968,Figure Skating,2,2
+URS,1968,Gymnastics,14,14
+URS,1968,Ice Hockey,0,18
+URS,1968,Modern Pentathlon,0,4
+URS,1968,Rowing,0,11
+URS,1968,Sailing,0,1
+URS,1968,Shooting,0,5
+URS,1968,Ski Jumping,0,1
+URS,1968,Speed Skating,2,0
+URS,1968,Swimming,2,20
+URS,1968,Volleyball,11,12
+URS,1968,Water Polo,0,11
+URS,1968,Weightlifting,0,6
+URS,1968,Wrestling,0,9
+URS,1972,Archery,1,0
+URS,1972,Athletics,4,16
+URS,1972,Basketball,0,12
+URS,1972,Biathlon,0,4
+URS,1972,Boxing,0,2
+URS,1972,Canoeing,3,9
+URS,1972,Cross Country Skiing,6,7
+URS,1972,Cycling,0,7
+URS,1972,Diving,0,1
+URS,1972,Equestrianism,2,2
+URS,1972,Fencing,6,17
+URS,1972,Figure Skating,2,3
+URS,1972,Football,0,19
+URS,1972,Gymnastics,15,11
+URS,1972,Ice Hockey,0,20
+URS,1972,Judo,0,4
+URS,1972,Modern Pentathlon,0,5
+URS,1972,Rowing,0,3
+URS,1972,Sailing,0,3
+URS,1972,Shooting,0,4
+URS,1972,Speed Skating,2,1
+URS,1972,Swimming,2,12
+URS,1972,Volleyball,12,12
+URS,1972,Water Polo,0,11
+URS,1972,Weightlifting,0,5
+URS,1972,Wrestling,0,14
+URS,1976,Archery,2,0
+URS,1976,Athletics,14,13
+URS,1976,Basketball,12,12
+URS,1976,Biathlon,0,6
+URS,1976,Boxing,0,5
+URS,1976,Canoeing,3,14
+URS,1976,Cross Country Skiing,8,8
+URS,1976,Cycling,0,8
+URS,1976,Diving,1,2
+URS,1976,Fencing,6,9
+URS,1976,Figure Skating,3,4
+URS,1976,Football,0,15
+URS,1976,Gymnastics,13,14
+URS,1976,Handball,14,14
+URS,1976,Ice Hockey,0,18
+URS,1976,Judo,0,5
+URS,1976,Modern Pentathlon,0,1
+URS,1976,Rowing,22,17
+URS,1976,Sailing,0,3
+URS,1976,Shooting,0,3
+URS,1976,Speed Skating,5,4
+URS,1976,Swimming,5,9
+URS,1976,Volleyball,12,12
+URS,1976,Weightlifting,0,8
+URS,1976,Wrestling,0,18
+URS,1980,Archery,2,1
+URS,1980,Athletics,26,30
+URS,1980,Basketball,12,12
+URS,1980,Biathlon,0,7
+URS,1980,Boxing,0,8
+URS,1980,Canoeing,3,9
+URS,1980,Cross Country Skiing,5,8
+URS,1980,Cycling,0,13
+URS,1980,Diving,3,3
+URS,1980,Equestrianism,1,15
+URS,1980,Fencing,5,19
+URS,1980,Figure Skating,4,4
+URS,1980,Football,0,17
+URS,1980,Gymnastics,13,19
+URS,1980,Handball,13,14
+URS,1980,Hockey,16,16
+URS,1980,Ice Hockey,0,20
+URS,1980,Judo,0,5
+URS,1980,Luge,2,0
+URS,1980,Modern Pentathlon,0,5
+URS,1980,Rowing,24,28
+URS,1980,Sailing,0,6
+URS,1980,Shooting,0,5
+URS,1980,Speed Skating,2,2
+URS,1980,Swimming,10,30
+URS,1980,Volleyball,11,12
+URS,1980,Water Polo,0,11
+URS,1980,Weightlifting,0,8
+URS,1980,Wrestling,0,17
+URS,1984,Biathlon,0,4
+URS,1984,Bobsleigh,0,2
+URS,1984,Cross Country Skiing,2,6
+URS,1984,Figure Skating,5,4
+URS,1984,Ice Hockey,0,20
+URS,1984,Luge,0,4
+URS,1984,Speed Skating,3,6
+URS,1988,Archery,0,1
+URS,1988,Athletics,20,16
+URS,1988,Basketball,12,12
+URS,1988,Biathlon,0,7
+URS,1988,Bobsleigh,0,6
+URS,1988,Boxing,0,4
+URS,1988,Canoeing,0,12
+URS,1988,Cross Country Skiing,11,8
+URS,1988,Cycling,2,9
+URS,1988,Fencing,0,17
+URS,1988,Figure Skating,4,5
+URS,1988,Football,0,18
+URS,1988,Gymnastics,12,17
+URS,1988,Handball,15,14
+URS,1988,Ice Hockey,0,21
+URS,1988,Judo,0,5
+URS,1988,Luge,0,1
+URS,1988,Modern Pentathlon,0,1
+URS,1988,Nordic Combined,0,1
+URS,1988,Rhythmic Gymnastics,2,0
+URS,1988,Rowing,4,11
+URS,1988,Sailing,2,2
+URS,1988,Shooting,6,5
+URS,1988,Speed Skating,0,2
+URS,1988,Swimming,1,20
+URS,1988,Volleyball,12,12
+URS,1988,Water Polo,0,13
+URS,1988,Weightlifting,0,8
+URS,1988,Wrestling,0,15
+URU,1924,Football,0,14
+URU,1928,Football,0,17
+URU,1932,Rowing,0,1
+URU,1948,Rowing,0,3
+URU,1952,Basketball,0,12
+URU,1952,Rowing,0,2
+URU,1956,Basketball,0,12
+URU,1964,Boxing,0,1
+URU,2000,Cycling,0,1
+USA,1896,Athletics,0,17
+USA,1896,Shooting,0,3
+USA,1900,Athletics,0,39
+USA,1900,Cycling,0,1
+USA,1900,Golf,3,1
+USA,1900,Polo,0,4
+USA,1900,Rowing,0,9
+USA,1900,Rugby,0,1
+USA,1900,Sailing,0,2
+USA,1900,Tennis,2,1
+USA,1904,Archery,10,18
+USA,1904,Athletics,0,72
+USA,1904,Boxing,0,18
+USA,1904,Cycling,0,21
+USA,1904,Diving,0,2
+USA,1904,Fencing,0,13
+USA,1904,Football,0,23
+USA,1904,Golf,0,33
+USA,1904,Gymnastics,0,44
+USA,1904,Lacrosse,0,12
+USA,1904,Roque,0,3
+USA,1904,Rowing,0,36
+USA,1904,Swimming,0,22
+USA,1904,Tennis,0,12
+USA,1904,Tug-Of-War,0,14
+USA,1904,Water Polo,0,21
+USA,1904,Weightlifting,0,3
+USA,1904,Wrestling,0,17
+USA,1906,Athletics,0,23
+USA,1906,Swimming,0,1
+USA,1908,Archery,0,1
+USA,1908,Athletics,0,41
+USA,1908,Diving,0,1
+USA,1908,Jeu De Paume,0,1
+USA,1908,Shooting,0,14
+USA,1908,Swimming,0,5
+USA,1908,Wrestling,0,2
+USA,1912,Art Competitions,0,1
+USA,1912,Athletics,0,49
+USA,1912,Cycling,0,10
+USA,1912,Equestrianism,0,4
+USA,1912,Shooting,0,36
+USA,1912,Swimming,0,7
+USA,1920,Athletics,0,36
+USA,1920,Boxing,0,4
+USA,1920,Diving,3,5
+USA,1920,Fencing,0,5
+USA,1920,Figure Skating,1,0
+USA,1920,Ice Hockey,0,11
+USA,1920,Polo,0,4
+USA,1920,Rowing,0,17
+USA,1920,Rugby,0,16
+USA,1920,Shooting,0,64
+USA,1920,Swimming,10,12
+USA,1920,Wrestling,0,6
+USA,1924,Athletics,0,48
+USA,1924,Boxing,0,6
+USA,1924,Diving,5,6
+USA,1924,Equestrianism,0,1
+USA,1924,Figure Skating,1,0
+USA,1924,Gymnastics,0,1
+USA,1924,Ice Hockey,0,9
+USA,1924,Polo,0,4
+USA,1924,Rowing,0,20
+USA,1924,Rugby,0,19
+USA,1924,Shooting,0,21
+USA,1924,Ski Jumping,0,1
+USA,1924,Speed Skating,0,1
+USA,1924,Swimming,13,13
+USA,1924,Tennis,5,5
+USA,1924,Water Polo,0,9
+USA,1924,Wrestling,0,6
+USA,1928,Athletics,7,27
+USA,1928,Bobsleigh,0,10
+USA,1928,Boxing,0,3
+USA,1928,Diving,5,4
+USA,1928,Fencing,0,1
+USA,1928,Figure Skating,1,0
+USA,1928,Rowing,0,18
+USA,1928,Skeleton,0,2
+USA,1928,Speed Skating,0,1
+USA,1928,Swimming,10,11
+USA,1928,Wrestling,0,2
+USA,1932,Art Competitions,1,6
+USA,1932,Athletics,12,32
+USA,1932,Bobsleigh,0,12
+USA,1932,Boxing,0,5
+USA,1932,Diving,6,6
+USA,1932,Equestrianism,0,9
+USA,1932,Fencing,0,13
+USA,1932,Figure Skating,2,1
+USA,1932,Gymnastics,0,20
+USA,1932,Hockey,0,14
+USA,1932,Ice Hockey,0,14
+USA,1932,Modern Pentathlon,0,1
+USA,1932,Rowing,0,15
+USA,1932,Sailing,0,19
+USA,1932,Speed Skating,0,5
+USA,1932,Swimming,9,7
+USA,1932,Water Polo,0,7
+USA,1932,Weightlifting,0,2
+USA,1932,Wrestling,0,5
+USA,1936,Art Competitions,0,1
+USA,1936,Athletics,5,29
+USA,1936,Basketball,0,14
+USA,1936,Bobsleigh,0,4
+USA,1936,Boxing,0,2
+USA,1936,Canoeing,0,1
+USA,1936,Diving,5,5
+USA,1936,Equestrianism,0,1
+USA,1936,Ice Hockey,0,11
+USA,1936,Modern Pentathlon,0,1
+USA,1936,Rowing,0,10
+USA,1936,Speed Skating,0,1
+USA,1936,Swimming,7,10
+USA,1936,Weightlifting,0,1
+USA,1936,Wrestling,0,4
+USA,1948,Alpine Skiing,2,0
+USA,1948,Athletics,2,31
+USA,1948,Basketball,0,14
+USA,1948,Bobsleigh,0,10
+USA,1948,Boxing,0,1
+USA,1948,Canoeing,0,5
+USA,1948,Diving,5,5
+USA,1948,Equestrianism,0,7
+USA,1948,Fencing,0,6
+USA,1948,Figure Skating,0,1
+USA,1948,Gymnastics,8,0
+USA,1948,Modern Pentathlon,0,1
+USA,1948,Rowing,0,18
+USA,1948,Sailing,0,10
+USA,1948,Shooting,0,2
+USA,1948,Skeleton,0,1
+USA,1948,Speed Skating,0,2
+USA,1948,Swimming,7,18
+USA,1948,Weightlifting,0,8
+USA,1948,Wrestling,0,4
+USA,1952,Alpine Skiing,2,0
+USA,1952,Athletics,4,36
+USA,1952,Basketball,0,14
+USA,1952,Bobsleigh,0,6
+USA,1952,Boxing,0,5
+USA,1952,Canoeing,0,1
+USA,1952,Diving,5,4
+USA,1952,Equestrianism,0,6
+USA,1952,Figure Skating,2,3
+USA,1952,Ice Hockey,0,15
+USA,1952,Rowing,0,16
+USA,1952,Sailing,1,11
+USA,1952,Shooting,0,2
+USA,1952,Speed Skating,0,2
+USA,1952,Swimming,5,14
+USA,1952,Weightlifting,0,6
+USA,1952,Wrestling,0,4
+USA,1956,Athletics,6,34
+USA,1956,Basketball,0,12
+USA,1956,Bobsleigh,0,4
+USA,1956,Boxing,0,3
+USA,1956,Diving,5,4
+USA,1956,Figure Skating,2,3
+USA,1956,Ice Hockey,0,17
+USA,1956,Modern Pentathlon,0,3
+USA,1956,Rowing,0,21
+USA,1956,Sailing,0,3
+USA,1956,Shooting,0,1
+USA,1956,Swimming,12,10
+USA,1956,Weightlifting,0,7
+USA,1956,Wrestling,0,2
+USA,1960,Alpine Skiing,3,0
+USA,1960,Athletics,7,25
+USA,1960,Basketball,0,12
+USA,1960,Boxing,0,4
+USA,1960,Diving,2,4
+USA,1960,Equestrianism,0,3
+USA,1960,Fencing,0,1
+USA,1960,Figure Skating,3,2
+USA,1960,Ice Hockey,0,17
+USA,1960,Modern Pentathlon,0,4
+USA,1960,Rowing,0,7
+USA,1960,Sailing,0,5
+USA,1960,Shooting,0,2
+USA,1960,Speed Skating,1,1
+USA,1960,Swimming,19,21
+USA,1960,Weightlifting,0,6
+USA,1960,Wrestling,0,3
+USA,1964,Alpine Skiing,2,2
+USA,1964,Athletics,7,26
+USA,1964,Basketball,0,12
+USA,1964,Boxing,0,4
+USA,1964,Canoeing,3,0
+USA,1964,Diving,3,5
+USA,1964,Equestrianism,1,3
+USA,1964,Figure Skating,1,2
+USA,1964,Judo,0,1
+USA,1964,Modern Pentathlon,0,3
+USA,1964,Rowing,0,19
+USA,1964,Sailing,0,11
+USA,1964,Shooting,0,7
+USA,1964,Speed Skating,0,1
+USA,1964,Swimming,29,32
+USA,1964,Weightlifting,0,2
+USA,1964,Wrestling,0,1
+USA,1968,Athletics,7,30
+USA,1968,Basketball,0,12
+USA,1968,Boxing,0,7
+USA,1968,Diving,3,3
+USA,1968,Equestrianism,0,6
+USA,1968,Figure Skating,1,1
+USA,1968,Rowing,0,4
+USA,1968,Sailing,0,5
+USA,1968,Shooting,0,3
+USA,1968,Speed Skating,4,1
+USA,1968,Swimming,36,47
+USA,1968,Weightlifting,0,1
+USA,1968,Wrestling,0,2
+USA,1972,Alpine Skiing,2,0
+USA,1972,Archery,1,1
+USA,1972,Athletics,6,22
+USA,1972,Basketball,0,12
+USA,1972,Boxing,0,4
+USA,1972,Canoeing,0,1
+USA,1972,Diving,1,2
+USA,1972,Equestrianism,1,8
+USA,1972,Figure Skating,1,0
+USA,1972,Ice Hockey,0,17
+USA,1972,Rowing,0,9
+USA,1972,Sailing,0,8
+USA,1972,Shooting,0,4
+USA,1972,Speed Skating,4,0
+USA,1972,Swimming,30,44
+USA,1972,Water Polo,0,11
+USA,1972,Wrestling,0,6
+USA,1976,Alpine Skiing,1,0
+USA,1976,Archery,1,1
+USA,1976,Athletics,6,25
+USA,1976,Basketball,12,12
+USA,1976,Boxing,0,7
+USA,1976,Cross Country Skiing,0,1
+USA,1976,Diving,3,2
+USA,1976,Equestrianism,4,5
+USA,1976,Figure Skating,2,1
+USA,1976,Gymnastics,0,1
+USA,1976,Judo,0,1
+USA,1976,Rowing,10,2
+USA,1976,Sailing,0,7
+USA,1976,Shooting,1,2
+USA,1976,Speed Skating,4,2
+USA,1976,Swimming,16,39
+USA,1976,Weightlifting,0,1
+USA,1976,Wrestling,0,6
+USA,1980,Alpine Skiing,0,1
+USA,1980,Figure Skating,1,1
+USA,1980,Ice Hockey,0,19
+USA,1980,Speed Skating,3,5
+USA,1984,Alpine Skiing,2,3
+USA,1984,Archery,0,2
+USA,1984,Athletics,24,32
+USA,1984,Basketball,12,12
+USA,1984,Boxing,0,11
+USA,1984,Canoeing,0,1
+USA,1984,Cycling,2,14
+USA,1984,Diving,4,4
+USA,1984,Equestrianism,5,6
+USA,1984,Fencing,0,1
+USA,1984,Figure Skating,2,2
+USA,1984,Gymnastics,13,13
+USA,1984,Hockey,16,0
+USA,1984,Judo,0,2
+USA,1984,Modern Pentathlon,0,3
+USA,1984,Rowing,15,23
+USA,1984,Sailing,0,13
+USA,1984,Shooting,3,3
+USA,1984,Swimming,31,32
+USA,1984,Synchronized Swimming,3,0
+USA,1984,Volleyball,12,12
+USA,1984,Water Polo,0,13
+USA,1984,Weightlifting,0,2
+USA,1984,Wrestling,0,13
+USA,1988,Archery,3,4
+USA,1988,Athletics,18,22
+USA,1988,Basketball,12,12
+USA,1988,Boxing,0,8
+USA,1988,Canoeing,0,3
+USA,1988,Cycling,1,0
+USA,1988,Diving,3,2
+USA,1988,Equestrianism,2,3
+USA,1988,Figure Skating,2,2
+USA,1988,Gymnastics,1,0
+USA,1988,Judo,0,2
+USA,1988,Rowing,1,13
+USA,1988,Sailing,2,8
+USA,1988,Shooting,0,1
+USA,1988,Speed Skating,2,1
+USA,1988,Swimming,18,27
+USA,1988,Synchronized Swimming,3,0
+USA,1988,Tennis,3,4
+USA,1988,Volleyball,0,12
+USA,1988,Water Polo,0,13
+USA,1988,Wrestling,0,6
+USA,1992,Alpine Skiing,2,0
+USA,1992,Athletics,19,29
+USA,1992,Basketball,12,12
+USA,1992,Boxing,0,3
+USA,1992,Canoeing,1,3
+USA,1992,Cycling,1,1
+USA,1992,Diving,1,2
+USA,1992,Equestrianism,2,3
+USA,1992,Figure Skating,2,1
+USA,1992,Freestyle Skiing,1,1
+USA,1992,Gymnastics,10,1
+USA,1992,Judo,0,1
+USA,1992,Rowing,6,4
+USA,1992,Sailing,3,13
+USA,1992,Shooting,1,1
+USA,1992,Short Track Speed Skating,5,0
+USA,1992,Speed Skating,2,0
+USA,1992,Swimming,26,30
+USA,1992,Synchronized Swimming,3,0
+USA,1992,Tennis,4,0
+USA,1992,Volleyball,12,12
+USA,1992,Wrestling,0,8
+USA,1994,Alpine Skiing,2,2
+USA,1994,Figure Skating,1,0
+USA,1994,Freestyle Skiing,1,0
+USA,1994,Short Track Speed Skating,6,4
+USA,1994,Speed Skating,2,1
+USA,1996,Archery,0,4
+USA,1996,Athletics,15,24
+USA,1996,Baseball,0,20
+USA,1996,Basketball,12,12
+USA,1996,Beach Volleyball,0,4
+USA,1996,Boxing,0,6
+USA,1996,Canoeing,1,0
+USA,1996,Cycling,1,2
+USA,1996,Diving,1,1
+USA,1996,Equestrianism,6,7
+USA,1996,Football,15,0
+USA,1996,Gymnastics,10,1
+USA,1996,Judo,0,1
+USA,1996,Rowing,4,8
+USA,1996,Sailing,1,3
+USA,1996,Shooting,1,2
+USA,1996,Softball,15,0
+USA,1996,Swimming,32,28
+USA,1996,Synchronized Swimming,10,0
+USA,1996,Tennis,3,1
+USA,1996,Wrestling,0,8
+USA,1998,Alpine Skiing,1,0
+USA,1998,Figure Skating,2,0
+USA,1998,Freestyle Skiing,1,2
+USA,1998,Ice Hockey,20,0
+USA,1998,Luge,0,4
+USA,1998,Snowboarding,1,1
+USA,1998,Speed Skating,2,0
+USA,2000,Archery,0,4
+USA,2000,Athletics,11,17
+USA,2000,Baseball,0,24
+USA,2000,Basketball,11,12
+USA,2000,Beach Volleyball,0,2
+USA,2000,Boxing,0,4
+USA,2000,Cycling,1,1
+USA,2000,Diving,1,0
+USA,2000,Equestrianism,5,4
+USA,2000,Football,13,0
+USA,2000,Gymnastics,6,0
+USA,2000,Modern Pentathlon,1,0
+USA,2000,Rowing,4,2
+USA,2000,Sailing,2,6
+USA,2000,Shooting,2,1
+USA,2000,Softball,15,0
+USA,2000,Swimming,33,33
+USA,2000,Taekwondo,0,1
+USA,2000,Tennis,4,0
+USA,2000,Water Polo,13,0
+USA,2000,Weightlifting,2,0
+USA,2000,Wrestling,0,7
+USA,2002,Alpine Skiing,0,2
+USA,2002,Bobsleigh,2,8
+USA,2002,Figure Skating,2,1
+USA,2002,Freestyle Skiing,1,2
+USA,2002,Ice Hockey,20,23
+USA,2002,Luge,0,4
+USA,2002,Short Track Speed Skating,0,3
+USA,2002,Skeleton,2,1
+USA,2002,Snowboarding,1,4
+USA,2002,Speed Skating,3,5
+USA,2004,Athletics,10,28
+USA,2004,Basketball,12,12
+USA,2004,Beach Volleyball,4,0
+USA,2004,Boxing,0,2
+USA,2004,Canoeing,1,0
+USA,2004,Cycling,1,1
+USA,2004,Equestrianism,7,8
+USA,2004,Fencing,2,0
+USA,2004,Football,17,0
+USA,2004,Gymnastics,11,8
+USA,2004,Judo,0,1
+USA,2004,Rowing,9,9
+USA,2004,Sailing,0,4
+USA,2004,Shooting,1,2
+USA,2004,Softball,15,0
+USA,2004,Swimming,29,36
+USA,2004,Synchronized Swimming,11,0
+USA,2004,Taekwondo,1,1
+USA,2004,Tennis,0,1
+USA,2004,Triathlon,1,0
+USA,2004,Water Polo,12,0
+USA,2004,Wrestling,2,4
+USA,2006,Alpine Skiing,1,1
+USA,2006,Bobsleigh,2,0
+USA,2006,Curling,0,4
+USA,2006,Figure Skating,2,1
+USA,2006,Freestyle Skiing,0,1
+USA,2006,Ice Hockey,20,0
+USA,2006,Short Track Speed Skating,0,6
+USA,2006,Snowboarding,4,3
+USA,2006,Speed Skating,0,7
+USA,2008,Athletics,13,19
+USA,2008,Baseball,0,24
+USA,2008,Basketball,12,12
+USA,2008,Beach Volleyball,2,2
+USA,2008,Boxing,0,1
+USA,2008,Cycling,2,3
+USA,2008,Equestrianism,4,2
+USA,2008,Fencing,9,4
+USA,2008,Football,17,0
+USA,2008,Gymnastics,13,7
+USA,2008,Judo,1,0
+USA,2008,Rowing,10,9
+USA,2008,Sailing,1,1
+USA,2008,Shooting,2,4
+USA,2008,Softball,15,0
+USA,2008,Swimming,32,36
+USA,2008,Taekwondo,1,2
+USA,2008,Tennis,2,2
+USA,2008,Volleyball,12,12
+USA,2008,Water Polo,13,13
+USA,2008,Wrestling,1,2
+USA,2010,Alpine Skiing,4,4
+USA,2010,Bobsleigh,2,4
+USA,2010,Figure Skating,1,2
+USA,2010,Freestyle Skiing,2,2
+USA,2010,Ice Hockey,21,22
+USA,2010,Nordic Combined,0,7
+USA,2010,Short Track Speed Skating,6,8
+USA,2010,Snowboarding,2,3
+USA,2010,Speed Skating,0,7
+USA,2012,Archery,0,3
+USA,2012,Athletics,24,18
+USA,2012,Basketball,12,12
+USA,2012,Beach Volleyball,4,0
+USA,2012,Boxing,2,0
+USA,2012,Cycling,7,0
+USA,2012,Diving,2,5
+USA,2012,Fencing,4,0
+USA,2012,Football,17,0
+USA,2012,Gymnastics,9,1
+USA,2012,Judo,2,0
+USA,2012,Rowing,13,4
+USA,2012,Shooting,2,2
+USA,2012,Swimming,32,36
+USA,2012,Taekwondo,1,1
+USA,2012,Tennis,4,3
+USA,2012,Volleyball,12,0
+USA,2012,Water Polo,12,0
+USA,2012,Wrestling,1,3
+USA,2014,Alpine Skiing,2,3
+USA,2014,Bobsleigh,4,6
+USA,2014,Figure Skating,5,5
+USA,2014,Freestyle Skiing,3,4
+USA,2014,Ice Hockey,20,0
+USA,2014,Luge,1,0
+USA,2014,Short Track Speed Skating,0,4
+USA,2014,Skeleton,1,1
+USA,2014,Snowboarding,3,2
+USA,2016,Archery,0,4
+USA,2016,Athletics,25,21
+USA,2016,Basketball,12,12
+USA,2016,Beach Volleyball,2,0
+USA,2016,Boxing,1,2
+USA,2016,Cycling,7,1
+USA,2016,Diving,0,5
+USA,2016,Equestrianism,5,4
+USA,2016,Fencing,4,6
+USA,2016,Golf,0,1
+USA,2016,Gymnastics,13,3
+USA,2016,Judo,1,1
+USA,2016,Rowing,10,0
+USA,2016,Sailing,0,1
+USA,2016,Shooting,3,0
+USA,2016,Swimming,35,36
+USA,2016,Taekwondo,1,0
+USA,2016,Tennis,2,4
+USA,2016,Triathlon,1,0
+USA,2016,Volleyball,12,12
+USA,2016,Water Polo,13,0
+USA,2016,Weightlifting,1,0
+USA,2016,Wrestling,1,2
+UZB,1994,Freestyle Skiing,1,0
+UZB,1996,Boxing,0,1
+UZB,1996,Judo,0,1
+UZB,2000,Boxing,0,3
+UZB,2000,Wrestling,0,1
+UZB,2004,Boxing,0,2
+UZB,2004,Wrestling,0,3
+UZB,2008,Gymnastics,0,1
+UZB,2008,Judo,0,2
+UZB,2008,Trampolining,1,0
+UZB,2008,Wrestling,0,2
+UZB,2012,Boxing,0,1
+UZB,2012,Judo,0,1
+UZB,2012,Wrestling,0,1
+UZB,2016,Boxing,0,7
+UZB,2016,Judo,0,2
+UZB,2016,Weightlifting,0,1
+UZB,2016,Wrestling,0,3
+VEN,1952,Athletics,0,1
+VEN,1960,Shooting,0,1
+VEN,1968,Boxing,0,1
+VEN,1976,Boxing,0,1
+VEN,1980,Boxing,0,1
+VEN,1984,Boxing,0,2
+VEN,1984,Swimming,0,1
+VEN,2004,Taekwondo,1,0
+VEN,2004,Weightlifting,0,1
+VEN,2008,Taekwondo,1,0
+VEN,2012,Fencing,0,1
+VEN,2016,Athletics,1,0
+VEN,2016,Boxing,0,1
+VEN,2016,Cycling,1,0
+VIE,2000,Taekwondo,1,0
+VIE,2008,Weightlifting,0,1
+VIE,2016,Shooting,0,2
+WIF,1960,Athletics,0,5
+YUG,1924,Gymnastics,0,2
+YUG,1928,Gymnastics,0,12
+YUG,1936,Gymnastics,0,1
+YUG,1948,Athletics,0,1
+YUG,1948,Football,0,15
+YUG,1952,Football,0,11
+YUG,1952,Rowing,0,4
+YUG,1952,Water Polo,0,9
+YUG,1956,Athletics,0,1
+YUG,1956,Football,0,14
+YUG,1956,Water Polo,0,8
+YUG,1960,Football,0,16
+YUG,1960,Wrestling,0,1
+YUG,1964,Gymnastics,0,2
+YUG,1964,Water Polo,0,11
+YUG,1964,Wrestling,0,2
+YUG,1968,Basketball,0,12
+YUG,1968,Boxing,0,1
+YUG,1968,Gymnastics,0,1
+YUG,1968,Swimming,2,0
+YUG,1968,Water Polo,0,11
+YUG,1968,Wrestling,0,2
+YUG,1972,Boxing,0,2
+YUG,1972,Handball,0,14
+YUG,1972,Wrestling,0,2
+YUG,1976,Basketball,0,12
+YUG,1976,Boxing,0,2
+YUG,1976,Canoeing,0,2
+YUG,1976,Judo,0,1
+YUG,1976,Wrestling,0,2
+YUG,1980,Basketball,12,12
+YUG,1980,Boxing,0,1
+YUG,1980,Handball,14,0
+YUG,1980,Judo,0,1
+YUG,1980,Rowing,0,5
+YUG,1980,Water Polo,0,11
+YUG,1980,Wrestling,0,1
+YUG,1984,Alpine Skiing,0,1
+YUG,1984,Basketball,0,12
+YUG,1984,Boxing,0,4
+YUG,1984,Canoeing,0,5
+YUG,1984,Football,0,17
+YUG,1984,Handball,15,14
+YUG,1984,Rowing,0,2
+YUG,1984,Water Polo,0,13
+YUG,1984,Wrestling,0,5
+YUG,1988,Alpine Skiing,1,0
+YUG,1988,Basketball,12,12
+YUG,1988,Boxing,0,1
+YUG,1988,Handball,0,15
+YUG,1988,Rowing,0,2
+YUG,1988,Shooting,2,1
+YUG,1988,Ski Jumping,0,5
+YUG,1988,Table Tennis,2,2
+YUG,1988,Water Polo,0,13
+YUG,1988,Wrestling,0,1
+ZAM,1984,Boxing,0,1
+ZAM,1996,Athletics,0,1
+ZIM,1980,Hockey,15,0
+ZIM,2004,Swimming,3,0
+ZIM,2008,Swimming,4,0

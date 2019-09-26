@@ -1,0 +1,242 @@
+---
+title: "Principal Component Analysis, Part I"
+author: "Dmitry Kondrashov & Stefano Allesina"
+date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
+output:
+  html_document:
+    theme: cosmo
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+urlcolor: blue
+---
+
+```{r knitr, echo=FALSE}
+knitr::opts_chunk$set(
+  eval      = TRUE,
+  comment   = "#",
+  warning = FALSE,
+  message = FALSE,
+  #results   = "asis",
+  # collapse  = TRUE,
+  fig.align = "center")
+```
+
+
+# Goals
+
+  * Use linear algebra tools to change basis of a vector space
+  * Calculate principal components from covariance matrix of data
+  * Interpret projection of data set onto principal component space
+  * Describe the quality of PCA and be aware of limitations
+
+```{r}
+library(tidyverse) # our friend the tidyverse
+library(ggfortify) 
+#source("general_code/read_xls_from_url.R") # function to read excel from URL
+```
+
+# Linear algebra review
+
+## Linearity and vector spaces
+We have dealt with linear models in various guises, so now would be a good time to define properly what linearity means. The word comes from the shape of graphs of linear functions of one variable, e.g. $f(x) = ax + b$, but the algebraic meaning rests on the following two general properties:
+
+**Definition.** A *linear transformation* or *linear operator* is a mapping $L$ between two sets of vectors with the following properties:
+
+  1. *(scalar multiplication)* $L(c \vec v) = c L(\vec v)$; where $c$ is a scalar and $\vec v$ is a vector
+  2. *(additive)* $L(\vec v_1 + \vec v_2) =  L(\vec v_1) + L(\vec v_2)$; where $\vec v_1$ and $\vec v_2$ are vectors
+
+Here we have two types of objects: vectors and transformations/operators that act on those vectors. The basic example of this are  vectors and matrices, because
+a matrix multiplied by a vector (on the right) results another vector, provided the number of columns in the matrix is the same as the number of rows in the vector. This can be interpreted as the matrix transforming the vector $\vec v$ into another one: $ A  \times  \vec v = \vec u$. 
+
+**Example:** Let us multiply the following matrix and vector (specially chosen to make a point):
+```{r}
+A <- matrix(c(2, 2, 1, 3), nrow = 2)
+vec1 <- c(1,-1)
+vec2 <- A %*% vec1
+print(vec1)
+print(vec2)
+```
+
+We see that this particular vector $(1,-1)$ is unchanged when multiplied by this matrix, or we can say that the matrix multiplication is equivalent to multiplication by 1. Here is another such vector for the same matrix:
+```{r}
+vec1 <- c(1,2)
+vec2 <- A %*% vec1
+print(vec1)
+print(vec2)
+```
+In this case, the vector is changed, but only by multiplication by a constant (4). Thus the geometric direction of the vector remained unchanged. 
+
+The notion of linearity leads to the important idea of combining different vectors:
+
+**Definition:** A *linear combination* of $n$ vectors $\{ \vec v_i \}$ is a weighted sum of these vectors with any real numbers $\{a_i\}$:
+$$ a_1 \vec v_1+ a_2 \vec v_2... + a_n \vec v_n$$
+
+Linear combinations arise naturally from the notion of linearity, combining the additive property and the scalar multiplication property. Speaking  intuitively, a linear combination of vectors produces a new vector that is related to the original set. Linear combinations give a simple way of generating new vectors, and thus invite the following definition for a collection of vectors closed under linear combinations:
+
+**Definition.** A *vector space* is a collection of vectors such that a linear combination of any $n$ vectors is contained in the vector space.
+
+The most common examples are the spaces of all real-valued vectors of dimension $n$, which are denoted by $\mathbb{R}^n$. For instance, $\mathbb{R}^2$ (pronounced "r two") is the vector space of two dimensional real-valued vectors such as $(1,3)$ and $(\pi, -\sqrt{17})$; similarly, $\mathbb{R}^3$ is the vector space consisting of three dimensional real-valued vectors such as $(0.1,0,-5.6)$. You can convince yourself, by taking linear combinations of vectors, that these vector spaces contain all the points in the usual Euclidean plane and three-dimensional space. The real number line can also be thought of as the vector space $\mathbb{R}^1$.
+
+## Linear independence and basis vectors
+How can we describe a vector space without trying to list all of its elements? We know that one can generate an element by taking linear combinations of vectors. It turns out that it is possible to generate (or "span") a vector space by taking linear combinations of a subset of its vectors. The challenge is to find a minimal subset of subset that is not redundant. In order to do this, we first introduce a new concept:
+
+**Definition:** A set of vectors $\{ \vec v_i \}$ is called *linearly independent* if the only linear combination involving them that equals the zero vector is if all the coefficients are zero. ( $a_1 \vec v_1 + a_2 \vec v_2 + ... + a_n \vec v_n = 0$ only if $a_i = 0$ for all $i$.)
+
+
+In the familiar Euclidean spaces, e.g. $\mathbb{R}^2$, linear independence has a geometric meaning: two vectors are linearly independent if the segments from the origin to the endpoint do not lie on the same line. But it can be shown that any set of three vectors in the plane is linearly dependent, because there are only two dimensions in the vector space. This brings us to the key definition of this section:
+
+**Definition:** A *basis* of a vector space is a linearly independent set of vectors that generate (or span) the vector space. The number of vectors (cardinality) in such a set is called the *dimension* of the vector space.
+
+A vector space generally has many possible bases, as illustrated in figure. In the case of $\mathbb{R}^2$, the usual (canonical) basis set is $\{(1,0); (0,1)\}$ which obviously generates any point on the plane and is linearly independent. But any two linearly independent vectors can generate any vector in the plane. 
+
+**Example:** The vector $\vec r = (2,1)$ can be represented as a linear combination of the two canonical vectors: $\vec r = 2\times (1,0)+1\times (0,1)$. Let us choose another basis set, say $\{(1,1); (-1,1)\}$ (this is the canonical basis vectors rotated by $\pi/2$.)  The same vector can be represented by a linear combination of these two vectors, with coefficients $1.5$ and $-0.5$: $\vec r = 1.5\times (1,1) - 0.5 \times (-1,1)$. If we call the first basis $C$ for canonical and the second basis $D$ for different, we can write the same vector using different sets of coordinates for each basis:
+$$ 
+\vec r_{C} = (2,1); \; \vec r_D = (1.5, -0.5)
+$$
+
+## Projections and changes of basis
+
+The representation of an arbitrary vector (point) in a vector space as a linear combination of a given basis set is called the \emph{decomposition} of the point in terms of the basis, which gives the coordinates for the vector in terms of each basis vector. The decomposition of a point in terms of a particular basis is very useful in high-dimensional spaces, where a clever choice of a basis can allow a description of a set of points (such as a data set) in terms of contributions of only a few basis vectors, if the data set primarily extends only in a few dimensions.
+
+To obtain the coefficients of the basis vectors in a decomposition of a vector $\vec r$, we need to perform what is termed a *projection* of the vector  onto the basis vectors. Think of shining a light perpendicular to the basis vector, and measuring the length of the shadow cast by the vector $\vec r$  onto $\vec v_i$. If the vectors are parallel, the shadow is equal to the length of $\vec r$; if they are orthogonal, the shadow is nonexistent. To find the length of the shadow, use the inner product of $\vec r$ and $\vec v$, which as you recall corresponds to the cosine of the angle between  the two vectors multiplied by their norms: $\left\langle  \vec r, \vec v\right \rangle  =||\vec r|| ||\vec v||\cos(\theta) $. We do not care about the length of the vector $\vec v$ we are projecting onto, thus we divide the inner product by the square norm of $\vec v$, and then multiply the vector $\vec v$ by this projection coefficient:
+$$ 
+Proj(\vec r ; \vec v) = \frac{ \langle \vec r , \vec v \rangle  } {\langle \vec v , \vec v \rangle } \vec v = \frac{ \langle \vec r ,  \vec v \rangle  } {|| \vec v ||^2} \vec v= \frac{  ||\vec r|| \cos(\theta) } {|| \vec v ||}\vec v
+$$
+
+This formula gives the projection of the vector $\vec r$ onto $\vec v$, the result is a new vector in the direction of $\vec v$, with the scalar coefficient $a = \ \langle \vec r ,  \vec v \rangle  /|| \vec v ||^2$.
+
+**Example:** Here is how one might calculate the projection of the point $(2,1)$ onto the basis set $\{(1,1); (-1,1)\}$:
+
+```{r}
+v1 <- c(1,1)
+v2 <- c(-1,1)
+u <- c(2,1)
+ProjMat <- matrix(cbind(v1,v2), byrow = T, nrow = 2)
+print(ProjMat)
+ProjMat%*%u
+```
+This is not quite right: the projection coefficients are off by a factor of two compared to the correct values in the example above. This is because we have neglected to *normalize* the basis vectors, so we should modify the script as follows:
+```{r}
+v1 <- c(1,1)
+v1 <- v1/(sum(v1^2))
+v2 <- c(-1,1)
+v2 <- v2/(sum(v2^2))
+u <- c(2,1)
+ProjMat <- matrix(cbind(v1,v2), byrow = T, nrow = 2)
+print(ProjMat)
+print(ProjMat%*%u)
+```
+
+
+This is an example of how to convert a vector/point from representation in one basis set to another. The new basis vectors, expressed in the original basis set, are arranged in a matrix by row, scaled by their norm squared, and multiplied by the vector that one wants to express in the new basis. The resulting vector contains the coordinates in the new basis.
+
+# Principal components of a data set
+
+Let us turn to the practical problem of dealing with a large data set. The goal will be to find the set of directions, called *principal components*, that capture most of the variation in the data set. This is fundamentally an extension of linear regression, but with no constant terms, which is accomplished by centering every variable at 0. 
+
+Just as with linear regression between two variables, the calculation involves the variance and covariance of the variables. The $n$ variables in the data set all have some covariance with every other variable plus the variance with itself. For a set of $n$ variables with mean 0 each containing $L$ observations, the *variance-covariance matrix* for a set of zero-mean variables $\{X_i\} = \mathbf X$ is defined as:
+
+$$
+\Sigma = \mathbf X^T \mathbf X; \; \Sigma_{ij} = \sum_{k=1}^L X_{ki}X_{kj}
+$$
+where $X_{ki}$ represents the $k-th$ observation (row) of the $i$-th variable. This $n$ by $n$ matrix can then be diagonalized, with the eigenvectors and eigenvalues representing the principal components and the coefficients of determination of each principal component, respectively.
+
+**Example:** Here is a two-dimensional example to illustrate the point:
+
+```{r}
+var1 <- rnorm(100)
+var2 <- 5*var1 + rnorm(100)
+dt <- tibble(var1, var2)
+plt <- dt %>% ggplot() + aes(x = var1, y = var2) + geom_point()
+plt
+```
+
+You can see this is a data set that is fairly linear, that is one-dimensional, so a best-fit line with the correct slope will capture most of the variation in the data set. 
+
+```{r}
+# using the prcomp function to calculate the principal components
+pca_result <- prcomp(dt)
+print(pca_result$sdev)
+print(pca_result$rotation)
+# the results can be reproduced by computing the covariance matrix and diagonalizing it:
+Cov_data <- cov(dt)
+eigen(Cov_data)
+```
+The results of the function prcomp are mostly contained in two variables: sdev, the square roots of the eigenvalues, and rotation, the normalized principal components. You can see that the first principal component captures the lion's share of the total standard deviation. The principal components represent the contributions (or loadings) of each variable onto the collective coordinate. In our two dimensional example, the ratio of the y and x contributions is the slope of the best-fit line:
+
+```{r}
+slope1 <- pca_result$rotation[2,1]/pca_result$rotation[1,1]
+plt <- plt + geom_abline(intercept = 0, slope = slope1) 
+plt
+```
+
+
+# Projection onto principal components
+PCA of course can do much more than find the best-fit line! The main point of this method is to **reduce the dimensionality** of the data set, by replacing the $n$ original variables with a much smaller number (usually 2-5) of new variables defined by the principal components. This is tantamount to changing the basis from the original variables to the principal components and keeping only the coordinates of the most informative components, as determined by the eigenvalues of each PC. 
+
+In the two-dimensional example, each data point with two variables can be replaced with its coefficient of projection onto the first principal component
+
+```{r}
+pca_result$rotation[,1] # the first PC
+new_var <- as.matrix(dt) %*% pca_result$rotation[,1]
+```
+The vector new_var contains the projections of each of the 100 points onto the first principal component we saw above. Each coefficient is a coordinate along that line, so when we say that point one has coordinate new_var[1], we're saying it can be approximated by the PC vector times that coordinate:
+
+```{r}
+approx_data <-new_var %*% pca_result$rotation[,1]
+pca_result$rotation[,1]
+new_var[1]
+dt$apr1 <- approx_data[,1]
+dt$apr2 <- approx_data[,2]
+head(dt)
+plt2 <- dt %>% ggplot() + aes(x=apr1, y=apr2) + geom_point(color = 'blue') +   geom_abline(intercept = 0, slope = slope1)
+plt2
+```
+
+This shows the projection of the two-variable data set onto a line, reducing the dimensionality from two to one by using the projection coefficients that describe the position on the line instead of the two original coordinates. This is of course an approximation and its quality is described by the ratio of the eigenvalue of the first principal component to the total variance.
+
+
+## Example: four variables in flower data set
+
+Here is a classic data set of Irises of three species with numeric variables (petal length and width, and sepal length and width). plus the categorical variable of species:
+```{r}
+head(iris)
+```
+
+We can take only the numeric variables, perform PCA, and plot the projections into the plane of the two top principal components:
+```{r}
+df <- iris[c(1, 2, 3, 4)]
+pca_result <- prcomp(df)
+autoplot(pca_result, data = iris, colour = 'Species')
+```
+
+The labels on the axes describe the fraction of variance described each principal component. In this case, the top two PCs contain almost 98% of the variance of the four variables, so the projection should be informative.
+
+# Gene expression analysis
+The data represents RNA expression levels for eight tissues, each with several biological replicates, which is the term for samples that considered to be from the same population, such as liver tissue from different individuals.
+```{r}
+load('data/tissuesGeneExpression.rda')
+x <- as_tibble(t(e))
+pca_result <- prcomp(x)
+autoplot(pca_result, data = x, color = as_factor(tab$Tissue))
+```
+
+```{r}
+x <- as_tibble(e)
+pca_result <- prcomp(x)
+autoplot(pca_result, data = x, color = as_factor(tab$Tissue))
+```
+
+
+# Limitations and problems
+
+ * PCA is a linear method and will not capture nonlinear relationships
+ * It will fit both signal and noise
+ * Noise must be independent, additive, and normally distributed
+ * Principal components must be orthogonal to each other
+ * The data must be zero-centered
+
+
+

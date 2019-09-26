@@ -1,0 +1,214 @@
+---
+title: "Linear models plus: polynomial regression and ANOVA"
+author: "Dmitry Kondrashov & Stefano Allesina"
+date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
+output:
+  html_document:
+    theme: cosmo
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+urlcolor: blue
+---
+
+```{r knitr, echo=FALSE}
+knitr::opts_chunk$set(
+  eval      = TRUE,
+  comment   = "#",
+  results   = "hold",
+  # collapse  = TRUE,
+  fig.align = "center")
+```
+
+# Goal
+
+```{r}
+library(MASS) # negative binom regression
+library(tidyverse) # our friend the tidyverse
+library(pscl) # zero-inflated and zero-hurdle models
+source("../general_code/read_xls_from_url.R") # function to read excel from URL
+```
+
+
+# Analysis of variance
+
+ANOVA is a method for testing the hypothesis that there is no difference in means of subsets of measurements grouped by factors. 
+
+## ANOVA assumptions
+
+
+ANOVA test hypotheses:
+
+  * Null hypothesis: the means of the different groups are the same
+  * Alternative hypothesis: At least one sample mean is not equal to the others.
+
+
+Assumptions of ANOVA test
+
+ANOVA test can be applied only when:
+
+  * The observations are obtained independently and randomly from the population defined by the factor levels
+  * The data of each factor level are normally distributed.
+  * These normal populations have a common variance. (Levene’s test can be used to check this.)
+  
+  
+How one-way ANOVA works
+
+Assume that we have 3 groups (A, B, C) to compare:
+
+  * Compute the common variance, which is called variance within samples ($S^2_w$) or residual variance.
+  * Compute the variance between sample means as follows:
+    * Compute the mean of each group
+    * Compute the variance between sample means ($S^2_b$)
+  * Produce F-statistic as the ratio of $S^2_b/S^2_w$)
+
+
+ANOVA makes one important assumption, that the total squared error (sum of squared differences from the total mean of all the data) is a sum of the squared errors within each group and the squared errors between the groups, denoted as follows:
+
+$$
+SS = SSG + SSE
+$$
+
+
+Denote the set of means of $k$ different groups to be $\{\bar Y_i\}$ and the "grand mean" to be $\mathbf{\bar Y}$ and the variance of the means, also called the mean square differences for treatments is defined as:
+$$  S^2_b = \frac{1}{k-1} \sum_i n_i (\bar Y_i -\mathbf{\bar Y})^2 $$
+and this is compared to the mean square noise within the groups, which if we denote the set of measurements in group $i$ to be $\{y_{ij}\}$, is defined as
+$$
+S^2_w = \frac{1}{N-k} \sum_j \sum_i (\bar Y_i - y_{ij})^2
+$$
+
+where $N$ is the total number of points in all the groups. 
+
+To answer this question posed by the hypothesis, one computes the *F-statistic* defined as follows:
+$$
+F = \frac{S^2_b}{S^2_w}
+$$
+
+The big idea is that if there is no effect produced by group, the variation within groups and between groups should be about the same, and F should be close to 1. The F-distribution is then used to quantify the likelihood of that hypothesis for a given F score. 
+
+
+## Example of comparing diets
+
+For example, the following data contains measurements of weights of individuals before starting a diet, after 6 weeks of dieting, the type of diet (1, 2, 3), and other variables. 
+```{r}
+# Original URL: "https://www.sheffield.ac.uk/polopoly_fs/1.570199!/file/stcp-Rdataset-Diet.csv"
+diet <- read_csv("https://tinyurl.com/ydzya2no") 
+diet$weight.loss <- diet$pre.weight - diet$weight6weeks 
+```
+
+Write a script below using ggplot to generate boxplots for the weights after three different diets.
+
+```{r}
+diet %>% ggplot() + aes(y = weight.loss, x=as.factor(Diet)) + geom_boxplot()
+```
+
+We can see that there weight loss outcomes vary for each diet, but diet 3 seems to produce a larger effect on average. But it that a difference between the means actually due to the diet or could it have been produced by sampling from the same distribution, since we see substantial variation within each diet group?
+
+
+Here is the result of running ANOVA on the given data set:
+
+```{r message = FALSE, warning = FALSE, echo = TRUE} 
+diet_anova  <-  aov(weight.loss ~ factor(Diet),data=diet)
+summary(diet_anova)
+print(diet_anova)
+```
+
+## Comparison of theory and ANOVA output
+
+Let's compare this with the calculations from the data set:
+
+```{r}
+# The "grand mean" 
+grand_mean <- mean(diet$weight.loss)
+print(paste("The grand mean is", grand_mean))
+grand_var <- var(diet$weight.loss)
+print(paste("The grand variance is", grand_var))
+diet1 <- filter(diet, Diet == 1)
+diet2 <- filter(diet, Diet == 2)
+diet3 <- filter(diet, Diet == 3)
+mean1 <- mean(diet1$weight.loss)
+mean2 <- mean(diet2$weight.loss)
+mean3 <- mean(diet3$weight.loss)
+n1 <- length(diet1$weight.loss)
+n2 <- length(diet2$weight.loss)
+n3 <- length(diet3$weight.loss)
+var_between <- var(c(mean1, mean2, mean3))
+print(paste("The variance between groups is ", var_between))
+var1 <- var(diet1$weight.loss)
+var2 <- var(diet2$weight.loss)
+var3 <- var(diet3$weight.loss)
+var_within <- (n1*var1 + n2*var2 + n3*var3)/(n1+n2+n3 - 3)
+print(paste("The variance within groups is ", var_within))
+F_s <- var_between/var_within
+print(paste("The F statistic is", F_s))
+
+```
+
+
+At first glance, this process is not the same as fitting parameters for linear regression, but it turns out to be based on exactly the same assumptions: additive noise and additive effect of the factors, with the only difference being that factors are not numeric, so the effect of each one is added separately. One can run linear regression and calculate coefficients that are identical to the mean and the differences between means computed by ANOVA (and note the p-values too!)
+
+```{r message = FALSE, warning = FALSE, echo = TRUE} 
+diet.lm  = lm(weight.loss ~ factor(Diet),data=diet)
+summary(diet.lm)
+print(diet.lm$coefficients)
+```
+
+## Example of plant growth data
+
+Example taken from: [One-Way ANOVA Test in R](http://www.sthda.com/english/wiki/one-way-anova-test-in-r)
+```{r}
+my_data <- PlantGrowth # import built-in data
+str(my_data)
+# Show the levels
+levels(my_data$group)
+```
+
+```{r}
+group_by(my_data, group) %>%
+  summarise(
+    count = n(),
+    mean = mean(weight, na.rm = TRUE),
+    sd = sd(weight, na.rm = TRUE)
+  )
+```
+```{r}
+
+my_data %>% ggplot() + aes(y = weight, x=as.factor(group), color = as.factor(group)) + geom_boxplot()
+```
+
+
+## Two-way ANOVA
+
+One can compare the effect of two different factors simultaneously and see if considering both explains more of the variance than of one. This is equivalent to the multiple linear regression with two interacting variables. How would you interpret these results?
+
+```{r message = FALSE, warning = FALSE, echo = TRUE} 
+diet.fisher = aov(weight.loss~factor(Diet)*factor(gender),data=diet)
+summary(diet.fisher)
+
+```
+
+
+## Questions to investigate for a new dataset
+
+1. Load the dataset, explore the variables, plot their distributions by factor, report what you think.
+```{r}
+
+```
+
+2. Run ANOVA, report the variance between means and the variance within groups, and the p-value for the null hypothesis.
+```{r}
+
+```
+
+3. Run Tukey's test for multiple comparison of means to report which group(s) are substantially different from the rest, if any.
+
+```{r}
+
+```
+
+4. If the data set has multiple factors, run a two-way ANOVA and provide interpretation.
+```{r}
+
+```
+

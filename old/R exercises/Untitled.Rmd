@@ -1,0 +1,17 @@
+---
+title: "Data analysis - week 1"
+author: "Dmitry Kondrashov"
+date: "8/15/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Examples from chapter 3
+
+```{r cars}
+summary(cars)
+```
