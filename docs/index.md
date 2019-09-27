@@ -27,7 +27,7 @@
 ### Week 2
 
 - Probability distributions
-- Data wrangling in `tidyverse`
+- [Data wrangling in `tidyverse`](lectures/basic_data_wrangling)
 
 ### Week 3
 

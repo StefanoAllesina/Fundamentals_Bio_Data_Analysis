@@ -20,5 +20,13 @@ rm *.html
 cd ..
 
 # Week 2
+cd week1
+Rscript -e "rmarkdown::render('basic_data_wrangling.Rmd')"
+#Rscript -e "rmarkdown::render('basic_visualization.Rmd')"
+mv *.md ../docs/lectures
+cp -r *_files ../docs/lectures
+rm -r *_files
+rm *.html
+cd ..
 
 
