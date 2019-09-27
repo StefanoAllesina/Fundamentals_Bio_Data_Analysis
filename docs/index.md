@@ -14,12 +14,12 @@
 
 ### Week 1
 
-- Review of probability
-- Using `ggplot2` to produce publication-ready figures
+- [Review of probability](lectures/probability_review)
+- [Using `ggplot2` to produce publication-ready figures](lectures/basic_visualization)
 
 ### Week 2
 
-- [Probability distributions](lectures/probability_review)
+- Probability distributions
 - Data wrangling in `tidyverse`
 
 ### Week 3

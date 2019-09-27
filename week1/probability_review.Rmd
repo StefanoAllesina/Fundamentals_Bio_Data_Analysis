@@ -1,5 +1,5 @@
 ---
-title: 'Week 1: basics of data and its visualization'
+title: 'Week 1: Basics of data and its visualization'
 author: "Dmitry Kondrashov & Stefano Allesina"
 date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
 output:
@@ -16,25 +16,23 @@ knitr::opts_chunk$set(
   eval      = TRUE,
   comment   = "#",
   results   = "hold",
+  message = FALSE,
+  warning = FALSE,
   # collapse  = TRUE,
   fig.align = "center")
-library(tidyverse)
 ```
-
-
-
 
 # Goals of the course
 
-* Learn R tools for working with data 
-* Become familiar with probability theory and assumptions of model
-* Encounter and learn to avoid common statistical mistakes
-* Apply this to your own data set
+* Learn how to use R for working with biological data 
+* Become familiar with probability theory and the assumptions of popular models
+* Encounter and learn how to avoid common statistical mistakes
+* Apply what you have learned to your own data set
 
 Course outline by week:
 
-1. Review of probability, basic data visualization 
-2. Probability distributions, data wrangling with dplyr
+1. Review of probability, basic data visualization with `ggplot2`
+2. Probability distributions, data wrangling with `dplyr`
 3. Summary of linear algebra, hypothesis testing
 4. Likelihood and modeling, linear regression
 5. ANOVA, Generalized linear models
@@ -48,26 +46,22 @@ Course outline by week:
 
 ## Sample spaces and random variables
 
-No observation or measurement in our world is perfectly reproducible, no matter how carefully planned and executed. The level of uncertainly varies, but randomness always finds a way to creep into a data set. Where does the "random" factor come from? From the classical physics perspective, as articulated by Laplace, most natural phenomena are theoretically deterministic for an omniscient being with an unlimited computational power. Quantum mechanical phenomena are (theoretically) truly random, but the randomness is not observable on the scales of biology or social science. The lack of predictability in the data we work with is usually due either to its intrinsic complexity (e.g. biomolecular systems, prediction of animal behavior), which essentially makes it impossible to know every detail of the system, or to some external source of noise (e.g. measurement error, weather affecting food availability) that is outside of our control.
+No observation or measurement in our world is perfectly reproducible, no matter how carefully planned and executed. The level of uncertainly varies, but randomness always finds a way to creep into a data set. Where does the "random" factor come from? From the classical physics perspective, as articulated by Laplace, most natural phenomena are theoretically deterministic for an omniscient being with an unlimited computational power. Quantum mechanical phenomena are (theoretically) truly random, but the randomness is not observable on the scales of biology or social science. The lack of predictability in the data we work with is usually due either to its intrinsic complexity (e.g., biomolecular systems, prediction of animal behavior), which essentially makes it impossible to know every detail of the system, or to some external source of noise (e.g., measurement error, weather affecting food availability) that is outside of our control.
 
 In probability terminology, a *random experiment* produces *outcomes* and the collection of all outcomes of an experiment is called its *sample space*. 
 
 **Example:** The specifics of the experiment can affect the degree of uncertainty in the outcome; the same measurement may be random or not, depending on context. For example, measuring the height of a person should be deterministic, if one measures the height of the same person within a short amount of time. So unless you're interested in studying the error in [stadiometer](https://www.quickmedical.com/measure/stadiometer.html) results, you probably won't consider this a random experiment. However, measuring the heights of different people is a random experiment, where the source of randomness is primarily due to the selection of people for your study, called *sampling error*, rather than due to the measurement noise of any one person.
 
-The measurement of interest from a random experiment is called a *random variable*. Sometimes the measurement is simply the outcome, but usually it reports some aspect of the outcome and so several outcomes can have the same value of the random variable. The random variable can then be seen as condensing the sample space into a smaller range of values. Random variables can be *numeric* or *categorical*, with the difference that categorical variables cannot be assigned meaningful numbers. For instance, one may report an individual by phenotype (e.g. white or purple flowers), or having a nucleotide A, T, G, C in a particular position, and although one could assign numbers to these categories (e.g. 1, 2, 3, 4) they could not be used in sensical way - one can compare and do arithmetic with numbers, but A is not less than T and A + T does not equal G. Thus there are different tools for describing and working with numeric and categorical random variables. 
+The measurement of interest from a random experiment is called a *random variable*. Sometimes the measurement is simply the outcome, but usually it reports some aspect of the outcome and so several outcomes can have the same value of the random variable. The random variable can then be seen as condensing the sample space into a smaller range of values. Random variables can be *numeric* or *categorical*, with the difference that categorical variables cannot be assigned meaningful numbers. For instance, one may report an individual by phenotype (e.g., white or purple flowers), or having a nucleotide A, T, G, C in a particular position, and although one could assign numbers to these categories (e.g., 1, 2, 3, 4) they could not be used in sensical way---one can compare and do arithmetic with numbers, but A is not less than T and A + T does not equal G. Thus there are different tools for describing and working with numeric and categorical random variables. 
 
+**Example:** In a DNA sequence a codon triplet represents a specific amino acid, but there is redundancy (several triplets may code for the same amino acid). One may think of a coding DNA sequence as an outcome, but the amino acid (sequence or single one) as a random variable. Extending this framework, one may think of genotype as an outcome, but a phenotype (e.g., eye color) as a random variable---although this is not correct for any phenotype that is not strictly determined by the genotype, because then there are other factors (e.g., environmental or epigenetic) that influence the value of the random variable besides the outcome (genotype.)
 
-**Example:** In a DNA sequence a codon triplet represents a specific amino acid, but there is redundancy (several triplets may code for the same amino acid). One may think of a coding DNA sequence as an outcome, but the amino acid (sequence or single one) as a random variable. Extending this framework, one may think of genotype as an outcome, but a phenotype (e.g. eye color) as a random variable - although this is not correct for any phenotype that is not strictly determined by the genotype, because then there are other factors (e.g. environmental or epigenetic) that influence the value of the random variable besides the outcome (genotype.)
-
-
-**Exercise:** In the diamonds dataset in dplyr, identify numeric and categorical variables, and specify whether numeric variables are discrete and continuous. 
+**Exercise:** In the diamonds dataset in `dplyr`, identify numeric and categorical variables, and specify whether numeric variables are discrete and continuous. 
 
 ```{r}
+library(tidyverse)
 str(diamonds) # print out the variables in the data frame (tibble) mpg
 ```
-
-
-
 
 ## Probability axioms
 An outcome in sample space can be assigned a *probability* depending on its frequency of occurrence out of many trials, each is a number between 0 and 1. Combinations of outcomes (*events*) can be assigned probabilities by building them out of individual outcomes.  These probabilities have a few rules, called the *axioms of probability*, expressed using set theory notation.
