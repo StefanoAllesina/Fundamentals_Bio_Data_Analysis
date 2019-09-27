@@ -11,15 +11,7 @@ output:
 urlcolor: blue
 ---
 
-```{r knitr, echo=FALSE, warning=FALSE, include=FALSE}
-knitr::opts_chunk$set(
-  eval      = TRUE,
-  comment   = "#",
-  results   = "hold",
-  # collapse  = TRUE,
-  fig.align = "center")
-library(tidyverse)
-```
+
 
 
 
@@ -62,8 +54,23 @@ The measurement of interest from a random experiment is called a *random variabl
 
 **Exercise:** In the diamonds dataset in dplyr, identify numeric and categorical variables, and specify whether numeric variables are discrete and continuous. 
 
-```{r}
+
+```r
 str(diamonds) # print out the variables in the data frame (tibble) mpg
+```
+
+```
+# Classes 'tbl_df', 'tbl' and 'data.frame':	53940 obs. of  10 variables:
+#  $ carat  : num  0.23 0.21 0.23 0.29 0.31 0.24 0.24 0.26 0.22 0.23 ...
+#  $ cut    : Ord.factor w/ 5 levels "Fair"<"Good"<..: 5 4 2 4 2 3 3 3 1 3 ...
+#  $ color  : Ord.factor w/ 7 levels "D"<"E"<"F"<"G"<..: 2 2 2 6 7 7 6 5 2 5 ...
+#  $ clarity: Ord.factor w/ 8 levels "I1"<"SI2"<"SI1"<..: 2 3 5 4 2 6 7 3 4 5 ...
+#  $ depth  : num  61.5 59.8 56.9 62.4 63.3 62.8 62.3 61.9 65.1 59.4 ...
+#  $ table  : num  55 61 65 58 58 57 57 55 61 61 ...
+#  $ price  : int  326 326 327 334 335 336 336 337 337 338 ...
+#  $ x      : num  3.95 3.89 4.05 4.2 4.34 3.94 3.95 4.07 3.87 4 ...
+#  $ y      : num  3.98 3.84 4.07 4.23 4.35 3.96 3.98 4.11 3.78 4.05 ...
+#  $ z      : num  2.43 2.31 2.31 2.63 2.75 2.48 2.47 2.53 2.49 2.39 ...
 ```
 
 
@@ -111,17 +118,44 @@ And for a density function it is defined using the integral:
 $$ E(Y) =  \int_R y g(y) dy $$
 
 **Example:** The data set diamonds contains many variables, and the factors (categorical variables) cannot be described using means and medians, but can be plotted by counts:
-```{r}
+
+```r
 ggplot(data = diamonds) + 
   geom_bar(mapping = aes(x = cut, fill = clarity), position = "fill")
 ```
+
+<img src="probability_review_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" />
 One can plot and measure the mean and median of the numeric variables like depth, with separate box plots for different cut qualities:
 
-```{r}
+
+```r
 ggplot(data = diamonds) + aes(x = as.factor(cut), y=depth) + geom_boxplot()
+```
+
+<img src="probability_review_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" />
+
+```r
 diamonds %>% group_by(cut) %>% summarise(mean = mean(depth))
 diamonds %>% group_by(cut) %>% summarise(median = median(depth))
+```
 
+```
+# # A tibble: 5 x 2
+#   cut        mean
+#   <ord>     <dbl>
+# 1 Fair       64.0
+# 2 Good       62.4
+# 3 Very Good  61.8
+# 4 Premium    61.3
+# 5 Ideal      61.7
+# # A tibble: 5 x 2
+#   cut       median
+#   <ord>      <dbl>
+# 1 Fair        65  
+# 2 Good        63.4
+# 3 Very Good   62.1
+# 4 Premium     61.4
+# 5 Ideal       61.8
 ```
 Comment on how the descriptive statistics correspond to the box plots. 
 
@@ -143,11 +177,44 @@ $$ \sigma_X = \sqrt{ Var (X)}$$
 **Example:** Let's go back to  data set diamonds and the numeric variable depth plotted for different cut qualities
 
 
-```{r}
+
+```r
 ggplot(data = diamonds) + aes(x = as.factor(cut), y=depth) + geom_boxplot()
+```
+
+<img src="probability_review_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
+
+```r
 diamonds %>% group_by(cut) %>% summarise(var = var(depth))
 diamonds %>% group_by(cut) %>% summarise(first_quart = quantile(depth,0.25))
 diamonds %>% group_by(cut) %>% summarise(third_quart = quantile(depth,0.75))
+```
+
+```
+# # A tibble: 5 x 2
+#   cut          var
+#   <ord>      <dbl>
+# 1 Fair      13.3  
+# 2 Good       4.71 
+# 3 Very Good  1.90 
+# 4 Premium    1.34 
+# 5 Ideal      0.516
+# # A tibble: 5 x 2
+#   cut       first_quart
+#   <ord>           <dbl>
+# 1 Fair             64.4
+# 2 Good             61.3
+# 3 Very Good        60.9
+# 4 Premium          60.5
+# 5 Ideal            61.3
+# # A tibble: 5 x 2
+#   cut       third_quart
+#   <ord>           <dbl>
+# 1 Fair             65.9
+# 2 Good             63.8
+# 3 Very Good        62.9
+# 4 Premium          62.2
+# 5 Ideal            62.2
 ```
 Comment on how the descriptive statistics of spread correspond to the box plots. 
 
@@ -202,12 +269,31 @@ This is an amazing result because it applies to any distribution, so it allows f
 # In-class exploration: misleading means
 
 Use the library titanic and combine the data sets for all passangers and crew into the following tibble:
-```{r}
+
+```r
 library(titanic)
 titanic_total <- bind_rows(titanic_test, titanic_train)
 str(titanic_total)
 ggplot(data = titanic_train) + 
   geom_bar(mapping = aes(x = Pclass, fill = as.character(Survived)), position="fill") 
+```
+
+<img src="probability_review_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
+
+```
+# 'data.frame':	1309 obs. of  12 variables:
+#  $ PassengerId: int  892 893 894 895 896 897 898 899 900 901 ...
+#  $ Pclass     : int  3 3 2 3 3 3 3 2 3 3 ...
+#  $ Name       : chr  "Kelly, Mr. James" "Wilkes, Mrs. James (Ellen Needs)" "Myles, Mr. Thomas Francis" "Wirz, Mr. Albert" ...
+#  $ Sex        : chr  "male" "female" "male" "male" ...
+#  $ Age        : num  34.5 47 62 27 22 14 30 26 18 21 ...
+#  $ SibSp      : int  0 1 0 0 1 0 0 1 0 2 ...
+#  $ Parch      : int  0 0 0 0 1 0 0 1 0 0 ...
+#  $ Ticket     : chr  "330911" "363272" "240276" "315154" ...
+#  $ Fare       : num  7.83 7 9.69 8.66 12.29 ...
+#  $ Cabin      : chr  "" "" "" "" ...
+#  $ Embarked   : chr  "Q" "S" "Q" "S" ...
+#  $ Survived   : int  NA NA NA NA NA NA NA NA NA NA ...
 ```
 
 * Calculate the probability of survival for passengers by class (1, 2, 3, and crew). 
