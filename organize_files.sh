@@ -2,6 +2,13 @@
 # move the output md file to docs
 # remove the html to avoid bloating the repo
 
+# Week 0
+cd week0
+Rscript -e "rmarkdown::render('R_tutorial.Rmd')"
+mv *.md ../docs/lectures
+rm *.html
+cd ..
+
 # Week 1
 cd week1
 Rscript -e "rmarkdown::render('probability_review.Rmd')"
@@ -11,4 +18,7 @@ cp -r *_files ../docs/lectures
 rm -r *_files
 rm *.html
 cd ..
+
+# Week 2
+
 

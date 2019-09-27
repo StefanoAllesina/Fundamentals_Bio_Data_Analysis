@@ -11,16 +11,7 @@ output:
 urlcolor: blue
 ---
 
-```{r knitr, echo=FALSE}
-knitr::opts_chunk$set(
-  eval      = TRUE,
-  comment   = "#",
-  results   = "hold",
-  message = FALSE,
-  warning = FALSE,
-  # collapse  = TRUE,
-  fig.align = "center")
-```
+
 
 # Goal
 
@@ -57,8 +48,13 @@ To follow this tutorial, you will need to install `R` and `RStudio`
 
 The main hurdle new users face when approaching `R` is that it is based on a command line interface: when you launch `R`, you simply open a console with the character `>` signaling that `R` is ready to accept an input. When you write a command and press `Enter`, the command is interpreted by `R`, and the result is printed immediately after the command. For example,
 
-```{r}
+
+```r
 1 + 1
+```
+
+```
+# [1] 2
 ```
 
 A little history: `R` was modeled after the commercial statistical software `S` by Robert Gentleman and Ross Ihaka. The project was started in 1992, first released in 1994, and the first stable version appeared in 2000. Today, `R` is managed by the *R Core Team*.
@@ -86,21 +82,36 @@ We start by working on the console, and then start writing simple scripts.
 
 The most basic operation in any programming language is the assignment. In `R`, assignment is marked by the operator `<-`. When you type a command in `R`, it is executed, and the output is printed in the **Console**. For example:
 
-```{r}
+
+```r
 sqrt(9)
+```
+
+```
+# [1] 3
 ```
 
 If we want to save the result of this operation, we can assign it to a variable. For example:
 
-```{r}
+
+```r
 x <- sqrt(9)
 x
 ```
 
+```
+# [1] 3
+```
+
 What has happened? We wrote a command containing an assignment operator (`<-`). `R` has evaluated the right-hand-side of the command (`sqrt(9)`), and has stored the result (`3`) in a newly created variable called `x`. Now we can use `x` in our commands: every time the command needs to be evaluated, the program will look up which value is associated with the variable `x`, and substitute it. For example:
 
-```{r}
+
+```r
 x * 2 
+```
+
+```
+# [1] 6
 ```
 
 ## Data types
@@ -108,56 +119,97 @@ x * 2
 `R` provides different types of data that can be used in your programs. For each variable `x`, calling `class(x)` prints the type of the variable. The basic data types are:
 
 - `logical`, taking only two possible values: `TRUE` and `FALSE`
-```{r}
+
+```r
 v <- TRUE
 class(v)
 ```
 
+```
+# [1] "logical"
+```
+
 - `numeric`, storing real numbers (actually, their approximations, as computers have limited memory and thus [cannot store](https://www.exploringbinary.com/why-0-point-1-does-not-exist-in-floating-point/) numbers like $\pi$, or even $0.2$)
-```{r}
+
+```r
 v <- 3.77
 class(v)
 ```
 
+```
+# [1] "numeric"
+```
+
 - Real numbers can also be specified using scientific notation:
-```{r}
+
+```r
 v <- 6.022e23 # 6.022⋅10^23 (Avogadro's number)
 class(v)
 ```
 
+```
+# [1] "numeric"
+```
+
 - `integer`, storing whole numbers 
-```{r}
+
+```r
 v <- 23L # the L signals that this should be stored as integer
 class(v)
 ```
 
+```
+# [1] "integer"
+```
+
 - `complex`, storing complex numbers (i.e., with a real and an imaginary part)
-```{r}
+
+```r
 v <- 23 + 5i # the i marks the imaginary part
 class(v)
 ```
 
+```
+# [1] "complex"
+```
+
 - `character`, for strings, characters and text
-```{r}
+
+```r
 v <- 'a string' # you can use single or double quotes
 class(v)
 ```
 
+```
+# [1] "character"
+```
+
 In `R`, the type of a variable is evaluated at runtime. This means that you can recycle the names of variables. This is very handy, but can make your programs more difficult to read and to debug (i.e., find mistakes). For example:
 
-```{r}
+
+```r
 x <- '2.3' # this is a string
 x
 x <- 2.3 # this is numeric
 x
 ```
 
+```
+# [1] "2.3"
+# [1] 2.3
+```
+
 ## Operators and functions
 
 Each data type supports a certain number of operators and functions. For example, numeric variables can be combined with `+` (addition), `-` (subtraction), `*` (multiplication), `/` (division), and `^` (or `**`, exponentiation). A possibly unfamiliar operator is the modulo (`%%`), calculating the remainder of an integer division:
 
-```{r}
+
+```r
 5 %% 3
+```
+
+```
+# [1] 2
 ```
 
 meaning that `5 %/% 3` (5 integer divided by 3) is 1 with a remainder of 2. The modulo operator is useful to determine whether a number is divisible for another: if $y$ is divisible by $x$, then `y %% x` is 0.
@@ -180,7 +232,8 @@ Similarly, `character` variables have their own set of functions, such as:
 
 Calling a function meant for a certain data type on another will cause errors. If sensible, you can convert a type into another. For example:
 
-```{r}
+
+```r
 v <- "2.13"
 class(v)
 # if we call v * 2, we get an error.
@@ -188,12 +241,24 @@ class(v)
 as.numeric(v) * 2 
 ```
 
+```
+# [1] "character"
+# [1] 4.26
+```
+
 If sensible, you can use the comparison operators `>` (greater), `<` (lower), `==` (equals), `!=` (differs), `>=` and `<=`, returning a logical value:
 
-```{r}
+
+```r
 2 == sqrt(4)
 2 < sqrt(4)
 2 <= sqrt(4)
+```
+
+```
+# [1] TRUE
+# [1] FALSE
+# [1] TRUE
 ```
 
 > **Exercise:** 
@@ -202,9 +267,15 @@ If sensible, you can use the comparison operators `>` (greater), `<` (lower), `=
 
 Similarly, you can concatenate several comparison and logical variables using `&` (and), `|` (or), and `!` (not):
 
-```{r}
+
+```r
 (2 > 3) & (3 > 1)
 (2 > 3) | (3 > 1)
+```
+
+```
+# [1] FALSE
+# [1] TRUE
 ```
 
 ## Getting help
@@ -219,16 +290,28 @@ Besides these simple types, `R` provides structured data types, meant to collect
 
 The most basic data structure in `R` is the vector, which is an ordered collection of values of the same type. Vectors can be created by concatenating different values with the function `c()` ("combine"):
 
-```{r}
+
+```r
 x <- c(2, 3, 5, 27, 31, 13, 17, 19) 
 x
 ```
 
+```
+# [1]  2  3  5 27 31 13 17 19
+```
+
 You can access the elements of a vector by their index: the first element is indexed at 1, the second at 2, etc.
-```{r}
+
+```r
 x[3]
 x[8]
 x[9] # what if the element does not exist?
+```
+
+```
+# [1] 5
+# [1] 19
+# [1] NA
 ```
 
 `NA` stands for "Not Available". Other special values are `NaN` (Not a Number, e.g., `0/0`), `Inf` (Infinity, e.g., `1/0`), and `NULL` (variable undefined). You can test for special values using `is.na(x)`, `is.infinite(x)`, `is.null(x)`, etc.
@@ -237,32 +320,51 @@ Note that in `R` a single number (string, logical) is a vector of length 1 by de
 
 You can extract several elements at once (i.e., create another vector), using the colon (`:`) command, or by concatenating the indices:
 
-```{r}
+
+```r
 x[1:3]
 x[4:7]
 x[c(1,3,5)]
 ```
 
+```
+# [1] 2 3 5
+# [1] 27 31 13 17
+# [1]  2  5 31
+```
+
 You can also use a vector of logical variables to extract values from vectors. For example, suppose we have two vectors:
-```{r}
+
+```r
 sex <- c("M", "M", "F", "M", "F") # sex of Drosophila
 weight <- c(0.230, 0.281, 0.228, 0.260, 0.231) # weigth in mg
 ```
 
 and that we want to extract only the weights for the males. 
 
-```{r}
+
+```r
 sex == "M"
 ```
 
+```
+# [1]  TRUE  TRUE FALSE  TRUE FALSE
+```
+
 returns a vector of logical values, which we can use to subset the data:
-```{r}
+
+```r
 weight[sex == "M"]
+```
+
+```
+# [1] 0.230 0.281 0.260
 ```
 
 Given that `R` was born for statistics, there are many statistical
 functions you can perform on vectors:
-```{r}
+
+```r
 length(x)
 min(x)
 max(x)
@@ -275,22 +377,52 @@ mean(x ^ 2) - mean(x) ^ 2 # population variance
 summary(x) # print a summary
 ```
 
+```
+# [1] 8
+# [1] 2
+# [1] 31
+# [1] 117
+# [1] 105436890
+# [1] 15
+# [1] 14.625
+# [1] 119.4107
+# [1] 104.4844
+#    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+#    2.00    4.50   15.00   14.62   21.00   31.00
+```
+
 You can generate vectors of sequential numbers using the colon
 command:
-```{r}
+
+```r
 x <- 1:10
 x
 ```
 
+```
+#  [1]  1  2  3  4  5  6  7  8  9 10
+```
+
 For more complex sequences, use `seq`:
-```{r}
+
+```r
 seq(from = 1, to = 5, by = 0.5)
 ```
 
+```
+# [1] 1.0 1.5 2.0 2.5 3.0 3.5 4.0 4.5 5.0
+```
+
 To repeat a value or a sequence several times, use `rep`:
-```{r}
+
+```r
 rep("abc", 3)
 rep(c(1, 2, 3), 3)
+```
+
+```
+# [1] "abc" "abc" "abc"
+# [1] 1 2 3 1 2 3 1 2 3
 ```
 
 > **Exercise:** 
@@ -307,7 +439,8 @@ rep(c(1, 2, 3), 3)
 
 A matrix is a two-dimensional table of values. In case of numeric values, you can perform the usual operations on matrices (product, inverse, decomposition, etc.):
 
-```{r}
+
+```r
 A <- matrix(c(1, 2, 3, 4), 2, 2) # values, nrows, ncols
 A 
 A %*% A # matrix product
@@ -320,8 +453,36 @@ Z <- matrix(1:9, 3, 3) # by default, matrices are filled by column
 Z
 ```
 
+```
+#      [,1] [,2]
+# [1,]    1    3
+# [2,]    2    4
+#      [,1] [,2]
+# [1,]    7   15
+# [2,]   10   22
+#      [,1] [,2]
+# [1,]   -2  1.5
+# [2,]    1 -0.5
+#      [,1] [,2]
+# [1,]    1    0
+# [2,]    0    1
+#      [,1] [,2]
+# [1,]    1    1
+# [2,]    1    1
+# [3,]    1    1
+#      [,1] [,2] [,3]
+# [1,]    2    2    2
+# [2,]    2    2    2
+# [3,]    2    2    2
+#      [,1] [,2] [,3]
+# [1,]    1    4    7
+# [2,]    2    5    8
+# [3,]    3    6    9
+```
+
 To determine the dimensions of a matrix, use `dim`:
-```{r}
+
+```r
 dim(B)
 dim(B)[1]
 nrow(B) 
@@ -329,8 +490,17 @@ dim(B)[2]
 ncol(B)
 ```
 
+```
+# [1] 3 2
+# [1] 3
+# [1] 3
+# [1] 2
+# [1] 2
+```
+
 Use indices to access a particular row/column of a matrix:
-```{r}
+
+```r
 Z
 Z[1, ] # first row
 Z[, 2] # second column
@@ -338,45 +508,110 @@ Z [1:2, 2:3] # submatrix with coefficients in first two rows, and second and thi
 Z[c(1, 3), c(1, 3)] # indexing non-adjacent rows/columns
 ```
 
+```
+#      [,1] [,2] [,3]
+# [1,]    1    4    7
+# [2,]    2    5    8
+# [3,]    3    6    9
+# [1] 1 4 7
+# [1] 4 5 6
+#      [,1] [,2]
+# [1,]    4    7
+# [2,]    5    8
+#      [,1] [,2]
+# [1,]    1    7
+# [2,]    3    9
+```
+
 Some operations use all the elements of the matrix:
-```{r}
+
+```r
 sum(Z)
 mean(Z)
+```
+
+```
+# [1] 45
+# [1] 5
 ```
 
 ### Arrays
 
 If you need tables with more than two dimensions, use arrays:
-```{r}
+
+```r
 M <- array(1:24, c(4, 3, 2))
 M 
 ```
 
+```
+# , , 1
+# 
+#      [,1] [,2] [,3]
+# [1,]    1    5    9
+# [2,]    2    6   10
+# [3,]    3    7   11
+# [4,]    4    8   12
+# 
+# , , 2
+# 
+#      [,1] [,2] [,3]
+# [1,]   13   17   21
+# [2,]   14   18   22
+# [3,]   15   19   23
+# [4,]   16   20   24
+```
+
 You can still determine the dimensions using:
-```{r}
+
+```r
 dim(M)
+```
+
+```
+# [1] 4 3 2
 ```
 
 and access the elements as done for matrices. One thing you should be paying attention to: `R` drops dimensions that are not needed. So, if you access a "slice" of a 3-dimensional array:
 
-```{r}
+
+```r
 M[, , 1]
-``` 
+```
+
+```
+#      [,1] [,2] [,3]
+# [1,]    1    5    9
+# [2,]    2    6   10
+# [3,]    3    7   11
+# [4,]    4    8   12
+```
 
 you obtain a matrix:
-```{r}
+
+```r
 dim(M[, , 1])
 ```
 
+```
+# [1] 4 3
+```
+
 This can be problematic, for example, when your code expects an array and `R` turns your data into a matrix (or you expect a matrix but find a vector). To avoid this behavior, add `drop = FALSE` when subsetting:
-```{r}
+
+```r
 dim(M[, , 1, drop = FALSE])
+```
+
+```
+# [1] 4 3 1
 ```
 
 ### Lists
 Vectors are good if each element is of the same type (e.g., numbers, strings). Lists are used when we want to store elements of different types, or more complex objects (e.g., vectors, matrices, even lists of lists). Each element of the list can be referenced either by its index, or by a label:
 
-```{r}
+
+```r
 mylist <- list(Names = c("a", "b", "c", "d"), Values = c(1, 2, 3))
 mylist
 mylist[[1]] # access first element using index
@@ -386,6 +621,20 @@ mylist[["Names"]] # another way to access by label
 mylist[["Values"]][3]  # access third element in second vector
 ```
 
+```
+# $Names
+# [1] "a" "b" "c" "d"
+# 
+# $Values
+# [1] 1 2 3
+# 
+# [1] "a" "b" "c" "d"
+# [1] 1 2 3
+# [1] "a" "b" "c" "d"
+# [1] "a" "b" "c" "d"
+# [1] 3
+```
+
 ### Data frames
 
 Data frames contain data organized like in a spreadsheet. The columns (typically representing different measurements) can be of different types (e.g., a column could be the date of measurement, another the weight of the individual, or the volume of the cell, or the treatment of the sample), while the rows typically represent different samples.
@@ -393,7 +642,8 @@ Data frames contain data organized like in a spreadsheet. The columns (typically
 When you read a spreadsheet file in `R`, it is automatically stored as a data frame. The difference between a matrix and a data frame is that in a matrix all the values are of the same type (e.g., all numeric), while in a data frame each column can be of a different type.
 
 Because typing a data frame by hand would be tedious, let's use a data set that is already available in `R`:
-```{r}
+
+```r
 data(trees) # girth, height and volume of cherry trees
 str(trees) # structure of data frame
 ncol(trees)
@@ -409,6 +659,38 @@ trees_double <- cbind(trees, trees) # combine columns
 colnames(trees) <- c("Circumference", "Height", "Volume") # change column names
 ```
 
+```
+# 'data.frame':	31 obs. of  3 variables:
+#  $ Girth : num  8.3 8.6 8.8 10.5 10.7 10.8 11 11 11.1 11.2 ...
+#  $ Height: num  70 65 63 72 81 83 66 75 80 75 ...
+#  $ Volume: num  10.3 10.3 10.2 16.4 18.8 19.7 15.6 18.2 22.6 19.9 ...
+# [1] 3
+# [1] 31
+#   Girth Height Volume
+# 1   8.3     70   10.3
+# 2   8.6     65   10.3
+# 3   8.8     63   10.2
+# 4  10.5     72   16.4
+# 5  10.7     81   18.8
+# 6  10.8     83   19.7
+#      Girth           Height       Volume     
+#  Min.   : 8.30   Min.   :63   Min.   :10.20  
+#  1st Qu.:11.05   1st Qu.:72   1st Qu.:19.40  
+#  Median :12.90   Median :76   Median :24.20  
+#  Mean   :13.25   Mean   :76   Mean   :30.17  
+#  3rd Qu.:15.25   3rd Qu.:80   3rd Qu.:37.30  
+#  Max.   :20.60   Max.   :87   Max.   :77.00  
+#  [1]  8.3  8.6  8.8 10.5 10.7 10.8 11.0 11.0 11.1 11.2 11.3 11.4 11.4 11.7
+# [15] 12.0 12.9 12.9 13.3 13.7 13.8 14.0 14.2 14.5 16.0 16.3 17.3 17.5 17.9
+# [29] 18.0 18.0 20.6
+# [1] 70 65 63 72 81
+#   Girth Height Volume
+# 1   8.3     70   10.3
+# 2   8.6     65   10.3
+# 3   8.8     63   10.2
+# [1] 10.3 10.3 10.2
+```
+
 > **Exercise:** 
 > 
 > - What is the average height of the cherry trees?
@@ -419,7 +701,8 @@ colnames(trees) <- c("Circumference", "Height", "Volume") # change column names
 
 In most cases, you will not generate your data in `R`, but import it from a file. By far, the best option is to have your data in a comma separated value text file or in a tab separated file. Then, you can use the function `read.csv` (or `read.table`) to import your data. The syntax of the functions is as follows:
 
-```{r, eval = FALSE}
+
+```r
 read.csv("MyFile.csv") # read the file MyFile.csv
 read.csv("MyFile.csv", header = TRUE) # The file has a header.
 read.csv("MyFile.csv", sep = ';') # Specify the column separator.
@@ -430,7 +713,8 @@ Note that columns containing strings are typically converted to *factors* (categ
 
 Similarly, you can save your data frames using `write.table` or `write.csv`. Suppose you want to save the data frame `MyDF`:
 
-```{r, eval = FALSE}
+
+```r
 write.csv(MyDF, "MyFile.csv") 
 write.csv(MyDF, "MyFile.csv", append = TRUE) # Append to the end of the file. 
 write.csv(MyDF, "MyFile.csv", row.names = TRUE) # Include the row names.
@@ -438,7 +722,8 @@ write.csv(MyDF, "MyFile.csv", col.names = FALSE) # Do not include column names.
 ```
 
 Let's look at an example: Read a file containing data on the 6th chromosome for a number of Europeans (Data adapted from [Stanford HGDP SNP Genotyping Data](hagsc.org/hgdp/) by John   Novembre). This example shows that you can read data directly from the internet!
-```{r}
+
+```r
 # The actual URL is
 # https://github.com/StefanoAllesina/BSD-QBio4/raw/master/tutorials/basic_computing_1/data/H938_Euro_chr6.geno
 ch6 <- read.table("https://tinyurl.com/y7vctq3v", 
@@ -446,18 +731,45 @@ ch6 <- read.table("https://tinyurl.com/y7vctq3v",
 ```
 
 where `header = TRUE` means that we want to take the first line to be a header containing the column names. How big is this table?
-```{r}
+
+```r
 dim(ch6)
 ```
 
+```
+# [1] 43141     7
+```
+
 we have 7 columns, but more than 40k rows! Let's see the first few:
-```{r}
+
+```r
 head(ch6)
 ```
 
+```
+#   CHR        SNP A1 A2 nA1A1 nA1A2 nA2A2
+# 1   6  rs4959515  A  G     0    17   107
+# 2   6   rs719065  A  G     0    26    98
+# 3   6  rs6596790  C  T     0     4   119
+# 4   6  rs6596796  A  G     0    22   102
+# 5   6  rs1535053  G  A     5    39    80
+# 6   6 rs12660307  C  T     0     3   121
+```
+
 and the last few:
-```{r}
+
+```r
 tail(ch6)
+```
+
+```
+#       CHR        SNP A1 A2 nA1A1 nA1A2 nA2A2
+# 43136   6 rs10946282  C  T     0    16   108
+# 43137   6  rs3734763  C  T    19    56    48
+# 43138   6   rs960744  T  C    32    60    32
+# 43139   6  rs4428484  A  G     1    11   112
+# 43140   6  rs7775031  T  C    26    56    42
+# 43141   6 rs12213906  C  T     1    11   112
 ```
 
 The data contains the number of homozygotes (`nA1A1`, `nA2A2`) and heterozygotes (`nA1A2`), for 43,141 single nucleotide polymorphisms (SNPs) obtained by sequencing European individuals:
@@ -480,7 +792,8 @@ The data contains the number of homozygotes (`nA1A1`, `nA2A2`) and heterozygotes
 Now we turn to writing actual programs in the **Source code** panel. To start a new `R` program, press `Ctrl + Shift + N`. This will open an `Untitled` script. Save the script by pressing `Ctrl + S`: save it as `conditional.R` in the directory `programming_skills/sandbox/`. To make sure you're working in the directory where the script is contained, on the menu on the top choose `Session -> Set Working Directory -> To Source File Location`.
 
 Now type the following script:
-```{r, eval = FALSE}
+
+```r
 print("Hello world!")
 x <- 4
 print(x)
@@ -490,7 +803,8 @@ and execute the script by pressing `Ctrl + Shift + S`. You should see `Hello Wor
 As you saw in this simple example, when `R` executes the program, it starts from the top and proceeds toward the end of the file. Every time it encounters a command (for example, `print(x)`, printing the value of `x` into the console), it executes it.
 
 When we want a certain block of code to be executed only when a certain condition is met, we can write a conditional branching point. The syntax is as follows:
-```{r, eval = FALSE}
+
+```r
 if (condition is met){
   # Execute this block of code
 } else {
@@ -499,7 +813,8 @@ if (condition is met){
 ```
 
 For example, add these lines to the script `conditional.R`, and run it again:
-```{r, eval = FALSE}
+
+```r
 print("Hello world!")
 x <- 4
 print(x)
@@ -514,19 +829,20 @@ print(my_message)
 We have created a conditional branching point, so that the value of `my_message` changes depending on whether `x` is even (and thus the remainder of the integer division by 2 is 0), or odd. Change the line `x <- 4` to `x <- 131` and run it again.
 
 > **Exercise:** What does this do?
-> ```{r}
-x <- 36
-if (x > 20){
-  x <- sqrt(x)
-} else {
-  x <- x ^ 2
-}
-if (x > 7) {
-  print(x)
-} else if (x %% 2 == 1){
-  print(x + 1)
-}
-```
+> 
+> ```r
+> x <- 36
+> if (x > 20){
+>   x <- sqrt(x)
+> } else {
+>   x <- x ^ 2
+> }
+> if (x > 7) {
+>   print(x)
+> } else if (x %% 2 == 1){
+>   print(x + 1)
+> }
+> ```
 
 # Looping
 
@@ -534,7 +850,8 @@ Another way to change the flow of the program is to write a loop.  A loop is sim
 
 `R` provides you with two ways to loop over blocks of commands: the `for` loop, and the `while` loop. Let's start with the `for` loop, which is used to iterate over a vector (or a list): for each value of the vector, a series of commands will be run, as shown by the following example, which you can type in a new script called `forloop.R`.
 
-```{r, eval=FALSE}
+
+```r
 myvec <- 1:10 # vector with numbers from 1 to 10
 
 for (i in myvec) {
@@ -547,7 +864,8 @@ In the code above, the variable `i` takes the value of each element of `myvec` i
 
 The anatomy of the `for` statement:
 
-```{r, eval=FALSE}
+
+```r
 for (variable in list_or_vector) {
   execute these commands
 } # automatically moves to the next value
@@ -557,7 +875,8 @@ For loops are used when you know that you want to perform the analysis using a g
 
 The `while` loop is used when the commands need to be repeated while a certain condition is true, as shown by the following example, which you can type in a script called `whileloop.R`:
 
-```{r, eval=FALSE}
+
+```r
 i <- 1
 
 while (i <= 10) {
@@ -569,7 +888,8 @@ while (i <= 10) {
 
 The script performs exactly the same operations we wrote for the `for` loop above. Note that you need to update the value of `i`, (using `i <- i + 1`), otherwise the loop will run forever (infinite loop---to terminate click on the stop button in the top-right corner of the console). The anatomy of the `while` statement:
 
-```{r, eval=FALSE}
+
+```r
 while (condition is met) {
   execute these commands
 } # beware of infinite loops: remember to update the condition!
@@ -577,7 +897,8 @@ while (condition is met) {
 
 You can break a loop using the command `break`. For example:
 
-```{r, eval=FALSE}
+
+```r
 i <- 1
 
 while (i <= 10) {
@@ -592,30 +913,32 @@ while (i <= 10) {
 
 > **Exercise**: What does this do? Try to guess what each loop does, and then create
 and run a script to confirm your intuition.
-> ```{r, eval=FALSE}
-z <- seq(1, 1000, by = 3)
-for (k in z) {
-  if (k %% 4 == 0) {
-     print(k)
-  }
-}
-```
-> ```{r, eval=FALSE}
-z <- readline(prompt = "Enter a number: ")
-z <- as.numeric(z)
-isthisspecial <- TRUE
-i <- 2
-while (i < z) {
-  if (z %% i == 0) {
-     isthisspecial <- FALSE
-     break
-  }
-  i <- i + 1
-}
-if (isthisspecial == TRUE) {
-  print(z)
-}
-```
+> 
+> ```r
+> z <- seq(1, 1000, by = 3)
+> for (k in z) {
+>   if (k %% 4 == 0) {
+>      print(k)
+>   }
+> }
+> ```
+> 
+> ```r
+> z <- readline(prompt = "Enter a number: ")
+> z <- as.numeric(z)
+> isthisspecial <- TRUE
+> i <- 2
+> while (i < z) {
+>   if (z %% i == 0) {
+>      isthisspecial <- FALSE
+>      break
+>   }
+>   i <- i + 1
+> }
+> if (isthisspecial == TRUE) {
+>   print(z)
+> }
+> ```
 
 # Useful Functions
 Here's a short list of useful functions that will help you write your programs:
@@ -628,57 +951,60 @@ Here's a short list of useful functions that will help you write your programs:
 - `table(x)` build a table of frequencies
 
 > **Exercises:** What does this code do? For each snippet of code, first try to guess what will happen. Then, write a script and run it to confirm your intuition.
-> ```{r, eval = FALSE}
-v <- c(1, 3, 5, 5, 3, 1, 2, 4, 6, 4, 2)
-v <- sort(unique(v))
-for (i in v){
-  if (i > 2){
-    print(i)
-  }
-  if (i > 4){
-    break
-  }
-}
-```
-> ```{r, eval = FALSE}
-x <- 1:100
-x <- x[which(x %% 7 == 0)]
-```
-> ```{r, eval = FALSE}
-my_amount <- 10
-while (my_amount > 0){
-  my_color <- NA
-  while(is.na(my_color)){
-    tmp <- readline(prompt="Do you want to bet on black or red? ")
-    tmp <- tolower(tmp)
-    if (tmp == "black") my_color <- "black"
-    if (tmp == "red") my_color <- "red"
-    if (is.na(my_color)) print("Please enter either red or black")
-  }
-  my_bet <- NA
-  while(is.na(my_bet)){
-    tmp <- readline(prompt="How much do you want to bet? ")
-    tmp <- as.numeric(tmp)
-    if (is.numeric(tmp) == FALSE){
-      print("Please enter a number")
-    } else {
-      if (tmp > my_amount){
-        print("You don't have enough money!")
-      } else {
-        my_bet <- tmp
-        my_amount <- my_amount - tmp
-      }
-    }
-  }
-  lady_luck <- sample(c("red", "black"), 1)
-  if (lady_luck == my_color){
-    my_amount <- my_amount + 2 * my_bet
-    print(paste("You won!! Now you have", my_amount, "gold doubloons"))
-  } else {
-    print(paste("You lost!! Now you have", my_amount, "gold doubloons"))
-  }
-}
-```
+> 
+> ```r
+> v <- c(1, 3, 5, 5, 3, 1, 2, 4, 6, 4, 2)
+> v <- sort(unique(v))
+> for (i in v){
+>   if (i > 2){
+>     print(i)
+>   }
+>   if (i > 4){
+>     break
+>   }
+> }
+> ```
+> 
+> ```r
+> x <- 1:100
+> x <- x[which(x %% 7 == 0)]
+> ```
+> 
+> ```r
+> my_amount <- 10
+> while (my_amount > 0){
+>   my_color <- NA
+>   while(is.na(my_color)){
+>     tmp <- readline(prompt="Do you want to bet on black or red? ")
+>     tmp <- tolower(tmp)
+>     if (tmp == "black") my_color <- "black"
+>     if (tmp == "red") my_color <- "red"
+>     if (is.na(my_color)) print("Please enter either red or black")
+>   }
+>   my_bet <- NA
+>   while(is.na(my_bet)){
+>     tmp <- readline(prompt="How much do you want to bet? ")
+>     tmp <- as.numeric(tmp)
+>     if (is.numeric(tmp) == FALSE){
+>       print("Please enter a number")
+>     } else {
+>       if (tmp > my_amount){
+>         print("You don't have enough money!")
+>       } else {
+>         my_bet <- tmp
+>         my_amount <- my_amount - tmp
+>       }
+>     }
+>   }
+>   lady_luck <- sample(c("red", "black"), 1)
+>   if (lady_luck == my_color){
+>     my_amount <- my_amount + 2 * my_bet
+>     print(paste("You won!! Now you have", my_amount, "gold doubloons"))
+>   } else {
+>     print(paste("You lost!! Now you have", my_amount, "gold doubloons"))
+>   }
+> }
+> ```
 
 # Packages
 `R` is the most popular statistical computing software among biologists due to its highly specialized packages, often written from biologists for biologists. You can contribute a package too! The `RStudio` support [(`goo.gl/harVqF`)](http://goo.gl/harVqF) provides guidance on how to start developing `R` packages  and Hadley Wickham's free online book [(`r-pkgs.had.co.nz`)](http://r-pkgs.had.co.nz) will make you a pro.
@@ -690,7 +1016,8 @@ From within your `R` terminal or `RStudio` you can also call the function `RSite
 ## Installing a package
 To install a package type
 
-```{r, eval = FALSE}
+
+```r
 install.packages("name_of_package")
 ```
 
@@ -699,12 +1026,14 @@ in the **Console**, or choose the panel **Packages** and then click on *Install*
 ## Loading a package
 
 To load a package type
-```{r, eval=FALSE}
+
+```r
 library(name_of_package)
 ```
 
 or call the command into your script. If you want your script to automatically install a package in case it's missing, use this boilerplate:
-```{r, eval = FALSE}
+
+```r
 if (!require(needed_package, character.only = TRUE, quietly = TRUE)) {
     install.packages(needed_package)
     library(needed_package, character.only = TRUE)
@@ -717,33 +1046,57 @@ For example, say we want to access the dataset `bacteria`, which reports the inc
 
 First, we need to load the package:
 
-```{r}
+
+```r
 library(MASS)
 ```
 
 Now we can load the data:
-```{r}
+
+```r
 data(bacteria)
 bacteria[1:3,]
+```
+
+```
+#   y ap hilo week  ID     trt
+# 1 y  p   hi    0 X01 placebo
+# 2 y  p   hi    2 X01 placebo
+# 3 y  p   hi    4 X01 placebo
 ```
 
 # Random numbers
 
 To perform this randomization, or any simulation, we typically need to draw random numbers. `R` has functions to sample random numbers from very many different statistical distributions. For example:
 
-```{r}
+
+```r
 runif(5) # sample 5 numbers from the uniform distribution between 0 and 1
 runif(5, min = 1, max = 9) # set the limits of the uniform distribution
 rnorm(3) # three values from standard normal
 rnorm(3, mean = 5, sd = 4) # specify mean and standard deviation
 ```
 
+```
+# [1] 0.66698047 0.01632646 0.56558360 0.47530314 0.73471760
+# [1] 3.714485 6.469150 8.282642 8.197685 7.648603
+# [1]  1.43788207 -1.08172728  0.09047695
+# [1]  3.453084 11.066127  8.626277
+```
+
 To sample from a set of values, use `sample`:
-```{r}
+
+```r
 v <- c("a", "b", "c", "d")
 sample(v, 2) # without replacement
 sample(v, 6, replace = TRUE) # with replacement
 sample(v) # simply shuffle the elements
+```
+
+```
+# [1] "d" "a"
+# [1] "a" "a" "c" "a" "d" "d"
+# [1] "c" "a" "d" "b"
 ```
 
 # Writing functions
@@ -751,7 +1104,8 @@ sample(v) # simply shuffle the elements
 The `R` community provides about 7,000 packages. Still, sometimes there isn't an already made function capable of doing what you need. In these cases, you can write your own functions. In fact, it is in general a good idea to always divide your analysis into functions, and then write a small "master" program that calls the functions and performs the analysis. In this way, the code will be much more legible, and you will be able to recycle the functions for your other projects.
 
 A function in `R` has this form:
-```{r, eval = FALSE}
+
+```r
 my_function_name <- function(optional, arguments, separated, by_commas){
   # Body of the function
   # ...
@@ -761,7 +1115,8 @@ my_function_name <- function(optional, arguments, separated, by_commas){
 ```
 
 A few examples:
-```{r}
+
+```r
 sum_two_numbers <- function(a, b){
   apb <- a + b  
   return(apb)
@@ -769,8 +1124,13 @@ sum_two_numbers <- function(a, b){
 sum_two_numbers(5, 7.2)
 ```
 
+```
+# [1] 12.2
+```
+
 You can set a default value for some of the arguments: if not specified by the user, the function will use these defaults:
-```{r}
+
+```r
 sum_two_numbers <- function(a = 1, b = 2){
   apb <- a + b  
   return(apb)
@@ -780,8 +1140,15 @@ sum_two_numbers(3)
 sum_two_numbers(b = 9)
 ```
 
+```
+# [1] 3
+# [1] 5
+# [1] 10
+```
+
 The return value is optional:
-```{r}
+
+```r
 my_factorial <- function(a = 6){
   if (as.integer(a) != a) {
     print("Please enter an integer!")
@@ -797,14 +1164,24 @@ my_factorial()
 my_factorial(10)
 ```
 
+```
+# [1] "6! = 720"
+# [1] "10! = 3628800"
+```
+
 You can return **only one** object. If you need to return multiple values, organize them into a vector/matrix/list and return that.
-```{r}
+
+```r
 order_two_numbers <- function(a, b){
   if (a > b) return(c(a, b))
   return(c(b,a))
 }
 
 order_two_numbers(runif(1), runif(1))
+```
+
+```
+# [1] 0.91356186 0.03365998
 ```
 
 # Organizing and running code
@@ -820,7 +1197,8 @@ For example, let's write code that takes the data on Chromosome 6 we have seen a
 
 We want to test this on a number of different SNPs. First, we write a function that takes as input the data and a given SNP, and computes the probability $p$ of carrying the first allele.
 
-```{r}
+
+```r
 compute_probabilities_HW <- function(my_data, my_SNP = "rs1535053"){
   # Take a SNP and compute the probabilities
   # p = frequency of first allele
@@ -852,13 +1230,47 @@ compute_probabilities_HW <- function(my_data, my_SNP = "rs1535053"){
 ```
 
 Now we can test our function:
-```{r}
+
+```r
 compute_probabilities_HW(ch6)
+```
+
+```
+# $SNP
+# [1] "rs1535053"
+# 
+# $p11
+# [1] 0.04032258
+# 
+# $p12
+# [1] 0.3145161
+# 
+# $p22
+# [1] 0.6451613
+# 
+# $p
+# [1] 0.1975806
+# 
+# $q
+# [1] 0.8024194
+# 
+# $tot
+# [1] 124
+# 
+# $AA
+# [1] 5
+# 
+# $AB
+# [1] 39
+# 
+# $BB
+# [1] 80
 ```
 
 If the allele conformed to Hardy-Weinberg, we should find approximately $p^2 \cdot n$ people with $A1A1$, where $n$ is the number of people sampled. Let's see whether these assumptions are met by the data:
 
-```{r}
+
+```r
 observed_vs_expected_HW <- function(SNP_data){
   # compute expectations under Hardy-Weinberg equilibrium
   # organize expected and observed in a table
@@ -871,22 +1283,43 @@ observed_vs_expected_HW <- function(SNP_data){
 ```
 
 And test it:
-```{r}
+
+```r
 my_SNP_data <- compute_probabilities_HW(ch6)
 observed_vs_expected_HW(my_SNP_data)
+```
+
+```
+#                AA       AB       BB
+# observed 5.000000 39.00000 80.00000
+# expected 4.840726 39.31855 79.84073
 ```
 
 Pretty good! This SNP seems very close to the theoretical expectation.
 
 Let's try another one
-```{r}
+
+```r
 observed_vs_expected_HW(compute_probabilities_HW(ch6, "rs1316662"))
 ```
 
+```
+#                AA       AB       BB
+# observed 26.00000 62.00000 36.00000
+# expected 26.20161 61.59677 36.20161
+```
+
 Because we have so many SNPs, we will surely find some that do not comply with the expectation. For example:
-```{r}
+
+```r
 my_SNP_data <- compute_probabilities_HW(ch6, "rs6596835")
 observed_vs_expected_HW(my_SNP_data)
+```
+
+```
+#                 AA      AB      BB
+# observed 17.000000 24.0000 82.0000
+# expected  6.837398 44.3252 71.8374
 ```
 
 To find those with the largest deviations, we can compute for the statistic:
@@ -895,7 +1328,8 @@ $$
 \sum_i \frac{(e_i - o_i)^2}{e_i}
 $$
 In genetics, this is called $\chi^2$ statistics, because if the data were to follow the assumptions, these quantities would follow the $\chi^2$ distribution.
-```{r}
+
+```r
 compute_chi_sq_stat <- function(my_obs_vs_expected){
   observed <- my_obs_vs_expected["observed",]
   expected <- my_obs_vs_expected["expected",]
@@ -904,7 +1338,8 @@ compute_chi_sq_stat <- function(my_obs_vs_expected){
 ```
 
 Now let's compute the statistic for each SNPs:
-```{r}
+
+```r
 # because this might take a while, we're going to only analyze the first 1000 SNPs
 all_SNPs <- ch6$SNP[1:1000]
 results <- data.frame(SNP = all_SNPs, ChiSq = 0)
@@ -914,9 +1349,20 @@ for (i in 1:nrow(results)){
 ```
 
 To find the ones with the largest discrepancy, run
-```{r}
+
+```r
 results <- results[order(results$ChiSq, decreasing = TRUE),]
 head(results)
+```
+
+```
+#           SNP     ChiSq
+# 10  rs2281351 53.993853
+# 221 rs1933650 27.724832
+# 36  rs6596835 25.862675
+# 681  rs689035  9.802277
+# 178 rs6930805  9.491511
+# 179 rs1737539  9.491511
 ```
 
 This example showed how a seemingly difficuly problem can be decomposed in smaller problems that are easier to solve. 
@@ -989,14 +1435,20 @@ The most important feature of `R Markdown`, however, is that you can include blo
 
 For example, including
 
-    ```{r, eval=FALSE}  
+    
+    ```r
     print("hello world!")  
     ```
 
 will become 
 
-```{r}  
+
+```r
 print("hello world!")  
+```
+
+```
+# [1] "hello world!"
 ```
 
 If you don't want to run the `R` code, but just display it, use `{r, eval = FALSE}`; if you want to show the output but not the code, use `{r, echo = FALSE}`.

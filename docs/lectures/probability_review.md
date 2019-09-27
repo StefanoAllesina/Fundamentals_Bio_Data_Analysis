@@ -45,7 +45,7 @@ In probability terminology, a *random experiment* produces *outcomes* and the co
 
 The measurement of interest from a random experiment is called a *random variable*. Sometimes the measurement is simply the outcome, but usually it reports some aspect of the outcome and so several outcomes can have the same value of the random variable. The random variable can then be seen as condensing the sample space into a smaller range of values. Random variables can be *numeric* or *categorical*, with the difference that categorical variables cannot be assigned meaningful numbers. For instance, one may report an individual by phenotype (e.g., white or purple flowers), or having a nucleotide A, T, G, C in a particular position, and although one could assign numbers to these categories (e.g., 1, 2, 3, 4) they could not be used in sensical way---one can compare and do arithmetic with numbers, but A is not less than T and A + T does not equal G. Thus there are different tools for describing and working with numeric and categorical random variables. 
 
-**Example:** In a DNA sequence a codon triplet represents a specific amino acid, but there is redundancy (several triplets may code for the same amino acid). One may think of a coding DNA sequence as an outcome, but the amino acid (sequence or single one) as a random variable. Extending this framework, one may think of genotype as an outcome, but a phenotype (e.g., eye color) as a random variable---although this is not correct for any phenotype that is not strictly determined by the genotype, because then there are other factors (e.g., environmental or epigenetic) that influence the value of the random variable besides the outcome (genotype.)
+**Example:** In a DNA sequence a codon triplet represents a specific amino acid, but there is redundancy (several triplets may code for the same amino acid). One may think of a coding DNA sequence as an outcome, but the amino acid (sequence or single one) as a random variable. Extending this framework, one may think of genotype as an outcome, but a phenotype (e.g., eye color) as a random variable---although this is not correct for any phenotype that is not strictly determined by the genotype, because then there are other factors (e.g., environmental or epigenetic) that influence the value of the random variable besides the outcome (genotype).
 
 **Exercise:** In the diamonds dataset in `dplyr`, identify numeric and categorical variables, and specify whether numeric variables are discrete and continuous. 
 
@@ -79,13 +79,13 @@ An outcome in sample space can be assigned a *probability* depending on its freq
 3. The probability of an event made up of the union of two events is the sum of the two probabilities minus the probability of the overlap (intersection.) $P(A \cup B) = P(A) + P(B) - P(A \cap B)$
 
 **Example:** Let's assign a probability to every possible three-letter codon. There are $4^3 = 64$ codons, so if one assumes that each one has equal probability, then they they all equal $1/64$ (by axiom 1.) The probability of a codon having A as the first letter is 1/4, and so is the probability of A as the second letter. Axiom 3 allows us to calculate the probability of A in either the first or the second letter: 
-$$ P(AXX \cup \ XAX ) =  P(AXX) + P(XAX) - P(AAX) = 1/4 + 1/4 - 1/16 = 7/16$$
 
+$$ P(AXX \cup \ XAX ) =  P(AXX) + P(XAX) - P(AAX) = 1/4 + 1/4 - 1/16 = 7/16$$
 
 ## Probability distributions
 The probability of each value of a random variable can be calculated from the probability of the event that corresponds to each value of the random variable. The collection of the probabilities of all of the values of the random variable is called the *probability distribution function* of the random variable, more formally the *mass function* for a discrete random variable or the *density function* for a continuous random variable. 
 
-For a discrete random variable (let's call it $X$) with a probability mass function $f$, the probability of $X$ taking the value of $a$ can be written either as $f(X=a)$ or $f(a)$, as long as it's clear that $f$ is the probability distriution function of $X$.The one ironclad rule of probability is that all values of the mass function have to add up to 1. To state this mathematically, if all the possible values of $X$ can be written as $a_1, a_2, ...$ (there may be finitely or infinitely many of them, as long as it's a countable infinity), this sum has to be equal to 1:
+For a discrete random variable (let's call it $X$) with a probability mass function $f$, the probability of $X$ taking the value of $a$ can be written either as $f(X=a)$ or $f(a)$, as long as it's clear that $f$ is the probability distriution function of $X$. The one ironclad rule of probability is that all values of the mass function have to add up to 1. To state this mathematically, if all the possible values of $X$ can be written as $a_1, a_2, ...$ (there may be finitely or infinitely many of them, as long as it's a countable infinity), this sum has to be equal to 1:
 $$ \sum_i f(a_i) = 1 $$
 
 A continuous random variable (let's call it $Y$) with a probability density function $g$ is a bit more complicated. The continous part means that the random variable has uncountably many values, even if the range is finite (for example, there are uncountably many real numbers between 0 and 1). Thus, the probability of any single value must be vanishingly small (zero), otherwise it would be impossible to add up (integrate) all of the values and get a finite result (let alone 1). We can only measure the probability of a range of values of $Y$ and it is defined by the integral of the density function overal that range:
@@ -101,23 +101,25 @@ $$ \int_R g(y) dy = 1$$
 ## Measures of center: medians and means
 The standard measures described here are applicable only numeric random variables. Some measures of center and spread for categorical variables exist as well.
 
-The *median* of a random variable is the value which is in the middle of the distribution, specifically, that there probability 0.5 of the random variable being no greater than that value.
+The *median* of a random variable is the value which is in the middle of the distribution, specifically, that the probability of the random variable being no greater than that value is 0.5.
 
 The *mean* or *expectation* of a random variable is the center of mass of the probability distribution. Specifically, it is defined for a mass function to be:
 
-$$ E(X) = \sum_i a_i f(a_i)$$
+$$ E(X) = \sum_i a_i\, f(a_i)$$
 
 And for a density function it is defined using the integral:
-$$ E(Y) =  \int_R y g(y) dy $$
+$$ E(Y) =  \int_R y\, g(y) dy $$
 
-**Example:** The data set diamonds contains many variables, and the factors (categorical variables) cannot be described using means and medians, but can be plotted by counts:
+**Example:** The data set diamonds contains many variables, and the factors (categorical variables) cannot be described using means and medians, but can be plotted by counts (we will learn about `ggplot2` soon):
 
 ```r
-ggplot(data = diamonds) + 
-  geom_bar(mapping = aes(x = cut, fill = clarity), position = "fill")
+ggplot(data = diamonds) +
+  aes(x = cut, fill = clarity) + 
+  geom_bar(position = "fill")
 ```
 
 <img src="probability_review_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" />
+
 One can plot and measure the mean and median of the numeric variables like depth, with separate box plots for different cut qualities:
 
 
@@ -150,9 +152,8 @@ diamonds %>% group_by(cut) %>% summarise(median = median(depth))
 # 4 Premium     61.4
 # 5 Ideal       61.8
 ```
+
 Comment on how the descriptive statistics correspond to the box plots. 
-
-
 
 ## Measures of spread: quartiles and variances
 
@@ -160,15 +161,14 @@ All random variables have spread in their values. The simplest way to describe i
 
 A more standard measure of the spread of a distribution is the variance, defined as the expected value of the squared differences from the mean:
 
-$$ Var(X) = E [X - E(X)]^2 = \sum_i (a_i- E(X))^2 f(a_i)$$
+$$\text{Var}(X) = E [X - E(X)]^2 = \sum_i (a_i- E(X))^2 f(a_i)$$
 
 And for a density function it is defined using the integral:
-$$ Var(Y) =  E[ Y - E(Y)]^2 = \int_R (y-E(Y))^2 g(y) dy $$
+$$\text{Var}(Y) =  E[ Y - E(Y)]^2 = \int_R (y-E(Y))^2 g(y) dy $$
 
 Variances have squared units so they are not directly comparable to the values of the random variable. Taking the square root of the variance converts it into the same units and is called the standard deviation of the distribution:
-$$ \sigma_X = \sqrt{ Var (X)}$$
+$$ \sigma_X = \sqrt{\text{Var}(X)}$$
 **Example:** Let's go back to  data set diamonds and the numeric variable depth plotted for different cut qualities
-
 
 
 ```r
@@ -209,8 +209,8 @@ diamonds %>% group_by(cut) %>% summarise(third_quart = quantile(depth,0.75))
 # 4 Premium          62.2
 # 5 Ideal            62.2
 ```
-Comment on how the descriptive statistics of spread correspond to the box plots. 
 
+Comment on how the descriptive statistics of spread correspond to the box plots. 
 
 # Data as samples from distributions: statistics
 
@@ -222,30 +222,29 @@ Some of the fundamental questions about the population include:
 
 2. Estimate the parameters of that distribution.
 
-3. Test a hypothesis, e.g. whether two samples were drawn from the same distribution.
+3. Test a hypothesis, e.g., whether two samples were drawn from the same distribution.
 
 4. Describe and test a relationship between two or more variables.
 
-
 ## Law of large numbers
-First, the sample has to be *unbiased*, that is, no outcomes should be systematically over- or under-represented. But even an unbiased sample will differ from the population due to the inherent randomness of selection (sampling error.) The **law of large numbers** states that as the *sample size* increases, the mean of the sample converges to the true mean of the population. Formally, for a set of $n$ indepdenent, identically distributed random variable (the sample) $\{X_i\}$ the sample mean $\bar X_n$ converges to the mean of the distribution $\mu$:
+
+First, the sample has to be *unbiased*, that is, no outcomes should be systematically over- or under-represented. But even an unbiased sample will differ from the population due to the inherent randomness of selection (sampling error.) The **law of large numbers** states that as the *sample size* increases, the mean of the sample converges to the true mean of the population. Formally, for a set of $n$ indepdenent, identically distributed random variable (the sample) $\{X_i\}$ the sample mean $\overline{X}_n$ converges to the mean of the distribution $\mu$:
 
 $$ 
-\lim _{n \to \infty} \frac{\sum_{i=1}^n {X_i}}{n} = \lim _{n \to \infty} \bar X_n = \mu
+\lim _{n \to \infty} \frac{\sum_{i=1}^n {X_i}}{n} = \lim _{n \to \infty} \overline{X}_n = \mu
 $$
 
 ## Central Limit Theorem
 
-That is nice to know, but doesn't say exactly how large a sample is needed to estimate, for example, the mean of the population to a given precision. For that, we have the **Central Limit Theorem**, which states that the distribution of sample means (from samples of independent, identically distributed random variables) as sample size increases, approaches the normal (Gaussian) distribution with mean equal to the population mean and standard deviation equal to the standard deviation of the population divided by the square root of the sample size. Formally, it states that for a set of $n$ indepdenent, identically distributed random variable (the sample) $\{X_i\}$ with distribution mean $\mu$ and variance $\sigma^2$, the probability density function of the sample mean $\bar X_n$ converges for large sample size $n$ to the normal distribution:
+That is nice to know, but doesn't say exactly how large a sample is needed to estimate, for example, the mean of the population to a given precision. For that, we have the **Central Limit Theorem**, which states that the distribution of sample means (from samples of independent, identically distributed random variables) as sample size increases, approaches the normal (Gaussian) distribution with mean equal to the population mean and standard deviation equal to the standard deviation of the population divided by the square root of the sample size. Formally, it states that for a set of $n$ indepdenent, identically distributed random variable (the sample) $\{X_i\}$ with distribution mean $\mu$ and variance $\sigma^2$, the probability density function of the sample mean $\overline{X}_n$ converges for large sample size $n$ to the normal distribution:
 
 $$ 
-P(\bar X_n) \to N(\mu, \sigma^2/n)
+P(\overline{X}_n) \to N(\mu, \sigma^2/n)
 $$
 
 where $N(\mu, \sigma^2/n$) stands for the normal distribution with mean $\mu$ and variance $\sigma^2/n$.  One extremely useful consequence of this theorem is that the variance of the sample mean is reciprocally related to the sample size $n$. More precicely, it allows the calculation of *confidence intervals* by using the normal distribution to generate an interval around the observed sample mean in which the  true mean $\mu$ lies with a given likelihood.
 
-This is an amazing result because it applies to any distribution, so it allows for the estimation of means for any situation, as long as the condition of independent, identically disributed variables in the sample is satisfied (the identical distributed condition can actually be relaxed.) There are other central limit theorems that apply to other situations, including cases where the random variables in the sample are not independent (e.g. Markov models.) The bottom line is that an unbiased sample contains a reflection of the true population, but it is always distorted by uncertainty. Larger sample sizes decrease the uncertainty, but are more difficult and expensive to obtain.
-
+This is an amazing result because it applies to any distribution, so it allows for the estimation of means for any situation, as long as the condition of independent, identically disributed variables in the sample is satisfied (the identical distributed condition can actually be relaxed). There are other central limit theorems that apply to other situations, including cases where the random variables in the sample are not independent (e.g., Markov models). The bottom line is that an unbiased sample contains a reflection of the true population, but it is always distorted by uncertainty. Larger sample sizes decrease the uncertainty, but are more difficult and expensive to obtain.
 
 **Discussion:** Suggest examples of biological data sets which are not made up of independent identically distributed random variables.
 
@@ -263,12 +262,14 @@ This is an amazing result because it applies to any distribution, so it allows f
 
 Use the library titanic and combine the data sets for all passangers and crew into the following tibble:
 
+
 ```r
 library(titanic)
 titanic_total <- bind_rows(titanic_test, titanic_train)
 str(titanic_total)
-ggplot(data = titanic_train) + 
-  geom_bar(mapping = aes(x = Pclass, fill = as.character(Survived)), position="fill") 
+ggplot(data = titanic_train) +
+  aes(x = Pclass, fill = as.character(Survived)) + 
+  geom_bar(position="fill") 
 ```
 
 <img src="probability_review_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
@@ -293,7 +294,7 @@ ggplot(data = titanic_train) +
 * Calculate the survival probability by sex. 
 * Compare the survival rates of men and women separately by class. Do you observe anything unexpected? How would you explain the apparent disagreement between the survival rates?
 
-# References  
+# References
 
 * [Laplace's views on probability and determinism](https://www.bayesianspectacles.org/laplaces-demon/)
 * [Simpson's paradox](https://medium.com/@nikhilborkar/the-simpsons-paradox-and-where-to-find-them-cfcec6c2d8b3)

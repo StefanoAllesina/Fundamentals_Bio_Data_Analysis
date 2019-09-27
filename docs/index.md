@@ -4,13 +4,20 @@
 
 ## Goals
 
+* Learn how to use R for working with biological data 
+* Become familiar with probability theory and the assumptions of popular models
+* Encounter and learn how to avoid common statistical mistakes
+
 ## Approach
+
+* Mix of theory and practice
+* Apply what you're learning to your own data
 
 ## Materials
 
 ### Week 0
 
-- `R` refresher
+- [`R` refresher](lectures/R_tutorial)
 
 ### Week 1
 
