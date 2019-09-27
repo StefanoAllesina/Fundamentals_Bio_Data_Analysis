@@ -19,7 +19,7 @@
 
 ### Week 2
 
-- Probability distributions
+- [Probability distributions](lectures/probability_review)
 - Data wrangling in `tidyverse`
 
 ### Week 3
