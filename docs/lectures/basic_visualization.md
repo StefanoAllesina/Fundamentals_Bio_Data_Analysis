@@ -3,6 +3,25 @@ Basic data visualization
 Dmitry Kondrashov & Stefano Allesina
 Fundamentals of Biological Data Analysis -- BIOS 26318
 
+-   [Goal](#goal)
+-   [Introduction to the Grammar of Graphics](#introduction-to-the-grammar-of-graphics)
+-   [Basic `ggplot2`](#basic-ggplot2)
+-   [Building a well-formed graph](#building-a-well-formed-graph)
+-   [Scatterplots](#scatterplots)
+-   [Histograms, density and boxplots](#histograms-density-and-boxplots)
+-   [Scales](#scales)
+-   [List of aesthetic mappings](#list-of-aesthetic-mappings)
+-   [List of geometries](#list-of-geometries)
+-   [List of scales](#list-of-scales)
+-   [Exercise](#exercise)
+-   [Themes](#themes)
+-   [Faceting](#faceting)
+-   [Setting features](#setting-features)
+-   [Saving graphs](#saving-graphs)
+-   [Multiple layers](#multiple-layers)
+-   [Try on your own data!](#try-on-your-own-data)
+-   [Resources](#resources)
+
 Goal
 ====
 

@@ -3,6 +3,20 @@ Week 1: Basics of data and its visualization
 Dmitry Kondrashov & Stefano Allesina
 Fundamentals of Biological Data Analysis -- BIOS 26318
 
+-   [Goals of the course](#goals-of-the-course)
+-   [Fundamentals of probability](#fundamentals-of-probability)
+    -   [Sample spaces and random variables](#sample-spaces-and-random-variables)
+    -   [Probability axioms](#probability-axioms)
+    -   [Probability distributions](#probability-distributions)
+    -   [Measures of center: medians and means](#measures-of-center-medians-and-means)
+    -   [Measures of spread: quartiles and variances](#measures-of-spread-quartiles-and-variances)
+-   [Data as samples from distributions: statistics](#data-as-samples-from-distributions-statistics)
+    -   [Law of large numbers](#law-of-large-numbers)
+    -   [Central Limit Theorem](#central-limit-theorem)
+-   [Over to the students](#over-to-the-students)
+-   [In-class exploration: misleading means](#in-class-exploration-misleading-means)
+-   [References](#references)
+
 Goals of the course
 ===================
 
