@@ -78,33 +78,34 @@ Probability axioms
 
 An outcome in sample space can be assigned a *probability* depending on its frequency of occurrence out of many trials, each is a number between 0 and 1. Combinations of outcomes (*events*) can be assigned probabilities by building them out of individual outcomes. These probabilities have a few rules, called the *axioms of probability*, expressed using set theory notation.
 
-1.  The total probability of all outcomes in sample space is 1. *P*(*Ω*)=1
+1.  The total probability of all outcomes in sample space is 1. ![P(\\Omega) = 1](https://latex.codecogs.com/png.latex?P%28%5COmega%29%20%3D%201 "P(\Omega) = 1")
 
-2.  The probability of nothing (empty set) is 0. *P*(∅)=0
+2.  The probability of nothing (empty set) is 0. ![P(\\emptyset) = 0](https://latex.codecogs.com/png.latex?P%28%5Cemptyset%29%20%3D%200 "P(\emptyset) = 0")
 
-3.  The probability of an event made up of the union of two events is the sum of the two probabilities minus the probability of the overlap (intersection.) *P*(*A* ∪ *B*)=*P*(*A*)+*P*(*B*)−*P*(*A* ∩ *B*)
+3.  The probability of an event made up of the union of two events is the sum of the two probabilities minus the probability of the overlap (intersection.) ![P(A \\cup B) = P(A) + P(B) - P(A \\cap B)](https://latex.codecogs.com/png.latex?P%28A%20%5Ccup%20B%29%20%3D%20P%28A%29%20%2B%20P%28B%29%20-%20P%28A%20%5Ccap%20B%29 "P(A \cup B) = P(A) + P(B) - P(A \cap B)")
 
-**Example:** Let's assign a probability to every possible three-letter codon. There are 4<sup>3</sup> = 64 codons, so if one assumes that each one has equal probability, then they they all equal 1/64 (by axiom 1.) The probability of a codon having A as the first letter is 1/4, and so is the probability of A as the second letter. Axiom 3 allows us to calculate the probability of A in either the first or the second letter:
+**Example:** Let's assign a probability to every possible three-letter codon. There are ![4^3 = 64](https://latex.codecogs.com/png.latex?4%5E3%20%3D%2064 "4^3 = 64") codons, so if one assumes that each one has equal probability, then they they all equal ![1/64](https://latex.codecogs.com/png.latex?1%2F64 "1/64") (by axiom 1.) The probability of a codon having A as the first letter is 1/4, and so is the probability of A as the second letter. Axiom 3 allows us to calculate the probability of A in either the first or the second letter:
 
-*P*(*A**X**X* ∪  *X**A**X*)=*P*(*A**X**X*)+*P*(*X**A**X*)−*P*(*A**A**X*)=1/4 + 1/4 − 1/16 = 7/16
+![ P(AXX \\cup \\ XAX ) =  P(AXX) + P(XAX) - P(AAX) = 1/4 + 1/4 - 1/16 = 7/16](https://latex.codecogs.com/png.latex?%20P%28AXX%20%5Ccup%20%5C%20XAX%20%29%20%3D%20%20P%28AXX%29%20%2B%20P%28XAX%29%20-%20P%28AAX%29%20%3D%201%2F4%20%2B%201%2F4%20-%201%2F16%20%3D%207%2F16 " P(AXX \cup \ XAX ) =  P(AXX) + P(XAX) - P(AAX) = 1/4 + 1/4 - 1/16 = 7/16")
 
 Probability distributions
 -------------------------
 
 The probability of each value of a random variable can be calculated from the probability of the event that corresponds to each value of the random variable. The collection of the probabilities of all of the values of the random variable is called the *probability distribution function* of the random variable, more formally the *mass function* for a discrete random variable or the *density function* for a continuous random variable.
 
-For a discrete random variable (let's call it *X*) with a probability mass function *f*, the probability of *X* taking the value of *a* can be written either as *f*(*X* = *a*) or *f*(*a*), as long as it's clear that *f* is the probability distriution function of *X*. The one ironclad rule of probability is that all values of the mass function have to add up to 1. To state this mathematically, if all the possible values of *X* can be written as *a*<sub>1</sub>, *a*<sub>2</sub>, ... (there may be finitely or infinitely many of them, as long as it's a countable infinity), this sum has to be equal to 1:
-∑<sub>*i*</sub>*f*(*a*<sub>*i*</sub>)=1
+For a discrete random variable (let's call it ![X](https://latex.codecogs.com/png.latex?X "X")) with a probability mass function ![f](https://latex.codecogs.com/png.latex?f "f"), the probability of ![X](https://latex.codecogs.com/png.latex?X "X") taking the value of ![a](https://latex.codecogs.com/png.latex?a "a") can be written either as ![f(X=a)](https://latex.codecogs.com/png.latex?f%28X%3Da%29 "f(X=a)") or ![f(a)](https://latex.codecogs.com/png.latex?f%28a%29 "f(a)"), as long as it's clear that ![f](https://latex.codecogs.com/png.latex?f "f") is the probability distriution function of ![X](https://latex.codecogs.com/png.latex?X "X"). The one ironclad rule of probability is that all values of the mass function have to add up to 1. To state this mathematically, if all the possible values of ![X](https://latex.codecogs.com/png.latex?X "X") can be written as ![a\_1, a\_2, ...](https://latex.codecogs.com/png.latex?a_1%2C%20a_2%2C%20... "a_1, a_2, ...") (there may be finitely or infinitely many of them, as long as it's a countable infinity), this sum has to be equal to 1:
 
-A continuous random variable (let's call it *Y*) with a probability density function *g* is a bit more complicated. The continous part means that the random variable has uncountably many values, even if the range is finite (for example, there are uncountably many real numbers between 0 and 1). Thus, the probability of any single value must be vanishingly small (zero), otherwise it would be impossible to add up (integrate) all of the values and get a finite result (let alone 1). We can only measure the probability of a range of values of *Y* and it is defined by the integral of the density function overal that range:
+![ \\sum\_i f(a\_i) = 1 ](https://latex.codecogs.com/png.latex?%20%5Csum_i%20f%28a_i%29%20%3D%201%20 " \sum_i f(a_i) = 1 ")
 
-*P*(*a* &lt; *Y* &lt; *b*)=∫<sub>*a*</sub><sup>*b*</sup>*g*(*y*)*d**y*
+A continuous random variable (let's call it ![Y](https://latex.codecogs.com/png.latex?Y "Y")) with a probability density function ![g](https://latex.codecogs.com/png.latex?g "g") is a bit more complicated. The continous part means that the random variable has uncountably many values, even if the range is finite (for example, there are uncountably many real numbers between 0 and 1). Thus, the probability of any single value must be vanishingly small (zero), otherwise it would be impossible to add up (integrate) all of the values and get a finite result (let alone 1). We can only measure the probability of a range of values of ![Y](https://latex.codecogs.com/png.latex?Y "Y") and it is defined by the integral of the density function overal that range:
 
-The total probability over the entire range of *Y* has to be 1, but it's similarly calculated by integration instead of summation (*R* represents the range of values of *Y*):
+![ P( a&lt; Y &lt; b) = \\int\_a ^b g(y) dy ](https://latex.codecogs.com/png.latex?%20P%28%20a%3C%20Y%20%3C%20b%29%20%3D%20%5Cint_a%20%5Eb%20g%28y%29%20dy%20 " P( a< Y < b) = \int_a ^b g(y) dy ")
 
-∫<sub>*R*</sub>*g*(*y*)*d**y* = 1
+The total probability over the entire range of ![Y](https://latex.codecogs.com/png.latex?Y "Y") has to be 1, but it's similarly calculated by integration instead of summation (![R](https://latex.codecogs.com/png.latex?R "R") represents the range of values of ![Y](https://latex.codecogs.com/png.latex?Y "Y")):
 
-**Example:** As codons (DNA triplets) code for amino acids, we can consider the genetic code a random variable on the sample space. Assuming all codons have equal probabilities, the probability of each amino acid is the number of triplets that code for it divided by 64. For example, the probabilities of leucine and arginine are 6/64 = 3/32, the probability of threonine is 4/64 = 1/4 and the probabilities of methionine and tryptophan are 1/64. This defines a probability distribution function of the random variable of the genetic code. Note that the sum of all the probabilites of amino acids has to be 1. Of course there is no inherent reason why each triplet should be equally probable, so a different probability structure on the sample space would result in a different probability distribution (mass) function.
+![ \\int\_R g(y) dy = 1](https://latex.codecogs.com/png.latex?%20%5Cint_R%20g%28y%29%20dy%20%3D%201 " \int_R g(y) dy = 1")
+
+**Example:** As codons (DNA triplets) code for amino acids, we can consider the genetic code a random variable on the sample space. Assuming all codons have equal probabilities, the probability of each amino acid is the number of triplets that code for it divided by 64. For example, the probabilities of leucine and arginine are ![6/64 = 3/32](https://latex.codecogs.com/png.latex?6%2F64%20%3D%203%2F32 "6/64 = 3/32"), the probability of threonine is ![4/64 = 1/4](https://latex.codecogs.com/png.latex?4%2F64%20%3D%201%2F4 "4/64 = 1/4") and the probabilities of methionine and tryptophan are ![1/64](https://latex.codecogs.com/png.latex?1%2F64 "1/64"). This defines a probability distribution function of the random variable of the genetic code. Note that the sum of all the probabilites of amino acids has to be 1. Of course there is no inherent reason why each triplet should be equally probable, so a different probability structure on the sample space would result in a different probability distribution (mass) function.
 
 Measures of center: medians and means
 -------------------------------------
@@ -115,10 +116,11 @@ The *median* of a random variable is the value which is in the middle of the dis
 
 The *mean* or *expectation* of a random variable is the center of mass of the probability distribution. Specifically, it is defined for a mass function to be:
 
-*E*(*X*)=∑<sub>*i*</sub>*a*<sub>*i*</sub> *f*(*a*<sub>*i*</sub>)
+![ E(X) = \\sum\_i a\_i\\, f(a\_i)](https://latex.codecogs.com/png.latex?%20E%28X%29%20%3D%20%5Csum_i%20a_i%5C%2C%20f%28a_i%29 " E(X) = \sum_i a_i\, f(a_i)")
 
 And for a density function it is defined using the integral:
-*E*(*Y*)=∫<sub>*R*</sub>*y* *g*(*y*)*d**y*
+
+![ E(Y) =  \\int\_R y\\, g(y) dy ](https://latex.codecogs.com/png.latex?%20E%28Y%29%20%3D%20%20%5Cint_R%20y%5C%2C%20g%28y%29%20dy%20 " E(Y) =  \int_R y\, g(y) dy ")
 
 **Example:** The data set diamonds contains many variables, and the factors (categorical variables) cannot be described using means and medians, but can be plotted by counts (we will learn about `ggplot2` soon):
 
@@ -169,13 +171,16 @@ All random variables have spread in their values. The simplest way to describe i
 
 A more standard measure of the spread of a distribution is the variance, defined as the expected value of the squared differences from the mean:
 
-Var(*X*)=*E*\[*X* − *E*(*X*)\]<sup>2</sup> = ∑<sub>*i*</sub>(*a*<sub>*i*</sub> − *E*(*X*))<sup>2</sup>*f*(*a*<sub>*i*</sub>)
+![\\text{Var}(X) = E \[X - E(X)\]^2 = \\sum\_i (a\_i- E(X))^2 f(a\_i)](https://latex.codecogs.com/png.latex?%5Ctext%7BVar%7D%28X%29%20%3D%20E%20%5BX%20-%20E%28X%29%5D%5E2%20%3D%20%5Csum_i%20%28a_i-%20E%28X%29%29%5E2%20f%28a_i%29 "\text{Var}(X) = E [X - E(X)]^2 = \sum_i (a_i- E(X))^2 f(a_i)")
 
 And for a density function it is defined using the integral:
-Var(*Y*)=*E*\[*Y* − *E*(*Y*)\]<sup>2</sup> = ∫<sub>*R*</sub>(*y* − *E*(*Y*))<sup>2</sup>*g*(*y*)*d**y*
+
+![\\text{Var}(Y) =  E\[ Y - E(Y)\]^2 = \\int\_R (y-E(Y))^2 g(y) dy ](https://latex.codecogs.com/png.latex?%5Ctext%7BVar%7D%28Y%29%20%3D%20%20E%5B%20Y%20-%20E%28Y%29%5D%5E2%20%3D%20%5Cint_R%20%28y-E%28Y%29%29%5E2%20g%28y%29%20dy%20 "\text{Var}(Y) =  E[ Y - E(Y)]^2 = \int_R (y-E(Y))^2 g(y) dy ")
 
 Variances have squared units so they are not directly comparable to the values of the random variable. Taking the square root of the variance converts it into the same units and is called the standard deviation of the distribution:
-$$ \\sigma\_X = \\sqrt{\\text{Var}(X)}$$
+
+![ \\sigma\_X = \\sqrt{\\text{Var}(X)}](https://latex.codecogs.com/png.latex?%20%5Csigma_X%20%3D%20%5Csqrt%7B%5Ctext%7BVar%7D%28X%29%7D " \sigma_X = \sqrt{\text{Var}(X)}")
+
  **Example:** Let's go back to data set diamonds and the numeric variable depth plotted for different cut qualities
 
 ``` r
@@ -235,22 +240,26 @@ Some of the fundamental questions about the population include:
 Law of large numbers
 --------------------
 
-First, the sample has to be *unbiased*, that is, no outcomes should be systematically over- or under-represented. But even an unbiased sample will differ from the population due to the inherent randomness of selection (sampling error.) The **law of large numbers** states that as the *sample size* increases, the mean of the sample converges to the true mean of the population. Formally, for a set of *n* indepdenent, identically distributed random variable (the sample) {*X*<sub>*i*</sub>} the sample mean $\\overline{X}\_n$ converges to the mean of the distribution *μ*:
+First, the sample has to be *unbiased*, that is, no outcomes should be systematically over- or under-represented. But even an unbiased sample will differ from the population due to the inherent randomness of selection (sampling error.) The **law of large numbers** states that as the *sample size* increases, the mean of the sample converges to the true mean of the population. Formally, for a set of ![n](https://latex.codecogs.com/png.latex?n "n") indepdenent, identically distributed random variable (the sample) ![\\{X\_i\\}](https://latex.codecogs.com/png.latex?%5C%7BX_i%5C%7D "\{X_i\}") the sample mean ![\\overline{X}\_n](https://latex.codecogs.com/png.latex?%5Coverline%7BX%7D_n "\overline{X}_n") converges to the mean of the distribution ![\\mu](https://latex.codecogs.com/png.latex?%5Cmu "\mu"):
 
-$$ 
+![ 
 \\lim \_{n \\to \\infty} \\frac{\\sum\_{i=1}^n {X\_i}}{n} = \\lim \_{n \\to \\infty} \\overline{X}\_n = \\mu
-$$
+](https://latex.codecogs.com/png.latex?%20%0A%5Clim%20_%7Bn%20%5Cto%20%5Cinfty%7D%20%5Cfrac%7B%5Csum_%7Bi%3D1%7D%5En%20%7BX_i%7D%7D%7Bn%7D%20%3D%20%5Clim%20_%7Bn%20%5Cto%20%5Cinfty%7D%20%5Coverline%7BX%7D_n%20%3D%20%5Cmu%0A " 
+\lim _{n \to \infty} \frac{\sum_{i=1}^n {X_i}}{n} = \lim _{n \to \infty} \overline{X}_n = \mu
+")
 
 Central Limit Theorem
 ---------------------
 
-That is nice to know, but doesn't say exactly how large a sample is needed to estimate, for example, the mean of the population to a given precision. For that, we have the **Central Limit Theorem**, which states that the distribution of sample means (from samples of independent, identically distributed random variables) as sample size increases, approaches the normal (Gaussian) distribution with mean equal to the population mean and standard deviation equal to the standard deviation of the population divided by the square root of the sample size. Formally, it states that for a set of *n* indepdenent, identically distributed random variable (the sample) {*X*<sub>*i*</sub>} with distribution mean *μ* and variance *σ*<sup>2</sup>, the probability density function of the sample mean $\\overline{X}\_n$ converges for large sample size *n* to the normal distribution:
+That is nice to know, but doesn't say exactly how large a sample is needed to estimate, for example, the mean of the population to a given precision. For that, we have the **Central Limit Theorem**, which states that the distribution of sample means (from samples of independent, identically distributed random variables) as sample size increases, approaches the normal (Gaussian) distribution with mean equal to the population mean and standard deviation equal to the standard deviation of the population divided by the square root of the sample size. Formally, it states that for a set of ![n](https://latex.codecogs.com/png.latex?n "n") indepdenent, identically distributed random variable (the sample) ![\\{X\_i\\}](https://latex.codecogs.com/png.latex?%5C%7BX_i%5C%7D "\{X_i\}") with distribution mean ![\\mu](https://latex.codecogs.com/png.latex?%5Cmu "\mu") and variance ![\\sigma^2](https://latex.codecogs.com/png.latex?%5Csigma%5E2 "\sigma^2"), the probability density function of the sample mean ![\\overline{X}\_n](https://latex.codecogs.com/png.latex?%5Coverline%7BX%7D_n "\overline{X}_n") converges for large sample size ![n](https://latex.codecogs.com/png.latex?n "n") to the normal distribution:
 
-$$ 
+![ 
 P(\\overline{X}\_n) \\to N(\\mu, \\sigma^2/n)
-$$
+](https://latex.codecogs.com/png.latex?%20%0AP%28%5Coverline%7BX%7D_n%29%20%5Cto%20N%28%5Cmu%2C%20%5Csigma%5E2%2Fn%29%0A " 
+P(\overline{X}_n) \to N(\mu, \sigma^2/n)
+")
 
-where *N*(*μ*, *σ*<sup>2</sup>/*n*) stands for the normal distribution with mean *μ* and variance *σ*<sup>2</sup>/*n*. One extremely useful consequence of this theorem is that the variance of the sample mean is reciprocally related to the sample size *n*. More precicely, it allows the calculation of *confidence intervals* by using the normal distribution to generate an interval around the observed sample mean in which the true mean *μ* lies with a given likelihood.
+where ![N(\\mu, \\sigma^2/n](https://latex.codecogs.com/png.latex?N%28%5Cmu%2C%20%5Csigma%5E2%2Fn "N(\mu, \sigma^2/n")) stands for the normal distribution with mean ![\\mu](https://latex.codecogs.com/png.latex?%5Cmu "\mu") and variance ![\\sigma^2/n](https://latex.codecogs.com/png.latex?%5Csigma%5E2%2Fn "\sigma^2/n"). One extremely useful consequence of this theorem is that the variance of the sample mean is reciprocally related to the sample size ![n](https://latex.codecogs.com/png.latex?n "n"). More precicely, it allows the calculation of *confidence intervals* by using the normal distribution to generate an interval around the observed sample mean in which the true mean ![\\mu](https://latex.codecogs.com/png.latex?%5Cmu "\mu") lies with a given likelihood.
 
 This is an amazing result because it applies to any distribution, so it allows for the estimation of means for any situation, as long as the condition of independent, identically disributed variables in the sample is satisfied (the identical distributed condition can actually be relaxed). There are other central limit theorems that apply to other situations, including cases where the random variables in the sample are not independent (e.g., Markov models). The bottom line is that an unbiased sample contains a reflection of the true population, but it is always distorted by uncertainty. Larger sample sizes decrease the uncertainty, but are more difficult and expensive to obtain.
 

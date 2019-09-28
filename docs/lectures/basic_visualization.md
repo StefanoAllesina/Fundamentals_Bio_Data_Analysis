@@ -90,12 +90,15 @@ head(dt)
     # 5  0.02344048
     # 6 -0.12970552
 
-where: `ID` is the identifier of the macaque; `year` is the year in which the observation was made; `age` is the age of the individual; `Afrels_0.063` is the number of adult female relatives; `OrdRank2` dominance rank in year (L = low ranking, H = high ranking); the rest are Z-scores detailing how much more (less) than the average does the individual gets/gives grooming and aggression. To remind you, a Z-score is a normalized scoring statistic, measuring the distance of an observation from the mean of a distribution in units of the standard deviation of the distribution (hence, if an observation has a Z-score of −2, it is two standard deviations lower than the mean). You can compute it for a set of observations as:
+where: `ID` is the identifier of the macaque; `year` is the year in which the observation was made; `age` is the age of the individual; `Afrels_0.063` is the number of adult female relatives; `OrdRank2` dominance rank in year (L = low ranking, H = high ranking); the rest are Z-scores detailing how much more (less) than the average does the individual gets/gives grooming and aggression. To remind you, a Z-score is a normalized scoring statistic, measuring the distance of an observation from the mean of a distribution in units of the standard deviation of the distribution (hence, if an observation has a Z-score of ![-2](https://latex.codecogs.com/png.latex?-2 "-2"), it is two standard deviations lower than the mean). You can compute it for a set of observations as:
 
-$$
+![
 z\_i = \\frac{x\_i - \\mu\_x}{\\sigma\_x}
-$$
- where *μ*<sub>*x*</sub> is the mean for the observations *μ*<sub>*x*</sub> = ∑**<sub>*i* = 1</sub><sup>*n*</sup>*x*<sub>*i*</sub>/*n* and *σ*<sub>*x*</sub> the standard deviation $\\sigma\_x = \\sqrt{\\sum{^n\_{i=1}} (x\_i - \\mu\_x)^2 /(n - 1)}$.
+](https://latex.codecogs.com/png.latex?%0Az_i%20%3D%20%5Cfrac%7Bx_i%20-%20%5Cmu_x%7D%7B%5Csigma_x%7D%0A "
+z_i = \frac{x_i - \mu_x}{\sigma_x}
+")
+
+ where ![\\mu\_x](https://latex.codecogs.com/png.latex?%5Cmu_x "\mu_x") is the mean for the observations ![\\mu\_x = \\sum{^n\_{i=1}} x\_i /n](https://latex.codecogs.com/png.latex?%5Cmu_x%20%3D%20%5Csum%7B%5En_%7Bi%3D1%7D%7D%20x_i%20%2Fn "\mu_x = \sum{^n_{i=1}} x_i /n") and ![\\sigma\_x](https://latex.codecogs.com/png.latex?%5Csigma_x "\sigma_x") the standard deviation ![\\sigma\_x = \\sqrt{\\sum{^n\_{i=1}} (x\_i - \\mu\_x)^2 /(n - 1)}](https://latex.codecogs.com/png.latex?%5Csigma_x%20%3D%20%5Csqrt%7B%5Csum%7B%5En_%7Bi%3D1%7D%7D%20%28x_i%20-%20%5Cmu_x%29%5E2%20%2F%28n%20-%201%29%7D "\sigma_x = \sqrt{\sum{^n_{i=1}} (x_i - \mu_x)^2 /(n - 1)}").
 
 Because we want to consider each individual only once, we can choose the most represented year:
 

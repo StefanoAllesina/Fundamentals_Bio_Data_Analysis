@@ -142,7 +142,7 @@ class(v)
 
     # [1] "logical"
 
--   `numeric`, storing real numbers (actually, their approximations, as computers have limited memory and thus [cannot store](https://www.exploringbinary.com/why-0-point-1-does-not-exist-in-floating-point/) numbers like *π*, or even 0.2)
+-   `numeric`, storing real numbers (actually, their approximations, as computers have limited memory and thus [cannot store](https://www.exploringbinary.com/why-0-point-1-does-not-exist-in-floating-point/) numbers like ![\\pi](https://latex.codecogs.com/png.latex?%5Cpi "\pi"), or even ![0.2](https://latex.codecogs.com/png.latex?0.2 "0.2"))
 
 ``` r
 v <- 3.77
@@ -210,7 +210,7 @@ Each data type supports a certain number of operators and functions. For example
 
     # [1] 2
 
-meaning that `5 %/% 3` (5 integer divided by 3) is 1 with a remainder of 2. The modulo operator is useful to determine whether a number is divisible for another: if *y* is divisible by *x*, then `y %% x` is 0.
+meaning that `5 %/% 3` (5 integer divided by 3) is 1 with a remainder of 2. The modulo operator is useful to determine whether a number is divisible for another: if ![y](https://latex.codecogs.com/png.latex?y "y") is divisible by ![x](https://latex.codecogs.com/png.latex?x "x"), then `y %% x` is 0.
 
 `R` provides many built-in functions: each functions has a name, followed by round parentheses surrounding the (possibly optional) function *arguments*. For example, these functions operate on numeric variables:
 
@@ -219,7 +219,7 @@ meaning that `5 %/% 3` (5 integer divided by 3) is 1 with a remainder of 2. The 
 -   `round(x, digits = 3)` round `x` to three decimal digits
 -   `cos(x)` cosinus (also supported are all the usual trigonometric functions)
 -   `log(x)` natural logarithm (use `log10` for base 10 logarithms)
--   `exp(x)` calculating *e*<sup>*x*</sup>
+-   `exp(x)` calculating ![e^x](https://latex.codecogs.com/png.latex?e%5Ex "e^x")
 
 Similarly, `character` variables have their own set of functions, such as:
 
@@ -398,7 +398,7 @@ rep(c(1, 2, 3), 3)
 > -   Create a vector containing all the even numbers between 2 and 100 (inclusive) and store it in variable `z`.
 > -   Extract all the elements of `z` that are divisible by 12. How many elements match this criterion?
 > -   What is the sum of all the elements of `z`?
-> -   Is it equal to 51 ⋅ 50?
+> -   Is it equal to ![51 \\cdot 50](https://latex.codecogs.com/png.latex?51%20%5Ccdot%2050 "51 \cdot 50")?
 > -   What is the product of elements 5, 10 and 15 of `z`?
 > -   Does `seq(2, 100, by = 2)` produce the same vector as `(1:50) * 2`?
 > -   What happens if you type `z ^ 2`?
@@ -639,7 +639,7 @@ colnames(trees) <- c("Circumference", "Height", "Volume") # change column names
 >
 > -   What is the average height of the cherry trees?
 > -   What is the average girth of those that are more than 75 ft tall?
-> -   What is the maximum height of trees with a volume between 15 and 35 ft**<sup>3</sup>?
+> -   What is the maximum height of trees with a volume between 15 and 35 ft![^3](https://latex.codecogs.com/png.latex?%5E3 "^3")?
 
 Reading and writing data
 ========================
@@ -1015,10 +1015,10 @@ rnorm(3) # three values from standard normal
 rnorm(3, mean = 5, sd = 4) # specify mean and standard deviation
 ```
 
-    # [1] 0.3856372 0.5692123 0.1952262 0.7604626 0.1862951
-    # [1] 4.618345 2.418337 6.951742 1.327177 1.288924
-    # [1]  1.0251916 -0.7667879  0.9722498
-    # [1] 8.600607 8.121984 3.814584
+    # [1] 0.4143517 0.2517760 0.4884695 0.2391422 0.7883470
+    # [1] 5.238218 4.259400 3.995434 7.503748 1.573512
+    # [1]  0.04250566 -0.16955122 -1.25223861
+    # [1]  0.6988321 -0.9165752  3.5860944
 
 To sample from a set of values, use `sample`:
 
@@ -1029,9 +1029,9 @@ sample(v, 6, replace = TRUE) # with replacement
 sample(v) # simply shuffle the elements
 ```
 
-    # [1] "d" "a"
-    # [1] "b" "b" "c" "d" "a" "d"
-    # [1] "a" "d" "b" "c"
+    # [1] "b" "d"
+    # [1] "d" "c" "a" "b" "a" "d"
+    # [1] "a" "b" "d" "c"
 
 Writing functions
 =================
@@ -1109,7 +1109,7 @@ order_two_numbers <- function(a, b){
 order_two_numbers(runif(1), runif(1))
 ```
 
-    # [1] 0.24839453 0.04312195
+    # [1] 0.9094077 0.4767381
 
 Organizing and running code
 ===========================
@@ -1121,9 +1121,9 @@ During the class, we will write a lot of code, of increasing complexity. Here is
 3.  Extensively document the code, so that you can understand what you did, how you did it, and why.
 4.  Combine the building blocks into a master program.
 
-For example, let's write code that takes the data on Chromosome 6 we have seen above, and tries to identify which SNPs deviate the most from Hardy-Weinberg equilibrium. Remember that in an infinite population, where mating is random, there is no selection and no mutations, the proportion of people carrying the alleles *A*1*A*1 should be approximately *p*<sub>11</sub> = *p*<sup>2</sup> (where *p* is the frequency of the first allele in the population $p = p\_{11} + \\frac{1}{2} p\_{12}$), those carrying *A*1*A*2 should be *p*<sub>12</sub> = 2*p**q* (where *q* = 1 − *p*) and finally those carrying *A*2*A*2 should be *p*<sub>22</sub> = *q*<sup>2</sup>. This is called the Hardy-Weinberg equilibrium.
+For example, let's write code that takes the data on Chromosome 6 we have seen above, and tries to identify which SNPs deviate the most from Hardy-Weinberg equilibrium. Remember that in an infinite population, where mating is random, there is no selection and no mutations, the proportion of people carrying the alleles ![A1A1](https://latex.codecogs.com/png.latex?A1A1 "A1A1") should be approximately ![p\_{11} = p^2](https://latex.codecogs.com/png.latex?p_%7B11%7D%20%3D%20p%5E2 "p_{11} = p^2") (where ![p](https://latex.codecogs.com/png.latex?p "p") is the frequency of the first allele in the population ![p = p\_{11} + \\frac{1}{2} p\_{12}](https://latex.codecogs.com/png.latex?p%20%3D%20p_%7B11%7D%20%2B%20%5Cfrac%7B1%7D%7B2%7D%20p_%7B12%7D "p = p_{11} + \frac{1}{2} p_{12}")), those carrying ![A1A2](https://latex.codecogs.com/png.latex?A1A2 "A1A2") should be ![p\_{12} = 2 p q](https://latex.codecogs.com/png.latex?p_%7B12%7D%20%3D%202%20p%20q "p_{12} = 2 p q") (where ![q = 1-p](https://latex.codecogs.com/png.latex?q%20%3D%201-p "q = 1-p")) and finally those carrying ![A2A2](https://latex.codecogs.com/png.latex?A2A2 "A2A2") should be ![p\_{22} = q^2](https://latex.codecogs.com/png.latex?p_%7B22%7D%20%3D%20q%5E2 "p_{22} = q^2"). This is called the Hardy-Weinberg equilibrium.
 
-We want to test this on a number of different SNPs. First, we write a function that takes as input the data and a given SNP, and computes the probability *p* of carrying the first allele.
+We want to test this on a number of different SNPs. First, we write a function that takes as input the data and a given SNP, and computes the probability ![p](https://latex.codecogs.com/png.latex?p "p") of carrying the first allele.
 
 ``` r
 compute_probabilities_HW <- function(my_data, my_SNP = "rs1535053"){
@@ -1192,7 +1192,7 @@ compute_probabilities_HW(ch6)
     # $BB
     # [1] 80
 
-If the allele conformed to Hardy-Weinberg, we should find approximately *p*<sup>2</sup> ⋅ *n* people with *A*1*A*1, where *n* is the number of people sampled. Let's see whether these assumptions are met by the data:
+If the allele conformed to Hardy-Weinberg, we should find approximately ![p^2 \\cdot n](https://latex.codecogs.com/png.latex?p%5E2%20%5Ccdot%20n "p^2 \cdot n") people with ![A1A1](https://latex.codecogs.com/png.latex?A1A1 "A1A1"), where ![n](https://latex.codecogs.com/png.latex?n "n") is the number of people sampled. Let's see whether these assumptions are met by the data:
 
 ``` r
 observed_vs_expected_HW <- function(SNP_data){
@@ -1242,10 +1242,13 @@ observed_vs_expected_HW(my_SNP_data)
 
 To find those with the largest deviations, we can compute for the statistic:
 
-$$
+![
 \\sum\_i \\frac{(e\_i - o\_i)^2}{e\_i}
-$$
- In genetics, this is called *χ*<sup>2</sup> statistics, because if the data were to follow the assumptions, these quantities would follow the *χ*<sup>2</sup> distribution.
+](https://latex.codecogs.com/png.latex?%0A%5Csum_i%20%5Cfrac%7B%28e_i%20-%20o_i%29%5E2%7D%7Be_i%7D%0A "
+\sum_i \frac{(e_i - o_i)^2}{e_i}
+")
+
+ In genetics, this is called ![\\chi^2](https://latex.codecogs.com/png.latex?%5Cchi%5E2 "\chi^2") statistics, because if the data were to follow the assumptions, these quantities would follow the ![\\chi^2](https://latex.codecogs.com/png.latex?%5Cchi%5E2 "\chi^2") distribution.
 
 ``` r
 compute_chi_sq_stat <- function(my_obs_vs_expected){
