@@ -1,6 +1,6 @@
 ---
-title: 'Week 1: Basics of data and its visualization'
-author: "Dmitry Kondrashov & Stefano Allesina"
+title: 'Review of probability'
+author: "**Dmitry Kondrashov & Stefano Allesina**"
 date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
 output:
   html_document:

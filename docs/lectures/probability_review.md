@@ -1,6 +1,6 @@
-Week 1: Basics of data and its visualization
+Review of probability
 ================
-Dmitry Kondrashov & Stefano Allesina
+**Dmitry Kondrashov & Stefano Allesina**
 Fundamentals of Biological Data Analysis -- BIOS 26318
 
 -   [Goals of the course](#goals-of-the-course)

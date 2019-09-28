@@ -1,6 +1,6 @@
 Basic data visualization
 ================
-Dmitry Kondrashov & Stefano Allesina
+**Dmitry Kondrashov & Stefano Allesina**
 Fundamentals of Biological Data Analysis -- BIOS 26318
 
 -   [Goal](#goal)

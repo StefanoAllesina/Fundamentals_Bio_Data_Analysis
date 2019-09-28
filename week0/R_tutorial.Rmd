@@ -1,6 +1,6 @@
 ---
 title: "R tutorial"
-author: "Dmitry Kondrashov & Stefano Allesina"
+author: "**Dmitry Kondrashov & Stefano Allesina**"
 date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
 output:
   html_document:

@@ -1,6 +1,6 @@
 R tutorial
 ================
-Dmitry Kondrashov & Stefano Allesina
+**Dmitry Kondrashov & Stefano Allesina**
 Fundamentals of Biological Data Analysis -- BIOS 26318
 
 -   [Goal](#goal)
@@ -1015,10 +1015,10 @@ rnorm(3) # three values from standard normal
 rnorm(3, mean = 5, sd = 4) # specify mean and standard deviation
 ```
 
-    # [1] 0.776653427 0.424774034 0.007924987 0.380055540 0.334626514
-    # [1] 2.950504 2.488575 7.018860 2.223445 4.859368
-    # [1]  0.5160274  0.6894954 -0.7002974
-    # [1]  4.2037023 12.1401926  0.4968022
+    # [1] 0.3856372 0.5692123 0.1952262 0.7604626 0.1862951
+    # [1] 4.618345 2.418337 6.951742 1.327177 1.288924
+    # [1]  1.0251916 -0.7667879  0.9722498
+    # [1] 8.600607 8.121984 3.814584
 
 To sample from a set of values, use `sample`:
 
@@ -1029,9 +1029,9 @@ sample(v, 6, replace = TRUE) # with replacement
 sample(v) # simply shuffle the elements
 ```
 
-    # [1] "a" "d"
-    # [1] "a" "b" "c" "a" "b" "d"
-    # [1] "b" "d" "a" "c"
+    # [1] "d" "a"
+    # [1] "b" "b" "c" "d" "a" "d"
+    # [1] "a" "d" "b" "c"
 
 Writing functions
 =================
@@ -1109,7 +1109,7 @@ order_two_numbers <- function(a, b){
 order_two_numbers(runif(1), runif(1))
 ```
 
-    # [1] 0.386908154 0.005661496
+    # [1] 0.24839453 0.04312195
 
 Organizing and running code
 ===========================

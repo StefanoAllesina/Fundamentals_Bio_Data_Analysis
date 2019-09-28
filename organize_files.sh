@@ -20,7 +20,7 @@ rm *.html
 cd ..
 
 # Week 2
-cd week1
+cd week2
 Rscript -e "rmarkdown::render('basic_data_wrangling.Rmd', output_format = 'github_document')"
 #Rscript -e "rmarkdown::render('basic_visualization.Rmd')"
 mv *.md ../docs/lectures
