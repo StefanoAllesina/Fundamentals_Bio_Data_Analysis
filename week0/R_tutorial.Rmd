@@ -347,7 +347,13 @@ sum(Z)
 mean(Z)
 ```
 
-
+Some functions apply the operation across a given dimension (e.g., columns) of the matrix:
+```{r}
+rowSums(Z) # returns a vector of the sums of the values in each row
+colSums(Z) # does the same for columns
+rowMeans(Z) # returns a vector of the means of the values in each row
+colMeans(Z) # does the same for columns
+```
 
 ### Arrays
 
