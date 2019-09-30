@@ -1,13 +1,16 @@
 ---
-title: 'Week 1: Basics of data and its visualization'
-author: "Dmitry Kondrashov & Stefano Allesina"
+title: 'Review of probability'
+author: "**Dmitry Kondrashov & Stefano Allesina**"
 date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
 output:
   html_document:
     theme: cosmo
     toc: yes
     toc_float: yes
-    keep_md: true
+  github_document:
+    toc: true
+    toc_depth: 2
+    pandoc_args: --webtex
 urlcolor: blue
 ---
 
@@ -147,7 +150,7 @@ Comment on how the descriptive statistics of spread correspond to the box plots.
 
 # Data as samples from distributions: statistics
 
-In scientific practice, we collect data from one or more random variables, called a *sample*, and then try to make sense of it. One of the basic goals is statistical inference: using the data set to describe the *population* distribution from the which the sample was drawn. Data sets can be plotted as *histograms* and the frequency/fraction of each value should be an approximation of the underlying probability distribution. In addition, descriptive statistics of the sample data (means, variances, medians, etc.) can be used to estimate the true parameters such as the mean and the variance of the population distribution.
+In scientific practice, we collect data from one or more random variables, called a *sample*, and then try to make sense of it. One of the basic goals is statistical inference: using the data set to describe the *population* distribution from which the sample was drawn. Data sets can be plotted as *histograms* and the frequency/fraction of each value should be an approximation of the underlying probability distribution. In addition, descriptive statistics of the sample data (means, variances, medians, etc.) can be used to estimate the true parameters such as the mean and the variance of the population distribution.
 
 Some of the fundamental questions about the population include:
 
@@ -161,7 +164,7 @@ Some of the fundamental questions about the population include:
 
 ## Law of large numbers
 
-First, the sample has to be *unbiased*, that is, no outcomes should be systematically over- or under-represented. But even an unbiased sample will differ from the population due to the inherent randomness of selection (sampling error.) The **law of large numbers** states that as the *sample size* increases, the mean of the sample converges to the true mean of the population. Formally, for a set of $n$ indepdenent, identically distributed random variable (the sample) $\{X_i\}$ the sample mean $\overline{X}_n$ converges to the mean of the distribution $\mu$:
+First, the sample has to be *unbiased*, that is, no outcomes should be systematically over- or under-represented. But even an unbiased sample will differ from the population due to the inherent randomness of selection (sampling error). The **law of large numbers** states that as the *sample size* increases, the mean of the sample converges to the true mean of the population. Formally, for a set of $n$ indepdenent, identically distributed random variables (the sample) $\{X_i\}$ the sample mean $\overline{X}_n$ converges to the mean of the distribution $\mu$:
 
 $$ 
 \lim _{n \to \infty} \frac{\sum_{i=1}^n {X_i}}{n} = \lim _{n \to \infty} \overline{X}_n = \mu
@@ -169,7 +172,7 @@ $$
 
 ## Central Limit Theorem
 
-That is nice to know, but doesn't say exactly how large a sample is needed to estimate, for example, the mean of the population to a given precision. For that, we have the **Central Limit Theorem**, which states that the distribution of sample means (from samples of independent, identically distributed random variables) as sample size increases, approaches the normal (Gaussian) distribution with mean equal to the population mean and standard deviation equal to the standard deviation of the population divided by the square root of the sample size. Formally, it states that for a set of $n$ indepdenent, identically distributed random variable (the sample) $\{X_i\}$ with distribution mean $\mu$ and variance $\sigma^2$, the probability density function of the sample mean $\overline{X}_n$ converges for large sample size $n$ to the normal distribution:
+That is nice to know, but doesn't say exactly how large a sample is needed to estimate, for example, the mean of the population to a given precision. For that, we have the **Central Limit Theorem**, which states that the distribution of sample means (from samples of independent, identically distributed random variables) as sample size increases, approaches the normal (Gaussian) distribution with mean equal to the population mean and standard deviation equal to the standard deviation of the population divided by the square root of the sample size. Formally, it states that for a set of $n$ indepdenent, identically distributed random variables (the sample) $\{X_i\}$ with distribution mean $\mu$ and variance $\sigma^2$, the probability density function of the sample mean $\overline{X}_n$ converges for large sample size $n$ to the normal distribution:
 
 $$ 
 P(\overline{X}_n) \to N(\mu, \sigma^2/n)
@@ -177,7 +180,7 @@ $$
 
 where $N(\mu, \sigma^2/n$) stands for the normal distribution with mean $\mu$ and variance $\sigma^2/n$.  One extremely useful consequence of this theorem is that the variance of the sample mean is reciprocally related to the sample size $n$. More precicely, it allows the calculation of *confidence intervals* by using the normal distribution to generate an interval around the observed sample mean in which the  true mean $\mu$ lies with a given likelihood.
 
-This is an amazing result because it applies to any distribution, so it allows for the estimation of means for any situation, as long as the condition of independent, identically disributed variables in the sample is satisfied (the identical distributed condition can actually be relaxed). There are other central limit theorems that apply to other situations, including cases where the random variables in the sample are not independent (e.g., Markov models). The bottom line is that an unbiased sample contains a reflection of the true population, but it is always distorted by uncertainty. Larger sample sizes decrease the uncertainty, but are more difficult and expensive to obtain.
+This is an amazing result because it applies to any distribution, so it allows for the estimation of means for any situation, as long as the condition of independent, identically disributed variables in the sample is satisfied (the identical distributed condition can actually be relaxed). There are other central limit theorems that apply to other situations, including cases where the random variables in the sample are not independent (e.g., Markov models). The bottom line is that an unbiased sample contains a reflection of the true population, but it is always distorted by uncertainty. Larger sample sizes decrease the uncertainty but are more difficult and expensive to obtain.
 
 **Discussion:** Suggest examples of biological data sets which are not made up of independent identically distributed random variables.
 
