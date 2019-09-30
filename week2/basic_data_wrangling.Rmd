@@ -1,14 +1,16 @@
 ---
 title: "Basic data wrangling"
-author: "Dmitry Kondrashov & Stefano Allesina"
+author: "**Dmitry Kondrashov & Stefano Allesina**"
 date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
 output:
   html_document:
     theme: cosmo
     toc: yes
     toc_float: yes
-  pdf_document:
-    toc: yes
+  github_document:
+    toc: true
+    toc_depth: 2
+    pandoc_args: --webtex
 urlcolor: blue
 ---
 
@@ -16,12 +18,13 @@ urlcolor: blue
 knitr::opts_chunk$set(
   eval      = TRUE,
   comment   = "#",
-  warning = FALSE,
+  results   = "hold",
   message = FALSE,
-  #results   = "asis",
+  warning = FALSE,
   # collapse  = TRUE,
   fig.align = "center")
 ```
+
 
 # Goal
 Learn how to manipulate large data sets by writing efficient, consistent, and compact code. Introduce the use of `dplyr`, `tidyr`, and the "pipeline" operator `%>%`. Effortlessly produce statistics for grouped data. Massage data into "tidy" form.
@@ -34,22 +37,21 @@ We're going to learn about the packages `dplyr` and `tidyr`, which are part of `
 
 To start, we need to import the libraries:
 
-```{r, message=FALSE}
-library(tidyverse) # this loads them both, along with other packages
+```{r}
+library(tidyverse) # this loads both dplyr and tidyr, along with other packages
+library(readxl) # to read Excel files
 ```
 
 Then, we need a dataset to play with. We take a simple dataset from:
 
 > Lippens C, Faivre B, Lechenault C, Sorci G (2017) [Aging parasites produce offspring with poor fitness prospects](https://doi.org/10.1098/rsbl.2016.0888). Biology Letters 13(2): 20160888. 
 
-The Authors have found that senescing parasites produce offspring with lower survival probability and lower fertility. To produce this result, they have infected mice with the parasite nematode *Heligmosomoides polygyrus*. They collected the eggs found in the faeces at different times, corresponding to the age of the worm (in days). Then they used the hatched larvae to infect mice, and counted the eggs shed by the newly infected mice for 28 days. At that point, mice were sacrificed and adult worms in the intestine counted.
+The authors have found that senescing parasites produce offspring with lower survival probability and lower fertility. To produce this result, they have infected mice with the parasite nematode *Heligmosomoides polygyrus*. They collected the eggs found in the faeces at different times, corresponding to the age of the worm (in days). Then they used the hatched larvae to infect mice, and counted the eggs shed by the newly infected mice for 28 days. At that point, the mice were sacrificed and adult worms in the intestine counted.
 
 ```{r}
-# to read Excel files
-source("general_code/read_xls_from_url.R")
 # original URL:
-# https://datadryad.org/bitstream/handle/10255/dryad.135877/dryad_data.xlsx
-dt <- read_xlsx_from_url("https://tinyurl.com/yclwadb8") 
+# https://datadryad.org/stash/dataset/doi:10.5061/dryad.2k11f
+dt <- read_xlsx("data/Lippens_2017.xlsx") 
 ```
 
 # A new data type, `tibble`
@@ -59,7 +61,7 @@ This is now a :
 class(dt)
 ```
 
-`dplyr` ships with a new data type, called a `tibble`. To convert a `data.frame` into a tibble, use `as.tibble`:
+`dplyr` ships with a new data type, called a `tibble`. To convert a `data.frame` into a tibble, use `as_tibble`:
 
 ```{r, eval=FALSE}
 # load a data frame
@@ -130,7 +132,7 @@ dt %>% # take a data table
   distinct() # remove duplicates
 ```
 
-does exactly the same operations as the command above, but is much more readable. By concatenating many commands, you can create incredibly complex pipelines while retaining readability.
+does exactly the same operations as the command above, but is much more readable. By concatenating many commands, you can create incredibly complex pipelines while retaining readability. It is also quite easy to add another piece of the pipeline in between commands, or to comment some of the pipeline out.
 
 Another advantage of pipelines is that they help with name completion. In fact, `RStudio` is running in the background your pipeline while you type it. Try typing `dt %>% filter(` and then start typing `time` and press `Tab`: you will see the options to complete the column name; choose it with your arrows and hit `Return`. The back tickmarks will be added automatically.
 
@@ -221,7 +223,9 @@ This is often called *narrow table* format. Any other form of data (e.g., *wide 
 ## Gather: from columns to rows
 
 ```{r}
-test <- tibble("indivudual" = c("ind1", "ind2"), "Task A" = c(1, 3), "Task B" = c(4, 1))
+test <- tibble("individual" = c("ind1", "ind2"), 
+               "Task A" = c(1, 3), 
+               "Task B" = c(4, 1))
 test
 ```
 Make it into tidy form:
@@ -238,6 +242,7 @@ test <- tibble(location = c("one", "one", "two", "two"),
                rainfall = c(12, 14, 6, 8))
 test
 ```
+
 Make it into wide-table (messy) format:
 
 ```{r}
@@ -247,7 +252,7 @@ test %>% spread(month, rainfall)
 ## Separate: split a column into two or more
 
 ```{r}
-test <- tibble(name = c("Allesina, Stefano", "Kondrashov, Dmitry", "Miller, Zach"))
+test <- tibble(name = c("Allesina, Stefano", "Kondrashov, Dmitry", "Smith, Julia"))
 test
 ```
 
@@ -275,7 +280,9 @@ test %>% separate_rows(records, sep = ";")
 The data we are using are in tidy format, but suppose you want to produce a table for your paper. For each parental age, you want to show the mean number of eggs by `time post-infection`. We know how to compute the statistics:
 
 ```{r}
-for_table <- dt %>% group_by(`Parental age`, `time post-infection`) %>% summarise(eggs = mean(`fecal egg count`))
+for_table <- dt %>% 
+  group_by(`Parental age`, `time post-infection`) %>% 
+  summarise(eggs = mean(`fecal egg count`))
 for_table
 ```
 
@@ -292,15 +299,15 @@ We now are going to turn a data set that is almost impossible to use. You can re
 
 ```{r}
 # Original URL
-# https://datadryad.org/bitstream/handle/10255/dryad.193139/Derocles%20et%20al%20Networks.xlsx
-a <- read_xlsx_from_url("https://tinyurl.com/y9oqmztr")
+# https://datadryad.org/stash/dataset/doi:10.5061/dryad.80vd7q6
+a <- read_xlsx("data/Derocles et al Networks.xlsx")
 ```
 
 These data are taken from:
 
-> Derocles SAP, Lunt DH, Berthe SCF, Nichols PC, Moss ED, Evans DM (2018) Climate-warming alters the structure of farmland tri-trophic ecological networks and reduces crop yield. Molecular Ecology (to appear)
+> Derocles SAP, Lunt DH, Berthe SCF, Nichols PC, Moss ED, Evans DM (2018) Climate-warming alters the structure of farmland tri-trophic ecological networks and reduces crop yield. Molecular Ecology
 
-The data is composed of 24 matrices (one for each experimental plot) showing the frequency of interaction between plants, aphids and parasitoids. Take a look using `View(a)`: you can see that there are several matrices in the same sheet. We would like to produce the tidy data: `plot` (number of the plot), `from` (species from), `to` (species to), `frequency` (what is reported in the matrix). First, we need to find whether plot 2, 3, etc. start:
+The data is composed of 24 matrices (one for each experimental plot) showing the frequency of interaction between plants, aphids and parasitoids. Take a look using `View(a)`: you can see that there are several matrices in the same sheet. We would like to produce the tidy data: `plot` (number of the plot), `from` (species from), `to` (species to), `frequency` (what is reported in the matrix). First, we need to find where plot 2, 3, etc. start:
 
 ```{r}
 starting <- a %>% transmute(plot = `plot 1`, 
@@ -316,7 +323,7 @@ starting <- rbind(tibble(plot = "plot 1", start = 1),
 starting
 ```
 
-Now we want to find where each data sets end. It will be the starting point of the next one minus 3:
+Now we want to find where each data set ends. It will be the starting point of the next one minus 3:
 
 ```{r}
 starting <- starting %>% mutate(end = lead(start) - 3)

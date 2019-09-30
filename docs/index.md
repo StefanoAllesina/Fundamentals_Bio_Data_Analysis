@@ -4,23 +4,30 @@
 
 ## Goals
 
+* Learn how to use R for working with biological data 
+* Become familiar with probability theory and the assumptions of popular models
+* Encounter and learn how to avoid common statistical mistakes
+
 ## Approach
+
+* Mix of theory and practice
+* Apply what you're learning to your own data
 
 ## Materials
 
 ### Week 0
 
-- `R` refresher
+- [`R` refresher](lectures/R_tutorial)
 
 ### Week 1
 
-- Review of probability
-- Using `ggplot2` to produce publication-ready figures
+- [Review of probability](lectures/probability_review)
+- [Using `ggplot2` to produce publication-ready figures](lectures/basic_visualization)
 
 ### Week 2
 
 - Probability distributions
-- Data wrangling in `tidyverse`
+- [Data wrangling in `tidyverse`](lectures/basic_data_wrangling)
 
 ### Week 3
 
