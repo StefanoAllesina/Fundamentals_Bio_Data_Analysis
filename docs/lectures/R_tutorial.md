@@ -187,7 +187,7 @@ class(v)
 
     # [1] "character"
 
-In `R`, the type of a variable is evaluated at runtime. This means that you can recycle the names of variables. This is very handy, but can make your programs more difficult to read and to debug (i.e., find mistakes). For example:
+In `R`, the value and type of a variable are evaluated at runtime. This means that you can recycle the names of variables. This is very handy, but can make your programs more difficult to read and to debug (i.e., find mistakes). For example:
 
 ``` r
 x <- '2.3' # this is a string
@@ -212,12 +212,12 @@ Each data type supports a certain number of operators and functions. For example
 
 meaning that `5 %/% 3` (5 integer divided by 3) is 1 with a remainder of 2. The modulo operator is useful to determine whether a number is divisible for another: if ![y](https://latex.codecogs.com/png.latex?y "y") is divisible by ![x](https://latex.codecogs.com/png.latex?x "x"), then `y %% x` is 0.
 
-`R` provides many built-in functions: each functions has a name, followed by round parentheses surrounding the (possibly optional) function *arguments*. For example, these functions operate on numeric variables:
+`R` provides many built-in functions: each functions has a name, followed by round parentheses surrounding the (possibly optional) function *arguments*. For example, these functions operate on `numeric` variables:
 
 -   `abs(x)` absolute value
 -   `sqrt(x)` square root
 -   `round(x, digits = 3)` round `x` to three decimal digits
--   `cos(x)` cosinus (also supported are all the usual trigonometric functions)
+-   `cos(x)` cosine (also supported are all the usual trigonometric functions)
 -   `log(x)` natural logarithm (use `log10` for base 10 logarithms)
 -   `exp(x)` calculating ![e^x](https://latex.codecogs.com/png.latex?e%5Ex "e^x")
 
@@ -484,7 +484,7 @@ Z[c(1, 3), c(1, 3)] # indexing non-adjacent rows/columns
     # [1,]    1    7
     # [2,]    3    9
 
-Some operations use all the elements of the matrix:
+Some functions use all the elements of the matrix:
 
 ``` r
 sum(Z)
@@ -493,6 +493,20 @@ mean(Z)
 
     # [1] 45
     # [1] 5
+
+Some functions apply the operation across a given dimension (e.g., columns) of the matrix:
+
+``` r
+rowSums(Z) # returns a vector of the sums of the values in each row
+colSums(Z) # does the same for columns
+rowMeans(Z) # returns a vector of the means of the values in each row
+colMeans(Z) # does the same for columns
+```
+
+    # [1] 12 15 18
+    # [1]  6 15 24
+    # [1] 4 5 6
+    # [1] 2 5 8
 
 ### Arrays
 
@@ -648,9 +662,9 @@ In most cases, you will not generate your data in `R`, but import it from a file
 
 ``` r
 read.csv("MyFile.csv") # read the file MyFile.csv
-read.csv("MyFile.csv", header = TRUE) # The file has a header.
-read.csv("MyFile.csv", sep = ';') # Specify the column separator.
-read.csv("MyFile.csv", skip = 5) # Skip the first 5 lines.
+read.csv("MyFile.csv", header = TRUE) # the file has a header
+read.csv("MyFile.csv", sep = ';') # specify the column separator
+read.csv("MyFile.csv", skip = 5) # skip the first 5 lines
 ```
 
 Note that columns containing strings are typically converted to *factors* (categorical values, useful when performing regressions). To avoid this behavior, you can specify `stringsAsFactors = FALSE` when calling the function.
@@ -659,9 +673,9 @@ Similarly, you can save your data frames using `write.table` or `write.csv`. Sup
 
 ``` r
 write.csv(MyDF, "MyFile.csv") 
-write.csv(MyDF, "MyFile.csv", append = TRUE) # Append to the end of the file. 
-write.csv(MyDF, "MyFile.csv", row.names = TRUE) # Include the row names.
-write.csv(MyDF, "MyFile.csv", col.names = FALSE) # Do not include column names.
+write.csv(MyDF, "MyFile.csv", append = TRUE) # append to the end of the file 
+write.csv(MyDF, "MyFile.csv", row.names = TRUE) # include the row names
+write.csv(MyDF, "MyFile.csv", col.names = FALSE) # do not include column names
 ```
 
 Let's look at an example: Read a file containing data on the 6th chromosome for a number of Europeans (Data adapted from [Stanford HGDP SNP Genotyping Data](hagsc.org/hgdp/) by John Novembre). This example shows that you can read data directly from the internet!
@@ -745,9 +759,9 @@ When we want a certain block of code to be executed only when a certain conditio
 
 ``` r
 if (condition is met){
-  # Execute this block of code
+  # execute this block of code
 } else {
-  # Execute this other block of code
+  # execute this other block of code
 }
 ```
 
@@ -945,7 +959,7 @@ Here's a short list of useful functions that will help you write your programs:
 Packages
 ========
 
-`R` is the most popular statistical computing software among biologists due to its highly specialized packages, often written from biologists for biologists. You can contribute a package too! The `RStudio` support [(`goo.gl/harVqF`)](http://goo.gl/harVqF) provides guidance on how to start developing `R` packages and Hadley Wickham's free online book [(`r-pkgs.had.co.nz`)](http://r-pkgs.had.co.nz) will make you a pro.
+`R` is the most popular statistical computing software among biologists due to its highly specialized packages, often written by biologists for biologists. You can contribute a package too! The `RStudio` support [(`goo.gl/harVqF`)](http://goo.gl/harVqF) provides guidance on how to start developing `R` packages and Hadley Wickham's free online book [(`r-pkgs.had.co.nz`)](http://r-pkgs.had.co.nz) will make you a pro.
 
 You can find highly specialized packages to address your research questions. Here are some suggestions for finding an appropriate package. The Comprehensive R Archive Network (CRAN) offers several ways to find specific packages for your task. You can either browse packages [(`goo.gl/7oVyKC`)](http://goo.gl/7oVyKC) and their short description or select a scientific field of interest [(`goo.gl/0WdIcu`)](http://goo.gl/0WdIcu) to browse through a compilation of packages related to each discipline.
 
@@ -1006,7 +1020,7 @@ bacteria[1:3,]
 Random numbers
 ==============
 
-To perform this randomization, or any simulation, we typically need to draw random numbers. `R` has functions to sample random numbers from very many different statistical distributions. For example:
+To perform randomization, or any simulation, we typically need to draw random numbers. `R` has functions to sample random numbers from very many different statistical distributions. For example:
 
 ``` r
 runif(5) # sample 5 numbers from the uniform distribution between 0 and 1
@@ -1015,10 +1029,10 @@ rnorm(3) # three values from standard normal
 rnorm(3, mean = 5, sd = 4) # specify mean and standard deviation
 ```
 
-    # [1] 0.4143517 0.2517760 0.4884695 0.2391422 0.7883470
-    # [1] 5.238218 4.259400 3.995434 7.503748 1.573512
-    # [1]  0.04250566 -0.16955122 -1.25223861
-    # [1]  0.6988321 -0.9165752  3.5860944
+    # [1] 0.7991027 0.9020288 0.6914099 0.7951556 0.4261943
+    # [1] 6.296255 5.470000 4.787747 3.970586 4.833188
+    # [1]  0.28511680 -0.02174039 -0.06982073
+    # [1]  4.789336 10.608599  1.776088
 
 To sample from a set of values, use `sample`:
 
@@ -1029,14 +1043,14 @@ sample(v, 6, replace = TRUE) # with replacement
 sample(v) # simply shuffle the elements
 ```
 
-    # [1] "b" "d"
-    # [1] "d" "c" "a" "b" "a" "d"
-    # [1] "a" "b" "d" "c"
+    # [1] "b" "a"
+    # [1] "d" "b" "c" "b" "a" "c"
+    # [1] "b" "d" "c" "a"
 
 Writing functions
 =================
 
-The `R` community provides about 7,000 packages. Still, sometimes there isn't an already made function capable of doing what you need. In these cases, you can write your own functions. In fact, it is in general a good idea to always divide your analysis into functions, and then write a small "master" program that calls the functions and performs the analysis. In this way, the code will be much more legible, and you will be able to recycle the functions for your other projects.
+The `R` community provides about 7,000 packages. Still, sometimes there isn't an already made function capable of doing what you need. In these cases, you can write your own functions. In fact, it is generally a good idea to always divide your analysis into functions, and then write a small "master" program that calls the functions and performs the analysis. In this way, the code will be much more legible, and you will be able to recycle the functions for your other projects.
 
 A function in `R` has this form:
 
@@ -1102,14 +1116,14 @@ You can return **only one** object. If you need to return multiple values, organ
 
 ``` r
 order_two_numbers <- function(a, b){
-  if (a > b) return(c(a, b))
+  if (a > b) return(c(a, b)) #nothing after the first return is executed
   return(c(b,a))
 }
 
 order_two_numbers(runif(1), runif(1))
 ```
 
-    # [1] 0.9094077 0.4767381
+    # [1] 0.9199542 0.7268103
 
 Organizing and running code
 ===========================

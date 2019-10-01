@@ -45,7 +45,7 @@ Then, we need a dataset to play with. We take a simple dataset from:
 
 > Lippens C, Faivre B, Lechenault C, Sorci G (2017) [Aging parasites produce offspring with poor fitness prospects](https://doi.org/10.1098/rsbl.2016.0888). Biology Letters 13(2): 20160888.
 
-The Authors have found that senescing parasites produce offspring with lower survival probability and lower fertility. To produce this result, they have infected mice with the parasite nematode *Heligmosomoides polygyrus*. They collected the eggs found in the faeces at different times, corresponding to the age of the worm (in days). Then they used the hatched larvae to infect mice, and counted the eggs shed by the newly infected mice for 28 days. At that point, mice were sacrificed and adult worms in the intestine counted.
+The authors have found that senescing parasites produce offspring with lower survival probability and lower fertility. To produce this result, they have infected mice with the parasite nematode *Heligmosomoides polygyrus*. They collected the eggs found in the faeces at different times, corresponding to the age of the worm (in days). Then they used the hatched larvae to infect mice, and counted the eggs shed by the newly infected mice for 28 days. At that point, the mice were sacrificed and adult worms in the intestine counted.
 
 ``` r
 # original URL:
@@ -408,14 +408,14 @@ Gather: from columns to rows
 ----------------------------
 
 ``` r
-test <- tibble("indivudual" = c("ind1", "ind2"), 
+test <- tibble("individual" = c("ind1", "ind2"), 
                "Task A" = c(1, 3), 
                "Task B" = c(4, 1))
 test
 ```
 
     # # A tibble: 2 x 3
-    #   indivudual `Task A` `Task B`
+    #   individual `Task A` `Task B`
     #   <chr>         <dbl>    <dbl>
     # 1 ind1              1        4
     # 2 ind2              3        1
@@ -427,7 +427,7 @@ test %>% gather(Task, Score, 2:3)
 ```
 
     # # A tibble: 4 x 3
-    #   indivudual Task   Score
+    #   individual Task   Score
     #   <chr>      <chr>  <dbl>
     # 1 ind1       Task A     1
     # 2 ind2       Task A     3
@@ -586,7 +586,7 @@ These data are taken from:
 
 > Derocles SAP, Lunt DH, Berthe SCF, Nichols PC, Moss ED, Evans DM (2018) Climate-warming alters the structure of farmland tri-trophic ecological networks and reduces crop yield. Molecular Ecology
 
-The data is composed of 24 matrices (one for each experimental plot) showing the frequency of interaction between plants, aphids and parasitoids. Take a look using `View(a)`: you can see that there are several matrices in the same sheet. We would like to produce the tidy data: `plot` (number of the plot), `from` (species from), `to` (species to), `frequency` (what is reported in the matrix). First, we need to find whether plot 2, 3, etc. start:
+The data is composed of 24 matrices (one for each experimental plot) showing the frequency of interaction between plants, aphids and parasitoids. Take a look using `View(a)`: you can see that there are several matrices in the same sheet. We would like to produce the tidy data: `plot` (number of the plot), `from` (species from), `to` (species to), `frequency` (what is reported in the matrix). First, we need to find where plot 2, 3, etc. start:
 
 ``` r
 starting <- a %>% transmute(plot = `plot 1`, 
@@ -618,7 +618,7 @@ starting
     # 10 plot 10   145
     # # … with 14 more rows
 
-Now we want to find where each data sets end. It will be the starting point of the next one minus 3:
+Now we want to find where each data set ends. It will be the starting point of the next one minus 3:
 
 ``` r
 starting <- starting %>% mutate(end = lead(start) - 3)

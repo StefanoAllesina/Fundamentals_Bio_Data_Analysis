@@ -34,7 +34,7 @@ The most salient feature of scientific graphs should be clarity. Each figure sho
 
 Many scientific publications contain very poor graphics: labels are missing, scales are unintelligible, there is no explanation of some graphical elements. Moreover, some color graphs are impossible to understand if printed in black and white, or difficult to discern for color-blind people.
 
-Given the effort that you put in your science, you want to ensure that it is well presented and accessible. The investment to master some plotting software will be rewarded by pleasing graphics that convey a clear message.
+Given the effort that you put into your science, you want to ensure that it is well presented and accessible. The investment to master some plotting software will be rewarded by pleasing graphics that convey a clear message.
 
 In this section, we introduce `ggplot2`, a plotting package for `R` This package was developed by Hadley Wickham who contributed many important packages to `R` (all included in the `tidyverse` bundle we're going to use for the reminder of the class). Unlike many other plotting systems, `ggplot2` is deeply rooted in a "philosophical" vision. The goal is to conceive a grammar for all graphical representation of data. Leland Wilkinson and collaborators proposed The Grammar of Graphics. It follows the idea of a well-formed sentence that is composed of a subject, a predicate, and an object. The Grammar of Graphics likewise aims at describing a well-formed graph by a grammar that captures a very wide range of statistical and scientific graphics. This might be more clear with an example -- Take a simple two-dimensional scatterplot. How can we describe it? We have:
 
@@ -90,7 +90,7 @@ head(dt)
     # 5  0.02344048
     # 6 -0.12970552
 
-where: `ID` is the identifier of the macaque; `year` is the year in which the observation was made; `age` is the age of the individual; `Afrels_0.063` is the number of adult female relatives; `OrdRank2` dominance rank in year (L = low ranking, H = high ranking); the rest are Z-scores detailing how much more (less) than the average does the individual gets/gives grooming and aggression. To remind you, a Z-score is a normalized scoring statistic, measuring the distance of an observation from the mean of a distribution in units of the standard deviation of the distribution (hence, if an observation has a Z-score of ![-2](https://latex.codecogs.com/png.latex?-2 "-2"), it is two standard deviations lower than the mean). You can compute it for a set of observations as:
+where: `ID` is the identifier of the macaque; `year` is the year in which the observation was made; `age` is the age of the individual; `Afrels_0.063` is the number of adult female relatives; `OrdRank2` dominance rank in year (L = low ranking, H = high ranking); the rest are Z-scores detailing how much more (or less) than the average the individual gets/gives grooming and aggression. To remind you, a Z-score is a normalized scoring statistic, measuring the distance of an observation from the mean of a distribution in units of the standard deviation of the distribution (hence, if an observation has a Z-score of -2, it is two standard deviations lower than the mean). You can compute it for a set of observations as:
 
 ![
 z\_i = \\frac{x\_i - \\mu\_x}{\\sigma\_x}
@@ -129,7 +129,7 @@ ggplot(data = dt)
 
 <img src="basic_visualization_files/figure-markdown_github/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
 
-As you can see, nothing is drawn: we need to specify what we would like to associate to the *x* axis, and what to the *y* axis, etc. (i.e., we want to set the *aesthetic mappings*). A barplot typically has classes on the *x* axis, while the *y* axis reports the counts in each class. Because `ggplot2` does the counting for us, all we need to specify is which column is associated with the classes we want to plot:
+As you can see, nothing is drawn: we need to specify what we would like to associate to the *x* axis, and what to the *y* axis, etc. (i.e., we want to set as the *aesthetic mappings*). A barplot typically has classes on the *x* axis, while the *y* axis reports the counts in each class. Because `ggplot2` does the counting for us, all we need to specify is which column is associated with the classes we want to plot:
 
 ``` r
 ggplot(data = dt) + aes(x = OrdRank2)
@@ -145,7 +145,7 @@ ggplot(data = dt) + aes(x = OrdRank2) + geom_bar()
 
 <img src="basic_visualization_files/figure-markdown_github/unnamed-chunk-7-1.png" style="display: block; margin: auto;" />
 
-The graph shows that the vast majority of individuals have low social status. We have written a "well-formed sentence"", composed of **data** + **mapping** + **geometry**, and this is sufficient to produce a graph. We can add "adjectives" and "adverbs" to our graph, to make it clearer:
+The graph shows that the vast majority of individuals have low social status. We have written a "well-formed sentence", composed of **data** + **mapping** + **geometry**, and this is sufficient to produce a graph. We can add "adjectives" and "adverbs" to our graph, to make it clearer:
 
 ``` r
 ggplot(data = dt) + 
@@ -265,7 +265,7 @@ ggplot(data = dt) +
 
 <img src="basic_visualization_files/figure-markdown_github/unnamed-chunk-17-1.png" style="display: block; margin: auto;" />
 
-A boxplot shows the median (horizontal bar) as well as the inter-quartile ranges (box size goes from 25th to 75th percentile), as well as the typical range of the data (whiskers). The dots represent "outliers". To show the full distribution, you can use a violin plot:
+A boxplot shows the median (horizontal bar) as well as the inter-quartile range (box size goes from 25th to 75th percentile), as well as the typical range of the data (whiskers). The dots represent "outliers". To show the full distribution, you can use a violin plot:
 
 ``` r
 ggplot(data = dt) + 
@@ -410,7 +410,7 @@ pl + theme_wsj() # like "The Wall Street Journal"
 Faceting
 ========
 
-In many cases, we would like to produce a multi-panel graph, in which each panel shows the data for a certain combination of parameters. In `ggplot2` this is called *faceting*: the command `facet_grid` is used when you want to produce a grid of panels, in which all the panels in the same row (column) have axes-ranges in common; `facet_wrap` is used when the different panels do not necessarily have axes-ranges in common.
+In many cases, we would like to produce a multi-panel graph, in which each panel shows the data for a certain combination of parameters. In `ggplot2` this is called *faceting*: the command `facet_grid` is used when you want to produce a grid of panels, in which all the panels in the same row (or column) have axes-ranges in common; `facet_wrap` is used when the different panels do not necessarily have axes-ranges in common.
 
 For example:
 

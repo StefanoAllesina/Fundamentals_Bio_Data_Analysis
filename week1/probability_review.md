@@ -1,29 +1,17 @@
 ---
-title: 'Review of probability'
-author: "**Dmitry Kondrashov & Stefano Allesina**"
+title: 'Week 1: Basics of data and its visualization'
+author: "Dmitry Kondrashov & Stefano Allesina"
 date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
 output:
   html_document:
     theme: cosmo
     toc: yes
     toc_float: yes
-  github_document:
-    toc: true
-    toc_depth: 2
-    pandoc_args: --webtex
+    keep_md: true
 urlcolor: blue
 ---
 
-```{r knitr, echo=FALSE, warning=FALSE, include=FALSE}
-knitr::opts_chunk$set(
-  eval      = TRUE,
-  comment   = "#",
-  results   = "hold",
-  message = FALSE,
-  warning = FALSE,
-  # collapse  = TRUE,
-  fig.align = "center")
-```
+
 
 # Goals of the course
 
@@ -61,9 +49,24 @@ The measurement of interest from a random experiment is called a *random variabl
 
 **Exercise:** In the diamonds dataset in `dplyr`, identify numeric and categorical variables, and specify whether numeric variables are discrete and continuous. 
 
-```{r}
+
+```r
 library(tidyverse)
-str(diamonds) # print out the variables in the data frame (tibble) diamonds
+str(diamonds) # print out the variables in the data frame (tibble) mpg
+```
+
+```
+# Classes 'tbl_df', 'tbl' and 'data.frame':	53940 obs. of  10 variables:
+#  $ carat  : num  0.23 0.21 0.23 0.29 0.31 0.24 0.24 0.26 0.22 0.23 ...
+#  $ cut    : Ord.factor w/ 5 levels "Fair"<"Good"<..: 5 4 2 4 2 3 3 3 1 3 ...
+#  $ color  : Ord.factor w/ 7 levels "D"<"E"<"F"<"G"<..: 2 2 2 6 7 7 6 5 2 5 ...
+#  $ clarity: Ord.factor w/ 8 levels "I1"<"SI2"<"SI1"<..: 2 3 5 4 2 6 7 3 4 5 ...
+#  $ depth  : num  61.5 59.8 56.9 62.4 63.3 62.8 62.3 61.9 65.1 59.4 ...
+#  $ table  : num  55 61 65 58 58 57 57 55 61 61 ...
+#  $ price  : int  326 326 327 334 335 336 336 337 337 338 ...
+#  $ x      : num  3.95 3.89 4.05 4.2 4.34 3.94 3.95 4.07 3.87 4 ...
+#  $ y      : num  3.98 3.84 4.07 4.23 4.35 3.96 3.98 4.11 3.78 4.05 ...
+#  $ z      : num  2.43 2.31 2.31 2.63 2.75 2.48 2.47 2.53 2.49 2.39 ...
 ```
 
 ## Probability axioms
@@ -108,18 +111,46 @@ And for a density function it is defined using the integral:
 $$ E(Y) =  \int_R y\, g(y) dy $$
 
 **Example:** The data set diamonds contains many variables, and the factors (categorical variables) cannot be described using means and medians, but can be plotted by counts (we will learn about `ggplot2` soon):
-```{r}
+
+```r
 ggplot(data = diamonds) +
   aes(x = cut, fill = clarity) + 
   geom_bar(position = "fill")
 ```
 
+<img src="probability_review_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" />
+
 One can plot and measure the mean and median of the numeric variables like depth, with separate box plots for different cut qualities:
 
-```{r}
+
+```r
 ggplot(data = diamonds) + aes(x = as.factor(cut), y=depth) + geom_boxplot()
+```
+
+<img src="probability_review_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" />
+
+```r
 diamonds %>% group_by(cut) %>% summarise(mean = mean(depth))
 diamonds %>% group_by(cut) %>% summarise(median = median(depth))
+```
+
+```
+# # A tibble: 5 x 2
+#   cut        mean
+#   <ord>     <dbl>
+# 1 Fair       64.0
+# 2 Good       62.4
+# 3 Very Good  61.8
+# 4 Premium    61.3
+# 5 Ideal      61.7
+# # A tibble: 5 x 2
+#   cut       median
+#   <ord>      <dbl>
+# 1 Fair        65  
+# 2 Good        63.4
+# 3 Very Good   62.1
+# 4 Premium     61.4
+# 5 Ideal       61.8
 ```
 
 Comment on how the descriptive statistics correspond to the box plots. 
@@ -139,18 +170,51 @@ Variances have squared units so they are not directly comparable to the values o
 $$ \sigma_X = \sqrt{\text{Var}(X)}$$
 **Example:** Let's go back to  data set diamonds and the numeric variable depth plotted for different cut qualities
 
-```{r}
+
+```r
 ggplot(data = diamonds) + aes(x = as.factor(cut), y=depth) + geom_boxplot()
+```
+
+<img src="probability_review_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
+
+```r
 diamonds %>% group_by(cut) %>% summarise(var = var(depth))
 diamonds %>% group_by(cut) %>% summarise(first_quart = quantile(depth,0.25))
 diamonds %>% group_by(cut) %>% summarise(third_quart = quantile(depth,0.75))
+```
+
+```
+# # A tibble: 5 x 2
+#   cut          var
+#   <ord>      <dbl>
+# 1 Fair      13.3  
+# 2 Good       4.71 
+# 3 Very Good  1.90 
+# 4 Premium    1.34 
+# 5 Ideal      0.516
+# # A tibble: 5 x 2
+#   cut       first_quart
+#   <ord>           <dbl>
+# 1 Fair             64.4
+# 2 Good             61.3
+# 3 Very Good        60.9
+# 4 Premium          60.5
+# 5 Ideal            61.3
+# # A tibble: 5 x 2
+#   cut       third_quart
+#   <ord>           <dbl>
+# 1 Fair             65.9
+# 2 Good             63.8
+# 3 Very Good        62.9
+# 4 Premium          62.2
+# 5 Ideal            62.2
 ```
 
 Comment on how the descriptive statistics of spread correspond to the box plots. 
 
 # Data as samples from distributions: statistics
 
-In scientific practice, we collect data from one or more random variables, called a *sample*, and then try to make sense of it. One of the basic goals is statistical inference: using the data set to describe the *population* distribution from which the sample was drawn. Data sets can be plotted as *histograms* and the frequency/fraction of each value should be an approximation of the underlying probability distribution. In addition, descriptive statistics of the sample data (means, variances, medians, etc.) can be used to estimate the true parameters such as the mean and the variance of the population distribution.
+In scientific practice, we collect data from one or more random variables, called a *sample*, and then try to make sense of it. One of the basic goals is statistical inference: using the data set to describe the *population* distribution from the which the sample was drawn. Data sets can be plotted as *histograms* and the frequency/fraction of each value should be an approximation of the underlying probability distribution. In addition, descriptive statistics of the sample data (means, variances, medians, etc.) can be used to estimate the true parameters such as the mean and the variance of the population distribution.
 
 Some of the fundamental questions about the population include:
 
@@ -164,7 +228,7 @@ Some of the fundamental questions about the population include:
 
 ## Law of large numbers
 
-First, the sample has to be *unbiased*, that is, no outcomes should be systematically over- or under-represented. But even an unbiased sample will differ from the population due to the inherent randomness of selection (sampling error). The **law of large numbers** states that as the *sample size* increases, the mean of the sample converges to the true mean of the population. Formally, for a set of $n$ indepdenent, identically distributed random variables (the sample) $\{X_i\}$ the sample mean $\overline{X}_n$ converges to the mean of the distribution $\mu$:
+First, the sample has to be *unbiased*, that is, no outcomes should be systematically over- or under-represented. But even an unbiased sample will differ from the population due to the inherent randomness of selection (sampling error.) The **law of large numbers** states that as the *sample size* increases, the mean of the sample converges to the true mean of the population. Formally, for a set of $n$ indepdenent, identically distributed random variable (the sample) $\{X_i\}$ the sample mean $\overline{X}_n$ converges to the mean of the distribution $\mu$:
 
 $$ 
 \lim _{n \to \infty} \frac{\sum_{i=1}^n {X_i}}{n} = \lim _{n \to \infty} \overline{X}_n = \mu
@@ -172,7 +236,7 @@ $$
 
 ## Central Limit Theorem
 
-That is nice to know, but doesn't say exactly how large a sample is needed to estimate, for example, the mean of the population to a given precision. For that, we have the **Central Limit Theorem**, which states that the distribution of sample means (from samples of independent, identically distributed random variables) as sample size increases, approaches the normal (Gaussian) distribution with mean equal to the population mean and standard deviation equal to the standard deviation of the population divided by the square root of the sample size. Formally, it states that for a set of $n$ indepdenent, identically distributed random variables (the sample) $\{X_i\}$ with distribution mean $\mu$ and variance $\sigma^2$, the probability density function of the sample mean $\overline{X}_n$ converges for large sample size $n$ to the normal distribution:
+That is nice to know, but doesn't say exactly how large a sample is needed to estimate, for example, the mean of the population to a given precision. For that, we have the **Central Limit Theorem**, which states that the distribution of sample means (from samples of independent, identically distributed random variables) as sample size increases, approaches the normal (Gaussian) distribution with mean equal to the population mean and standard deviation equal to the standard deviation of the population divided by the square root of the sample size. Formally, it states that for a set of $n$ indepdenent, identically distributed random variable (the sample) $\{X_i\}$ with distribution mean $\mu$ and variance $\sigma^2$, the probability density function of the sample mean $\overline{X}_n$ converges for large sample size $n$ to the normal distribution:
 
 $$ 
 P(\overline{X}_n) \to N(\mu, \sigma^2/n)
@@ -180,7 +244,7 @@ $$
 
 where $N(\mu, \sigma^2/n$) stands for the normal distribution with mean $\mu$ and variance $\sigma^2/n$.  One extremely useful consequence of this theorem is that the variance of the sample mean is reciprocally related to the sample size $n$. More precicely, it allows the calculation of *confidence intervals* by using the normal distribution to generate an interval around the observed sample mean in which the  true mean $\mu$ lies with a given likelihood.
 
-This is an amazing result because it applies to any distribution, so it allows for the estimation of means for any situation, as long as the condition of independent, identically disributed variables in the sample is satisfied (the identical distributed condition can actually be relaxed). There are other central limit theorems that apply to other situations, including cases where the random variables in the sample are not independent (e.g., Markov models). The bottom line is that an unbiased sample contains a reflection of the true population, but it is always distorted by uncertainty. Larger sample sizes decrease the uncertainty but are more difficult and expensive to obtain.
+This is an amazing result because it applies to any distribution, so it allows for the estimation of means for any situation, as long as the condition of independent, identically disributed variables in the sample is satisfied (the identical distributed condition can actually be relaxed). There are other central limit theorems that apply to other situations, including cases where the random variables in the sample are not independent (e.g., Markov models). The bottom line is that an unbiased sample contains a reflection of the true population, but it is always distorted by uncertainty. Larger sample sizes decrease the uncertainty, but are more difficult and expensive to obtain.
 
 **Discussion:** Suggest examples of biological data sets which are not made up of independent identically distributed random variables.
 
@@ -198,13 +262,32 @@ This is an amazing result because it applies to any distribution, so it allows f
 
 Use the library titanic and combine the data sets for all passangers and crew into the following tibble:
 
-```{r}
+
+```r
 library(titanic)
 titanic_total <- bind_rows(titanic_test, titanic_train)
 str(titanic_total)
 ggplot(data = titanic_train) +
   aes(x = Pclass, fill = as.character(Survived)) + 
   geom_bar(position="fill") 
+```
+
+<img src="probability_review_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
+
+```
+# 'data.frame':	1309 obs. of  12 variables:
+#  $ PassengerId: int  892 893 894 895 896 897 898 899 900 901 ...
+#  $ Pclass     : int  3 3 2 3 3 3 3 2 3 3 ...
+#  $ Name       : chr  "Kelly, Mr. James" "Wilkes, Mrs. James (Ellen Needs)" "Myles, Mr. Thomas Francis" "Wirz, Mr. Albert" ...
+#  $ Sex        : chr  "male" "female" "male" "male" ...
+#  $ Age        : num  34.5 47 62 27 22 14 30 26 18 21 ...
+#  $ SibSp      : int  0 1 0 0 1 0 0 1 0 2 ...
+#  $ Parch      : int  0 0 0 0 1 0 0 1 0 0 ...
+#  $ Ticket     : chr  "330911" "363272" "240276" "315154" ...
+#  $ Fare       : num  7.83 7 9.69 8.66 12.29 ...
+#  $ Cabin      : chr  "" "" "" "" ...
+#  $ Embarked   : chr  "Q" "S" "Q" "S" ...
+#  $ Survived   : int  NA NA NA NA NA NA NA NA NA NA ...
 ```
 
 * Calculate the probability of survival for passengers by class (1, 2, 3, and crew). 

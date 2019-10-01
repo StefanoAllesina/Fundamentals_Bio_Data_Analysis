@@ -25,10 +25,9 @@ knitr::opts_chunk$set(
 
 A good fraction of statistical questions can be expressed as hypothesis tests, essentially any time a yes/no answer is needed, e.g.: Are two samples drawn from distributions with the same mean? Is the frequency of an allele in a population greater than 0.1? Different tests exist to answer their corresponding questions, which use different probability distribution functions in the calculation. There is a dangerous tendency to view statistics as a collection of tests, and to practice it by plugging in your data set into the correct one, expecting that it will spit out the correct decision. The purpose of this lesson is to demonstrate that using and interpreting statistical tests requires careful thinking to avoid serious errors.
 
-
 ## Test results vs. the truth
 
-A statistical test begins by stating the null hypothesis, usually one that is expected or that shows no effect: for example, that two samples come from a distribution with the same mean, or that a rare allele has frequency of less than 0.1. One may state the alternative hypothesis explicitly, although it's usually the logical converse of the null, e.g. the two samples have different population means, or the allele has frequency greater than 0.1.
+A statistical test begins by stating the null hypothesis, usually one that is expected or that shows no effect: for example, that two samples come from a distribution with the same mean, or that a rare allele has frequency of less than 0.1. One may state the alternative hypothesis explicitly, although it's usually the logical converse of the null, e.g., the two samples have different population means, or the allele has frequency greater than 0.1.
 
 After the hypothesis is stated, the data is collected and is used to test the hypothesis. By default, the null hypothesis is assumed to be true, and the test assesses whether the data provides sufficient evidence against the null hypothesis that it can be rejected. There is an adversarial relationship: either the data knocks off the hypothesis, or else it fails to do so. Standard terminology reflects this somewhat counterintuitive setup: rejecting the null hypothesis is called a *positive test result*, while not rejecting it is called a *negative result*.
 
