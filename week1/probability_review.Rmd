@@ -63,7 +63,7 @@ The measurement of interest from a random experiment is called a *random variabl
 
 ```{r}
 library(tidyverse)
-str(diamonds) # print out the variables in the data frame (tibble) mpg
+str(diamonds) # print out the variables in the data frame (tibble) diamonds
 ```
 
 ## Probability axioms
