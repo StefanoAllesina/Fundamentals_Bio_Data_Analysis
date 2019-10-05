@@ -294,8 +294,8 @@ paste("The variance of exponential distribution is", exp.var)
 
 The normal distribution, sometimes written $N(\mu, \sigma)$ comes up everywhere (e.g. in the limit of the Poisson distribution for large $n$). The two parameters are simply the mean and the standard deviation. The reason for its ubiquity is that it is that any sum of a large number of independent random variables converges to the normal, formalized by the Central Limit Theorem:
 
-> For a set of $n$ IID random variables $\{X_i\}$ with mean $\mu$ and standard deviation $\sigma$, the sample mean $\bar X$ has the property:
-$$\lim_{n \to \infty} = \frac{\bar X - \mu}{\sigma} = N(0,1)  $$ 
+> For a set of $n$ IID random variables $\{X_i\}$ with mean $\mu$ and standard deviation $\sigma$, the sample mean $\bar X_n$ has the property:
+$$\lim_{n \to \infty} = \frac{\bar X_n - \mu}{\sigma} = N(0,1)  $$ 
 > where $N(0,1)$ stands for the normal distribution with mean 0 and standard deviation 1.
 
 
@@ -362,22 +362,6 @@ print(left)
 ```
 
 *Exercise:* Modify that script to report whether the confidence interval captures the true mean. Use a loop structure (as in the script above) to generate 1000 sample means and report how many of them are within the theoretical confidence interval. Does this match the fraction you expect from the significance level? Try different significance levels and sample sizes and report what you discover.
-
-# Examples of mistakes and surprising data sets (maybe move to Friday?)
-
-Simpson's paradox (misleading means):
-
-https://medium.com/@nikhilborkar/the-simpsons-paradox-and-where-to-find-them-cfcec6c2d8b3
-
-Use the library titanic and combine the data sets for all passangers and crew into the following tibble:
-```{r}
-library(titanic)
-titanic_total <- bind_rows(titanic_test, titanic_train)
-ggplot(data = titanic_train) + 
-  geom_bar(mapping = aes(x = Pclass, fill = as.character(Survived)), position="fill") 
-```
-
-First, calculate the probability of survival for passengers by class (1, 2, 3, and crew). Then calculate the same by sex and. Then compare the survival rates of men and women separately by class. Do you observe  anything unexpected? How would you explain the apparent disagreement between the survival rates?
 
 
 
