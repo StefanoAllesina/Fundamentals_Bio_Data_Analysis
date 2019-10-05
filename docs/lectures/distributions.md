@@ -37,14 +37,15 @@ In the basic definitions of probability, we considered the probabilities of each
 
 > **Definition**: For two events ![A](https://latex.codecogs.com/png.latex?A "A") and ![B](https://latex.codecogs.com/png.latex?B "B") in a sample space ![\\Omega](https://latex.codecogs.com/png.latex?%5COmega "\Omega") with a probability measure ![P](https://latex.codecogs.com/png.latex?P "P"), the probability of ![A](https://latex.codecogs.com/png.latex?A "A") given ![B](https://latex.codecogs.com/png.latex?B "B"), called the **conditional probability**, defined as:
 
-![ P(A|B) = \\frac{P(A\\cap B)}{P(B)}](https://latex.codecogs.com/png.latex?%20P%28A%7CB%29%20%3D%20%5Cfrac%7BP%28A%5Ccap%20B%29%7D%7BP%28B%29%7D " P(A|B) = \frac{P(A\cap B)}{P(B)}")
+![P(A|B) = \\frac{P(A\\cap B)}{P(B)}](https://latex.codecogs.com/png.latex?P%28A%7CB%29%20%3D%20%5Cfrac%7BP%28A%5Ccap%20B%29%7D%7BP%28B%29%7D "P(A|B) = \frac{P(A\cap B)}{P(B)}")
 
 > where ![A \\cap B](https://latex.codecogs.com/png.latex?A%20%5Ccap%20B "A \cap B") or ![A, B](https://latex.codecogs.com/png.latex?A%2C%20B "A, B") is the intersection of events ![A](https://latex.codecogs.com/png.latex?A "A") and ![B](https://latex.codecogs.com/png.latex?B "B"), also known as "![A](https://latex.codecogs.com/png.latex?A "A") and ![B](https://latex.codecogs.com/png.latex?B "B")"---the event consisting of all outcomes that are in both ![A](https://latex.codecogs.com/png.latex?A "A") and ![B](https://latex.codecogs.com/png.latex?B "B").
 
 In words, given the knowledge that an event ![B](https://latex.codecogs.com/png.latex?B "B") occurs, the sample space is restricted to the subset ![B](https://latex.codecogs.com/png.latex?B "B"), which is why the denominator in the definition is ![P(B)](https://latex.codecogs.com/png.latex?P%28B%29 "P(B)"). The numerator encompasses all the outcomes we are interested in, (i.e., ![A](https://latex.codecogs.com/png.latex?A "A")), but since we are now restricted to ![B](https://latex.codecogs.com/png.latex?B "B"), the numerator consists of all the outcomes of ![A](https://latex.codecogs.com/png.latex?A "A") which are also in ![B](https://latex.codecogs.com/png.latex?B "B"), or ![A \\cap B](https://latex.codecogs.com/png.latex?A%20%5Ccap%20B "A \cap B"). The definition makes sense in two extreme cases: if ![A = B](https://latex.codecogs.com/png.latex?A%20%3D%20B "A = B") and if ![A](https://latex.codecogs.com/png.latex?A "A") and ![B](https://latex.codecogs.com/png.latex?B "B") are mutually exclusive:
 
--   ![P(B|B) = P(B \\cap B) /P(B) = P(B)/P(B) = 1](https://latex.codecogs.com/png.latex?P%28B%7CB%29%20%3D%20P%28B%20%5Ccap%20B%29%20%2FP%28B%29%20%3D%20P%28B%29%2FP%28B%29%20%3D%201 "P(B|B) = P(B \cap B) /P(B) = P(B)/P(B) = 1")
--   If ![P(A\\cap B) = 0](https://latex.codecogs.com/png.latex?P%28A%5Ccap%20B%29%20%3D%200 "P(A\cap B) = 0"), then ![P(A|B) = 0/P(B) = 0](https://latex.codecogs.com/png.latex?P%28A%7CB%29%20%3D%200%2FP%28B%29%20%3D%200 "P(A|B) = 0/P(B) = 0")
+![P(B|B) = P(B \\cap B) /P(B) = P(B)/P(B) = 1](https://latex.codecogs.com/png.latex?P%28B%7CB%29%20%3D%20P%28B%20%5Ccap%20B%29%20%2FP%28B%29%20%3D%20P%28B%29%2FP%28B%29%20%3D%201 "P(B|B) = P(B \cap B) /P(B) = P(B)/P(B) = 1")
+
+If ![P(A\\cap B) = 0](https://latex.codecogs.com/png.latex?P%28A%5Ccap%20B%29%20%3D%200 "P(A\cap B) = 0"), then ![P(A|B) = 0/P(B) = 0](https://latex.codecogs.com/png.latex?P%28A%7CB%29%20%3D%200%2FP%28B%29%20%3D%200 "P(A|B) = 0/P(B) = 0")
 
 **Important note:** one common source of confusion about conditional probability is the difference between the probability of ![A](https://latex.codecogs.com/png.latex?A "A") and ![B](https://latex.codecogs.com/png.latex?B "B") and the probability of ![A](https://latex.codecogs.com/png.latex?A "A") given ![B](https://latex.codecogs.com/png.latex?B "B"). This is a result of the discrepancy between everyday word usage and mathematical terminology, because the statement "what are the odds of finding a tall person who also likes tea?" is hard to distinguish from "what are the odds that a person who is tall likes tea?" The critical difference between these two statements is that in the former you start out with no information and are picking out a person from the entire population, while is in the latter you start out with the knowledge that a person is tall.
 
@@ -284,8 +285,8 @@ unif.var <- var(unif.sample)
 paste("The variance of uniform distribution is", unif.var)
 ```
 
-    # [1] "The expected value of uniform distribution is 4.97216106951702"
-    # [1] "The variance of uniform distribution is 8.03880472238357"
+    # [1] "The expected value of uniform distribution is 5.01750079123071"
+    # [1] "The variance of uniform distribution is 7.68614324744766"
 
 *Exercise:* experiment with the width of the interval to see how it affects the expectation and variance.
 
@@ -316,8 +317,8 @@ exp.var <- var(exp.sample)
 paste("The variance of exponential distribution is", exp.var)
 ```
 
-    # [1] "The expected value of exponential distribution is 1.96903155415091"
-    # [1] "The variance of exponential distribution is 3.75405418113616"
+    # [1] "The expected value of exponential distribution is 1.96140142165218"
+    # [1] "The variance of exponential distribution is 3.67031012989663"
 
 *Exercise:* What is the relationship between the rate and the expectation and variance?
 
@@ -355,8 +356,8 @@ norm.var <- var(norm.sample)
 paste("The variance of normal distribution is", norm.var)
 ```
 
-    # [1] "The expected value of normal distribution is 5.00923700922504"
-    # [1] "The variance of normal distribution is 0.249251619715587"
+    # [1] "The expected value of normal distribution is 5.02722434618828"
+    # [1] "The variance of normal distribution is 0.252689394355063"
 
 Application of normal distribution: confidence intervals:
 =========================================================
@@ -404,7 +405,7 @@ print(left)
 
     # [1] 0
     # [1] 1.644854
-    # [1] 0.5795678
-    # [1] 0.4594506
+    # [1] 0.5672549
+    # [1] 0.4534039
 
 *Exercise:* Modify that script to report whether the confidence interval captures the true mean. Use a loop structure (as in the script above) to generate 1000 sample means and report how many of them are within the theoretical confidence interval. Does this match the fraction you expect from the significance level? Try different significance levels and sample sizes and report what you discover.

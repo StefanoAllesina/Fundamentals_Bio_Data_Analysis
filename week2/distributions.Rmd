@@ -40,14 +40,15 @@ In the basic definitions of probability, we considered the probabilities of each
 
 > **Definition**: For two events $A$ and $B$ in a sample space $\Omega$ with a probability measure $P$, the probability of $A$ given $B$, called the **conditional probability**, defined as:
 
-$$ P(A|B) = \frac{P(A\cap B)}{P(B)}$$
+$P(A|B) = \frac{P(A\cap B)}{P(B)}$
 
 >where $A \cap B$ or $A, B$ is the intersection of events $A$ and $B$, also known as "$A$ and $B$"---the event consisting of all outcomes that are in both $A$ and $B$.
 
 In words, given the knowledge that an event $B$ occurs, the sample space is restricted to the subset $B$, which is why the denominator in the definition is $P(B)$. The numerator encompasses all the outcomes we are interested in, (i.e., $A$), but since we are now restricted to $B$, the numerator consists of all the outcomes of $A$ which are also in $B$, or $A \cap B$. The definition makes sense in two extreme cases: if $A = B$ and if $A$ and $B$ are mutually exclusive:
 
-* $P(B|B) = P(B \cap B) /P(B) = P(B)/P(B) = 1$ 
-* If $P(A\cap B) = 0$, then $P(A|B) = 0/P(B) = 0$
+$P(B|B) = P(B \cap B) /P(B) = P(B)/P(B) = 1$ 
+
+If $P(A\cap B) = 0$, then $P(A|B) = 0/P(B) = 0$
 
 **Important note:** one common source of confusion about conditional probability is the difference between the probability of $A$ and $B$ and the probability of $A$ given $B$. This is a result of the discrepancy between everyday word usage and mathematical terminology, because the statement "what are the odds of finding a tall person who also likes tea?" is hard to distinguish from "what are the odds that a person who is tall likes tea?" The critical difference between these two statements is that in the former you start out with no information and are picking out a person from the entire population, while is in the latter you start out with the knowledge that a person is tall. 
 
