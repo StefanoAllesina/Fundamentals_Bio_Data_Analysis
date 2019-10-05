@@ -22,7 +22,7 @@ cd ..
 # Week 2
 cd week2
 Rscript -e "rmarkdown::render('basic_data_wrangling.Rmd', output_format = 'github_document')"
-#Rscript -e "rmarkdown::render('basic_visualization.Rmd')"
+Rscript -e "rmarkdown::render('distributions.Rmd')"
 mv *.md ../docs/lectures
 cp -r *_files ../docs/lectures
 rm -r *_files

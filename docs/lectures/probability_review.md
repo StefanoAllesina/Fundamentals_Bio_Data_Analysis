@@ -58,7 +58,7 @@ The measurement of interest from a random experiment is called a *random variabl
 
 ``` r
 library(tidyverse)
-str(diamonds) # print out the variables in the data frame (tibble) mpg
+str(diamonds) # print out the variables in the data frame (tibble) diamonds
 ```
 
     # Classes 'tbl_df', 'tbl' and 'data.frame': 53940 obs. of  10 variables:
@@ -105,7 +105,7 @@ The total probability over the entire range of ![Y](https://latex.codecogs.com/p
 
 ![ \\int\_R g(y) dy = 1](https://latex.codecogs.com/png.latex?%20%5Cint_R%20g%28y%29%20dy%20%3D%201 " \int_R g(y) dy = 1")
 
-**Example:** As codons (DNA triplets) code for amino acids, we can consider the genetic code a random variable on the sample space. Assuming all codons have equal probabilities, the probability of each amino acid is the number of triplets that code for it divided by 64. For example, the probabilities of leucine and arginine are ![6/64 = 3/32](https://latex.codecogs.com/png.latex?6%2F64%20%3D%203%2F32 "6/64 = 3/32"), the probability of threonine is ![4/64 = 1/4](https://latex.codecogs.com/png.latex?4%2F64%20%3D%201%2F4 "4/64 = 1/4") and the probabilities of methionine and tryptophan are ![1/64](https://latex.codecogs.com/png.latex?1%2F64 "1/64"). This defines a probability distribution function of the random variable of the genetic code. Note that the sum of all the probabilites of amino acids has to be 1. Of course there is no inherent reason why each triplet should be equally probable, so a different probability structure on the sample space would result in a different probability distribution (mass) function.
+**Example:** As codons (DNA triplets) code for amino acids, we can consider the genetic code a random variable on the sample space. Assuming all codons have equal probabilities, the probability of each amino acid is the number of triplets that code for it divided by 64. For example, the probabilities of leucine and arginine are ![6/64 = 3/32](https://latex.codecogs.com/png.latex?6%2F64%20%3D%203%2F32 "6/64 = 3/32"), the probability of threonine is ![4/64 = 1/16](https://latex.codecogs.com/png.latex?4%2F64%20%3D%201%2F16 "4/64 = 1/16") and the probabilities of methionine and tryptophan are ![1/64](https://latex.codecogs.com/png.latex?1%2F64 "1/64"). This defines a probability distribution function of the random variable of the genetic code. Note that the sum of all the probabilites of amino acids has to be 1. Of course there is no inherent reason why each triplet should be equally probable, so a different probability structure on the sample space would result in a different probability distribution (mass) function.
 
 Measures of center: medians and means
 -------------------------------------
