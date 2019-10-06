@@ -32,7 +32,7 @@
 ### Week 3
 
 - Linear algebra refresher
-- Hypothesis testing
+- [Hypothesis testing](lectures/hypothesis_testing)
 
 ### Week 4
 
