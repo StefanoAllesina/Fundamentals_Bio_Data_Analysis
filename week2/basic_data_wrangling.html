@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="data:text/css;charset=utf-8,%0A%40font%2Dface%20%7B%0Afont%2Dfamily%3A%20octicons%2Dlink%3B%0Asrc%3A%20url%28data%3Afont%2Fwoff%3Bcharset%3Dutf%2D8%3Bbase64%2Cd09GRgABAAAAAAZwABAAAAAACFQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEU0lHAAAGaAAAAAgAAAAIAAAAAUdTVUIAAAZcAAAACgAAAAoAAQAAT1MvMgAAAyQAAABJAAAAYFYEU3RjbWFwAAADcAAAAEUAAACAAJThvmN2dCAAAATkAAAABAAAAAQAAAAAZnBnbQAAA7gAAACyAAABCUM%2B8IhnYXNwAAAGTAAAABAAAAAQABoAI2dseWYAAAFsAAABPAAAAZwcEq9taGVhZAAAAsgAAAA0AAAANgh4a91oaGVhAAADCAAAABoAAAAkCA8DRGhtdHgAAAL8AAAADAAAAAwGAACfbG9jYQAAAsAAAAAIAAAACABiATBtYXhwAAACqAAAABgAAAAgAA8ASm5hbWUAAAToAAABQgAAAlXu73sOcG9zdAAABiwAAAAeAAAAME3QpOBwcmVwAAAEbAAAAHYAAAB%2FaFGpk3jaTY6xa8JAGMW%2FO62BDi0tJLYQincXEypYIiGJjSgHniQ6umTsUEyLm5BV6NDBP8Tpts6F0v%2Bk%2F0an2i%2BitHDw3v2%2B9%2BDBKTzsJNnWJNTgHEy4BgG3EMI9DCEDOGEXzDADU5hBKMIgNPZqoD3SilVaXZCER3%2FI7AtxEJLtzzuZfI%2BVVkprxTlXShWKb3TBecG11rwoNlmmn1P2WYcJczl32etSpKnziC7lQyWe1smVPy%2FLt7Kc%2B0vWY%2FgAgIIEqAN9we0pwKXreiMasxvabDQMM4riO%2BqxM2ogwDGOZTXxwxDiycQIcoYFBLj5K3EIaSctAq2kTYiw%2Bymhce7vwM9jSqO8JyVd5RH9gyTt2%2BJ%2FyUmYlIR0s04n6%2B7Vm1ozezUeLEaUjhaDSuXHwVRgvLJn1tQ7xiuVv%2FocTRF42mNgZGBgYGbwZOBiAAFGJBIMAAizAFoAAABiAGIAznjaY2BkYGAA4in8zwXi%2BW2%2BMjCzMIDApSwvXzC97Z4Ig8N%2FBxYGZgcgl52BCSQKAA3jCV8CAABfAAAAAAQAAEB42mNgZGBg4f3vACQZQABIMjKgAmYAKEgBXgAAeNpjYGY6wTiBgZWBg2kmUxoDA4MPhGZMYzBi1AHygVLYQUCaawqDA4PChxhmh%2F8ODDEsvAwHgMKMIDnGL0x7gJQCAwMAJd4MFwAAAHjaY2BgYGaA4DAGRgYQkAHyGMF8NgYrIM3JIAGVYYDT%2BAEjAwuDFpBmA9KMDEwMCh9i%2Fv8H8sH0%2F4dQc1iAmAkALaUKLgAAAHjaTY9LDsIgEIbtgqHUPpDi3gPoBVyRTmTddOmqTXThEXqrob2gQ1FjwpDvfwCBdmdXC5AVKFu3e5MfNFJ29KTQT48Ob9%2FlqYwOGZxeUelN2U2R6%2BcArgtCJpauW7UQBqnFkUsjAY%2FkOU1cP%2BDAgvxwn1chZDwUbd6CFimGXwzwF6tPbFIcjEl%2BvvmM%2FbyA48e6tWrKArm4ZJlCbdsrxksL1AwWn%2FyBSJKpYbq8AXaaTb8AAHja28jAwOC00ZrBeQNDQOWO%2F%2FsdBBgYGRiYWYAEELEwMTE4uzo5Zzo5b2BxdnFOcALxNjA6b2ByTswC8jYwg0VlNuoCTWAMqNzMzsoK1rEhNqByEyerg5PMJlYuVueETKcd%2F89uBpnpvIEVomeHLoMsAAe1Id4AAAAAAAB42oWQT07CQBTGv0JBhagk7HQzKxca2sJCE1hDt4QF%2B9JOS0nbaaYDCQfwCJ7Au3AHj%2BLO13FMmm6cl7785vven0kBjHCBhfpYuNa5Ph1c0e2Xu3jEvWG7UdPDLZ4N92nOm%2BEBXuAbHmIMSRMs%2B4aUEd4Nd3CHD8NdvOLTsA2GL8M9PODbcL%2BhD7C1xoaHeLJSEao0FEW14ckxC%2BTU8TxvsY6X0eLPmRhry2WVioLpkrbp84LLQPGI7c6sOiUzpWIWS5GzlSgUzzLBSikOPFTOXqly7rqx0Z1Q5BAIoZBSFihQYQOOBEdkCOgXTOHA07HAGjGWiIjaPZNW13%2F%2Blm6S9FT7rLHFJ6fQbkATOG1j2OFMucKJJsxIVfQORl%2B9Jyda6Sl1dUYhSCm1dyClfoeDve4qMYdLEbfqHf3O%2FAdDumsjAAB42mNgYoAAZQYjBmyAGYQZmdhL8zLdDEydARfoAqIAAAABAAMABwAKABMAB%2F%2F%2FAA8AAQAAAAAAAAAAAAAAAAABAAAAAA%3D%3D%29%20format%28%27woff%27%29%3B%0A%7D%0Abody%20%7B%0A%2Dwebkit%2Dtext%2Dsize%2Dadjust%3A%20100%25%3B%0Atext%2Dsize%2Dadjust%3A%20100%25%3B%0Acolor%3A%20%23333%3B%0Afont%2Dfamily%3A%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20%22Segoe%20UI%22%2C%20Arial%2C%20freesans%2C%20sans%2Dserif%2C%20%22Apple%20Color%20Emoji%22%2C%20%22Segoe%20UI%20Emoji%22%2C%20%22Segoe%20UI%20Symbol%22%3B%0Afont%2Dsize%3A%2016px%3B%0Aline%2Dheight%3A%201%2E6%3B%0Aword%2Dwrap%3A%20break%2Dword%3B%0A%7D%0Aa%20%7B%0Abackground%2Dcolor%3A%20transparent%3B%0A%7D%0Aa%3Aactive%2C%0Aa%3Ahover%20%7B%0Aoutline%3A%200%3B%0A%7D%0Astrong%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Ah1%20%7B%0Afont%2Dsize%3A%202em%3B%0Amargin%3A%200%2E67em%200%3B%0A%7D%0Aimg%20%7B%0Aborder%3A%200%3B%0A%7D%0Ahr%20%7B%0Abox%2Dsizing%3A%20content%2Dbox%3B%0Aheight%3A%200%3B%0A%7D%0Apre%20%7B%0Aoverflow%3A%20auto%3B%0A%7D%0Acode%2C%0Akbd%2C%0Apre%20%7B%0Afont%2Dfamily%3A%20monospace%2C%20monospace%3B%0Afont%2Dsize%3A%201em%3B%0A%7D%0Ainput%20%7B%0Acolor%3A%20inherit%3B%0Afont%3A%20inherit%3B%0Amargin%3A%200%3B%0A%7D%0Ahtml%20input%5Bdisabled%5D%20%7B%0Acursor%3A%20default%3B%0A%7D%0Ainput%20%7B%0Aline%2Dheight%3A%20normal%3B%0A%7D%0Ainput%5Btype%3D%22checkbox%22%5D%20%7B%0Abox%2Dsizing%3A%20border%2Dbox%3B%0Apadding%3A%200%3B%0A%7D%0Atable%20%7B%0Aborder%2Dcollapse%3A%20collapse%3B%0Aborder%2Dspacing%3A%200%3B%0A%7D%0Atd%2C%0Ath%20%7B%0Apadding%3A%200%3B%0A%7D%0A%2A%20%7B%0Abox%2Dsizing%3A%20border%2Dbox%3B%0A%7D%0Ainput%20%7B%0Afont%3A%2013px%20%2F%201%2E4%20Helvetica%2C%20arial%2C%20nimbussansl%2C%20liberationsans%2C%20freesans%2C%20clean%2C%20sans%2Dserif%2C%20%22Apple%20Color%20Emoji%22%2C%20%22Segoe%20UI%20Emoji%22%2C%20%22Segoe%20UI%20Symbol%22%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%234078c0%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%2C%0Aa%3Aactive%20%7B%0Atext%2Ddecoration%3A%20underline%3B%0A%7D%0Ahr%20%7B%0Aheight%3A%200%3B%0Amargin%3A%2015px%200%3B%0Aoverflow%3A%20hidden%3B%0Abackground%3A%20transparent%3B%0Aborder%3A%200%3B%0Aborder%2Dbottom%3A%201px%20solid%20%23ddd%3B%0A%7D%0Ahr%3Abefore%20%7B%0Adisplay%3A%20table%3B%0Acontent%3A%20%22%22%3B%0A%7D%0Ahr%3Aafter%20%7B%0Adisplay%3A%20table%3B%0Aclear%3A%20both%3B%0Acontent%3A%20%22%22%3B%0A%7D%0Ah1%2C%0Ah2%2C%0Ah3%2C%0Ah4%2C%0Ah5%2C%0Ah6%20%7B%0Amargin%2Dtop%3A%2015px%3B%0Amargin%2Dbottom%3A%2015px%3B%0Aline%2Dheight%3A%201%2E1%3B%0A%7D%0Ah1%20%7B%0Afont%2Dsize%3A%2030px%3B%0A%7D%0Ah2%20%7B%0Afont%2Dsize%3A%2021px%3B%0A%7D%0Ah3%20%7B%0Afont%2Dsize%3A%2016px%3B%0A%7D%0Ah4%20%7B%0Afont%2Dsize%3A%2014px%3B%0A%7D%0Ah5%20%7B%0Afont%2Dsize%3A%2012px%3B%0A%7D%0Ah6%20%7B%0Afont%2Dsize%3A%2011px%3B%0A%7D%0Ablockquote%20%7B%0Amargin%3A%200%3B%0A%7D%0Aul%2C%0Aol%20%7B%0Apadding%3A%200%3B%0Amargin%2Dtop%3A%200%3B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Aol%20ol%2C%0Aul%20ol%20%7B%0Alist%2Dstyle%2Dtype%3A%20lower%2Droman%3B%0A%7D%0Aul%20ul%20ol%2C%0Aul%20ol%20ol%2C%0Aol%20ul%20ol%2C%0Aol%20ol%20ol%20%7B%0Alist%2Dstyle%2Dtype%3A%20lower%2Dalpha%3B%0A%7D%0Add%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20%22Liberation%20Mono%22%2C%20Menlo%2C%20Courier%2C%20monospace%3B%0Afont%2Dsize%3A%2012px%3B%0A%7D%0Apre%20%7B%0Amargin%2Dtop%3A%200%3B%0Amargin%2Dbottom%3A%200%3B%0Afont%3A%2012px%20Consolas%2C%20%22Liberation%20Mono%22%2C%20Menlo%2C%20Courier%2C%20monospace%3B%0A%7D%0A%2Eselect%3A%3A%2Dms%2Dexpand%20%7B%0Aopacity%3A%200%3B%0A%7D%0A%2Eocticon%20%7B%0Afont%3A%20normal%20normal%20normal%2016px%2F1%20octicons%2Dlink%3B%0Adisplay%3A%20inline%2Dblock%3B%0Atext%2Ddecoration%3A%20none%3B%0Atext%2Drendering%3A%20auto%3B%0A%2Dwebkit%2Dfont%2Dsmoothing%3A%20antialiased%3B%0A%2Dmoz%2Dosx%2Dfont%2Dsmoothing%3A%20grayscale%3B%0A%2Dwebkit%2Duser%2Dselect%3A%20none%3B%0A%2Dmoz%2Duser%2Dselect%3A%20none%3B%0A%2Dms%2Duser%2Dselect%3A%20none%3B%0Auser%2Dselect%3A%20none%3B%0A%7D%0A%2Eocticon%2Dlink%3Abefore%20%7B%0Acontent%3A%20%27%5Cf05c%27%3B%0A%7D%0A%2Emarkdown%2Dbody%3Abefore%20%7B%0Adisplay%3A%20table%3B%0Acontent%3A%20%22%22%3B%0A%7D%0A%2Emarkdown%2Dbody%3Aafter%20%7B%0Adisplay%3A%20table%3B%0Aclear%3A%20both%3B%0Acontent%3A%20%22%22%3B%0A%7D%0A%2Emarkdown%2Dbody%3E%2A%3Afirst%2Dchild%20%7B%0Amargin%2Dtop%3A%200%20%21important%3B%0A%7D%0A%2Emarkdown%2Dbody%3E%2A%3Alast%2Dchild%20%7B%0Amargin%2Dbottom%3A%200%20%21important%3B%0A%7D%0Aa%3Anot%28%5Bhref%5D%29%20%7B%0Acolor%3A%20inherit%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0A%2Eanchor%20%7B%0Adisplay%3A%20inline%2Dblock%3B%0Apadding%2Dright%3A%202px%3B%0Amargin%2Dleft%3A%20%2D18px%3B%0A%7D%0A%2Eanchor%3Afocus%20%7B%0Aoutline%3A%20none%3B%0A%7D%0Ah1%2C%0Ah2%2C%0Ah3%2C%0Ah4%2C%0Ah5%2C%0Ah6%20%7B%0Amargin%2Dtop%3A%201em%3B%0Amargin%2Dbottom%3A%2016px%3B%0Afont%2Dweight%3A%20bold%3B%0Aline%2Dheight%3A%201%2E4%3B%0A%7D%0Ah1%20%2Eocticon%2Dlink%2C%0Ah2%20%2Eocticon%2Dlink%2C%0Ah3%20%2Eocticon%2Dlink%2C%0Ah4%20%2Eocticon%2Dlink%2C%0Ah5%20%2Eocticon%2Dlink%2C%0Ah6%20%2Eocticon%2Dlink%20%7B%0Acolor%3A%20%23000%3B%0Avertical%2Dalign%3A%20middle%3B%0Avisibility%3A%20hidden%3B%0A%7D%0Ah1%3Ahover%20%2Eanchor%2C%0Ah2%3Ahover%20%2Eanchor%2C%0Ah3%3Ahover%20%2Eanchor%2C%0Ah4%3Ahover%20%2Eanchor%2C%0Ah5%3Ahover%20%2Eanchor%2C%0Ah6%3Ahover%20%2Eanchor%20%7B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Ah1%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0Ah2%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0Ah3%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0Ah4%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0Ah5%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0Ah6%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%20%7B%0Avisibility%3A%20visible%3B%0A%7D%0Ah1%20%7B%0Apadding%2Dbottom%3A%200%2E3em%3B%0Afont%2Dsize%3A%202%2E25em%3B%0Aline%2Dheight%3A%201%2E2%3B%0Aborder%2Dbottom%3A%201px%20solid%20%23eee%3B%0A%7D%0Ah1%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%3B%0A%7D%0Ah2%20%7B%0Apadding%2Dbottom%3A%200%2E3em%3B%0Afont%2Dsize%3A%201%2E75em%3B%0Aline%2Dheight%3A%201%2E225%3B%0Aborder%2Dbottom%3A%201px%20solid%20%23eee%3B%0A%7D%0Ah2%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%3B%0A%7D%0Ah3%20%7B%0Afont%2Dsize%3A%201%2E5em%3B%0Aline%2Dheight%3A%201%2E43%3B%0A%7D%0Ah3%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%2E2%3B%0A%7D%0Ah4%20%7B%0Afont%2Dsize%3A%201%2E25em%3B%0A%7D%0Ah4%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%2E2%3B%0A%7D%0Ah5%20%7B%0Afont%2Dsize%3A%201em%3B%0A%7D%0Ah5%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%2E1%3B%0A%7D%0Ah6%20%7B%0Afont%2Dsize%3A%201em%3B%0Acolor%3A%20%23777%3B%0A%7D%0Ah6%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%2E1%3B%0A%7D%0Ap%2C%0Ablockquote%2C%0Aul%2C%0Aol%2C%0Adl%2C%0Atable%2C%0Apre%20%7B%0Amargin%2Dtop%3A%200%3B%0Amargin%2Dbottom%3A%2016px%3B%0A%7D%0Ahr%20%7B%0Aheight%3A%204px%3B%0Apadding%3A%200%3B%0Amargin%3A%2016px%200%3B%0Abackground%2Dcolor%3A%20%23e7e7e7%3B%0Aborder%3A%200%20none%3B%0A%7D%0Aul%2C%0Aol%20%7B%0Apadding%2Dleft%3A%202em%3B%0A%7D%0Aul%20ul%2C%0Aul%20ol%2C%0Aol%20ol%2C%0Aol%20ul%20%7B%0Amargin%2Dtop%3A%200%3B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Ali%3Ep%20%7B%0Amargin%2Dtop%3A%2016px%3B%0A%7D%0Adl%20%7B%0Apadding%3A%200%3B%0A%7D%0Adl%20dt%20%7B%0Apadding%3A%200%3B%0Amargin%2Dtop%3A%2016px%3B%0Afont%2Dsize%3A%201em%3B%0Afont%2Dstyle%3A%20italic%3B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Adl%20dd%20%7B%0Apadding%3A%200%2016px%3B%0Amargin%2Dbottom%3A%2016px%3B%0A%7D%0Ablockquote%20%7B%0Apadding%3A%200%2015px%3B%0Acolor%3A%20%23777%3B%0Aborder%2Dleft%3A%204px%20solid%20%23ddd%3B%0A%7D%0Ablockquote%3E%3Afirst%2Dchild%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Ablockquote%3E%3Alast%2Dchild%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Atable%20%7B%0Adisplay%3A%20block%3B%0Awidth%3A%20100%25%3B%0Aoverflow%3A%20auto%3B%0Aword%2Dbreak%3A%20normal%3B%0Aword%2Dbreak%3A%20keep%2Dall%3B%0A%7D%0Atable%20th%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Atable%20th%2C%0Atable%20td%20%7B%0Apadding%3A%206px%2013px%3B%0Aborder%3A%201px%20solid%20%23ddd%3B%0A%7D%0Atable%20tr%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Aborder%2Dtop%3A%201px%20solid%20%23ccc%3B%0A%7D%0Atable%20tr%3Anth%2Dchild%282n%29%20%7B%0Abackground%2Dcolor%3A%20%23f8f8f8%3B%0A%7D%0Aimg%20%7B%0Amax%2Dwidth%3A%20100%25%3B%0Abox%2Dsizing%3A%20content%2Dbox%3B%0Abackground%2Dcolor%3A%20%23fff%3B%0A%7D%0Acode%20%7B%0Apadding%3A%200%3B%0Apadding%2Dtop%3A%200%2E2em%3B%0Apadding%2Dbottom%3A%200%2E2em%3B%0Amargin%3A%200%3B%0Afont%2Dsize%3A%2085%25%3B%0Abackground%2Dcolor%3A%20rgba%280%2C0%2C0%2C0%2E04%29%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Acode%3Abefore%2C%0Acode%3Aafter%20%7B%0Aletter%2Dspacing%3A%20%2D0%2E2em%3B%0Acontent%3A%20%22%5C00a0%22%3B%0A%7D%0Apre%3Ecode%20%7B%0Apadding%3A%200%3B%0Amargin%3A%200%3B%0Afont%2Dsize%3A%20100%25%3B%0Aword%2Dbreak%3A%20normal%3B%0Awhite%2Dspace%3A%20pre%3B%0Abackground%3A%20transparent%3B%0Aborder%3A%200%3B%0A%7D%0A%2Ehighlight%20%7B%0Amargin%2Dbottom%3A%2016px%3B%0A%7D%0A%2Ehighlight%20pre%2C%0Apre%20%7B%0Apadding%3A%2016px%3B%0Aoverflow%3A%20auto%3B%0Afont%2Dsize%3A%2085%25%3B%0Aline%2Dheight%3A%201%2E45%3B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0A%2Ehighlight%20pre%20%7B%0Amargin%2Dbottom%3A%200%3B%0Aword%2Dbreak%3A%20normal%3B%0A%7D%0Apre%20%7B%0Aword%2Dwrap%3A%20normal%3B%0A%7D%0Apre%20code%20%7B%0Adisplay%3A%20inline%3B%0Amax%2Dwidth%3A%20initial%3B%0Apadding%3A%200%3B%0Amargin%3A%200%3B%0Aoverflow%3A%20initial%3B%0Aline%2Dheight%3A%20inherit%3B%0Aword%2Dwrap%3A%20normal%3B%0Abackground%2Dcolor%3A%20transparent%3B%0Aborder%3A%200%3B%0A%7D%0Apre%20code%3Abefore%2C%0Apre%20code%3Aafter%20%7B%0Acontent%3A%20normal%3B%0A%7D%0Akbd%20%7B%0Adisplay%3A%20inline%2Dblock%3B%0Apadding%3A%203px%205px%3B%0Afont%2Dsize%3A%2011px%3B%0Aline%2Dheight%3A%2010px%3B%0Acolor%3A%20%23555%3B%0Avertical%2Dalign%3A%20middle%3B%0Abackground%2Dcolor%3A%20%23fcfcfc%3B%0Aborder%3A%20solid%201px%20%23ccc%3B%0Aborder%2Dbottom%2Dcolor%3A%20%23bbb%3B%0Aborder%2Dradius%3A%203px%3B%0Abox%2Dshadow%3A%20inset%200%20%2D1px%200%20%23bbb%3B%0A%7D%0A%2Epl%2Dc%20%7B%0Acolor%3A%20%23969896%3B%0A%7D%0A%2Epl%2Dc1%2C%0A%2Epl%2Ds%20%2Epl%2Dv%20%7B%0Acolor%3A%20%230086b3%3B%0A%7D%0A%2Epl%2De%2C%0A%2Epl%2Den%20%7B%0Acolor%3A%20%23795da3%3B%0A%7D%0A%2Epl%2Ds%20%2Epl%2Ds1%2C%0A%2Epl%2Dsmi%20%7B%0Acolor%3A%20%23333%3B%0A%7D%0A%2Epl%2Dent%20%7B%0Acolor%3A%20%2363a35c%3B%0A%7D%0A%2Epl%2Dk%20%7B%0Acolor%3A%20%23a71d5d%3B%0A%7D%0A%2Epl%2Dpds%2C%0A%2Epl%2Ds%2C%0A%2Epl%2Ds%20%2Epl%2Dpse%20%2Epl%2Ds1%2C%0A%2Epl%2Dsr%2C%0A%2Epl%2Dsr%20%2Epl%2Dcce%2C%0A%2Epl%2Dsr%20%2Epl%2Dsra%2C%0A%2Epl%2Dsr%20%2Epl%2Dsre%20%7B%0Acolor%3A%20%23183691%3B%0A%7D%0A%2Epl%2Dv%20%7B%0Acolor%3A%20%23ed6a43%3B%0A%7D%0A%2Epl%2Did%20%7B%0Acolor%3A%20%23b52a1d%3B%0A%7D%0A%2Epl%2Dii%20%7B%0Abackground%2Dcolor%3A%20%23b52a1d%3B%0Acolor%3A%20%23f8f8f8%3B%0A%7D%0A%2Epl%2Dsr%20%2Epl%2Dcce%20%7B%0Acolor%3A%20%2363a35c%3B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0A%2Epl%2Dml%20%7B%0Acolor%3A%20%23693a17%3B%0A%7D%0A%2Epl%2Dmh%2C%0A%2Epl%2Dmh%20%2Epl%2Den%2C%0A%2Epl%2Dms%20%7B%0Acolor%3A%20%231d3e81%3B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0A%2Epl%2Dmq%20%7B%0Acolor%3A%20%23008080%3B%0A%7D%0A%2Epl%2Dmi%20%7B%0Acolor%3A%20%23333%3B%0Afont%2Dstyle%3A%20italic%3B%0A%7D%0A%2Epl%2Dmb%20%7B%0Acolor%3A%20%23333%3B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0A%2Epl%2Dmd%20%7B%0Abackground%2Dcolor%3A%20%23ffecec%3B%0Acolor%3A%20%23bd2c00%3B%0A%7D%0A%2Epl%2Dmi1%20%7B%0Abackground%2Dcolor%3A%20%23eaffea%3B%0Acolor%3A%20%2355a532%3B%0A%7D%0A%2Epl%2Dmdr%20%7B%0Acolor%3A%20%23795da3%3B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0A%2Epl%2Dmo%20%7B%0Acolor%3A%20%231d3e81%3B%0A%7D%0Akbd%20%7B%0Adisplay%3A%20inline%2Dblock%3B%0Apadding%3A%203px%205px%3B%0Afont%3A%2011px%20Consolas%2C%20%22Liberation%20Mono%22%2C%20Menlo%2C%20Courier%2C%20monospace%3B%0Aline%2Dheight%3A%2010px%3B%0Acolor%3A%20%23555%3B%0Avertical%2Dalign%3A%20middle%3B%0Abackground%2Dcolor%3A%20%23fcfcfc%3B%0Aborder%3A%20solid%201px%20%23ccc%3B%0Aborder%2Dbottom%2Dcolor%3A%20%23bbb%3B%0Aborder%2Dradius%3A%203px%3B%0Abox%2Dshadow%3A%20inset%200%20%2D1px%200%20%23bbb%3B%0A%7D%0A%2Etask%2Dlist%2Ditem%20%7B%0Alist%2Dstyle%2Dtype%3A%20none%3B%0A%7D%0A%2Etask%2Dlist%2Ditem%2B%2Etask%2Dlist%2Ditem%20%7B%0Amargin%2Dtop%3A%203px%3B%0A%7D%0A%2Etask%2Dlist%2Ditem%20input%20%7B%0Amargin%3A%200%200%2E35em%200%2E25em%20%2D1%2E6em%3B%0Avertical%2Dalign%3A%20middle%3B%0A%7D%0A%3Achecked%2B%2Eradio%2Dlabel%20%7B%0Az%2Dindex%3A%201%3B%0Aposition%3A%20relative%3B%0Aborder%2Dcolor%3A%20%234078c0%3B%0A%7D%0A%2EsourceLine%20%7B%0Adisplay%3A%20inline%2Dblock%3B%0A%7D%0Acode%20%2Ekw%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%2Edt%20%7B%20color%3A%20%23ed6a43%3B%20%7D%0Acode%20%2Edv%20%7B%20color%3A%20%23009999%3B%20%7D%0Acode%20%2Ebn%20%7B%20color%3A%20%23009999%3B%20%7D%0Acode%20%2Efl%20%7B%20color%3A%20%23009999%3B%20%7D%0Acode%20%2Ech%20%7B%20color%3A%20%23009999%3B%20%7D%0Acode%20%2Est%20%7B%20color%3A%20%23183691%3B%20%7D%0Acode%20%2Eco%20%7B%20color%3A%20%23969896%3B%20%7D%0Acode%20%2Eot%20%7B%20color%3A%20%230086b3%3B%20%7D%0Acode%20%2Eal%20%7B%20color%3A%20%23a61717%3B%20%7D%0Acode%20%2Efu%20%7B%20color%3A%20%2363a35c%3B%20%7D%0Acode%20%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%0Acode%20%2Ewa%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%2Ecn%20%7B%20color%3A%20%23008080%3B%20%7D%0Acode%20%2Esc%20%7B%20color%3A%20%23008080%3B%20%7D%0Acode%20%2Evs%20%7B%20color%3A%20%23183691%3B%20%7D%0Acode%20%2Ess%20%7B%20color%3A%20%23183691%3B%20%7D%0Acode%20%2Eim%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%2Eva%20%7Bcolor%3A%20%23008080%3B%20%7D%0Acode%20%2Ecf%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%2Eop%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%2Ebu%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%2Eex%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%2Epp%20%7B%20color%3A%20%23999999%3B%20%7D%0Acode%20%2Eat%20%7B%20color%3A%20%23008080%3B%20%7D%0Acode%20%2Edo%20%7B%20color%3A%20%23969896%3B%20%7D%0Acode%20%2Ean%20%7B%20color%3A%20%23008080%3B%20%7D%0Acode%20%2Ecv%20%7B%20color%3A%20%23008080%3B%20%7D%0Acode%20%2Ein%20%7B%20color%3A%20%23008080%3B%20%7D%0A" rel="stylesheet">
+<style>
+body {
+  box-sizing: border-box;
+  min-width: 200px;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 45px;
+  padding-top: 0px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1 id="basic-data-wrangling">Basic data wrangling</h1>
+<p><strong>Dmitry Kondrashov &amp; Stefano Allesina</strong><br />
+Fundamentals of Biological Data Analysis -- BIOS 26318</p>
+<ul>
+<li><a href="#goal">Goal</a></li>
+<li><a href="#what-is-data-wrangling">What is data wrangling?</a></li>
+<li><a href="#a-new-data-type-tibble">A new data type, <code>tibble</code></a></li>
+<li><a href="#selecting-rows-and-columns">Selecting rows and columns</a></li>
+<li><a href="#creating-pipelines-using">Creating pipelines using <code>%&gt;%</code></a></li>
+<li><a href="#producing-summaries">Producing summaries</a></li>
+<li><a href="#summaries-by-group">Summaries by group</a></li>
+<li><a href="#ordering-the-data">Ordering the data</a></li>
+<li><a href="#renaming-columns">Renaming columns</a></li>
+<li><a href="#adding-new-variables-using-mutate">Adding new variables using mutate</a></li>
+<li><a href="#data-wrangling">Data wrangling</a>
+<ul>
+<li><a href="#gather-from-columns-to-rows">Gather: from columns to rows</a></li>
+<li><a href="#spread-turn-rows-into-columns">Spread: turn rows into columns</a></li>
+<li><a href="#separate-split-a-column-into-two-or-more">Separate: split a column into two or more</a></li>
+<li><a href="#separate-rows-from-one-row-to-many">Separate rows: from one row to many</a></li>
+</ul></li>
+<li><a href="#an-example-from-tidy-to-messy">An example: from tidy to messy</a></li>
+<li><a href="#a-more-difficult-case-from-very-messy-to-tidy">A more difficult case: from (very) messy to tidy</a></li>
+<li><a href="#resources">Resources</a></li>
+</ul>
+<h1 id="goal">Goal</h1>
+<p>Learn how to manipulate large data sets by writing efficient, consistent, and compact code. Introduce the use of <code>dplyr</code>, <code>tidyr</code>, and the &quot;pipeline&quot; operator <code>%&gt;%</code>. Effortlessly produce statistics for grouped data. Massage data into &quot;tidy&quot; form.</p>
+<h1 id="what-is-data-wrangling">What is data wrangling?</h1>
+<p>As biologists living in the XXI century, we are often faced with tons of data, possibly replicated over several organisms, treatments, or locations. We would like to streamline and automate our analysis as much as possible, writing scripts that are easy to read, fast to run, and easy to debug. Base <code>R</code> can get the job done, but often the code contains complicated operations, and a lot of <code>$</code> signs and brackets.</p>
+<p>We're going to learn about the packages <code>dplyr</code> and <code>tidyr</code>, which are part of <code>tidyverse</code> and can be used to manipulate large data frames in a simple and straightforward way. These tools are also much faster than the corresponding base <code>R</code> commands, are very compact, and can be concatenated into &quot;pipelines&quot;.</p>
+<p>To start, we need to import the libraries:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse) <span class="co"># this loads both dplyr and tidyr, along with other packages</span>
+<span class="kw">library</span>(readxl) <span class="co"># to read Excel files</span></code></pre></div>
+<p>Then, we need a dataset to play with. We take a simple dataset from:</p>
+<blockquote>
+<p>Lippens C, Faivre B, Lechenault C, Sorci G (2017) <a href="https://doi.org/10.1098/rsbl.2016.0888">Aging parasites produce offspring with poor fitness prospects</a>. Biology Letters 13(2): 20160888.</p>
+</blockquote>
+<p>The authors have found that senescing parasites produce offspring with lower survival probability and lower fertility. To produce this result, they have infected mice with the parasite nematode <em>Heligmosomoides polygyrus</em>. They collected the eggs found in the faeces at different times, corresponding to the age of the worm (in days). Then they used the hatched larvae to infect mice, and counted the eggs shed by the newly infected mice for 28 days. At that point, the mice were sacrificed and adult worms in the intestine counted.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># original URL:</span>
+<span class="co"># https://datadryad.org/stash/dataset/doi:10.5061/dryad.2k11f</span>
+dt &lt;-<span class="st"> </span><span class="kw">read_xlsx</span>(<span class="st">&quot;data/Lippens_2017.xlsx&quot;</span>) </code></pre></div>
+<h1 id="a-new-data-type-tibble">A new data type, <code>tibble</code></h1>
+<p>This is now a :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(dt)</code></pre></div>
+<pre><code># [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
+<p><code>dplyr</code> ships with a new data type, called a <code>tibble</code>. To convert a <code>data.frame</code> into a tibble, use <code>as_tibble</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load a data frame</span>
+<span class="kw">data</span>(<span class="st">&quot;trees&quot;</span>)
+<span class="kw">class</span>(trees)
+trees &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(trees)
+<span class="kw">class</span>(trees)</code></pre></div>
+<p>The nice feature of <code>tbl</code> objects is that they will print only what fits on the screen, and also give you useful information on the size of the data, as well as the type of data in each column. Other than that, a <code>tbl</code> object behaves very much like a <code>data.frame</code>. In some rare cases, you want to transform the <code>tbl</code> back into a <code>data.frame</code>. For this, use the function <code>as.data.frame(tbl_object)</code>.</p>
+<p>We can take a look at the data using one of several functions:</p>
+<ul>
+<li><code>head(dt)</code> shows the first few rows</li>
+<li><code>tail(dt)</code> shows the last few rows</li>
+<li><code>glimpse(dt)</code> a summary of the data (similar to <code>str</code> in base R)</li>
+<li><code>View(dt)</code> open in spreadsheet-like window</li>
+</ul>
+<h1 id="selecting-rows-and-columns">Selecting rows and columns</h1>
+<p>There are many ways to subset the data, either by row (subsetting the <em>observations</em>), or by column (subsetting the <em>variables</em>). For example, suppose we want to count how many rows contain data for <code>time post-infection</code> 28. When reading data using <code>tidyverse</code>, the column names are not altered (contrary to what happens using <code>read.csv</code>). As such, they might be difficult to type. No problem: simply enclose the names with back tickmarks (&quot;`&quot;):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(dt, <span class="st">`</span><span class="dt">time post-infection</span><span class="st">`</span> <span class="op">==</span><span class="st"> </span><span class="dv">28</span>)</code></pre></div>
+<pre><code># # A tibble: 20 x 5
+#    `Parental age` id     `time post-infe… `fecal egg coun… `number of adul…
+#             &lt;dbl&gt; &lt;chr&gt;             &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+#  1             15 ES11/A               28            19.2                39
+#  2             15 ES12/B               28            21.9                54
+#  3             15 ES13/C               28            16.4                44
+#  4             15 ES14/D               28            28.6                49
+#  5             15 ES15/E               28            14.9                38
+#  6             45 ES21/A               28            17.6                26
+#  7             45 ES22/B               28            35.4                49
+#  8             45 ES23/C               28            17.9                51
+#  9             45 ES24/D               28            30.5                43
+# 10             45 ES25/E               28            20.3                43
+# 11            105 ES31/A               28             5.31               21
+# 12            105 ES32/B               28            23.6                39
+# 13            105 ES33/C               28             9.66               24
+# 14            105 ES34/D               28            12.0                27
+# 15            105 ES35/E               28            39.8                32
+# 16            165 ES41/A               28             4.33               12
+# 17            165 ES42/B               28             9.27               26
+# 18            165 ES43/C               28            10.0                25
+# 19            165 ES44/D               28            11.6                28
+# 20            165 ES45/E               28            13.7                28</code></pre>
+<p>We have 20 observations. We have used the command <code>filter(tbl, conditions)</code> to select certain observations. We can combine several conditions, by listing them side by side, possibly using logical operators.</p>
+<blockquote>
+<p><strong>Exercise:</strong> what does this do? <code>filter(dt, `Parental age` &gt; 20,  `number of adult worms` &gt; 20,  `fecal egg count` &lt; 10)</code></p>
+</blockquote>
+<p>We can also select particular variables (columns) using the function <code>select(tbl, cols to select)</code>. For example, select <code>id</code> and <code>number of adult worms</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(dt, id, <span class="st">`</span><span class="dt">number of adult worms</span><span class="st">`</span>)</code></pre></div>
+<pre><code># # A tibble: 120 x 2
+#    id     `number of adult worms`
+#    &lt;chr&gt;                    &lt;dbl&gt;
+#  1 ES11/A                      NA
+#  2 ES11/A                      NA
+#  3 ES11/A                      NA
+#  4 ES11/A                      NA
+#  5 ES11/A                      NA
+#  6 ES11/A                      39
+#  7 ES12/B                      NA
+#  8 ES12/B                      NA
+#  9 ES12/B                      NA
+# 10 ES12/B                      NA
+# # … with 110 more rows</code></pre>
+<p>How many <code>id</code>s are represented in the data set? We can use the function <code>distinct(tbl, cols to select)</code> to retain only the rows that differ from each other:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">distinct</span>(<span class="kw">select</span>(dt, id))</code></pre></div>
+<pre><code># # A tibble: 20 x 1
+#    id    
+#    &lt;chr&gt; 
+#  1 ES11/A
+#  2 ES12/B
+#  3 ES13/C
+#  4 ES14/D
+#  5 ES15/E
+#  6 ES21/A
+#  7 ES22/B
+#  8 ES23/C
+#  9 ES24/D
+# 10 ES25/E
+# 11 ES31/A
+# 12 ES32/B
+# 13 ES33/C
+# 14 ES34/D
+# 15 ES35/E
+# 16 ES41/A
+# 17 ES42/B
+# 18 ES43/C
+# 19 ES44/D
+# 20 ES45/E</code></pre>
+<p>Showing that there are 20 replicates, once we removed the duplicates. There are many other ways to subset observations:</p>
+<ul>
+<li><code>sample_n(tbl, howmany, replace = TRUE)</code> sample <code>howmany</code> rows at random (with replacement)</li>
+<li><code>sample_frac(tbl, proportion, replace = FALSE)</code> sample a certain proportion (e.g. <code>0.2</code> for 20%) of rows at random without replacement</li>
+<li><code>slice(tbl, 5:20)</code> extract the rows <code>5</code> to <code>20</code></li>
+<li><code>top_n(tbl, 10, `number of adult worms`)</code> extract the first <code>10</code> rows, once ordered by <code>number of adult worms</code></li>
+</ul>
+<p>More ways to select columns:</p>
+<ul>
+<li><code>select(dt, contains(&quot;time&quot;))</code> select all columns containing the word <code>time</code></li>
+<li><code>select(dt, -id, -`Parental age`)</code> exclude the columns <code>id</code> and <code>Parental age</code></li>
+<li><code>select(dt, matches(&quot;count|time&quot;))</code> select all columns whose names match a regular expression</li>
+</ul>
+<h1 id="creating-pipelines-using">Creating pipelines using <code>%&gt;%</code></h1>
+<p>We've been calling nested functions, such as <code>distinct(select(dt, id))</code>. If you have to add another layer or two, the code would become unreadable. <code>dplyr</code> allows you to &quot;un-nest&quot; these functions and create a &quot;pipeline&quot; in which you concatenate commands separated by a special operator, <code>%&gt;%</code>. For example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dt <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># take a data table</span>
+<span class="st">  </span><span class="kw">select</span>(id) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># select a column</span>
+<span class="st">  </span><span class="kw">distinct</span>() <span class="co"># remove duplicates</span></code></pre></div>
+<pre><code># # A tibble: 20 x 1
+#    id    
+#    &lt;chr&gt; 
+#  1 ES11/A
+#  2 ES12/B
+#  3 ES13/C
+#  4 ES14/D
+#  5 ES15/E
+#  6 ES21/A
+#  7 ES22/B
+#  8 ES23/C
+#  9 ES24/D
+# 10 ES25/E
+# 11 ES31/A
+# 12 ES32/B
+# 13 ES33/C
+# 14 ES34/D
+# 15 ES35/E
+# 16 ES41/A
+# 17 ES42/B
+# 18 ES43/C
+# 19 ES44/D
+# 20 ES45/E</code></pre>
+<p>does exactly the same operations as the command above, but is much more readable. By concatenating many commands, you can create incredibly complex pipelines while retaining readability. It is also quite easy to add another piece of the pipeline in between commands, or to comment some of the pipeline out.</p>
+<p>Another advantage of pipelines is that they help with name completion. In fact, <code>RStudio</code> is running in the background your pipeline while you type it. Try typing <code>dt %&gt;% filter(</code> and then start typing <code>time</code> and press <code>Tab</code>: you will see the options to complete the column name; choose it with your arrows and hit <code>Return</code>. The back tickmarks will be added automatically.</p>
+<h1 id="producing-summaries">Producing summaries</h1>
+<p>Sometimes we need to calculate statistics on certain columns. For example, calculate the average number of eggs shedded by the infected mice. We can do this using <code>summarise</code> (you can use British or American spelling):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dt <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">avg =</span> <span class="kw">mean</span>(<span class="st">`</span><span class="dt">fecal egg count</span><span class="st">`</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
+<pre><code># # A tibble: 1 x 1
+#     avg
+#   &lt;dbl&gt;
+# 1  18.4</code></pre>
+<p>where we used <code>na.rm = TRUE</code> to ignore missing values. This command returns a <code>tbl</code> object with just the average egg count. You can combine multiple statistics (use <code>first</code>, <code>last</code>, <code>min</code>, <code>max</code>, <code>n</code> [count the number of rows], <code>n_distinct</code> [count the number of distinct rows], <code>mean</code>, <code>median</code>, <code>var</code>, <code>sd</code>, etc.):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dt <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">avg =</span> <span class="kw">mean</span>(<span class="st">`</span><span class="dt">fecal egg count</span><span class="st">`</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), 
+                 <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="st">`</span><span class="dt">fecal egg count</span><span class="st">`</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), 
+                 <span class="dt">median =</span> <span class="kw">median</span>(<span class="st">`</span><span class="dt">fecal egg count</span><span class="st">`</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
+<pre><code># # A tibble: 1 x 3
+#     avg    sd median
+#   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+# 1  18.4  10.0   16.2</code></pre>
+<h1 id="summaries-by-group">Summaries by group</h1>
+<p>One of the most useful features of <code>dplyr</code> is the ability to produce statistics for the data once subsetted by <em>groups</em>. For example, we would like to measure whether older worms produce less virulent offspring. We can then group the data by <code>Parental age</code>, and calculate the mean <code>fecal egg count</code> once the data are split into groups:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dt <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(<span class="st">`</span><span class="dt">Parental age</span><span class="st">`</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(<span class="st">`</span><span class="dt">fecal egg count</span><span class="st">`</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
+<pre><code># # A tibble: 4 x 2
+#   `Parental age`  mean
+#            &lt;dbl&gt; &lt;dbl&gt;
+# 1             15  26.1
+# 2             45  16.8
+# 3            105  16.3
+# 4            165  14.8</code></pre>
+<p>showing that younger worms produce highly virulent offspring.</p>
+<blockquote>
+<p><strong>Exercise:</strong> find the average <code>number of adult worms</code> by <code>Parental age</code>. Filter the data to consider only 28 days for <code>time post-infection</code>.</p>
+</blockquote>
+<h1 id="ordering-the-data">Ordering the data</h1>
+<p>To order the data according to one or more variables, use <code>arrange()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dt <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="st">`</span><span class="dt">number of adult worms</span><span class="st">`</span>)
+dt <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(<span class="st">`</span><span class="dt">number of adult worms</span><span class="st">`</span>))</code></pre></div>
+<pre><code># # A tibble: 120 x 5
+#    `Parental age` id     `time post-infe… `fecal egg coun… `number of adul…
+#             &lt;dbl&gt; &lt;chr&gt;             &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+#  1            165 ES41/A               28             4.33               12
+#  2            105 ES31/A               28             5.31               21
+#  3            105 ES33/C               28             9.66               24
+#  4            165 ES43/C               28            10.0                25
+#  5             45 ES21/A               28            17.6                26
+#  6            165 ES42/B               28             9.27               26
+#  7            105 ES34/D               28            12.0                27
+#  8            165 ES44/D               28            11.6                28
+#  9            165 ES45/E               28            13.7                28
+# 10            105 ES35/E               28            39.8                32
+# # … with 110 more rows
+# # A tibble: 120 x 5
+#    `Parental age` id     `time post-infe… `fecal egg coun… `number of adul…
+#             &lt;dbl&gt; &lt;chr&gt;             &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+#  1             15 ES12/B               28             21.9               54
+#  2             45 ES23/C               28             17.9               51
+#  3             15 ES14/D               28             28.6               49
+#  4             45 ES22/B               28             35.4               49
+#  5             15 ES13/C               28             16.4               44
+#  6             45 ES24/D               28             30.5               43
+#  7             45 ES25/E               28             20.3               43
+#  8             15 ES11/A               28             19.2               39
+#  9            105 ES32/B               28             23.6               39
+# 10             15 ES15/E               28             14.9               38
+# # … with 110 more rows</code></pre>
+<h1 id="renaming-columns">Renaming columns</h1>
+<p>To rename one or more columns, use <code>rename()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dt <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(<span class="dt">pa =</span> <span class="st">`</span><span class="dt">Parental age</span><span class="st">`</span>)</code></pre></div>
+<pre><code># # A tibble: 120 x 5
+#       pa id     `time post-infectio… `fecal egg coun… `number of adult wor…
+#    &lt;dbl&gt; &lt;chr&gt;                 &lt;dbl&gt;            &lt;dbl&gt;                 &lt;dbl&gt;
+#  1    15 ES11/A                   11             14.6                    NA
+#  2    15 ES11/A                   14             21.1                    NA
+#  3    15 ES11/A                   18             16.8                    NA
+#  4    15 ES11/A                   21             31.0                    NA
+#  5    15 ES11/A                   25             21.8                    NA
+#  6    15 ES11/A                   28             19.2                    39
+#  7    15 ES12/B                   11             25.9                    NA
+#  8    15 ES12/B                   14             19.4                    NA
+#  9    15 ES12/B                   18             22.4                    NA
+# 10    15 ES12/B                   21             61.4                    NA
+# # … with 110 more rows</code></pre>
+<h1 id="adding-new-variables-using-mutate">Adding new variables using mutate</h1>
+<p>If you want to add one or more new columns, with the content being a function of other columns, use the function <code>mutate</code>. For example, we are going to take the samples at <code>time post-infection</code> 28, and add a column containing the ratio between <code>fecal egg count</code> and <code>number of adult worms</code> , calling the new column <code>worms_per_egg</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dt <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="st">`</span><span class="dt">time post-infection</span><span class="st">`</span> <span class="op">==</span><span class="st"> </span><span class="dv">28</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">worms_per_egg =</span> <span class="st">`</span><span class="dt">fecal egg count</span><span class="st">`</span> <span class="op">/</span><span class="st"> `</span><span class="dt">number of adult worms</span><span class="st">`</span>)</code></pre></div>
+<pre><code># # A tibble: 20 x 6
+#    `Parental age` id    `time post-infe… `fecal egg coun… `number of adul…
+#             &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+#  1             15 ES11…               28            19.2                39
+#  2             15 ES12…               28            21.9                54
+#  3             15 ES13…               28            16.4                44
+#  4             15 ES14…               28            28.6                49
+#  5             15 ES15…               28            14.9                38
+#  6             45 ES21…               28            17.6                26
+#  7             45 ES22…               28            35.4                49
+#  8             45 ES23…               28            17.9                51
+#  9             45 ES24…               28            30.5                43
+# 10             45 ES25…               28            20.3                43
+# 11            105 ES31…               28             5.31               21
+# 12            105 ES32…               28            23.6                39
+# 13            105 ES33…               28             9.66               24
+# 14            105 ES34…               28            12.0                27
+# 15            105 ES35…               28            39.8                32
+# 16            165 ES41…               28             4.33               12
+# 17            165 ES42…               28             9.27               26
+# 18            165 ES43…               28            10.0                25
+# 19            165 ES44…               28            11.6                28
+# 20            165 ES45…               28            13.7                28
+# # … with 1 more variable: worms_per_egg &lt;dbl&gt;</code></pre>
+<p>We can pipe the results to <code>ggplot</code> for plotting!</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dt <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="st">`</span><span class="dt">time post-infection</span><span class="st">`</span> <span class="op">==</span><span class="st"> </span><span class="dv">28</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">worms_per_egg =</span> <span class="st">`</span><span class="dt">fecal egg count</span><span class="st">`</span> <span class="op">/</span><span class="st"> `</span><span class="dt">number of adult worms</span><span class="st">`</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">`</span><span class="dt">Parental age</span><span class="st">`</span>, <span class="dt">y =</span> worms_per_egg) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</code></pre></div>
+<p><img src="data:image/png;base64,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" style="display: block; margin: auto;" /></p>
+<p>You can use the function <code>transmute()</code> to create a new column and drop the original columns.</p>
+<p>Most importantly, you can use <code>mutate</code> and <code>transmute</code> on grouped data. For example, let's compute a z-score of the <code>fecal egg count</code> once the data is grouped by parental age:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dt <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="st">`</span><span class="dt">Parental age</span><span class="st">`</span>, <span class="st">`</span><span class="dt">time post-infection</span><span class="st">`</span>, <span class="st">`</span><span class="dt">fecal egg count</span><span class="st">`</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(<span class="st">`</span><span class="dt">Parental age</span><span class="st">`</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">zscore =</span> <span class="kw">scale</span>(<span class="st">`</span><span class="dt">fecal egg count</span><span class="st">`</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">arrange</span>(<span class="st">`</span><span class="dt">time post-infection</span><span class="st">`</span>)</code></pre></div>
+<h1 id="data-wrangling">Data wrangling</h1>
+<p>Data is rarely in a format that is good for computing, and much effort goes into reading the data and wrestling with it to make it into a good format. As the name implies, <code>tidyverse</code> strongly advocates for the use of data in <em>tidy</em> form. What does this mean?</p>
+<ul>
+<li>Each variable forms a column</li>
+<li>Each observation forms a row</li>
+<li>Each type of observational unit forms a table</li>
+</ul>
+<p>This is often called <em>narrow table</em> format. Any other form of data (e.g., <em>wide table</em> format) is considered <em>messy</em>. However, often data are not organized in tidy form, or we want to produce tables for human consumption rather than computer consumption. The package <code>tidyr</code> allows to accomplish just that. It contains only a few, very powerful functions:</p>
+<h2 id="gather-from-columns-to-rows">Gather: from columns to rows</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">test &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="st">&quot;individual&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ind1&quot;</span>, <span class="st">&quot;ind2&quot;</span>), 
+               <span class="st">&quot;Task A&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), 
+               <span class="st">&quot;Task B&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">1</span>))
+test</code></pre></div>
+<pre><code># # A tibble: 2 x 3
+#   individual `Task A` `Task B`
+#   &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt;
+# 1 ind1              1        4
+# 2 ind2              3        1</code></pre>
+<p>Make it into tidy form:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">test <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">gather</span>(Task, Score, <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>)</code></pre></div>
+<pre><code># # A tibble: 4 x 3
+#   individual Task   Score
+#   &lt;chr&gt;      &lt;chr&gt;  &lt;dbl&gt;
+# 1 ind1       Task A     1
+# 2 ind2       Task A     3
+# 3 ind1       Task B     4
+# 4 ind2       Task B     1</code></pre>
+<h2 id="spread-turn-rows-into-columns">Spread: turn rows into columns</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">test &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">location =</span> <span class="kw">c</span>(<span class="st">&quot;one&quot;</span>, <span class="st">&quot;one&quot;</span>, <span class="st">&quot;two&quot;</span>, <span class="st">&quot;two&quot;</span>), 
+               <span class="dt">month =</span> <span class="kw">c</span>(<span class="st">&quot;June&quot;</span>, <span class="st">&quot;July&quot;</span>, <span class="st">&quot;June&quot;</span>, <span class="st">&quot;July&quot;</span>), 
+               <span class="dt">rainfall =</span> <span class="kw">c</span>(<span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">6</span>, <span class="dv">8</span>))
+test</code></pre></div>
+<pre><code># # A tibble: 4 x 3
+#   location month rainfall
+#   &lt;chr&gt;    &lt;chr&gt;    &lt;dbl&gt;
+# 1 one      June        12
+# 2 one      July        14
+# 3 two      June         6
+# 4 two      July         8</code></pre>
+<p>Make it into wide-table (messy) format:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">test <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">spread</span>(month, rainfall)</code></pre></div>
+<pre><code># # A tibble: 2 x 3
+#   location  July  June
+#   &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;
+# 1 one         14    12
+# 2 two          8     6</code></pre>
+<h2 id="separate-split-a-column-into-two-or-more">Separate: split a column into two or more</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">test &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">name =</span> <span class="kw">c</span>(<span class="st">&quot;Allesina, Stefano&quot;</span>, <span class="st">&quot;Kondrashov, Dmitry&quot;</span>, <span class="st">&quot;Smith, Julia&quot;</span>))
+test</code></pre></div>
+<pre><code># # A tibble: 3 x 1
+#   name              
+#   &lt;chr&gt;             
+# 1 Allesina, Stefano 
+# 2 Kondrashov, Dmitry
+# 3 Smith, Julia</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">test <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">separate</span>(name, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;last_name&quot;</span>, <span class="st">&quot;first_name&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;, &quot;</span>)</code></pre></div>
+<pre><code># # A tibble: 3 x 2
+#   last_name  first_name
+#   &lt;chr&gt;      &lt;chr&gt;     
+# 1 Allesina   Stefano   
+# 2 Kondrashov Dmitry    
+# 3 Smith      Julia</code></pre>
+<p>The complement of <code>separate</code> is called <code>unite</code>.</p>
+<h2 id="separate-rows-from-one-row-to-many">Separate rows: from one row to many</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">test &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">id =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>), <span class="dt">records =</span> <span class="kw">c</span>(<span class="st">&quot;a;b;c&quot;</span>, <span class="st">&quot;c;d&quot;</span>, <span class="st">&quot;a;e&quot;</span>, <span class="st">&quot;f&quot;</span>))
+test</code></pre></div>
+<pre><code># # A tibble: 4 x 2
+#      id records
+#   &lt;dbl&gt; &lt;chr&gt;  
+# 1     1 a;b;c  
+# 2     2 c;d    
+# 3     3 a;e    
+# 4     4 f</code></pre>
+<p>To make it into tidy form, only one record per row:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">test <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">separate_rows</span>(records, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)</code></pre></div>
+<pre><code># # A tibble: 8 x 2
+#      id records
+#   &lt;dbl&gt; &lt;chr&gt;  
+# 1     1 a      
+# 2     1 b      
+# 3     1 c      
+# 4     2 c      
+# 5     2 d      
+# 6     3 a      
+# 7     3 e      
+# 8     4 f</code></pre>
+<h1 id="an-example-from-tidy-to-messy">An example: from tidy to messy</h1>
+<p>The data we are using are in tidy format, but suppose you want to produce a table for your paper. For each parental age, you want to show the mean number of eggs by <code>time post-infection</code>. We know how to compute the statistics:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for_table &lt;-<span class="st"> </span>dt <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(<span class="st">`</span><span class="dt">Parental age</span><span class="st">`</span>, <span class="st">`</span><span class="dt">time post-infection</span><span class="st">`</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">eggs =</span> <span class="kw">mean</span>(<span class="st">`</span><span class="dt">fecal egg count</span><span class="st">`</span>))
+for_table</code></pre></div>
+<pre><code># # A tibble: 24 x 3
+# # Groups:   Parental age [4]
+#    `Parental age` `time post-infection`  eggs
+#             &lt;dbl&gt;                 &lt;dbl&gt; &lt;dbl&gt;
+#  1             15                    11  22.4
+#  2             15                    14  NA  
+#  3             15                    18  19.0
+#  4             15                    21  40.5
+#  5             15                    25  29.6
+#  6             15                    28  20.2
+#  7             45                    11  13.1
+#  8             45                    14  16.0
+#  9             45                    18  14.2
+# 10             45                    21  15.6
+# # … with 14 more rows</code></pre>
+<p>Now the data is in narrow (tidy) format, and we would like to produce a wide table that is better for human consumption. All we need to do is to <code>spread</code> the column <code>time post-infection</code> so that each time becomes a different column. For each combination of <code>Parental age</code> and <code>time post-infection</code>, we report the mean number of eggs:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for_table <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">spread</span>(<span class="st">`</span><span class="dt">time post-infection</span><span class="st">`</span>, eggs)</code></pre></div>
+<pre><code># # A tibble: 4 x 7
+# # Groups:   Parental age [4]
+#   `Parental age`  `11`  `14`  `18`  `21`  `25`  `28`
+#            &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+# 1             15  22.4  NA    19.0  40.5  29.6 20.2 
+# 2             45  13.1  16.0  14.2  15.6  17.8 24.3 
+# 3            105  12.4  11.5  17.0  18.2  20.6 18.1 
+# 4            165  18.0  16.8  11.8  18.7  13.9  9.78</code></pre>
+<blockquote>
+<p><strong>Exercise</strong>: how do we produce a table in which the <code>time post-infection</code> is in the rows, and <code>Parental age</code> in the columns?</p>
+</blockquote>
+<h1 id="a-more-difficult-case-from-very-messy-to-tidy">A more difficult case: from (very) messy to tidy</h1>
+<p>We now are going to turn a data set that is almost impossible to use. You can read the data using:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Original URL</span>
+<span class="co"># https://datadryad.org/stash/dataset/doi:10.5061/dryad.80vd7q6</span>
+a &lt;-<span class="st"> </span><span class="kw">read_xlsx</span>(<span class="st">&quot;data/Derocles et al Networks.xlsx&quot;</span>)</code></pre></div>
+<p>These data are taken from:</p>
+<blockquote>
+<p>Derocles SAP, Lunt DH, Berthe SCF, Nichols PC, Moss ED, Evans DM (2018) Climate-warming alters the structure of farmland tri-trophic ecological networks and reduces crop yield. Molecular Ecology</p>
+</blockquote>
+<p>The data is composed of 24 matrices (one for each experimental plot) showing the frequency of interaction between plants, aphids and parasitoids. Take a look using <code>View(a)</code>: you can see that there are several matrices in the same sheet. We would like to produce the tidy data: <code>plot</code> (number of the plot), <code>from</code> (species from), <code>to</code> (species to), <code>frequency</code> (what is reported in the matrix). First, we need to find where plot 2, 3, etc. start:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">starting &lt;-<span class="st"> </span>a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">transmute</span>(<span class="dt">plot =</span> <span class="st">`</span><span class="dt">plot 1</span><span class="st">`</span>, 
+                            <span class="dt">start =</span> <span class="kw">ifelse</span>(<span class="kw">grepl</span>(<span class="st">&quot;plot&quot;</span>, <span class="st">`</span><span class="dt">plot 1</span><span class="st">`</span>), 
+                                           <span class="kw">row_number</span>(), <span class="ot">NA</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(start))</code></pre></div>
+<p>Now let's add 1 to the starting point (because that is the row containing the names), and add at the front a new row for plot 1:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">starting &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">tibble</span>(<span class="dt">plot =</span> <span class="st">&quot;plot 1&quot;</span>, <span class="dt">start =</span> <span class="dv">1</span>), 
+                  starting <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">start =</span> start <span class="op">+</span><span class="st"> </span><span class="dv">1</span>))
+starting</code></pre></div>
+<pre><code># # A tibble: 24 x 2
+#    plot    start
+#    &lt;chr&gt;   &lt;dbl&gt;
+#  1 plot 1      1
+#  2 plot 2     17
+#  3 plot 3     33
+#  4 plot 4     49
+#  5 plot 5     65
+#  6 plot 6     81
+#  7 plot 7     97
+#  8 plot 8    113
+#  9 plot 9    129
+# 10 plot 10   145
+# # … with 14 more rows</code></pre>
+<p>Now we want to find where each data set ends. It will be the starting point of the next one minus 3:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">starting &lt;-<span class="st"> </span>starting <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">end =</span> <span class="kw">lead</span>(start) <span class="op">-</span><span class="st"> </span><span class="dv">3</span>)
+starting</code></pre></div>
+<pre><code># # A tibble: 24 x 3
+#    plot    start   end
+#    &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+#  1 plot 1      1    14
+#  2 plot 2     17    30
+#  3 plot 3     33    46
+#  4 plot 4     49    62
+#  5 plot 5     65    78
+#  6 plot 6     81    94
+#  7 plot 7     97   110
+#  8 plot 8    113   126
+#  9 plot 9    129   142
+# 10 plot 10   145   158
+# # … with 14 more rows</code></pre>
+<p>Note that we're missing the end for the last plot:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tail</span>(starting)</code></pre></div>
+<pre><code># # A tibble: 6 x 3
+#   plot    start   end
+#   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+# 1 plot 19   289   302
+# 2 plot 20   305   318
+# 3 plot 21   321   334
+# 4 plot 22   337   350
+# 5 plot 23   353   366
+# 6 plot 24   369    NA</code></pre>
+<p>We can fix this easily:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">starting[starting<span class="op">$</span>plot <span class="op">==</span><span class="st"> &quot;plot 24&quot;</span>, <span class="st">&quot;end&quot;</span>] &lt;-<span class="st"> </span><span class="kw">nrow</span>(a)
+<span class="kw">tail</span>(starting)</code></pre></div>
+<pre><code># # A tibble: 6 x 3
+#   plot    start   end
+#   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+# 1 plot 19   289   302
+# 2 plot 20   305   318
+# 3 plot 21   321   334
+# 4 plot 22   337   350
+# 5 plot 23   353   366
+# 6 plot 24   369   382</code></pre>
+<p>Wonderful! Now let's try to transform the first plot:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_plot &lt;-<span class="st"> &quot;plot 1&quot;</span>
+my_start  &lt;-<span class="st"> </span><span class="dv">1</span>
+my_end &lt;-<span class="st"> </span><span class="dv">14</span>
+<span class="co"># build this line by line!</span>
+a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">slice</span>(my_start<span class="op">:</span>my_end) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(to, frequency, <span class="op">-</span><span class="st">`</span><span class="dt">plot 1</span><span class="st">`</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">rename</span>(<span class="dt">from =</span> <span class="st">`</span><span class="dt">plot 1</span><span class="st">`</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">add_column</span>(<span class="dt">plot =</span> my_plot) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">frequency =</span> <span class="kw">as.numeric</span>(frequency)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(frequency <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(plot, from, to, frequency)</code></pre></div>
+<pre><code># # A tibble: 20 x 4
+#    plot   from                   to                     frequency
+#    &lt;chr&gt;  &lt;chr&gt;                  &lt;chr&gt;                      &lt;dbl&gt;
+#  1 plot 1 Sonchus_oleracerus     Uroleucon_sonchi              20
+#  2 plot 1 Sonchus_oleracerus     Hyperomyzus_lactucae           8
+#  3 plot 1 Triticum_aestivum      Sitobion_avenae               29
+#  4 plot 1 Triticum_aestivum      Metopolophium_dirhodum        10
+#  5 plot 1 Sitobion_avenae        Dendrocerus_carpenteri         3
+#  6 plot 1 Sitobion_avenae        Alloxysta_victrix              1
+#  7 plot 1 Sitobion_avenae        Aphidius_rhopalosiphi          5
+#  8 plot 1 Metopolophium_dirhodum Aphidius_rhopalosiphi          1
+#  9 plot 1 Sitobion_avenae        Aphidius_avenae                2
+# 10 plot 1 Hyperomyzus_lactucae   Aphidius_ervi                  2
+# 11 plot 1 Sitobion_avenae        Aphidius_ervi                  1
+# 12 plot 1 Metopolophium_dirhodum Aphidius_ervi                  1
+# 13 plot 1 Sitobion_avenae        Aphidus_uzbekistanicus         1
+# 14 plot 1 Sitobion_avenae        Ephedrus_plagiator             1
+# 15 plot 1 Metopolophium_dirhodum Ephedrus_plagiator             1
+# 16 plot 1 Uroleucon_sonchi       Praon_volucre                  2
+# 17 plot 1 Sitobion_avenae        Praon_volucre                  1
+# 18 plot 1 Sitobion_avenae        Toxares_deltiger               1
+# 19 plot 1 Sitobion_avenae        Praon_gallicum                 1
+# 20 plot 1 Uroleucon_sonchi       Aphidius_funebris              6</code></pre>
+<p>Now let's put this all together!</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_data &lt;-<span class="st"> </span><span class="kw">tibble</span>()
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(starting)){
+  my_plot &lt;-<span class="st"> </span>starting<span class="op">$</span>plot[i]
+  my_start  &lt;-<span class="st"> </span>starting<span class="op">$</span>start[i]
+  my_end &lt;-<span class="st"> </span>starting<span class="op">$</span>end[i]
+  <span class="co"># build this line by line!</span>
+  my_data &lt;-<span class="st"> </span><span class="kw">rbind</span>(my_data,
+    a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">slice</span>(my_start<span class="op">:</span>my_end) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">gather</span>(to, frequency, <span class="op">-</span><span class="st">`</span><span class="dt">plot 1</span><span class="st">`</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">rename</span>(<span class="dt">from =</span> <span class="st">`</span><span class="dt">plot 1</span><span class="st">`</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">add_column</span>(<span class="dt">plot =</span> my_plot) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">frequency =</span> <span class="kw">as.numeric</span>(frequency)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">filter</span>(frequency <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">select</span>(plot, from, to, frequency))
+}</code></pre></div>
+<p>Now it is easy to compute statistics on the data set. For example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_data <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(from, to) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">num =</span> <span class="kw">n</span>(), 
+            <span class="dt">mean =</span> <span class="kw">mean</span>(frequency), 
+            <span class="dt">sd =</span> <span class="kw">sd</span>(frequency)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(mean))</code></pre></div>
+<pre><code># # A tibble: 37 x 5
+# # Groups:   from [14]
+#    from               to                       num  mean    sd
+#    &lt;chr&gt;              &lt;chr&gt;                  &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+#  1 Triticum_aestivum  Sitobion_avenae           24  50.4 39.0 
+#  2 Cirsium_arvense    Uroleucon_sp               4  41.2 48.7 
+#  3 Sonchus_oleracerus Uroleucon_sonchi           2  37   24.0 
+#  4 Chenopodium_album  Aphis_fabae                5  26   19.5 
+#  5 Rumex_sp           Aphis_fabae                1  21   NA   
+#  6 Uroleucon_sp       Aphidius_funebris          4  15.5 22.4 
+#  7 Triticum_aestivum  Metopolophium_dirhodum    21  11.5  7.48
+#  8 Sitobion_avenae    Aphidius_rhopalosiphi     24  10.0  7.87
+#  9 Galium_aparine     Aphis_fabae                1  10   NA   
+# 10 Uroleucon_sp       Binodoxys_centaureae       2   9.5  7.78
+# # … with 27 more rows</code></pre>
+<p>This was a lot of work! Now you should appreciate why you need to think about how to organize your data such that they are easy to use!!</p>
+<blockquote>
+<p><strong>Exercise</strong>: write code to build a matrix for each plot (i.e., that takes the tidy data and builds the tables such as in the original).</p>
+</blockquote>
+<h1 id="resources">Resources</h1>
+<ul>
+<li><a href="https://hackr.io/tutorial/r-for-data-science">R for Data Science</a></li>
+<li>A <a href="https://cfss.uchicago.edu/syllabus.html">cool class</a> at U of C in Social Sciences</li>
+<li><a href="https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf">Data transformation</a> cheat sheet</li>
+<li><a href="https://github.com/rstudio/cheatsheets/raw/master/lubridate.pdf">Dealing with dates</a> cheat sheet</li>
+<li><a href="https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf">Data import</a> cheat sheet</li>
+</ul>
+
+</body>
+</html>

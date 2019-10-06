@@ -285,8 +285,8 @@ unif.var <- var(unif.sample)
 paste("The variance of uniform distribution is", unif.var)
 ```
 
-    # [1] "The expected value of uniform distribution is 4.85365939268144"
-    # [1] "The variance of uniform distribution is 8.67447034535786"
+    # [1] "The expected value of uniform distribution is 4.90274568085326"
+    # [1] "The variance of uniform distribution is 8.4981866556364"
 
 *Exercise:* experiment with the width of the interval to see how it affects the expectation and variance.
 
@@ -317,8 +317,8 @@ exp.var <- var(exp.sample)
 paste("The variance of exponential distribution is", exp.var)
 ```
 
-    # [1] "The expected value of exponential distribution is 2.00324631704614"
-    # [1] "The variance of exponential distribution is 3.97167702735745"
+    # [1] "The expected value of exponential distribution is 2.12003202873596"
+    # [1] "The variance of exponential distribution is 4.33455337240957"
 
 *Exercise:* What is the relationship between the rate and the expectation and variance?
 
@@ -356,8 +356,8 @@ norm.var <- var(norm.sample)
 paste("The variance of normal distribution is", norm.var)
 ```
 
-    # [1] "The expected value of normal distribution is 5.01039474612058"
-    # [1] "The variance of normal distribution is 0.256610735078146"
+    # [1] "The expected value of normal distribution is 5.00967302946465"
+    # [1] "The variance of normal distribution is 0.243995155149653"
 
 Application of normal distribution: confidence intervals:
 =========================================================
@@ -405,7 +405,7 @@ print(left)
 
     # [1] 0
     # [1] 1.644854
-    # [1] 0.5900547
-    # [1] 0.4755541
+    # [1] 0.5383463
+    # [1] 0.4323984
 
 *Exercise:* Modify that script to report whether the confidence interval captures the true mean. Use a loop structure (as in the script above) to generate 1000 sample means and report how many of them are within the theoretical confidence interval. Does this match the fraction you expect from the significance level? Try different significance levels and sample sizes and report what you discover.
