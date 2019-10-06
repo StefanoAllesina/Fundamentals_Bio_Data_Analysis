@@ -1029,10 +1029,10 @@ rnorm(3) # three values from standard normal
 rnorm(3, mean = 5, sd = 4) # specify mean and standard deviation
 ```
 
-    # [1] 0.01517401 0.89472107 0.76380246 0.76035496 0.22687730
-    # [1] 8.786483 3.156195 4.030102 2.590639 3.084646
-    # [1] -0.43964497  0.08616017  1.46357508
-    # [1]  1.134823  7.750267 12.449268
+    # [1] 0.05948834 0.70229863 0.03374420 0.46982099 0.08764004
+    # [1] 1.514809 5.669189 3.968752 7.081857 1.929439
+    # [1]  1.85559452 -0.02612698  1.41018821
+    # [1] 9.0209561 0.9173661 4.6714109
 
 To sample from a set of values, use `sample`:
 
@@ -1043,9 +1043,9 @@ sample(v, 6, replace = TRUE) # with replacement
 sample(v) # simply shuffle the elements
 ```
 
-    # [1] "a" "c"
-    # [1] "b" "c" "a" "b" "a" "c"
-    # [1] "a" "d" "c" "b"
+    # [1] "a" "d"
+    # [1] "a" "a" "b" "b" "d" "d"
+    # [1] "b" "a" "d" "c"
 
 Writing functions
 =================
@@ -1123,7 +1123,7 @@ order_two_numbers <- function(a, b){
 order_two_numbers(runif(1), runif(1))
 ```
 
-    # [1] 0.8287507 0.7324604
+    # [1] 0.8836360 0.4002234
 
 Organizing and running code
 ===========================
