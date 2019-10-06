@@ -6,7 +6,7 @@ output:
   github_document:
     toc: true
     toc_depth: 2
-#    pandoc_args: --webtex
+    pandoc_args: --webtex
   html_document:
     theme: cosmo
     toc: yes
@@ -41,15 +41,15 @@ In the basic definitions of probability, we considered the probabilities of each
 
 > **Definition**: For two events $A$ and $B$ in a sample space $\Omega$ with a probability measure $P$, the probability of $A$ given $B$, called the **conditional probability**, defined as:
 
-$P(A|B) = \frac{P(A \cap B)}{P(B)}$
+$P(A \vert B) = \frac{P(A \cap B)}{P(B)}$
 
 >where $A \cap B$ or $A, B$ is the intersection of events $A$ and $B$, also known as "$A$ and $B$"---the event consisting of all outcomes that are in both $A$ and $B$.
 
 In words, given the knowledge that an event $B$ occurs, the sample space is restricted to the subset $B$, which is why the denominator in the definition is $P(B)$. The numerator encompasses all the outcomes we are interested in, (i.e., $A$), but since we are now restricted to $B$, the numerator consists of all the outcomes of $A$ which are also in $B$, or $A \cap B$. The definition makes sense in two extreme cases: if $A = B$ and if $A$ and $B$ are mutually exclusive:
 
-$P(B|B) = P(B \cap B) /P(B) = P(B)/P(B) = 1$ 
+$P(B\vert B) = P(B \cap B) /P(B) = P(B)/P(B) = 1$ 
 
-If $P(A\cap B) = 0$, then $P(A|B) = 0/P(B) = 0$
+If $P(A\cap B) = 0$, then $P(A\vert B) = 0/P(B) = 0$
 
 **Important note:** one common source of confusion about conditional probability is the difference between the probability of $A$ and $B$ and the probability of $A$ given $B$. This is a result of the discrepancy between everyday word usage and mathematical terminology, because the statement "what are the odds of finding a tall person who also likes tea?" is hard to distinguish from "what are the odds that a person who is tall likes tea?" The critical difference between these two statements is that in the former you start out with no information and are picking out a person from the entire population, while is in the latter you start out with the knowledge that a person is tall. 
 
@@ -66,15 +66,15 @@ a | Aa (pink) | aa (white)
 2. What is the probability that a plant with genotype $AA$ has pink flowers? Again, write down the conditional probability and explain how it's different from the probability of a plant having both pink flower and genotype $AA$.
 
 **Lesson:** in general,
-$$P(X | Y ) \neq P(Y | X)$$
+$$P(X \vert  Y ) \neq P(Y \vert  X)$$
 
 ## Independence
 
 Independence is a fundamental concept in probability that may be misinterpreted without careful thinking. Intuitively, two events (or random variables) are independent if one does not influence the other. More precisely, it means that the probability of one event is the same regarless of whether the other one happens or not. This is expressed precisely using conditional probabilities:
 
-> **Definition**: Two events $A$ and $B$ in a sample space $\Omega$ with a probability measure $P$ are **independent** if $P(A|B) = P(A)$, or equivalently if $P(B|A) = P(B)$.
+> **Definition**: Two events $A$ and $B$ in a sample space $\Omega$ with a probability measure $P$ are **independent** if $P(A\vert B) = P(A)$, or equivalently if $P(B\vert A) = P(B)$.
 
-Independence is not a straightforward concept. It may be confused with mutual exclusivity, as one might surmise that if $A$ and $B$ have no overlap, then they are independent. That however, is false by definition, since $P(A|B)$ is 0 for two mutually exclusive events. The confusion stems from thinking that if $A$ and $B$ are non-overlapping, then they do not influence each other. But the notion of influence in this definition is about information; so if $A$ and $B$ are mutually exclusive, the knowledge that one of them occurs has an influence of the probability of the other one occurring, specifically it rules the other one out. 
+Independence is not a straightforward concept. It may be confused with mutual exclusivity, as one might surmise that if $A$ and $B$ have no overlap, then they are independent. That however, is false by definition, since $P(A\vert B)$ is 0 for two mutually exclusive events. The confusion stems from thinking that if $A$ and $B$ are non-overlapping, then they do not influence each other. But the notion of influence in this definition is about information; so if $A$ and $B$ are mutually exclusive, the knowledge that one of them occurs has an influence of the probability of the other one occurring, specifically it rules the other one out. 
 
 **Example:** In the sample space of weather phenomena, are the events of snowing and hot weather independent?
 
@@ -86,7 +86,7 @@ Independence is a mathematical abstraction, and reality rarely provides us with 
 
 First, independence allows for calculating the probability of two events or two random variables simultaneously. This is a straightforward consequence of the definition  conditional probability (first equality) and independence (second equality):
 
-$$\frac{P(A \cap B)}{P(B)}= P(A|B) = P(A)$$
+$$\frac{P(A \cap B)}{P(B)}= P(A\vert B) = P(A)$$
 Multiplying both sides by $P(B)$, we get the **product rule** of independence, perhaps the most widely used formula in applied probability:
 
 $$P(A \cap B) = P(A)P(B)$$
