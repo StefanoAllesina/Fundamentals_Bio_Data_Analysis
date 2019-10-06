@@ -3,14 +3,14 @@ title: "Distributions and their properties"
 author: "**Dmitry Kondrashov & Stefano Allesina**"
 date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
 output:
-  html_document:
-    theme: cosmo
-    toc: yes
-    toc_float: yes
   github_document:
     toc: true
     toc_depth: 2
     pandoc_args: --webtex
+  html_document:
+    theme: cosmo
+    toc: yes
+    toc_float: yes
 urlcolor: blue
 ---
 
@@ -38,9 +38,10 @@ knitr::opts_chunk$set(
 
 In the basic definitions of probability, we considered the probabilities of each outcome and events separately. Let us consider how information about one event affects the probability of another event. The concept is that if one event (let's call it $B$) is true, unless the event is the entire space, it rules out some other outcomes. This may affect the probability of other events (e.g., $A$) in the sample space, because knowledge of $B$ may rule out some of the outcomes in $A$ as well.  Here is the formal definition:
 
+
 > **Definition**: For two events $A$ and $B$ in a sample space $\Omega$ with a probability measure $P$, the probability of $A$ given $B$, called the **conditional probability**, defined as:
 
-$P(A|B) = \frac{P(A\cap B)}{P(B)}$
+$P(A|B) = \frac{P(A \cap B)}{P(B)}$
 
 >where $A \cap B$ or $A, B$ is the intersection of events $A$ and $B$, also known as "$A$ and $B$"---the event consisting of all outcomes that are in both $A$ and $B$.
 
@@ -85,40 +86,40 @@ Independence is a mathematical abstraction, and reality rarely provides us with 
 
 First, independence allows for calculating the probability of two events or two random variables simultaneously. This is a straightforward consequence of the definition  conditional probability (first equality) and independence (second equality):
 
-$$ \frac{P(A \cap B)}{P(B)}= P(A|B) = P(A)$$
+$$\frac{P(A \cap B)}{P(B)}= P(A|B) = P(A)$$
 Multiplying both sides by $P(B)$, we get the **product rule** of independence, perhaps the most widely used formula in applied probability:
 
-$$ P(A \cap B) = P(A)P(B)$$
+$$P(A \cap B) = P(A)P(B)$$
 
 **Example:** The probability that two randomly selected individuals have red hair--assuming that the occurence of this trait is independent--is the square of the probability of red hair in one individual. (Note that this is never exactly the case for a finite population---why?)
 
 **Example:** The probability of two alleles of two separate genes (call them A and B) occurring on the same gamete may be independent or may be linked. In population genetics, the concept of *linkage disequilibrium* describes the extent of such linkage; for example, alleles that are located on separate chromosomes (in eukaryotes) are usually not linked and their occurrence is independent. The *coefficient of linkage disequilibrium* is defined as the difference between what is expected from independence and the actual probability of both alleles being present:
-$$ D_{AB} = P(A \cap B) - P(A)P(B) $$
+$$D_{AB} = P(A \cap B) - P(A)P(B) $$
 $P(A)$ and $P(B)$ are the frequencies of the two respective alleles (haplotypes) in the population, while $P(A \cap B)$ is the frequency of the haplotypes occurring together in the same copy of the genome (that is, on the same gamete). For two independent loci, $D_{AB} = 0$, while for loci that usually occur together the coefficient will be positive, and its magnitude is influenced both by physical proximity of the loci on a chromosome, the evolutionary history of the species, and other factors.
 
 Another important consequence of independence has to do with the sum of two independent random variables. The expectation of the sum of any random variables is linear, which can be demonstrated using some work with sums, starting from the definition of expectation (the same can be shown for continuous random variables, using integrals instead of sums):
 
-$$ E(X + Y) = \sum_i \sum_j (x_i + y_j) P(x_i, y_j) =$$
+$$E(X + Y) = \sum_i \sum_j (x_i + y_j) P(x_i, y_j) =$$
 
-$$ = \sum_i \sum_j x_iP(x_i, y_j) + \sum_i \sum_j y_j P(x_i, y_j) = \sum_i x_i \sum_j P(x_i, y_j) + \sum_j y_j \sum_i  P(x_i, y_j) = $$
+$$= \sum_i \sum_j x_iP(x_i, y_j) + \sum_i \sum_j y_j P(x_i, y_j) = \sum_i x_i \sum_j P(x_i, y_j) + \sum_j y_j \sum_i  P(x_i, y_j) = $$
 Summing up a joint probability distribution over all values of one variable removes that variable, $\sum_j P(x_i, y_j) = P(x_i)$ $\sum_i  P(x_i, y_j) = P(y_j)$, so this leave us with the two separate expected values:
 
-$$ = \sum_i x_i P(x_i) + \sum_j y_j P(y_j) = E(X) + E(Y)$$
+$$= \sum_i x_i P(x_i) + \sum_j y_j P(y_j) = E(X) + E(Y)$$
 However, this is not the case for the variance in general (using $E_X$ and $E_Y$ to indicate the expected values of $X$ and $Y$ to reduce the number of parentheses):
 
 $$\text{Var}(X+Y) = E \left[ (X+Y)-(E_X+E_Y) \right]^2 = $$
-$$ =E[ (X-E_X)^2 +(Y-E_Y)^2 - 2(X-E_X)(Y-E_Y)] =  $$ 
-$$ =E (X-E_X)^2 +  E(Y-E_Y)^2 - 2 E[(X-E_X)(Y-E_Y)]  = $$
+$$=E[ (X-E_X)^2 +(Y-E_Y)^2 - 2(X-E_X)(Y-E_Y)] =  $$ 
+$$=E (X-E_X)^2 +  E(Y-E_Y)^2 - 2 E[(X-E_X)(Y-E_Y)]  = $$
 The first two terms are the respective variances, while the third term is called the *covariance* of $X$ and $Y$:
 
-$$ = \text{Var}(X) + \text{Var}(Y) - 2 \text{Cov}(X,Y) $$
+$$= \text{Var}(X) + \text{Var}(Y) - 2 \text{Cov}(X,Y) $$
 Covariance describes how much two random variables vary together, or more precisely, how much they deviate from their respective means in the same direction. Thus it should be reasonable to think that two indepdendent random variables have covariance 0, which is demonstrated as follows:
 
 $$E[(X-E_X)(Y-E_Y)] = E(XY) - E_Y E_X - E_YE_X + E_XE_Y = E(XY) - E_X E_Y  $$
 
 We can write the expression for the expectation of the random variable comprised of all pairs of values of $X$ and $Y$, using the fact that for two independent random variables, $P(x_i,y_j) = P(x_i)P(y_j)$ for all values $x_i$ and $y_j$:
 
-$$ E(XY) = \sum_i \sum_j x_iy_j P(x_i,y_j) = \sum_i x_i P(x_i) \sum_j y_j P(y_j) = E_X E_Y$$
+$$E(XY) = \sum_i \sum_j x_iy_j P(x_i,y_j) = \sum_i x_i P(x_i) \sum_j y_j P(y_j) = E_X E_Y$$
 The calculation for two continuous random variables is analogous, only with integrals instead of sums.
 
 This demonstrates that the covariance of two independent random variables is 0, and thus that the variance of a sum of two independent random variables is the sum of the two separate variables.

@@ -37,7 +37,7 @@ In the basic definitions of probability, we considered the probabilities of each
 
 > **Definition**: For two events ![A](https://latex.codecogs.com/png.latex?A "A") and ![B](https://latex.codecogs.com/png.latex?B "B") in a sample space ![\\Omega](https://latex.codecogs.com/png.latex?%5COmega "\Omega") with a probability measure ![P](https://latex.codecogs.com/png.latex?P "P"), the probability of ![A](https://latex.codecogs.com/png.latex?A "A") given ![B](https://latex.codecogs.com/png.latex?B "B"), called the **conditional probability**, defined as:
 
-![P(A|B) = \\frac{P(A\\cap B)}{P(B)}](https://latex.codecogs.com/png.latex?P%28A%7CB%29%20%3D%20%5Cfrac%7BP%28A%5Ccap%20B%29%7D%7BP%28B%29%7D "P(A|B) = \frac{P(A\cap B)}{P(B)}")
+![P(A|B) = \\frac{P(A \\cap B)}{P(B)}](https://latex.codecogs.com/png.latex?P%28A%7CB%29%20%3D%20%5Cfrac%7BP%28A%20%5Ccap%20B%29%7D%7BP%28B%29%7D "P(A|B) = \frac{P(A \cap B)}{P(B)}")
 
 > where ![A \\cap B](https://latex.codecogs.com/png.latex?A%20%5Ccap%20B "A \cap B") or ![A, B](https://latex.codecogs.com/png.latex?A%2C%20B "A, B") is the intersection of events ![A](https://latex.codecogs.com/png.latex?A "A") and ![B](https://latex.codecogs.com/png.latex?B "B"), also known as "![A](https://latex.codecogs.com/png.latex?A "A") and ![B](https://latex.codecogs.com/png.latex?B "B")"---the event consisting of all outcomes that are in both ![A](https://latex.codecogs.com/png.latex?A "A") and ![B](https://latex.codecogs.com/png.latex?B "B").
 
@@ -84,41 +84,41 @@ Independence is a mathematical abstraction, and reality rarely provides us with 
 
 First, independence allows for calculating the probability of two events or two random variables simultaneously. This is a straightforward consequence of the definition conditional probability (first equality) and independence (second equality):
 
-![ \\frac{P(A \\cap B)}{P(B)}= P(A|B) = P(A)](https://latex.codecogs.com/png.latex?%20%5Cfrac%7BP%28A%20%5Ccap%20B%29%7D%7BP%28B%29%7D%3D%20P%28A%7CB%29%20%3D%20P%28A%29 " \frac{P(A \cap B)}{P(B)}= P(A|B) = P(A)")
+![\\frac{P(A \\cap B)}{P(B)}= P(A|B) = P(A)](https://latex.codecogs.com/png.latex?%5Cfrac%7BP%28A%20%5Ccap%20B%29%7D%7BP%28B%29%7D%3D%20P%28A%7CB%29%20%3D%20P%28A%29 "\frac{P(A \cap B)}{P(B)}= P(A|B) = P(A)")
 
  Multiplying both sides by ![P(B)](https://latex.codecogs.com/png.latex?P%28B%29 "P(B)"), we get the **product rule** of independence, perhaps the most widely used formula in applied probability:
 
-![ P(A \\cap B) = P(A)P(B)](https://latex.codecogs.com/png.latex?%20P%28A%20%5Ccap%20B%29%20%3D%20P%28A%29P%28B%29 " P(A \cap B) = P(A)P(B)")
+![P(A \\cap B) = P(A)P(B)](https://latex.codecogs.com/png.latex?P%28A%20%5Ccap%20B%29%20%3D%20P%28A%29P%28B%29 "P(A \cap B) = P(A)P(B)")
 
 **Example:** The probability that two randomly selected individuals have red hair--assuming that the occurence of this trait is independent--is the square of the probability of red hair in one individual. (Note that this is never exactly the case for a finite population---why?)
 
 **Example:** The probability of two alleles of two separate genes (call them A and B) occurring on the same gamete may be independent or may be linked. In population genetics, the concept of *linkage disequilibrium* describes the extent of such linkage; for example, alleles that are located on separate chromosomes (in eukaryotes) are usually not linked and their occurrence is independent. The *coefficient of linkage disequilibrium* is defined as the difference between what is expected from independence and the actual probability of both alleles being present:
 
-![ D\_{AB} = P(A \\cap B) - P(A)P(B) ](https://latex.codecogs.com/png.latex?%20D_%7BAB%7D%20%3D%20P%28A%20%5Ccap%20B%29%20-%20P%28A%29P%28B%29%20 " D_{AB} = P(A \cap B) - P(A)P(B) ")
+![D\_{AB} = P(A \\cap B) - P(A)P(B) ](https://latex.codecogs.com/png.latex?D_%7BAB%7D%20%3D%20P%28A%20%5Ccap%20B%29%20-%20P%28A%29P%28B%29%20 "D_{AB} = P(A \cap B) - P(A)P(B) ")
 
  ![P(A)](https://latex.codecogs.com/png.latex?P%28A%29 "P(A)") and ![P(B)](https://latex.codecogs.com/png.latex?P%28B%29 "P(B)") are the frequencies of the two respective alleles (haplotypes) in the population, while ![P(A \\cap B)](https://latex.codecogs.com/png.latex?P%28A%20%5Ccap%20B%29 "P(A \cap B)") is the frequency of the haplotypes occurring together in the same copy of the genome (that is, on the same gamete). For two independent loci, ![D\_{AB} = 0](https://latex.codecogs.com/png.latex?D_%7BAB%7D%20%3D%200 "D_{AB} = 0"), while for loci that usually occur together the coefficient will be positive, and its magnitude is influenced both by physical proximity of the loci on a chromosome, the evolutionary history of the species, and other factors.
 
 Another important consequence of independence has to do with the sum of two independent random variables. The expectation of the sum of any random variables is linear, which can be demonstrated using some work with sums, starting from the definition of expectation (the same can be shown for continuous random variables, using integrals instead of sums):
 
-![ E(X + Y) = \\sum\_i \\sum\_j (x\_i + y\_j) P(x\_i, y\_j) =](https://latex.codecogs.com/png.latex?%20E%28X%20%2B%20Y%29%20%3D%20%5Csum_i%20%5Csum_j%20%28x_i%20%2B%20y_j%29%20P%28x_i%2C%20y_j%29%20%3D " E(X + Y) = \sum_i \sum_j (x_i + y_j) P(x_i, y_j) =")
+![E(X + Y) = \\sum\_i \\sum\_j (x\_i + y\_j) P(x\_i, y\_j) =](https://latex.codecogs.com/png.latex?E%28X%20%2B%20Y%29%20%3D%20%5Csum_i%20%5Csum_j%20%28x_i%20%2B%20y_j%29%20P%28x_i%2C%20y_j%29%20%3D "E(X + Y) = \sum_i \sum_j (x_i + y_j) P(x_i, y_j) =")
 
-![ = \\sum\_i \\sum\_j x\_iP(x\_i, y\_j) + \\sum\_i \\sum\_j y\_j P(x\_i, y\_j) = \\sum\_i x\_i \\sum\_j P(x\_i, y\_j) + \\sum\_j y\_j \\sum\_i  P(x\_i, y\_j) = ](https://latex.codecogs.com/png.latex?%20%3D%20%5Csum_i%20%5Csum_j%20x_iP%28x_i%2C%20y_j%29%20%2B%20%5Csum_i%20%5Csum_j%20y_j%20P%28x_i%2C%20y_j%29%20%3D%20%5Csum_i%20x_i%20%5Csum_j%20P%28x_i%2C%20y_j%29%20%2B%20%5Csum_j%20y_j%20%5Csum_i%20%20P%28x_i%2C%20y_j%29%20%3D%20 " = \sum_i \sum_j x_iP(x_i, y_j) + \sum_i \sum_j y_j P(x_i, y_j) = \sum_i x_i \sum_j P(x_i, y_j) + \sum_j y_j \sum_i  P(x_i, y_j) = ")
+![= \\sum\_i \\sum\_j x\_iP(x\_i, y\_j) + \\sum\_i \\sum\_j y\_j P(x\_i, y\_j) = \\sum\_i x\_i \\sum\_j P(x\_i, y\_j) + \\sum\_j y\_j \\sum\_i  P(x\_i, y\_j) = ](https://latex.codecogs.com/png.latex?%3D%20%5Csum_i%20%5Csum_j%20x_iP%28x_i%2C%20y_j%29%20%2B%20%5Csum_i%20%5Csum_j%20y_j%20P%28x_i%2C%20y_j%29%20%3D%20%5Csum_i%20x_i%20%5Csum_j%20P%28x_i%2C%20y_j%29%20%2B%20%5Csum_j%20y_j%20%5Csum_i%20%20P%28x_i%2C%20y_j%29%20%3D%20 "= \sum_i \sum_j x_iP(x_i, y_j) + \sum_i \sum_j y_j P(x_i, y_j) = \sum_i x_i \sum_j P(x_i, y_j) + \sum_j y_j \sum_i  P(x_i, y_j) = ")
 
  Summing up a joint probability distribution over all values of one variable removes that variable, ![\\sum\_j P(x\_i, y\_j) = P(x\_i)](https://latex.codecogs.com/png.latex?%5Csum_j%20P%28x_i%2C%20y_j%29%20%3D%20P%28x_i%29 "\sum_j P(x_i, y_j) = P(x_i)") ![\\sum\_i P(x\_i, y\_j) = P(y\_j)](https://latex.codecogs.com/png.latex?%5Csum_i%20P%28x_i%2C%20y_j%29%20%3D%20P%28y_j%29 "\sum_i P(x_i, y_j) = P(y_j)"), so this leave us with the two separate expected values:
 
-![ = \\sum\_i x\_i P(x\_i) + \\sum\_j y\_j P(y\_j) = E(X) + E(Y)](https://latex.codecogs.com/png.latex?%20%3D%20%5Csum_i%20x_i%20P%28x_i%29%20%2B%20%5Csum_j%20y_j%20P%28y_j%29%20%3D%20E%28X%29%20%2B%20E%28Y%29 " = \sum_i x_i P(x_i) + \sum_j y_j P(y_j) = E(X) + E(Y)")
+![= \\sum\_i x\_i P(x\_i) + \\sum\_j y\_j P(y\_j) = E(X) + E(Y)](https://latex.codecogs.com/png.latex?%3D%20%5Csum_i%20x_i%20P%28x_i%29%20%2B%20%5Csum_j%20y_j%20P%28y_j%29%20%3D%20E%28X%29%20%2B%20E%28Y%29 "= \sum_i x_i P(x_i) + \sum_j y_j P(y_j) = E(X) + E(Y)")
 
  However, this is not the case for the variance in general (using ![E\_X](https://latex.codecogs.com/png.latex?E_X "E_X") and ![E\_Y](https://latex.codecogs.com/png.latex?E_Y "E_Y") to indicate the expected values of ![X](https://latex.codecogs.com/png.latex?X "X") and ![Y](https://latex.codecogs.com/png.latex?Y "Y") to reduce the number of parentheses):
 
 ![\\text{Var}(X+Y) = E \\left\[ (X+Y)-(E\_X+E\_Y) \\right\]^2 = ](https://latex.codecogs.com/png.latex?%5Ctext%7BVar%7D%28X%2BY%29%20%3D%20E%20%5Cleft%5B%20%28X%2BY%29-%28E_X%2BE_Y%29%20%5Cright%5D%5E2%20%3D%20 "\text{Var}(X+Y) = E \left[ (X+Y)-(E_X+E_Y) \right]^2 = ")
 
-![ =E\[ (X-E\_X)^2 +(Y-E\_Y)^2 - 2(X-E\_X)(Y-E\_Y)\] =  ](https://latex.codecogs.com/png.latex?%20%3DE%5B%20%28X-E_X%29%5E2%20%2B%28Y-E_Y%29%5E2%20-%202%28X-E_X%29%28Y-E_Y%29%5D%20%3D%20%20 " =E[ (X-E_X)^2 +(Y-E_Y)^2 - 2(X-E_X)(Y-E_Y)] =  ")
+![=E\[ (X-E\_X)^2 +(Y-E\_Y)^2 - 2(X-E\_X)(Y-E\_Y)\] =  ](https://latex.codecogs.com/png.latex?%3DE%5B%20%28X-E_X%29%5E2%20%2B%28Y-E_Y%29%5E2%20-%202%28X-E_X%29%28Y-E_Y%29%5D%20%3D%20%20 "=E[ (X-E_X)^2 +(Y-E_Y)^2 - 2(X-E_X)(Y-E_Y)] =  ")
 
-![ =E (X-E\_X)^2 +  E(Y-E\_Y)^2 - 2 E\[(X-E\_X)(Y-E\_Y)\]  = ](https://latex.codecogs.com/png.latex?%20%3DE%20%28X-E_X%29%5E2%20%2B%20%20E%28Y-E_Y%29%5E2%20-%202%20E%5B%28X-E_X%29%28Y-E_Y%29%5D%20%20%3D%20 " =E (X-E_X)^2 +  E(Y-E_Y)^2 - 2 E[(X-E_X)(Y-E_Y)]  = ")
+![=E (X-E\_X)^2 +  E(Y-E\_Y)^2 - 2 E\[(X-E\_X)(Y-E\_Y)\]  = ](https://latex.codecogs.com/png.latex?%3DE%20%28X-E_X%29%5E2%20%2B%20%20E%28Y-E_Y%29%5E2%20-%202%20E%5B%28X-E_X%29%28Y-E_Y%29%5D%20%20%3D%20 "=E (X-E_X)^2 +  E(Y-E_Y)^2 - 2 E[(X-E_X)(Y-E_Y)]  = ")
 
  The first two terms are the respective variances, while the third term is called the *covariance* of ![X](https://latex.codecogs.com/png.latex?X "X") and ![Y](https://latex.codecogs.com/png.latex?Y "Y"):
 
-![ = \\text{Var}(X) + \\text{Var}(Y) - 2 \\text{Cov}(X,Y) ](https://latex.codecogs.com/png.latex?%20%3D%20%5Ctext%7BVar%7D%28X%29%20%2B%20%5Ctext%7BVar%7D%28Y%29%20-%202%20%5Ctext%7BCov%7D%28X%2CY%29%20 " = \text{Var}(X) + \text{Var}(Y) - 2 \text{Cov}(X,Y) ")
+![= \\text{Var}(X) + \\text{Var}(Y) - 2 \\text{Cov}(X,Y) ](https://latex.codecogs.com/png.latex?%3D%20%5Ctext%7BVar%7D%28X%29%20%2B%20%5Ctext%7BVar%7D%28Y%29%20-%202%20%5Ctext%7BCov%7D%28X%2CY%29%20 "= \text{Var}(X) + \text{Var}(Y) - 2 \text{Cov}(X,Y) ")
 
  Covariance describes how much two random variables vary together, or more precisely, how much they deviate from their respective means in the same direction. Thus it should be reasonable to think that two indepdendent random variables have covariance 0, which is demonstrated as follows:
 
@@ -126,7 +126,7 @@ Another important consequence of independence has to do with the sum of two inde
 
 We can write the expression for the expectation of the random variable comprised of all pairs of values of ![X](https://latex.codecogs.com/png.latex?X "X") and ![Y](https://latex.codecogs.com/png.latex?Y "Y"), using the fact that for two independent random variables, ![P(x\_i,y\_j) = P(x\_i)P(y\_j)](https://latex.codecogs.com/png.latex?P%28x_i%2Cy_j%29%20%3D%20P%28x_i%29P%28y_j%29 "P(x_i,y_j) = P(x_i)P(y_j)") for all values ![x\_i](https://latex.codecogs.com/png.latex?x_i "x_i") and ![y\_j](https://latex.codecogs.com/png.latex?y_j "y_j"):
 
-![ E(XY) = \\sum\_i \\sum\_j x\_iy\_j P(x\_i,y\_j) = \\sum\_i x\_i P(x\_i) \\sum\_j y\_j P(y\_j) = E\_X E\_Y](https://latex.codecogs.com/png.latex?%20E%28XY%29%20%3D%20%5Csum_i%20%5Csum_j%20x_iy_j%20P%28x_i%2Cy_j%29%20%3D%20%5Csum_i%20x_i%20P%28x_i%29%20%5Csum_j%20y_j%20P%28y_j%29%20%3D%20E_X%20E_Y " E(XY) = \sum_i \sum_j x_iy_j P(x_i,y_j) = \sum_i x_i P(x_i) \sum_j y_j P(y_j) = E_X E_Y")
+![E(XY) = \\sum\_i \\sum\_j x\_iy\_j P(x\_i,y\_j) = \\sum\_i x\_i P(x\_i) \\sum\_j y\_j P(y\_j) = E\_X E\_Y](https://latex.codecogs.com/png.latex?E%28XY%29%20%3D%20%5Csum_i%20%5Csum_j%20x_iy_j%20P%28x_i%2Cy_j%29%20%3D%20%5Csum_i%20x_i%20P%28x_i%29%20%5Csum_j%20y_j%20P%28y_j%29%20%3D%20E_X%20E_Y "E(XY) = \sum_i \sum_j x_iy_j P(x_i,y_j) = \sum_i x_i P(x_i) \sum_j y_j P(y_j) = E_X E_Y")
 
  The calculation for two continuous random variables is analogous, only with integrals instead of sums.
 
@@ -285,8 +285,8 @@ unif.var <- var(unif.sample)
 paste("The variance of uniform distribution is", unif.var)
 ```
 
-    # [1] "The expected value of uniform distribution is 5.01750079123071"
-    # [1] "The variance of uniform distribution is 7.68614324744766"
+    # [1] "The expected value of uniform distribution is 4.85365939268144"
+    # [1] "The variance of uniform distribution is 8.67447034535786"
 
 *Exercise:* experiment with the width of the interval to see how it affects the expectation and variance.
 
@@ -317,8 +317,8 @@ exp.var <- var(exp.sample)
 paste("The variance of exponential distribution is", exp.var)
 ```
 
-    # [1] "The expected value of exponential distribution is 1.96140142165218"
-    # [1] "The variance of exponential distribution is 3.67031012989663"
+    # [1] "The expected value of exponential distribution is 2.00324631704614"
+    # [1] "The variance of exponential distribution is 3.97167702735745"
 
 *Exercise:* What is the relationship between the rate and the expectation and variance?
 
@@ -356,8 +356,8 @@ norm.var <- var(norm.sample)
 paste("The variance of normal distribution is", norm.var)
 ```
 
-    # [1] "The expected value of normal distribution is 5.02722434618828"
-    # [1] "The variance of normal distribution is 0.252689394355063"
+    # [1] "The expected value of normal distribution is 5.01039474612058"
+    # [1] "The variance of normal distribution is 0.256610735078146"
 
 Application of normal distribution: confidence intervals:
 =========================================================
@@ -405,7 +405,7 @@ print(left)
 
     # [1] 0
     # [1] 1.644854
-    # [1] 0.5672549
-    # [1] 0.4534039
+    # [1] 0.5900547
+    # [1] 0.4755541
 
 *Exercise:* Modify that script to report whether the confidence interval captures the true mean. Use a loop structure (as in the script above) to generate 1000 sample means and report how many of them are within the theoretical confidence interval. Does this match the fraction you expect from the significance level? Try different significance levels and sample sizes and report what you discover.
