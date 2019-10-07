@@ -29,10 +29,10 @@ After the hypothesis is stated, the data are collected and are used to test the 
 
 **The fundamental assumption of this process is that the truth value of the hypothesis is set prior to the collection of data.** For example, if one could observe all of the genomes, the frequency of the allele would be known exactly, so this truth exists prior to the hypothesis testing. Because we typically can only observe a sample (and not the entire universe of data), we might end up erroneously rejecting the null hypothesis when it is in fact true, or not rejecting it when it is in fact false. The possible outcomes of a test can be organized in the table:
 
-| ![H\_0](https://latex.codecogs.com/png.latex?H_0 "H_0") | True           | False          |
-|---------------------------------------------------------|----------------|----------------|
-| **Reject**                                              | False Positive | True Positive  |
-| **Not Reject**                                          | True Negative  | False Negative |
+| H0             | True           | False          |
+|----------------|----------------|----------------|
+| **Reject**     | False Positive | True Positive  |
+| **Not Reject** | True Negative  | False Negative |
 
 The values at the top describe the truth status of the hypothesis, while the decisions in the left column are the result of using data to test the hypothesis. Note: the words false and true in describing the test result do not refer to the hypothesis, but to whether the result is correct! For example, if the frequency of the allele were 0.09 but the test for the hypothesis that the frequency is less than 0.1 resulted in rejecting that hypothesis, that would be a false positive result (the null hypothesis is true but the test rejected it.)
 
@@ -98,13 +98,13 @@ t.test(my_sample$sample1,
     #   Two Sample t-test
     # 
     # data:  my_sample$sample1 and my_sample$sample2
-    # t = 0.25169, df = 1998, p-value = 0.8013
+    # t = -0.28503, df = 1998, p-value = 0.7756
     # alternative hypothesis: true difference in means is not equal to 0
     # 95 percent confidence interval:
-    #  -0.07697970  0.09964722
+    #  -0.10019194  0.07476395
     # sample estimates:
     # mean of x mean of y 
-    #  1.016839  1.005506
+    #  1.022379  1.035093
 
 **Exercise:** Can you detect a "significant difference in means" (assuming ![\\alpha = 0.05](https://latex.codecogs.com/png.latex?%5Calpha%20%3D%200.05 "\alpha = 0.05"))? What if you take a much larger sample? What if the difference in means is more pronounced?
 
@@ -136,7 +136,7 @@ How many times do we detect a "significant difference in reflectance" when setti
 sum(pvalues < 0.05)
 ```
 
-    # [1] 124
+    # [1] 108
 
 You should get a number of "significant" tests that is about ![2500 \\cdot 0.05 = 125](https://latex.codecogs.com/png.latex?2500%20%5Ccdot%200.05%20%3D%20125 "2500 \cdot 0.05 = 125"). In fact, the distribution of p-values when the data are sampled from the null hypothesis is approximately uniform:
 

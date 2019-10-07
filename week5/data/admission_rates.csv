@@ -1,0 +1,196 @@
+Name,State,Ownership,Citytype,SAT,AvgCost,Admission_rate
+Stanford University,CA,Private nonprofit,Suburb,1476,64477,0.0481
+Harvard University,MA,Private nonprofit,City,1506,64400,0.054
+Yale University,CT,Private nonprofit,City,1502,66445,0.0632
+Princeton University,NJ,Private nonprofit,Suburb,1493,61860,0.0652
+Columbia University in the City of New York,NY,Private nonprofit,City,1496,69021,0.0683
+Massachusetts Institute of Technology,MA,Private nonprofit,City,1519,63250,0.0794
+University of Chicago,IL,Private nonprofit,City,1508,70100,0.0794
+California Institute of Technology,CA,Private nonprofit,City,1555,63471,0.0807
+Brown University,RI,Private nonprofit,City,1459,65380,0.0931
+University of Pennsylvania,PA,Private nonprofit,City,1481,66800,0.0944
+Dartmouth College,NH,Private nonprofit,Town,1441,67044,0.1059
+Northwestern University,IL,Private nonprofit,City,1470,67887,0.1066
+Vanderbilt University,TN,Private nonprofit,City,1495,63532,0.1075
+Duke University,NC,Private nonprofit,City,1460,67005,0.1083
+Johns Hopkins University,MD,Private nonprofit,City,1476,65473,0.1284
+Cornell University,NY,Private nonprofit,City,1436,65464,0.1409
+Tufts University,MA,Private nonprofit,Suburb,1445,65814,0.1429
+Rice University,TX,Private nonprofit,City,1490,58253,0.1527
+Washington University in St Louis,MO,Private nonprofit,Suburb,1472,67751,0.1653
+University of Southern California,CA,Private nonprofit,City,1395,67064,0.1662
+Georgetown University,DC,Private nonprofit,City,1422,66971,0.1685
+University of California-Berkeley,CA,Public,City,1422,34924,0.1693
+University of California-Los Angeles,CA,Public,City,1334,33078,0.1799
+University of Notre Dame,IN,Private nonprofit,Suburb,1474,64775,0.1873
+Carnegie Mellon University,PA,Private nonprofit,City,1458,65877,0.2171
+Emory University,GA,Private nonprofit,Suburb,1397,63058,0.2529
+Tulane University of Louisiana,LA,Private nonprofit,City,1346,64926,0.255
+American University,DC,Private nonprofit,City,1262,60501,0.2591
+Lehigh University,PA,Private nonprofit,City,1340,60391,0.2611
+University of North Carolina at Chapel Hill,NC,Public,City,1338,24327,0.2694
+University of Michigan-Ann Arbor,MI,Public,City,1386,27725,0.2859
+Northeastern University,MA,Private nonprofit,City,1434,62789,0.2888
+Boston University,MA,Private nonprofit,City,1328,65809,0.2943
+Howard University,DC,Private nonprofit,City,1142,43116,0.3
+Boston College,MA,Private nonprofit,City,1378,65595,0.3114
+New York University,NY,Private nonprofit,City,1371,67637,0.3187
+Brandeis University,MA,Private nonprofit,City,1377,65954,0.3344
+San Diego State University,CA,Public,City,1132,22056,0.3464
+Case Western Reserve University,OH,Private nonprofit,City,1408,61371,0.3544
+University of California-San Diego,CA,Public,City,1324,31043,0.3566
+University of California-Santa Barbara,CA,Public,Suburb,1281,34998,0.3577
+College of William and Mary,VA,Public,Suburb,1360,33630,0.3652
+Pepperdine University,CA,Private nonprofit,Suburb,1251,66152,0.36870000000000003
+University of Tulsa,OK,Private nonprofit,City,1308,53667,0.3696
+Texas Christian University,TX,Private nonprofit,City,1223,58040,0.3758
+University of Miami,FL,Private nonprofit,Suburb,1323,59833,0.3771
+Stevens Institute of Technology,NJ,Private nonprofit,Suburb,1360,62100,0.3911
+Baylor University,TX,Private nonprofit,City,1246,56701,0.3972
+George Washington University,DC,Private nonprofit,City,1301,65218,0.4021
+Colorado School of Mines,CO,Public,Suburb,1354,31226,0.4035
+Andrews University,MI,Private nonprofit,Town,1127,36529,0.4042
+University of California-Irvine,CA,Public,City,1206,31198,0.4065
+Dallas Baptist University,TX,Private nonprofit,City,1060,36371,0.4311
+Villanova University,PA,Private nonprofit,Suburb,1350,62583,0.435
+Northwestern Oklahoma State University,OK,Public,Town,970,14626,0.4377
+Rensselaer Polytechnic Institute,NY,Private nonprofit,City,1365,66172,0.4435
+University of Minnesota-Twin Cities,MN,Public,City,1288,25370,0.4441
+Fordham University,NY,Private nonprofit,City,1281,63109,0.4522
+University of Washington-Seattle Campus,WA,Public,City,1266,25520,0.4535
+Alabama State University,AL,Public,City,825,19242,0.459
+University of Florida,FL,Public,City,1287,20571,0.4594
+North Carolina State University at Raleigh,NC,Public,City,1273,22226,0.4751
+University of La Verne,CA,Private nonprofit,Suburb,1040,50603,0.4806
+University of Maryland-College Park,MD,Public,Suburb,1337,24041,0.4806
+California State University-Fullerton,CA,Public,Suburb,1017,17049,0.4823
+University of Connecticut,CT,Public,Suburb,1248,29128,0.488
+Southern Methodist University,TX,Private nonprofit,Suburb,1330,66889,0.4892
+University of Central Florida,FL,Public,Suburb,1179,21168,0.4999
+Clemson University,SC,Public,Suburb,1269,27722,0.5054
+Yeshiva University,NY,Private nonprofit,City,1217,57355,0.5075
+Brigham Young University-Provo,UT,Private nonprofit,City,1293,17395,0.5118
+University of San Diego,CA,Private nonprofit,City,1237,61004,0.5138
+Northern Illinois University,IL,Public,Suburb,1030,28725,0.5184
+Gardner-Webb University,NC,Private nonprofit,Town,987,41020,0.5188
+Syracuse University,NY,Private nonprofit,City,1204,61070,0.5232
+Nova Southeastern University,FL,Private nonprofit,Suburb,1127,43351,0.5254
+University of Pittsburgh-Bradford,PA,Public,Town,982,25788,0.526
+University of Wisconsin-Madison,WI,Public,City,1302,24594,0.5262
+University of Denver,CO,Private nonprofit,City,1262,59656,0.5347
+California State University-Fresno,CA,Public,City,907,16078,0.5354
+University of Georgia,GA,Public,City,1262,24991,0.539
+SUNY College of Environmental Science and Forestry,NY,Public,City,1157,24430,0.5421
+Rochester Institute of Technology,NY,Private nonprofit,Suburb,1254,50713,0.5493
+Mississippi State University,MS,Public,Town,1125,22818,0.5567
+University of Maryland-Baltimore County,MD,Public,Suburb,1216,23818,0.5683
+Rutgers University-New Brunswick,NJ,Public,City,1230,29388,0.5694
+Illinois Institute of Technology,IL,Private nonprofit,City,1275,57277,0.571
+University of California-Santa Cruz,CA,Public,City,1201,34608,0.5785
+Florida State University,FL,Public,City,1214,21938,0.5801
+University of Alabama at Birmingham,AL,Public,City,1125,22684,0.5814
+University of Houston,TX,Public,City,1152,23858,0.5854
+New Jersey Institute of Technology,NJ,Public,City,1204,29143,0.593
+University of Massachusetts-Amherst,MA,Public,Suburb,1234,28000,0.5968
+University of Illinois at Urbana-Champaign,IL,Public,City,1320,29764,0.6007
+University of Southern Mississippi,MS,Public,City,1070,20469,0.6014
+University of Dayton,OH,Private nonprofit,City,1185,53530,0.6035
+University of Colorado Denver/Anschutz Medical Campus,CO,Public,City,1077,20306,0.6052
+University of Massachusetts-Lowell,MA,Public,Suburb,1172,26318,0.6057
+Lipscomb University,TN,Private nonprofit,City,1142,42170,0.6085
+Florida Institute of Technology,FL,Private nonprofit,City,1179,55984,0.6133
+Azusa Pacific University,CA,Private nonprofit,Suburb,1035,48284,0.6146
+University of Missouri-Kansas City,MO,Public,City,1126,21575,0.6187
+University of North Carolina at Charlotte,NC,Public,City,1112,19723,0.6203
+Hofstra University,NY,Private nonprofit,Suburb,1177,55322,0.6222
+Ball State University,IN,Public,City,1057,23157,0.6225
+Union University,TN,Private nonprofit,City,1200,47458,0.6257
+Texas Tech University,TX,Public,City,1117,22112,0.626
+Louisiana Tech University,LA,Public,Town,1105,18954,0.6319
+University of Arkansas,AR,Public,City,1170,21817,0.632
+Lesley University,MA,Private nonprofit,City,1064,40889,0.6373
+University of North Florida,FL,Public,City,1110,20926,0.6453
+Saint John Fisher College,NY,Private nonprofit,Suburb,1078,43779,0.6454
+Saint Louis University,MO,Private nonprofit,City,1259,54698,0.6474
+Biola University,CA,Private nonprofit,Suburb,1093,48857,0.6485
+Rutgers University-Newark,NJ,Public,City,1005,23299,0.6531
+Miami University-Oxford,OH,Public,Town,1276,29413,0.6538
+University of Montevallo,AL,Public,Suburb,1069,24599,0.6542
+Michigan State University,MI,Public,City,1194,25809,0.6574
+University of the Pacific,CA,Private nonprofit,City,1180,56899,0.6599
+University of California-Riverside,CA,Public,City,1078,31494,0.6634
+Seton Hall University,NJ,Private nonprofit,Suburb,1156,51395,0.669
+Texas A & M University-College Station,TX,Public,City,1205,24682,0.6717
+Tennessee Technological University,TN,Public,Town,1103,23109,0.6721
+Clarkson University,NY,Private nonprofit,Town,1190,61992,0.6821
+University of Massachusetts-Boston,MA,Public,City,1073,21884,0.6852
+University of Vermont,VT,Public,City,1216,30573,0.6894
+Mercer University,GA,Private nonprofit,City,1211,48766,0.6935
+University of Delaware,DE,Public,Suburb,1170,24557,0.695
+Adelphi University,NY,Private nonprofit,Suburb,1114,47647,0.7029
+East Carolina University,NC,Public,City,1040,20567,0.7034
+University of Missouri-St Louis,MO,Public,Suburb,1101,22105,0.7062
+University of San Francisco,CA,Private nonprofit,City,1150,61072,0.7137
+Central Michigan University,MI,Public,Town,1049,22778,0.7156
+University of Hartford,CT,Private nonprofit,City,1046,51495,0.7193
+Washington State University,WA,Public,Town,1054,26441,0.7204
+Ashland University,OH,Private nonprofit,Town,1051,32390,0.7247
+Loyola University Chicago,IL,Private nonprofit,City,1195,54324,0.7257
+University of Louisville,KY,Public,City,1165,24768,0.7257
+University of Rhode Island,RI,Public,Suburb,1081,27552,0.7276
+University of Alaska Fairbanks,AK,Public,Suburb,1060,16694,0.7347
+University of Illinois at Chicago,IL,Public,City,1105,25131,0.7359
+University of North Carolina at Greensboro,NC,Public,City,1054,18764,0.7393
+Duquesne University,PA,Private nonprofit,City,1165,48219,0.7394
+Indiana University-Purdue University-Indianapolis,IN,Public,City,1025,20451,0.7397
+Drexel University,PA,Private nonprofit,City,1204,67821,0.7465
+University of Nebraska-Lincoln,NE,Public,City,1144,22535,0.7527
+Edgewood College,WI,Private nonprofit,City,1069,39116,0.7587
+University of Idaho,ID,Public,Town,1070,20045,0.7589
+University of North Carolina at Asheville,NC,Public,City,1155,18424,0.7593
+University of Massachusetts-Dartmouth,MA,Public,Suburb,1025,25410,0.7602
+West Virginia University,WV,Public,City,1069,19512,0.7612
+University of Alabama in Huntsville,AL,Public,City,1257,22059,0.7628
+University of Cincinnati-Main Campus,OH,Public,City,1164,26683,0.7642
+University of Utah,UT,Public,City,1116,18444,0.7642
+Michigan Technological University,MI,Public,Town,1242,26587,0.7644
+University of Colorado Boulder,CO,Public,City,1229,31393,0.7662
+Southern Illinois University-Carbondale,IL,Public,City,1029,26868,0.7665
+University of St Thomas,TX,Private nonprofit,City,1085,41141,0.7739
+Oregon State University,OR,Public,City,1127,26189,0.7748
+The University of Virginia's College at Wise,VA,Public,Town,963,21138,0.7771
+University of Oregon,OR,Public,City,1111,24209,0.7787
+Colorado State University-Fort Collins,CO,Public,City,1159,24885,0.7796
+The University of Tennessee-Chattanooga,TN,Public,City,1088,21495,0.7826
+University of Mississippi,MS,Public,Town,1155,23372,0.783
+Indiana University-Bloomington,IN,Public,City,1200,24432,0.7872
+Missouri University of Science and Technology,MO,Public,Town,1265,21698,0.7933
+Robert Morris University,PA,Private nonprofit,Suburb,1050,42015,0.7984
+Auburn University,AL,Public,City,1217,29794,0.8054
+George Mason University,VA,Public,Suburb,1165,24347,0.8099
+Virginia Commonwealth University,VA,Public,City,1094,29278,0.8115
+Immaculata University,PA,Private nonprofit,Suburb,970,50339,0.8189
+Western Michigan University,MI,Public,City,1030,23598,0.8231
+Arizona State University-Tempe,AZ,Public,City,1147,23931,0.825
+University of St Thomas,MN,Private nonprofit,City,1204,50515,0.8266
+University of Nevada-Reno,NV,Public,City,1088,20702,0.8281
+Montana State University,MT,Public,Town,1126,19441,0.8287
+University of North Dakota,ND,Public,City,1090,19290,0.8369
+University of Iowa,IA,Public,City,1165,21010,0.8411
+Marquette University,WI,Private nonprofit,City,1199,51316,0.8434
+Suffolk University,MA,Private nonprofit,City,1020,48936,0.8442
+Old Dominion University,VA,Public,City,1010,22806,0.8464
+Seattle Pacific University,WA,Private nonprofit,City,1108,51149,0.8728
+Iowa State University,IA,Public,City,1144,19182,0.8749
+Saint Johns University,MN,Private nonprofit,Rural,1134,52168,0.8778
+Shenandoah University,VA,Private nonprofit,City,1009,44258,0.8802
+University of South Dakota,SD,Public,Town,1050,20806,0.8813
+Illinois State University,IL,Public,Suburb,1090,27421,0.8888
+University of Maine,ME,Public,Suburb,1073,22904,0.8975
+Utah State University,UT,Public,City,1087,18093,0.9025
+South Dakota State University,SD,Public,Town,1069,25761,0.9076
+University of Kentucky,KY,Public,City,1159,26143,0.9079
+Maryville University of Saint Louis,MO,Private nonprofit,Suburb,1114,43804,0.928
+North Dakota State University-Main Campus,ND,Public,City,1091,19602,0.928
+University of Kansas,KS,Public,City,1185,23687,0.9301
+University of Wyoming,WY,Public,Town,1102,19169,0.9508
