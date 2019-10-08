@@ -1,0 +1,42 @@
+---
+title: "Age-structured population data"
+author: "Dmitry Kondrashov"
+date: "10/7/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The data set is taken from https://datadryad.org/stash/dataset/doi:10.5061/dryad.4fg24s2
+
+
+```{r}
+library(tidyverse) # our friend the tidyverse
+library(lubridate)
+```
+
+Load the data for adults and larvae:
+
+```{r}
+adults <- read_csv(file = "data/Dead_adult_counts.csv")
+str(adults)
+larvae <- read_csv(file = "data/Larval_counts.csv")
+str(larvae)
+```
+
+```{r}
+adults_cold_good <- adults %>% filter(temp==27) %>% filter(food == 'good') %>% group_by(week) %>% summarise(adult_pop = mean(total))
+head(adults_cold_good)
+```
+```{r}
+larvae_cold_good <- larvae %>% rename(week = number) %>% filter(temp==27) %>% filter(food == 'good') %>% group_by(week) %>% summarise(larval_pop = mean(Total)) 
+head(larvae_cold_good)
+```
+
+```{r}
+adults_larvae_cold_good <- full_join(larvae_cold_good, adults_cold_good)
+head(adults_larvae_cold_good)
+```
+
