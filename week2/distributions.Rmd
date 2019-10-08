@@ -347,3 +347,36 @@ print(left)
 ```
 
 *Exercise:* Modify that script to report whether the confidence interval captures the true mean. Use a loop structure (as in the script above) to generate 1000 sample means and report how many of them are within the theoretical confidence interval. Does this match the fraction you expect from the significance level? Try different significance levels and sample sizes and report what you discover.
+
+## Identifying type of distribution in real data
+
+Let us load the Macaque agression data again:
+```{r}
+# read the data
+# original URL:
+# https://datadryad.org/stash/dataset/doi:10.5061/dryad.013d5
+dt <- read.csv("data/Brent_et_al_Behaviour_vs_Age.csv", stringsAsFactors = FALSE)
+head(dt)
+```
+A simple way to visualize a distribution is to plot a histogram: data are binned, and the height of the bin represents counts (or frequencies). Plot the hisrograms of rhe four z-scores variables and visually assess what distribution they resemble.
+
+```{r}
+
+```
+
+A more systematic way of comparing data to a theoretical distribution is via a Quantile-Quantile (QQ) plot, which plots the quantile value from  a sample against the quantiles from a given distribution with best-fit parameters. If the data were to follow the distribution closely, you should find all the points lying on the identity line. For example, here is how to compare a data set drawn from the normal random number generator with the normal distribution:
+
+```{r}
+set.seed(101)
+test_data <- tibble(x = rnorm(n = 500, mean = 3, sd = 1.5))
+# example: find best-fitting Normal
+my_normal <- fitdistr(test_data$x, densfun = "normal")
+# note the slight discrepancies
+my_normal
+ggplot(test_data, aes(sample = x)) +
+  stat_qq(distribution = qnorm, dparams = my_normal$estimate) +
+  stat_qq_line(distribution = qnorm, dparams = my_normal$estimate) + 
+  geom_abline(intercept = 0, slope = 1, linetype = 2, col = "red") +
+  ggtitle("Q-Q plot assuming best-fitting Normal distribution")
+```
+Make normal QQplots for the four variables in the Macaque data sets. Are any of them normally distributed, and if not, can find a better distribution to represent it?
