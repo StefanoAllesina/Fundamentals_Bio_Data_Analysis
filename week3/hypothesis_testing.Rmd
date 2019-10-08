@@ -38,7 +38,7 @@ After the hypothesis is stated, the data are collected and are used to test the 
 
 **The fundamental assumption of this process is that the truth value of the hypothesis is set prior to the collection of data.** For example, if one could observe all of the genomes, the frequency of the allele would be known exactly, so this truth exists prior to the hypothesis testing. Because we typically can only observe a sample (and not the entire universe of data), we might end up erroneously rejecting the null hypothesis when it is in fact true, or not rejecting it when it is in fact false. The possible outcomes of a test can be organized in the table:
 
-$H_0$ | True | False
+H0 | True | False
 ----|-----|------
 **Reject** | False Positive | True Positive
 **Not Reject** | True Negative | False Negative

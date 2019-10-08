@@ -42,7 +42,7 @@
 ### Week 5
 
 - Analysis of variance
-- Generalized Linear Models
+- [Generalized Linear Models](lectures/generalized_linear_models)
 
 ### Week 6
 
