@@ -26,23 +26,23 @@
 
 ### Week 2
 
-- Probability distributions
+- [Probability distributions](lectures/distributions)
 - [Data wrangling in `tidyverse`](lectures/basic_data_wrangling)
 
 ### Week 3
 
 - Linear algebra refresher
-- Hypothesis testing
+- [Hypothesis testing](lectures/hypothesis_testing)
 
 ### Week 4
 
 - Likelihood
-- Linear models
+- [Linear models](lectures/linear_models)
 
 ### Week 5
 
 - Analysis of variance
-- Generalized Linear Models
+- [Generalized Linear Models](lectures/generalized_linear_models)
 
 ### Week 6
 

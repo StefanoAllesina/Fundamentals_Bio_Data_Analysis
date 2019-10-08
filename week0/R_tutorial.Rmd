@@ -111,36 +111,42 @@ x * 2
 `R` provides different types of data that can be used in your programs. For each variable `x`, calling `class(x)` prints the type of the variable. The basic data types are:
 
 - `logical`, taking only two possible values: `TRUE` and `FALSE`
+
 ```{r}
 v <- TRUE
 class(v)
 ```
 
 - `numeric`, storing real numbers (actually, their approximations, as computers have limited memory and thus [cannot store](https://www.exploringbinary.com/why-0-point-1-does-not-exist-in-floating-point/) numbers like $\pi$, or even $0.2$)
+
 ```{r}
 v <- 3.77
 class(v)
 ```
 
 - Real numbers can also be specified using scientific notation:
+
 ```{r}
 v <- 6.022e23 # 6.022⋅10^23 (Avogadro's number)
 class(v)
 ```
 
 - `integer`, storing whole numbers 
+
 ```{r}
 v <- 23L # the L signals that this should be stored as integer
 class(v)
 ```
 
 - `complex`, storing complex numbers (i.e., with a real and an imaginary part)
+
 ```{r}
 v <- 23 + 5i # the i marks the imaginary part
 class(v)
 ```
 
 - `character`, for strings, characters and text
+
 ```{r}
 v <- 'a string' # you can use single or double quotes
 class(v)

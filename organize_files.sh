@@ -22,7 +22,37 @@ cd ..
 # Week 2
 cd week2
 Rscript -e "rmarkdown::render('basic_data_wrangling.Rmd', output_format = 'github_document')"
-#Rscript -e "rmarkdown::render('basic_visualization.Rmd')"
+Rscript -e "rmarkdown::render('distributions.Rmd', output_format = 'github_document', envir = new.env())"
+mv *.md ../docs/lectures
+cp -r *_files ../docs/lectures
+rm -r *_files
+rm *.html
+cd ..
+
+# Week 3
+cd week3
+Rscript -e "rmarkdown::render('hypothesis_testing.Rmd', output_format = 'github_document')"
+#Rscript -e "rmarkdown::render('distributions.Rmd', output_format = 'github_document', envir = new.env())"
+mv *.md ../docs/lectures
+cp -r *_files ../docs/lectures
+rm -r *_files
+rm *.html
+cd ..
+
+# Week 4
+cd week4
+Rscript -e "rmarkdown::render('linear_models.Rmd', output_format = 'github_document')"
+#Rscript -e "rmarkdown::render('distributions.Rmd', output_format = 'github_document', envir = new.env())"
+mv *.md ../docs/lectures
+cp -r *_files ../docs/lectures
+rm -r *_files
+rm *.html
+cd ..
+
+# Week 5
+cd week5
+Rscript -e "rmarkdown::render('generalized_linear_models.Rmd', output_format = 'github_document')"
+#Rscript -e "rmarkdown::render('distributions.Rmd', output_format = 'github_document', envir = new.env())"
 mv *.md ../docs/lectures
 cp -r *_files ../docs/lectures
 rm -r *_files

@@ -1,0 +1,47 @@
+Gender,Event,Location,Year,Medal,Name,Nationality,Result
+M,100M Men,Athens,1896,G,Thomas BURKE,USA,12
+M,100M Men,Paris,1900,G,Frank JARVIS,USA,11
+M,100M Men,St Louis,1904,G,Archie HAHN,USA,11
+M,100M Men,London,1908,G,Reggie WALKER,RSA,10.8
+M,100M Men,Stockholm,1912,G,Ralph CRAIG,USA,10.8
+M,100M Men,Antwerp,1920,G,Charles PADDOCK,USA,10.8
+M,100M Men,Paris,1924,G,Harold ABRAHAMS,GBR,10.6
+M,100M Men,Amsterdam,1928,G,Percy WILLIAMS,CAN,10.8
+M,100M Men,Los Angeles,1932,G,Eddie TOLAN,USA,10.3
+M,100M Men,Berlin,1936,G,Jesse OWENS,USA,10.3
+M,100M Men,London,1948,G,Harrison DILLARD,USA,10.3
+M,100M Men,Helsinki,1952,G,Lindy REMIGINO,USA,10.4
+M,100M Men,Melbourne / Stockholm,1956,G,Bobby MORROW,USA,10.5
+M,100M Men,Rome,1960,G,Armin HARY,EUA,10.2
+M,100M Men,Tokyo,1964,G,Bob HAYES,USA,10
+M,100M Men,Mexico,1968,G,Jim HINES,USA,9.9
+M,100M Men,Munich,1972,G,Valery BORZOV,URS,10.14
+M,100M Men,Montreal,1976,G,Hasely CRAWFORD,TTO,10.06
+M,100M Men,Moscow,1980,G,Allan WELLS,GBR,10.25
+M,100M Men,Los Angeles,1984,G,Carl LEWIS,USA,9.99
+M,100M Men,Barcelona,1992,G,Linford CHRISTIE,GBR,9.96
+M,100M Men,Atlanta,1996,G,Donovan BAILEY,CAN,9.84
+M,100M Men,Sydney,2000,G,Maurice GREENE,USA,9.87
+M,100M Men,Athens,2004,G,Justin GATLIN,USA,9.85
+M,100M Men,Beijing,2008,G,Usain BOLT,JAM,9.69
+M,100M Men,London,2012,G,Usain BOLT,JAM,9.63
+M,100M Men,Rio,2016,G,Usain BOLT,JAM,9.81
+W,100M Women,Amsterdam,1928,G,Elizabeth ROBINSON,USA,12.2
+W,100M Women,Los Angeles,1932,G,Stanislawa WALASIEWICZ,POL,11.9
+W,100M Women,Berlin,1936,G,Helen STEPHENS,USA,11.5
+W,100M Women,London,1948,G,Fanny BLANKERS-KOEN,NED,11.9
+W,100M Women,Helsinki,1952,G,Marjorie JACKSON,AUS,11.5
+W,100M Women,Melbourne / Stockholm,1956,G,Betty CUTHBERT,AUS,11.5
+W,100M Women,Rome,1960,G,Wilma RUDOLPH,USA,11
+W,100M Women,Tokyo,1964,G,Wyomia TYUS,USA,11.4
+W,100M Women,Mexico,1968,G,Wyomia TYUS,USA,11
+W,100M Women,Munich,1972,G,Renate STECHER,GDR,11.07
+W,100M Women,Montreal,1976,G,Annegret RICHTER-IRRGANG,FRG,11.08
+W,100M Women,Moscow,1980,G,Lyudmila KONDRATYEVA,URS,11.06
+W,100M Women,Los Angeles,1984,G,Evelyn ASHFORD,USA,10.97
+W,100M Women,Barcelona,1992,G,Gail DEVERS,USA,10.82
+W,100M Women,Atlanta,1996,G,Gail DEVERS,USA,10.94
+W,100M Women,Athens,2004,G,Yuliya NESTSIARENKA,BLR,10.93
+W,100M Women,Beijing,2008,G,Shelly-Ann FRASER-PRYCE,JAM,10.78
+W,100M Women,London,2012,G,Shelly-Ann FRASER-PRYCE,JAM,10.75
+W,100M Women,Rio,2016,G,Elaine THOMPSON,JAM,10.71
