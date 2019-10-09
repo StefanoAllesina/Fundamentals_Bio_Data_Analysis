@@ -204,7 +204,7 @@ Suppose that there is a discrete process that occurs with some average rate $\la
 ```{r}
 low <- 0 # minimum value
 high <- 20 # maximum value
-lambda <- 2 # Poisson rate
+lambda <- 10 # Poisson rate
 values <- low:high # vector of discrete values of the RV
 probs <- dpois(values, lambda)
 barplot(probs, names.arg = values, xlab = 'values', ylab = 'probability',
@@ -367,6 +367,8 @@ A simple way to visualize a distribution is to plot a histogram: data are binned
 A more systematic way of comparing data to a theoretical distribution is via a Quantile-Quantile (QQ) plot, which plots the quantile value from  a sample against the quantiles from a given distribution with best-fit parameters. If the data were to follow the distribution closely, you should find all the points lying on the identity line. For example, here is how to compare a data set drawn from the normal random number generator with the normal distribution:
 
 ```{r}
+library(tidyverse)
+library(fitdistrplus)
 set.seed(101)
 test_data <- tibble(x = rnorm(n = 500, mean = 3, sd = 1.5))
 # example: find best-fitting Normal
