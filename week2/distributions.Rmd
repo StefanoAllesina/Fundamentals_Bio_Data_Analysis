@@ -358,7 +358,7 @@ Let us load the Macaque agression data again:
 dt <- read.csv("data/Brent_et_al_Behaviour_vs_Age.csv", stringsAsFactors = FALSE)
 head(dt)
 ```
-A simple way to visualize a distribution is to plot a histogram: data are binned, and the height of the bin represents counts (or frequencies). Plot the hisrograms of rhe four z-scores variables and visually assess what distribution they resemble.
+A simple way to visualize a distribution is to plot a histogram: data are binned, and the height of the bin represents counts (or frequencies). Plot the hisrograms of rhe four z-scores variables and visually assess which distribution(s) they resemble.
 
 ```{r}
 
@@ -382,3 +382,8 @@ ggplot(test_data, aes(sample = x)) +
   ggtitle("Q-Q plot assuming best-fitting Normal distribution")
 ```
 Make normal QQplots for the four variables in the Macaque data sets. Are any of them normally distributed, and if not, can find a better distribution to represent it?
+
+```{r}
+
+```
+
