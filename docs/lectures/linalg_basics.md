@@ -43,23 +43,31 @@ Linear algebra is intimately tied to linear equations, that is, to equations whe
 The situation gets more interesting when multiple variables are involved, with multiple equations, for example:
 
 ![
-4x - 3y = 5 \\\\
- -x + 2y = 10
-](https://latex.codecogs.com/png.latex?%0A4x%20-%203y%20%3D%205%20%5C%5C%0A%20-x%20%2B%202y%20%3D%2010%0A "
-4x - 3y = 5 \\
- -x + 2y = 10
+\\begin{aligned}
+4x - 3y &= 5 \\\\
+ -x + 2y &= 10
+ \\end{aligned}
+](https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0A4x%20-%203y%20%26%3D%205%20%5C%5C%0A%20-x%20%2B%202y%20%26%3D%2010%0A%20%5Cend%7Baligned%7D%0A "
+\begin{aligned}
+4x - 3y &= 5 \\
+ -x + 2y &= 10
+ \end{aligned}
 ")
 
 There are multiple ways to solve this, for example solving one equation for one variable in terms of the other, then substituting it into the second equation to obtain a one-variable problem. A more general approach involves writing this problem in terms of a matrix ![\\mathbf A](https://latex.codecogs.com/png.latex?%5Cmathbf%20A "\mathbf A") that contains the multiplicative constants of ![x](https://latex.codecogs.com/png.latex?x "x") and ![y](https://latex.codecogs.com/png.latex?y "y") and a vector ![\\vec b](https://latex.codecogs.com/png.latex?%5Cvec%20b "\vec b") that contains the right-hand side constants:
 
 ![
-\\mathbf{A} = \\begin{pmatrix} 4 & -3 \\\\ -1 & 2 \\end{pmatrix} \\; \\vec{b} = \\begin{pmatrix}5 \\\\ 10 \\end{pmatrix} \\;
+\\begin{aligned}
+\\mathbf{A} = \\begin{pmatrix} 4 & -3 \\\\ -1 & 2 \\end{pmatrix} \\;\\;\\; \\vec{b} = \\begin{pmatrix}5 \\\\ 10 \\end{pmatrix} &\\;\\;\\;
 \\vec{x} = \\begin{pmatrix} x \\\\ y \\end{pmatrix} \\\\
-\\mathbf{A} \\vec x = \\vec b
-](https://latex.codecogs.com/png.latex?%0A%5Cmathbf%7BA%7D%20%3D%20%5Cbegin%7Bpmatrix%7D%204%20%26%20-3%20%5C%5C%20-1%20%26%202%20%5Cend%7Bpmatrix%7D%20%5C%3B%20%5Cvec%7Bb%7D%20%3D%20%5Cbegin%7Bpmatrix%7D5%20%5C%5C%2010%20%5Cend%7Bpmatrix%7D%20%5C%3B%0A%5Cvec%7Bx%7D%20%3D%20%5Cbegin%7Bpmatrix%7D%20x%20%5C%5C%20y%20%5Cend%7Bpmatrix%7D%20%5C%5C%0A%5Cmathbf%7BA%7D%20%5Cvec%20x%20%3D%20%5Cvec%20b%0A "
-\mathbf{A} = \begin{pmatrix} 4 & -3 \\ -1 & 2 \end{pmatrix} \; \vec{b} = \begin{pmatrix}5 \\ 10 \end{pmatrix} \;
+\\mathbf{A} \\vec x = \\vec b &
+\\end{aligned}
+](https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0A%5Cmathbf%7BA%7D%20%3D%20%5Cbegin%7Bpmatrix%7D%204%20%26%20-3%20%5C%5C%20-1%20%26%202%20%5Cend%7Bpmatrix%7D%20%5C%3B%5C%3B%5C%3B%20%5Cvec%7Bb%7D%20%3D%20%5Cbegin%7Bpmatrix%7D5%20%5C%5C%2010%20%5Cend%7Bpmatrix%7D%20%26%5C%3B%5C%3B%5C%3B%0A%5Cvec%7Bx%7D%20%3D%20%5Cbegin%7Bpmatrix%7D%20x%20%5C%5C%20y%20%5Cend%7Bpmatrix%7D%20%5C%5C%0A%5Cmathbf%7BA%7D%20%5Cvec%20x%20%3D%20%5Cvec%20b%20%26%0A%5Cend%7Baligned%7D%0A "
+\begin{aligned}
+\mathbf{A} = \begin{pmatrix} 4 & -3 \\ -1 & 2 \end{pmatrix} \;\;\; \vec{b} = \begin{pmatrix}5 \\ 10 \end{pmatrix} &\;\;\;
 \vec{x} = \begin{pmatrix} x \\ y \end{pmatrix} \\
-\mathbf{A} \vec x = \vec b
+\mathbf{A} \vec x = \vec b &
+\end{aligned}
 ")
 
  This now looks analogous to the one-variable equation above, which we solved by dividing both sides by the multiple of ![x](https://latex.codecogs.com/png.latex?x "x"). The difficulty is that matrix operations are more complicated than scalar multiplication and division. Matrix multiplication is used in the equation above to multiply all the coefficients in the matrix by their respective variables, which involves a relatively complicated [procedure in general](https://en.wikipedia.org/wiki/Matrix_multiplication).
@@ -67,9 +75,9 @@ There are multiple ways to solve this, for example solving one equation for one 
 The "division" equivalent is called [matrix inversion](https://en.wikipedia.org/wiki/Invertible_matrix) and it is even more complicated. First, we need to define the identity matrix, or the equivalent of the number 1 for matrix multiplication. The identity matrix is defined only for square matrices (equal number of rows and columns), so a size ![n](https://latex.codecogs.com/png.latex?n "n") by ![n](https://latex.codecogs.com/png.latex?n "n") idenitity matrix is define to have all 1s on the diagonal and all zeros on the off-diagonal:
 
 ![
-I = \\begin{pmatrix} 1 & 0 & \\dots & 0 \\\\ 0 & 1  &\\dots & 0 \\\\ \\vdots & \\vdots & & \\vdots \\\\ 0 & 0 &\\dots & 1\\end{pmatrix}
-](https://latex.codecogs.com/png.latex?%0AI%20%3D%20%5Cbegin%7Bpmatrix%7D%201%20%26%200%20%26%20%5Cdots%20%26%200%20%5C%5C%200%20%26%201%20%20%26%5Cdots%20%26%200%20%5C%5C%20%5Cvdots%20%26%20%5Cvdots%20%26%20%26%20%5Cvdots%20%5C%5C%200%20%26%200%20%26%5Cdots%20%26%201%5Cend%7Bpmatrix%7D%0A "
-I = \begin{pmatrix} 1 & 0 & \dots & 0 \\ 0 & 1  &\dots & 0 \\ \vdots & \vdots & & \vdots \\ 0 & 0 &\dots & 1\end{pmatrix}
+I = \\begin{pmatrix} 1 & 0 & \\dots & 0 \\\\ 0 & 1  &\\dots & 0 \\\\ \\vdots & \\vdots & \\ddots & \\vdots \\\\ 0 & 0 &\\dots & 1\\end{pmatrix}
+](https://latex.codecogs.com/png.latex?%0AI%20%3D%20%5Cbegin%7Bpmatrix%7D%201%20%26%200%20%26%20%5Cdots%20%26%200%20%5C%5C%200%20%26%201%20%20%26%5Cdots%20%26%200%20%5C%5C%20%5Cvdots%20%26%20%5Cvdots%20%26%20%5Cddots%20%26%20%5Cvdots%20%5C%5C%200%20%26%200%20%26%5Cdots%20%26%201%5Cend%7Bpmatrix%7D%0A "
+I = \begin{pmatrix} 1 & 0 & \dots & 0 \\ 0 & 1  &\dots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 &\dots & 1\end{pmatrix}
 ")
 
  The identity matrix is special because multiplying any other matrix (of compatible size) by it results in the same exact matrix (this is easy to check on a couple of examples for 2 by 2 or 3 by 3 matrices):
@@ -102,7 +110,7 @@ In the cases in which the inverse matrix exists, the linear system of equations 
 
 ``` r
 A <- matrix(c(4,-1,-3,2), nrow = 2)
-b = c(5,10)
+b <- c(5,10)
 solve(A,b)
 ```
 
@@ -116,11 +124,15 @@ One geometric application of solving multiple linear equations is to find the co
 **Example:** If the data set consists of two points ![(3,5), (6, 2)](https://latex.codecogs.com/png.latex?%283%2C5%29%2C%20%286%2C%202%29 "(3,5), (6, 2)"), then finding the best fit values of ![m](https://latex.codecogs.com/png.latex?m "m") and ![b](https://latex.codecogs.com/png.latex?b "b") means solving the following two equations:
 
 ![
- 3m + b = 5 \\\\
- 6m + b = 2
-](https://latex.codecogs.com/png.latex?%0A%203m%20%2B%20b%20%3D%205%20%5C%5C%0A%206m%20%2B%20b%20%3D%202%0A "
- 3m + b = 5 \\
- 6m + b = 2
+\\begin{aligned}
+ 3m + b &= 5 \\\\
+ 6m + b &= 2
+\\end{aligned}
+](https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0A%203m%20%2B%20b%20%26%3D%205%20%5C%5C%0A%206m%20%2B%20b%20%26%3D%202%0A%5Cend%7Baligned%7D%0A "
+\begin{aligned}
+ 3m + b &= 5 \\
+ 6m + b &= 2
+\end{aligned}
 ")
 
 These equations have a solution for the slope and intercept, which can be calculated in R using solve() and then plot the line witht e
@@ -142,13 +154,17 @@ However, a data set with two points is very small and nobody would accept these 
 **Bad idea:** take two points and find a line, that is the slope and the intercept, that passes through the two. It should be clear why this is a bad idea: we are arbitrarily ignoring some of the data, while perfectly fitting two points. So how do we use all the data? Let us write down the equations that a line with slope ![m](https://latex.codecogs.com/png.latex?m "m") and intercept ![b](https://latex.codecogs.com/png.latex?b "b") have to satisfy in order to fit our data points:
 
 ![
+\\begin{aligned}
 3m + b = 5 \\\\
 6m + b = 2\\\\
 9m + b = 1
-](https://latex.codecogs.com/png.latex?%0A3m%20%2B%20b%20%3D%205%20%5C%5C%0A6m%20%2B%20b%20%3D%202%5C%5C%0A9m%20%2B%20b%20%3D%201%0A "
+\\end{aligned}
+](https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0A3m%20%2B%20b%20%3D%205%20%5C%5C%0A6m%20%2B%20b%20%3D%202%5C%5C%0A9m%20%2B%20b%20%3D%201%0A%5Cend%7Baligned%7D%0A "
+\begin{aligned}
 3m + b = 5 \\
 6m + b = 2\\
 9m + b = 1
+\end{aligned}
 ")
 
 This system has no exact solution, since there are three equations and only two unknowns. We need to find ![m](https://latex.codecogs.com/png.latex?m "m") and ![b](https://latex.codecogs.com/png.latex?b "b") such that they are a "best fit" to the data, not the perfect solution.
@@ -159,13 +175,17 @@ Least-squares line
 Let us write the equation in matrix form as follows:
 
 ![
-\\mathbf{A} = \\begin{pmatrix} 3 & 1 \\\\ 6 & 1 \\\\ 9 & 1 \\end{pmatrix} \\; \\vec{b} = \\begin{pmatrix}5 \\\\ 2 \\\\ 1 \\end{pmatrix} \\;
-\\vec{\\beta} = \\begin{pmatrix} m \\\\ b \\end{pmatrix} \\\\
-\\mathbf{A} \\vec \\beta = \\vec b
-](https://latex.codecogs.com/png.latex?%0A%5Cmathbf%7BA%7D%20%3D%20%5Cbegin%7Bpmatrix%7D%203%20%26%201%20%5C%5C%206%20%26%201%20%5C%5C%209%20%26%201%20%5Cend%7Bpmatrix%7D%20%5C%3B%20%5Cvec%7Bb%7D%20%3D%20%5Cbegin%7Bpmatrix%7D5%20%5C%5C%202%20%5C%5C%201%20%5Cend%7Bpmatrix%7D%20%5C%3B%0A%5Cvec%7B%5Cbeta%7D%20%3D%20%5Cbegin%7Bpmatrix%7D%20m%20%5C%5C%20b%20%5Cend%7Bpmatrix%7D%20%5C%5C%0A%5Cmathbf%7BA%7D%20%5Cvec%20%5Cbeta%20%3D%20%5Cvec%20b%0A "
-\mathbf{A} = \begin{pmatrix} 3 & 1 \\ 6 & 1 \\ 9 & 1 \end{pmatrix} \; \vec{b} = \begin{pmatrix}5 \\ 2 \\ 1 \end{pmatrix} \;
-\vec{\beta} = \begin{pmatrix} m \\ b \end{pmatrix} \\
-\mathbf{A} \vec \beta = \vec b
+\\begin{aligned}
+\\mathbf{A} = \\begin{pmatrix} 3 & 1 \\\\ 6 & 1 \\\\ 9 & 1 \\end{pmatrix} \\;\\;\\; \\vec{b} = \\begin{pmatrix}5 \\\\ 2 \\\\ 1 \\end{pmatrix} \\;\\;\\;
+\\vec{\\beta} = \\begin{pmatrix} m \\\\ b \\end{pmatrix} & \\\\
+\\mathbf{A} \\vec \\beta = \\vec b &
+\\end{aligned}
+](https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0A%5Cmathbf%7BA%7D%20%3D%20%5Cbegin%7Bpmatrix%7D%203%20%26%201%20%5C%5C%206%20%26%201%20%5C%5C%209%20%26%201%20%5Cend%7Bpmatrix%7D%20%5C%3B%5C%3B%5C%3B%20%5Cvec%7Bb%7D%20%3D%20%5Cbegin%7Bpmatrix%7D5%20%5C%5C%202%20%5C%5C%201%20%5Cend%7Bpmatrix%7D%20%5C%3B%5C%3B%5C%3B%0A%5Cvec%7B%5Cbeta%7D%20%3D%20%5Cbegin%7Bpmatrix%7D%20m%20%5C%5C%20b%20%5Cend%7Bpmatrix%7D%20%26%20%5C%5C%0A%5Cmathbf%7BA%7D%20%5Cvec%20%5Cbeta%20%3D%20%5Cvec%20b%20%26%0A%5Cend%7Baligned%7D%0A "
+\begin{aligned}
+\mathbf{A} = \begin{pmatrix} 3 & 1 \\ 6 & 1 \\ 9 & 1 \end{pmatrix} \;\;\; \vec{b} = \begin{pmatrix}5 \\ 2 \\ 1 \end{pmatrix} \;\;\;
+\vec{\beta} = \begin{pmatrix} m \\ b \end{pmatrix} & \\
+\mathbf{A} \vec \beta = \vec b &
+\end{aligned}
 ")
 
 Mathematically, the problem is that one cannot invert a non-square matrix. However, there is a way of turning the matrix into a square one, by multiplying it by its own transpose (same matrix with rows and columns reversed):
@@ -424,7 +444,7 @@ The situation with eigenvectors is trickier. There are some matrices for which a
 
 To summarize, eigenvalues and eigenvectors of a matrix are a set of numbers and a set of vectors (up to scalar multiple) that describe the action of the matrix as a multiplicative operator on vectors. “Well-behaved” square ![n](https://latex.codecogs.com/png.latex?n "n") by ![n](https://latex.codecogs.com/png.latex?n "n") matrices have ![n](https://latex.codecogs.com/png.latex?n "n") distinct eigenvalues and ![n](https://latex.codecogs.com/png.latex?n "n") eigenvectors pointing in distinct directions. In a deep sense, the collection of eigenvectors and eigenvalues defines a matrix ![A](https://latex.codecogs.com/png.latex?A "A"), which is why an older name for them is characteristic vectors and values.
 
-### calculating eigenvalues
+### Calculating eigenvalues
 
 Finding the eigenvalues and eigenvectors analytically, that is on paper, is quite laborious even for 3 by 3 or 4 by 4 matrices and for larger ones there is no analytical solution. In practice, the task is outsourced to a computer, and MATLAB has a number of functions for this purpose. Nevertheless, it is useful to go through the process in 2 dimensions in order to gain an understanding of what is involved. From the definition of eigenvalues and eigenvectors, the condition can be written in terms of the four elements of a 2 by 2 matrix:
 
@@ -480,4 +500,4 @@ eigs$vectors
     # [1,] -0.4472136 -0.7071068
     # [2,] -0.8944272  0.7071068
 
-Note: a real-valued matrix can have complex eigenvalues and eigenvectors, but whenever it acts on a real vector, the result is still real. This is because the complex numbers cancel each other’s imaginary parts.
+**Note:** a real-valued matrix can have complex eigenvalues and eigenvectors, but whenever it acts on a real vector, the result is still real. This is because the complex numbers cancel each other’s imaginary parts.

@@ -46,22 +46,26 @@ is solved by dividing both sides by 4, obtaining the unique solution $x=5$.
 
 The situation gets more interesting when multiple variables are involved, with multiple equations, for example:
 $$
-4x - 3y = 5 \\
- -x + 2y = 10
+\begin{aligned}
+4x - 3y &= 5 \\
+ -x + 2y &= 10
+ \end{aligned}
 $$
 
 There are multiple ways to solve this, for example solving one equation for one variable in terms of the other, then substituting it into the second equation to obtain a one-variable problem. A more general approach involves writing this problem in terms of a matrix $\mathbf A$ that contains the multiplicative constants of $x$ and $y$ and a vector $\vec b$ that contains the right-hand side constants: 
 $$
-\mathbf{A} = \begin{pmatrix} 4 & -3 \\ -1 & 2 \end{pmatrix} \; \vec{b} = \begin{pmatrix}5 \\ 10 \end{pmatrix} \;
+\begin{aligned}
+\mathbf{A} = \begin{pmatrix} 4 & -3 \\ -1 & 2 \end{pmatrix} \;\;\; \vec{b} = \begin{pmatrix}5 \\ 10 \end{pmatrix} &\;\;\;
 \vec{x} = \begin{pmatrix} x \\ y \end{pmatrix} \\
-\mathbf{A} \vec x = \vec b
+\mathbf{A} \vec x = \vec b &
+\end{aligned}
 $$
 This now looks analogous to the one-variable equation above, which we solved by dividing both sides by the multiple of $x$. The difficulty is that matrix operations are more complicated than scalar multiplication and division. Matrix multiplication is used in the equation above to multiply all the coefficients in the matrix by their respective variables, which involves a relatively complicated  [procedure in general](https://en.wikipedia.org/wiki/Matrix_multiplication). 
 
 
 The "division" equivalent is called [matrix inversion](https://en.wikipedia.org/wiki/Invertible_matrix) and it is even more complicated. First, we need to define the identity matrix, or the equivalent of the number 1 for matrix multiplication. The identity matrix is defined only for square matrices (equal number of rows and columns), so a size $n$ by $n$ idenitity matrix is define to have all 1s on the diagonal and all zeros on the off-diagonal:
 $$
-I = \begin{pmatrix} 1 & 0 & \dots & 0 \\ 0 & 1  &\dots & 0 \\ \vdots & \vdots & & \vdots \\ 0 & 0 &\dots & 1\end{pmatrix}
+I = \begin{pmatrix} 1 & 0 & \dots & 0 \\ 0 & 1  &\dots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 &\dots & 1\end{pmatrix}
 $$
 The identity matrix is special because multiplying any other matrix (of compatible size) by it results in the same exact matrix (this is easy to check on a couple of examples for 2 by 2 or 3 by 3 matrices):
 
@@ -87,7 +91,7 @@ function solve() calculates the inverse and multiplies it by the constant vector
 
 ```{r}
 A <- matrix(c(4,-1,-3,2), nrow = 2)
-b = c(5,10)
+b <- c(5,10)
 solve(A,b)
 ```
 
@@ -98,8 +102,10 @@ One geometric application of solving multiple linear equations is to find the co
 **Example:** If the data set consists of two points $(3,5), (6, 2)$, then finding the best fit values of $m$ and $b$ means solving the following two equations:
 
 $$
- 3m + b = 5 \\
- 6m + b = 2
+\begin{aligned}
+ 3m + b &= 5 \\
+ 6m + b &= 2
+\end{aligned}
 $$
 
 These equations have a solution for the slope and intercept, which can be calculated in R using solve() and then plot the line witht e
@@ -119,9 +125,11 @@ However, a data set with two points is very small and nobody would accept these 
 **Bad idea:** take two points and find a line, that is the slope and the intercept, that passes through the two. It should be clear why this is a bad idea: we are arbitrarily ignoring some of the data, while perfectly fitting two points. So how do we use all the data? Let us write down the equations that a line with slope $m$ and intercept $b$ have to satisfy in order to fit our data points:
 
 $$
+\begin{aligned}
 3m + b = 5 \\
 6m + b = 2\\
 9m + b = 1
+\end{aligned}
 $$
 
 
@@ -135,18 +143,19 @@ This system has no exact solution, since there are three equations and only two 
 Let us write the equation in matrix form as follows:
 
 $$
-\mathbf{A} = \begin{pmatrix} 3 & 1 \\ 6 & 1 \\ 9 & 1 \end{pmatrix} \; \vec{b} = \begin{pmatrix}5 \\ 2 \\ 1 \end{pmatrix} \;
-\vec{\beta} = \begin{pmatrix} m \\ b \end{pmatrix} \\
-\mathbf{A} \vec \beta = \vec b
+\begin{aligned}
+\mathbf{A} = \begin{pmatrix} 3 & 1 \\ 6 & 1 \\ 9 & 1 \end{pmatrix} \;\;\; \vec{b} = \begin{pmatrix}5 \\ 2 \\ 1 \end{pmatrix} \;\;\;
+\vec{\beta} = \begin{pmatrix} m \\ b \end{pmatrix} & \\
+\mathbf{A} \vec \beta = \vec b &
+\end{aligned}
 $$
 
 Mathematically, the problem is that one cannot invert a non-square matrix. However, there is a way of turning the matrix into a square one, by multiplying it by its own transpose (same matrix with rows and columns reversed):
+
 $$
 \mathbf{A}^T \mathbf{A} \vec \beta = \mathbf{A}^T \vec b
 $$
 *Exercise:* Carry out the matrix multiplications to verify that $\mathbf{A}^T \mathbf{A}$ is a 2 by 2 matrix and $\mathbf{A}^T \vec b$ is 2 by 1 vector. 
-
-
 
 Now we can solve this equation with a square matrix $\mathbf{A}^T \mathbf{A}$ by multiplying both sides by the inverse! In general, for an $n$-dimensional data set consisting of a bunch of values of $x$ and $y$,  the process loooks like this:
 
@@ -179,7 +188,6 @@ pl
 
 
 *Exercise:* Let's try to find the best fit line to this data set (the hard way) using the same process as above for the three - point data set:
-
 ```{r}
 
 ```
@@ -195,9 +203,6 @@ But it feels good to know that this is not black magic! In fact, plotting it on 
 ```{r}
 pl + geom_smooth(method = "lm") # lm stands for linear model
 ```
-
-
-
 
 # Linearity and vector spaces
 We have dealt with linear models in various guises, so now would be a good time to define properly what linearity means. The word comes from the shape of graphs of linear functions of one variable, e.g. $f(x) = ax + b$, but the algebraic meaning rests on the following two general properties:
@@ -390,7 +395,7 @@ the collection of eigenvectors and eigenvalues defines a matrix $A$,
 which is why an older name for them is characteristic vectors and
 values.
 
-### calculating eigenvalues
+### Calculating eigenvalues
 
 Finding the eigenvalues and eigenvectors analytically, that is on paper,
 is quite laborious even for 3 by 3 or 4 by 4 matrices and for larger
@@ -444,7 +449,6 @@ eigs$values
 eigs$vectors
 ```
 
-
-Note: a real-valued matrix can have complex eigenvalues and eigenvectors, but whenever it acts on a real vector, the result is still real. This is because the complex numbers cancel each other’s imaginary parts. 
+**Note:** a real-valued matrix can have complex eigenvalues and eigenvectors, but whenever it acts on a real vector, the result is still real. This is because the complex numbers cancel each other’s imaginary parts. 
 
 
