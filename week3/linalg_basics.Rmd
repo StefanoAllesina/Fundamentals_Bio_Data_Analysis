@@ -1,14 +1,16 @@
 ---
 title: "Brief overview of linear algebra"
-author: "Dmitry Kondrashov & Stefano Allesina"
+author: "**Dmitry Kondrashov & Stefano Allesina**"
 date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
 output:
   html_document:
     theme: cosmo
     toc: yes
     toc_float: yes
-  pdf_document:
-    toc: yes
+  github_document:
+    toc: true
+    toc_depth: 2
+    pandoc_args: --webtex
 urlcolor: blue
 ---
 
@@ -16,9 +18,9 @@ urlcolor: blue
 knitr::opts_chunk$set(
   eval      = TRUE,
   comment   = "#",
-  warning = FALSE,
+  results   = "hold",
   message = FALSE,
-  #results   = "asis",
+  warning = FALSE,
   # collapse  = TRUE,
   fig.align = "center")
 ```
@@ -33,7 +35,6 @@ knitr::opts_chunk$set(
 ```{r}
 library(tidyverse) # our friend the tidyverse
 library(ggfortify) 
-#source("general_code/read_xls_from_url.R") # function to read excel from URL
 ```
 
 # Solving multivariate linear equations

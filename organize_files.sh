@@ -32,7 +32,7 @@ cd ..
 # Week 3
 cd week3
 Rscript -e "rmarkdown::render('hypothesis_testing.Rmd', output_format = 'github_document')"
-#Rscript -e "rmarkdown::render('distributions.Rmd', output_format = 'github_document', envir = new.env())"
+Rscript -e "rmarkdown::render('linalg_basics.Rmd', output_format = 'github_document', envir = new.env())"
 mv *.md ../docs/lectures
 cp -r *_files ../docs/lectures
 rm -r *_files
