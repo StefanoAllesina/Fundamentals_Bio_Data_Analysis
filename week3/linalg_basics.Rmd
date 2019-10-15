@@ -97,7 +97,7 @@ solve(A,b)
 
 ## Fitting a line to data
 
-One geometric application of solving multiple linear equations is to find the coefficients of a line that passes through two points in the 2-dimensional plane (or of a plane that passes through three points in three-dimensional space, but we won't go there.) Let us suppose that we are
+One geometric application of solving multiple linear equations is to find the coefficients of a line that passes through two points in the 2-dimensional plane (or of a plane that passes through three points in three-dimensional space, but we won't go there.) In that case, the coordinates of the points are the data, and the unknown variables are the parameters slope $m$ and intercept $b$ of the line that we want to find.
 
 **Example:** If the data set consists of two points $(3,5), (6, 2)$, then finding the best fit values of $m$ and $b$ means solving the following two equations:
 
