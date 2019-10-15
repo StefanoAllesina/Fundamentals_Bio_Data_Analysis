@@ -108,7 +108,7 @@ $$
 \end{aligned}
 $$
 
-These equations have a solution for the slope and intercept, which can be calculated in R using solve() and then plot the line witht e
+These equations have a solution for the slope and intercept, which can be calculated in R using solve() and then plot the line with the parameters from the solution vector beta:
 
 ```{r}
 xs <- c(3,6)
@@ -131,8 +131,6 @@ $$
 9m + b = 1
 \end{aligned}
 $$
-
-
 
 
 This system has no exact solution, since there are three equations and only two unknowns. We need to find $m$ and $b$ such that they are a "best fit" to the data, not the perfect solution.
