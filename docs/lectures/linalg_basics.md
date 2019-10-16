@@ -119,7 +119,7 @@ solve(A,b)
 Fitting a line to data
 ----------------------
 
-One geometric application of solving multiple linear equations is to find the coefficients of a line that passes through two points in the 2-dimensional plane (or of a plane that passes through three points in three-dimensional space, but we won't go there.) Let us suppose that we are
+One geometric application of solving multiple linear equations is to find the coefficients of a line that passes through two points in the 2-dimensional plane (or of a plane that passes through three points in three-dimensional space, but we won't go there.) In that case, the coordinates of the points are the data, and the unknown variables are the parameters slope ![m](https://latex.codecogs.com/png.latex?m "m") and intercept ![b](https://latex.codecogs.com/png.latex?b "b") of the line that we want to find.
 
 **Example:** If the data set consists of two points ![(3,5), (6, 2)](https://latex.codecogs.com/png.latex?%283%2C5%29%2C%20%286%2C%202%29 "(3,5), (6, 2)"), then finding the best fit values of ![m](https://latex.codecogs.com/png.latex?m "m") and ![b](https://latex.codecogs.com/png.latex?b "b") means solving the following two equations:
 
@@ -135,7 +135,7 @@ One geometric application of solving multiple linear equations is to find the co
 \end{aligned}
 ")
 
-These equations have a solution for the slope and intercept, which can be calculated in R using solve() and then plot the line witht e
+These equations have a solution for the slope and intercept, which can be calculated in R using solve() and then plot the line with the parameters from the solution vector beta:
 
 ``` r
 xs <- c(3,6)

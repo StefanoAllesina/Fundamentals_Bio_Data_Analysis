@@ -98,13 +98,13 @@ t.test(my_sample$sample1,
     #   Two Sample t-test
     # 
     # data:  my_sample$sample1 and my_sample$sample2
-    # t = -0.61056, df = 1998, p-value = 0.5416
+    # t = 0.040094, df = 1998, p-value = 0.968
     # alternative hypothesis: true difference in means is not equal to 0
     # 95 percent confidence interval:
-    #  -0.11346631  0.05958962
+    #  -0.08463662  0.08816951
     # sample estimates:
     # mean of x mean of y 
-    #  0.997098  1.024036
+    #  1.030010  1.028244
 
 **Exercise:** Can you detect a "significant difference in means" (assuming ![\\alpha = 0.05](https://latex.codecogs.com/png.latex?%5Calpha%20%3D%200.05 "\alpha = 0.05"))? What if you take a much larger sample? What if the difference in means is more pronounced?
 
@@ -136,7 +136,7 @@ How many times do we detect a "significant difference in reflectance" when setti
 sum(pvalues < 0.05)
 ```
 
-    # [1] 127
+    # [1] 122
 
 You should get a number of "significant" tests that is about ![2500 \\cdot 0.05 = 125](https://latex.codecogs.com/png.latex?2500%20%5Ccdot%200.05%20%3D%20125 "2500 \cdot 0.05 = 125"). In fact, the distribution of p-values when the data are sampled from the null hypothesis is approximately uniform:
 
