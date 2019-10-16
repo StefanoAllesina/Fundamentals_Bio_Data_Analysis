@@ -31,7 +31,7 @@
 
 ### Week 3
 
-- Linear algebra refresher
+- [Linear algebra refresher](lectures/linalg_basics)
 - [Hypothesis testing](lectures/hypothesis_testing)
 
 ### Week 4
