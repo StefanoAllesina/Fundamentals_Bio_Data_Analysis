@@ -52,7 +52,7 @@
 ### Week 7
 
 - Principal Component Analysis
-- Multidimensional Scaling and Clustering
+- [Multidimensional Scaling and Clustering](lectures/multidimensional_scaling)
 
 ### Week 8
 

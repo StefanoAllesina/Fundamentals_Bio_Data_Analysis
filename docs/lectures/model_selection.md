@@ -1,4 +1,4 @@
-Model Selection, Part I
+Model Selection
 ================
 **Dmitry Kondrashov & Stefano Allesina**
 Fundamentals of Biological Data Analysis -- BIOS 26318
@@ -60,16 +60,16 @@ Some notation:
 
 -   ![D \\to](https://latex.codecogs.com/png.latex?D%20%5Cto "D \to") the observed data
 -   ![\\theta \\to](https://latex.codecogs.com/png.latex?%5Ctheta%20%5Cto "\theta \to") the free parameter(s) of the statistical model
--   ![L(\\theta \\vert D) \\to](https://latex.codecogs.com/png.latex?L%28%5Ctheta%20%5Cvert%20D%29%20%5Cto "L(\theta \vert D) \to") the likelihood function, read "the likelihood of ![\\theta](https://latex.codecogs.com/png.latex?%5Ctheta "\theta") given the data"
+-   ![L(\\theta | D) \\to](https://latex.codecogs.com/png.latex?L%28%5Ctheta%20%7C%20D%29%20%5Cto "L(\theta | D) \to") the likelihood function, read "the likelihood of ![\\theta](https://latex.codecogs.com/png.latex?%5Ctheta "\theta") given the data"
 -   ![\\hat{\\theta} \\to](https://latex.codecogs.com/png.latex?%5Chat%7B%5Ctheta%7D%20%5Cto "\hat{\theta} \to") the maximum-likelihood estimates (m.l.e.) of the parameters
--   ![\\mathcal L(\\theta \\vert D) = \\log L(\\theta \\vert D) \\to](https://latex.codecogs.com/png.latex?%5Cmathcal%20L%28%5Ctheta%20%5Cvert%20D%29%20%3D%20%5Clog%20L%28%5Ctheta%20%5Cvert%20D%29%20%5Cto "\mathcal L(\theta \vert D) = \log L(\theta \vert D) \to") the log-likelihood
--   ![L(\\hat{\\theta} \\vert D) \\to](https://latex.codecogs.com/png.latex?L%28%5Chat%7B%5Ctheta%7D%20%5Cvert%20D%29%20%5Cto "L(\hat{\theta} \vert D) \to") the maximum likelihood
+-   ![\\mathcal L(\\theta | D) = \\log L(\\theta | D) \\to](https://latex.codecogs.com/png.latex?%5Cmathcal%20L%28%5Ctheta%20%7C%20D%29%20%3D%20%5Clog%20L%28%5Ctheta%20%7C%20D%29%20%5Cto "\mathcal L(\theta | D) = \log L(\theta | D) \to") the log-likelihood
+-   ![L(\\hat{\\theta} | D) \\to](https://latex.codecogs.com/png.latex?L%28%5Chat%7B%5Ctheta%7D%20%7C%20D%29%20%5Cto "L(\hat{\theta} | D) \to") the maximum likelihood
 
 ### Discrete probability distributions
 
 The simplest case is that of a probability distribution function that takes discrete values. Then, the likelihood of ![\\theta](https://latex.codecogs.com/png.latex?%5Ctheta "\theta") given the data is simply the probability of obtaining the data when parameterizing the model with parameters ![\\theta](https://latex.codecogs.com/png.latex?%5Ctheta "\theta"):
 
-![L(\\theta \\vert  x\_j) = P(X = x\_j; \\theta)](https://latex.codecogs.com/png.latex?L%28%5Ctheta%20%5Cvert%20%20x_j%29%20%3D%20P%28X%20%3D%20x_j%3B%20%5Ctheta%29 "L(\theta \vert  x_j) = P(X = x_j; \theta)")
+![L(\\theta | x\_j) = P(X = x\_j; \\theta)](https://latex.codecogs.com/png.latex?L%28%5Ctheta%20%7C%20x_j%29%20%3D%20P%28X%20%3D%20x_j%3B%20%5Ctheta%29 "L(\theta | x_j) = P(X = x_j; \theta)")
 
 Finding the m.l.e. of ![\\theta](https://latex.codecogs.com/png.latex?%5Ctheta "\theta") simply means finding the value(s) maximizing the probability of recovering the data under the model.
 
@@ -78,12 +78,12 @@ Finding the m.l.e. of ![\\theta](https://latex.codecogs.com/png.latex?%5Ctheta "
 The definition is more complex for continuous variables (because ![P(X = x; \\theta) = 0](https://latex.codecogs.com/png.latex?P%28X%20%3D%20x%3B%20%5Ctheta%29%20%3D%200 "P(X = x; \theta) = 0") as there are infinitely many values...). What is commonly done is to use the *density function* ![f(x; \\theta)](https://latex.codecogs.com/png.latex?f%28x%3B%20%5Ctheta%29 "f(x; \theta)") and considering the probability of obtaining a value ![x \\in \[x\_j, x\_j + h\]](https://latex.codecogs.com/png.latex?x%20%5Cin%20%5Bx_j%2C%20x_j%20%2B%20h%5D "x \in [x_j, x_j + h]"), where ![x\_j](https://latex.codecogs.com/png.latex?x_j "x_j") is our observed data point, and ![h](https://latex.codecogs.com/png.latex?h "h") is small. Then:
 
 ![
-L(\\theta \\vert  x\_j) = \\lim\_{h \\to 0^+} \\frac{1}{h} \\int\_{x\_j}^{x\_j + h} f(x ; \\theta) dx = f(x\_j ; \\theta)
-](https://latex.codecogs.com/png.latex?%0AL%28%5Ctheta%20%5Cvert%20%20x_j%29%20%3D%20%5Clim_%7Bh%20%5Cto%200%5E%2B%7D%20%5Cfrac%7B1%7D%7Bh%7D%20%5Cint_%7Bx_j%7D%5E%7Bx_j%20%2B%20h%7D%20f%28x%20%3B%20%5Ctheta%29%20dx%20%3D%20f%28x_j%20%3B%20%5Ctheta%29%0A "
-L(\theta \vert  x_j) = \lim_{h \to 0^+} \frac{1}{h} \int_{x_j}^{x_j + h} f(x ; \theta) dx = f(x_j ; \theta)
+L(\\theta | x\_j) = \\lim\_{h \\to 0^+} \\frac{1}{h} \\int\_{x\_j}^{x\_j + h} f(x ; \\theta) dx = f(x\_j ; \\theta)
+](https://latex.codecogs.com/png.latex?%0AL%28%5Ctheta%20%7C%20x_j%29%20%3D%20%5Clim_%7Bh%20%5Cto%200%5E%2B%7D%20%5Cfrac%7B1%7D%7Bh%7D%20%5Cint_%7Bx_j%7D%5E%7Bx_j%20%2B%20h%7D%20f%28x%20%3B%20%5Ctheta%29%20dx%20%3D%20f%28x_j%20%3B%20%5Ctheta%29%0A "
+L(\theta | x_j) = \lim_{h \to 0^+} \frac{1}{h} \int_{x_j}^{x_j + h} f(x ; \theta) dx = f(x_j ; \theta)
 ")
 
- Note that, contrary to probabilities, density values can take values greater than 1. As such, when the dispersion is small, one could end up with values of likelihood greater than 1 (or positive log-likelihoods). In fact, the likelihood function is proportional to but not necessarily equal to the probability of generating the data given the parameters: ![L(\\theta\\vert X) \\propto P(X; \\theta)](https://latex.codecogs.com/png.latex?L%28%5Ctheta%5Cvert%20X%29%20%5Cpropto%20P%28X%3B%20%5Ctheta%29 "L(\theta\vert X) \propto P(X; \theta)").
+ Note that, contrary to probabilities, density values can take values greater than 1. As such, when the dispersion is small, one could end up with values of likelihood greater than 1 (or positive log-likelihoods). In fact, the likelihood function is proportional to but not necessarily equal to the probability of generating the data given the parameters: ![L(\\theta| X) \\propto P(X; \\theta)](https://latex.codecogs.com/png.latex?L%28%5Ctheta%7C%20X%29%20%5Cpropto%20P%28X%3B%20%5Ctheta%29 "L(\theta| X) \propto P(X; \theta)").
 
 In many cases, maximizing the likelihood is equivalent to minimizing the sum of square errors (residuals).
 
@@ -101,19 +101,19 @@ Y_i = \beta_0 + \beta_1 X_i + \epsilon_i
  Where the residuals have variance ![\\sigma^2](https://latex.codecogs.com/png.latex?%5Csigma%5E2 "\sigma^2"). The likelihood of the parameters is simply the product of the likelihood for each point:
 
 ![
-L(\\beta\_0, \\beta\_1, \\sigma^2 \\vert  Y) = \\prod\_i L(\\beta\_0, \\beta\_1, \\sigma^2 \\vert  Y\_i) = \\prod\_i f(Y\_i; \\beta\_0, \\beta\_1, \\sigma^2) = 
+L(\\beta\_0, \\beta\_1, \\sigma^2 | Y) = \\prod\_i L(\\beta\_0, \\beta\_1, \\sigma^2 | Y\_i) = \\prod\_i f(Y\_i; \\beta\_0, \\beta\_1, \\sigma^2) = 
 \\prod\_i \\frac{1}{\\sqrt{2 \\pi \\sigma^2}} \\exp\\left(-\\frac{(Y\_i - \\beta\_0 + \\beta\_1 X\_i)^2}{2 \\sigma^2}\\right)
-](https://latex.codecogs.com/png.latex?%0AL%28%5Cbeta_0%2C%20%5Cbeta_1%2C%20%5Csigma%5E2%20%5Cvert%20%20Y%29%20%3D%20%5Cprod_i%20L%28%5Cbeta_0%2C%20%5Cbeta_1%2C%20%5Csigma%5E2%20%5Cvert%20%20Y_i%29%20%3D%20%5Cprod_i%20f%28Y_i%3B%20%5Cbeta_0%2C%20%5Cbeta_1%2C%20%5Csigma%5E2%29%20%3D%20%0A%5Cprod_i%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%20%5Cpi%20%5Csigma%5E2%7D%7D%20%5Cexp%5Cleft%28-%5Cfrac%7B%28Y_i%20-%20%5Cbeta_0%20%2B%20%5Cbeta_1%20X_i%29%5E2%7D%7B2%20%5Csigma%5E2%7D%5Cright%29%0A "
-L(\beta_0, \beta_1, \sigma^2 \vert  Y) = \prod_i L(\beta_0, \beta_1, \sigma^2 \vert  Y_i) = \prod_i f(Y_i; \beta_0, \beta_1, \sigma^2) = 
+](https://latex.codecogs.com/png.latex?%0AL%28%5Cbeta_0%2C%20%5Cbeta_1%2C%20%5Csigma%5E2%20%7C%20Y%29%20%3D%20%5Cprod_i%20L%28%5Cbeta_0%2C%20%5Cbeta_1%2C%20%5Csigma%5E2%20%7C%20Y_i%29%20%3D%20%5Cprod_i%20f%28Y_i%3B%20%5Cbeta_0%2C%20%5Cbeta_1%2C%20%5Csigma%5E2%29%20%3D%20%0A%5Cprod_i%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%20%5Cpi%20%5Csigma%5E2%7D%7D%20%5Cexp%5Cleft%28-%5Cfrac%7B%28Y_i%20-%20%5Cbeta_0%20%2B%20%5Cbeta_1%20X_i%29%5E2%7D%7B2%20%5Csigma%5E2%7D%5Cright%29%0A "
+L(\beta_0, \beta_1, \sigma^2 | Y) = \prod_i L(\beta_0, \beta_1, \sigma^2 | Y_i) = \prod_i f(Y_i; \beta_0, \beta_1, \sigma^2) = 
 \prod_i \frac{1}{\sqrt{2 \pi \sigma^2}} \exp\left(-\frac{(Y_i - \beta_0 + \beta_1 X_i)^2}{2 \sigma^2}\right)
 ")
 
  We want to choose the parameters such that they maximize the likelihood. Because the logarithm is monotonic then maximizing the likelihood is equivalent to maximizing the log-likelihood:
 
 ![
-\\mathcal L(\\beta\_0, \\beta\_1, \\sigma^2 \\vert  Y) = -\\log\\left(\\sqrt{2 \\pi \\sigma^2}\\right) -\\frac{1}{{2 \\sigma^2}} \\sum\_i {(Y\_i - \\beta\_0 + \\beta\_1 X\_i)^2}
-](https://latex.codecogs.com/png.latex?%0A%5Cmathcal%20L%28%5Cbeta_0%2C%20%5Cbeta_1%2C%20%5Csigma%5E2%20%5Cvert%20%20Y%29%20%3D%20-%5Clog%5Cleft%28%5Csqrt%7B2%20%5Cpi%20%5Csigma%5E2%7D%5Cright%29%20-%5Cfrac%7B1%7D%7B%7B2%20%5Csigma%5E2%7D%7D%20%5Csum_i%20%7B%28Y_i%20-%20%5Cbeta_0%20%2B%20%5Cbeta_1%20X_i%29%5E2%7D%0A "
-\mathcal L(\beta_0, \beta_1, \sigma^2 \vert  Y) = -\log\left(\sqrt{2 \pi \sigma^2}\right) -\frac{1}{{2 \sigma^2}} \sum_i {(Y_i - \beta_0 + \beta_1 X_i)^2}
+\\mathcal L(\\beta\_0, \\beta\_1, \\sigma^2 | Y) = -\\log\\left(\\sqrt{2 \\pi \\sigma^2}\\right) -\\frac{1}{{2 \\sigma^2}} \\sum\_i {(Y\_i - \\beta\_0 + \\beta\_1 X\_i)^2}
+](https://latex.codecogs.com/png.latex?%0A%5Cmathcal%20L%28%5Cbeta_0%2C%20%5Cbeta_1%2C%20%5Csigma%5E2%20%7C%20Y%29%20%3D%20-%5Clog%5Cleft%28%5Csqrt%7B2%20%5Cpi%20%5Csigma%5E2%7D%5Cright%29%20-%5Cfrac%7B1%7D%7B%7B2%20%5Csigma%5E2%7D%7D%20%5Csum_i%20%7B%28Y_i%20-%20%5Cbeta_0%20%2B%20%5Cbeta_1%20X_i%29%5E2%7D%0A "
+\mathcal L(\beta_0, \beta_1, \sigma^2 | Y) = -\log\left(\sqrt{2 \pi \sigma^2}\right) -\frac{1}{{2 \sigma^2}} \sum_i {(Y_i - \beta_0 + \beta_1 X_i)^2}
 ")
 
  Showing that by minimizing the sum of squares, we are maximizing the likelihood.
@@ -166,7 +166,7 @@ h\_i = \\theta\_0 + \\epsilon\_i
 h_i = \theta_0 + \epsilon_i
 ")
 
- where we assume that the errors ![\\epsilon\_i \\overset{\\text{iid}}{\\sim} \\mathcal N(0, \\sigma^2)](https://latex.codecogs.com/png.latex?%5Cepsilon_i%20%5Coverset%7B%5Ctext%7Biid%7D%7D%7B%5Csim%7D%20%5Cmathcal%20N%280%2C%20%5Csigma%5E2%29 "\epsilon_i \overset{\text{iid}}{\sim} \mathcal N(0, \sigma^2)"). Now fit the model, obtaining ![\\hat{\\theta\_0}](https://latex.codecogs.com/png.latex?%5Chat%7B%5Ctheta_0%7D "\hat{\theta_0}"), and compute the maximum log-likelihood ![\\mathcal L\_0(\\hat{\\theta\_0}, \\hat{\\sigma}^2 \\vert h)](https://latex.codecogs.com/png.latex?%5Cmathcal%20L_0%28%5Chat%7B%5Ctheta_0%7D%2C%20%5Chat%7B%5Csigma%7D%5E2%20%5Cvert%20h%29 "\mathcal L_0(\hat{\theta_0}, \hat{\sigma}^2 \vert h)").
+ where we assume that the errors ![\\epsilon\_i \\overset{\\text{iid}}{\\sim} \\mathcal N(0, \\sigma^2)](https://latex.codecogs.com/png.latex?%5Cepsilon_i%20%5Coverset%7B%5Ctext%7Biid%7D%7D%7B%5Csim%7D%20%5Cmathcal%20N%280%2C%20%5Csigma%5E2%29 "\epsilon_i \overset{\text{iid}}{\sim} \mathcal N(0, \sigma^2)"). Now fit the model, obtaining ![\\hat{\\theta\_0}](https://latex.codecogs.com/png.latex?%5Chat%7B%5Ctheta_0%7D "\hat{\theta_0}"), and compute the maximum log-likelihood ![\\mathcal L\_0(\\hat{\\theta\_0}, \\hat{\\sigma}^2 | h)](https://latex.codecogs.com/png.latex?%5Cmathcal%20L_0%28%5Chat%7B%5Ctheta_0%7D%2C%20%5Chat%7B%5Csigma%7D%5E2%20%7C%20h%29 "\mathcal L_0(\hat{\theta_0}, \hat{\sigma}^2 | h)").
 
 In `R`, we would call:
 
@@ -208,7 +208,7 @@ h\_i = \\theta\_0 + \\theta\_1 r\_i + \\epsilon\_i
 h_i = \theta_0 + \theta_1 r_i + \epsilon_i
 ")
 
- as for model ![\\mathcal M\_0](https://latex.codecogs.com/png.latex?%5Cmathcal%20M_0 "\mathcal M_0"), fit the parameters (note that ![\\hat{\\theta\_0}](https://latex.codecogs.com/png.latex?%5Chat%7B%5Ctheta_0%7D "\hat{\theta_0}") for model ![\\mathcal M\_0](https://latex.codecogs.com/png.latex?%5Cmathcal%20M_0 "\mathcal M_0") will in general be different from ![\\hat{\\theta\_0}](https://latex.codecogs.com/png.latex?%5Chat%7B%5Ctheta_0%7D "\hat{\theta_0}") for model ![\\mathcal M\_1](https://latex.codecogs.com/png.latex?%5Cmathcal%20M_1 "\mathcal M_1")), and compute ![\\mathcal L\_1(\\hat{\\theta\_0},\\hat{\\theta\_1},\\hat{\\sigma}^2 \\vert h)](https://latex.codecogs.com/png.latex?%5Cmathcal%20L_1%28%5Chat%7B%5Ctheta_0%7D%2C%5Chat%7B%5Ctheta_1%7D%2C%5Chat%7B%5Csigma%7D%5E2%20%5Cvert%20h%29 "\mathcal L_1(\hat{\theta_0},\hat{\theta_1},\hat{\sigma}^2 \vert h)"). These two models are nested, because when setting ![\\theta\_1 = 0](https://latex.codecogs.com/png.latex?%5Ctheta_1%20%3D%200 "\theta_1 = 0") we recover ![\\mathcal M\_0](https://latex.codecogs.com/png.latex?%5Cmathcal%20M_0 "\mathcal M_0").
+ as for model ![\\mathcal M\_0](https://latex.codecogs.com/png.latex?%5Cmathcal%20M_0 "\mathcal M_0"), fit the parameters (note that ![\\hat{\\theta\_0}](https://latex.codecogs.com/png.latex?%5Chat%7B%5Ctheta_0%7D "\hat{\theta_0}") for model ![\\mathcal M\_0](https://latex.codecogs.com/png.latex?%5Cmathcal%20M_0 "\mathcal M_0") will in general be different from ![\\hat{\\theta\_0}](https://latex.codecogs.com/png.latex?%5Chat%7B%5Ctheta_0%7D "\hat{\theta_0}") for model ![\\mathcal M\_1](https://latex.codecogs.com/png.latex?%5Cmathcal%20M_1 "\mathcal M_1")), and compute ![\\mathcal L\_1(\\hat{\\theta\_0},\\hat{\\theta\_1},\\hat{\\sigma}^2 | h)](https://latex.codecogs.com/png.latex?%5Cmathcal%20L_1%28%5Chat%7B%5Ctheta_0%7D%2C%5Chat%7B%5Ctheta_1%7D%2C%5Chat%7B%5Csigma%7D%5E2%20%7C%20h%29 "\mathcal L_1(\hat{\theta_0},\hat{\theta_1},\hat{\sigma}^2 | h)"). These two models are nested, because when setting ![\\theta\_1 = 0](https://latex.codecogs.com/png.latex?%5Ctheta_1%20%3D%200 "\theta_1 = 0") we recover ![\\mathcal M\_0](https://latex.codecogs.com/png.latex?%5Cmathcal%20M_0 "\mathcal M_0").
 
 In `R`:
 
@@ -359,7 +359,7 @@ Of course, in most cases the models that we want to contrast need not to be nest
 
 In the early 1970s, Hirotugu Akaike proposed "an information criterion" (AIC, now known as Akaike's Information Criterion), based, as the name implies, on information theory. Basically, AIC is measuring (asymptotically) the information loss when using the model in lieu of the actual data. Philosophically, it is rooted in the idea that there is a "true model" that generated the data, and that several possible models can serve as its approximation. Practically, it is very easy to compute:
 
-![AIC = -2 \\mathcal L(\\theta \\vert  D) + 2 k](https://latex.codecogs.com/png.latex?AIC%20%3D%20-2%20%5Cmathcal%20L%28%5Ctheta%20%5Cvert%20%20D%29%20%2B%202%20k "AIC = -2 \mathcal L(\theta \vert  D) + 2 k")
+![AIC = -2 \\mathcal L(\\theta | D) + 2 k](https://latex.codecogs.com/png.latex?AIC%20%3D%20-2%20%5Cmathcal%20L%28%5Ctheta%20%7C%20D%29%20%2B%202%20k "AIC = -2 \mathcal L(\theta | D) + 2 k")
 
 where ![k](https://latex.codecogs.com/png.latex?k "k") is the number of free parameters (e.g., 3 for the simplest linear regression \[intercept, slope, variance of the residuals\]). In `R`, many models provide a way to access their AIC score:
 
@@ -385,8 +385,8 @@ Other information-based criteria
 
 The approach spearheaded by Akaike has been followed by a number of researchers, giving rise to many similar criteria for model selection. Without getting too much into the details, here are a few pointers:
 
--   Bayesian Information Criterion ![BIC = -2 \\mathcal L(\\theta \\vert D) + k \\log(n)](https://latex.codecogs.com/png.latex?BIC%20%3D%20-2%20%5Cmathcal%20L%28%5Ctheta%20%5Cvert%20D%29%20%2B%20k%20%5Clog%28n%29 "BIC = -2 \mathcal L(\theta \vert D) + k \log(n)") where ![n](https://latex.codecogs.com/png.latex?n "n") is the number of data points. Penalizes parameters more strongly when there are much data.
--   Hannan–Quinn information criterion ![HQC = -2 \\mathcal L(\\theta \\vert D) + k \\log(\\log(n))](https://latex.codecogs.com/png.latex?HQC%20%3D%20-2%20%5Cmathcal%20L%28%5Ctheta%20%5Cvert%20D%29%20%2B%20k%20%5Clog%28%5Clog%28n%29%29 "HQC = -2 \mathcal L(\theta \vert D) + k \log(\log(n))")
+-   Bayesian Information Criterion ![BIC = -2 \\mathcal L(\\theta | D) + k \\log(n)](https://latex.codecogs.com/png.latex?BIC%20%3D%20-2%20%5Cmathcal%20L%28%5Ctheta%20%7C%20D%29%20%2B%20k%20%5Clog%28n%29 "BIC = -2 \mathcal L(\theta | D) + k \log(n)") where ![n](https://latex.codecogs.com/png.latex?n "n") is the number of data points. Penalizes parameters more strongly when there are much data.
+-   Hannan–Quinn information criterion ![HQC = -2 \\mathcal L(\\theta | D) + k \\log(\\log(n))](https://latex.codecogs.com/png.latex?HQC%20%3D%20-2%20%5Cmathcal%20L%28%5Ctheta%20%7C%20D%29%20%2B%20k%20%5Clog%28%5Clog%28n%29%29 "HQC = -2 \mathcal L(\theta | D) + k \log(\log(n))")
 
 Bayesian inference
 ==================
@@ -396,26 +396,26 @@ As an alternative to frequentist and maximum likelihood approaches to modeling b
 At the hearth of Bayesian inference is an application of Bayes' theorem: take a model (say a linear model) with parameters ![\\theta](https://latex.codecogs.com/png.latex?%5Ctheta "\theta"), and some data ![X](https://latex.codecogs.com/png.latex?X "X"). Bayes' theorem gives us a disciplined way to "update" our belief in the distribution of ![\\theta](https://latex.codecogs.com/png.latex?%5Ctheta "\theta") once we've seen the data ![X](https://latex.codecogs.com/png.latex?X "X"):
 
 ![
-P(\\theta \\vert  X) = \\frac{P(X\\vert \\theta) P(\\theta)}{P(X)}
-](https://latex.codecogs.com/png.latex?%0AP%28%5Ctheta%20%5Cvert%20%20X%29%20%3D%20%5Cfrac%7BP%28X%5Cvert%20%5Ctheta%29%20P%28%5Ctheta%29%7D%7BP%28X%29%7D%0A "
-P(\theta \vert  X) = \frac{P(X\vert \theta) P(\theta)}{P(X)}
+P(\\theta | X) = \\frac{P(X|\\theta) P(\\theta)}{P(X)}
+](https://latex.codecogs.com/png.latex?%0AP%28%5Ctheta%20%7C%20X%29%20%3D%20%5Cfrac%7BP%28X%7C%5Ctheta%29%20P%28%5Ctheta%29%7D%7BP%28X%29%7D%0A "
+P(\theta | X) = \frac{P(X|\theta) P(\theta)}{P(X)}
 ")
 
  where:
 
--   ![P(\\theta\\vert X)](https://latex.codecogs.com/png.latex?P%28%5Ctheta%5Cvert%20X%29 "P(\theta\vert X)") is the **posterior distribution** of ![\\theta](https://latex.codecogs.com/png.latex?%5Ctheta "\theta"), i.e., our updated belief in the values of ![\\theta](https://latex.codecogs.com/png.latex?%5Ctheta "\theta").
--   ![P(X\\vert \\theta)](https://latex.codecogs.com/png.latex?P%28X%5Cvert%20%5Ctheta%29 "P(X\vert \theta)") is the **likelihood function**: ![P(X\\vert \\theta) = L(\\theta \\vert X)](https://latex.codecogs.com/png.latex?P%28X%5Cvert%20%5Ctheta%29%20%3D%20L%28%5Ctheta%20%5Cvert%20X%29 "P(X\vert \theta) = L(\theta \vert X)").
+-   ![P(\\theta|X)](https://latex.codecogs.com/png.latex?P%28%5Ctheta%7CX%29 "P(\theta|X)") is the **posterior distribution** of ![\\theta](https://latex.codecogs.com/png.latex?%5Ctheta "\theta"), i.e., our updated belief in the values of ![\\theta](https://latex.codecogs.com/png.latex?%5Ctheta "\theta").
+-   ![P(X|\\theta)](https://latex.codecogs.com/png.latex?P%28X%7C%5Ctheta%29 "P(X|\theta)") is the **likelihood function**: ![P(X|\\theta) = L(\\theta | X)](https://latex.codecogs.com/png.latex?P%28X%7C%5Ctheta%29%20%3D%20L%28%5Ctheta%20%7C%20X%29 "P(X|\theta) = L(\theta | X)").
 -   ![P(\\theta)](https://latex.codecogs.com/png.latex?P%28%5Ctheta%29 "P(\theta)") is the **prior distribution**, i.e. our belief on the distribution of ![\\theta](https://latex.codecogs.com/png.latex?%5Ctheta "\theta") before seeing the data.
--   ![P(X)](https://latex.codecogs.com/png.latex?P%28X%29 "P(X)") is caled the **evidence**: ![P(X) = \\int P(X\\vert \\theta) d \\theta](https://latex.codecogs.com/png.latex?P%28X%29%20%3D%20%5Cint%20P%28X%5Cvert%20%5Ctheta%29%20d%20%5Ctheta "P(X) = \int P(X\vert \theta) d \theta") (in practice, this needs not to be calculated).
+-   ![P(X)](https://latex.codecogs.com/png.latex?P%28X%29 "P(X)") is called the **evidence**: ![P(X) = \\int P(X|\\theta) d \\theta](https://latex.codecogs.com/png.latex?P%28X%29%20%3D%20%5Cint%20P%28X%7C%5Ctheta%29%20d%20%5Ctheta "P(X) = \int P(X|\theta) d \theta") (in practice, this needs not to be calculated).
 
 ### Example: capture recapture
 
 We mark ![n](https://latex.codecogs.com/png.latex?n "n") individuals in a population and after a year we recapture ![m](https://latex.codecogs.com/png.latex?m "m") of them. We assume that the probability ![p](https://latex.codecogs.com/png.latex?p "p") of recapturing an individual is the same for all individuals. Then our likelihood function is:
 
 ![
-L(p \\vert  m, n) = \\binom{n}{m}p^m (1-p)^{n-m}
-](https://latex.codecogs.com/png.latex?%0AL%28p%20%5Cvert%20%20m%2C%20n%29%20%3D%20%5Cbinom%7Bn%7D%7Bm%7Dp%5Em%20%281-p%29%5E%7Bn-m%7D%0A "
-L(p \vert  m, n) = \binom{n}{m}p^m (1-p)^{n-m}
+L(p | m, n) = \\binom{n}{m}p^m (1-p)^{n-m}
+](https://latex.codecogs.com/png.latex?%0AL%28p%20%7C%20m%2C%20n%29%20%3D%20%5Cbinom%7Bn%7D%7Bm%7Dp%5Em%20%281-p%29%5E%7Bn-m%7D%0A "
+L(p | m, n) = \binom{n}{m}p^m (1-p)^{n-m}
 ")
 
  and our maximum likelihood estimate is ![\\hat{p} = m /n](https://latex.codecogs.com/png.latex?%5Chat%7Bp%7D%20%3D%20m%20%2Fn "\hat{p} = m /n"). Let's plot the likelihood as a function of ![p](https://latex.codecogs.com/png.latex?p "p") for the case in which ![n = 100](https://latex.codecogs.com/png.latex?n%20%3D%20100 "n = 100") and ![m = 33](https://latex.codecogs.com/png.latex?m%20%3D%2033 "m = 33")
@@ -441,9 +441,9 @@ Now we choose a prior. For convenience, we choose a Beta distribution, ![P(p) = 
 Therefore:
 
 ![
-P(p \\vert  m,n) \\propto L(p \\vert  m,n) P(p) = \\left(\\binom{n}{m} p^m (1-p)^{n-m} \\right) \\left( \\frac{p^{\\alpha - 1} (1-p)^{\\beta - 1}}{B(\\alpha, \\beta)} \\right) \\propto p^{m+\\alpha -1} (1-p)^{n-m + \\beta -1} \\propto \\text{Beta}(m + \\alpha, \\beta + m - n)
-](https://latex.codecogs.com/png.latex?%0AP%28p%20%5Cvert%20%20m%2Cn%29%20%5Cpropto%20L%28p%20%5Cvert%20%20m%2Cn%29%20P%28p%29%20%3D%20%5Cleft%28%5Cbinom%7Bn%7D%7Bm%7D%20p%5Em%20%281-p%29%5E%7Bn-m%7D%20%5Cright%29%20%5Cleft%28%20%5Cfrac%7Bp%5E%7B%5Calpha%20-%201%7D%20%281-p%29%5E%7B%5Cbeta%20-%201%7D%7D%7BB%28%5Calpha%2C%20%5Cbeta%29%7D%20%5Cright%29%20%5Cpropto%20p%5E%7Bm%2B%5Calpha%20-1%7D%20%281-p%29%5E%7Bn-m%20%2B%20%5Cbeta%20-1%7D%20%5Cpropto%20%5Ctext%7BBeta%7D%28m%20%2B%20%5Calpha%2C%20%5Cbeta%20%2B%20m%20-%20n%29%0A "
-P(p \vert  m,n) \propto L(p \vert  m,n) P(p) = \left(\binom{n}{m} p^m (1-p)^{n-m} \right) \left( \frac{p^{\alpha - 1} (1-p)^{\beta - 1}}{B(\alpha, \beta)} \right) \propto p^{m+\alpha -1} (1-p)^{n-m + \beta -1} \propto \text{Beta}(m + \alpha, \beta + m - n)
+P(p | m,n) \\propto L(p | m,n) P(p) = \\left(\\binom{n}{m} p^m (1-p)^{n-m} \\right) \\left( \\frac{p^{\\alpha - 1} (1-p)^{\\beta - 1}}{B(\\alpha, \\beta)} \\right) \\propto p^{m+\\alpha -1} (1-p)^{n-m + \\beta -1} \\propto \\text{Beta}(m + \\alpha, \\beta + m - n)
+](https://latex.codecogs.com/png.latex?%0AP%28p%20%7C%20m%2Cn%29%20%5Cpropto%20L%28p%20%7C%20m%2Cn%29%20P%28p%29%20%3D%20%5Cleft%28%5Cbinom%7Bn%7D%7Bm%7D%20p%5Em%20%281-p%29%5E%7Bn-m%7D%20%5Cright%29%20%5Cleft%28%20%5Cfrac%7Bp%5E%7B%5Calpha%20-%201%7D%20%281-p%29%5E%7B%5Cbeta%20-%201%7D%7D%7BB%28%5Calpha%2C%20%5Cbeta%29%7D%20%5Cright%29%20%5Cpropto%20p%5E%7Bm%2B%5Calpha%20-1%7D%20%281-p%29%5E%7Bn-m%20%2B%20%5Cbeta%20-1%7D%20%5Cpropto%20%5Ctext%7BBeta%7D%28m%20%2B%20%5Calpha%2C%20%5Cbeta%20%2B%20m%20-%20n%29%0A "
+P(p | m,n) \propto L(p | m,n) P(p) = \left(\binom{n}{m} p^m (1-p)^{n-m} \right) \left( \frac{p^{\alpha - 1} (1-p)^{\beta - 1}}{B(\alpha, \beta)} \right) \propto p^{m+\alpha -1} (1-p)^{n-m + \beta -1} \propto \text{Beta}(m + \alpha, \beta + m - n)
 ")
 
 We can explore the effect of choosing a prior on the posterior. Suppose that in the past we have seen probabilities close to 50%. Then we could choose a prior ![\\text{Beta}(10,10)](https://latex.codecogs.com/png.latex?%5Ctext%7BBeta%7D%2810%2C10%29 "\text{Beta}(10,10)") (this is what is called a "strong" or "informative" prior). Let's see what happens to the posterior:
@@ -492,27 +492,27 @@ The approaches we've examined before are based on "point-estimates", i.e., only 
 A very beautiful approach is based on marginal likelihoods, i.e., likelihoods obtained integrating the parameters out. Unfortunately, the calculation becomes difficult to perform by hand for complex models, but it provides a good approach for simple models. In general, we want to assess the "goodness" of a model. Then, using Bayes' rule:
 
 ![
-  P(M\\vert D) = \\frac{P(D\\vert M) P(M)}{P(D)}
-](https://latex.codecogs.com/png.latex?%0A%20%20P%28M%5Cvert%20D%29%20%3D%20%5Cfrac%7BP%28D%5Cvert%20M%29%20P%28M%29%7D%7BP%28D%29%7D%0A "
-  P(M\vert D) = \frac{P(D\vert M) P(M)}{P(D)}
+  P(M|D) = \\frac{P(D|M) P(M)}{P(D)}
+](https://latex.codecogs.com/png.latex?%0A%20%20P%28M%7CD%29%20%3D%20%5Cfrac%7BP%28D%7CM%29%20P%28M%29%7D%7BP%28D%29%7D%0A "
+  P(M|D) = \frac{P(D|M) P(M)}{P(D)}
 ")
 
-Where ![P(M\\vert D)](https://latex.codecogs.com/png.latex?P%28M%5Cvert%20D%29 "P(M\vert D)") is the probability of the model given the data; and ![P(D)](https://latex.codecogs.com/png.latex?P%28D%29 "P(D)") is the "probability of the data" (don't worry, this need not to be calculated), and ![P(M)](https://latex.codecogs.com/png.latex?P%28M%29 "P(M)") is the prior (the probability that we choose the model before seeing the data). ![P(D\\vert M)](https://latex.codecogs.com/png.latex?P%28D%5Cvert%20M%29 "P(D\vert M)") is a marginal likelihood: we cannot compute this directly, because the model requires the parameters ![\\theta](https://latex.codecogs.com/png.latex?%5Ctheta "\theta"), however, we can write
+Where ![P(M|D)](https://latex.codecogs.com/png.latex?P%28M%7CD%29 "P(M|D)") is the probability of the model given the data; and ![P(D)](https://latex.codecogs.com/png.latex?P%28D%29 "P(D)") is the "probability of the data" (don't worry, this need not to be calculated), and ![P(M)](https://latex.codecogs.com/png.latex?P%28M%29 "P(M)") is the prior (the probability that we choose the model before seeing the data). ![P(D|M)](https://latex.codecogs.com/png.latex?P%28D%7CM%29 "P(D|M)") is a marginal likelihood: we cannot compute this directly, because the model requires the parameters ![\\theta](https://latex.codecogs.com/png.latex?%5Ctheta "\theta"), however, we can write
 
 ![
-P(D\\vert M) = \\int P(D\\vert M,\\theta)P(\\theta\\vert M) d\\theta
-](https://latex.codecogs.com/png.latex?%0AP%28D%5Cvert%20M%29%20%3D%20%5Cint%20P%28D%5Cvert%20M%2C%5Ctheta%29P%28%5Ctheta%5Cvert%20M%29%20d%5Ctheta%0A "
-P(D\vert M) = \int P(D\vert M,\theta)P(\theta\vert M) d\theta
+P(D|M) = \\int P(D|M,\\theta)P(\\theta|M) d\\theta
+](https://latex.codecogs.com/png.latex?%0AP%28D%7CM%29%20%3D%20%5Cint%20P%28D%7CM%2C%5Ctheta%29P%28%5Ctheta%7CM%29%20d%5Ctheta%0A "
+P(D|M) = \int P(D|M,\theta)P(\theta|M) d\theta
 ")
 
-where ![P(D\\vert M,\\theta)](https://latex.codecogs.com/png.latex?P%28D%5Cvert%20M%2C%5Ctheta%29 "P(D\vert M,\theta)") is the likelihood, and ![P(\\theta\\vert M)](https://latex.codecogs.com/png.latex?P%28%5Ctheta%5Cvert%20M%29 "P(\theta\vert M)") is a distribution over the parameter values (typically, the priors).
+where ![P(D|M,\\theta)](https://latex.codecogs.com/png.latex?P%28D%7CM%2C%5Ctheta%29 "P(D|M,\theta)") is the likelihood, and ![P(\\theta|M)](https://latex.codecogs.com/png.latex?P%28%5Ctheta%7CM%29 "P(\theta|M)") is a distribution over the parameter values (typically, the priors).
 
-For example, let's compute the marginal likelihood for the case in which we flip a coin ![n = a + b](https://latex.codecogs.com/png.latex?n%20%3D%20a%20%2B%20b "n = a + b") times, and we obtain ![a](https://latex.codecogs.com/png.latex?a "a") heads and ![b](https://latex.codecogs.com/png.latex?b "b") tails. Call ![\\theta](https://latex.codecogs.com/png.latex?%5Ctheta "\theta") the probability of obtaining a head, and suppose that ![P(\\theta\\vert M)](https://latex.codecogs.com/png.latex?P%28%5Ctheta%5Cvert%20M%29 "P(\theta\vert M)") is a uniform distribution. Then:
+For example, let's compute the marginal likelihood for the case in which we flip a coin ![n = a + b](https://latex.codecogs.com/png.latex?n%20%3D%20a%20%2B%20b "n = a + b") times, and we obtain ![a](https://latex.codecogs.com/png.latex?a "a") heads and ![b](https://latex.codecogs.com/png.latex?b "b") tails. Call ![\\theta](https://latex.codecogs.com/png.latex?%5Ctheta "\theta") the probability of obtaining a head, and suppose that ![P(\\theta|M)](https://latex.codecogs.com/png.latex?P%28%5Ctheta%7CM%29 "P(\theta|M)") is a uniform distribution. Then:
 
 ![
-P(a,b\\vert M) = \\int\_0^1 P(a,b\\vert M,\\theta) d\\theta = \\int\_0^1 \\binom{a+b}{a} \\theta^{a} (1-\\theta)^{b} d\\theta  = \\frac{1}{a+b+1} = \\frac{1}{n+1}
-](https://latex.codecogs.com/png.latex?%0AP%28a%2Cb%5Cvert%20M%29%20%3D%20%5Cint_0%5E1%20P%28a%2Cb%5Cvert%20M%2C%5Ctheta%29%20d%5Ctheta%20%3D%20%5Cint_0%5E1%20%5Cbinom%7Ba%2Bb%7D%7Ba%7D%20%5Ctheta%5E%7Ba%7D%20%281-%5Ctheta%29%5E%7Bb%7D%20d%5Ctheta%20%20%3D%20%5Cfrac%7B1%7D%7Ba%2Bb%2B1%7D%20%3D%20%5Cfrac%7B1%7D%7Bn%2B1%7D%0A "
-P(a,b\vert M) = \int_0^1 P(a,b\vert M,\theta) d\theta = \int_0^1 \binom{a+b}{a} \theta^{a} (1-\theta)^{b} d\theta  = \frac{1}{a+b+1} = \frac{1}{n+1}
+P(a,b|M) = \\int\_0^1 P(a,b|M,\\theta) d\\theta = \\int\_0^1 \\binom{a+b}{a} \\theta^{a} (1-\\theta)^{b} d\\theta  = \\frac{1}{a+b+1} = \\frac{1}{n+1}
+](https://latex.codecogs.com/png.latex?%0AP%28a%2Cb%7CM%29%20%3D%20%5Cint_0%5E1%20P%28a%2Cb%7CM%2C%5Ctheta%29%20d%5Ctheta%20%3D%20%5Cint_0%5E1%20%5Cbinom%7Ba%2Bb%7D%7Ba%7D%20%5Ctheta%5E%7Ba%7D%20%281-%5Ctheta%29%5E%7Bb%7D%20d%5Ctheta%20%20%3D%20%5Cfrac%7B1%7D%7Ba%2Bb%2B1%7D%20%3D%20%5Cfrac%7B1%7D%7Bn%2B1%7D%0A "
+P(a,b|M) = \int_0^1 P(a,b|M,\theta) d\theta = \int_0^1 \binom{a+b}{a} \theta^{a} (1-\theta)^{b} d\theta  = \frac{1}{a+b+1} = \frac{1}{n+1}
 ")
 
 Interestingly, the marginal likelihood can be interpreted as the expected likelihood when parameters are sampled from the prior.
@@ -522,9 +522,9 @@ Interestingly, the marginal likelihood can be interpreted as the expected likeli
 Take two models, and assume that initially we have no preference ![P(M\_1) = P(M\_2)](https://latex.codecogs.com/png.latex?P%28M_1%29%20%3D%20P%28M_2%29 "P(M_1) = P(M_2)"), then:
 
 ![
-  \\frac{P(M\_1\\vert D)}{P(M\_2\\vert D)} = \\frac{P(D\\vert M\_1)P(M\_1)}{P(D\\vert M\_2)P(M\_2)} = \\frac{P(D\\vert M\_1)}{P(D\\vert M\_2)}
-](https://latex.codecogs.com/png.latex?%0A%20%20%5Cfrac%7BP%28M_1%5Cvert%20D%29%7D%7BP%28M_2%5Cvert%20D%29%7D%20%3D%20%5Cfrac%7BP%28D%5Cvert%20M_1%29P%28M_1%29%7D%7BP%28D%5Cvert%20M_2%29P%28M_2%29%7D%20%3D%20%5Cfrac%7BP%28D%5Cvert%20M_1%29%7D%7BP%28D%5Cvert%20M_2%29%7D%0A "
-  \frac{P(M_1\vert D)}{P(M_2\vert D)} = \frac{P(D\vert M_1)P(M_1)}{P(D\vert M_2)P(M_2)} = \frac{P(D\vert M_1)}{P(D\vert M_2)}
+  \\frac{P(M\_1|D)}{P(M\_2|D)} = \\frac{P(D|M\_1)P(M\_1)}{P(D|M\_2)P(M\_2)} = \\frac{P(D|M\_1)}{P(D|M\_2)}
+](https://latex.codecogs.com/png.latex?%0A%20%20%5Cfrac%7BP%28M_1%7CD%29%7D%7BP%28M_2%7CD%29%7D%20%3D%20%5Cfrac%7BP%28D%7CM_1%29P%28M_1%29%7D%7BP%28D%7CM_2%29P%28M_2%29%7D%20%3D%20%5Cfrac%7BP%28D%7CM_1%29%7D%7BP%28D%7CM_2%29%7D%0A "
+  \frac{P(M_1|D)}{P(M_2|D)} = \frac{P(D|M_1)P(M_1)}{P(D|M_2)P(M_2)} = \frac{P(D|M_1)}{P(D|M_2)}
 ")
 
 The ratio is called the "Bayes factor" and provides a rigorous way to perform model selection.
