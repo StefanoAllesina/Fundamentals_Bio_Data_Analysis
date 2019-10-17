@@ -246,12 +246,12 @@ K-means
 This is a simple technique to cluster ![n](https://latex.codecogs.com/png.latex?n "n") observations into ![k](https://latex.codecogs.com/png.latex?k "k") clusters. The number of clusters ![k](https://latex.codecogs.com/png.latex?k "k") has to be specified. The input is a ![d-](https://latex.codecogs.com/png.latex?d- "d-")dimensional vector ![(\\mathbf x\_1, \\mathbf x\_2, \\ldots, \\mathbf x\_n)](https://latex.codecogs.com/png.latex?%28%5Cmathbf%20x_1%2C%20%5Cmathbf%20x_2%2C%20%5Cldots%2C%20%5Cmathbf%20x_n%29 "(\mathbf x_1, \mathbf x_2, \ldots, \mathbf x_n)"), where ![\\mathbf x\_i \\in \\mathbb R^d](https://latex.codecogs.com/png.latex?%5Cmathbf%20x_i%20%5Cin%20%5Cmathbb%20R%5Ed "\mathbf x_i \in \mathbb R^d"), and a number of clusters ![k](https://latex.codecogs.com/png.latex?k "k"). We want to assign each vector ![\\matbb x\_i](https://latex.codecogs.com/png.latex?%5Cmatbb%20x_i "\matbb x_i") to one of ![k](https://latex.codecogs.com/png.latex?k "k") sets ![S\_j](https://latex.codecogs.com/png.latex?S_j "S_j"), so that the vectors (points in ![\\mathbb R^d](https://latex.codecogs.com/png.latex?%5Cmathbb%20R%5Ed "\mathbb R^d")) are closest to each other. Mathematically, we want to find the assignments to sets such that the variance within each set is minimized:
 
 ![
-\\underset{S}{\\mathrm{arg\\, min}} \\sum\_{i=i}^{k}\\sum\_{\\mathbb x \\in S\_i} \\Vert \\mathbb x - \\mathbb \\mu\_i \\Vert^2 
-](https://latex.codecogs.com/png.latex?%0A%5Cunderset%7BS%7D%7B%5Cmathrm%7Barg%5C%2C%20min%7D%7D%20%5Csum_%7Bi%3Di%7D%5E%7Bk%7D%5Csum_%7B%5Cmathbb%20x%20%5Cin%20S_i%7D%20%5CVert%20%5Cmathbb%20x%20-%20%5Cmathbb%20%5Cmu_i%20%5CVert%5E2%20%0A "
-\underset{S}{\mathrm{arg\, min}} \sum_{i=i}^{k}\sum_{\mathbb x \in S_i} \Vert \mathbb x - \mathbb \mu_i \Vert^2 
+\\underset{S}{\\mathrm{arg\\, min}} \\sum\_{i=i}^{k}\\sum\_{\\mathbf{x} \\in S\_i} \\Vert \\mathbf{x} - \\mathbf{\\mu}\_i \\Vert^2 
+](https://latex.codecogs.com/png.latex?%0A%5Cunderset%7BS%7D%7B%5Cmathrm%7Barg%5C%2C%20min%7D%7D%20%5Csum_%7Bi%3Di%7D%5E%7Bk%7D%5Csum_%7B%5Cmathbf%7Bx%7D%20%5Cin%20S_i%7D%20%5CVert%20%5Cmathbf%7Bx%7D%20-%20%5Cmathbf%7B%5Cmu%7D_i%20%5CVert%5E2%20%0A "
+\underset{S}{\mathrm{arg\, min}} \sum_{i=i}^{k}\sum_{\mathbf{x} \in S_i} \Vert \mathbf{x} - \mathbf{\mu}_i \Vert^2 
 ")
 
- where ![\\mathbb \\mu\_i](https://latex.codecogs.com/png.latex?%5Cmathbb%20%5Cmu_i "\mathbb \mu_i") is the vector of the means of points in set ![i](https://latex.codecogs.com/png.latex?i "i") (one mean for each dimension). Equivalently:
+ where ![\\mathbf \\mu\_i](https://latex.codecogs.com/png.latex?%5Cmathbf%20%5Cmu_i "\mathbf \mu_i") is the vector of the means of points in set ![i](https://latex.codecogs.com/png.latex?i "i") (one mean for each dimension). Equivalently:
 
 ![
 \\underset{S}{\\mathrm{arg\\, min}} \\vert S\_i \\vert \\text{Var} (S\_i)

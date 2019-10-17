@@ -210,9 +210,9 @@ Given a set of $n$ observations, divide them into $k$ disjoint sets $S = \{S_1, 
 This is a simple technique to cluster $n$ observations into $k$ clusters. The number of clusters $k$ has to be specified. The input is a $d-$dimensional vector $(\mathbf x_1, \mathbf x_2, \ldots, \mathbf x_n)$, where $\mathbf x_i \in \mathbb R^d$, and a number of clusters $k$. We want to assign each vector $\matbb x_i$ to one of $k$ sets $S_j$, so that the vectors (points in $\mathbb R^d$) are closest to each other. Mathematically, we want to find the assignments to sets such that the variance within each set is minimized:
 
 $$
-\underset{S}{\mathrm{arg\, min}} \sum_{i=i}^{k}\sum_{\mathbb x \in S_i} \Vert \mathbb x - \mathbb \mu_i \Vert^2 
+\underset{S}{\mathrm{arg\, min}} \sum_{i=i}^{k}\sum_{\mathbf{x} \in S_i} \Vert \mathbf{x} - \mathbf{\mu}_i \Vert^2 
 $$
-where $\mathbb \mu_i$ is the vector of the means of points in set $i$ (one mean for each dimension). Equivalently:
+where $\mathbf \mu_i$ is the vector of the means of points in set $i$ (one mean for each dimension). Equivalently:
 
 $$
 \underset{S}{\mathrm{arg\, min}} \vert S_i \vert \text{Var} (S_i)
