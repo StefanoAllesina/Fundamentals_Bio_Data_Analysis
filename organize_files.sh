@@ -59,4 +59,23 @@ rm -r *_files
 rm *.html
 cd ..
 
+# Week 6
+cd week6
+Rscript -e "rmarkdown::render('model_selection.Rmd', output_format = 'github_document')"
+#Rscript -e "rmarkdown::render('distributions.Rmd', output_format = 'github_document', envir = new.env())"
+mv *.md ../docs/lectures
+cp -r *_files ../docs/lectures
+rm -r *_files
+rm *.html
+cd ..
+
+# Week 7
+cd week7
+Rscript -e "rmarkdown::render('multidimensional_scaling.Rmd', output_format = 'github_document')"
+#Rscript -e "rmarkdown::render('distributions.Rmd', output_format = 'github_document', envir = new.env())"
+mv *.md ../docs/lectures
+cp -r *_files ../docs/lectures
+rm -r *_files
+rm *.html
+cd ..
 

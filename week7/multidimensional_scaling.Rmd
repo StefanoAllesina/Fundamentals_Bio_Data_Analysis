@@ -1,0 +1,317 @@
+---
+title: "Multidimensional Scaling and Clustering"
+author: "**Dmitry Kondrashov & Stefano Allesina**"
+date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
+output:
+  html_document:
+    theme: cosmo
+    toc: yes
+    toc_float: yes
+  github_document:
+    toc: true
+    toc_depth: 2
+    pandoc_args: --webtex
+urlcolor: blue
+---
+
+```{r knitr, echo=FALSE}
+knitr::opts_chunk$set(
+  eval      = TRUE,
+  comment   = "#",
+  results   = "hold",
+  message = FALSE,
+  warning = FALSE,
+  # collapse  = TRUE,
+  fig.align = "center")
+```
+
+# Goal
+
+Introduce Multidimensional Scaling (MDS). Given a set of "distances" between samples, MDS attempts to arrange the samples in a $k$-dimensional space, such that distances are preserved. In practice, MDS is not picky on the notion of a distance (i.e., needs not to be a metric).
+
+Introduce the notion of clustering, and show how a simple clustering algorithm (k-means) work.
+
+Let's import some libraries:
+
+```{r}
+library(reshape2) # more data massaging
+library(tidyverse) # our friend the tidyverse
+library(vegan) # for procrustes analysis
+```
+
+# Multidimensional Scaling (MDS)
+
+## Mathematical approach
+
+The input is the matrix of dissimilarities $D$, potentially representing distances $d_{ij} = d(x_i, x_j)$. A distance function is "metric" if:
+
+- $d(x_i, x_j) \geq 0$ (non-negativity)
+- $d(x_i, x_j) = 0$ only if $x_i = x_j$ (identity)
+- $d(x_i, x_j) = d(x_j, x_i)$ (symmetry)
+- $d(x_i, x_k) \leq d(x_i, x_j) + d(x_j, x_k)$ (triangle inequality)
+
+Given a set of dissimilarities, we can therefore ask whether they are distances, and particularly whether they represent Euclidean distances.
+
+## Goal of MDS
+
+Given the $n \times n$  matrix $D$, find a set of coordinates $x_i, \ldots x_n \in \mathbb R^p$, such that $d_{ij} \approx \lVert x_i - x_j \rVert_2$ (as close as possible). The operator $\lVert \cdot \rVert_2$ is the Euclidean norm, measuring Euclidean distance.
+
+As such, if we can find a perfect solution, then the dissimilarities can be mapped into Euclidean distances in a $k$-dimensional space.
+
+## Classic MDS
+
+Suppose that the elements of $D$ measure Euclidean distances between $n$ points, each of which has $k$ coordinates:
+
+$$
+X = \begin{bmatrix}
+    x_{11} & x_{12} &  \dots  & x_{1k} \\
+    x_{21} & x_{22} &  \dots  & x_{2k} \\
+    \vdots & \vdots &  \ddots & \vdots \\
+    x_{n1} & x_{n2} &  \dots  & x_{nk}
+\end{bmatrix}
+$$
+We consider the centered coordinates:
+
+$$
+\sum_i x_{ij} = 0
+$$
+And the matrix $B = X X^t$, whose coefficients are $B_{ij} = \sum_k x_{ik} x_{jk}$. We can write the square of the distance between point $i$ and $j$ as:
+
+$$ d_{ij}^2 = \sum_k (x_{ik} - x_{jk})^2  = \sum_k x_{ik}^2 + \sum_k x_{jk}^2 -2 \sum_k x_{ik} x_{jk} = B_{ii} + B_{jj} - 2 B_{ij}$$
+
+Note that, because of the centering:
+
+$$
+\sum_i B_{ij} = \sum_i \sum_k x_{ik} x_{jk} = \sum_k x_{jk} \sum_i x_{ik} = 0
+$$
+
+Now we compute:
+
+$$
+\sum_i d_{ij}^2 = \sum_i (B_{ii} + B_{jj} - 2 B_{ij}) = \sum_i B_{ii} + \sum_i B_{jj} - 2 \sum_i B_{ij} = \text{Tr}(B) + n B_{jj} 
+$$
+
+Similarly (distances are symmetric):
+
+$$
+\sum_j d_{ij}^2 = \text{Tr}(B) + n B_{ii} 
+$$
+And, finally:
+
+$$
+\sum_i \sum_j d_{ij}^2 = 2 n \text{Tr}(B)
+$$
+
+From these three equations, we obtain:
+
+$$
+B_{ii} = \frac{\sum_j d_{ij}^2}{n} - \frac{\sum_i \sum_j d_{ij}^2 }{2 n^2}
+$$
+and
+
+$$
+B_{jj} = \frac{\sum_i d_{ij}^2}{n} - \frac{\sum_i \sum_j d_{ij}^2 }{2 n^2}
+$$
+
+Therefore:
+
+$$ 
+B_{ij} = -\frac{1}{2}(d_{ij}^2 - B_{ii} - B_{jj}) = -\frac{1}{2}\left(d_{ij}^2 - \frac{\sum_i d_{ij}^2}{n} - \frac{\sum_j d_{ij}^2}{n}  + \frac{\sum_i \sum_j d_{ij}^2 }{n^2} \right)
+$$
+
+With some algebra, one can show that this is equivalent to:
+
+$$B = -\frac{1}{2} C D^{(2)} C$$ 
+
+Where $D^{(2)}$ is the matrix of squared distances, and $C$ is the centering matrix $C = 1 - \frac{1}{n}\mathcal O$ (and $\mathcal O$ is the matrix of all ones). Thus, we can obtain $B$ directly from the distance matrix. Once we've done this, $X$ can be found by taking the eigenvalue decomposition:
+
+$$
+B = X X^t = Q \Lambda Q^t
+$$
+
+(where $Q$ is the matrix of eigenvectors of $B$, and $\Lambda$ a diagonal matrix of the eigenvalues of $B$). Therefore:  
+
+$$ X = Q \Lambda^{\frac{1}{2}}$$
+
+## Reconstructing the map of Chicago
+
+To test MDS, I have built a matrix expressing the distances between the 604 Divvy bikes station in Chicago. 
+
+The distances are measured in degrees of latitude/longitude. We 
+introduce some noise to see how robust our estimate is.
+
+```{r}
+# load distance matrix 
+load("data/divvy_stations_distances.RData")
+# add some noise to make it more fun
+# we change each distance of +/- 20%
+n <- nrow(distance_matrix)
+distance_matrix <- distance_matrix * 
+  matrix(runif(n * n, min = 0.8, max = 1.2), n, n)
+# plot distances
+distance_matrix %>% reshape2::melt() %>% 
+  ggplot(aes(x = Var1, y = Var2, fill = value)) + geom_tile()
+```
+
+Now we perform classical MDS, and plot the coordinates we've recovered:
+
+```{r}
+# classical MDS
+mds_fit <- cmdscale(distance_matrix, k = 2) # k is the dimension of the embedding
+mds_fit <- tibble(id = rownames(distance_matrix), 
+                  longitude = mds_fit[,1], latitude = mds_fit[,2])
+mds_fit %>% ggplot() + aes(x = latitude, y = longitude) + geom_point()
+```
+
+And now let's do it the "hard way":
+
+```{r}
+D2 <- distance_matrix^2
+CM <- diag(rep(1, n)) - 1 / n
+B <- -(1/2) * CM %*% D2 %*% CM
+eB <- eigen(B)
+mds_hard <- Re(eB$vectors) %*% diag(sqrt(Re(abs(eB$values))))
+ggplot(data = tibble(latitude = mds_hard[,2], longitude = mds_hard[,1])) +  
+  aes(x = latitude, y = longitude) + 
+  geom_point()
+```
+
+As we were saying, distances are invariant to rotation, translation and reflection. As such, the coordinates can be rotated and centered arbitrarily. To find the best matching rotation, we use [procrustes analysis](https://en.wikipedia.org/wiki/Procrustes_analysis):
+
+```{r}
+# this is the true location of the stations
+actual_locations <- read_csv("data/divvy_stations.csv")
+# aligning coordinates using Procrustes rotation and centering
+procr <- procrustes(actual_locations %>% 
+                      select(latitude, longitude),
+                    mds_fit %>% 
+                      select(latitude, longitude), 
+                    scale = FALSE)
+new_coord <- t(t(as.matrix(mds_fit %>% 
+                             select(latitude, longitude)) %*% procr$rotation) + procr$translation[1,])
+ggplot(actual_locations) + aes(x = longitude, y = latitude) + geom_point() + 
+  geom_point(aes(x = new_coord[,2], y = new_coord[,1]), colour = "red", shape = 1)
+```
+
+You can see that we've been doing really well. The largest discrepancies are around the borders, where we have less information. To show how much should we shift the points to recover the actual data, you can use
+
+```{r}
+plot(procr)
+```
+
+# Clustering
+
+## Goal of clustering
+
+Given a set of $n$ observations, divide them into $k$ disjoint sets $S = \{S_1, S_2, \ldots, S_k\}$ such that observations in the same set are "similar" to each other and "differ" from observations in other sets. The notion of similarity is context-dependent. Clustering (or classification) is a very active area of research, with hundreds of algorithms and techniques developed for different problems.
+
+## K-means
+
+This is a simple technique to cluster $n$ observations into $k$ clusters. The number of clusters $k$ has to be specified. The input is a $d-$dimensional vector $(\mathbf x_1, \mathbf x_2, \ldots, \mathbf x_n)$, where $\mathbf x_i \in \mathbb R^d$, and a number of clusters $k$. We want to assign each vector $\matbb x_i$ to one of $k$ sets $S_j$, so that the vectors (points in $\mathbb R^d$) are closest to each other. Mathematically, we want to find the assignments to sets such that the variance within each set is minimized:
+
+$$
+\underset{S}{\mathrm{arg\, min}} \sum_{i=i}^{k}\sum_{\mathbf{x} \in S_i} \Vert \mathbf{x} - \mathbf{\mu}_i \Vert^2 
+$$
+where $\mathbf \mu_i$ is the vector of the means of points in set $i$ (one mean for each dimension). Equivalently:
+
+$$
+\underset{S}{\mathrm{arg\, min}} \vert S_i \vert \text{Var} (S_i)
+$$
+
+where $\vert S_i \vert$ is the size of set $i$ and $\text{Var} (S_i)$ is the variance of the coordinates in set $i$.
+
+It can be proved that this problem is in general NP-hard (i.e., finding the best solution requires a number of operations that scales non-polynomially with the size of the data). Fortunately, there are good heuristics, and several `R` packages that implement different algorithms.
+
+The simplest algorithm starts by choosing at random (or more smartly) $k$ observations to serve as initial "means" of the clusters; then:
+
+1. Each point is assigned to the cluster with the closest mean
+2. Means are re-computed
+3. Go back to 1 until the algorithm has converged (i.e., membership has not changed)
+
+Note that the quality of the solution depends on which points are used to intialize the means; as such, if these are chosen at random, the algorithm will possibly converge to different solutions when different initial conditions are chosen.
+
+## Example 
+
+We are going to use a simple 2-d synthetic data set taken from [here](http://cs.joensuu.fi/sipu/datasets/)
+
+```{r}
+dt <- read_delim("data/s1.txt", 
+                 col_names = c("x", "y"), 
+                 delim = " ", 
+                 trim_ws = TRUE)
+ggplot(dt) + aes(x = x, y = y) + geom_point()
+```
+
+There are 15 clusters in the data. Now we're going to try to detect them using k-means
+
+```{r}
+# with three clusters
+cl <- as.factor(kmeans(dt, centers = 3)$cluster)
+ggplot(dt %>% add_column(cl = cl)) + 
+  aes(x = x, y = y, colour = cl) + 
+  geom_point()
+```
+
+And now with 15 clusters
+
+```{r}
+# with three clusters
+set.seed(1) #set a random starting point
+cl <- as.factor(kmeans(dt, centers = 15)$cluster)
+ggplot(dt %>% add_column(cl = cl)) + 
+  aes(x = x, y = y, colour = cl) + 
+  geom_point()
+```
+
+**Exercise:** Now try again but choosing a different seed: do you get the same result? Write code that repeats the same analysis several times and takes the best result (note that `kmeans(...)$tot.withinss` is the total sum of squares within the clusters---i.e., the quantity you want to minimize).
+
+### Exercise: PCA sommelier
+
+The file `Wine.csv` contains several measures made on 178 wines from Piedmont, produced using three different grapes (column `Grape`, with 1 = Barolo, 2 = Grignolino, 3 = Barbera). Use the 13 measured variables (i.e., all but `Grape`) to perform a PCA, and use k-means to cluster the data in PC space. Can you recover the right classification of grapes?
+
+```{r}
+dt <- read_csv("data/Wine.csv")
+# make into a matrix for PCA
+mat <- dt %>% select(-Grape) %>% as.matrix()
+# perform PCA by scaling and centering all 13 variables
+pca <- prcomp(mat, center = TRUE, scale. = TRUE)
+# pca$x contains the coordinates
+# let's see how are we doing
+ggplot(cbind(dt, as_tibble(pca$x))) + 
+  aes(x = PC1, y = PC2, colour = factor(Grape)) + 
+  geom_point()
+```
+
+Now let's apply k-means to divide the data into three clusters
+
+```{r}
+cl <- kmeans(pca$x, centers = 3)
+ggplot(dt %>% add_column(cluster = cl$cluster)) + 
+  aes(x = Grape, y = cluster, colour = factor(Grape)) + 
+  geom_jitter()
+```
+
+You can see that we correctly classify all the wines for grapes 1 and 3, while some of the ones from grape 2 are misclassified. 
+
+```{r}
+# find convex hull for each cluster
+# i.e. minimal convex polygon containing all points
+hull <- pca$x %>% as_tibble() %>% 
+  select(PC1, PC2) %>% 
+  add_column(cluster = cl$cluster) %>% 
+  group_by(cluster) %>% 
+  slice(chull(PC1, PC2))
+
+# plot the convex hulls
+pl <- hull %>% ggplot(aes(x = PC1, y = PC2, group = cluster, fill = factor(cluster))) + geom_polygon(alpha = 0.5)
+  
+show(pl)
+
+# now add the points
+pl + geom_point(data = pca$x %>% as_tibble() %>% 
+         select(PC1, PC2) %>% 
+         add_column(Grape = dt$Grape, cluster = cl$cluster), 
+  aes(x = PC1, y = PC2, colour = factor(Grape), shape = factor(Grape)))
+```
+
+You can see that we are misclassifying the grapes that are at the border of the cluster or nestled among the points belonging to a different grape. But the outcome is quite good: we would have misclassified only 6 wines out of 178 (3.3%).

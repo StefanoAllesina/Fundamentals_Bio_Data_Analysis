@@ -46,13 +46,13 @@
 
 ### Week 6
 
-- Model selection
+- [Model selection](lectures/model_selection)
 - Modeling timeseries data
 
 ### Week 7
 
 - Principal Component Analysis
-- Multidimensional Scaling and Clustering
+- [Multidimensional Scaling and Clustering](lectures/multidimensional_scaling)
 
 ### Week 8
 
