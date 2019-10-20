@@ -36,7 +36,7 @@
 
 ### Week 4
 
-- Likelihood
+- [Likelihood](lectures/likelihood)
 - [Linear models](lectures/linear_models)
 
 ### Week 5
