@@ -275,7 +275,7 @@ Bayesian inference is used for many compex problems, including phylogenetic tree
 
 5. [MrBayes](http://nbisweden.github.io/MrBayes/)
 
-
+6. [Quick and Dirty Tree Building in R](https://www.molecularecologist.com/2016/02/quick-and-dirty-tree-building-in-r/)
 
 
 
