@@ -206,7 +206,7 @@ There is a well-estabilished method in population ecology of estimating the size
 $$
 L(p \ \vert \ k, n) = \binom{n}{k}p^k (1-p)^{n-k}
 $$
-and our maximum likelihood estimate is $\hat{p} = k /n$. This allows for estimation of the total population size to be $1/\hat p$.
+and our maximum likelihood estimate is $\hat{p} = k /n$. This allows for estimation of the total population size to be $P = n_2/\hat p$, where $n_2$ is the total number of individuals captured in the second experiment. There are more sophisticated estimators, but this one is reasonable for large enough populations.
 
 Let us plot the likelihood as a function of $p$ for the case in which $n = 100$ and $k = 33$
 
@@ -277,5 +277,5 @@ Bayesian inference is used for many compex problems, including phylogenetic tree
 
 6. [Quick and Dirty Tree Building in R](https://www.molecularecologist.com/2016/02/quick-and-dirty-tree-building-in-r/)
 
-
+7. [Mark and Recapture](https://en.wikipedia.org/wiki/Mark_and_recapture)
 

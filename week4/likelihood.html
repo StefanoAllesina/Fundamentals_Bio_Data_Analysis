@@ -1665,7 +1665,7 @@ P(\theta \ \vert \ D) = \frac{P(D \ \vert \ \theta) P(\theta)}{P(D)}
 <p>There is a well-estabilished method in population ecology of estimating the size of a population by repeatedly capturing and tagging a number of individuals and later repeating the experiment to see how many are recaptured. Suppose that <span class="math inline">\(n\)</span> were captured initially and <span class="math inline">\(k\)</span> were recaptured later. We assume that the probability <span class="math inline">\(p\)</span> of recapturing an individual is the same for all individuals. Then our likelihood function is once again, based on the binomial distribution.</p>
 <p><span class="math display">\[
 L(p \ \vert \ k, n) = \binom{n}{k}p^k (1-p)^{n-k}
-\]</span> and our maximum likelihood estimate is <span class="math inline">\(\hat{p} = k /n\)</span>. This allows for estimation of the total population size to be <span class="math inline">\(1/\hat p\)</span>.</p>
+\]</span> and our maximum likelihood estimate is <span class="math inline">\(\hat{p} = k /n\)</span>. This allows for estimation of the total population size to be <span class="math inline">\(P = n_2/\hat p\)</span>, where <span class="math inline">\(n_2\)</span> is the total number of individuals captured in the second experiment. There are more sophisticated estimators, but this one is reasonable for large enough populations.</p>
 <p>Let us plot the likelihood as a function of <span class="math inline">\(p\)</span> for the case in which <span class="math inline">\(n = 100\)</span> and <span class="math inline">\(k = 33\)</span></p>
 <pre class="r"><code>library(tidyverse)
 n &lt;- 100
@@ -1717,6 +1717,7 @@ pl + stat_function(fun = prior_function, colour = &quot;blue&quot;) +
 <li><p><a href="https://jamanetwork.com/journals/jama/fullarticle/201218">Contradicted and Initially Stronger Effects in Highly Cited Clinical Research</a></p></li>
 <li><p><a href="http://nbisweden.github.io/MrBayes/">MrBayes</a></p></li>
 <li><p><a href="https://www.molecularecologist.com/2016/02/quick-and-dirty-tree-building-in-r/">Quick and Dirty Tree Building in R</a></p></li>
+<li><p><a href="https://en.wikipedia.org/wiki/Mark_and_recapture">Mark and Recapture</a></p></li>
 </ol>
 </div>
 
