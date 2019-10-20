@@ -11,9 +11,6 @@ Fundamentals of Biological Data Analysis -- BIOS 26318
     -   [Likelihood-ratio tests](#likelihood-ratio-tests)
     -   [AIC](#aic)
     -   [Other information-based criteria](#other-information-based-criteria)
--   [Bayesian inference](#bayesian-inference)
-    -   [Example: capture recapture](#example-capture-recapture)
-    -   [MCMC](#mcmc)
     -   [Bayesian approaches to model selection](#bayesian-approaches-to-model-selection)
 -   [Other approaches](#other-approaches)
     -   [Minimum description length](#minimum-description-length)
@@ -393,100 +390,6 @@ The approach spearheaded by Akaike has been followed by a number of researchers,
 -   Bayesian Information Criterion ![BIC = -2 \\mathcal L(\\theta \\vert D) + k \\log(n)](https://latex.codecogs.com/png.latex?BIC%20%3D%20-2%20%5Cmathcal%20L%28%5Ctheta%20%5Cvert%20D%29%20%2B%20k%20%5Clog%28n%29 "BIC = -2 \mathcal L(\theta \vert D) + k \log(n)") where ![n](https://latex.codecogs.com/png.latex?n "n") is the number of data points. Penalizes parameters more strongly when there are much data.
 -   Hannan–Quinn information criterion ![HQC = -2 \\mathcal L(\\theta \\vert D) + k \\log(\\log(n))](https://latex.codecogs.com/png.latex?HQC%20%3D%20-2%20%5Cmathcal%20L%28%5Ctheta%20%5Cvert%20D%29%20%2B%20k%20%5Clog%28%5Clog%28n%29%29 "HQC = -2 \mathcal L(\theta \vert D) + k \log(\log(n))")
 
-Bayesian inference
-==================
-
-As an alternative to frequentist and maximum likelihood approaches to modeling biological data, Bayesian statistics has seen and impressive growth in recent years, due to the improved computational power.
-
-At the hearth of Bayesian inference is an application of Bayes' theorem: take a model (say a linear model) with parameters ![\\theta](https://latex.codecogs.com/png.latex?%5Ctheta "\theta"), and some data ![X](https://latex.codecogs.com/png.latex?X "X"). Bayes' theorem gives us a disciplined way to "update" our belief in the distribution of ![\\theta](https://latex.codecogs.com/png.latex?%5Ctheta "\theta") once we've seen the data ![X](https://latex.codecogs.com/png.latex?X "X"):
-
-![
-P(\\theta \\vert X) = \\frac{P(X\\vert\\theta) P(\\theta)}{P(X)}
-](https://latex.codecogs.com/png.latex?%0AP%28%5Ctheta%20%5Cvert%20X%29%20%3D%20%5Cfrac%7BP%28X%5Cvert%5Ctheta%29%20P%28%5Ctheta%29%7D%7BP%28X%29%7D%0A "
-P(\theta \vert X) = \frac{P(X\vert\theta) P(\theta)}{P(X)}
-")
-
- where:
-
--   ![P(\\theta\\vertX)](https://latex.codecogs.com/png.latex?P%28%5Ctheta%5CvertX%29 "P(\theta\vertX)") is the **posterior distribution** of ![\\theta](https://latex.codecogs.com/png.latex?%5Ctheta "\theta"), i.e., our updated belief in the values of ![\\theta](https://latex.codecogs.com/png.latex?%5Ctheta "\theta").
--   ![P(X\\vert\\theta)](https://latex.codecogs.com/png.latex?P%28X%5Cvert%5Ctheta%29 "P(X\vert\theta)") is the **likelihood function**: ![P(X\\vert\\theta) = L(\\theta \\vert X)](https://latex.codecogs.com/png.latex?P%28X%5Cvert%5Ctheta%29%20%3D%20L%28%5Ctheta%20%5Cvert%20X%29 "P(X\vert\theta) = L(\theta \vert X)").
--   ![P(\\theta)](https://latex.codecogs.com/png.latex?P%28%5Ctheta%29 "P(\theta)") is the **prior distribution**, i.e. our belief on the distribution of ![\\theta](https://latex.codecogs.com/png.latex?%5Ctheta "\theta") before seeing the data.
--   ![P(X)](https://latex.codecogs.com/png.latex?P%28X%29 "P(X)") is called the **evidence**: ![P(X) = \\int P(X\\vert\\theta) d \\theta](https://latex.codecogs.com/png.latex?P%28X%29%20%3D%20%5Cint%20P%28X%5Cvert%5Ctheta%29%20d%20%5Ctheta "P(X) = \int P(X\vert\theta) d \theta") (in practice, this needs not to be calculated).
-
-### Example: capture recapture
-
-We mark ![n](https://latex.codecogs.com/png.latex?n "n") individuals in a population and after a year we recapture ![m](https://latex.codecogs.com/png.latex?m "m") of them. We assume that the probability ![p](https://latex.codecogs.com/png.latex?p "p") of recapturing an individual is the same for all individuals. Then our likelihood function is:
-
-![
-L(p \\vert m, n) = \\binom{n}{m}p^m (1-p)^{n-m}
-](https://latex.codecogs.com/png.latex?%0AL%28p%20%5Cvert%20m%2C%20n%29%20%3D%20%5Cbinom%7Bn%7D%7Bm%7Dp%5Em%20%281-p%29%5E%7Bn-m%7D%0A "
-L(p \vert m, n) = \binom{n}{m}p^m (1-p)^{n-m}
-")
-
- and our maximum likelihood estimate is ![\\hat{p} = m /n](https://latex.codecogs.com/png.latex?%5Chat%7Bp%7D%20%3D%20m%20%2Fn "\hat{p} = m /n"). Let's plot the likelihood as a function of ![p](https://latex.codecogs.com/png.latex?p "p") for the case in which ![n = 100](https://latex.codecogs.com/png.latex?n%20%3D%20100 "n = 100") and ![m = 33](https://latex.codecogs.com/png.latex?m%20%3D%2033 "m = 33")
-
-``` r
-library(tidyverse)
-n <- 100
-m <- 33
-pl <- ggplot(data = data.frame(x = 0, y = 0)) + xlim(c(0,1))
-likelihood_function <- function(p) {
-  lik <- choose(n, m) * p^m * (1-p)^(n - m)
-  # divide by the evidence to make into density function
-  return(lik * (n + 1))
-}
-pl <- pl + stat_function(fun = likelihood_function)
-show(pl)
-```
-
-<img src="model_selection_files/figure-markdown_github/unnamed-chunk-20-1.png" style="display: block; margin: auto;" />
-
-Now we choose a prior. For convenience, we choose a Beta distribution, ![P(p) = \\text{Beta}(\\alpha, \\beta) = \\frac{p^{\\alpha - 1} (1-p)^{\\beta - 1}}{B(\\alpha, \\beta)}](https://latex.codecogs.com/png.latex?P%28p%29%20%3D%20%5Ctext%7BBeta%7D%28%5Calpha%2C%20%5Cbeta%29%20%3D%20%5Cfrac%7Bp%5E%7B%5Calpha%20-%201%7D%20%281-p%29%5E%7B%5Cbeta%20-%201%7D%7D%7BB%28%5Calpha%2C%20%5Cbeta%29%7D "P(p) = \text{Beta}(\alpha, \beta) = \frac{p^{\alpha - 1} (1-p)^{\beta - 1}}{B(\alpha, \beta)}"), where ![B(\\alpha, \\beta)](https://latex.codecogs.com/png.latex?B%28%5Calpha%2C%20%5Cbeta%29 "B(\alpha, \beta)") is the Beta function, ![B(\\alpha, \\beta) = \\int\_0^1 t^{\\alpha -1} (1-t)^{\\beta - 1} dt](https://latex.codecogs.com/png.latex?B%28%5Calpha%2C%20%5Cbeta%29%20%3D%20%5Cint_0%5E1%20t%5E%7B%5Calpha%20-1%7D%20%281-t%29%5E%7B%5Cbeta%20-%201%7D%20dt "B(\alpha, \beta) = \int_0^1 t^{\alpha -1} (1-t)^{\beta - 1} dt").
-
-Therefore:
-
-![
-P(p \\vert m,n) \\propto L(p \\vert m,n) P(p) = \\left(\\binom{n}{m} p^m (1-p)^{n-m} \\right) \\left( \\frac{p^{\\alpha - 1} (1-p)^{\\beta - 1}}{B(\\alpha, \\beta)} \\right) \\propto p^{m+\\alpha -1} (1-p)^{n-m + \\beta -1} \\propto \\text{Beta}(m + \\alpha, \\beta + m - n)
-](https://latex.codecogs.com/png.latex?%0AP%28p%20%5Cvert%20m%2Cn%29%20%5Cpropto%20L%28p%20%5Cvert%20m%2Cn%29%20P%28p%29%20%3D%20%5Cleft%28%5Cbinom%7Bn%7D%7Bm%7D%20p%5Em%20%281-p%29%5E%7Bn-m%7D%20%5Cright%29%20%5Cleft%28%20%5Cfrac%7Bp%5E%7B%5Calpha%20-%201%7D%20%281-p%29%5E%7B%5Cbeta%20-%201%7D%7D%7BB%28%5Calpha%2C%20%5Cbeta%29%7D%20%5Cright%29%20%5Cpropto%20p%5E%7Bm%2B%5Calpha%20-1%7D%20%281-p%29%5E%7Bn-m%20%2B%20%5Cbeta%20-1%7D%20%5Cpropto%20%5Ctext%7BBeta%7D%28m%20%2B%20%5Calpha%2C%20%5Cbeta%20%2B%20m%20-%20n%29%0A "
-P(p \vert m,n) \propto L(p \vert m,n) P(p) = \left(\binom{n}{m} p^m (1-p)^{n-m} \right) \left( \frac{p^{\alpha - 1} (1-p)^{\beta - 1}}{B(\alpha, \beta)} \right) \propto p^{m+\alpha -1} (1-p)^{n-m + \beta -1} \propto \text{Beta}(m + \alpha, \beta + m - n)
-")
-
-We can explore the effect of choosing a prior on the posterior. Suppose that in the past we have seen probabilities close to 50%. Then we could choose a prior ![\\text{Beta}(10,10)](https://latex.codecogs.com/png.latex?%5Ctext%7BBeta%7D%2810%2C10%29 "\text{Beta}(10,10)") (this is what is called a "strong" or "informative" prior). Let's see what happens to the posterior:
-
-``` r
-# a strong prior
-alpha <- 10
-beta <- 10
-prior_function <- function(p) dbeta(p, alpha, beta)
-posterior_function <- function(p) dbeta(p, alpha + m, beta + n - m)
-pl + stat_function(fun = prior_function, colour = "blue") + 
-  stat_function(fun = posterior_function, colour = "red")
-```
-
-<img src="model_selection_files/figure-markdown_github/unnamed-chunk-21-1.png" style="display: block; margin: auto;" />
-
-You can see that the posterior "mediates" between the prior and the likelihood curve.
-
-> "A Bayesian is one who, vaguely expecting a horse, and catching a glimpse of a donkey, strongly believes he has seen a mule."
-
-When we are using a weak prior, then our posterior will be closer to the likelihood function:
-
-``` r
-# a weak prior
-alpha <- 1/2
-beta <- 1/2
-pl + stat_function(fun = prior_function, colour = "blue") + 
-  stat_function(fun = posterior_function, colour = "red")
-```
-
-<img src="model_selection_files/figure-markdown_github/unnamed-chunk-22-1.png" style="display: block; margin: auto;" />
-
-The fact that the posterior depends on the prior is the most controversial aspect of Bayesian inference. Different schools of thought treat this feature differently (e.g., "Subjective Bayes" interprets priors as beliefs before seeing the data; "Empirical Bayes" relies on previous experiments or on the data themselves to derive the prior; "Objective Bayes" tries to derive the least-informative prior given the data). In practice, the larger the data, the cleaner the signal, the lesser the influence of the prior on the resulting posterior.
-
-### MCMC
-
-The type of calculation performed above is feasible only for very simple models, and for appropriately chosen priors (called "conjugate priors"). For more complex models, we rely on simulations. In particular, one can use Markov-Chain Monte Carlo (MCMC) to sample from the posterior distribution of complex models. Very briefly, one builds a Markov-Chain in which the states represent sets of parameters; parameters are sampled from the prior, and the probability of moving to one state to another is proportional to the difference in their likelihood. When the MC "converges", then one obtains the posterior distribution of the parameters. \[See DK's notes for more details on this.\]
-
 Bayesian approaches to model selection
 --------------------------------------
 
@@ -497,27 +400,27 @@ The approaches we've examined before are based on "point-estimates", i.e., only 
 A very beautiful approach is based on marginal likelihoods, i.e., likelihoods obtained integrating the parameters out. Unfortunately, the calculation becomes difficult to perform by hand for complex models, but it provides a good approach for simple models. In general, we want to assess the "goodness" of a model. Then, using Bayes' rule:
 
 ![
-  P(M\\vertD) = \\frac{P(D\\vertM) P(M)}{P(D)}
-](https://latex.codecogs.com/png.latex?%0A%20%20P%28M%5CvertD%29%20%3D%20%5Cfrac%7BP%28D%5CvertM%29%20P%28M%29%7D%7BP%28D%29%7D%0A "
-  P(M\vertD) = \frac{P(D\vertM) P(M)}{P(D)}
+  P(M\\vert D) = \\frac{P(D\\vert M) P(M)}{P(D)}
+](https://latex.codecogs.com/png.latex?%0A%20%20P%28M%5Cvert%20D%29%20%3D%20%5Cfrac%7BP%28D%5Cvert%20M%29%20P%28M%29%7D%7BP%28D%29%7D%0A "
+  P(M\vert D) = \frac{P(D\vert M) P(M)}{P(D)}
 ")
 
-Where ![P(M\\vertD)](https://latex.codecogs.com/png.latex?P%28M%5CvertD%29 "P(M\vertD)") is the probability of the model given the data; and ![P(D)](https://latex.codecogs.com/png.latex?P%28D%29 "P(D)") is the "probability of the data" (don't worry, this need not to be calculated), and ![P(M)](https://latex.codecogs.com/png.latex?P%28M%29 "P(M)") is the prior (the probability that we choose the model before seeing the data). ![P(D\\vertM)](https://latex.codecogs.com/png.latex?P%28D%5CvertM%29 "P(D\vertM)") is a marginal likelihood: we cannot compute this directly, because the model requires the parameters ![\\theta](https://latex.codecogs.com/png.latex?%5Ctheta "\theta"), however, we can write
+Where ![P(M\\vert D)](https://latex.codecogs.com/png.latex?P%28M%5Cvert%20D%29 "P(M\vert D)") is the probability of the model given the data; and ![P(D)](https://latex.codecogs.com/png.latex?P%28D%29 "P(D)") is the "probability of the data" (don't worry, this need not to be calculated), and ![P(M)](https://latex.codecogs.com/png.latex?P%28M%29 "P(M)") is the prior (the probability that we choose the model before seeing the data). ![P(D\\vert M)](https://latex.codecogs.com/png.latex?P%28D%5Cvert%20M%29 "P(D\vert M)") is a marginal likelihood: we cannot compute this directly, because the model requires the parameters ![\\theta](https://latex.codecogs.com/png.latex?%5Ctheta "\theta"), however, we can write
 
 ![
-P(D\\vertM) = \\int P(D\\vertM,\\theta)P(\\theta\\vertM) d\\theta
-](https://latex.codecogs.com/png.latex?%0AP%28D%5CvertM%29%20%3D%20%5Cint%20P%28D%5CvertM%2C%5Ctheta%29P%28%5Ctheta%5CvertM%29%20d%5Ctheta%0A "
-P(D\vertM) = \int P(D\vertM,\theta)P(\theta\vertM) d\theta
+P(D\\vert M) = \\int P(D\\vert M,\\theta)P(\\theta\\vert M) d\\theta
+](https://latex.codecogs.com/png.latex?%0AP%28D%5Cvert%20M%29%20%3D%20%5Cint%20P%28D%5Cvert%20M%2C%5Ctheta%29P%28%5Ctheta%5Cvert%20M%29%20d%5Ctheta%0A "
+P(D\vert M) = \int P(D\vert M,\theta)P(\theta\vert M) d\theta
 ")
 
-where ![P(D\\vertM,\\theta)](https://latex.codecogs.com/png.latex?P%28D%5CvertM%2C%5Ctheta%29 "P(D\vertM,\theta)") is the likelihood, and ![P(\\theta\\vertM)](https://latex.codecogs.com/png.latex?P%28%5Ctheta%5CvertM%29 "P(\theta\vertM)") is a distribution over the parameter values (typically, the priors).
+where ![P(D\\vert M,\\theta)](https://latex.codecogs.com/png.latex?P%28D%5Cvert%20M%2C%5Ctheta%29 "P(D\vert M,\theta)") is the likelihood, and ![P(\\theta\\vert M)](https://latex.codecogs.com/png.latex?P%28%5Ctheta%5Cvert%20M%29 "P(\theta\vert M)") is a distribution over the parameter values (typically, the priors).
 
-For example, let's compute the marginal likelihood for the case in which we flip a coin ![n = a + b](https://latex.codecogs.com/png.latex?n%20%3D%20a%20%2B%20b "n = a + b") times, and we obtain ![a](https://latex.codecogs.com/png.latex?a "a") heads and ![b](https://latex.codecogs.com/png.latex?b "b") tails. Call ![\\theta](https://latex.codecogs.com/png.latex?%5Ctheta "\theta") the probability of obtaining a head, and suppose that ![P(\\theta\\vertM)](https://latex.codecogs.com/png.latex?P%28%5Ctheta%5CvertM%29 "P(\theta\vertM)") is a uniform distribution. Then:
+For example, let's compute the marginal likelihood for the case in which we flip a coin ![n = a + b](https://latex.codecogs.com/png.latex?n%20%3D%20a%20%2B%20b "n = a + b") times, and we obtain ![a](https://latex.codecogs.com/png.latex?a "a") heads and ![b](https://latex.codecogs.com/png.latex?b "b") tails. Call ![\\theta](https://latex.codecogs.com/png.latex?%5Ctheta "\theta") the probability of obtaining a head, and suppose that ![P(\\theta\\vert M)](https://latex.codecogs.com/png.latex?P%28%5Ctheta%5Cvert%20M%29 "P(\theta\vert M)") is a uniform distribution. Then:
 
 ![
-P(a,b\\vertM) = \\int\_0^1 P(a,b\\vertM,\\theta) d\\theta = \\int\_0^1 \\binom{a+b}{a} \\theta^{a} (1-\\theta)^{b} d\\theta  = \\frac{1}{a+b+1} = \\frac{1}{n+1}
-](https://latex.codecogs.com/png.latex?%0AP%28a%2Cb%5CvertM%29%20%3D%20%5Cint_0%5E1%20P%28a%2Cb%5CvertM%2C%5Ctheta%29%20d%5Ctheta%20%3D%20%5Cint_0%5E1%20%5Cbinom%7Ba%2Bb%7D%7Ba%7D%20%5Ctheta%5E%7Ba%7D%20%281-%5Ctheta%29%5E%7Bb%7D%20d%5Ctheta%20%20%3D%20%5Cfrac%7B1%7D%7Ba%2Bb%2B1%7D%20%3D%20%5Cfrac%7B1%7D%7Bn%2B1%7D%0A "
-P(a,b\vertM) = \int_0^1 P(a,b\vertM,\theta) d\theta = \int_0^1 \binom{a+b}{a} \theta^{a} (1-\theta)^{b} d\theta  = \frac{1}{a+b+1} = \frac{1}{n+1}
+P(a,b\\vert M) = \\int\_0^1 P(a,b\\vert M,\\theta) d\\theta = \\int\_0^1 \\binom{a+b}{a} \\theta^{a} (1-\\theta)^{b} d\\theta  = \\frac{1}{a+b+1} = \\frac{1}{n+1}
+](https://latex.codecogs.com/png.latex?%0AP%28a%2Cb%5Cvert%20M%29%20%3D%20%5Cint_0%5E1%20P%28a%2Cb%5Cvert%20M%2C%5Ctheta%29%20d%5Ctheta%20%3D%20%5Cint_0%5E1%20%5Cbinom%7Ba%2Bb%7D%7Ba%7D%20%5Ctheta%5E%7Ba%7D%20%281-%5Ctheta%29%5E%7Bb%7D%20d%5Ctheta%20%20%3D%20%5Cfrac%7B1%7D%7Ba%2Bb%2B1%7D%20%3D%20%5Cfrac%7B1%7D%7Bn%2B1%7D%0A "
+P(a,b\vert M) = \int_0^1 P(a,b\vert M,\theta) d\theta = \int_0^1 \binom{a+b}{a} \theta^{a} (1-\theta)^{b} d\theta  = \frac{1}{a+b+1} = \frac{1}{n+1}
 ")
 
 Interestingly, the marginal likelihood can be interpreted as the expected likelihood when parameters are sampled from the prior.
@@ -527,9 +430,9 @@ Interestingly, the marginal likelihood can be interpreted as the expected likeli
 Take two models, and assume that initially we have no preference ![P(M\_1) = P(M\_2)](https://latex.codecogs.com/png.latex?P%28M_1%29%20%3D%20P%28M_2%29 "P(M_1) = P(M_2)"), then:
 
 ![
-  \\frac{P(M\_1\\vertD)}{P(M\_2\\vertD)} = \\frac{P(D\\vertM\_1)P(M\_1)}{P(D\\vertM\_2)P(M\_2)} = \\frac{P(D\\vertM\_1)}{P(D\\vertM\_2)}
-](https://latex.codecogs.com/png.latex?%0A%20%20%5Cfrac%7BP%28M_1%5CvertD%29%7D%7BP%28M_2%5CvertD%29%7D%20%3D%20%5Cfrac%7BP%28D%5CvertM_1%29P%28M_1%29%7D%7BP%28D%5CvertM_2%29P%28M_2%29%7D%20%3D%20%5Cfrac%7BP%28D%5CvertM_1%29%7D%7BP%28D%5CvertM_2%29%7D%0A "
-  \frac{P(M_1\vertD)}{P(M_2\vertD)} = \frac{P(D\vertM_1)P(M_1)}{P(D\vertM_2)P(M_2)} = \frac{P(D\vertM_1)}{P(D\vertM_2)}
+  \\frac{P(M\_1\\vert D)}{P(M\_2\\vert D)} = \\frac{P(D\\vert M\_1)P(M\_1)}{P(D\\vert M\_2)P(M\_2)} = \\frac{P(D\\vert M\_1)}{P(D\\vert M\_2)}
+](https://latex.codecogs.com/png.latex?%0A%20%20%5Cfrac%7BP%28M_1%5Cvert%20D%29%7D%7BP%28M_2%5Cvert%20D%29%7D%20%3D%20%5Cfrac%7BP%28D%5Cvert%20M_1%29P%28M_1%29%7D%7BP%28D%5Cvert%20M_2%29P%28M_2%29%7D%20%3D%20%5Cfrac%7BP%28D%5Cvert%20M_1%29%7D%7BP%28D%5Cvert%20M_2%29%7D%0A "
+  \frac{P(M_1\vert D)}{P(M_2\vert D)} = \frac{P(D\vert M_1)P(M_1)}{P(D\vert M_2)P(M_2)} = \frac{P(D\vert M_1)}{P(D\vert M_2)}
 ")
 
 The ratio is called the "Bayes factor" and provides a rigorous way to perform model selection.
@@ -594,7 +497,7 @@ bf_analysis <- regressionBF(Height ~ ., data = trees)
 plot(bf_analysis)
 ```
 
-<img src="model_selection_files/figure-markdown_github/unnamed-chunk-25-1.png" style="display: block; margin: auto;" />
+<img src="model_selection_files/figure-markdown_github/unnamed-chunk-22-1.png" style="display: block; margin: auto;" />
 
 These ratios measure how many times more probable the model is compared to that with only the intercept (assuming initially that all models are equiprobable). Note that the Bayes Factors automatically penalize for overly complex models (triplets/quadruplets are ranked after pairs or even only `Guess`).
 
@@ -654,7 +557,7 @@ dt%>% filter(journal %in% c("Nature", "Science")) %>%
   ggplot() + aes(x = journal, y = title_length) + geom_violin()
 ```
 
-<img src="model_selection_files/figure-markdown_github/unnamed-chunk-28-1.png" style="display: block; margin: auto;" />
+<img src="model_selection_files/figure-markdown_github/unnamed-chunk-25-1.png" style="display: block; margin: auto;" />
 
 But then, is the effect the Authors are reporting only due to the fact that high-profile journals mandate short titles? Let's see whether their claims hold water when considering specific journals:
 
@@ -669,7 +572,7 @@ geom_hline(yintercept = 0, colour = "red") +
 theme(axis.text.x = element_text(angle = 90, hjust = 1)) # rotate labels x axis
 ```
 
-<img src="model_selection_files/figure-markdown_github/unnamed-chunk-29-1.png" style="display: block; margin: auto;" />
+<img src="model_selection_files/figure-markdown_github/unnamed-chunk-26-1.png" style="display: block; margin: auto;" />
 
 It seems that in medical journals (Blood, Circulation, J Clin Oncology, NEJM) longer titles fare better than shorter ones. In Nature and PNAS we see a negative correlation, while Science gives no clear trend.
 
@@ -680,14 +583,14 @@ dt %>% group_by(journal, year) %>% summarize(mean = mean(log(cites + 1)), sd = s
   ggplot() + aes(x = year, y = mean) + geom_point() + facet_wrap(~journal)
 ```
 
-<img src="model_selection_files/figure-markdown_github/unnamed-chunk-30-1.png" style="display: block; margin: auto;" />
+<img src="model_selection_files/figure-markdown_github/unnamed-chunk-27-1.png" style="display: block; margin: auto;" />
 
 ``` r
 dt %>% group_by(journal, year) %>% summarize(mean = mean(log(cites + 1)), sd = sd(log(cites + 1))) %>% 
   ggplot() + aes(x = year, y = sd) + geom_point() + facet_wrap(~journal)
 ```
 
-<img src="model_selection_files/figure-markdown_github/unnamed-chunk-30-2.png" style="display: block; margin: auto;" />
+<img src="model_selection_files/figure-markdown_github/unnamed-chunk-27-2.png" style="display: block; margin: auto;" />
 
 #### Two models
 
