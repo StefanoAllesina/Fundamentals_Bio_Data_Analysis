@@ -98,13 +98,13 @@ t.test(my_sample$sample1,
     #   Two Sample t-test
     # 
     # data:  my_sample$sample1 and my_sample$sample2
-    # t = 0.29411, df = 1998, p-value = 0.7687
+    # t = -1.3541, df = 1998, p-value = 0.1759
     # alternative hypothesis: true difference in means is not equal to 0
     # 95 percent confidence interval:
-    #  -0.07571574  0.10243261
+    #  -0.15011165  0.02748933
     # sample estimates:
     # mean of x mean of y 
-    #  1.026987  1.013629
+    # 0.9922997 1.0536108
 
 **Exercise:** Can you detect a "significant difference in means" (assuming ![\\alpha = 0.05](https://latex.codecogs.com/png.latex?%5Calpha%20%3D%200.05 "\alpha = 0.05"))? What if you take a much larger sample? What if the difference in means is more pronounced?
 
