@@ -51,7 +51,7 @@
 
 ### Week 7
 
-- [Principal Component Analysis](lectures/pca.R)
+- [Principal Component Analysis](lectures/pca)
 - [Multidimensional Scaling and Clustering](lectures/multidimensional_scaling)
 
 ### Week 8
