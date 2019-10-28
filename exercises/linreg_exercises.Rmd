@@ -1,0 +1,73 @@
+---
+title: "Exercise on linear regression"
+author: "Dmitry Kondrashov"
+date: "11/06/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse) # our friend the tidyverse
+library(readxl) # to read excel files
+source("general_code/read_xls_from_url.R") # function to read excel from URL
+library(lindia) # regression diagnostic in ggplot2
+```
+
+
+## Goals: 
+In this assignment you will do the following:
+
+  * Calculate descriptive statistics on subsets of data using dplyr
+  * Diagnose the quality of linear regression using lindia
+
+## Grading:
+Part 1: 5 pts each, 15 total
+Part 2: 5 pts each, 15 total
+Total: 30 pts
+
+## Regression to the mean
+
+1. Using the data set of heights of fathers and sons from Pearson, plot the heights of fathers and sons as explanatory and response variables, respectively, and overlay the linear regression line and the identity line. Compute the mean heights of fathers who are below average and of those above average, **using only dplyr functions**. Then calculate the mean heighs of the sons of fathers who are below average, and the mean heights of the sons of fathers who are above average, again **using only dplyr functions**. How does this demonstrate regression to the mean?
+
+```{r} 
+heights <- read_tsv("http://www.randomservices.org/random/data/Pearson.txt")
+```
+
+2. Transform the data by subtracting mean height of fathers from the father variable and the mean height of sons from sons variable.
+
+```{r}
+# CODE HERE
+```
+
+ANSWERS HERE
+
+3. Use linear regression diagnostics from the "lab" on Tuesday, Nov 6 to analyze the residuals for this data set. Compare the results with the assumptions of linear regression listed in the "lecture" from Thursday, Nov 1, and explain which assumptions may be violated, or at least not clearly satisfied.
+
+```{r}
+
+```
+
+
+## Linear regression on your own data
+
+Read in the data set you are working on for this class and find two variables that you can plausibly run linear regression on. If the variables are categorical, use the
+
+
+1. Plot the explanatory and response variables, respectively, and overlay the linear regression line and the identity line (using ggplot, of course.) Report the results of linear regression and describe the quality of the fit based on the reported parameters. Comment on what this means for the biological story.
+
+```{r}
+
+```
+
+
+2. Use linear regression diagnostics from the "lab" on Tuesday, Nov 6 to analyze the residuals for this data set. Compare the results with the assumptions of linear regression listed in the "lecture" from Thursday, Nov 1, and explain which assumptions may be violated, or at least not clearly satisfied. Comment on what this means for the research question.
+
+```{r}
+
+```
+
+3. Describe how you may fix any issues you identified, e.g. by rescaling, fitting a  nonlinear function to it, or taking into account interaction between variables. Comment on the quality of the modified fit and what it means for the research question.
+
+```{r}
+
+```
