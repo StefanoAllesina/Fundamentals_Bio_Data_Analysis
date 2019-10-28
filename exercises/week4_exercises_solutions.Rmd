@@ -1,0 +1,158 @@
+---
+title: "Week 4 exercises"
+author: "Dmitry Kondrashov and Stefano Allesina"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse) # this loads both dplyr and tidyr, along with other packages
+library(lindia) # regression diagnostic in ggplot2
+```
+
+## Goals: 
+In this assignment you will do the following:
+
+ * Investigate the effect of prior probability on hypothesis testing
+ * Investigate the effect of test quality parameters on hypothesis testing
+ * Interpret the quality of linear regression
+ * Evaluate multiple variables in linear regression
+
+
+## Effect of prior probability on predictive value of a test
+Use the function below to simulate a genome-wide association study GWAS looking for a connection between SNPs and a phenotype, given a certain prior probability of a SNP being linked to this phenotype.
+
+```{r}
+gwas_simulator <- function (test_specificity, test_sensitivity, prior, num_snps){
+  # first, let's decide which SNPs are associated with the disease
+  true_association <- runif(num_snps) <= prior
+  # then, let's see whether our test can detect the difference.
+  # for each SNPs, we simulate the test by drawing a random number between 0 and 1
+  random_tests <- runif(num_snps)
+  # if there is a true association, we check the specificity to determine whether we can pick it up
+  # TRUE POSITIVES: there is an effect and our test correctly detects it
+  TP <- sum(random_tests[true_association] < test_sensitivity)
+  # FALSE NEGATIVES: there is an effect, but we cannot detect it (TYPE II ERROR)
+  FN <- sum(true_association) - TP
+  # TRUE NEGATIVES: there is no effect, and the test correctly fails to find one
+  TN <- sum(random_tests[!true_association] < test_specificity)
+  # FALSE POSITIVES: there is no effect, but we find one anyway (TYPE I ERROR)
+  FP <- sum(!true_association) - TN
+  # return the PPV (positive predictive value) 
+  return (TP / (TP + FP))
+}
+```
+
+1. Investigate the effect of changing the prior probability of the SNP being linked on the accuracy of test results. The GWAS simulator function returns both the PPV (positive predictive values), given the specificity and sensitivity of the test, the prior priobability, and the number of simulated "SNPs" to be tested.
+
+Use specificity and sensitivity of 0.8 and number of SNPs of 1000 for a range of of prior probabilities (e.g. from 0.01 to 0.99) and use the gwas_simulator function to return PPV for each one and store them in a vector (Hint: you can use a for loop.) Produce a plot of PPV as a function of prior probability.
+
+```{r}
+spec <- 0.8 # set specificity
+sens <- 0.8 # set sensitivity
+num.snps <- 1000 # number of SNPs
+prior <- seq(0.01, 0.99, 0.01) # set the prior probability of the SNP being linked to disease
+PPV <- rep(0,length(prior))
+for (i in 1:length(prior)){
+  result <- gwas_simulator(spec, sens, prior[i], num.snps)
+  PPV[i] <- result
+}
+ggplot(data = data.frame(PPV = PPV, prior = prior)) + aes(x = prior, y = PPV) + geom_line()
+```
+
+PPV increases as the prior probability increases - it is more likely to correctly detect a more common effect than a more rare effect.
+
+  
+2. Investigate the effect of changing the sensitivity (recall) of the test on PPV. Set the prior probability to 0.01 and the specificity to 0.8, and run the GWAS simulator for a range of sensitivities (e.g. from 0.5 to 0.99) and save the results into a vector of PPV. Produce a plot of PPV vs the sensitivity.
+
+```{r}
+spec <- 0.8 # set specificity
+sens <- seq(0.5, 0.99, 0.01) # set sensitivity
+num.snps <- 1000 # number of SNPs
+prior <- 0.01 # set the prior probability of the SNP being linked to disease
+PPV <- rep(0,length(sens))
+for (i in 1:length(sens)){
+  result <- gwas_simulator(spec, sens[i], prior, num.snps)
+  PPV[i] <- result
+}
+ggplot(data = data.frame(PPV = PPV, sensitivity = sens)) + aes(x = sensitivity, y = PPV) + geom_line()
+```
+
+There seems to be no relationship between sensitivity and PPV for a rare/unlikely effect. 
+
+
+
+3. Investigate the effect of changing the specificity (precision) of the test on both the PPV. Set the prior probability to 0.01 and the sensitivity to 0.8, and run the simulation for a range of specificities (e.g. from 0.5 to 0.99) and save the results into a vector of PPV. Generate a plot of PPV vs the specificity. Decide which parameter (sensitivity or specificity) makes a bigger difference for PPV.
+
+```{r}
+spec <- seq(0.5, 0.99, 0.01) # set specificity
+sens <- 0.8 # set sensitivity
+num.snps <- 1000 # number of SNPs
+prior <- 0.01 # set the prior probability of the SNP being linked to disease
+PPV <- rep(0,length(spec))
+NPV <- rep(0,length(spec))
+for (i in 1:length(spec)){
+  result <- gwas_simulator(spec[i], sens, prior, num.snps)
+  PPV[i] <- result
+}
+ggplot(data = data.frame(PPV = PPV, specificity = spec)) + aes(x = specificity, y = PPV) + geom_line()
+```
+  
+  
+For larger specificity, the PPV increases dramatically from less than 5% to above 40%. For a rare/unlikely effect, false discovery is primarily due to the number of false positives, which is governed by the specificity, rather than the number of true positives, which is governed by the sensitivity.
+
+
+## Linear regression
+
+Use the data set introduced in the data wrangling tutorial, containing the variables `Parental age`, `time-post-infection`,`fecal egg count`, `number of adult worms`. 
+
+```{r}
+library(readxl) # to read Excel files
+dt <- read_xlsx("data/Lippens_2017.xlsx")  
+```
+
+1. Calculate the linear regression for `fecal egg count` as a function of `Parental age`. Report the parameters from the summary and explain what they mean. Then examine the residuals using the methods demonstrated in the linear regression tutorial and report what, if any problems you observe.
+```{r}
+lm_result <- lm(`fecal egg count` ~ `Parental age`, data = dt)
+summary(lm_result)
+ggplot(data = dt) + aes(x = `Parental age`, y = `fecal egg count`) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+gg_resfitted(lm_result)
+gg_qqplot(lm_result)
+```
+  
+The R^2 value is 0.1188, indicating that parental age explains about 12% of the egg count variation. This value, however, is signifivant, judging by the p-value of the slope coefficient (0.0001).
+
+Plotting the residuals using gg_resfitted does not show a violation of the assumption of homoscedascity. However, plotting the QQ-plot to compare the residuals distribution to the normal shows substantial deviations, indicating a potentially large problem for the linear regression model.
+
+Overall, my conclusion would be that parental age has an effect on the number of eggs, but this effect is not well modeled by linear regression.
+
+2. Calculate the linear regression for `fecal egg count` as a function of `time post-infection`. Report the parameters from the summary and explain what they mean. Then examine the residuals using the methods demonstrated in the linear regression tutorial and report what, if any problems you observe.
+```{r}
+lm_result <- lm(`fecal egg count` ~ `time post-infection`, data = dt)
+summary(lm_result)
+ggplot(data = dt) + aes(x = `time post-infection`, y = `fecal egg count`) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+gg_resfitted(lm_result)
+gg_qqplot(lm_result)
+
+```
+  
+The R^2 value is 0.01649, indicating that parental age explains less than 2% of the egg count variation. The p-value of 0.164 suggests this is not significantly different from noise
+
+Plotting the residuals using gg_resfitted does not show a violation of the assumption of homoscedascity. However, plotting the QQ-plot to compare the residuals distribution to the normal shows substantial deviations, indicating a potentially large problem for the linear regression model.
+
+I would conclude that time post-infection has no significant effect on the fecundity of the worms.
+
+3. Perform multiple linear regression for `fecal egg count` as a function of both of the above independent variables. Based on the output of the model, does it make sense to use both variables in the regression?
+
+```{r}
+lm_result <- lm(`fecal egg count` ~ `time post-infection` + `Parental age`, data = dt)
+summary(lm_result)
+gg_resfitted(lm_result)
+gg_qqplot(lm_result)
+
+```
+  
+Adding both predictors only slightly improves the R-squared of the linear regression with only the parental age, and it still show that only Parental age is significantly correlated with fecundity. This confirms the analysis of the two predictors separately.
+
+
+

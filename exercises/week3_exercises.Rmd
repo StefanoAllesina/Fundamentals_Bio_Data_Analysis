@@ -77,13 +77,13 @@ gwas_simulator <- function (test_specificity, test_sensitivity, prior, num_snps)
   # for each SNPs, we simulate the test by drawing a random number between 0 and 1
   random_tests <- runif(num_snps)
   # if there is a true association, we check the specificity to determine whether we can pick it up
-  # TRUE POSITIVES: there is an association and our test is sensitive enough to detect it
+  # TRUE POSITIVES: there is an effect and our test correctly detects it
   TP <- sum(random_tests[true_association] < test_sensitivity)
-  # FALSE NEGATIVES: there is an association, but we cannot detect it (TYPE II ERROR)
+  # FALSE NEGATIVES: there is an effect, but we cannot detect it (TYPE II ERROR)
   FN <- sum(true_association) - TP
-  # TRUE NEGATIVES: there is no association, and we are correct because we have enough specificity
+  # TRUE NEGATIVES: there is no effect, and the test correctly fails to find one
   TN <- sum(random_tests[!true_association] < test_specificity)
-  # FALSE POSITIVES: there is no association, but we find one anyway (TYPE I ERROR)
+  # FALSE POSITIVES: there is no effect, but we find one anyway (TYPE I ERROR)
   FP <- sum(!true_association) - TN
   # return the PPV (positive predictive value) 
   return (TP / (TP + FP))
