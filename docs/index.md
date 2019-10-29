@@ -41,7 +41,7 @@
 
 ### Week 5
 
-- Analysis of variance
+- [Analysis of variance](lectures/ANOVA_etc)
 - [Generalized Linear Models](lectures/generalized_linear_models)
 
 ### Week 6

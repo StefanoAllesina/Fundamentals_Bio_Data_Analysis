@@ -1,14 +1,16 @@
 ---
 title: "Extension of linear models: ANOVA"
-author: "Dmitry Kondrashov & Stefano Allesina"
+author: "**Dmitry Kondrashov & Stefano Allesina**"
 date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
 output:
   html_document:
     theme: cosmo
     toc: yes
     toc_float: yes
-  pdf_document:
-    toc: yes
+  github_document:
+    toc: true
+    toc_depth: 2
+    pandoc_args: --webtex
 urlcolor: blue
 ---
 
@@ -17,10 +19,11 @@ knitr::opts_chunk$set(
   eval      = TRUE,
   comment   = "#",
   results   = "hold",
+  message = FALSE,
+  warning = FALSE,
   # collapse  = TRUE,
   fig.align = "center")
 ```
-
 
 ```{r}
 library(MASS) # negative binom regression

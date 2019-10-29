@@ -129,12 +129,12 @@ n <- nrow(X)
 cov(X)
 ```
 
-    #          x        y
-    # x 1.135453 1.092192
-    # y 1.092192 1.140578
-    #          x        y
-    # x 1.133500 1.089764
-    # y 1.089764 1.137559
+    #           x         y
+    # x 0.9950821 0.9222942
+    # y 0.9222942 0.9485757
+    #           x         y
+    # x 0.9944934 0.9214853
+    # y 0.9214853 0.9474642
 
 A covariance matrix ![A](https://latex.codecogs.com/png.latex?A "A") is positive (semi-)definite, meaning that ![y^t A y &gt; 0](https://latex.codecogs.com/png.latex?y%5Et%20A%20y%20%3E%200 "y^t A y > 0") for any ![y](https://latex.codecogs.com/png.latex?y "y"); the matrix is also symmetric and all the eigenvalues are real and non-negative.
 
@@ -182,12 +182,12 @@ A
 round(Q %*% t(Q), 3)
 ```
 
-    #          [,1]     [,2]
-    # [1,] 1.133500 1.089764
-    # [2,] 1.089764 1.137559
-    #          x        y
-    # x 1.133500 1.089764
-    # y 1.089764 1.137559
+    #           [,1]      [,2]
+    # [1,] 0.9944934 0.9214853
+    # [2,] 0.9214853 0.9474642
+    #           x         y
+    # x 0.9944934 0.9214853
+    # y 0.9214853 0.9474642
     #      [,1] [,2]
     # [1,]    1    0
     # [2,]    0    1
@@ -230,15 +230,15 @@ str(pca)
 ```
 
     # List of 5
-    #  $ sdev    : num [1:2] 1.492 0.214
-    #  $ rotation: num [1:2, 1:2] 0.706 0.708 -0.708 0.706
+    #  $ sdev    : num [1:2] 1.376 0.222
+    #  $ rotation: num [1:2, 1:2] 0.716 0.698 -0.698 0.716
     #   ..- attr(*, "dimnames")=List of 2
     #   .. ..$ : chr [1:2] "x" "y"
     #   .. ..$ : chr [1:2] "PC1" "PC2"
-    #  $ center  : Named num [1:2] -0.0441 -0.0549
+    #  $ center  : Named num [1:2] -0.0242 -0.0333
     #   ..- attr(*, "names")= chr [1:2] "x" "y"
     #  $ scale   : logi FALSE
-    #  $ x       : num [1:500, 1:2] -1.8543 0.8735 0.0259 -0.2878 -3.718 ...
+    #  $ x       : num [1:500, 1:2] -1.011 -0.304 -0.43 -1.183 -0.271 ...
     #   ..- attr(*, "dimnames")=List of 2
     #   .. ..$ : NULL
     #   .. ..$ : chr [1:2] "PC1" "PC2"
