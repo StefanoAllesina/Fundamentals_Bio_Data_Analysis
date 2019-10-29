@@ -223,7 +223,7 @@ glimpse(dt)
 
 ```
 
-2. Run ANOVA for pay as dependent on the two factors, report the variance between means and the variance within groups, and the p-value for the null hypothesis.
+2. Run ANOVA for pay as dependent on the two factors separately, report the variance between means and the variance within groups, and the p-value for the null hypothesis.
 ```{r}
 
 ```
