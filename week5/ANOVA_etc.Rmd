@@ -33,7 +33,7 @@ source("../general_code/read_xls_from_url.R") # function to read excel from URL
 
 # Analysis of variance
 
-ANOVA is a method for testing the hypothesis that there is no difference in means of subsets of measurements grouped by factors. 
+ANOVA is a method for testing the hypothesis that there is no difference in means of subsets of measurements grouped by factors. Essetntially, this is a generalization of linear regression to categorical explanatory variables instead of numeric variables, and it is based on very similar assumptions.
 
 ## ANOVA assumptions
 
@@ -42,9 +42,13 @@ ANOVA test hypotheses:
 
   * Null hypothesis: the means of the different groups are the same
   * Alternative hypothesis: At least one sample mean is not equal to the others.
+  
+Let $Y$ indicate the response variable and $X$ is the categorical explanatory variable, $\mu$ is the mean of the response, and $A$ is the difference between the overall mean of the response and the mean response for the value of $X$, then the model equation is:
 
+$$
+Y = \mu + A(X)
+$$
 
-Assumptions of ANOVA test
 
 ANOVA test can be applied only when:
 
@@ -120,25 +124,16 @@ Let's compare this with the calculations from the data set:
 
 ```{r}
 # The "grand mean" 
-grand_mean <- mean(diet$weight.loss)
-print(paste("The grand mean is", grand_mean))
-grand_var <- var(diet$weight.loss)
-print(paste("The grand variance is", grand_var))
-diet1 <- filter(diet, Diet == 1)
-diet2 <- filter(diet, Diet == 2)
-diet3 <- filter(diet, Diet == 3)
-mean1 <- mean(diet1$weight.loss)
-mean2 <- mean(diet2$weight.loss)
-mean3 <- mean(diet3$weight.loss)
-n1 <- length(diet1$weight.loss)
-n2 <- length(diet2$weight.loss)
-n3 <- length(diet3$weight.loss)
-var_between <- var(c(mean1, mean2, mean3))
+diet %>% summarise(mean = mean(weight.loss), var = var(weight.loss))
+
+by_diet <- diet %>% group_by(Diet) %>% summarise(mean = mean(weight.loss), var = var(weight.loss))
+
+head(by_diet)
+
+var_between <- var(by_diet$mean)
 print(paste("The variance between groups is ", var_between))
-var1 <- var(diet1$weight.loss)
-var2 <- var(diet2$weight.loss)
-var3 <- var(diet3$weight.loss)
-var_within <- (n1*var1 + n2*var2 + n3*var3)/(n1+n2+n3 - 3)
+
+var_within <- mean(by_diet$var)
 print(paste("The variance within groups is ", var_within))
 F_s <- var_between/var_within
 print(paste("The F statistic is", F_s))
