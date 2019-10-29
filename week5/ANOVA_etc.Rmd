@@ -52,31 +52,32 @@ $$
 ANOVA test can be applied only when:
 
   * The observations are obtained independently and randomly from the population defined by the factor levels
-  * The data of each factor level are normally distributed.
-  * These normal populations have a common variance. (Levene’s test can be used to check this.)
+  * The measurements for each factor level are normally distributed
+  * These normal populations the same variance
   
   
-How one-way ANOVA works
+### How one-way ANOVA works
 
-Assume that we have 3 groups (A, B, C) to compare:
+Assume that we have k groups, defined by the categorical explanatory variable $X$:
 
   * Compute the common variance, which is called variance within samples ($S^2_w$) or residual variance.
   * Compute the variance between sample means as follows:
     * Compute the mean of each group
     * Compute the variance between sample means ($S^2_b$)
   * Produce F-statistic as the ratio of $S^2_b/S^2_w$)
+  * Calculate a p-value from the F-distribution
 
 
-ANOVA makes one important assumption, that the total squared error (sum of squared differences from the total mean of all the data) is a sum of the squared errors within each group and the squared errors between the groups, denoted as follows:
+ANOVA makes one important assumption, similar to that for linear regression, that the total squared error (sum of squared differences from the total mean of all the data) is a sum of the squared errors within each group and the squared errors between the groups, denoted as follows:
 
 $$
 SS = SSG + SSE
 $$
 
 
-Denote the set of means of $k$ different groups to be $\{\bar Y_i\}$ and the "grand mean" to be $\mathbf{\bar Y}$ and the *between group variability* is define to be:
+Denote the set of means of $k$ different groups to be $\{\bar Y_i\}$ and the "grand mean" to be $\mathbf{\bar Y}$ and the *between group variance* is define to be:
 $$  S^2_b = \frac{1}{k-1} \sum_i n_i (\bar Y_i -\mathbf{\bar Y})^2 $$
-and this is compared to the *within group variabiity*, which if we denote the set of measurements in group $i$ to be $\{y_{ij}\}$, is defined as
+and this is compared to the *within group variance*, which if we denote the set of measurements in group $i$ to be $\{y_{ij}\}$, is defined as
 $$
 S^2_w = \frac{1}{N-k} \sum_i \sum_j (\bar Y_i - y_{ij})^2
 $$

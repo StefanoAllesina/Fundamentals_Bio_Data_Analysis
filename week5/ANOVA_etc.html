@@ -1565,11 +1565,13 @@ Y = \mu + A(X)
 <p>ANOVA test can be applied only when:</p>
 <ul>
 <li>The observations are obtained independently and randomly from the population defined by the factor levels</li>
-<li>The data of each factor level are normally distributed.</li>
-<li>These normal populations have a common variance. (Levene’s test can be used to check this.)</li>
+<li>The measurements for each factor level are normally distributed</li>
+<li>These normal populations the same variance</li>
 </ul>
-<p>How one-way ANOVA works</p>
-<p>Assume that we have 3 groups (A, B, C) to compare:</p>
+</div>
+<div id="how-one-way-anova-works" class="section level3">
+<h3>How one-way ANOVA works</h3>
+<p>Assume that we have k groups, defined by the categorical explanatory variable <span class="math inline">\(X\)</span>:</p>
 <ul>
 <li>Compute the common variance, which is called variance within samples (<span class="math inline">\(S^2_w\)</span>) or residual variance.</li>
 <li>Compute the variance between sample means as follows:
@@ -1578,12 +1580,13 @@ Y = \mu + A(X)
 <li>Compute the variance between sample means (<span class="math inline">\(S^2_b\)</span>)</li>
 </ul></li>
 <li>Produce F-statistic as the ratio of <span class="math inline">\(S^2_b/S^2_w\)</span>)</li>
+<li>Calculate a p-value from the F-distribution</li>
 </ul>
-<p>ANOVA makes one important assumption, that the total squared error (sum of squared differences from the total mean of all the data) is a sum of the squared errors within each group and the squared errors between the groups, denoted as follows:</p>
+<p>ANOVA makes one important assumption, similar to that for linear regression, that the total squared error (sum of squared differences from the total mean of all the data) is a sum of the squared errors within each group and the squared errors between the groups, denoted as follows:</p>
 <p><span class="math display">\[
 SS = SSG + SSE
 \]</span></p>
-<p>Denote the set of means of <span class="math inline">\(k\)</span> different groups to be <span class="math inline">\(\{\bar Y_i\}\)</span> and the “grand mean” to be <span class="math inline">\(\mathbf{\bar Y}\)</span> and the <em>between group variability</em> is define to be: <span class="math display">\[  S^2_b = \frac{1}{k-1} \sum_i n_i (\bar Y_i -\mathbf{\bar Y})^2 \]</span> and this is compared to the <em>within group variabiity</em>, which if we denote the set of measurements in group <span class="math inline">\(i\)</span> to be <span class="math inline">\(\{y_{ij}\}\)</span>, is defined as <span class="math display">\[
+<p>Denote the set of means of <span class="math inline">\(k\)</span> different groups to be <span class="math inline">\(\{\bar Y_i\}\)</span> and the “grand mean” to be <span class="math inline">\(\mathbf{\bar Y}\)</span> and the <em>between group variance</em> is define to be: <span class="math display">\[  S^2_b = \frac{1}{k-1} \sum_i n_i (\bar Y_i -\mathbf{\bar Y})^2 \]</span> and this is compared to the <em>within group variance</em>, which if we denote the set of measurements in group <span class="math inline">\(i\)</span> to be <span class="math inline">\(\{y_{ij}\}\)</span>, is defined as <span class="math display">\[
 S^2_w = \frac{1}{N-k} \sum_i \sum_j (\bar Y_i - y_{ij})^2
 \]</span></p>
 <p>where <span class="math inline">\(N\)</span> is the total number of points in all the groups.</p>
