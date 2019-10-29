@@ -53,7 +53,7 @@ ANOVA test can be applied only when:
 
   * The observations are obtained independently and randomly from the population defined by the factor levels
   * The measurements for each factor level are normally distributed
-  * These normal populations the same variance
+  * These normal distributions have the same variance
   
   
 ### How one-way ANOVA works
@@ -64,7 +64,7 @@ Assume that we have k groups, defined by the categorical explanatory variable $X
   * Compute the variance between sample means as follows:
     * Compute the mean of each group
     * Compute the variance between sample means ($S^2_b$)
-  * Produce F-statistic as the ratio of $S^2_b/S^2_w$)
+  * Produce F-statistic as the ratio of $S^2_b/S^2_w$
   * Calculate a p-value from the F-distribution
 
 
