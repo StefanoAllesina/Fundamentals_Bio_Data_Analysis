@@ -1,0 +1,39 @@
+---
+title: "Time series: modeling and forecasting"
+author: "Dmitry Kondrashov and Stefano Allesina"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse) # this loads both dplyr and tidyr, along with other packages
+library(fpp2) # time series forecasting
+```
+
+## Goals: 
+
+
+ * Investigate the effect of prior probability on hypothesis testing
+ * Investigate the effect of test quality parameters on hypothesis testing
+ * Interpret the quality of linear regression
+ * Evaluate multiple variables in linear regression
+
+## Visualization of time series
+
+```{r}
+autoplot(melsyd[,"Economy.Class"]) +
+  ggtitle("Economy class passengers: Melbourne-Sydney") +
+  xlab("Year") +
+  ylab("Thousands")
+```
+```{r}
+autoplot(a10) +
+  ggtitle("Antidiabetic drug sales") +
+  ylab("$ million") +
+  xlab("Year")
+```
+
+
+
+
+
