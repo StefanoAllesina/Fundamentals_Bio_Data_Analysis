@@ -327,29 +327,21 @@ newdata <- data.frame(
     Income = c(1, 1, 1, 1),
     Savings = c(0.5, 0.5, 0.5, 0.5),
     Unemployment = c(0, 0, 0, 0))
-fcast.up <- fabletools::forecast(fit.consBest, newdata = newdata)
+fcast.up <- forecast::forecast(fit.consBest, newdata = newdata)
 newdata <- data.frame(
     Income = rep(-1, h),
     Savings = rep(-0.5, h),
     Unemployment = rep(0, h))
-fcast.down <- forecast(fit.consBest, newdata = newdata)
+fcast.down <- forecast::forecast(fit.consBest, newdata = newdata)
 ```
 
 
+
 ```{r}
-fit.cons <- tslm(Consumption ~ Income, data = uschange)
-h <- 4
-fcast.ave <- forecast(fit.cons,
-  newdata = data.frame(
-    Income = rep(mean(uschange[,"Income"]), h)))
-fcast.up <- forecast(fit.cons,
-  newdata = data.frame(Income = rep(5, h)))
-autoplot(uschange[, "Consumption"]) +
+autoplot(uschange[, 1]) +
   ylab("% change in US consumption") +
-  autolayer(fcast.ave, series = "Average increase",
-    PI = TRUE) +
-  autolayer(fcast.up, series = "Extreme increase",
-    PI = TRUE) +
+  autolayer(fcast.up, PI = TRUE, series = "increase") +
+  autolayer(fcast.down, PI = TRUE, series = "decrease") +
   guides(colour = guide_legend(title = "Scenario"))
 ```
 
