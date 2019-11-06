@@ -8,32 +8,355 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse) # this loads both dplyr and tidyr, along with other packages
 library(fpp2) # time series forecasting
+library(tsibble)
+library(lubridate)
+library(fable)
+library(GGally)
 ```
+
+
+> It's difficult to predict, especially the future.
+> 
+> --- Niels Bohr (apocryphally)
 
 ## Goals: 
 
+ * Use current tools for handling and visualizing time series
+ * Understand the difference between stationary and nonstationary time series
+ * Calculate auto- and cross-correlations of time series
+ * Use regression methods for fitting and forecasting
+ * Decompose time series into components
 
- * Investigate the effect of prior probability on hypothesis testing
- * Investigate the effect of test quality parameters on hypothesis testing
- * Interpret the quality of linear regression
- * Evaluate multiple variables in linear regression
 
-## Visualization of time series
+
+## Time series format and plotting
+
+A time series is a special data set where each observation has an associated time measurement. There is a special R structure for storing and operating on time series, called `ts`, as illustrated here:
+
 
 ```{r}
-autoplot(melsyd[,"Economy.Class"]) +
-  ggtitle("Economy class passengers: Melbourne-Sydney") +
-  xlab("Year") +
-  ylab("Thousands")
+births <- scan("http://robjhyndman.com/tsdldata/data/nybirths.dat")
+birthstimeseries <- ts(births, frequency=12, start=c(1946,1))
+birthstimeseries
 ```
+This reads in a data set of number of births per month in New York City from 1946 to 1958 (it's not clear what the units are - mabe thousands of births?) To create the time series, we had to give the function the `frequency`, or the number of time points in a year, and the starting value as a vector assigned to `start=c(1946, 1)`, the first element is the year and the second the month. 
+
+
+Here are two different time series, of diabetic drug sales in Australia (in millions of AUS dollaors), also with monthly frequency, and of Boston marathon winning times, with yearly frequency. These data may also be turned into `tsibbles`, or tibbles of time series, for use with the most up to date tools within the `tidyvets`
+
 ```{r}
-autoplot(a10) +
-  ggtitle("Antidiabetic drug sales") +
-  ylab("$ million") +
+birthstimeseries  %>% as_tsibble()
+a10 %>% as_tsibble()
+marathon %>% as_tsibble()
+```
+
+
+### Visualizing the data
+
+The most straighforward way of visualizing time series is using a time plot, which can be created using `autoplot`:
+
+```{r}
+autoplot(birthstimeseries) +
+  ggtitle("Number of births in NYC") +
+  ylab("Births (thousands") +
   xlab("Year")
 ```
 
 
 
 
+```{r}
+autoplot(a10) +
+  ggtitle("Antidiabetic drug sales") +
+  ylab("AUS$ (million)") +
+  xlab("Year")
+```
+
+```{r}
+autoplot(marathon) +
+  ggtitle("Boston marathon winning times") +
+  ylab("Time (minutes)") +
+  xlab("Year")
+```
+
+
+### Trends, seasonality, and cyclicity
+
+Time series of course illustrate changes over time, and frequently we want to describe and account for these changes. In forrecasting, there are three types of systematic patters that have their own terminology (taken from [1])
+
+>* **Trend**
+>  A trend exists when there is a long-term increase or decrease in the data. It does not have to be linear. Sometimes we will refer to a trend as “changing direction”, when it might go from an increasing trend to a decreasing trend. There is a trend in the antidiabetic drug sales data.
+>
+>* **Seasonal**
+>  A seasonal pattern occurs when a time series is affected by seasonal factors such as the time of the year or the day of the week. Seasonality is always of a fixed and known frequency. The monthly sales of antidiabetic drugs above shows seasonality which is induced partly by the change in the cost of the drugs at the end of the calendar year.
+>
+>* **Cyclic**
+>  A cycle occurs when the data exhibit rises and falls that are not of a fixed frequency. These fluctuations are usually due to economic conditions, and are often related to the “business cycle”. The duration of these fluctuations is usually at least 2 years.
+
+
+
+
+## Correlations of time series: cross-, auto-, and lag plot
+
+
+
+### Visualizing correlation between different variables 
+
+The following data set contains the number of visitors (visitor nights) on a quarterly basis for five regions of New South Wales, Australia:
+
+```{r}
+autoplot(visnights[,1:5], facets=TRUE) +
+  ylab("Number of visitor nights each quarter (millions)")
+```
+
+One simple question is whether different variables are related to each other. One simple way is to calculate the Pearson correlation between different time series, called the *cross-correlation* (where $\bar X$ stands for the mean of X and $Var(X)$ stands for the variance of $X$):
+
+$$
+Cor(X,Y) = \frac{\sum_t (\bar X - X_t)(\bar Y - Y_t)}{\sqrt{Var(X)Var(Y)}}
+$$
+
+In a data set with multiple variables it can be handy to examine the correlations between all pairs between them. Here's a convenient function for that:
+
+```{r}
+head(visnights)
+GGally::ggpairs(as.data.frame(visnights[,1:5]))
+```
+
+
+### Autocorrelation
+
+A time series can be correlated against itself shifted in time by some set amount, also called *lagged*. We can plot the lagged correlations for different visitor
+
+
+```{r}
+visnights[,1]
+visnights_smaller <- window(visnights[,1], start=2000, end = 2010)
+gglagplot(visnights_smaller) 
+```
+
+
+Here the colors indicate the quarter of the variable on the vertical axis, compared with the shifted (lagged variable on the horizontal axis, and the lines connect points in chronological order. The relationship is strongly positive at lags 4 and 8, reflecting the strong seasonality in the data.
+
+
+This suggests that there is a strong similarity between the time series and itself, shifted by certain time values. This is described by the *autocorrelation*, which is defined as a function of the lag $k$:
+
+$$
+r(k) = \frac{\sum_{t=k}^T (\bar X - X_t)(\bar X - X_{t-k})}{Var(X)}
+
+$$
+This can be calculated and plotted for our example of the visitation nights in New South Wales:
+
+```{r}
+ggAcf(visnights_smaller)
+```
+
+Notice the periodicity in the autocorrelation, which indicated periodicity in the time series. Let's similarly calculate the autocorrelation of the drug sales data:
+
+```{r}
+ggAcf(a10)
+```
+
+
+Notice how different this *correlogram* is - there are no zero values of autcorrelation, only slow decay with some small periodic components.
+
+
+Autocorrelation measures the *memory* of a signal - for example, pure white noise is uncorrelated with itself even a moment later, and thus has no memory. As such, it is very useful as a measure of a trend in the data - if the time series has slowly decaying, positive autocorrelation, that indicates a pronounced trend, while periodicity indicates seasonality in the data.
+
+
+
+**Exercise:** Use the lag and autocorrelation analysis to describe the patterns in the time series of births in NYC and in the Boston marathon winning times.
+
+
+```{r}
+
+```
+
+
+
+## Decomposition of time series
+
+There are two main types of decompositions of time series: additive and multiplicative. Let us call $X_t$ the time series data, $T_t$ the trend (non-periodic component), $S_t$ the seasonal part (periodic component), and $R_t$ the remainder. 
+
+$$
+X_t = T_t + S_t + R_t
+$$
+$$
+X_t = T_t \times S_t \times R_t
+$$
+
+One simple way of removing seasonality and estimating the trend is using the *moving average*, that is using $k$ points before and $k$ points after each point to calculate the trend:
+$$
+T_t =  \frac{1}{m} \sum_{i=-k}^k X_{t+i}
+$$
+
+Here $m$ is called the *order* of the moving average and is defined as $m = 2k+1$. There is a useful function ma() that calculates  these averages and allows them to be plotted.
+
+```{r}
+m <- 3
+s_name <- paste("MA-", m)
+autoplot(a10, series = "data") +
+  autolayer(ma(a10, m), series = "MA") +
+  xlab("Year") + ylab("AUS $ (millions)") +
+  ggtitle("Anti-diabetic drug sales") 
+```
+
+**Exercise:** Change the moving average window and see if you can make seasonality vanish!
+
+
+An even order of periodicity requires an asymmetric averaging window, so to create an symmetric average, one can repeat the moving average of order two on the already-averaged data.
+
+### Classic decomposition:
+Additive decomposition [1]:
+
+1. If m is an even number, compute the trend-cycle component $T_t$ using a  2×m-MA. If m is an odd number, compute the trend-cycle component  $\hat T_t$ using an m-MA.
+2. Calculate the detrended series:  $X_t - \hat T_t$
+3. To estimate the seasonal component for each season, average the detrended values for that season. For example, with monthly data, the seasonal component for March is the average of all the detrended March values in the data. These seasonal component values are then adjusted to ensure that they add to zero. The seasonal component is obtained by stringing together these monthly values, and then replicating the sequence for each year of data. This gives $\hat S_t$.
+4. The remainder component is calculated by subtracting the estimated seasonal and trend-cycle components:  $ \hat R_t = X_t - \hat T_t - \hat S_t$
+
+```{r}
+a10 %>% decompose(type="additive") %>%
+  autoplot() + xlab("Year") +
+  ggtitle("Classical additive decomposition
+    of the antidiabetic drug sales data")
+```
+
+This simple classical decomposition has numerous flaws, so better, more modern methods are preferred. In particular, it assumes a constant seasonal term, it tends to over-estimate the variation in the trend, it misses data for the first few and last few data points, and can be sensitive to outliers.
+
+### STL decomposition
+
+A more robust method is called the STL decomposition (Seasonal and Trend decomposition using Loess). To summarize its advantanges [1]:
+
+* STL can handle any type of seasonality, not only monthly and quarterly data.
+* The seasonal component is allowed to change over time, and the rate of change can be controlled by the user.
+* The smoothness of the trend-cycle can also be controlled by the user.
+* It can be robust to outliers (i.e., the user can specify a robust decomposition), so that occasional unusual observations will not affect the estimates of the trend-cycle and seasonal components. They will, however, affect the remainder component.
+
+```{r}
+
+a10 %>%  stl(t.window=13, s.window="periodic", robust=TRUE) %>%
+  autoplot()
+```
+
+
+**Exercise:** Apply the two decomposition methods to the Boston marathon and to births in NYC time series.
+
+
+## Regression methods
+
+Let us analyze the data set of US quarterly economic data, specifically, the percent change in consumption, income, production, savigs, and unemployment.
+
+```{r}
+head(uschange)
+autoplot(uschange[,c("Consumption","Income")]) +
+  ylab("% change") + xlab("Year")
+```
+
+
+
+```{r}
+uschange %>%
+  as.data.frame() %>%
+  ggplot(aes(x=Income, y=Consumption)) +
+    ylab("Consumption (quarterly % change)") +
+    xlab("Income (quarterly % change)") +
+    geom_point() +
+    geom_smooth(method="lm", se=FALSE)
+```
+
+
+```{r}
+uschange %>%
+  as.data.frame() %>%
+  GGally::ggpairs()
+```
+
+Let us use four variables as predictors of consumption to calculate a multiple linear regression model using the function tslm():
+
+```{r}
+fit.consMR <- tslm(
+  Consumption ~ Income + Production + Unemployment + Savings,
+  data=uschange)
+summary(fit.consMR)
+
+```
+
+We can produce a plot of the predicted values together with the observed data on consumption:
+
+```{r}
+autoplot(uschange[,'Consumption'], series="Data") +
+  autolayer(fitted(fit.consMR), series="Fitted") +
+  xlab("Year") + ylab("") +
+  ggtitle("Percent change in US consumption expenditure") +
+  guides(colour=guide_legend(title=" "))
+```
+
+It is useful to check the residuals of the regression model:
+
+```{r}
+checkresiduals(fit.consMR)
+```
+
+### The perennial warning: beware of spurious correlations!
+
+These two data sets, on Australian air passengers and rice production in Guinea, have a very strong positive correlation:
+
+```{r}
+aussies <- window(ausair, end=2011)
+fit <- tslm(aussies ~ guinearice)
+summary(fit)
+```
+
+However, notice that the residuals indicate a strong trend, which violates the assumptions of linear regression.
+
+```{r}
+checkresiduals(fit)
+```
+
+### Forecasting using linear regression
+
+One can use the model to forecast the values in the future, based on different *scenarios*. For example, we may want to investigate the prediction for an economic upturn and a downturn:
+
+
+```{r}
+fit.consBest <- tslm(
+  Consumption ~ Income + Savings + Unemployment,
+  data = uschange)
+
+h <- 4
+newdata <- data.frame(
+    Income = c(1, 1, 1, 1),
+    Savings = c(0.5, 0.5, 0.5, 0.5),
+    Unemployment = c(0, 0, 0, 0))
+fcast.up <- fabletools::forecast(fit.consBest, newdata = newdata)
+newdata <- data.frame(
+    Income = rep(-1, h),
+    Savings = rep(-0.5, h),
+    Unemployment = rep(0, h))
+fcast.down <- forecast(fit.consBest, newdata = newdata)
+```
+
+
+```{r}
+fit.cons <- tslm(Consumption ~ Income, data = uschange)
+h <- 4
+fcast.ave <- forecast(fit.cons,
+  newdata = data.frame(
+    Income = rep(mean(uschange[,"Income"]), h)))
+fcast.up <- forecast(fit.cons,
+  newdata = data.frame(Income = rep(5, h)))
+autoplot(uschange[, "Consumption"]) +
+  ylab("% change in US consumption") +
+  autolayer(fcast.ave, series = "Average increase",
+    PI = TRUE) +
+  autolayer(fcast.up, series = "Extreme increase",
+    PI = TRUE) +
+  guides(colour = guide_legend(title = "Scenario"))
+```
+
+
+## References:
+
+1. Rob J Hyndman and George Athanasopoulos. [**Forecasting: Principles and Practice**](https://otexts.com/fpp2/)
+2. [Cross-validation in forecasting](https://www.r-bloggers.com/time-series-forecast-cross-validation-by-ellis2013nz/)
+3. 
 
