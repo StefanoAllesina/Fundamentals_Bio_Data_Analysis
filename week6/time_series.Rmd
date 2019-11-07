@@ -8,26 +8,21 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse) # this loads both dplyr and tidyr, along with other packages
 library(fpp2) # time series forecasting
-library(tsibble)
 library(lubridate)
-library(fable)
 library(GGally)
 ```
 
 
-> It's difficult to predict, especially the future.
+> Prediction is difficult, especially about the future.
 > 
 > --- Niels Bohr (apocryphally)
 
 ## Goals: 
 
  * Use current tools for handling and visualizing time series
- * Understand the difference between stationary and nonstationary time series
  * Calculate auto- and cross-correlations of time series
- * Use regression methods for fitting and forecasting
  * Decompose time series into components
-
-
+ * Use linear regression methods for fitting and forecasting
 
 ## Time series format and plotting
 
@@ -42,12 +37,11 @@ birthstimeseries
 This reads in a data set of number of births per month in New York City from 1946 to 1958 (it's not clear what the units are - mabe thousands of births?) To create the time series, we had to give the function the `frequency`, or the number of time points in a year, and the starting value as a vector assigned to `start=c(1946, 1)`, the first element is the year and the second the month. 
 
 
-Here are two different time series, of diabetic drug sales in Australia (in millions of AUS dollaors), also with monthly frequency, and of Boston marathon winning times, with yearly frequency. These data may also be turned into `tsibbles`, or tibbles of time series, for use with the most up to date tools within the `tidyvets`
-
+Here are two different time series, of diabetic drug sales in Australia (in millions of AUS dollaors), also with monthly frequency, and of Boston marathon winning times, with yearly frequency:
 ```{r}
-birthstimeseries  %>% as_tsibble()
-a10 %>% as_tsibble()
-marathon %>% as_tsibble()
+#a10
+
+#marathon
 ```
 
 
@@ -97,7 +91,6 @@ Time series of course illustrate changes over time, and frequently we want to de
 
 
 ## Correlations of time series: cross-, auto-, and lag plot
-
 
 
 ### Visualizing correlation between different variables 
@@ -312,9 +305,12 @@ However, notice that the residuals indicate a strong trend, which violates the a
 checkresiduals(fit)
 ```
 
-### Forecasting using linear regression
+There are a number of fun examples of spurious time series correlations in reference [5].
 
-One can use the model to forecast the values in the future, based on different *scenarios*. For example, we may want to investigate the prediction for an economic upturn and a downturn:
+### Forecasting using linear regression
+One can distringuish between true forecasting, termed *ex-ante* (from before) prediction, in which we truly try to predict the unknown future, and *ex-post* forecasts, in which the true values both of the predictors and the response variable are known. The latter is still useful for validating models and for comparing different methods.
+
+The library `forecast` contains tools to make calculating predicted values in time series simple. One can use the model to forecast the values in the future, based on different *scenarios*. For example, we may want to investigate the prediction for an economic upturn and a downturn:
 
 
 ```{r}
@@ -338,17 +334,19 @@ fcast.down <- forecast::forecast(fit.consBest, newdata = newdata)
 
 
 ```{r}
+# This script does not work for some reason!
 autoplot(uschange[, 1]) +
   ylab("% change in US consumption") +
-  autolayer(fcast.up, PI = TRUE, series = "increase") +
+  autolayer(fcast.up, PI = TRUE, series = "increase")  +
   autolayer(fcast.down, PI = TRUE, series = "decrease") +
   guides(colour = guide_legend(title = "Scenario"))
 ```
 
 
-## References:
+## References and further reading:
 
 1. Rob J Hyndman and George Athanasopoulos. [**Forecasting: Principles and Practice**](https://otexts.com/fpp2/)
-2. [Cross-validation in forecasting](https://www.r-bloggers.com/time-series-forecast-cross-validation-by-ellis2013nz/)
-3. 
-
+2. Jonathan Cryer and Kung-Sik Chan [**Time Series Analysis with Applications in R**](https://mybiostats.files.wordpress.com/2015/03/time-series-analysis-with-applications-in-r-cryer-and-chan.pdf)
+3. [Cross-validation in forecasting](https://www.r-bloggers.com/time-series-forecast-cross-validation-by-ellis2013nz/)
+4. [Time series nested cross-validation](https://towardsdatascience.com/time-series-nested-cross-validation-76adba623eb9)
+5. [Spurious correlations](https://www.tylervigen.com/spurious-correlations)
