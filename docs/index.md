@@ -47,7 +47,7 @@
 ### Week 6
 
 - [Model selection](lectures/model_selection)
-- Modeling timeseries data
+- [Modeling timeseries data](lectures/time_series)
 
 ### Week 7
 
