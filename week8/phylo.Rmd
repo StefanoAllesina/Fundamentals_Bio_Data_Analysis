@@ -1,0 +1,87 @@
+---
+title: "Building phylogeneric trees"
+author: "**Dmitry Kondrashov & Stefano Allesina**"
+date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
+output:
+  html_document:
+    theme: cosmo
+    toc: yes
+    toc_float: yes
+  github_document:
+    toc: true
+    toc_depth: 2
+    pandoc_args: --webtex
+urlcolor: blue
+---
+
+```{r knitr, echo=FALSE}
+knitr::opts_chunk$set(
+  eval      = TRUE,
+  comment   = "#",
+  results   = "hold",
+  message = FALSE,
+  warning = FALSE,
+  # collapse  = TRUE,
+  fig.align = "center")
+```
+
+# Goal
+
+Let's import some libraries:
+
+```{r}
+library(reshape2) # more data massaging
+library(tidyverse) # our friend the tidyverse
+library(ggfortify) # PCA plots
+```
+
+# Introduction
+
+Since Darwin's "I think" biologists have been constructing trees connecting species to their common ancestors. The goal of this brief tutorial is to introduce some of the basic terminology, and illustrate the most common approaches to building trees. 
+
+This tutorial is based on the freely available book The Mathematics of Phylogenetics, by Allman and Rhodes.
+
+## Input
+
+The input is assumed to be a series of **sequences**, one for each **taxon**. For simplicity, we deal with DNA sequences, and assume that the taxa are different species. However, the methods introduced here can be extended to other types of sequences (e.g., amminoacids, RNA, morphological features) and taxa (e.g., individuals of the same species, or even cells from the same individual). We assume the DNA sequences to be **orthologous** (i.e., to have descended from a common ancestral sequence) and to have been **aligned** (i.e., having many of the bases matching across the sequences for all the taxa).
+
+DNA is composed of four nucleotides or **bases**: adenine (`A`), guanine (`G`), cytosine (`C`), and thymine (`T`). `A` and `G` are both purines, `C` and `T` are pyrimidines. When DNA is copied, small errors (**mutations**) can be introduced: we speak of **substitutions** when a base is changed, **deletions** when one or more consecutive bases are not copied, and **insertions** when new bases are introduced in the sequence. For this tutorial, we will concentrate on substitutions, which are believed to be the most common type of mutations.
+
+## Representing trees
+
+A graph is a collection of vertices ($V$) and edges ($E$). We consider simple, undirected graph for most of the tutorial; simple means that each two nodes can be connected by one edge at most; undirected that we do not distinguish between $a \to b$ and $b \to a$. A graph is **connected** if there is a way to go from any node to any other following its edges. A **cycle** is a closed path, connecting a node to itself. A **tree** is a connected graph that contains no cycles.
+
+We distinguish between **rooted** and **unrooted** trees: the root is a particular vertex from which all other taxa descend (the MRCA, most recent common ancestor of all taxa).
+
+Typically, we can only observe the **tips** or **leaves** of the tree (the extant species); their common ancestors form the **internal nodes** of the tree, and have to be inferred. 
+
+An unrooted tree with $n > 1$ leaves contains exactly $2n -2$ nodes, and $2n -3$ edges. A rooted tree has one extra node ($2n -1$) and one extra edge ($2n - 2$). There are very many trees one can form with $n$ leaves: we can count $(2n -3)!!$ rooted trees (where the double factorial becomes $1 \cdot 3 \cdot 5 \cdots (2n -3)$).
+
+We can add a "length" to each edge, measuring how much change occurred between the two vertices. In case of "molecular clock" trees, we have that the lengths measure time, and all leaves have the same distance (computed summing the lengths along the branches) from the root. 
+
+Mathematically, if we do not make an assumption of a "molecular clock" (i.e., that mutations occurr at a predictable rate), we cannot identify the root of a tree without using extra information. Typically, what is done is to also align sequence(s) stemming from an **outgroup**, i.e., a taxon that is believed to be distantly related to the taxa we want to connect in our tree. Then, the root will connect the outgroup taxon with the rest of the tree.
+
+Many of the methods are based on unrooted, unweighted trees, and a root and lengths can be determined once one has chosen a topology for the tree.
+
+A simple way to represent a tree is provided by the **Newick notation**: the string `(((a, b), c), (d,e))` represents a tree in which two nodes enclosed by parentheses are connected to a common ancestor (internal node). Note that the notation cannot readily discriminate among identical trees (e.g., `((d, e), (c, (b, a)))`) so that spotting two identical trees is difficult to do by eye.
+
+## Maximum Parsimony
+
+### `#parsimonygate`
+
+## Distance Methods
+
+### Likelihood based methods
+
+#### Maximum likelihood
+
+#### Bayesian methods
+
+
+
+
+
+
+
+
+
