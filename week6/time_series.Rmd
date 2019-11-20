@@ -1,11 +1,31 @@
 ---
 title: "Time series: modeling and forecasting"
-author: "Dmitry Kondrashov and Stefano Allesina"
-output: html_document
+author: "**Dmitry Kondrashov & Stefano Allesina**"
+date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
+output:
+  html_document:
+    theme: cosmo
+    toc: yes
+    toc_float: yes
+  github_document:
+    toc: true
+    toc_depth: 2
+    pandoc_args: --webtex
+urlcolor: blue
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r knitr, echo=FALSE}
+knitr::opts_chunk$set(
+  eval      = TRUE,
+  comment   = "#",
+  results   = "hold",
+  message = FALSE,
+  warning = FALSE,
+  # collapse  = TRUE,
+  fig.align = "center")
+```
+
+```{r}
 library(tidyverse) # this loads both dplyr and tidyr, along with other packages
 library(fpp2) # time series forecasting
 library(lubridate)
