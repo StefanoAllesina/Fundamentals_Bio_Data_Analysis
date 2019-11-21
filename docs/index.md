@@ -56,16 +56,16 @@
 
 ### Week 8
 
-- Student presentations 1
-- Student presentations 2
+- [Clustering](lectures/clustering)
+- [Phylogenetic reconstruction](lectures/phylo)
 
 ### Week 9
 
-- Student presentations 3
+- Student presentations 1
 
 ### Week 10
 
-- Student presentations 4
+- Student presentations 2
 
 ## Acknowledgements
 
