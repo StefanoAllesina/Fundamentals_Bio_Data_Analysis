@@ -76,10 +76,71 @@ This reads in a data set of number of births per month in New York City from 194
 Here are two different time series, of diabetic drug sales in Australia (in millions of AUS dollaors), also with monthly frequency, and of Boston marathon winning times, with yearly frequency:
 
 ``` r
-#a10
+a10
 
-#marathon
+marathon
 ```
+
+    #            Jan       Feb       Mar       Apr       May       Jun       Jul
+    # 1991                                                              3.526591
+    # 1992  5.088335  2.814520  2.985811  3.204780  3.127578  3.270523  3.737851
+    # 1993  6.192068  3.450857  3.772307  3.734303  3.905399  4.049687  4.315566
+    # 1994  6.731473  3.841278  4.394076  4.075341  4.540645  4.645615  4.752607
+    # 1995  6.749484  4.216067  4.949349  4.823045  5.194754  5.170787  5.256742
+    # 1996  8.329452  5.069796  5.262557  5.597126  6.110296  5.689161  6.486849
+    # 1997  8.524471  5.277918  5.714303  6.214529  6.411929  6.667716  7.050831
+    # 1998  8.798513  5.918261  6.534493  6.675736  7.064201  7.383381  7.813496
+    # 1999 10.391416  6.421535  8.062619  7.297739  7.936916  8.165323  8.717420
+    # 2000 12.511462  7.457199  8.591191  8.474000  9.386803  9.560399 10.834295
+    # 2001 14.497581  8.049275 10.312891  9.753358 10.850382  9.961719 11.443601
+    # 2002 16.300269  9.053485 10.002449 10.788750 12.106705 10.954101 12.844566
+    # 2003 16.828350  9.800215 10.816994 10.654223 12.512323 12.161210 12.998046
+    # 2004 18.003768 11.938030 12.997900 12.882645 13.943447 13.989472 15.339097
+    # 2005 20.778723 12.154552 13.402392 14.459239 14.795102 15.705248 15.829550
+    # 2006 23.486694 12.536987 15.467018 14.233539 17.783058 16.291602 16.980282
+    # 2007 28.038383 16.763869 19.792754 16.427305 21.000742 20.681002 21.834890
+    # 2008 29.665356 21.654285 18.264945 23.107677 22.912510 19.431740          
+    #            Aug       Sep       Oct       Nov       Dec
+    # 1991  3.180891  3.252221  3.611003  3.565869  4.306371
+    # 1992  3.558776  3.777202  3.924490  4.386531  5.810549
+    # 1993  4.562185  4.608662  4.667851  5.093841  7.179962
+    # 1994  5.350605  5.204455  5.301651  5.773742  6.204593
+    # 1995  5.855277  5.490729  6.115293  6.088473  7.416598
+    # 1996  6.300569  6.467476  6.828629  6.649078  8.606937
+    # 1997  6.704919  7.250988  7.819733  7.398101 10.096233
+    # 1998  7.431892  8.275117  8.260441  8.596156 10.558939
+    # 1999  9.070964  9.177113  9.251887  9.933136 11.532974
+    # 2000 10.643751  9.908162 11.710041 11.340151 12.079132
+    # 2001 11.659239 10.647060 12.652134 13.674466 12.965735
+    # 2002 12.196500 12.854748 13.542004 13.287640 15.134918
+    # 2003 12.517276 13.268658 14.733622 13.669382 16.503966
+    # 2004 15.370764 16.142005 16.685754 17.636728 18.869325
+    # 2005 17.554701 18.100864 17.496668 19.347265 20.031291
+    # 2006 18.612189 16.623343 21.430241 23.575517 23.334206
+    # 2007 23.930204 22.930357 23.263340 25.250030 25.806090
+    # 2008                                                  
+    # Time Series:
+    # Start = 1897 
+    # End = 2016 
+    # Frequency = 1 
+    #   [1] 175.1667 162.0000 174.6333 159.7333 149.3833 163.2000 161.4833
+    #   [8] 158.0667 158.4167 165.7500 144.4000 145.7167 173.6000 148.8667
+    #  [15] 141.6500 141.3000 145.2333 145.2333 151.6833 147.2667 148.6167
+    #  [22] 149.8833 149.2167 149.5167 138.9500 138.1667 143.7833 149.6667
+    #  [29] 153.0000 145.6667 160.3667 157.1167 153.1333 154.8000 166.7500
+    #  [36] 153.6000 151.0167 152.8833 152.1167 153.6667 153.3333 155.5667
+    #  [43] 148.8500 148.4667 150.6333 146.8500 148.4167 151.8333 150.6667
+    #  [50] 149.4500 145.6500 151.0333 151.8333 152.6500 147.7500 151.8833
+    #  [57] 138.8500 140.6500 138.3667 134.2333 140.0833 145.9000 142.7000
+    #  [64] 140.9000 143.6500 143.8000 138.9667 139.9833 136.5500 137.1833
+    #  [71] 135.7500 142.2833 133.8167 130.5000 138.7500 135.6500 136.0500
+    #  [78] 133.6500 129.9167 140.3167 134.7667 130.2167 129.4500 132.1833
+    #  [85] 129.4333 128.8667 129.0000 130.5667 134.0833 127.8500 131.8333
+    #  [92] 128.7167 129.1000 128.3167 131.1000 128.2333 129.5500 127.2500
+    #  [99] 129.3667 129.2500 130.5667 127.5667 129.8667 129.7833 129.7167
+    # [106] 129.0333 130.1833 130.6167 131.7333 127.2333 134.2167 127.7500
+    # [113] 128.7000 125.8667 123.0333 132.6667 130.3667 128.6167 129.2833
+    # [120] 132.7333
 
 ### Visualizing the data
 
@@ -181,7 +242,7 @@ A time series can be correlated against itself shifted in time by some set amoun
 
 ``` r
 visnights[,1]
-visnights_smaller <- window(visnights[,1], start=2000, end = 2010)
+visnights_smaller <- window(visnights[,2], start=2000, end = 2010)
 gglagplot(visnights_smaller) 
 ```
 
@@ -212,9 +273,13 @@ Here the colors indicate the quarter of the variable on the vertical axis, compa
 
 This suggests that there is a strong similarity between the time series and itself, shifted by certain time values. This is described by the *autocorrelation*, which is defined as a function of the lag ![k](https://latex.codecogs.com/png.latex?k "k"):
 
-$$ r(k) =
+![
+r(k) = \\frac{\\sum\_{t=k}^T (\\bar X - X\_t)(\\bar X - X\_{t-k})}{Var(X)}
+](https://latex.codecogs.com/png.latex?%0Ar%28k%29%20%3D%20%5Cfrac%7B%5Csum_%7Bt%3Dk%7D%5ET%20%28%5Cbar%20X%20-%20X_t%29%28%5Cbar%20X%20-%20X_%7Bt-k%7D%29%7D%7BVar%28X%29%7D%0A "
+r(k) = \frac{\sum_{t=k}^T (\bar X - X_t)(\bar X - X_{t-k})}{Var(X)}
+")
 
-$$ This can be calculated and plotted for our example of the visitation nights in New South Wales:
+ This can be calculated and plotted for our example of the visitation nights in New South Wales:
 
 ``` r
 ggAcf(visnights_smaller)
@@ -235,6 +300,30 @@ Notice how different this *correlogram* is - there are no zero values of autcorr
 Autocorrelation measures the *memory* of a signal - for example, pure white noise is uncorrelated with itself even a moment later, and thus has no memory. As such, it is very useful as a measure of a trend in the data - if the time series has slowly decaying, positive autocorrelation, that indicates a pronounced trend, while periodicity indicates seasonality in the data.
 
 **Exercise:** Use the lag and autocorrelation analysis to describe the patterns in the time series of births in NYC and in the Boston marathon winning times.
+
+``` r
+gglagplot(marathon)
+```
+
+<img src="time_series_files/figure-markdown_github/unnamed-chunk-12-1.png" style="display: block; margin: auto;" />
+
+``` r
+ggAcf(marathon)
+```
+
+<img src="time_series_files/figure-markdown_github/unnamed-chunk-12-2.png" style="display: block; margin: auto;" />
+
+``` r
+gglagplot(birthstimeseries)
+```
+
+<img src="time_series_files/figure-markdown_github/unnamed-chunk-12-3.png" style="display: block; margin: auto;" />
+
+``` r
+ggAcf(birthstimeseries)
+```
+
+<img src="time_series_files/figure-markdown_github/unnamed-chunk-12-4.png" style="display: block; margin: auto;" />
 
 Decomposition of time series
 ----------------------------
@@ -264,7 +353,7 @@ T_t =  \frac{1}{m} \sum_{i=-k}^k X_{t+i}
 Here ![m](https://latex.codecogs.com/png.latex?m "m") is called the *order* of the moving average and is defined as ![m = 2k+1](https://latex.codecogs.com/png.latex?m%20%3D%202k%2B1 "m = 2k+1"). There is a useful function ma() that calculates these averages and allows them to be plotted.
 
 ``` r
-m <- 3
+m <- 12
 s_name <- paste("MA-", m)
 autoplot(a10, series = "data") +
   autolayer(ma(a10, m), series = "MA") +
