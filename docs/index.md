@@ -21,28 +21,28 @@
 
 ### Week 1
 
-- [Review of probability](lectures/probability_review)
 - [Using `ggplot2` to produce publication-ready figures](lectures/basic_visualization)
+- [Review of probability](lectures/probability_review)
 
 ### Week 2
 
-- [Probability distributions](lectures/distributions)
 - [Data wrangling in `tidyverse`](lectures/basic_data_wrangling)
+- [Probability distributions](lectures/distributions)
 
 ### Week 3
 
-- [Linear algebra refresher](lectures/linalg_basics)
 - [Hypothesis testing](lectures/hypothesis_testing)
+- [Linear algebra refresher](lectures/linalg_basics)
 
 ### Week 4
 
-- [Likelihood](lectures/likelihood)
 - [Linear models](lectures/linear_models)
+- [Likelihood](lectures/likelihood)
 
 ### Week 5
 
-- [Analysis of variance](lectures/ANOVA_etc)
 - [Generalized Linear Models](lectures/generalized_linear_models)
+- [Analysis of variance](lectures/ANOVA_etc)
 
 ### Week 6
 
@@ -56,15 +56,16 @@
 
 ### Week 8
 
-- [Clustering](lectures/clustering)
 - [Phylogenetic reconstruction](lectures/phylo)
+- Machine Learning and cross validation
 
 ### Week 9
 
-- Student presentations 1
+Thanksgiving break
 
 ### Week 10
 
+- Student presentations 1
 - Student presentations 2
 
 ## Acknowledgements
