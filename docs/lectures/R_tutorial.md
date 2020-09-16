@@ -1,75 +1,88 @@
 R tutorial
 ================
 **Dmitry Kondrashov & Stefano Allesina**
-Fundamentals of Biological Data Analysis -- BIOS 26318
+Fundamentals of Biological Data Analysis – BIOS 26318
 
--   [Goal](#goal)
--   [Motivation](#motivation)
--   [Before we start](#before-we-start)
--   [What is R?](#what-is-r)
--   [RStudio](#rstudio)
--   [How to write a simple program](#how-to-write-a-simple-program)
-    -   [The most basic operation: assignment](#the-most-basic-operation-assignment)
-    -   [Data types](#data-types)
-    -   [Operators and functions](#operators-and-functions)
-    -   [Getting help](#getting-help)
-    -   [Data structures](#data-structures)
--   [Reading and writing data](#reading-and-writing-data)
--   [Conditional branching](#conditional-branching)
--   [Looping](#looping)
--   [Useful Functions](#useful-functions)
--   [Packages](#packages)
-    -   [Installing a package](#installing-a-package)
-    -   [Loading a package](#loading-a-package)
-    -   [Example](#example)
--   [Random numbers](#random-numbers)
--   [Writing functions](#writing-functions)
--   [Organizing and running code](#organizing-and-running-code)
--   [Documenting the code using `knitr`](#documenting-the-code-using-knitr)
--   [Very large header](#very-large-header)
-    -   [Large header](#large-header)
-    -   [Unordered lists](#unordered-lists)
--   [Resources](#resources)
+# Goal
 
-Goal
-====
+Introduce the stastical software `R`, and show how it can be used to
+analyze biological data in an automated, replicable way. Showcase the
+`RStudio` development environment, illustrate the notion of assignment,
+present the main data structures available in `R`. Show how to read and
+write data, how to execute simple programs, and how to modify the stream
+of execution of a program through conditional branching and looping.
+Introduce the use of packages and user-defined functions.
 
-Introduce the stastical software `R`, and show how it can be used to analyze biological data in an automated, replicable way. Showcase the `RStudio` development environment, illustrate the notion of assignment, present the main data structures available in `R`. Show how to read and write data, how to execute simple programs, and how to modify the stream of execution of a program through conditional branching and looping. Introduce the use of packages and user-defined functions.
+# Motivation
 
-Motivation
-==========
+When it comes to analyzing data, there are two competing paradigms.
+First, one could use point-and-click software with a graphical user
+interface, such as Excel, to perform calculations and draw graphs;
+second, one could write programs that can be run to perform the analysis
+of the data, the generation of tables and statistics, and the production
+of figures automatically.
 
-When it comes to analyzing data, there are two competing paradigms. First, one could use point-and-click software with a graphical user interface, such as Excel, to perform calculations and draw graphs; second, one could write programs that can be run to perform the analysis of the data, the generation of tables and statistics, and the production of figures automatically.
-
-This latter approach is to be preferred, because it allows for the automation of analysis, it requires a good documentation of the procedures, and is completely replicable.
+This latter approach is to be preferred, because it allows for the
+automation of analysis, it requires a good documentation of the
+procedures, and is completely replicable.
 
 A few motivating examples:
 
--   You have written code to analyze your data. You receive from your collaborators a new batch of data. With simple modifications of your code, you can update your results, tables and figures automatically.
+  - You have written code to analyze your data. You receive from your
+    collaborators a new batch of data. With simple modifications of your
+    code, you can update your results, tables and figures automatically.
 
--   A new student joins the laboratory. The new student can read the code and understand the analysis without the need of a lab mate showing the procedure step-by-step.
+  - A new student joins the laboratory. The new student can read the
+    code and understand the analysis without the need of a lab mate
+    showing the procedure step-by-step.
 
--   The reviewers of your manuscript ask you to slightly alter the analysis. Rather than having to start over, you can modify a few lines of code and satisfy the reviewers.
+  - The reviewers of your manuscript ask you to slightly alter the
+    analysis. Rather than having to start over, you can modify a few
+    lines of code and satisfy the reviewers.
 
-Here we introduce `R`, which can help you write simple programs to analyze your data, perform statistical analysis, and draw beautiful figures.
+Here we introduce `R`, which can help you write simple programs to
+analyze your data, perform statistical analysis, and draw beautiful
+figures.
 
-Before we start
-===============
+# Before we start
 
 To follow this tutorial, you will need to install `R` and `RStudio`
 
--   Install `R`: download and install `R` from [this page](https://cran.r-project.org/). Choose the right architecture (Windows, Mac, Linux). If possible, install `R` 3.5.1 or above.
--   Install `RStudio`: go to [this page](https://www.rstudio.com/products/rstudio/download/) and download the "RStudio Desktop Open Source License".
--   Install `R` packages: launch `RStudio`. Click on "Packages" in the bottow-right panel. Click on "Install": a dialog window will open. Type `tidyverse` in the field "Packages" and click on "Install". This might take a few minutes, and ask you to download further packages.
+  - Install `R`: download and install `R` from [this
+    page](https://cran.r-project.org/). Choose the right architecture
+    (Windows, Mac, Linux). If possible, install the latest release.
+  - Install `RStudio`: go to [this
+    page](https://www.rstudio.com/products/rstudio/download/) and
+    download the “RStudio Desktop Open Source License”.
+  - Install `R` packages: launch `RStudio`. Click on “Packages” in the
+    bottow-right panel. Click on “Install”: a dialog window will open.
+    Type `tidyverse` in the field “Packages” and click on “Install”.
+    This might take a few minutes, and ask you to download further
+    packages.
 
-What is R?
-==========
+# What is R?
 
-`R` is a statistical software that is completely programmable. This means that one can write a program (script) containing a series of commands for the analysis of data, and execute them automatically. This approach is especially good as it makes the analysis of data well-documented, and completely replicable.
+`R` is a statistical software that is completely programmable. This
+means that one can write a program (script) containing a series of
+commands for the analysis of data, and execute them automatically. This
+approach is especially good as it makes the analysis of data
+well-documented, and completely replicable.
 
-`R` is free software: anyone can download its source code, modify it, and improve it. The `R` community of users is vast and very active. In particular, scientists have enthusiastically embraced the program, creating thousands of packages to perform specific types of analysis, and adding many new capabilities. You can find a list of official packages (which have been vetted by `R` core developers) [here](https://cran.r-project.org/web/packages/available_packages_by_name.html); many more are available on GitHub and other websites.
+`R` is free software: anyone can download its source code, modify it,
+and improve it. The `R` community of users is vast and very active. In
+particular, scientists have enthusiastically embraced the program,
+creating thousands of packages to perform specific types of analysis,
+and adding many new capabilities. You can find a list of official
+packages (which have been vetted by `R` core developers)
+[here](https://cran.r-project.org/web/packages/available_packages_by_name.html);
+many more are available on GitHub and other websites.
 
-The main hurdle new users face when approaching `R` is that it is based on a command line interface: when you launch `R`, you simply open a console with the character `>` signaling that `R` is ready to accept an input. When you write a command and press `Enter`, the command is interpreted by `R`, and the result is printed immediately after the command. For example,
+The main hurdle new users face when approaching `R` is that it is based
+on a command line interface: when you launch `R`, you simply open a
+console with the character `>` signaling that `R` is ready to accept an
+input. When you write a command and press `Enter`, the command is
+interpreted by `R`, and the result is printed immediately after the
+command. For example,
 
 ``` r
 1 + 1
@@ -77,33 +90,62 @@ The main hurdle new users face when approaching `R` is that it is based on a com
 
     # [1] 2
 
-A little history: `R` was modeled after the commercial statistical software `S` by Robert Gentleman and Ross Ihaka. The project was started in 1992, first released in 1994, and the first stable version appeared in 2000. Today, `R` is managed by the *R Core Team*.
+A little history: `R` was modeled after the commercial statistical
+software `S` by Robert Gentleman and Ross Ihaka. The project was started
+in 1992, first released in 1994, and the first stable version appeared
+in 2000. Today, `R` is managed by the *R Core Team*.
 
-RStudio
-=======
+# RStudio
 
-For this introduction, we're going to use `RStudio`, an Integrated Development Environment (IDE) for `R`. The main advantage is that the environment will look identical irrespective of your computer architecture (Linux, Windows, Mac). Also, `RStudio` makes writing code much easier by automatically completing commands and file names (simply type the beginning of the name and press `Tab`), and allowing you to easily inspect data and code.
+For this introduction, we’re going to use `RStudio`, an Integrated
+Development Environment (IDE) for `R`. The main advantage is that the
+environment will look identical irrespective of your computer
+architecture (Linux, Windows, Mac). Also, `RStudio` makes writing code
+much easier by automatically completing commands and file names (simply
+type the beginning of the name and press `Tab`), and allowing you to
+easily inspect data and code.
 
 Typically, an `RStudio` window contains four panels:
 
--   **Console** This is a panel containing an instance of `R`. For this tutorial, we will work mainly in this panel.
--   **Source code** In this panel, you can write a program, save it to a file pressing `Ctrl + S` and then execute it by pressing `Ctrl + Shift + S`.
--   **Environment** This panel lists all the variables you created (more on this later); another tab shows you the history of the commands you typed.
--   **Plots** This panel shows you all the plots you drew. Other tabs allow you to access the list of packages you have loaded, and the help page for commands (just type `help(name_of_command)` in the Console) and packages.
+  - **Console** This is a panel containing an instance of `R`. For this
+    tutorial, we will work mainly in this panel.
+  - **Source code** In this panel, you can write a program, save it to a
+    file pressing `Ctrl + S` and then execute it by pressing `Ctrl +
+    Shift + S`.
+  - **Environment** This panel lists all the variables you created (more
+    on this later); another tab shows you the history of the commands
+    you typed.
+  - **Plots** This panel shows you all the plots you drew. Other tabs
+    allow you to access the list of packages you have loaded, and the
+    help page for commands (just type `help(name_of_command)` in the
+    Console) and packages.
 
-How to write a simple program
-=============================
+# How to write a simple program
 
-An `R` program is simply a list of commands, which are executed one after the other. The commands are witten in a text file (with extension `.R`). When `R` executes the program, it will start from the beginning of the file and proceed toward the end of the file. Every time `R` encounters a command, it will execute it. Special commands can modify this basic flow of the program by, for example, executing a series of commands only when a condition is met, or repeating the execution of a series of commands multiple times.
+An `R` program is simply a list of commands, which are executed one
+after the other. The commands are witten in a text file (with extension
+`.R`). When `R` executes the program, it will start from the beginning
+of the file and proceed toward the end of the file. Every time `R`
+encounters a command, it will execute it. Special commands can modify
+this basic flow of the program by, for example, executing a series of
+commands only when a condition is met, or repeating the execution of a
+series of commands multiple times.
 
-Note that if you were to copy and paste (or type) the code into the **Console** you would obtain exactly the same result. Writing a program is advatageous, however, because the analysis can be automated, and the code shared with other researchers. Moreover, after a while you will have a large code base, so that you can recycle much of your code in several programs.
+Note that if you were to copy and paste (or type) the code into the
+**Console** you would obtain exactly the same result. Writing a program
+is advatageous, however, because the analysis can be automated, and the
+code shared with other researchers. Moreover, after a while you will
+have a large code base, so that you can recycle much of your code.
 
-We start by working on the console, and then start writing simple scripts.
+We start by working on the console, and then start writing simple
+scripts.
 
-The most basic operation: assignment
-------------------------------------
+## The most basic operation: assignment
 
-The most basic operation in any programming language is the assignment. In `R`, assignment is marked by the operator `<-`. When you type a command in `R`, it is executed, and the output is printed in the **Console**. For example:
+The most basic operation in any programming language is the assignment.
+In `R`, assignment is marked by the operator `<-` (can be typed quickly
+using `Alt -`). When you type a command in `R`, it is executed, and the
+output is printed in the **Console**. For example:
 
 ``` r
 sqrt(9)
@@ -111,7 +153,8 @@ sqrt(9)
 
     # [1] 3
 
-If we want to save the result of this operation, we can assign it to a variable. For example:
+If we want to save the result of this operation, we can assign it to a
+variable. For example:
 
 ``` r
 x <- sqrt(9)
@@ -120,7 +163,12 @@ x
 
     # [1] 3
 
-What has happened? We wrote a command containing an assignment operator (`<-`). `R` has evaluated the right-hand-side of the command (`sqrt(9)`), and has stored the result (`3`) in a newly created variable called `x`. Now we can use `x` in our commands: every time the command needs to be evaluated, the program will look up which value is associated with the variable `x`, and substitute it. For example:
+What has happened? We wrote a command containing an assignment operator
+(`<-`). `R` has evaluated the right-hand-side of the command
+(`sqrt(9)`), and has stored the result (`3`) in a newly created variable
+called `x`. Now we can use `x` in our commands: every time the command
+needs to be evaluated, the program will look up which value is
+associated with the variable `x`, and substitute it. For example:
 
 ``` r
 x * 2 
@@ -128,12 +176,15 @@ x * 2
 
     # [1] 6
 
-Data types
-----------
+## Data types
 
-`R` provides different types of data that can be used in your programs. For each variable `x`, calling `class(x)` prints the type of the variable. The basic data types are:
+`R` provides different types of data that can be used in your programs.
+For each variable `x`, calling `class(x)` prints the type of the
+variable. The basic data types are:
 
--   `logical`, taking only two possible values: `TRUE` and `FALSE`
+  - `logical`, taking only two possible values: `TRUE` and `FALSE`
+
+<!-- end list -->
 
 ``` r
 v <- TRUE
@@ -142,7 +193,12 @@ class(v)
 
     # [1] "logical"
 
--   `numeric`, storing real numbers (actually, their approximations, as computers have limited memory and thus [cannot store](https://www.exploringbinary.com/why-0-point-1-does-not-exist-in-floating-point/) numbers like ![\\pi](https://latex.codecogs.com/png.latex?%5Cpi "\pi"), or even ![0.2](https://latex.codecogs.com/png.latex?0.2 "0.2"))
+  - `numeric`, storing real numbers (actually, their approximations, as
+    computers have limited memory and thus [cannot
+    store](https://www.exploringbinary.com/why-0-point-1-does-not-exist-in-floating-point/)
+    numbers like π, or even `0.2`)
+
+<!-- end list -->
 
 ``` r
 v <- 3.77
@@ -151,7 +207,9 @@ class(v)
 
     # [1] "numeric"
 
--   Real numbers can also be specified using scientific notation:
+  - Real numbers can also be specified using scientific notation:
+
+<!-- end list -->
 
 ``` r
 v <- 6.022e23 # 6.022⋅10^23 (Avogadro's number)
@@ -160,7 +218,9 @@ class(v)
 
     # [1] "numeric"
 
--   `integer`, storing whole numbers
+  - `integer`, storing whole numbers
+
+<!-- end list -->
 
 ``` r
 v <- 23L # the L signals that this should be stored as integer
@@ -169,7 +229,10 @@ class(v)
 
     # [1] "integer"
 
--   `complex`, storing complex numbers (i.e., with a real and an imaginary part)
+  - `complex`, storing complex numbers (i.e., with a real and an
+    imaginary part)
+
+<!-- end list -->
 
 ``` r
 v <- 23 + 5i # the i marks the imaginary part
@@ -178,7 +241,9 @@ class(v)
 
     # [1] "complex"
 
--   `character`, for strings, characters and text
+  - `character`, for strings, characters and text
+
+<!-- end list -->
 
 ``` r
 v <- 'a string' # you can use single or double quotes
@@ -187,7 +252,10 @@ class(v)
 
     # [1] "character"
 
-In `R`, the value and type of a variable are evaluated at runtime. This means that you can recycle the names of variables. This is very handy, but can make your programs more difficult to read and to debug (i.e., find mistakes). For example:
+In `R`, the value and type of a variable are evaluated at runtime. This
+means that you can recycle the names of variables. This is very handy,
+but can make your programs more difficult to read and to debug (i.e.,
+find mistakes). For example:
 
 ``` r
 x <- '2.3' # this is a string
@@ -199,10 +267,13 @@ x
     # [1] "2.3"
     # [1] 2.3
 
-Operators and functions
------------------------
+## Operators and functions
 
-Each data type supports a certain number of operators and functions. For example, numeric variables can be combined with `+` (addition), `-` (subtraction), `*` (multiplication), `/` (division), and `^` (or `**`, exponentiation). A possibly unfamiliar operator is the modulo (`%%`), calculating the remainder of an integer division:
+Each data type supports a certain number of operators and functions. For
+example, numeric variables can be combined with `+` (addition), `-`
+(subtraction), `*` (multiplication), `/` (division), and `^` (or `**`,
+exponentiation). A possibly unfamiliar operator is the modulo (`%%`),
+calculating the remainder of an integer division:
 
 ``` r
 5 %% 3
@@ -210,25 +281,34 @@ Each data type supports a certain number of operators and functions. For example
 
     # [1] 2
 
-meaning that `5 %/% 3` (5 integer divided by 3) is 1 with a remainder of 2. The modulo operator is useful to determine whether a number is divisible for another: if ![y](https://latex.codecogs.com/png.latex?y "y") is divisible by ![x](https://latex.codecogs.com/png.latex?x "x"), then `y %% x` is 0.
+meaning that `5 %/% 3` (5 integer divided by 3) is 1 with a remainder of
+2. The modulo operator is useful to determine whether a number is
+divisible for another: if `y` is divisible by `x`, then `y %% x` is 0.
 
-`R` provides many built-in functions: each functions has a name, followed by round parentheses surrounding the (possibly optional) function *arguments*. For example, these functions operate on `numeric` variables:
+`R` provides many built-in functions: each functions has a name,
+followed by round parentheses surrounding the (possibly optional)
+function *arguments*. For example, these functions operate on `numeric`
+variables:
 
--   `abs(x)` absolute value
--   `sqrt(x)` square root
--   `round(x, digits = 3)` round `x` to three decimal digits
--   `cos(x)` cosine (also supported are all the usual trigonometric functions)
--   `log(x)` natural logarithm (use `log10` for base 10 logarithms)
--   `exp(x)` calculating ![e^x](https://latex.codecogs.com/png.latex?e%5Ex "e^x")
+  - `abs(x)` absolute value
+  - `sqrt(x)` square root
+  - `round(x, digits = 3)` round `x` to three decimal digits
+  - `cos(x)` cosine (also supported are all the usual trigonometric
+    functions)
+  - `log(x)` natural logarithm (use `log10` for base 10 logarithms)
+  - `exp(x)` calculating \(e^x\)
 
-Similarly, `character` variables have their own set of functions, such as:
+Similarly, `character` variables have their own set of functions, such
+as:
 
--   `toupper(x)` make uppercase
--   `nchar(x)` count the number of characters in the string
--   `paste(x, y, sep = "_")` concatenate strings, joining them using the separator `_`
--   `strsplit(x, "_")` separate the string using the separator `_`
+  - `toupper(x)` make uppercase
+  - `nchar(x)` count the number of characters in the string
+  - `paste(x, y, sep = "_")` concatenate strings, joining them using the
+    separator `_`
+  - `strsplit(x, "_")` separate the string using the separator `_`
 
-Calling a function meant for a certain data type on another will cause errors. If sensible, you can convert a type into another. For example:
+Calling a function meant for a certain data type on another will cause
+errors. If sensible, you can convert a type into another. For example:
 
 ``` r
 v <- "2.13"
@@ -241,7 +321,9 @@ as.numeric(v) * 2
     # [1] "character"
     # [1] 4.26
 
-If sensible, you can use the comparison operators `>` (greater), `<` (lower), `==` (equals), `!=` (differs), `>=` and `<=`, returning a logical value:
+If sensible, you can use the comparison operators `>` (greater), `<`
+(lower), `==` (equals), `!=` (differs), `>=` and `<=`, returning a
+logical value:
 
 ``` r
 2 == sqrt(4)
@@ -254,10 +336,12 @@ If sensible, you can use the comparison operators `>` (greater), `<` (lower), `=
     # [1] TRUE
 
 > **Exercise:**
->
-> Why are two equal signs (`==`) used to check that two values are equal? What happens if you use only one sign?
+> 
+> Why are two equal signs (`==`) used to check that two values are
+> equal? What happens if you use only one sign?
 
-Similarly, you can concatenate several comparison and logical variables using `&` (and), `|` (or), and `!` (not):
+Similarly, you can concatenate several comparison and logical variables
+using `&` (and), `|` (or), and `!` (not):
 
 ``` r
 (2 > 3) & (3 > 1)
@@ -267,19 +351,23 @@ Similarly, you can concatenate several comparison and logical variables using `&
     # [1] FALSE
     # [1] TRUE
 
-Getting help
-------------
+## Getting help
 
-If you want to know more about a function, type `?my_function_name` in the console (e.g., `?abs`). This will open the help page in one of the panels on the right. The same can be accomplished calling `help(abs)`. For more complex questions, check out stackoverflow.
+If you want to know more about a function, type `?my_function_name` in
+the console (e.g., `?abs`). This will open the help page in one of the
+panels on the right. The same can be accomplished calling `help(abs)`.
+For more complex questions, check out stackoverflow.
 
-Data structures
----------------
+## Data structures
 
-Besides these simple types, `R` provides structured data types, meant to collect and organize multiple values.
+Besides these simple types, `R` provides structured data types, meant to
+collect and organize multiple values.
 
 ### Vectors
 
-The most basic data structure in `R` is the vector, which is an ordered collection of values of the same type. Vectors can be created by concatenating different values with the function `c()` ("combine"):
+The most basic data structure in `R` is the vector, which is an ordered
+collection of values of the same type. Vectors can be created by
+concatenating different values with the function `c()` (“combine”):
 
 ``` r
 x <- c(2, 3, 5, 27, 31, 13, 17, 19) 
@@ -288,7 +376,8 @@ x
 
     # [1]  2  3  5 27 31 13 17 19
 
-You can access the elements of a vector by their index: the first element is indexed at 1, the second at 2, etc.
+You can access the elements of a vector by their index: the first
+element is indexed at 1, the second at 2, etc.
 
 ``` r
 x[3]
@@ -300,11 +389,17 @@ x[9] # what if the element does not exist?
     # [1] 19
     # [1] NA
 
-`NA` stands for "Not Available". Other special values are `NaN` (Not a Number, e.g., `0/0`), `Inf` (Infinity, e.g., `1/0`), and `NULL` (variable undefined). You can test for special values using `is.na(x)`, `is.infinite(x)`, `is.null(x)`, etc.
+`NA` stands for “Not Available”. Other special values are `NaN` (Not a
+Number, e.g., `0/0`), `Inf` (Infinity, e.g., `1/0`), and `NULL`
+(variable undefined). You can test for special values using `is.na(x)`,
+`is.infinite(x)`, `is.null(x)`, etc.
 
-Note that in `R` a single number (string, logical) is a vector of length 1 by default. That's why if you type `3` in the console you see `[1] 3` in the output.
+Note that in `R` a single number (string, logical) is a vector of length
+1 by default. That’s why if you type `3` in the console you see `[1] 3`
+in the output.
 
-You can extract several elements at once (i.e., create another vector), using the colon (`:`) command, or by concatenating the indices:
+You can extract several elements at once (i.e., create another vector),
+using the colon (`:`) command, or by concatenating the indices:
 
 ``` r
 x[1:3]
@@ -316,7 +411,8 @@ x[c(1,3,5)]
     # [1] 27 31 13 17
     # [1]  2  5 31
 
-You can also use a vector of logical variables to extract values from vectors. For example, suppose we have two vectors:
+You can also use a vector of logical variables to extract values from
+vectors. For example, suppose we have two vectors:
 
 ``` r
 sex <- c("M", "M", "F", "M", "F") # sex of Drosophila
@@ -339,7 +435,8 @@ weight[sex == "M"]
 
     # [1] 0.230 0.281 0.260
 
-Given that `R` was born for statistics, there are many statistical functions you can perform on vectors:
+Given that `R` was born for statistics, there are many statistical
+functions you can perform on vectors:
 
 ``` r
 length(x)
@@ -394,18 +491,23 @@ rep(c(1, 2, 3), 3)
     # [1] 1 2 3 1 2 3 1 2 3
 
 > **Exercise:**
->
-> -   Create a vector containing all the even numbers between 2 and 100 (inclusive) and store it in variable `z`.
-> -   Extract all the elements of `z` that are divisible by 12. How many elements match this criterion?
-> -   What is the sum of all the elements of `z`?
-> -   Is it equal to ![51 \\cdot 50](https://latex.codecogs.com/png.latex?51%20%5Ccdot%2050 "51 \cdot 50")?
-> -   What is the product of elements 5, 10 and 15 of `z`?
-> -   Does `seq(2, 100, by = 2)` produce the same vector as `(1:50) * 2`?
-> -   What happens if you type `z ^ 2`?
+> 
+>   - Create a vector containing all the even numbers between 2 and 100
+>     (inclusive) and store it in variable `z`.
+>   - Extract all the elements of `z` that are divisible by 12. How many
+>     elements match this criterion?
+>   - What is the sum of all the elements of `z`?
+>   - Is it equal to \(51 \cdot 50\)?
+>   - What is the product of elements 5, 10 and 15 of `z`?
+>   - Does `seq(2, 100, by = 2)` produce the same vector as `(1:50)
+>     * 2`?
+>   - What happens if you type `z ^ 2`?
 
 ### Matrices
 
-A matrix is a two-dimensional table of values. In case of numeric values, you can perform the usual operations on matrices (product, inverse, decomposition, etc.):
+A matrix is a two-dimensional table of values. In case of numeric
+values, you can perform the usual operations on matrices (product,
+inverse, decomposition, etc.):
 
 ``` r
 A <- matrix(c(1, 2, 3, 4), 2, 2) # values, nrows, ncols
@@ -494,7 +596,8 @@ mean(Z)
     # [1] 45
     # [1] 5
 
-Some functions apply the operation across a given dimension (e.g., columns) of the matrix:
+Some functions apply the operation across a given dimension (e.g.,
+columns) of the matrix:
 
 ``` r
 rowSums(Z) # returns a vector of the sums of the values in each row
@@ -541,7 +644,9 @@ dim(M)
 
     # [1] 4 3 2
 
-and access the elements as done for matrices. One thing you should be paying attention to: `R` drops dimensions that are not needed. So, if you access a "slice" of a 3-dimensional array:
+and access the elements as done for matrices. One thing you should be
+paying attention to: `R` drops dimensions that are not needed. So, if
+you access a “slice” of a 3-dimensional array:
 
 ``` r
 M[, , 1]
@@ -561,7 +666,9 @@ dim(M[, , 1])
 
     # [1] 4 3
 
-This can be problematic, for example, when your code expects an array and `R` turns your data into a matrix (or you expect a matrix but find a vector). To avoid this behavior, add `drop = FALSE` when subsetting:
+This can be problematic, for example, when your code expects an array
+and `R` turns your data into a matrix (or you expect a matrix but find a
+vector). To avoid this behavior, add `drop = FALSE` when subsetting:
 
 ``` r
 dim(M[, , 1, drop = FALSE])
@@ -571,7 +678,11 @@ dim(M[, , 1, drop = FALSE])
 
 ### Lists
 
-Vectors are good if each element is of the same type (e.g., numbers, strings). Lists are used when we want to store elements of different types, or more complex objects (e.g., vectors, matrices, even lists of lists). Each element of the list can be referenced either by its index, or by a label:
+Vectors are good if each element is of the same type (e.g., numbers,
+strings). Lists are used when we want to store elements of different
+types, or more complex objects (e.g., vectors, matrices, even lists of
+lists). Each element of the list can be referenced either by its index,
+or by a label:
 
 ``` r
 mylist <- list(Names = c("a", "b", "c", "d"), Values = c(1, 2, 3))
@@ -597,11 +708,19 @@ mylist[["Values"]][3]  # access third element in second vector
 
 ### Data frames
 
-Data frames contain data organized like in a spreadsheet. The columns (typically representing different measurements) can be of different types (e.g., a column could be the date of measurement, another the weight of the individual, or the volume of the cell, or the treatment of the sample), while the rows typically represent different samples.
+Data frames contain data organized like in a spreadsheet. The columns
+(typically representing different measurements) can be of different
+types (e.g., a column could be the date of measurement, another the
+weight of the individual, or the volume of the cell, or the treatment of
+the sample), while the rows typically represent different samples.
 
-When you read a spreadsheet file in `R`, it is automatically stored as a data frame. The difference between a matrix and a data frame is that in a matrix all the values are of the same type (e.g., all numeric), while in a data frame each column can be of a different type.
+When you read a spreadsheet file in `R`, it is automatically stored as a
+data frame. The difference between a matrix and a data frame is that in
+a matrix all the values are of the same type (e.g., all numeric), while
+in a data frame each column can be of a different type.
 
-Because typing a data frame by hand would be tedious, let's use a data set that is already available in `R`:
+Because typing a data frame by hand would be tedious, let’s use a data
+set that is already available in `R`:
 
 ``` r
 data(trees) # girth, height and volume of cherry trees
@@ -639,9 +758,9 @@ colnames(trees) <- c("Circumference", "Height", "Volume") # change column names
     #  Mean   :13.25   Mean   :76   Mean   :30.17  
     #  3rd Qu.:15.25   3rd Qu.:80   3rd Qu.:37.30  
     #  Max.   :20.60   Max.   :87   Max.   :77.00  
-    #  [1]  8.3  8.6  8.8 10.5 10.7 10.8 11.0 11.0 11.1 11.2 11.3 11.4 11.4 11.7
-    # [15] 12.0 12.9 12.9 13.3 13.7 13.8 14.0 14.2 14.5 16.0 16.3 17.3 17.5 17.9
-    # [29] 18.0 18.0 20.6
+    #  [1]  8.3  8.6  8.8 10.5 10.7 10.8 11.0 11.0 11.1 11.2 11.3 11.4 11.4 11.7 12.0
+    # [16] 12.9 12.9 13.3 13.7 13.8 14.0 14.2 14.5 16.0 16.3 17.3 17.5 17.9 18.0 18.0
+    # [31] 20.6
     # [1] 70 65 63 72 81
     #   Girth Height Volume
     # 1   8.3     70   10.3
@@ -650,15 +769,19 @@ colnames(trees) <- c("Circumference", "Height", "Volume") # change column names
     # [1] 10.3 10.3 10.2
 
 > **Exercise:**
->
-> -   What is the average height of the cherry trees?
-> -   What is the average girth of those that are more than 75 ft tall?
-> -   What is the maximum height of trees with a volume between 15 and 35 ft![^3](https://latex.codecogs.com/png.latex?%5E3 "^3")?
+> 
+>   - What is the average height of the cherry trees?
+>   - What is the average girth of those that are more than 75 ft tall?
+>   - What is the maximum height of trees with a volume between 15 and
+>     35 ft\(^3\)?
 
-Reading and writing data
-========================
+# Reading and writing data
 
-In most cases, you will not generate your data in `R`, but import it from a file. By far, the best option is to have your data in a comma separated value text file or in a tab separated file. Then, you can use the function `read.csv` (or `read.table`) to import your data. The syntax of the functions is as follows:
+In most cases, you will not generate your data in `R`, but import it
+from a file. By far, the best option is to have your data in a comma
+separated value text file or in a tab separated file. Then, you can use
+the function `read.csv` (or `read.table`) to import your data. The
+syntax of the functions is as follows:
 
 ``` r
 read.csv("MyFile.csv") # read the file MyFile.csv
@@ -667,9 +790,13 @@ read.csv("MyFile.csv", sep = ';') # specify the column separator
 read.csv("MyFile.csv", skip = 5) # skip the first 5 lines
 ```
 
-Note that columns containing strings are typically converted to *factors* (categorical values, useful when performing regressions). To avoid this behavior, you can specify `stringsAsFactors = FALSE` when calling the function.
+Note that columns containing strings are typically converted to
+*factors* (categorical values, useful when performing regressions). To
+avoid this behavior, you can specify `stringsAsFactors = FALSE` when
+calling the function.
 
-Similarly, you can save your data frames using `write.table` or `write.csv`. Suppose you want to save the data frame `MyDF`:
+Similarly, you can save your data frames using `write.table` or
+`write.csv`. Suppose you want to save the data frame `MyDF`:
 
 ``` r
 write.csv(MyDF, "MyFile.csv") 
@@ -678,7 +805,10 @@ write.csv(MyDF, "MyFile.csv", row.names = TRUE) # include the row names
 write.csv(MyDF, "MyFile.csv", col.names = FALSE) # do not include column names
 ```
 
-Let's look at an example: Read a file containing data on the 6th chromosome for a number of Europeans (Data adapted from [Stanford HGDP SNP Genotyping Data](hagsc.org/hgdp/) by John Novembre). This example shows that you can read data directly from the internet!
+Let’s look at an example: Read a file containing data on the 6th
+chromosome for a number of Europeans (Data adapted from [Stanford HGDP
+SNP Genotyping Data](hagsc.org/hgdp/) by John Novembre). This example
+shows that you can read data directly from the internet\!
 
 ``` r
 # The actual URL is
@@ -687,7 +817,8 @@ ch6 <- read.table("https://tinyurl.com/y7vctq3v",
                   header = TRUE, stringsAsFactors = FALSE)
 ```
 
-where `header = TRUE` means that we want to take the first line to be a header containing the column names. How big is this table?
+where `header = TRUE` means that we want to take the first line to be a
+header containing the column names. How big is this table?
 
 ``` r
 dim(ch6)
@@ -695,7 +826,7 @@ dim(ch6)
 
     # [1] 43141     7
 
-we have 7 columns, but more than 40k rows! Let's see the first few:
+we have 7 columns, but more than 40k rows\! Let’s see the first few:
 
 ``` r
 head(ch6)
@@ -723,25 +854,38 @@ tail(ch6)
     # 43140   6  rs7775031  T  C    26    56    42
     # 43141   6 rs12213906  C  T     1    11   112
 
-The data contains the number of homozygotes (`nA1A1`, `nA2A2`) and heterozygotes (`nA1A2`), for 43,141 single nucleotide polymorphisms (SNPs) obtained by sequencing European individuals:
+The data contains the number of homozygotes (`nA1A1`, `nA2A2`) and
+heterozygotes (`nA1A2`), for 43,141 single nucleotide polymorphisms
+(SNPs) obtained by sequencing European individuals:
 
--   `CHR` The chromosome (6 in this case)
--   `SNP` The identifier of the Single Nucleotide Polymorphism
--   `A1` One of the alleles
--   `A2` The other allele
--   `nA1A1` The number of individuals with the particular combination of alleles.
+  - `CHR` The chromosome (6 in this case)
+  - `SNP` The identifier of the Single Nucleotide Polymorphism
+  - `A1` One of the alleles
+  - `A2` The other allele
+  - `nA1A1` The number of individuals with the particular combination of
+    alleles.
 
 > **Exercise:**
->
-> -   How many individuals were sampled? Find the maximum of the sum `nA1A1 + nA1A2 + nA2A2`. Note: you can access the columns by index (e.g., `ch6[,5]`), or by name (e.g., `ch6$nA1A1`, or also `ch6[,"nA1A1"]`).
-> -   Try using the function `rowSums` to obtain the same result.
-> -   For how many SNPs do we have that all sampled individuals are homozygotes (i.e., all `A1A1` or all `A2A2`)?
-> -   For how many SNPs, are more than 99% of the sampled individuals homozygous?
+> 
+>   - How many individuals were sampled? Find the maximum of the sum
+>     `nA1A1 + nA1A2 + nA2A2`. Note: you can access the columns by index
+>     (e.g., `ch6[,5]`), or by name (e.g., `ch6$nA1A1`, or also
+>     `ch6[,"nA1A1"]`).
+>   - Try using the function `rowSums` to obtain the same result.
+>   - For how many SNPs do we have that all sampled individuals are
+>     homozygotes (i.e., all `A1A1` or all `A2A2`)?
+>   - For how many SNPs, are more than 99% of the sampled individuals
+>     homozygous?
 
-Conditional branching
-=====================
+# Conditional branching
 
-Now we turn to writing actual programs in the **Source code** panel. To start a new `R` program, press `Ctrl + Shift + N`. This will open an `Untitled` script. Save the script by pressing `Ctrl + S`: save it as `conditional.R` in the directory `programming_skills/sandbox/`. To make sure you're working in the directory where the script is contained, on the menu on the top choose `Session -> Set Working Directory -> To Source File Location`.
+Now we turn to writing actual programs in the **Source code** panel. To
+start a new `R` program, press `Ctrl + Shift + N`. This will open an
+`Untitled` script. Save the script by pressing `Ctrl + S`: save it as
+`conditional.R` in the directory `programming_skills/sandbox/`. To make
+sure you’re working in the directory where the script is contained, on
+the menu on the top choose `Session -> Set Working Directory -> To
+Source File Location`.
 
 Now type the following script:
 
@@ -751,11 +895,17 @@ x <- 4
 print(x)
 ```
 
-and execute the script by pressing `Ctrl + Shift + S`. You should see `Hello World!` and `4` printed in your console.
+and execute the script by pressing `Ctrl + Shift + S`. You should see
+`Hello World!` and `4` printed in your console.
 
-As you saw in this simple example, when `R` executes the program, it starts from the top and proceeds toward the end of the file. Every time it encounters a command (for example, `print(x)`, printing the value of `x` into the console), it executes it.
+As you saw in this simple example, when `R` executes the program, it
+starts from the top and proceeds toward the end of the file. Every time
+it encounters a command (for example, `print(x)`, printing the value of
+`x` into the console), it executes it.
 
-When we want a certain block of code to be executed only when a certain condition is met, we can write a conditional branching point. The syntax is as follows:
+When we want a certain block of code to be executed only when a certain
+condition is met, we can write a conditional branching point. The syntax
+is as follows:
 
 ``` r
 if (condition is met){
@@ -765,7 +915,8 @@ if (condition is met){
 }
 ```
 
-For example, add these lines to the script `conditional.R`, and run it again:
+For example, add these lines to the script `conditional.R`, and run it
+again:
 
 ``` r
 print("Hello world!")
@@ -779,10 +930,13 @@ if (x %% 2 == 0){
 print(my_message)
 ```
 
-We have created a conditional branching point, so that the value of `my_message` changes depending on whether `x` is even (and thus the remainder of the integer division by 2 is 0), or odd. Change the line `x <- 4` to `x <- 131` and run it again.
+We have created a conditional branching point, so that the value of
+`my_message` changes depending on whether `x` is even (and thus the
+remainder of the integer division by 2 is 0), or odd. Change the line `x
+<- 4` to `x <- 131` and run it again.
 
 > **Exercise:** What does this do?
->
+> 
 > ``` r
 > x <- 36
 > if (x > 20){
@@ -797,12 +951,19 @@ We have created a conditional branching point, so that the value of `my_message`
 > }
 > ```
 
-Looping
-=======
+# Looping
 
-Another way to change the flow of the program is to write a loop. A loop is simply a series of commands that are repeated a number of times. For example, you want to run the same analysis on different data sets that you collected; you want to plot the results contained in a set of files; you want to test your simulation over a number of parameter sets; etc.
+Another way to change the flow of the program is to write a loop. A loop
+is simply a series of commands that are repeated a number of times. For
+example, you want to run the same analysis on different data sets that
+you collected; you want to plot the results contained in a set of files;
+you want to test your simulation over a number of parameter sets; etc.
 
-`R` provides you with two ways to loop over blocks of commands: the `for` loop, and the `while` loop. Let's start with the `for` loop, which is used to iterate over a vector (or a list): for each value of the vector, a series of commands will be run, as shown by the following example, which you can type in a new script called `forloop.R`.
+`R` provides you with two ways to loop over blocks of commands: the
+`for` loop, and the `while` loop. Let’s start with the `for` loop, which
+is used to iterate over a vector (or a list): for each value of the
+vector, a series of commands will be run, as shown by the following
+example, which you can type in a new script called `forloop.R`.
 
 ``` r
 myvec <- 1:10 # vector with numbers from 1 to 10
@@ -813,7 +974,9 @@ for (i in myvec) {
 }
 ```
 
-In the code above, the variable `i` takes the value of each element of `myvec` in sequence. Inside the block defined by the `for` loop, you can use the variable `i` to perform operations.
+In the code above, the variable `i` takes the value of each element of
+`myvec` in sequence. Inside the block defined by the `for` loop, you can
+use the variable `i` to perform operations.
 
 The anatomy of the `for` statement:
 
@@ -823,9 +986,13 @@ for (variable in list_or_vector) {
 } # automatically moves to the next value
 ```
 
-For loops are used when you know that you want to perform the analysis using a given set of values (e.g., run over all files of a directory, all samples in your data, all sequences of a fasta file, etc.).
+For loops are used when you know that you want to perform the analysis
+using a given set of values (e.g., run over all files of a directory,
+all samples in your data, all sequences of a fasta file, etc.).
 
-The `while` loop is used when the commands need to be repeated while a certain condition is true, as shown by the following example, which you can type in a script called `whileloop.R`:
+The `while` loop is used when the commands need to be repeated while a
+certain condition is true, as shown by the following example, which you
+can type in a script called `whileloop.R`:
 
 ``` r
 i <- 1
@@ -837,7 +1004,11 @@ while (i <= 10) {
 }
 ```
 
-The script performs exactly the same operations we wrote for the `for` loop above. Note that you need to update the value of `i`, (using `i <- i + 1`), otherwise the loop will run forever (infinite loop---to terminate click on the stop button in the top-right corner of the console). The anatomy of the `while` statement:
+The script performs exactly the same operations we wrote for the `for`
+loop above. Note that you need to update the value of `i`, (using `i <-
+i + 1`), otherwise the loop will run forever (infinite loop—to terminate
+click on the stop button in the top-right corner of the console). The
+anatomy of the `while` statement:
 
 ``` r
 while (condition is met) {
@@ -860,8 +1031,9 @@ while (i <= 10) {
 }
 ```
 
-> **Exercise**: What does this do? Try to guess what each loop does, and then create and run a script to confirm your intuition.
->
+> **Exercise**: What does this do? Try to guess what each loop does, and
+> then create and run a script to confirm your intuition.
+> 
 > ``` r
 > z <- seq(1, 1000, by = 3)
 > for (k in z) {
@@ -870,7 +1042,7 @@ while (i <= 10) {
 >   }
 > }
 > ```
->
+> 
 > ``` r
 > z <- readline(prompt = "Enter a number: ")
 > z <- as.numeric(z)
@@ -888,20 +1060,24 @@ while (i <= 10) {
 > }
 > ```
 
-Useful Functions
-================
+# Useful Functions
 
-Here's a short list of useful functions that will help you write your programs:
+Here’s a short list of useful functions that will help you write your
+programs:
 
--   `range(x)`: minimum and maximum of a vector `x`
--   `sort(x)`: sort a vector `x`
--   `unique(x)`: remove duplicate entries from vector `x`
--   `which(x == a)`: returns a vector of the indices of `x` having value `a`
--   `list.files("path_to_directory")`: list the files in a directory (current directory if not specified)
--   `table(x)` build a table of frequencies
+  - `range(x)`: minimum and maximum of a vector `x`
+  - `sort(x)`: sort a vector `x`
+  - `unique(x)`: remove duplicate entries from vector `x`
+  - `which(x == a)`: returns a vector of the indices of `x` having value
+    `a`
+  - `list.files("path_to_directory")`: list the files in a directory
+    (current directory if not specified)
+  - `table(x)` build a table of frequencies
 
-> **Exercises:** What does this code do? For each snippet of code, first try to guess what will happen. Then, write a script and run it to confirm your intuition.
->
+> **Exercises:** What does this code do? For each snippet of code, first
+> try to guess what will happen. Then, write a script and run it to
+> confirm your intuition.
+> 
 > ``` r
 > v <- c(1, 3, 5, 5, 3, 1, 2, 4, 6, 4, 2)
 > v <- sort(unique(v))
@@ -914,12 +1090,12 @@ Here's a short list of useful functions that will help you write your programs:
 >   }
 > }
 > ```
->
+> 
 > ``` r
 > x <- 1:100
 > x <- x[which(x %% 7 == 0)]
 > ```
->
+> 
 > ``` r
 > my_amount <- 10
 > while (my_amount > 0){
@@ -956,17 +1132,34 @@ Here's a short list of useful functions that will help you write your programs:
 > }
 > ```
 
-Packages
-========
+# Packages
 
-`R` is the most popular statistical computing software among biologists due to its highly specialized packages, often written by biologists for biologists. You can contribute a package too! The `RStudio` support [(`goo.gl/harVqF`)](http://goo.gl/harVqF) provides guidance on how to start developing `R` packages and Hadley Wickham's free online book [(`r-pkgs.had.co.nz`)](http://r-pkgs.had.co.nz) will make you a pro.
+`R` is the most popular statistical computing software among biologists
+due to its highly specialized packages, often written by biologists for
+biologists. You can contribute a package too\! The `RStudio` support
+[(`goo.gl/harVqF`)](http://goo.gl/harVqF) provides guidance on how to
+start developing `R` packages and Hadley Wickham’s free online book
+[(`r-pkgs.had.co.nz`)](http://r-pkgs.had.co.nz) will make you a pro.
 
-You can find highly specialized packages to address your research questions. Here are some suggestions for finding an appropriate package. The Comprehensive R Archive Network (CRAN) offers several ways to find specific packages for your task. You can either browse packages [(`goo.gl/7oVyKC`)](http://goo.gl/7oVyKC) and their short description or select a scientific field of interest [(`goo.gl/0WdIcu`)](http://goo.gl/0WdIcu) to browse through a compilation of packages related to each discipline.
+You can find highly specialized packages to address your research
+questions. Here are some suggestions for finding an appropriate package.
+The Comprehensive R Archive Network (CRAN) offers several ways to find
+specific packages for your task. You can either browse packages
+[(`goo.gl/7oVyKC`)](http://goo.gl/7oVyKC) and their short description or
+select a scientific field of interest
+[(`goo.gl/0WdIcu`)](http://goo.gl/0WdIcu) to browse through a
+compilation of packages related to each discipline.
 
-From within your `R` terminal or `RStudio` you can also call the function `RSiteSearch("KEYWORD")`, which submits a search query to the website [`search.r-project.org`](http://search.r-project.org). The website [`rseek.org`](http://rseek.org) casts an even wider net, as it not only includes package names and their documentation but also blogs and mailing lists related to `R`. If your research interests relate to high-throughput genomic data, you should have a look the packages provided by Bioconductor [(`goo.gl/7dwQlq`)](http://goo.gl/7dwQlq).
+From within your `R` terminal or `RStudio` you can also call the
+function `RSiteSearch("KEYWORD")`, which submits a search query to the
+website [`search.r-project.org`](http://search.r-project.org). The
+website [`rseek.org`](http://rseek.org) casts an even wider net, as it
+not only includes package names and their documentation but also blogs
+and mailing lists related to `R`. If your research interests relate to
+high-throughput genomic data, you should have a look the packages
+provided by Bioconductor [(`goo.gl/7dwQlq`)](http://goo.gl/7dwQlq).
 
-Installing a package
---------------------
+## Installing a package
 
 To install a package type
 
@@ -974,10 +1167,10 @@ To install a package type
 install.packages("name_of_package")
 ```
 
-in the **Console**, or choose the panel **Packages** and then click on *Install* in `RStudio`.
+in the **Console**, or choose the panel **Packages** and then click on
+*Install* in `RStudio`.
 
-Loading a package
------------------
+## Loading a package
 
 To load a package type
 
@@ -985,7 +1178,9 @@ To load a package type
 library(name_of_package)
 ```
 
-or call the command into your script. If you want your script to automatically install a package in case it's missing, use this boilerplate:
+or call the command into your script. If you want your script to
+automatically install a package in case it’s missing, use this
+boilerplate:
 
 ``` r
 if (!require(needed_package, character.only = TRUE, quietly = TRUE)) {
@@ -994,10 +1189,11 @@ if (!require(needed_package, character.only = TRUE, quietly = TRUE)) {
 }
 ```
 
-Example
--------
+## Example
 
-For example, say we want to access the dataset `bacteria`, which reports the incidence of *H. influenzae* in Australian children. The dataset is contained in the package `MASS`.
+For example, say we want to access the dataset `bacteria`, which reports
+the incidence of *H. influenzae* in Australian children. The dataset is
+contained in the package `MASS`.
 
 First, we need to load the package:
 
@@ -1017,10 +1213,12 @@ bacteria[1:3,]
     # 2 y  p   hi    2 X01 placebo
     # 3 y  p   hi    4 X01 placebo
 
-Random numbers
-==============
+# Random numbers
 
-To perform randomization, or any simulation, we typically need to draw random numbers. `R` has functions to sample random numbers from very many different statistical distributions. For example:
+To perform randomization, or any simulation, we typically need to draw
+random numbers. `R` has functions to sample random numbers from very
+many different statistical distributions. For
+example:
 
 ``` r
 runif(5) # sample 5 numbers from the uniform distribution between 0 and 1
@@ -1029,10 +1227,10 @@ rnorm(3) # three values from standard normal
 rnorm(3, mean = 5, sd = 4) # specify mean and standard deviation
 ```
 
-    # [1] 0.87342290 0.33870948 0.60132490 0.17143110 0.02394804
-    # [1] 1.214246 6.472745 2.634137 5.457498 5.501078
-    # [1] 0.7240446 2.9101073 0.8070543
-    # [1] 1.8039192 0.9611522 9.8106225
+    # [1] 0.89319730 0.09494441 0.52685112 0.57795551 0.06021471
+    # [1] 6.149588 5.514532 3.206976 7.552337 8.436843
+    # [1] 1.6745625 0.6492624 1.5607512
+    # [1] 0.3455098 5.4076817 0.9812083
 
 To sample from a set of values, use `sample`:
 
@@ -1043,14 +1241,19 @@ sample(v, 6, replace = TRUE) # with replacement
 sample(v) # simply shuffle the elements
 ```
 
-    # [1] "d" "a"
-    # [1] "d" "c" "b" "b" "c" "d"
-    # [1] "c" "b" "d" "a"
+    # [1] "a" "b"
+    # [1] "c" "c" "b" "c" "b" "b"
+    # [1] "c" "a" "b" "d"
 
-Writing functions
-=================
+# Writing functions
 
-The `R` community provides about 7,000 packages. Still, sometimes there isn't an already made function capable of doing what you need. In these cases, you can write your own functions. In fact, it is generally a good idea to always divide your analysis into functions, and then write a small "master" program that calls the functions and performs the analysis. In this way, the code will be much more legible, and you will be able to recycle the functions for your other projects.
+The `R` community provides about 7,000 packages. Still, sometimes there
+isn’t an already made function capable of doing what you need. In these
+cases, you can write your own functions. In fact, it is generally a good
+idea to always divide your analysis into functions, and then write a
+small “master” program that calls the functions and performs the
+analysis. In this way, the code will be much more legible, and you will
+be able to recycle the functions for your other projects.
 
 A function in `R` has this form:
 
@@ -1075,7 +1278,8 @@ sum_two_numbers(5, 7.2)
 
     # [1] 12.2
 
-You can set a default value for some of the arguments: if not specified by the user, the function will use these defaults:
+You can set a default value for some of the arguments: if not specified
+by the user, the function will use these defaults:
 
 ``` r
 sum_two_numbers <- function(a = 1, b = 2){
@@ -1112,7 +1316,8 @@ my_factorial(10)
     # [1] "6! = 720"
     # [1] "10! = 3628800"
 
-You can return **only one** object. If you need to return multiple values, organize them into a vector/matrix/list and return that.
+You can return **only one** object. If you need to return multiple
+values, organize them into a vector/matrix/list and return that.
 
 ``` r
 order_two_numbers <- function(a, b){
@@ -1123,21 +1328,36 @@ order_two_numbers <- function(a, b){
 order_two_numbers(runif(1), runif(1))
 ```
 
-    # [1] 0.15670341 0.01389284
+    # [1] 0.9604576 0.7839466
 
-Organizing and running code
-===========================
+# Organizing and running code
 
-During the class, we will write a lot of code, of increasing complexity. Here is what you should do to ensure that your programs are well-organized, easy to understand, and easy to debug.
+During the class, we will write a lot of code, of increasing complexity.
+Here is what you should do to ensure that your programs are
+well-organized, easy to understand, and easy to debug.
 
-1.  Take the problem, and divide it into its basic building blocks. Each block should be its own function.
-2.  Write the code for each building block separately, and test it thoroughly.
-3.  Extensively document the code, so that you can understand what you did, how you did it, and why.
+1.  Take the problem, and divide it into its basic building blocks. Each
+    block should be its own function.
+2.  Write the code for each building block separately, and test it
+    thoroughly.
+3.  Extensively document the code, so that you can understand what you
+    did, how you did it, and why.
 4.  Combine the building blocks into a master program.
 
-For example, let's write code that takes the data on Chromosome 6 we have seen above, and tries to identify which SNPs deviate the most from Hardy-Weinberg equilibrium. Remember that in an infinite population, where mating is random, there is no selection and no mutations, the proportion of people carrying the alleles ![A1A1](https://latex.codecogs.com/png.latex?A1A1 "A1A1") should be approximately ![p\_{11} = p^2](https://latex.codecogs.com/png.latex?p_%7B11%7D%20%3D%20p%5E2 "p_{11} = p^2") (where ![p](https://latex.codecogs.com/png.latex?p "p") is the frequency of the first allele in the population ![p = p\_{11} + \\frac{1}{2} p\_{12}](https://latex.codecogs.com/png.latex?p%20%3D%20p_%7B11%7D%20%2B%20%5Cfrac%7B1%7D%7B2%7D%20p_%7B12%7D "p = p_{11} + \frac{1}{2} p_{12}")), those carrying ![A1A2](https://latex.codecogs.com/png.latex?A1A2 "A1A2") should be ![p\_{12} = 2 p q](https://latex.codecogs.com/png.latex?p_%7B12%7D%20%3D%202%20p%20q "p_{12} = 2 p q") (where ![q = 1-p](https://latex.codecogs.com/png.latex?q%20%3D%201-p "q = 1-p")) and finally those carrying ![A2A2](https://latex.codecogs.com/png.latex?A2A2 "A2A2") should be ![p\_{22} = q^2](https://latex.codecogs.com/png.latex?p_%7B22%7D%20%3D%20q%5E2 "p_{22} = q^2"). This is called the Hardy-Weinberg equilibrium.
+For example, let’s write code that takes the data on Chromosome 6 we
+have seen above, and tries to identify which SNPs deviate the most from
+Hardy-Weinberg equilibrium. Remember that in an infinite population,
+where mating is random, there is no selection and no mutations, the
+proportion of people carrying the alleles \(A1A1\) should be
+approximately \(p_{11} = p^2\) (where \(p\) is the frequency of the
+first allele in the population \(p = p_{11} + \frac{1}{2} p_{12}\)),
+those carrying \(A1A2\) should be \(p_{12} = 2 p q\) (where \(q = 1-p\))
+and finally those carrying \(A2A2\) should be \(p_{22} = q^2\). This is
+called the Hardy-Weinberg equilibrium.
 
-We want to test this on a number of different SNPs. First, we write a function that takes as input the data and a given SNP, and computes the probability ![p](https://latex.codecogs.com/png.latex?p "p") of carrying the first allele.
+We want to test this on a number of different SNPs. First, we write a
+function that takes as input the data and a given SNP, and computes the
+probability \(p\) of carrying the first allele.
 
 ``` r
 compute_probabilities_HW <- function(my_data, my_SNP = "rs1535053"){
@@ -1206,7 +1426,9 @@ compute_probabilities_HW(ch6)
     # $BB
     # [1] 80
 
-If the allele conformed to Hardy-Weinberg, we should find approximately ![p^2 \\cdot n](https://latex.codecogs.com/png.latex?p%5E2%20%5Ccdot%20n "p^2 \cdot n") people with ![A1A1](https://latex.codecogs.com/png.latex?A1A1 "A1A1"), where ![n](https://latex.codecogs.com/png.latex?n "n") is the number of people sampled. Let's see whether these assumptions are met by the data:
+If the allele conformed to Hardy-Weinberg, we should find approximately
+\(p^2 \cdot n\) people with \(A1A1\), where \(n\) is the number of
+people sampled. Let’s see whether these assumptions are met by the data:
 
 ``` r
 observed_vs_expected_HW <- function(SNP_data){
@@ -1231,9 +1453,9 @@ observed_vs_expected_HW(my_SNP_data)
     # observed 5.000000 39.00000 80.00000
     # expected 4.840726 39.31855 79.84073
 
-Pretty good! This SNP seems very close to the theoretical expectation.
+Pretty good\! This SNP seems very close to the theoretical expectation.
 
-Let's try another one
+Let’s try another one
 
 ``` r
 observed_vs_expected_HW(compute_probabilities_HW(ch6, "rs1316662"))
@@ -1243,7 +1465,8 @@ observed_vs_expected_HW(compute_probabilities_HW(ch6, "rs1316662"))
     # observed 26.00000 62.00000 36.00000
     # expected 26.20161 61.59677 36.20161
 
-Because we have so many SNPs, we will surely find some that do not comply with the expectation. For example:
+Because we have so many SNPs, we will surely find some that do not
+comply with the expectation. For example:
 
 ``` r
 my_SNP_data <- compute_probabilities_HW(ch6, "rs6596835")
@@ -1254,15 +1477,14 @@ observed_vs_expected_HW(my_SNP_data)
     # observed 17.000000 24.0000 82.0000
     # expected  6.837398 44.3252 71.8374
 
-To find those with the largest deviations, we can compute for the statistic:
+To find those with the largest deviations, we can compute for the
+statistic:
 
-![
-\\sum\_i \\frac{(e\_i - o\_i)^2}{e\_i}
-](https://latex.codecogs.com/png.latex?%0A%5Csum_i%20%5Cfrac%7B%28e_i%20-%20o_i%29%5E2%7D%7Be_i%7D%0A "
+\[
 \sum_i \frac{(e_i - o_i)^2}{e_i}
-")
-
- In genetics, this is called ![\\chi^2](https://latex.codecogs.com/png.latex?%5Cchi%5E2 "\chi^2") statistics, because if the data were to follow the assumptions, these quantities would follow the ![\\chi^2](https://latex.codecogs.com/png.latex?%5Cchi%5E2 "\chi^2") distribution.
+\] In genetics, this is called \(\chi^2\) statistics, because if the
+data were to follow the assumptions, these quantities would follow the
+\(\chi^2\) distribution.
 
 ``` r
 compute_chi_sq_stat <- function(my_obs_vs_expected){
@@ -1272,7 +1494,8 @@ compute_chi_sq_stat <- function(my_obs_vs_expected){
 }
 ```
 
-Now let's compute the statistic for each SNPs:
+Now let’s compute the statistic for each
+SNPs:
 
 ``` r
 # because this might take a while, we're going to only analyze the first 1000 SNPs
@@ -1298,75 +1521,89 @@ head(results)
     # 178 rs6930805  9.491511
     # 179 rs1737539  9.491511
 
-This example showed how a seemingly difficuly problem can be decomposed in smaller problems that are easier to solve.
+This example showed how a seemingly difficuly problem can be decomposed
+in smaller problems that are easier to solve.
 
-Documenting the code using `knitr`
-==================================
+# Documenting the code using `knitr`
 
-> *Let us change our traditional attitude to the construction of programs: Instead of imagining that our main task is to instruct a computer what to do, let us concentrate rather on explaining to humans what we want the computer to do. *
+> *Let us change our traditional attitude to the construction of
+> programs: Instead of imagining that our main task is to instruct a
+> computer what to do, let us concentrate rather on explaining to humans
+> what we want the computer to do. *
 
 > Donald E. Knuth, Literate Programming, 1984
 
-When doing experiments, we typically keep track of everything we do in a laboratory notebook, so that when writing the manuscript, or responding to queries, we can go back to our documentation to find exactly what we did, how we did it, and possibly why we did it. The same should be true for computational work.
+When doing experiments, we typically keep track of everything we do in a
+laboratory notebook, so that when writing the manuscript, or responding
+to queries, we can go back to our documentation to find exactly what we
+did, how we did it, and possibly why we did it. The same should be true
+for computational work.
 
-`RStudio` makes it very easy to build a computational laboratory notebook. First, create a new `R Markdown` file (choose `File` -&gt; `New File` -&gt; `R Markdown` from the menu).
+`RStudio` makes it very easy to build a computational laboratory
+notebook. First, create a new `R Markdown` file (choose `File` -\> `New
+File` -\> `R Markdown` from the menu).
 
-The gist of it is that you write a text file (`.Rmd`). The file is then read by an iterpreter that transforms it into an `.html` or `.pdf` file, or even into a Word document. You can use special syntax to render the text in different ways. For example, type
+The gist of it is that you write a text file (`.Rmd`). The file is then
+read by an iterpreter that transforms it into an `.html` or `.pdf` file,
+or even into a Word document. You can use special syntax to render the
+text in different ways. For example, type
 
     ***********
-
+    
     *Test* **Test2**
-
+    
     # Very large header
-
+    
     ## Large header
-
+    
     ### Smaller header
-
+    
     ## Unordered lists
-
+    
     * First
     * Second
         + Second 1
         + Second 2
-
+    
     1. This is
     2. A numbered list
-
+    
     You can insert `inline code`
-
+    
     -----------
 
 The code above yields:
 
-------------------------------------------------------------------------
+-----
 
 *Test* **Test2**
 
-Very large header
-=================
+# Very large header
 
-Large header
-------------
+## Large header
 
 ### Smaller header
 
-Unordered lists
----------------
+## Unordered lists
 
--   First
--   Second
-    -   Second 1
-    -   Second 2
+  - First
+  - Second
+      - Second 1
+      - Second 2
+
+<!-- end list -->
 
 1.  This is
 2.  A numbered list
 
 You can insert `inline code`
 
-------------------------------------------------------------------------
+-----
 
-The most important feature of `R Markdown`, however, is that you can include blocks of code, and they will be interpreted and executed by `R`. You can therefore combine effectively the code itself with the description of what you are doing.
+The most important feature of `R Markdown`, however, is that you can
+include blocks of code, and they will be interpreted and executed by
+`R`. You can therefore combine effectively the code itself with the
+description of what you are doing.
 
 For example, including
 
@@ -1382,24 +1619,34 @@ print("hello world!")
 
     # [1] "hello world!"
 
-If you don't want to run the `R` code, but just display it, use `{r, eval = FALSE}`; if you want to show the output but not the code, use `{r, echo = FALSE}`.
+If you don’t want to run the `R` code, but just display it, use `{r,
+eval = FALSE}`; if you want to show the output but not the code, use
+`{r, echo = FALSE}`.
 
-You can include plots, tables, and even render equations using LaTeX. In summary, when exploring your data or writing the methods of your paper, give `R Markdown` a try!
+You can include plots, tables, and even render equations using LaTeX. In
+summary, when exploring your data or writing the methods of your paper,
+give `R Markdown` a try\!
 
-You can find inspiration in the notes for this class: all are written in `R Markdown`.
+You can find inspiration in the notes for this class: all are written in
+`R Markdown`.
 
-Resources
-=========
+# Resources
 
-There are very many excellent books and tutorials you can read to become a proficient programmer in `R`. For example:
+There are very many excellent books and tutorials you can read to become
+a proficient programmer in `R`. For example:
 
--   [Intro to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.html)
--   [Advanced R](http://adv-r.had.co.nz/)
--   [DataCamp](https://www.datacamp.com/courses/free-introduction-to-r)
--   [ComputerWorld](https://www.computerworld.com/article/2497143/business-intelligence/business-intelligence-beginner-s-guide-to-r-introduction.html)
--   [R Style guide](http://adv-r.had.co.nz/Style.html)
--   [R for Data Science](https://hackr.io/tutorial/r-for-data-science)
--   [RStudio Cheat Sheet](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf)
--   [Base R Cheat Sheet](http://github.com/rstudio/cheatsheets/raw/master/base-r.pdf)
--   [Advanced R Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2016/02/advancedR.pdf)
--   [X in Y minutes](https://learnxinyminutes.com/docs/r/)
+  - [Intro to
+    R](https://cran.r-project.org/doc/manuals/r-release/R-intro.html)
+  - [Advanced
+    R](http://adv-r.had.co.nz/)
+  - [DataCamp](https://www.datacamp.com/courses/free-introduction-to-r)
+  - [ComputerWorld](https://www.computerworld.com/article/2497143/business-intelligence/business-intelligence-beginner-s-guide-to-r-introduction.html)
+  - [R Style guide](http://adv-r.had.co.nz/Style.html)
+  - [R for Data Science](https://hackr.io/tutorial/r-for-data-science)
+  - [RStudio Cheat
+    Sheet](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf)
+  - [Base R Cheat
+    Sheet](http://github.com/rstudio/cheatsheets/raw/master/base-r.pdf)
+  - [Advanced R Cheat
+    Sheet](https://www.rstudio.com/wp-content/uploads/2016/02/advancedR.pdf)
+  - [X in Y minutes](https://learnxinyminutes.com/docs/r/)

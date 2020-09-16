@@ -1,14 +1,7 @@
 Time series: modeling and forecasting
 ================
 **Dmitry Kondrashov & Stefano Allesina**
-Fundamentals of Biological Data Analysis -- BIOS 26318
-
--   [Goals:](#goals)
--   [Time series format and plotting](#time-series-format-and-plotting)
--   [Correlations of time series: cross-, auto-, and lag plot](#correlations-of-time-series-cross--auto--and-lag-plot)
--   [Decomposition of time series](#decomposition-of-time-series)
--   [Regression methods](#regression-methods)
--   [References and further reading:](#references-and-further-reading)
+Fundamentals of Biological Data Analysis – BIOS 26318
 
 ``` r
 library(tidyverse) # this loads both dplyr and tidyr, along with other packages
@@ -18,21 +11,21 @@ library(GGally)
 ```
 
 > Prediction is difficult, especially about the future.
->
-> --- Niels Bohr (apocryphally)
+> 
+> — Niels Bohr (apocryphally)
 
-Goals:
-------
+## Goals:
 
--   Use current tools for handling and visualizing time series
--   Calculate auto- and cross-correlations of time series
--   Decompose time series into components
--   Use linear regression methods for fitting and forecasting
+  - Use current tools for handling and visualizing time series
+  - Calculate auto- and cross-correlations of time series
+  - Decompose time series into components
+  - Use linear regression methods for fitting and forecasting
 
-Time series format and plotting
--------------------------------
+## Time series format and plotting
 
-A time series is a special data set where each observation has an associated time measurement. There is a special R structure for storing and operating on time series, called `ts`, as illustrated here:
+A time series is a special data set where each observation has an
+associated time measurement. There is a special R structure for storing
+and operating on time series, called `ts`, as illustrated here:
 
 ``` r
 births <- scan("http://robjhyndman.com/tsdldata/data/nybirths.dat")
@@ -71,9 +64,16 @@ birthstimeseries
     # 1958 25.912 26.619
     # 1959 26.992 27.897
 
-This reads in a data set of number of births per month in New York City from 1946 to 1958 (it's not clear what the units are - mabe thousands of births?) To create the time series, we had to give the function the `frequency`, or the number of time points in a year, and the starting value as a vector assigned to `start=c(1946, 1)`, the first element is the year and the second the month.
+This reads in a data set of number of births per month in New York City
+from 1946 to 1958 (it’s not clear what the units are - mabe thousands of
+births?) To create the time series, we had to give the function the
+`frequency`, or the number of time points in a year, and the starting
+value as a vector assigned to `start=c(1946, 1)`, the first element is
+the year and the second the month.
 
-Here are two different time series, of diabetic drug sales in Australia (in millions of AUS dollaors), also with monthly frequency, and of Boston marathon winning times, with yearly frequency:
+Here are two different time series, of diabetic drug sales in Australia
+(in millions of AUS dollaors), also with monthly frequency, and of
+Boston marathon winning times, with yearly frequency:
 
 ``` r
 a10
@@ -123,28 +123,26 @@ marathon
     # Start = 1897 
     # End = 2016 
     # Frequency = 1 
-    #   [1] 175.1667 162.0000 174.6333 159.7333 149.3833 163.2000 161.4833
-    #   [8] 158.0667 158.4167 165.7500 144.4000 145.7167 173.6000 148.8667
-    #  [15] 141.6500 141.3000 145.2333 145.2333 151.6833 147.2667 148.6167
-    #  [22] 149.8833 149.2167 149.5167 138.9500 138.1667 143.7833 149.6667
-    #  [29] 153.0000 145.6667 160.3667 157.1167 153.1333 154.8000 166.7500
-    #  [36] 153.6000 151.0167 152.8833 152.1167 153.6667 153.3333 155.5667
-    #  [43] 148.8500 148.4667 150.6333 146.8500 148.4167 151.8333 150.6667
-    #  [50] 149.4500 145.6500 151.0333 151.8333 152.6500 147.7500 151.8833
-    #  [57] 138.8500 140.6500 138.3667 134.2333 140.0833 145.9000 142.7000
-    #  [64] 140.9000 143.6500 143.8000 138.9667 139.9833 136.5500 137.1833
-    #  [71] 135.7500 142.2833 133.8167 130.5000 138.7500 135.6500 136.0500
-    #  [78] 133.6500 129.9167 140.3167 134.7667 130.2167 129.4500 132.1833
-    #  [85] 129.4333 128.8667 129.0000 130.5667 134.0833 127.8500 131.8333
-    #  [92] 128.7167 129.1000 128.3167 131.1000 128.2333 129.5500 127.2500
-    #  [99] 129.3667 129.2500 130.5667 127.5667 129.8667 129.7833 129.7167
-    # [106] 129.0333 130.1833 130.6167 131.7333 127.2333 134.2167 127.7500
-    # [113] 128.7000 125.8667 123.0333 132.6667 130.3667 128.6167 129.2833
-    # [120] 132.7333
+    #   [1] 175.1667 162.0000 174.6333 159.7333 149.3833 163.2000 161.4833 158.0667
+    #   [9] 158.4167 165.7500 144.4000 145.7167 173.6000 148.8667 141.6500 141.3000
+    #  [17] 145.2333 145.2333 151.6833 147.2667 148.6167 149.8833 149.2167 149.5167
+    #  [25] 138.9500 138.1667 143.7833 149.6667 153.0000 145.6667 160.3667 157.1167
+    #  [33] 153.1333 154.8000 166.7500 153.6000 151.0167 152.8833 152.1167 153.6667
+    #  [41] 153.3333 155.5667 148.8500 148.4667 150.6333 146.8500 148.4167 151.8333
+    #  [49] 150.6667 149.4500 145.6500 151.0333 151.8333 152.6500 147.7500 151.8833
+    #  [57] 138.8500 140.6500 138.3667 134.2333 140.0833 145.9000 142.7000 140.9000
+    #  [65] 143.6500 143.8000 138.9667 139.9833 136.5500 137.1833 135.7500 142.2833
+    #  [73] 133.8167 130.5000 138.7500 135.6500 136.0500 133.6500 129.9167 140.3167
+    #  [81] 134.7667 130.2167 129.4500 132.1833 129.4333 128.8667 129.0000 130.5667
+    #  [89] 134.0833 127.8500 131.8333 128.7167 129.1000 128.3167 131.1000 128.2333
+    #  [97] 129.5500 127.2500 129.3667 129.2500 130.5667 127.5667 129.8667 129.7833
+    # [105] 129.7167 129.0333 130.1833 130.6167 131.7333 127.2333 134.2167 127.7500
+    # [113] 128.7000 125.8667 123.0333 132.6667 130.3667 128.6167 129.2833 132.7333
 
 ### Visualizing the data
 
-The most straighforward way of visualizing time series is using a time plot, which can be created using `autoplot`:
+The most straighforward way of visualizing time series is using a time
+plot, which can be created using `autoplot`:
 
 ``` r
 autoplot(birthstimeseries) +
@@ -153,7 +151,7 @@ autoplot(birthstimeseries) +
   xlab("Year")
 ```
 
-<img src="time_series_files/figure-markdown_github/unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
+<img src="time_series_files/figure-gfm/unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
 
 ``` r
 autoplot(a10) +
@@ -162,7 +160,7 @@ autoplot(a10) +
   xlab("Year")
 ```
 
-<img src="time_series_files/figure-markdown_github/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
+<img src="time_series_files/figure-gfm/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
 
 ``` r
 autoplot(marathon) +
@@ -171,48 +169,76 @@ autoplot(marathon) +
   xlab("Year")
 ```
 
-<img src="time_series_files/figure-markdown_github/unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
+<img src="time_series_files/figure-gfm/unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
 
 ### Trends, seasonality, and cyclicity
 
-Time series of course illustrate changes over time, and frequently we want to describe and account for these changes. In forrecasting, there are three types of systematic patters that have their own terminology (taken from \[1\])
+Time series of course illustrate changes over time, and frequently we
+want to describe and account for these changes. In forrecasting, there
+are three types of systematic patters that have their own terminology
+(taken from \[1\])
 
-> -   **Trend** A trend exists when there is a long-term increase or decrease in the data. It does not have to be linear. Sometimes we will refer to a trend as “changing direction”, when it might go from an increasing trend to a decreasing trend. There is a trend in the antidiabetic drug sales data.
->
-> -   **Seasonal** A seasonal pattern occurs when a time series is affected by seasonal factors such as the time of the year or the day of the week. Seasonality is always of a fixed and known frequency. The monthly sales of antidiabetic drugs above shows seasonality which is induced partly by the change in the cost of the drugs at the end of the calendar year.
->
-> -   **Cyclic** A cycle occurs when the data exhibit rises and falls that are not of a fixed frequency. These fluctuations are usually due to economic conditions, and are often related to the “business cycle”. The duration of these fluctuations is usually at least 2 years.
->
-Correlations of time series: cross-, auto-, and lag plot
---------------------------------------------------------
+>   - **Trend** A trend exists when there is a long-term increase or
+>     decrease in the data. It does not have to be linear. Sometimes we
+>     will refer to a trend as “changing direction”, when it might go
+>     from an increasing trend to a decreasing trend. There is a trend
+>     in the antidiabetic drug sales data.
+> 
+>   - **Seasonal** A seasonal pattern occurs when a time series is
+>     affected by seasonal factors such as the time of the year or the
+>     day of the week. Seasonality is always of a fixed and known
+>     frequency. The monthly sales of antidiabetic drugs above shows
+>     seasonality which is induced partly by the change in the cost of
+>     the drugs at the end of the calendar year.
+> 
+>   - **Cyclic** A cycle occurs when the data exhibit rises and falls
+>     that are not of a fixed frequency. These fluctuations are usually
+>     due to economic conditions, and are often related to the “business
+>     cycle”. The duration of these fluctuations is usually at least 2
+>     years.
+
+## Correlations of time series: cross-, auto-, and lag plot
 
 ### Visualizing correlation between different variables
 
-The following data set contains the number of visitors (visitor nights) on a quarterly basis for five regions of New South Wales, Australia:
+The following data set contains the number of visitors (visitor nights)
+on a quarterly basis for five regions of New South Wales, Australia:
 
 ``` r
 autoplot(visnights[,1:5], facets=TRUE) +
   ylab("Number of visitor nights each quarter (millions)")
 ```
 
-<img src="time_series_files/figure-markdown_github/unnamed-chunk-7-1.png" style="display: block; margin: auto;" />
+<img src="time_series_files/figure-gfm/unnamed-chunk-7-1.png" style="display: block; margin: auto;" />
 
-One simple question is whether different variables are related to each other. One simple way is to calculate the Pearson correlation between different time series, called the *cross-correlation* (where ![\\bar X](https://latex.codecogs.com/png.latex?%5Cbar%20X "\bar X") stands for the mean of X and ![Var(X)](https://latex.codecogs.com/png.latex?Var%28X%29 "Var(X)") stands for the variance of ![X](https://latex.codecogs.com/png.latex?X "X")):
+One simple question is whether different variables are related to each
+other. One simple way is to calculate the Pearson correlation between
+different time series, called the *cross-correlation* (where ![\\bar
+X](https://latex.codecogs.com/png.latex?%5Cbar%20X "\\bar X") stands for
+the mean of X and
+![Var(X)](https://latex.codecogs.com/png.latex?Var%28X%29 "Var(X)")
+stands for the variance of ![X](https://latex.codecogs.com/png.latex?X
+"X")):
 
+  
 ![
-Cor(X,Y) = \\frac{\\sum\_t (\\bar X - X\_t)(\\bar Y - Y\_t)}{\\sqrt{Var(X)Var(Y)}}
-](https://latex.codecogs.com/png.latex?%0ACor%28X%2CY%29%20%3D%20%5Cfrac%7B%5Csum_t%20%28%5Cbar%20X%20-%20X_t%29%28%5Cbar%20Y%20-%20Y_t%29%7D%7B%5Csqrt%7BVar%28X%29Var%28Y%29%7D%7D%0A "
-Cor(X,Y) = \frac{\sum_t (\bar X - X_t)(\bar Y - Y_t)}{\sqrt{Var(X)Var(Y)}}
-")
+Cor(X,Y) = \\frac{\\sum\_t (\\bar X - X\_t)(\\bar Y -
+Y\_t)}{\\sqrt{Var(X)Var(Y)}}
+](https://latex.codecogs.com/png.latex?%0ACor%28X%2CY%29%20%3D%20%5Cfrac%7B%5Csum_t%20%28%5Cbar%20X%20-%20X_t%29%28%5Cbar%20Y%20-%20Y_t%29%7D%7B%5Csqrt%7BVar%28X%29Var%28Y%29%7D%7D%0A
+"
+Cor(X,Y) = \\frac{\\sum_t (\\bar X - X_t)(\\bar Y - Y_t)}{\\sqrt{Var(X)Var(Y)}}
+")  
 
-In a data set with multiple variables it can be handy to examine the correlations between all pairs between them. Here's a convenient function for that:
+In a data set with multiple variables it can be handy to examine the
+correlations between all pairs between them. Here’s a convenient
+function for that:
 
 ``` r
 head(visnights)
 GGally::ggpairs(as.data.frame(visnights[,1:5]))
 ```
 
-<img src="time_series_files/figure-markdown_github/unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
+<img src="time_series_files/figure-gfm/unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
 
     #         NSWMetro NSWNthCo NSWSthCo NSWSthIn NSWNthIn  QLDMetro QLDCntrl
     # 1998 Q1 9.047095 8.565678 5.818029 2.679538 2.977507 12.106052 2.748374
@@ -238,7 +264,9 @@ GGally::ggpairs(as.data.frame(visnights[,1:5]))
 
 ### Autocorrelation
 
-A time series can be correlated against itself shifted in time by some set amount, also called *lagged*. We can plot the lagged correlations for different visitor
+A time series can be correlated against itself shifted in time by some
+set amount, also called *lagged*. We can plot the lagged correlations
+for different visitor
 
 ``` r
 visnights[,1]
@@ -246,7 +274,7 @@ visnights_smaller <- window(visnights[,2], start=2000, end = 2010)
 gglagplot(visnights_smaller) 
 ```
 
-<img src="time_series_files/figure-markdown_github/unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
+<img src="time_series_files/figure-gfm/unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
 
     #          Qtr1     Qtr2     Qtr3     Qtr4
     # 1998 9.047095 6.962126 6.871963 7.147293
@@ -269,88 +297,128 @@ gglagplot(visnights_smaller)
     # 2015 8.725132 6.995875 6.294490 6.945476
     # 2016 7.373757 6.792234 6.530568 7.878277
 
-Here the colors indicate the quarter of the variable on the vertical axis, compared with the shifted (lagged variable on the horizontal axis, and the lines connect points in chronological order. The relationship is strongly positive at lags 4 and 8, reflecting the strong seasonality in the data.
+Here the colors indicate the quarter of the variable on the vertical
+axis, compared with the shifted (lagged variable on the horizontal axis,
+and the lines connect points in chronological order. The relationship is
+strongly positive at lags 4 and 8, reflecting the strong seasonality in
+the data.
 
-This suggests that there is a strong similarity between the time series and itself, shifted by certain time values. This is described by the *autocorrelation*, which is defined as a function of the lag ![k](https://latex.codecogs.com/png.latex?k "k"):
+This suggests that there is a strong similarity between the time series
+and itself, shifted by certain time values. This is described by the
+*autocorrelation*, which is defined as a function of the lag
+![k](https://latex.codecogs.com/png.latex?k "k"):
 
+  
 ![
-r(k) = \\frac{\\sum\_{t=k}^T (\\bar X - X\_t)(\\bar X - X\_{t-k})}{Var(X)}
-](https://latex.codecogs.com/png.latex?%0Ar%28k%29%20%3D%20%5Cfrac%7B%5Csum_%7Bt%3Dk%7D%5ET%20%28%5Cbar%20X%20-%20X_t%29%28%5Cbar%20X%20-%20X_%7Bt-k%7D%29%7D%7BVar%28X%29%7D%0A "
-r(k) = \frac{\sum_{t=k}^T (\bar X - X_t)(\bar X - X_{t-k})}{Var(X)}
-")
-
- This can be calculated and plotted for our example of the visitation nights in New South Wales:
+r(k) = \\frac{\\sum\_{t=k}^T (\\bar X - X\_t)(\\bar X -
+X\_{t-k})}{Var(X)}
+](https://latex.codecogs.com/png.latex?%0Ar%28k%29%20%3D%20%5Cfrac%7B%5Csum_%7Bt%3Dk%7D%5ET%20%28%5Cbar%20X%20-%20X_t%29%28%5Cbar%20X%20-%20X_%7Bt-k%7D%29%7D%7BVar%28X%29%7D%0A
+"
+r(k) = \\frac{\\sum_{t=k}^T (\\bar X - X_t)(\\bar X - X_{t-k})}{Var(X)}
+")  
+This can be calculated and plotted for our example of the visitation
+nights in New South
+Wales:
 
 ``` r
 ggAcf(visnights_smaller)
 ```
 
-<img src="time_series_files/figure-markdown_github/unnamed-chunk-10-1.png" style="display: block; margin: auto;" />
+<img src="time_series_files/figure-gfm/unnamed-chunk-10-1.png" style="display: block; margin: auto;" />
 
-Notice the periodicity in the autocorrelation, which indicated periodicity in the time series. Let's similarly calculate the autocorrelation of the drug sales data:
+Notice the periodicity in the autocorrelation, which indicated
+periodicity in the time series. Let’s similarly calculate the
+autocorrelation of the drug sales
+data:
 
 ``` r
 ggAcf(a10)
 ```
 
-<img src="time_series_files/figure-markdown_github/unnamed-chunk-11-1.png" style="display: block; margin: auto;" />
+<img src="time_series_files/figure-gfm/unnamed-chunk-11-1.png" style="display: block; margin: auto;" />
 
-Notice how different this *correlogram* is - there are no zero values of autcorrelation, only slow decay with some small periodic components.
+Notice how different this *correlogram* is - there are no zero values of
+autcorrelation, only slow decay with some small periodic components.
 
-Autocorrelation measures the *memory* of a signal - for example, pure white noise is uncorrelated with itself even a moment later, and thus has no memory. As such, it is very useful as a measure of a trend in the data - if the time series has slowly decaying, positive autocorrelation, that indicates a pronounced trend, while periodicity indicates seasonality in the data.
+Autocorrelation measures the *memory* of a signal - for example, pure
+white noise is uncorrelated with itself even a moment later, and thus
+has no memory. As such, it is very useful as a measure of a trend in the
+data - if the time series has slowly decaying, positive autocorrelation,
+that indicates a pronounced trend, while periodicity indicates
+seasonality in the data.
 
-**Exercise:** Use the lag and autocorrelation analysis to describe the patterns in the time series of births in NYC and in the Boston marathon winning times.
+**Exercise:** Use the lag and autocorrelation analysis to describe the
+patterns in the time series of births in NYC and in the Boston marathon
+winning
+times.
 
 ``` r
 gglagplot(marathon)
 ```
 
-<img src="time_series_files/figure-markdown_github/unnamed-chunk-12-1.png" style="display: block; margin: auto;" />
+<img src="time_series_files/figure-gfm/unnamed-chunk-12-1.png" style="display: block; margin: auto;" />
 
 ``` r
 ggAcf(marathon)
 ```
 
-<img src="time_series_files/figure-markdown_github/unnamed-chunk-12-2.png" style="display: block; margin: auto;" />
+<img src="time_series_files/figure-gfm/unnamed-chunk-12-2.png" style="display: block; margin: auto;" />
 
 ``` r
 gglagplot(birthstimeseries)
 ```
 
-<img src="time_series_files/figure-markdown_github/unnamed-chunk-12-3.png" style="display: block; margin: auto;" />
+<img src="time_series_files/figure-gfm/unnamed-chunk-12-3.png" style="display: block; margin: auto;" />
 
 ``` r
 ggAcf(birthstimeseries)
 ```
 
-<img src="time_series_files/figure-markdown_github/unnamed-chunk-12-4.png" style="display: block; margin: auto;" />
+<img src="time_series_files/figure-gfm/unnamed-chunk-12-4.png" style="display: block; margin: auto;" />
 
-Decomposition of time series
-----------------------------
+## Decomposition of time series
 
-There are two main types of decompositions of time series: additive and multiplicative. Let us call ![X\_t](https://latex.codecogs.com/png.latex?X_t "X_t") the time series data, ![T\_t](https://latex.codecogs.com/png.latex?T_t "T_t") the trend (non-periodic component), ![S\_t](https://latex.codecogs.com/png.latex?S_t "S_t") the seasonal part (periodic component), and ![R\_t](https://latex.codecogs.com/png.latex?R_t "R_t") the remainder.
+There are two main types of decompositions of time series: additive and
+multiplicative. Let us call
+![X\_t](https://latex.codecogs.com/png.latex?X_t "X_t") the time series
+data, ![T\_t](https://latex.codecogs.com/png.latex?T_t "T_t") the trend
+(non-periodic component),
+![S\_t](https://latex.codecogs.com/png.latex?S_t "S_t") the seasonal
+part (periodic component), and
+![R\_t](https://latex.codecogs.com/png.latex?R_t "R_t") the remainder.
 
+  
 ![
 X\_t = T\_t + S\_t + R\_t
-](https://latex.codecogs.com/png.latex?%0AX_t%20%3D%20T_t%20%2B%20S_t%20%2B%20R_t%0A "
+](https://latex.codecogs.com/png.latex?%0AX_t%20%3D%20T_t%20%2B%20S_t%20%2B%20R_t%0A
+"
 X_t = T_t + S_t + R_t
-")
-
+")  
+  
 ![
 X\_t = T\_t \\times S\_t \\times R\_t
-](https://latex.codecogs.com/png.latex?%0AX_t%20%3D%20T_t%20%5Ctimes%20S_t%20%5Ctimes%20R_t%0A "
-X_t = T_t \times S_t \times R_t
-")
+](https://latex.codecogs.com/png.latex?%0AX_t%20%3D%20T_t%20%5Ctimes%20S_t%20%5Ctimes%20R_t%0A
+"
+X_t = T_t \\times S_t \\times R_t
+")  
 
-One simple way of removing seasonality and estimating the trend is using the *moving average*, that is using ![k](https://latex.codecogs.com/png.latex?k "k") points before and ![k](https://latex.codecogs.com/png.latex?k "k") points after each point to calculate the trend:
-
+One simple way of removing seasonality and estimating the trend is using
+the *moving average*, that is using
+![k](https://latex.codecogs.com/png.latex?k "k") points before and
+![k](https://latex.codecogs.com/png.latex?k "k") points after each point
+to calculate the trend:   
 ![
-T\_t =  \\frac{1}{m} \\sum\_{i=-k}^k X\_{t+i}
-](https://latex.codecogs.com/png.latex?%0AT_t%20%3D%20%20%5Cfrac%7B1%7D%7Bm%7D%20%5Csum_%7Bi%3D-k%7D%5Ek%20X_%7Bt%2Bi%7D%0A "
-T_t =  \frac{1}{m} \sum_{i=-k}^k X_{t+i}
-")
+T\_t = \\frac{1}{m} \\sum\_{i=-k}^k X\_{t+i}
+](https://latex.codecogs.com/png.latex?%0AT_t%20%3D%20%20%5Cfrac%7B1%7D%7Bm%7D%20%5Csum_%7Bi%3D-k%7D%5Ek%20X_%7Bt%2Bi%7D%0A
+"
+T_t =  \\frac{1}{m} \\sum_{i=-k}^k X_{t+i}
+")  
 
-Here ![m](https://latex.codecogs.com/png.latex?m "m") is called the *order* of the moving average and is defined as ![m = 2k+1](https://latex.codecogs.com/png.latex?m%20%3D%202k%2B1 "m = 2k+1"). There is a useful function ma() that calculates these averages and allows them to be plotted.
+Here ![m](https://latex.codecogs.com/png.latex?m "m") is called the
+*order* of the moving average and is defined as ![m
+= 2k+1](https://latex.codecogs.com/png.latex?m%20%3D%202k%2B1
+"m = 2k+1"). There is a useful function ma() that calculates these
+averages and allows them to be plotted.
 
 ``` r
 m <- 12
@@ -361,20 +429,40 @@ autoplot(a10, series = "data") +
   ggtitle("Anti-diabetic drug sales") 
 ```
 
-<img src="time_series_files/figure-markdown_github/unnamed-chunk-13-1.png" style="display: block; margin: auto;" />
+<img src="time_series_files/figure-gfm/unnamed-chunk-13-1.png" style="display: block; margin: auto;" />
 
-**Exercise:** Change the moving average window and see if you can make seasonality vanish!
+**Exercise:** Change the moving average window and see if you can make
+seasonality vanish\!
 
-An even order of periodicity requires an asymmetric averaging window, so to create an symmetric average, one can repeat the moving average of order two on the already-averaged data.
+An even order of periodicity requires an asymmetric averaging window, so
+to create an symmetric average, one can repeat the moving average of
+order two on the already-averaged data.
 
 ### Classic decomposition:
 
 Additive decomposition \[1\]:
 
-1.  If m is an even number, compute the trend-cycle component ![T\_t](https://latex.codecogs.com/png.latex?T_t "T_t") using a 2×m-MA. If m is an odd number, compute the trend-cycle component ![\\hat T\_t](https://latex.codecogs.com/png.latex?%5Chat%20T_t "\hat T_t") using an m-MA.
-2.  Calculate the detrended series: ![X\_t - \\hat T\_t](https://latex.codecogs.com/png.latex?X_t%20-%20%5Chat%20T_t "X_t - \hat T_t")
-3.  To estimate the seasonal component for each season, average the detrended values for that season. For example, with monthly data, the seasonal component for March is the average of all the detrended March values in the data. These seasonal component values are then adjusted to ensure that they add to zero. The seasonal component is obtained by stringing together these monthly values, and then replicating the sequence for each year of data. This gives ![\\hat S\_t](https://latex.codecogs.com/png.latex?%5Chat%20S_t "\hat S_t").
-4.  The remainder component is calculated by subtracting the estimated seasonal and trend-cycle components: $ R\_t = X\_t - T\_t - S\_t$
+1.  If m is an even number, compute the trend-cycle component
+    ![T\_t](https://latex.codecogs.com/png.latex?T_t "T_t") using a
+    2×m-MA. If m is an odd number, compute the trend-cycle component
+    ![\\hat T\_t](https://latex.codecogs.com/png.latex?%5Chat%20T_t
+    "\\hat T_t") using an m-MA.
+2.  Calculate the detrended series: ![X\_t - \\hat
+    T\_t](https://latex.codecogs.com/png.latex?X_t%20-%20%5Chat%20T_t
+    "X_t - \\hat T_t")
+3.  To estimate the seasonal component for each season, average the
+    detrended values for that season. For example, with monthly data,
+    the seasonal component for March is the average of all the detrended
+    March values in the data. These seasonal component values are then
+    adjusted to ensure that they add to zero. The seasonal component is
+    obtained by stringing together these monthly values, and then
+    replicating the sequence for each year of data. This gives ![\\hat
+    S\_t](https://latex.codecogs.com/png.latex?%5Chat%20S_t
+    "\\hat S_t").
+4.  The remainder component is calculated by subtracting the estimated
+    seasonal and trend-cycle components: $ R\_t = X\_t - T\_t - S\_t$
+
+<!-- end list -->
 
 ``` r
 a10 %>% decompose(type="additive") %>%
@@ -383,32 +471,47 @@ a10 %>% decompose(type="additive") %>%
     of the antidiabetic drug sales data")
 ```
 
-<img src="time_series_files/figure-markdown_github/unnamed-chunk-14-1.png" style="display: block; margin: auto;" />
+<img src="time_series_files/figure-gfm/unnamed-chunk-14-1.png" style="display: block; margin: auto;" />
 
-This simple classical decomposition has numerous flaws, so better, more modern methods are preferred. In particular, it assumes a constant seasonal term, it tends to over-estimate the variation in the trend, it misses data for the first few and last few data points, and can be sensitive to outliers.
+This simple classical decomposition has numerous flaws, so better, more
+modern methods are preferred. In particular, it assumes a constant
+seasonal term, it tends to over-estimate the variation in the trend, it
+misses data for the first few and last few data points, and can be
+sensitive to outliers.
 
 ### STL decomposition
 
-A more robust method is called the STL decomposition (Seasonal and Trend decomposition using Loess). To summarize its advantanges \[1\]:
+A more robust method is called the STL decomposition (Seasonal and Trend
+decomposition using Loess). To summarize its advantanges \[1\]:
 
--   STL can handle any type of seasonality, not only monthly and quarterly data.
--   The seasonal component is allowed to change over time, and the rate of change can be controlled by the user.
--   The smoothness of the trend-cycle can also be controlled by the user.
--   It can be robust to outliers (i.e., the user can specify a robust decomposition), so that occasional unusual observations will not affect the estimates of the trend-cycle and seasonal components. They will, however, affect the remainder component.
+  - STL can handle any type of seasonality, not only monthly and
+    quarterly data.
+  - The seasonal component is allowed to change over time, and the rate
+    of change can be controlled by the user.
+  - The smoothness of the trend-cycle can also be controlled by the
+    user.
+  - It can be robust to outliers (i.e., the user can specify a robust
+    decomposition), so that occasional unusual observations will not
+    affect the estimates of the trend-cycle and seasonal components.
+    They will, however, affect the remainder component.
+
+<!-- end list -->
 
 ``` r
 a10 %>%  stl(t.window=13, s.window="periodic", robust=TRUE) %>%
   autoplot()
 ```
 
-<img src="time_series_files/figure-markdown_github/unnamed-chunk-15-1.png" style="display: block; margin: auto;" />
+<img src="time_series_files/figure-gfm/unnamed-chunk-15-1.png" style="display: block; margin: auto;" />
 
-**Exercise:** Apply the two decomposition methods to the Boston marathon and to births in NYC time series.
+**Exercise:** Apply the two decomposition methods to the Boston marathon
+and to births in NYC time series.
 
-Regression methods
-------------------
+## Regression methods
 
-Let us analyze the data set of US quarterly economic data, specifically, the percent change in consumption, income, production, savigs, and unemployment.
+Let us analyze the data set of US quarterly economic data, specifically,
+the percent change in consumption, income, production, savigs, and
+unemployment.
 
 ``` r
 head(uschange)
@@ -416,7 +519,7 @@ autoplot(uschange[,c("Consumption","Income")]) +
   ylab("% change") + xlab("Year")
 ```
 
-<img src="time_series_files/figure-markdown_github/unnamed-chunk-16-1.png" style="display: block; margin: auto;" />
+<img src="time_series_files/figure-gfm/unnamed-chunk-16-1.png" style="display: block; margin: auto;" />
 
     #         Consumption     Income Production   Savings Unemployment
     # 1970 Q1   0.6159862  0.9722610 -2.4527003 4.8103115          0.9
@@ -436,7 +539,7 @@ uschange %>%
     geom_smooth(method="lm", se=FALSE)
 ```
 
-<img src="time_series_files/figure-markdown_github/unnamed-chunk-17-1.png" style="display: block; margin: auto;" />
+<img src="time_series_files/figure-gfm/unnamed-chunk-17-1.png" style="display: block; margin: auto;" />
 
 ``` r
 uschange %>%
@@ -444,9 +547,10 @@ uschange %>%
   GGally::ggpairs()
 ```
 
-<img src="time_series_files/figure-markdown_github/unnamed-chunk-18-1.png" style="display: block; margin: auto;" />
+<img src="time_series_files/figure-gfm/unnamed-chunk-18-1.png" style="display: block; margin: auto;" />
 
-Let us use four variables as predictors of consumption to calculate a multiple linear regression model using the function tslm():
+Let us use four variables as predictors of consumption to calculate a
+multiple linear regression model using the function tslm():
 
 ``` r
 fit.consMR <- tslm(
@@ -478,7 +582,8 @@ summary(fit.consMR)
     # Multiple R-squared:  0.754,   Adjusted R-squared:  0.7486 
     # F-statistic: 139.5 on 4 and 182 DF,  p-value: < 2.2e-16
 
-We can produce a plot of the predicted values together with the observed data on consumption:
+We can produce a plot of the predicted values together with the observed
+data on consumption:
 
 ``` r
 autoplot(uschange[,'Consumption'], series="Data") +
@@ -488,15 +593,16 @@ autoplot(uschange[,'Consumption'], series="Data") +
   guides(colour=guide_legend(title=" "))
 ```
 
-<img src="time_series_files/figure-markdown_github/unnamed-chunk-20-1.png" style="display: block; margin: auto;" />
+<img src="time_series_files/figure-gfm/unnamed-chunk-20-1.png" style="display: block; margin: auto;" />
 
-It is useful to check the residuals of the regression model:
+It is useful to check the residuals of the regression
+model:
 
 ``` r
 checkresiduals(fit.consMR)
 ```
 
-<img src="time_series_files/figure-markdown_github/unnamed-chunk-21-1.png" style="display: block; margin: auto;" />
+<img src="time_series_files/figure-gfm/unnamed-chunk-21-1.png" style="display: block; margin: auto;" />
 
     # 
     #   Breusch-Godfrey test for serial correlation of order up to 8
@@ -504,9 +610,10 @@ checkresiduals(fit.consMR)
     # data:  Residuals from Linear regression model
     # LM test = 14.874, df = 8, p-value = 0.06163
 
-### The perennial warning: beware of spurious correlations!
+### The perennial warning: beware of spurious correlations\!
 
-These two data sets, on Australian air passengers and rice production in Guinea, have a very strong positive correlation:
+These two data sets, on Australian air passengers and rice production in
+Guinea, have a very strong positive correlation:
 
 ``` r
 aussies <- window(ausair, end=2011)
@@ -533,13 +640,15 @@ summary(fit)
     # Multiple R-squared:  0.9578,  Adjusted R-squared:  0.9568 
     # F-statistic: 908.1 on 1 and 40 DF,  p-value: < 2.2e-16
 
-However, notice that the residuals indicate a strong trend, which violates the assumptions of linear regression.
+However, notice that the residuals indicate a strong trend, which
+violates the assumptions of linear
+regression.
 
 ``` r
 checkresiduals(fit)
 ```
 
-<img src="time_series_files/figure-markdown_github/unnamed-chunk-23-1.png" style="display: block; margin: auto;" />
+<img src="time_series_files/figure-gfm/unnamed-chunk-23-1.png" style="display: block; margin: auto;" />
 
     # 
     #   Breusch-Godfrey test for serial correlation of order up to 8
@@ -547,13 +656,22 @@ checkresiduals(fit)
     # data:  Residuals from Linear regression model
     # LM test = 28.813, df = 8, p-value = 0.000342
 
-There are a number of fun examples of spurious time series correlations in reference \[5\].
+There are a number of fun examples of spurious time series correlations
+in reference \[5\].
 
 ### Forecasting using linear regression
 
-One can distringuish between true forecasting, termed *ex-ante* (from before) prediction, in which we truly try to predict the unknown future, and *ex-post* forecasts, in which the true values both of the predictors and the response variable are known. The latter is still useful for validating models and for comparing different methods.
+One can distringuish between true forecasting, termed *ex-ante* (from
+before) prediction, in which we truly try to predict the unknown future,
+and *ex-post* forecasts, in which the true values both of the predictors
+and the response variable are known. The latter is still useful for
+validating models and for comparing different methods.
 
-The library `forecast` contains tools to make calculating predicted values in time series simple. One can use the model to forecast the values in the future, based on different *scenarios*. For example, we may want to investigate the prediction for an economic upturn and a downturn:
+The library `forecast` contains tools to make calculating predicted
+values in time series simple. One can use the model to forecast the
+values in the future, based on different *scenarios*. For example, we
+may want to investigate the prediction for an economic upturn and a
+downturn:
 
 ``` r
 fit.consBest <- tslm(
@@ -582,13 +700,18 @@ autoplot(uschange[, 1]) +
   guides(colour = guide_legend(title = "Scenario"))
 ```
 
-<img src="time_series_files/figure-markdown_github/unnamed-chunk-25-1.png" style="display: block; margin: auto;" />
+<img src="time_series_files/figure-gfm/unnamed-chunk-25-1.png" style="display: block; margin: auto;" />
 
-References and further reading:
--------------------------------
+## References and further reading:
 
-1.  Rob J Hyndman and George Athanasopoulos. [**Forecasting: Principles and Practice**](https://otexts.com/fpp2/)
-2.  Jonathan Cryer and Kung-Sik Chan [**Time Series Analysis with Applications in R**](https://mybiostats.files.wordpress.com/2015/03/time-series-analysis-with-applications-in-r-cryer-and-chan.pdf)
-3.  [Cross-validation in forecasting](https://www.r-bloggers.com/time-series-forecast-cross-validation-by-ellis2013nz/)
-4.  [Time series nested cross-validation](https://towardsdatascience.com/time-series-nested-cross-validation-76adba623eb9)
-5.  [Spurious correlations](https://www.tylervigen.com/spurious-correlations)
+1.  Rob J Hyndman and George Athanasopoulos. [**Forecasting: Principles
+    and Practice**](https://otexts.com/fpp2/)
+2.  Jonathan Cryer and Kung-Sik Chan [**Time Series Analysis with
+    Applications in
+    R**](https://mybiostats.files.wordpress.com/2015/03/time-series-analysis-with-applications-in-r-cryer-and-chan.pdf)
+3.  [Cross-validation in
+    forecasting](https://www.r-bloggers.com/time-series-forecast-cross-validation-by-ellis2013nz/)
+4.  [Time series nested
+    cross-validation](https://towardsdatascience.com/time-series-nested-cross-validation-76adba623eb9)
+5.  [Spurious
+    correlations](https://www.tylervigen.com/spurious-correlations)

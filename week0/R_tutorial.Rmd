@@ -10,7 +10,7 @@ output:
   github_document:
     toc: true
     toc_depth: 2
-    pandoc_args: --webtex
+    pandoc_args: --mathml
 urlcolor: blue
 ---
 
@@ -48,7 +48,7 @@ Here we introduce `R`, which can help you write simple programs to analyze your 
 # Before we start
 To follow this tutorial, you will need to install `R` and `RStudio`
 
-* Install `R`: download and install `R` from [this page](https://cran.r-project.org/). Choose the right architecture (Windows, Mac, Linux). If possible, install `R` 3.5.1 or above.
+* Install `R`: download and install `R` from [this page](https://cran.r-project.org/). Choose the right architecture (Windows, Mac, Linux). If possible, install the latest release.
 * Install `RStudio`: go to [this page](https://www.rstudio.com/products/rstudio/download/) and download the "RStudio Desktop Open Source License".
 * Install `R` packages: launch `RStudio`. Click on "Packages" in the bottow-right panel. Click on "Install": a dialog window will open. Type `tidyverse` in the field "Packages" and click on "Install". This might take a few minutes, and ask you to download further packages.
 
@@ -81,13 +81,13 @@ Typically, an `RStudio` window contains four panels:
 
 An `R` program is simply a list of commands, which are executed one after the other. The commands are witten in a text file (with extension `.R`). When `R` executes the program, it will start from the beginning of the file and proceed toward the end of the file. Every time `R` encounters a command, it will execute it. Special commands can modify this basic flow of the program by, for example, executing a series of commands only when a condition is met, or repeating the execution of a series of commands multiple times.
 
-Note that if you were to copy and paste (or type) the code into the **Console** you would obtain exactly the same result. Writing a program is advatageous, however, because the analysis can be automated, and the code shared with other researchers. Moreover, after a while you will have a large code base, so that you can recycle much of your code in several programs.
+Note that if you were to copy and paste (or type) the code into the **Console** you would obtain exactly the same result. Writing a program is advatageous, however, because the analysis can be automated, and the code shared with other researchers. Moreover, after a while you will have a large code base, so that you can recycle much of your code.
 
 We start by working on the console, and then start writing simple scripts.
 
 ## The most basic operation: assignment
 
-The most basic operation in any programming language is the assignment. In `R`, assignment is marked by the operator `<-`. When you type a command in `R`, it is executed, and the output is printed in the **Console**. For example:
+The most basic operation in any programming language is the assignment. In `R`, assignment is marked by the operator `<-` (can be typed quickly using `Alt -`). When you type a command in `R`, it is executed, and the output is printed in the **Console**. For example:
 
 ```{r}
 sqrt(9)
@@ -117,7 +117,7 @@ v <- TRUE
 class(v)
 ```
 
-- `numeric`, storing real numbers (actually, their approximations, as computers have limited memory and thus [cannot store](https://www.exploringbinary.com/why-0-point-1-does-not-exist-in-floating-point/) numbers like $\pi$, or even $0.2$)
+- `numeric`, storing real numbers (actually, their approximations, as computers have limited memory and thus [cannot store](https://www.exploringbinary.com/why-0-point-1-does-not-exist-in-floating-point/) numbers like π, or even `0.2`)
 
 ```{r}
 v <- 3.77
@@ -169,7 +169,7 @@ Each data type supports a certain number of operators and functions. For example
 5 %% 3
 ```
 
-meaning that `5 %/% 3` (5 integer divided by 3) is 1 with a remainder of 2. The modulo operator is useful to determine whether a number is divisible for another: if $y$ is divisible by $x$, then `y %% x` is 0.
+meaning that `5 %/% 3` (5 integer divided by 3) is 1 with a remainder of 2. The modulo operator is useful to determine whether a number is divisible for another: if `y` is divisible by `x`, then `y %% x` is 0.
 
 `R` provides many built-in functions: each functions has a name, followed by round parentheses surrounding the (possibly optional) function *arguments*. For example, these functions operate on `numeric` variables:
 
