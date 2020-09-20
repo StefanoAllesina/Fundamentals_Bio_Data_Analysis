@@ -94,81 +94,36 @@ library(tidyverse)
 ```
 
 To explore the features of `ggplot2`, we are going to use a data set
-detailing how behavior in macaques changes with age and social status.
-The data are taken from:
-
-> Brent LJN, Ruiz Lambides A, Platt ML (2017) [Family network size and
-> survival across the lifespan of female
-> macaques](https://doi.org/10.1098/rspb.2017.0515). Proceedings of the
-> Royal Society B 284(1854): 20170515.
+detailing the number of daily COVID cases and deaths in US counties. The
+data are provided by the [New York
+Times](https://github.com/nytimes/covid-19-data/blob/master/live/us-counties.csv).
 
 ``` r
 # read the data
-# original URL:
-# https://datadryad.org/stash/dataset/doi:10.5061/dryad.013d5
-dt <- read.csv("data/Brent_et_al_Behaviour_vs_Age.csv", stringsAsFactors = FALSE)
+# original URL https://github.com/nytimes/covid-19-data/raw/master/live/us-counties.csv
+dt <- read_csv("https://rb.gy/zr65gg")
 head(dt)
 ```
 
-    #     ID year age Afrels_0.063 OrdRank2 z.Groom.Get z.Groom.Give   z.Agg.Get
-    # 1 0_E1 2015   8            0        L  -0.7810929   -0.7668961  0.46819331
-    # 2 0_E2 2015   8            0        L  -0.7832200   -0.6130033  0.80005076
-    # 3 1_E2 2015   8            0        H  -1.1956885    0.4189310 -0.19359019
-    # 4 1_E6 2015   8            0        H  -0.5871623   -0.8333341 -1.13587779
-    # 5 1_E7 2015   8            0        H  -0.7313444    0.7012897  0.01682335
-    # 6 2_E4 2015   8            0        H   1.4164565    0.8175821 -0.28771170
-    #    z.Agg.Give
-    # 1 -0.16370312
-    # 2 -0.28569532
-    # 3  0.90605681
-    # 4  0.52444390
-    # 5  0.02344048
-    # 6 -0.12970552
+    # # A tibble: 6 x 10
+    #   date       county state fips  cases deaths confirmed_cases confirmed_deaths
+    #   <date>     <chr>  <chr> <chr> <dbl>  <dbl>           <dbl>            <dbl>
+    # 1 2020-09-20 Autau… Alab… 01001  1673     24            1510               23
+    # 2 2020-09-20 Baldw… Alab… 01003  5047     49            4866               45
+    # 3 2020-09-20 Barbo… Alab… 01005   830      7             640                7
+    # 4 2020-09-20 Bibb   Alab… 01007   628     10             599                6
+    # 5 2020-09-20 Blount Alab… 01009  1542     14            1192               14
+    # 6 2020-09-20 Bullo… Alab… 01011   585     14             562               13
+    # # … with 2 more variables: probable_cases <dbl>, probable_deaths <dbl>
 
-where: `ID` is the identifier of the macaque; `year` is the year in
-which the observation was made; `age` is the age of the individual;
-`Afrels_0.063` is the number of adult female relatives; `OrdRank2`
-dominance rank in year (L = low ranking, H = high ranking); the rest are
-Z-scores detailing how much more (or less) than the average the
-individual gets/gives grooming and aggression. To remind you, a Z-score
-is a normalized scoring statistic, measuring the distance of an
-observation from the mean of a distribution in units of the standard
-deviation of the distribution (hence, if an observation has a Z-score of
--2, it is two standard deviations lower than the mean). You can compute
-it for a set of observations as:
+we are going to work with `date`, `county`, `state`, `cases` and
+`deaths`.
 
-  
-![
-z\_i = \\frac{x\_i - \\mu\_x}{\\sigma\_x}
-](https://latex.codecogs.com/png.latex?%0Az_i%20%3D%20%5Cfrac%7Bx_i%20-%20%5Cmu_x%7D%7B%5Csigma_x%7D%0A
-"
-z_i = \\frac{x_i - \\mu_x}{\\sigma_x}
-")  
-where ![\\mu\_x](https://latex.codecogs.com/png.latex?%5Cmu_x "\\mu_x")
-is the mean for the observations ![\\mu\_x = \\sum{^n\_{i=1}} x\_i
-/n](https://latex.codecogs.com/png.latex?%5Cmu_x%20%3D%20%5Csum%7B%5En_%7Bi%3D1%7D%7D%20x_i%20%2Fn
-"\\mu_x = \\sum{^n_{i=1}} x_i /n") and
-![\\sigma\_x](https://latex.codecogs.com/png.latex?%5Csigma_x
-"\\sigma_x") the standard deviation ![\\sigma\_x =
-\\sqrt{\\sum{^n\_{i=1}} (x\_i - \\mu\_x)^2 /(n
-- 1)}](https://latex.codecogs.com/png.latex?%5Csigma_x%20%3D%20%5Csqrt%7B%5Csum%7B%5En_%7Bi%3D1%7D%7D%20%28x_i%20-%20%5Cmu_x%29%5E2%20%2F%28n%20-%201%29%7D
-"\\sigma_x = \\sqrt{\\sum{^n_{i=1}} (x_i - \\mu_x)^2 /(n - 1)}").
-
-Because we want to consider each individual only once, we can choose the
-most represented year:
+Let’s select Illnois, and take only the counties with more than 250
+cases (to have a less crowded graph):
 
 ``` r
-table(dt$year)
-```
-
-    # 
-    # 2010 2011 2012 2013 2014 2015 
-    #   58   85   57   65  101  197
-
-Let’s select year 2015:
-
-``` r
-dt <- dt[dt$year == 2015, ]
+dti <- dt[(dt$state == "Illinois") & (dt$cases > 250), ]
 ```
 
 A particularity of `ggplot2` is that it accepts exclusively data
@@ -179,54 +134,66 @@ format for plotting.
 # Building a well-formed graph
 
 For our first plot, we’re going to produce a barplot detailing how many
-individuals are ranked High or Low in the social hierarchy. We start by
-specifying the
-data:
+cases have been reported in each
+County:
 
 ``` r
-ggplot(data = dt)
+ggplot(data = dti)
 ```
 
-<img src="basic_visualization_files/figure-gfm/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
+<img src="basic_visualization_files/figure-gfm/unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
 
 As you can see, nothing is drawn: we need to specify what we would like
 to associate to the *x* axis, and what to the *y* axis, etc. (i.e., we
 want to set as the *aesthetic mappings*). A barplot typically has
 classes on the *x* axis, while the *y* axis reports the counts in each
-class. Because `ggplot2` does the counting for us, all we need to
-specify is which column is associated with the classes we want to
-plot:
+class.
 
 ``` r
-ggplot(data = dt) + aes(x = OrdRank2)
+ggplot(data = dti) + aes(x = county, y = cases)
 ```
 
-<img src="basic_visualization_files/figure-gfm/unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
+<img src="basic_visualization_files/figure-gfm/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
 
 Note that we concatenate pieces of our “sentence” using the `+` sign\!
 We’ve got the aestethic mappings figured out, but still no graph… we
 need to specify a geometry, i.e., the type of graph we want to produce.
-In this case, a
-barplot:
+In this case, a barplot where the height of the bars is specified by the
+`y`
+value:
 
 ``` r
-ggplot(data = dt) + aes(x = OrdRank2) + geom_bar()
+ggplot(data = dti) + aes(x = county, y = cases) + geom_col()
+```
+
+<img src="basic_visualization_files/figure-gfm/unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
+
+Because it is very difficult to see the labels, let’s swap the axes:
+
+``` r
+ggplot(data = dti) + 
+  aes(x = county, y = cases) + 
+  geom_col() + 
+  coord_flip()
 ```
 
 <img src="basic_visualization_files/figure-gfm/unnamed-chunk-7-1.png" style="display: block; margin: auto;" />
 
-The graph shows that the vast majority of individuals have low social
-status. We have written a “well-formed sentence”, composed of **data** +
-**mapping** + **geometry**, and this is sufficient to produce a graph.
-We can add “adjectives” and “adverbs” to our graph, to make it clearer:
+The graph shows that, naturally, the vast majority of cases was reported
+in Cook county. We have written a “well-formed sentence”, composed of
+**data** + **mapping** + **geometry**, and this is sufficient to produce
+a graph. We can add “adjectives” and “adverbs” to our graph, to make it
+clearer:
 
 ``` r
-ggplot(data = dt) + 
-  aes(x = OrdRank2) + 
-  geom_bar() +
-  xlab("Social Rank") + # x label
-  ylab("Number of individuals") + # y label
-  ggtitle("Social Rank in 2015") # main title
+ggplot(data = dti) + 
+  aes(x = reorder(county, cases), y = cases) + # order labels according to cases
+  geom_col() +
+  xlab("Number of COVID cases reported") + # x label
+  ylab("Illinois County") + # y label
+  scale_y_log10() + # transform the counts to logs
+  coord_flip()+
+  ggtitle(dti$date[1]) # main title (use current date)
 ```
 
 <img src="basic_visualization_files/figure-gfm/unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
@@ -242,113 +209,105 @@ fairly easily, and with a common grammar. You don’t have to settle on a
 certain presentation of the data until you’re ready, and it is very easy
 to switch from one type of graph to another.
 
-For example, let’s plot the Z-score of “get aggression” vs. the Z-score
-of “give aggression”:
+For example, let’s plot the number of cases vs. number of deaths:
 
 ``` r
 # you can store the graph in a variable
-pl <- ggplot(data = dt)
-pl <- pl + aes(x = z.Agg.Get, y = z.Agg.Give) # for a scatter plot, we need two aes mappings!
+pl <- ggplot(data = dti)
+pl <- pl + aes(x = cases, y = deaths) # for a scatter plot, we need two aes mappings!
 pl <- pl + geom_point() # draw points in a scatterplot
+pl <- pl + scale_x_sqrt() + scale_y_sqrt() # transform axes
 pl # or show(pl)
 ```
 
 <img src="basic_visualization_files/figure-gfm/unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
 
-It would be nice to see where the high-ranking individuals are found in
-the scatterplot. To do so, just add another aesthetic mapping:
-
-``` r
-pl <- ggplot(data = dt)
-pl <- pl + aes(x = z.Agg.Get, y = z.Agg.Give, color = OrdRank2) # color by ranking
-pl <- pl + geom_point() 
-pl 
-```
-
-<img src="basic_visualization_files/figure-gfm/unnamed-chunk-10-1.png" style="display: block; margin: auto;" />
-
-The graph shows that high-ranking individuals are more likely to give
-than to get aggression.
+Showing that number of daily cases and number of daily deaths are highly
+correlated (but it would be a stronger correlation if we were to plot
+past cases vs. current deaths).
 
 # Histograms, density and boxplots
 
-Let’s look at the aggressive behavior in more detail. First, we want to
-have an idea of the distribution of `z.Agg.Give`. To do so, we can draw
-a
-histogram:
+It would be nice to see the distribution of the ratio deaths/cases. To
+do so, we can produce a histogram:
 
 ``` r
-ggplot(data = dt) + aes(x = z.Agg.Give) + geom_histogram()
+pl <- ggplot(data = dti)
+pl <- pl + aes(x = deaths / cases)  
+pl + geom_histogram() 
 ```
 
-<img src="basic_visualization_files/figure-gfm/unnamed-chunk-11-1.png" style="display: block; margin: auto;" />
+<img src="basic_visualization_files/figure-gfm/unnamed-chunk-10-1.png" style="display: block; margin: auto;" />
 
 We can control the width of the bins by
 specifying:
 
 ``` r
-ggplot(data = dt) + aes(x = z.Agg.Give) + geom_histogram(bins = 20) # specify the number of bins
+pl + geom_histogram(bins = 30) # specify the number of bins
+```
+
+<img src="basic_visualization_files/figure-gfm/unnamed-chunk-11-1.png" style="display: block; margin: auto;" />
+
+``` r
+pl + geom_histogram(binwidth = 0.0025) # specify the bin width
+```
+
+<img src="basic_visualization_files/figure-gfm/unnamed-chunk-11-2.png" style="display: block; margin: auto;" />
+
+Let’s see whether the histograms differ between Illinois and Indiana:
+
+``` r
+ggplot(data = dt[dt$state %in% c("Illinois", "Indiana"),]) + 
+  aes(x = deaths / cases, fill = state) + # fill the bar colors by state
+  geom_histogram()
 ```
 
 <img src="basic_visualization_files/figure-gfm/unnamed-chunk-12-1.png" style="display: block; margin: auto;" />
 
-``` r
-ggplot(data = dt) + aes(x = z.Agg.Give) + geom_histogram(binwidth = 0.25) # specify the bin width
-```
-
-<img src="basic_visualization_files/figure-gfm/unnamed-chunk-12-2.png" style="display: block; margin: auto;" />
-
-Let’s see whether the histograms differ between ranks:
-
-``` r
-ggplot(data = dt) + 
-  aes(x = z.Agg.Give, fill = OrdRank2) + # color by rank
-  geom_histogram()
-```
-
-<img src="basic_visualization_files/figure-gfm/unnamed-chunk-13-1.png" style="display: block; margin: auto;" />
-
 To plot the histogram side by side, use
 
 ``` r
-ggplot(data = dt) + 
-  aes(x = z.Agg.Give, fill = OrdRank2) + # color by rank
+ggplot(data = dt[dt$state %in% c("Illinois", "Indiana"),]) + 
+  aes(x = deaths / cases, fill = state) + # fill the bar colors by state
   geom_histogram(position = "dodge")
 ```
 
-<img src="basic_visualization_files/figure-gfm/unnamed-chunk-14-1.png" style="display: block; margin: auto;" />
+<img src="basic_visualization_files/figure-gfm/unnamed-chunk-13-1.png" style="display: block; margin: auto;" />
 
 Similarly, we can approximate the histogram using a density plot, which
 interpolates the bin height to create a smooth distribution:
 
 ``` r
-ggplot(data = dt) + 
-  aes(x = z.Agg.Give, fill = OrdRank2) + # color by rank
+ggplot(data = dt[dt$state %in% c("Illinois", "Indiana"),]) + 
+  aes(x = deaths / cases, fill = state) + # fill by state
   geom_density()
 ```
 
-<img src="basic_visualization_files/figure-gfm/unnamed-chunk-15-1.png" style="display: block; margin: auto;" />
+<img src="basic_visualization_files/figure-gfm/unnamed-chunk-14-1.png" style="display: block; margin: auto;" />
 
 To see the graph better, let’s make the coloring semi-transparent:
 
 ``` r
-ggplot(data = dt) + 
-  aes(x = z.Agg.Give, fill = OrdRank2) +
-  geom_density(alpha = 0.5) # 50% saturation
+ggplot(data = dt[dt$state %in% c("Illinois", "Indiana"),]) + 
+  aes(x = deaths / cases, fill = state) + # fill by state
+  geom_density(alpha = 0.5)
 ```
 
-<img src="basic_visualization_files/figure-gfm/unnamed-chunk-16-1.png" style="display: block; margin: auto;" />
+<img src="basic_visualization_files/figure-gfm/unnamed-chunk-15-1.png" style="display: block; margin: auto;" />
+
+Again showing that Indiana tends to have a higher mortality for the same
+number of cases.
 
 For this type of comparison, the ideal graph to show is maybe a box-plot
 or a violin plot:
 
 ``` r
-ggplot(data = dt) + 
-  aes(x = OrdRank2, y = z.Agg.Give, fill = OrdRank2) + # we need both x and y
+ggplot(data = dt[dt$state %in% c("Illinois", "Indiana"),]) + 
+  aes(x = state, y = deaths / cases, fill = state) + # we need both x and y
   geom_boxplot()
 ```
 
-<img src="basic_visualization_files/figure-gfm/unnamed-chunk-17-1.png" style="display: block; margin: auto;" />
+<img src="basic_visualization_files/figure-gfm/unnamed-chunk-16-1.png" style="display: block; margin: auto;" />
 
 A boxplot shows the median (horizontal bar) as well as the
 inter-quartile range (box size goes from 25th to 75th percentile), as
@@ -356,12 +315,12 @@ well as the typical range of the data (whiskers). The dots represent
 “outliers”. To show the full distribution, you can use a violin plot:
 
 ``` r
-ggplot(data = dt) + 
-  aes(x = OrdRank2, y = z.Agg.Give, fill = OrdRank2) + # we need both x and y
-  geom_violin()
+ggplot(data = dt[dt$state %in% c("Illinois", "Indiana"),]) + 
+  aes(x = state, y = deaths / cases, fill = state) + # we need both x and y
+  geom_violin(draw_quantiles = 0.5)
 ```
 
-<img src="basic_visualization_files/figure-gfm/unnamed-chunk-18-1.png" style="display: block; margin: auto;" />
+<img src="basic_visualization_files/figure-gfm/unnamed-chunk-17-1.png" style="display: block; margin: auto;" />
 
 Note that when we’re producing “similar” plots (e.g., histogram
 vs. density, box vs. violin, or any other plot sharing the same
@@ -377,59 +336,39 @@ types of scales: `continuous` scales are used for continuos variables
 (e.g., real numbers); `discrete` scales for variables that can only take
 a certain number of values (e.g., colors, shapes, sizes).
 
-For example, let’s plot aggression vs. age:
+For example, let’s plot deaths vs. cases in our `dti` data set:
 
 ``` r
-ggplot(data = dt) + aes(x = age, y = z.Agg.Give, color = OrdRank2) +
-  geom_point() 
+pl <- ggplot(data = dti) + 
+  aes(x = cases, y = deaths, colour = log(deaths)) +
+    geom_point() 
+pl
 ```
 
-<img src="basic_visualization_files/figure-gfm/unnamed-chunk-19-1.png" style="display: block; margin: auto;" />
+<img src="basic_visualization_files/figure-gfm/unnamed-chunk-18-1.png" style="display: block; margin: auto;" />
 
 We can change the scale of the *x* axis by
 calling:
 
 ``` r
-pl <- ggplot(data = dt) + aes(x = age, y = z.Agg.Give, color = OrdRank2) +
-    geom_point() 
-pl + scale_x_log10() # log of age
+pl + scale_x_log10() # log of number of cases
 ```
 
-<img src="basic_visualization_files/figure-gfm/unnamed-chunk-20-1.png" style="display: block; margin: auto;" />
+<img src="basic_visualization_files/figure-gfm/unnamed-chunk-19-1.png" style="display: block; margin: auto;" />
 
 ``` r
-pl + scale_x_sqrt() # sqrt of age
+pl + scale_x_sqrt() # sqrt of number of cases
 ```
 
-<img src="basic_visualization_files/figure-gfm/unnamed-chunk-20-2.png" style="display: block; margin: auto;" />
+<img src="basic_visualization_files/figure-gfm/unnamed-chunk-19-2.png" style="display: block; margin: auto;" />
 
 ``` r
-pl + scale_x_reverse() # from oldest to youngest
+pl + scale_x_reverse() # from large to small
 ```
 
-<img src="basic_visualization_files/figure-gfm/unnamed-chunk-20-3.png" style="display: block; margin: auto;" />
+<img src="basic_visualization_files/figure-gfm/unnamed-chunk-19-3.png" style="display: block; margin: auto;" />
 
-Similarly, we can change the use of colors. Because colors represent
-classes, we use a discrete
-scale:
-
-``` r
-pl + scale_color_brewer(palette = "Set1") # change colors
-```
-
-<img src="basic_visualization_files/figure-gfm/unnamed-chunk-21-1.png" style="display: block; margin: auto;" />
-
-``` r
-pl + scale_color_brewer(palette = "Accent") # many palettes: see ?scale_color_brewer
-```
-
-<img src="basic_visualization_files/figure-gfm/unnamed-chunk-21-2.png" style="display: block; margin: auto;" />
-
-``` r
-pl + scale_color_manual(values = c("green", "red"))
-```
-
-<img src="basic_visualization_files/figure-gfm/unnamed-chunk-21-3.png" style="display: block; margin: auto;" />
+Similarly, we can change the use of colors, points, etc.
 
 # List of aesthetic mappings
 
@@ -449,13 +388,16 @@ We’ve seen some of the aesthetic mappings. Here’s a list of the main
 
 ``` r
 # a more complex example
-ggplot(data = dt) + aes(x = z.Agg.Get, y = z.Agg.Give, 
-                        color = OrdRank2, size = age, 
-                        alpha = z.Groom.Give) +
-  geom_point()
+ggplot(data = dt) + 
+  aes(x = cases, y = deaths, 
+          color = state) +
+  geom_point() + 
+  scale_x_log10() + # note that the points with 0 cases or deaths will not work
+  scale_y_log10() +
+  theme(legend.position = "bottom")
 ```
 
-<img src="basic_visualization_files/figure-gfm/unnamed-chunk-22-1.png" style="display: block; margin: auto;" />
+<img src="basic_visualization_files/figure-gfm/unnamed-chunk-20-1.png" style="display: block; margin: auto;" />
 
 # List of geometries
 
@@ -491,14 +433,6 @@ There are also very many scales. Here are a few:
   - `scale_size` size of points and lines.
   - `scale_x`, `scale_y` (many options) transformations of the axes.
 
-# Exercise
-
-  - Plot the Z-score for “get” aggression and “get” grooming: are they
-    correlated?
-  - Repeat for “give” aggression and “give” grooming.
-  - Are individuals with a higher proportion of female relatives (i.e.,
-    higher `Afrels_0.063`) less aggressive?
-
 # Themes
 
 Themes allow you to manipulate the look and feel of a graph with just
@@ -508,8 +442,8 @@ one command. The package `ggthemes` extends the themes collection of
 ``` r
 # to install, type install.packages("ggthemes") in the console
 library(ggthemes)
-pl <- ggplot(data = dt) + aes(x = age, y = z.Agg.Give, color = OrdRank2) +
-    geom_point() 
+pl <- ggplot(data = dti) + aes(x = cases, y = deaths) +
+    geom_point() + scale_x_log10() + scale_y_log10()
 pl + theme_bw() # white background
 pl + theme_economist() # like in the magazine "The Economist"
 pl + theme_wsj() # like "The Wall Street Journal"
@@ -525,45 +459,35 @@ the same row (or column) have axes-ranges in common; `facet_wrap` is
 used when the different panels do not necessarily have axes-ranges in
 common.
 
-For example:
+For
+example:
 
 ``` r
-pl <- ggplot(data = dt) + aes(x = OrdRank2) + geom_bar()
-pl <- pl + facet_wrap(~age)
+pl <- ggplot(data = dt[dt$state %in% c("Illinois", "Missouri", "Wisconsin", "Indiana"), ]) + 
+  aes(x = cases, y = deaths, colour = state) + geom_point() + scale_x_log10() + scale_y_log10()
+pl <- pl + facet_wrap(~state)
+pl
+```
+
+<img src="basic_visualization_files/figure-gfm/unnamed-chunk-22-1.png" style="display: block; margin: auto;" />
+
+Let’s add a line separating showing the best-fit line:
+
+``` r
+pl <- pl + geom_smooth()
+pl
+```
+
+<img src="basic_visualization_files/figure-gfm/unnamed-chunk-23-1.png" style="display: block; margin: auto;" />
+
+Make ranges on *x* and *y* axes equal, and add the 1:1 line:
+
+``` r
+pl <- pl + coord_equal() + geom_abline(slope = 1, intercept = 0)
 pl
 ```
 
 <img src="basic_visualization_files/figure-gfm/unnamed-chunk-24-1.png" style="display: block; margin: auto;" />
-
-Or producing a
-grid:
-
-``` r
-pl <- ggplot(data = dt[dt$age < 12,]) + aes(x = z.Agg.Get, y = z.Agg.Give) + geom_point()
-pl <- pl + facet_grid(age~OrdRank2)
-pl
-```
-
-<img src="basic_visualization_files/figure-gfm/unnamed-chunk-25-1.png" style="display: block; margin: auto;" />
-
-Let’s add a line separating those that “get” more from those that “give”
-more:
-
-``` r
-pl <- pl + geom_abline(slope = 1, intercept = 0)
-pl
-```
-
-<img src="basic_visualization_files/figure-gfm/unnamed-chunk-26-1.png" style="display: block; margin: auto;" />
-
-Make ranges on *x* and *y* axes equal:
-
-``` r
-pl <- pl + coord_equal()
-pl
-```
-
-<img src="basic_visualization_files/figure-gfm/unnamed-chunk-27-1.png" style="display: block; margin: auto;" />
 
 # Setting features
 
@@ -573,29 +497,32 @@ mapping some aestethic). In such cases, simply declare the feature
 outside the `aes`:
 
 ``` r
-pl <- ggplot(data = dt) + aes(x = age, y = z.Agg.Give)
+pl <- ggplot(data = dt) + 
+  aes(x = cases, y = deaths) + 
+  scale_x_log10() + 
+  scale_y_log10()
 pl + geom_point()
 ```
 
-<img src="basic_visualization_files/figure-gfm/unnamed-chunk-28-1.png" style="display: block; margin: auto;" />
+<img src="basic_visualization_files/figure-gfm/unnamed-chunk-25-1.png" style="display: block; margin: auto;" />
 
 ``` r
 pl + geom_point(colour = "red")
 ```
 
-<img src="basic_visualization_files/figure-gfm/unnamed-chunk-28-2.png" style="display: block; margin: auto;" />
+<img src="basic_visualization_files/figure-gfm/unnamed-chunk-25-2.png" style="display: block; margin: auto;" />
 
 ``` r
 pl + geom_point(shape = 3)
 ```
 
-<img src="basic_visualization_files/figure-gfm/unnamed-chunk-28-3.png" style="display: block; margin: auto;" />
+<img src="basic_visualization_files/figure-gfm/unnamed-chunk-25-3.png" style="display: block; margin: auto;" />
 
 ``` r
 pl + geom_point(alpha = 0.5)
 ```
 
-<img src="basic_visualization_files/figure-gfm/unnamed-chunk-28-4.png" style="display: block; margin: auto;" />
+<img src="basic_visualization_files/figure-gfm/unnamed-chunk-25-4.png" style="display: block; margin: auto;" />
 
 # Saving graphs
 
@@ -629,14 +556,13 @@ only one dataset:
 
 ``` r
 ggplot(data = dt) + 
-  geom_point(aes(x = z.Groom.Get, y = z.Groom.Give), color = "black") + 
-  geom_point(aes(x = z.Agg.Get, y = z.Agg.Give), color = "red") +
-  geom_abline(slope = 1, intercept = 0) + 
-  xlab("Get: Groom (black), Agg (red)") + 
-  ylab("Give: Groom (black), Agg (red)")
+  geom_point(aes(y = state, x = cases), color = "black") + 
+  geom_point(aes(y = state, x = deaths), color = "red") +
+  scale_x_log10() + 
+  xlab("cases (black), deaths (red)")
 ```
 
-<img src="basic_visualization_files/figure-gfm/unnamed-chunk-31-1.png" style="display: block; margin: auto;" />
+<img src="basic_visualization_files/figure-gfm/unnamed-chunk-28-1.png" style="display: block; margin: auto;" />
 
 # Try on your own data\!
 

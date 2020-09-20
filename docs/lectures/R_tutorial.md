@@ -282,8 +282,10 @@ calculating the remainder of an integer division:
     # [1] 2
 
 meaning that `5 %/% 3` (5 integer divided by 3) is 1 with a remainder of
-2. The modulo operator is useful to determine whether a number is
-divisible for another: if `y` is divisible by `x`, then `y %% x` is 0.
+2
+
+The modulo operator is useful to determine whether a number is divisible
+for another: if `y` is divisible by `x`, then `y %% x` is 0.
 
 `R` provides many built-in functions: each functions has a name,
 followed by round parentheses surrounding the (possibly optional)
@@ -338,7 +340,7 @@ logical value:
 > **Exercise:**
 > 
 > Why are two equal signs (`==`) used to check that two values are
-> equal? What happens if you use only one sign?
+> equal? What happens if you use only one `=` sign?
 
 Similarly, you can concatenate several comparison and logical variables
 using `&` (and), `|` (or), and `!` (not):
@@ -1227,10 +1229,10 @@ rnorm(3) # three values from standard normal
 rnorm(3, mean = 5, sd = 4) # specify mean and standard deviation
 ```
 
-    # [1] 0.3707730 0.9340119 0.4476304 0.5977061 0.8367358
-    # [1] 5.070988 6.806189 2.911232 8.705366 4.036025
-    # [1] -0.3844495 -0.8828199 -0.3181876
-    # [1]  5.539939  9.232903 -1.485925
+    # [1] 0.2052353 0.1453016 0.2837252 0.2884929 0.5071830
+    # [1] 6.704520 6.280183 5.866058 3.335007 5.003625
+    # [1] -1.560487  1.632895  1.683088
+    # [1] 6.151391 0.570702 4.642296
 
 To sample from a set of values, use `sample`:
 
@@ -1241,9 +1243,9 @@ sample(v, 6, replace = TRUE) # with replacement
 sample(v) # simply shuffle the elements
 ```
 
-    # [1] "c" "b"
-    # [1] "a" "d" "b" "c" "d" "b"
-    # [1] "c" "d" "b" "a"
+    # [1] "b" "a"
+    # [1] "b" "c" "d" "d" "d" "b"
+    # [1] "a" "c" "b" "d"
 
 # Writing functions
 
@@ -1328,7 +1330,7 @@ order_two_numbers <- function(a, b){
 order_two_numbers(runif(1), runif(1))
 ```
 
-    # [1] 0.6707240 0.6460952
+    # [1] 0.6058977 0.1740612
 
 # Organizing and running code
 

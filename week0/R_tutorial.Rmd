@@ -10,7 +10,6 @@ output:
   github_document:
     toc: true
     toc_depth: 2
-    pandoc_args: --mathml
 urlcolor: blue
 ---
 
@@ -169,7 +168,9 @@ Each data type supports a certain number of operators and functions. For example
 5 %% 3
 ```
 
-meaning that `5 %/% 3` (5 integer divided by 3) is 1 with a remainder of 2. The modulo operator is useful to determine whether a number is divisible for another: if `y` is divisible by `x`, then `y %% x` is 0.
+meaning that `5 %/% 3` (5 integer divided by 3) is 1 with a remainder of 2
+
+The modulo operator is useful to determine whether a number is divisible for another: if `y` is divisible by `x`, then `y %% x` is 0.
 
 `R` provides many built-in functions: each functions has a name, followed by round parentheses surrounding the (possibly optional) function *arguments*. For example, these functions operate on `numeric` variables:
 
@@ -207,7 +208,7 @@ If sensible, you can use the comparison operators `>` (greater), `<` (lower), `=
 
 > **Exercise:** 
 > 
-> Why are two equal signs (`==`) used to check that two values are equal? What happens if you use only one sign?
+> Why are two equal signs (`==`) used to check that two values are equal? What happens if you use only one `=` sign?
 
 Similarly, you can concatenate several comparison and logical variables using `&` (and), `|` (or), and `!` (not):
 
