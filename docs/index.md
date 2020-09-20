@@ -41,13 +41,13 @@
 
 ### Week 5
 
-- [Generalized Linear Models](lectures/generalized_linear_models)
 - [Analysis of variance](lectures/ANOVA_etc)
+- [Modeling timeseries data](lectures/time_series)
 
 ### Week 6
 
+- [Generalized Linear Models](lectures/generalized_linear_models)
 - [Model selection](lectures/model_selection)
-- [Modeling timeseries data](lectures/time_series)
 
 ### Week 7
 
