@@ -1229,10 +1229,10 @@ rnorm(3) # three values from standard normal
 rnorm(3, mean = 5, sd = 4) # specify mean and standard deviation
 ```
 
-    # [1] 0.2052353 0.1453016 0.2837252 0.2884929 0.5071830
-    # [1] 6.704520 6.280183 5.866058 3.335007 5.003625
-    # [1] -1.560487  1.632895  1.683088
-    # [1] 6.151391 0.570702 4.642296
+    # [1] 0.4550189 0.3616343 0.2507091 0.4130523 0.8659858
+    # [1] 6.618080 3.129492 7.737384 6.667892 4.502963
+    # [1] -2.0341360  2.3134801  0.4105931
+    # [1] 3.376036 6.808766 5.698538
 
 To sample from a set of values, use `sample`:
 
@@ -1244,8 +1244,8 @@ sample(v) # simply shuffle the elements
 ```
 
     # [1] "b" "a"
-    # [1] "b" "c" "d" "d" "d" "b"
-    # [1] "a" "c" "b" "d"
+    # [1] "d" "d" "b" "a" "d" "a"
+    # [1] "b" "d" "a" "c"
 
 # Writing functions
 
@@ -1330,7 +1330,7 @@ order_two_numbers <- function(a, b){
 order_two_numbers(runif(1), runif(1))
 ```
 
-    # [1] 0.6058977 0.1740612
+    # [1] 0.9369484 0.7360515
 
 # Organizing and running code
 
@@ -1652,3 +1652,6 @@ a proficient programmer in `R`. For example:
   - [Advanced R Cheat
     Sheet](https://www.rstudio.com/wp-content/uploads/2016/02/advancedR.pdf)
   - [X in Y minutes](https://learnxinyminutes.com/docs/r/)
+  - [Intro to Data
+    Wrangling](https://cengel.github.io/R-data-wrangling/index.html)
+  - [R Boot Camp](https://r-bootcamp.netlify.app/)

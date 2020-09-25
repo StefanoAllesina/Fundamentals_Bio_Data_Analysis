@@ -1036,3 +1036,5 @@ There are very many excellent books and tutorials you can read to become a profi
 * [Base R Cheat Sheet](http://github.com/rstudio/cheatsheets/raw/master/base-r.pdf)
 * [Advanced R Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2016/02/advancedR.pdf)
 * [X in Y minutes](https://learnxinyminutes.com/docs/r/)
+* [Intro to Data Wrangling](https://cengel.github.io/R-data-wrangling/index.html)
+* [R Boot Camp](https://r-bootcamp.netlify.app/)
