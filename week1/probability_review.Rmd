@@ -25,29 +25,17 @@ knitr::opts_chunk$set(
   fig.align = "center")
 ```
 
-# Goals of the course
+## Goals of the course
 
 * Learn how to use R for working with biological data 
 * Become familiar with probability theory and the assumptions of popular models
 * Encounter and learn how to avoid common statistical mistakes
 * Apply what you have learned to your own data set
 
-Course outline by week:
 
-1. Review of probability, basic data visualization with `ggplot2`
-2. Probability distributions, data wrangling with `dplyr`
-3. Summary of linear algebra, hypothesis testing
-4. Likelihood and modeling, linear regression
-5. ANOVA, Generalized linear models
-6. Model selection, time series modeling
-7. Principal component analysis, clustering
-8. Student presentations 
-9. Student presentations
-10. Student presentations
+## Fundamentals of probability
 
-# Fundamentals of probability
-
-## Sample spaces and random variables
+### sample spaces and random variables
 
 No observation or measurement in our world is perfectly reproducible, no matter how carefully planned and executed. The level of uncertainly varies, but randomness always finds a way to creep into a data set. Where does the "random" factor come from? From the classical physics perspective, as articulated by Laplace, most natural phenomena are theoretically deterministic for an omniscient being with an unlimited computational power. Quantum mechanical phenomena are (theoretically) truly random, but the randomness is not observable on the scales of biology or social science. The lack of predictability in the data we work with is usually due either to its intrinsic complexity (e.g., biomolecular systems, prediction of animal behavior), which essentially makes it impossible to know every detail of the system, or to some external source of noise (e.g., measurement error, weather affecting food availability) that is outside of our control.
 
@@ -59,14 +47,15 @@ The measurement of interest from a random experiment is called a *random variabl
 
 **Example:** In a DNA sequence a codon triplet represents a specific amino acid, but there is redundancy (several triplets may code for the same amino acid). One may think of a coding DNA sequence as an outcome, but the amino acid (sequence or single one) as a random variable. Extending this framework, one may think of genotype as an outcome, but a phenotype (e.g., eye color) as a random variable---although this is not correct for any phenotype that is not strictly determined by the genotype, because then there are other factors (e.g., environmental or epigenetic) that influence the value of the random variable besides the outcome (genotype).
 
-**Exercise:** In the diamonds dataset in `dplyr`, identify numeric and categorical variables, and specify whether numeric variables are discrete and continuous. 
+**Exercise:** The package `palmerpenguins` contains multiple variables measured in populations of three different species of penguins over three years on three different islands. Identify numeric and categorical variables, and specify whether numeric variables are discrete and continuous. 
 
 ```{r}
 library(tidyverse)
-str(diamonds) # print out the variables in the data frame (tibble) diamonds
+library(palmerpenguins)
+str(penguins)
 ```
 
-## Probability axioms
+### probability axioms
 An outcome in sample space can be assigned a *probability* depending on its frequency of occurrence out of many trials, each is a number between 0 and 1. Combinations of outcomes (*events*) can be assigned probabilities by building them out of individual outcomes.  These probabilities have a few rules, called the *axioms of probability*, expressed using set theory notation.
 
 1. The total probability of all outcomes in sample space is 1. $P(\Omega) = 1$
@@ -79,10 +68,10 @@ An outcome in sample space can be assigned a *probability* depending on its freq
 
 $$ P(AXX \cup \ XAX ) =  P(AXX) + P(XAX) - P(AAX) = 1/4 + 1/4 - 1/16 = 7/16$$
 
-## Probability distributions
+### probability distributions
 The probability of each value of a random variable can be calculated from the probability of the event that corresponds to each value of the random variable. The collection of the probabilities of all of the values of the random variable is called the *probability distribution function* of the random variable, more formally the *mass function* for a discrete random variable or the *density function* for a continuous random variable. 
 
-For a discrete random variable (let's call it $X$) with a probability mass function $f$, the probability of $X$ taking the value of $a$ can be written either as $f(X=a)$ or $f(a)$, as long as it's clear that $f$ is the probability distriution function of $X$. The one ironclad rule of probability is that all values of the mass function have to add up to 1. To state this mathematically, if all the possible values of $X$ can be written as $a_1, a_2, ...$ (there may be finitely or infinitely many of them, as long as it's a countable infinity), this sum has to be equal to 1:
+For a discrete random variable (let's call it $X$) with a probability mass function $f$, the probability of $X$ taking the value of $a$ can be written either as $f(X=a)$ or $f(a)$, as long as it's clear that $f$ is the probability distribution function of $X$. The one ironclad rule of probability is that all values of the mass function have to add up to 1. To state this mathematically, if all the possible values of $X$ can be written as $a_1, a_2, ...$ (there may be finitely or infinitely many of them, as long as it's a countable infinity), this sum has to be equal to 1:
 $$ \sum_i f(a_i) = 1 $$
 
 A continuous random variable (let's call it $Y$) with a probability density function $g$ is a bit more complicated. The continous part means that the random variable has uncountably many values, even if the range is finite (for example, there are uncountably many real numbers between 0 and 1). Thus, the probability of any single value must be vanishingly small (zero), otherwise it would be impossible to add up (integrate) all of the values and get a finite result (let alone 1). We can only measure the probability of a range of values of $Y$ and it is defined by the integral of the density function overal that range:
@@ -107,19 +96,30 @@ $$ E(X) = \sum_i a_i\, f(a_i)$$
 And for a density function it is defined using the integral:
 $$ E(Y) =  \int_R y\, g(y) dy $$
 
-**Example:** The data set diamonds contains many variables, and the factors (categorical variables) cannot be described using means and medians, but can be plotted by counts (we will learn about `ggplot2` soon):
+**Example:** Let us examine the factors (categorical variables) in the penguins data set. They cannot be described using means and medians, but can be plotted by counts in each category as you learned in the introduction to `ggplot2`:
+
 ```{r}
-ggplot(data = diamonds) +
-  aes(x = cut, fill = clarity) + 
+ggplot(data = penguins) +
+  aes(x = species, fill = sex) + 
+  geom_bar(position = "fill")
+
+
+ggplot(data = penguins) +
+  aes(x = year, fill = species) + 
   geom_bar(position = "fill")
 ```
 
-One can plot and measure the mean and median of the numeric variables like depth, with separate box plots for different cut qualities:
+One can plot the distributions of numeric variables like body mass for different penguin species using box plots:
 
 ```{r}
-ggplot(data = diamonds) + aes(x = as.factor(cut), y=depth) + geom_boxplot()
-diamonds %>% group_by(cut) %>% summarise(mean = mean(depth))
-diamonds %>% group_by(cut) %>% summarise(median = median(depth))
+ggplot(data = penguins) + aes(x = as.factor(species), y=body_mass_g) + geom_boxplot()
+```
+
+The following code chunk uses `dplyr` functions that we will learn in the next chapter to calculate the mean and median values of these variables aggregated by species:
+
+```{r}
+penguins %>% drop_na() %>% group_by(species) %>% summarise(mean = mean(body_mass_g))
+penguins %>% drop_na()  %>% group_by(species) %>% summarise(median = median(body_mass_g))
 ```
 
 Comment on how the descriptive statistics correspond to the box plots. 
@@ -137,18 +137,18 @@ $$\text{Var}(Y) =  E[ Y - E(Y)]^2 = \int_R (y-E(Y))^2 g(y) dy $$
 
 Variances have squared units so they are not directly comparable to the values of the random variable. Taking the square root of the variance converts it into the same units and is called the standard deviation of the distribution:
 $$ \sigma_X = \sqrt{\text{Var}(X)}$$
-**Example:** Let's go back to  data set diamonds and the numeric variable depth plotted for different cut qualities
+**Example:** Let's go back to the penguins data set and calculate the measures of spread for the variable body mass for different penguin species
 
 ```{r}
-ggplot(data = diamonds) + aes(x = as.factor(cut), y=depth) + geom_boxplot()
-diamonds %>% group_by(cut) %>% summarise(var = var(depth))
-diamonds %>% group_by(cut) %>% summarise(first_quart = quantile(depth,0.25))
-diamonds %>% group_by(cut) %>% summarise(third_quart = quantile(depth,0.75))
+ggplot(data = penguins) + aes(x = as.factor(species), y=body_mass_g) + geom_boxplot()
+penguins %>% drop_na() %>% group_by(species) %>% summarise(var = var(body_mass_g))
+penguins %>% drop_na() %>% group_by(species) %>% summarise(first_quart = quantile(body_mass_g,0.25))
+penguins %>% drop_na() %>% group_by(species) %>% summarise(third_quart = quantile(body_mass_g,0.75))
 ```
 
-Comment on how the descriptive statistics of spread correspond to the box plots. 
+Which species has a wider spread in its body mass? How do the descriptive stats and the box plots correspond?
 
-# Data as samples from distributions: statistics
+## Data as samples from distributions: statistics
 
 In scientific practice, we collect data from one or more random variables, called a *sample*, and then try to make sense of it. One of the basic goals is statistical inference: using the data set to describe the *population* distribution from which the sample was drawn. Data sets can be plotted as *histograms* and the frequency/fraction of each value should be an approximation of the underlying probability distribution. In addition, descriptive statistics of the sample data (means, variances, medians, etc.) can be used to estimate the true parameters such as the mean and the variance of the population distribution.
 
@@ -162,7 +162,7 @@ Some of the fundamental questions about the population include:
 
 4. Describe and test a relationship between two or more variables.
 
-## Law of large numbers
+### law of large numbers
 
 First, the sample has to be *unbiased*, that is, no outcomes should be systematically over- or under-represented. But even an unbiased sample will differ from the population due to the inherent randomness of selection (sampling error). The **law of large numbers** states that as the *sample size* increases, the mean of the sample converges to the true mean of the population. Formally, for a set of $n$ indepdenent, identically distributed random variables (the sample) $\{X_i\}$ the sample mean $\overline{X}_n$ converges to the mean of the distribution $\mu$:
 
@@ -170,7 +170,7 @@ $$
 \lim _{n \to \infty} \frac{\sum_{i=1}^n {X_i}}{n} = \lim _{n \to \infty} \overline{X}_n = \mu
 $$
 
-## Central Limit Theorem
+### Central Limit Theorem
 
 That is nice to know, but doesn't say exactly how large a sample is needed to estimate, for example, the mean of the population to a given precision. For that, we have the **Central Limit Theorem**, which states that the distribution of sample means (from samples of independent, identically distributed random variables) as sample size increases, approaches the normal (Gaussian) distribution with mean equal to the population mean and standard deviation equal to the standard deviation of the population divided by the square root of the sample size. Formally, it states that for a set of $n$ indepdenent, identically distributed random variables (the sample) $\{X_i\}$ with distribution mean $\mu$ and variance $\sigma^2$, the probability density function of the sample mean $\overline{X}_n$ converges for large sample size $n$ to the normal distribution:
 
@@ -184,36 +184,32 @@ This is an amazing result because it applies to any distribution, so it allows f
 
 **Discussion:** Suggest examples of biological data sets which are not made up of independent identically distributed random variables.
 
-# Over to the students
 
-1. Introduce your own data set
+## Exploration: misleading means
 
+Means are the most common type of descriptive statistic and are sometimes the only numeric quantity used to compare two data sets, e.g. "the average GPA at school A is 3.5 vs 3.8 at school B". However, means can be misleading measures in multiple ways. 
 
-2. Describe the variables and observations and data types
+First, means are highly sensitive to outliers, or points that are very different from other values. They can skew the mean value, even pulling it completely away from the bulk of the values, in which case the mean ceases to be a measure of a "typical" value.
 
+Second, there can be funny business with combining means of different *subsets* of data. Normally, you might expect if you have group A and group B, and each group has two subgroups divided by another variable (e.g. we are comparing the GPAs of students in school A and school B, and we split up the students in each school by gender), then if the means of each subgroup of A and larger than the means of the same subgroup of B (e.g. the GPA of girls and boys in school A are higher than those of their counterparts in school B), then the same relationship should be true for the combined mean of group A and group B (that is, the overall GPA in school A is higher than school B). That is not necessarily true!
 
-3. State the questions you would like to address using the data
-
-# In-class exploration: misleading means
-
-Use the library titanic and combine the data sets for all passangers and crew into the following tibble:
+This apparent contradiction is called Simpson's paradox. It can be illustrated in the data set of all the passengers and crew on the doomed ocean liner Titanic. The data set is found in the library `stablelearner` and is loaded by the chunk below:
 
 ```{r}
-library(titanic)
-titanic_total <- bind_rows(titanic_test, titanic_train)
-str(titanic_total)
-ggplot(data = titanic_train) +
-  aes(x = Pclass, fill = as.character(Survived)) + 
-  geom_bar(position="fill") 
+library(stablelearner)
+data(titanic)
+str(titanic)
 ```
+The chunk below calculated the survival probability of passengers of all classes compared to the crew (of all types:
 
-* Calculate the probability of survival for passengers by class (1, 2, 3, and crew). 
-* Calculate the survival probability by sex. 
-* Compare the survival rates of men and women separately by class. Do you observe anything unexpected? How would you explain the apparent disagreement between the survival rates?
+```{r}
+titanic %>% group_by(Passenger = class %in% c('1st', '2nd', '3rd'), survived) %>% summarise(num = n()) %>% mutate(fraction = num/sum(num)) 
+```
+You can see that about 24% of the crew survived and almost 38% of the passengers survived. In this week's assignment you will calculate and explain what happens when you divide the people in each group by gender.
 
-# References
+## References
 
 * [Laplace's views on probability and determinism](https://www.bayesianspectacles.org/laplaces-demon/)
-* [Simpson's paradox](https://medium.com/@nikhilborkar/the-simpsons-paradox-and-where-to-find-them-cfcec6c2d8b3)
 * [Central Limit Theorem in R](https://medium.com/@ODSC/exploring-the-central-limit-theorem-in-r-e2a2f7091606)
 * [Exploration of the Central Limit Theorem](https://genomicsclass.github.io/book/pages/clt_in_practice.html)
+* [Simpson's paradox](https://medium.com/@nikhilborkar/the-simpsons-paradox-and-where-to-find-them-cfcec6c2d8b3)
