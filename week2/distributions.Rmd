@@ -25,16 +25,16 @@ knitr::opts_chunk$set(
   fig.align = "center")
 ```
 
-# Objectives:
+## Objectives:
 
   * Apply concepts of conditional probability to practical scenarios and questions
   * Describe independence as a concept and apply to data sets
   * Use random number generators to simulate various distributions
   * Be familiar with the shape of several common distributions and describe the role of their parameters
 
-# Independence
+## Independence
 
-## Conditional probability
+### conditional probability
 
 In the basic definitions of probability, we considered the probabilities of each outcome and events separately. Let us consider how information about one event affects the probability of another event. The concept is that if one event (let's call it $B$) is true, unless the event is the entire space, it rules out some other outcomes. This may affect the probability of other events (e.g., $A$) in the sample space, because knowledge of $B$ may rule out some of the outcomes in $A$ as well.  Here is the formal definition:
 
@@ -68,7 +68,7 @@ a | Aa (pink) | aa (white)
 **Lesson:** in general,
 $$P(X \vert  Y ) \neq P(Y \vert  X)$$
 
-## Independence
+### independence
 
 Independence is a fundamental concept in probability that may be misinterpreted without careful thinking. Intuitively, two events (or random variables) are independent if one does not influence the other. More precisely, it means that the probability of one event is the same regarless of whether the other one happens or not. This is expressed precisely using conditional probabilities:
 
@@ -80,7 +80,7 @@ Independence is not a straightforward concept. It may be confused with mutual ex
 
 **Example:** A slighly more subtle example, the lifetime risk of breast cancer is about 1 in 8 for women and about 1 in 1000 for men. Are sex and breast cancer independent?
 
-## Usefulness of independence
+### usefulness of independence
 
 Independence is a mathematical abstraction, and reality rarely provides us with perfectly independent variables. But it's a very useful abstraction in that it enables calculations that would be difficult or impossible to carry out without this assumption. 
 
@@ -126,11 +126,11 @@ This demonstrates that the covariance of two independent random variables is 0, 
 
 **Example:** This property of variance is often used in analysis of noise or error in data. It is commonly assumed in least squares fitting that noise in data is independent of the signal or model underlying the data. This is the foundation for statements like "this linear regression explains 80% of the variance in the data."
 
-# Probability distribution examples (discrete)
+## Probability distribution examples (discrete)
  
 The following are examples of distributions of random variables with discrete values. The first two have finite support (finitely many values) while the second two have infinite support.
 
-## Uniform
+### Uniform
 The simplest probability distribution in which every value has the same probability (and one which is sometimes called "purely random" even though any random variable with any distribution is just as random). The probability distribution for a uniform random variable with $n$ values is  $P(x) = 1/n$ for any value $x$.
 
 ```{r}
@@ -152,7 +152,7 @@ paste("The variance of uniform distribution is", unif.var)
 
 *Exercise:* experiment with the low and high values to see how the expectation and variance depend on them. Can you postulate a relationship without looking it up?
 
-## Binomial
+### Binomial
 
 Binary or Bernoulli trials have two discrete outcomes (mutant/wildtype, win/lose, etc.). The number of "successes" out of a sequence of $n$ independent binary trials with probability of success $p$ is described by the binomial distribution.
 
@@ -174,9 +174,9 @@ paste("The variance of binomial distribution is", bin.var)
 
 *Exercise:* Try different values of $n$ and $p$ and postulate a relationship with the expectation and variance. 
 
-## Geometric
+### Geometric
 
-The reandom variable is the first "success" in a string of independent binary trials and the distribution describes the probability of any nonnegative value. It may be pretty intuitive that since all the trials have the same probability of success, the distribution with have a geometric (exponential) form---try to figure out the exact formula for the probability density without looking it up!
+The random variable is the first "success" in a string of independent binary trials and the distribution describes the probability of any nonnegative value. It may be pretty intuitive that since all the trials have the same probability of success, the distribution with have a geometric (exponential) form---try to figure out the exact formula for the probability density without looking it up!
 
 ```{r}
 p <- 0.3 # the probability of success
@@ -184,8 +184,7 @@ low <- 0 # minimum value
 high <- 20 # maximum value
 values <- low:high # vector of discrete values of the RV
 probs <- dgeom(values, p)
-barplot(probs, names.arg = values, xlab = 'values', ylab = 'probability',
-        main = paste("geometric distribution with p=", p))
+barplot(probs, names.arg = values, xlab = 'values', ylab = 'probability', main = paste("geometric distribution with p=", p))
 ```
 
 ```{r}
@@ -197,7 +196,7 @@ paste("The variance of geometric distribution is", geom.var)
 
 *Exercise:* Calculate the expectations and variances for different values of $p$ and report how they are related.
 
-## Poisson 
+### Poisson 
 
 Suppose that there is a discrete process that occurs with some average rate $\lambda$, which describes the expected number of occurrences of these events in a unit of time. The Poisson random variable is the number of such occurrences, and the distribution describes the probability of any nonnegative value. 
 
@@ -220,11 +219,11 @@ paste("The variance of Poisson distribution is", pois.var)
 
 *Exercise:* Calculate the expectations and variances for different values of $\lambda$ and report how they are related.
 
-# Probability distribution examples (continuous)
+## Probability distribution examples (continuous)
 
 In the following examples with continuous variables we cannot calculate the means and variances directly from the density function. One way to do it is to produce a sample using the random number generator and calculate the mean and variance of that sample.
 
-## Uniform 
+### Uniform 
 
 The continuous equivalent of the discrete uniform distribution.
 
@@ -251,7 +250,7 @@ paste("The variance of uniform distribution is", unif.var)
 
 *Exercise:* experiment with the width of the interval to see how it affects the expectation and variance.
 
-## Exponential
+### exponential
 
 The random variable describes the length of time between independent discrete events occurring with a certain rate, like we saw in the Poisson distribution. 
 
@@ -277,13 +276,15 @@ paste("The variance of exponential distribution is", exp.var)
 
 *Exercise:* What is the relationship between the rate and the expectation and variance?
 
-## Normal distribution
+### normal distribution
 
 The normal distribution, sometimes written $N(\mu, \sigma)$ comes up everywhere (e.g., in the limit of the Poisson distribution for large $n$). The two parameters are simply the mean and the standard deviation. The reason for its ubiquity is that it is that any sum of a large number of independent random variables converges to the normal, formalized by the Central Limit Theorem:
 
 > For a set of $n$ IID random variables $\{X_i\}$ with mean $\mu$ and standard deviation $\sigma$, the sample mean $\bar X_n$ has the property:
-$$\lim_{n \to \infty} = \frac{\bar X_n - \mu}{\sigma} = N(0,1)  $$ 
-> where $N(0,1)$ stands for the normal distribution with mean 0 and standard deviation 1.
+$$
+\lim_{n \to \infty} = \frac{\bar X_n - \mu}{\sigma} = N(0,1)
+$$ 
+where $N(0,1)$ stands for the normal distribution with mean 0 and standard deviation 1.
 
 ```{r}
 low <- 0 # minimum value
@@ -306,7 +307,7 @@ norm.var <- var(norm.sample)
 paste("The variance of normal distribution is", norm.var)
 ```
 
-# Application of normal distribution: confidence intervals:
+## Application of normal distribution: confidence intervals
 
 The most important use of the normal distribution has to do with estimation of means, because the normal distribution describes the *sampling distributions* of means of IID samples. The mean of that sampling distribution is the mean of the population distribution that is being sampled, and the standard deviation is called the *standard error* and is related to the standard deviation of the population $\sigma_X$ as follows: $\sigma_{SE} = \sigma/n$, where $n$ is the sample size.
 
@@ -350,40 +351,65 @@ print(left)
 
 ## Identifying type of distribution in real data
 
-Let us load the Macaque agression data again:
-```{r}
-# read the data
-# original URL:
-# https://datadryad.org/stash/dataset/doi:10.5061/dryad.013d5
-dt <- read.csv("data/Brent_et_al_Behaviour_vs_Age.csv", stringsAsFactors = FALSE)
-head(dt)
-```
-A simple way to visualize a distribution is to plot a histogram: data are binned, and the height of the bin represents counts (or frequencies). Plot the hisrograms of rhe four z-scores variables and visually assess which distribution(s) they resemble.
-
-```{r}
-
-```
-
-A more systematic way of comparing data to a theoretical distribution is via a Quantile-Quantile (QQ) plot, which plots the quantile value from  a sample against the quantiles from a given distribution with best-fit parameters. If the data were to follow the distribution closely, you should find all the points lying on the identity line. For example, here is how to compare a data set drawn from the normal random number generator with the normal distribution:
-
+Let us consider the penguin data set again:
 ```{r}
 library(tidyverse)
+library(palmerpenguins)
+str(penguins)
+```
+
+A simple way to visualize a distribution is to plot a histogram: data are binned, and the height of the bin represents counts (or frequencies). Here are the histograms of distributions of flipper lengths of all the species of penguins separated by sex:
+
+```{r}
+ggplot(penguins) +
+  aes(x = flipper_length_mm, color = sex, fill=sex) + geom_histogram(alpha = 0.5, position = "identity")
+```
+
+And here are the histograms of flipper lengths separated by species:
+
+```{r}
+ggplot(penguins) +
+  aes(x = flipper_length_mm, color = species, fill=species) + geom_histogram(alpha = 0.5, position = "identity")
+```
+
+To decide systematically which of these distributions are closer to a theoretical distribution is via a Quantile-Quantile (QQ) plot, which plots the quantile value from  a sample against the quantiles from a given distribution with best-fit parameters. If the data were to follow the distribution closely, you should find all the points lying on the identity line. For example, here is how to compare a data set drawn from the normal random number generator with the normal distribution:
+
+```{r}
 library(fitdistrplus)
-set.seed(101)
 test_data <- tibble(x = rnorm(n = 500, mean = 3, sd = 1.5))
 # example: find best-fitting Normal
 my_normal <- fitdistr(test_data$x, densfun = "normal")
 # note the slight discrepancies
-my_normal
+print(my_normal)
 ggplot(test_data, aes(sample = x)) +
   stat_qq(distribution = qnorm, dparams = my_normal$estimate) +
-  stat_qq_line(distribution = qnorm, dparams = my_normal$estimate) + 
+  stat_qq_line(distribution = qnorm, dparams = my_normal$estimate) +
   geom_abline(intercept = 0, slope = 1, linetype = 2, col = "red") +
   ggtitle("Q-Q plot assuming best-fitting Normal distribution")
 ```
-Make normal QQplots for the four variables in the Macaque data sets. Are any of them normally distributed, and if not, can find a better distribution to represent it?
+Now let us assess the "normality" of the flipper length data separated by sex and separated by species:
 
 ```{r}
+dataset <- penguins %>%  dplyr::filter(sex == 'female') %>% drop_na() %>%  dplyr::select(flipper_length_mm) 
+my_normal <- fitdistr(x = as_vector(dataset), densfun = "normal")
+# note the slight discrepancies
+print(my_normal)
+ggplot(dataset, aes(sample = flipper_length_mm)) +
+  stat_qq(distribution = qnorm, dparams = my_normal$estimate) +
+  stat_qq_line(distribution = qnorm, dparams = my_normal$estimate) +
+  geom_abline(intercept = 0, slope = 1, linetype = 2, col = "red") +
+  ggtitle("Q-Q plot assuming best-fitting Normal distribution of flipper lenth for female penguins")
 
+
+dataset <- penguins %>%  dplyr::filter(sex == 'male') %>% drop_na() %>%  dplyr::select(flipper_length_mm) 
+my_normal <- fitdistr(x = as_vector(dataset), densfun = "normal")
+# note the slight discrepancies
+print(my_normal)
+ggplot(dataset, aes(sample = flipper_length_mm)) +
+  stat_qq(distribution = qnorm, dparams = my_normal$estimate) +
+  stat_qq_line(distribution = qnorm, dparams = my_normal$estimate) +
+  geom_abline(intercept = 0, slope = 1, linetype = 2, col = "red") +
+  ggtitle("Q-Q plot assuming best-fitting Normal distribution of flipper lenth for male penguins")
 ```
 
+In contrast with the simulated data, here the data points and the black line that attempts to capture them is quite different from the identity line (red). This means this distribution is for from normal, as can be seen from the histograms of the flipper lengths grouped by sex.
