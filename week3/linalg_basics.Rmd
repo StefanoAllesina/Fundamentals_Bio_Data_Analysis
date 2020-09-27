@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
   fig.align = "center")
 ```
 
-# Goals
+## Goals
   * Solving linear equations
   * Best-fit line through multiple data points
   * Concepts of linearity and vector spaces
@@ -37,7 +37,7 @@ library(tidyverse) # our friend the tidyverse
 library(ggfortify) 
 ```
 
-# Solving multivariate linear equations
+## Solving multivariate linear equations
 Linear algebra is intimately tied to linear equations, that is, to equations where all variables are multiplied by constant terms and added together. Linear equations with one variable are easily solved by division, for example:
 $$
 4x = 20
@@ -136,7 +136,7 @@ $$
 This system has no exact solution, since there are three equations and only two unknowns. We need to find $m$ and $b$ such that they are a "best fit" to the data, not the perfect solution.
 
 
-## Least-squares line
+### least-squares line
 
 Let us write the equation in matrix form as follows:
 
@@ -202,7 +202,7 @@ But it feels good to know that this is not black magic! In fact, plotting it on 
 pl + geom_smooth(method = "lm") # lm stands for linear model
 ```
 
-# Linearity and vector spaces
+## Linearity and vector spaces
 We have dealt with linear models in various guises, so now would be a good time to define properly what linearity means. The word comes from the shape of graphs of linear functions of one variable, e.g. $f(x) = ax + b$, but the algebraic meaning rests on the following two general properties:
 
 **Definition.** A *linear transformation* or *linear operator* is a mapping $L$ between two sets of vectors with the following properties:
@@ -242,7 +242,7 @@ Linear combinations arise naturally from the notion of linearity, combining the 
 
 The most common examples are the spaces of all real-valued vectors of dimension $n$, which are denoted by $\mathbb{R}^n$. For instance, $\mathbb{R}^2$ (pronounced "r two") is the vector space of two dimensional real-valued vectors such as $(1,3)$ and $(\pi, -\sqrt{17})$; similarly, $\mathbb{R}^3$ is the vector space consisting of three dimensional real-valued vectors such as $(0.1,0,-5.6)$. You can convince yourself, by taking linear combinations of vectors, that these vector spaces contain all the points in the usual Euclidean plane and three-dimensional space. The real number line can also be thought of as the vector space $\mathbb{R}^1$.
 
-## Linear independence and basis vectors
+### linear independence and basis vectors
 How can we describe a vector space without trying to list all of its elements? We know that one can generate an element by taking linear combinations of vectors. It turns out that it is possible to generate (or "span") a vector space by taking linear combinations of a subset of its vectors. The challenge is to find a minimal subset of subset that is not redundant. In order to do this, we first introduce a new concept:
 
 **Definition:** A set of vectors $\{ \vec v_i \}$ is called *linearly independent* if the only linear combination involving them that equals the zero vector is if all the coefficients are zero. ( $a_1 \vec v_1 + a_2 \vec v_2 + ... + a_n \vec v_n = 0$ only if $a_i = 0$ for all $i$.)
@@ -261,7 +261,7 @@ $$
 
 
 
-## Projections and changes of basis
+### projections and changes of basis
 
 The representation of an arbitrary vector (point) in a vector space as a linear combination of a given basis set is called the \emph{decomposition} of the point in terms of the basis, which gives the coordinates for the vector in terms of each basis vector. The decomposition of a point in terms of a particular basis is very useful in high-dimensional spaces, where a clever choice of a basis can allow a description of a set of points (such as a data set) in terms of contributions of only a few basis vectors, if the data set primarily extends only in a few dimensions.
 
@@ -297,9 +297,9 @@ print(ProjMat%*%u)
 
 This is an example of how to convert a vector/point from representation in one basis set to another. The new basis vectors, expressed in the original basis set, are arranged in a matrix by row, scaled by their norm squared, and multiplied by the vector that one wants to express in the new basis. The resulting vector contains the coordinates in the new basis.
 
-# Matrices as linear operators
+## Matrices as linear operators
 
-## matrices transform vectors
+### matrices transform vectors
 
 In this section we will learn to characterize square matrices by finding
 special numbers and vectors associated with them. At the core of this
@@ -331,113 +331,72 @@ In this case, the vector is changed, but only by multiplication by a
 constant (4). Thus the geometric direction of the vector remained
 unchanged.
 
-Generally, a square matrix has an associated set of vectors for which
-multiplication by the matrix is equivalent to multiplication by a
-constant. This can be written down as a definition:
+Generally, a square matrix has an associated set of vectors for which multiplication by the matrix is equivalent to multiplication by a constant. This can be written down as a definition:
 
-An *eigenvector* of a square matrix $A$ is a vector $\vec v$ for which
-matrix multiplication by $A$ is equivalent to multiplication by a
-constant. This constant $\lambda$ is called its *eigenvalue* of $A$
-corresponding the the eigenvector $\vec v$. The relationship is
-summarized in the following equation:
+**Definition.** An *eigenvector* of a square matrix $A$ is a vector $\vec v$ for which matrix multiplication by $A$ is equivalent to multiplication by a constant. This constant $\lambda$ is called its *eigenvalue* of $A$ corresponding the the eigenvector $\vec v$. The relationship is summarized in the following equation:
+
 $$
 A  \times  \vec v = \lambda \vec v
 $$
 
-Note that this equation combines a matrix ($A$), a vector ($\vec v$) and
-a scalar $\lambda$, and that both sides of the equation are column
-vectors. 
-
+Note that this equation combines a matrix ($A$), a vector ($\vec v$) and a scalar $\lambda$, and that both sides of the equation are column vectors. 
 
 The definition does not specify how many such eigenvectors and
-eigenvalues can exist for a given matrix $A$. There are usually as many
-such vectors $\vec v$ and corresponding numbers $\lambda$ as the number
-of rows or columns of the square matrix $A$, so a 2 by 2 matrix has two
-eigenvectors and two eigenvalues, a 5x5 matrix has 5 of each, etc. One
-ironclad rule is that there cannot be more distinct eigenvalues than the
-matrix dimension. Some matrices possess fewer eigenvalues than the
-matrix dimension, those are said to have a *degenerate* set of
-eigenvalues, and at least two of the eigenvectors share the same
-eigenvalue.
+eigenvalues can exist for a given matrix $A$. There are usually as many such vectors $\vec v$ and corresponding numbers $\lambda$ as the number of rows or columns of the square matrix $A$, so a 2 by 2 matrix has two eigenvectors and two eigenvalues, a 5x5 matrix has 5 of each, etc. One ironclad rule is that there cannot be more distinct eigenvalues than the matrix dimension. Some matrices possess fewer eigenvalues than the matrix dimension, those are said to have a *degenerate* set of eigenvalues, and at least two of the eigenvectors share the same eigenvalue.
 
-The situation with eigenvectors is trickier. There are some matrices for
-which any vector is an eigenvector, and others which have a limited set
-of eigenvectors. What is difficult about counting eigenvectors is that
-an eigenvector is still an eigenvector when multiplied by a constant.
-You can show that for any matrix, multiplication by a constant is
-commutative: $cA = Ac $, where $A$ is a matrix and $c$ is a constant.
-This leads us to the important result that if $\vec v$ is an eigenvector
-with eigenvalue $\lambda$, then any scalar multiple $c \vec v$ is also
-an eigenvector with the same eigenvalue. The following demonstrates this
-algebraically:
-$$A  \times  (c \vec v) = c A  \times  \vec v = c \lambda \vec v =  \lambda (c \vec v)$$
-This shows that when the vector $c \vec v$ is multiplied by the matrix
-$A$, it results in its being multiplied by the same number $\lambda$, so
-by definition it is an eigenvector. Therefore, an eigenvector $\vec v$
-is not unique, as any constant multiple $c \vec v$ is also an
-eigenvector. It is more useful to think not of a single eigenvector
-$\vec v$, but of a **collection of vectors that can be interconverted by
-scalar multiplication** that are all essentially the same eigenvector.
-Another way to represent this, if the eigenvector is real, is that an
-eigenvector as a **direction that remains unchanged by multiplication by
-the matrix**, such as direction of the vector $v$ in figure . As mentioned above, this is true only for
-real eigenvalues and eigenvectors, since complex eigenvectors cannot be
+The situation with eigenvectors is trickier. There are some matrices for which any vector is an eigenvector, and others which have a limited set of eigenvectors. What is difficult about counting eigenvectors is that an eigenvector is still an eigenvector when multiplied by a constant. You can show that for any matrix, multiplication by a constant is commutative: $cA = Ac $, where $A$ is a matrix and $c$ is a constant. This leads us to the important result that if $\vec v$ is an eigenvector with eigenvalue $\lambda$, then any scalar multiple $c \vec v$ is also
+an eigenvector with the same eigenvalue. The following demonstrates this algebraically:
+$$
+A  \times  (c \vec v) = c A  \times  \vec v = c \lambda \vec v =  \lambda (c \vec v)
+$$
+
+This shows that when the vector $c \vec v$ is multiplied by the matrix $A$, it results in its being multiplied by the same number $\lambda$, so by definition it is an eigenvector. Therefore, an eigenvector $\vec v$ is not unique, as any constant multiple $c \vec v$ is also an eigenvector. It is more useful to think not of a single eigenvector $\vec v$, but of a **collection of vectors that can be interconverted by scalar multiplication** that are all essentially the same eigenvector. Another way to represent this, if the eigenvector is real, is that an eigenvector as a **direction that remains unchanged by multiplication by the matrix**, such as direction of the vector $v$ in  the figure below. As mentioned above, this is true only for real eigenvalues and eigenvectors, since complex eigenvectors cannot be
 used to define a direction in a real space.
 
-To summarize, eigenvalues and eigenvectors of a matrix are a set of
-numbers and a set of vectors (up to scalar multiple) that describe the
-action of the matrix as a multiplicative operator on vectors.
-“Well-behaved” square $n$ by $n$ matrices have $n$ distinct eigenvalues
-and $n$ eigenvectors pointing in distinct directions. In a deep sense,
-the collection of eigenvectors and eigenvalues defines a matrix $A$,
-which is why an older name for them is characteristic vectors and
-values.
+![Illustration of the geometry of a matrix $A$ multiplying its eigenvector $v$, resulting in a vector in the same direction
+$\lambda v$](../images/Eigenvalue_equation.png)
 
-### Calculating eigenvalues
 
-Finding the eigenvalues and eigenvectors analytically, that is on paper,
-is quite laborious even for 3 by 3 or 4 by 4 matrices and for larger
-ones there is no analytical solution. In practice, the task is
-outsourced to a computer, and MATLAB has a number of functions for this
-purpose. Nevertheless, it is useful to go through the process in 2
-dimensions in order to gain an understanding of what is involved. From
-the definition of eigenvalues and eigenvectors, the
-condition can be written in terms of the four elements of a 2 by 2
-matrix:
+To summarize, eigenvalues and eigenvectors of a matrix are a set of numbers and a set of vectors (up to scalar multiple) that describe the action of the matrix as a multiplicative operator on vectors. “Well-behaved” square $n$ by $n$ matrices have $n$ distinct eigenvalues and $n$ eigenvectors pointing in distinct directions. In a deep sense, the collection of eigenvectors and eigenvalues defines a matrix $A$, which is why an older name for them is characteristic vectors and values.
+
+### calculating eigenvalues
+
+Finding the eigenvalues and eigenvectors analytically, that is on paper, is quite laborious even for 3 by 3 or 4 by 4 matrices and for larger ones there is no analytical solution. In practice, the task is outsourced to a computer, and MATLAB has a number of functions for this purpose. Nevertheless, it is useful to go through the process in 2 dimensions in order to gain an understanding of what is involved. From the definition of eigenvalues and eigenvectors, the condition can be written in terms of the four elements of a 2 by 2 matrix:
+
 $$
 \left(\begin{array}{cc}a & b \\c & d\end{array}\right)\left(\begin{array}{c}v_1 \\ v_2 \end{array}\right) = \left(\begin{array}{c}av_1 +b v_2\\ cv_1+ dv_2 \end{array}\right) = \lambda \left(\begin{array}{c}v_1 \\ v_2 \end{array}\right)
 $$
-This is now a system of two linear algebraic equations, which we can
-solve by substitution. First, let us solve for $v_1$ in the first row,
-to get $$v_1 = \frac{-bv_2}{a-\lambda}$$ Then we substitute this into
-the second equation and get:
+This is now a system of two linear algebraic equations, which we can solve by substitution. First, let us solve for $v_1$ in the first row, to get $$v_1 = \frac{-bv_2}{a-\lambda}$$ Then we substitute this into the second equation and get:
 $$
 \frac{-bcv_2}{a-\lambda} +(d-\lambda)v_2 = 0
 $$ 
 
-Since $v_2$ multiplies
-both terms, and is not necessarily zero, we require that its
-multiplicative factor be zero. Doing a little algebra, we obtain the
-following, known as the *characteristic equation* of the matrix:
-$$-bc +(a-\lambda)(d-\lambda) = \lambda^2-(a+d)\lambda +ad-bc = 0$$ This
-equation can be simplified by using two quantities we defined at the
-beginning of the section: the sum of the diagonal elements called the
-trace $\tau = a+d$, and the determinant $\Delta = ad-bc$. The quadratic
-equation has two solutions, dependent solely on $\tau$ and $\Delta$:
-$$\lambda = \frac{\tau \pm \sqrt{\tau^2-4\Delta}}{2}
-\label{eq:2D_eig}$$ This is the general expression for a 2 by 2 matrix,
-showing there are two possible eigenvalues. Note that if
-$\tau^2-4\Delta>0$, the eigenvalues are real, if $\tau^2-4\Delta<0$,
-they are complex (have real and imaginary parts), and if
-$\tau^2-4\Delta=0$, there is only one eigenvalue. This situation is
-known as degenerate, because two eigenvectors share the same eigenvalue.
+Since $v_2$ multiplies both terms, and is not necessarily zero, we require that its multiplicative factor be zero. Doing a little algebra, we obtain the following, known as the *characteristic equation* of the matrix:
 
-**Example.** Let us take the same matrix we looked at in the previous
-subsection:
-$$A = \left(\begin{array}{cc}2 & 1 \\ 2& 3\end{array}\right)$$ The trace
-of this matrix is $\tau = 2+3 =5$ and the determinant is
+$$
+-bc +(a-\lambda)(d-\lambda) = \lambda^2-(a+d)\lambda +ad-bc = 0
+$$ 
+This equation can be simplified by using two quantities we defined at the beginning of the section: the sum of the diagonal elements called the trace $\tau = a+d$, and the determinant $\Delta = ad-bc$. The quadratic equation has two solutions, dependent solely on $\tau$ and $\Delta$:
+
+$$
+\lambda = \frac{\tau \pm \sqrt{\tau^2-4\Delta}}{2}
+$$ 
+
+This is the general expression for a 2 by 2 matrix, showing there are two possible eigenvalues. Note that if $\tau^2-4\Delta>0$, the eigenvalues are real, if $\tau^2-4\Delta<0$, they are complex (have real and imaginary parts), and if $\tau^2-4\Delta=0$, there is only one eigenvalue. This situation is known as degenerate, because two eigenvectors share the same eigenvalue.
+
+**Example.** Let us take the same matrix we looked at in the previous subsection:
+
+$$
+A = \left(\begin{array}{cc}2 & 1 \\ 2& 3\end{array}\right)
+$$ 
+
+The trace of this matrix is $\tau = 2+3 =5$ and the determinant is
 $\Delta = 6 - 2 = 4$. Then by our formula, the eigenvalues are:
-$$\lambda = \frac{5 \pm \sqrt{5^2-4 \times 4}}{2}  =  \frac{5 \pm 3}{2}  = 4, 1$$
+
+$$
+\lambda = \frac{5 \pm \sqrt{5^2-4 \times 4}}{2}  =  \frac{5 \pm 3}{2}  = 4, 1
+$$
+
 These are the multiples we found in the example above, as expected.  Of course `R` has functions to calculate this instead of doing this by hand:
 
 ```{r}
@@ -448,5 +407,3 @@ eigs$vectors
 ```
 
 **Note:** a real-valued matrix can have complex eigenvalues and eigenvectors, but whenever it acts on a real vector, the result is still real. This is because the complex numbers cancel each other’s imaginary parts. 
-
-

@@ -1,5 +1,5 @@
 ---
-title: "Week 4: Likelihood and Bayes"
+title: "Likelihood and Bayes"
 author: "**Dmitry Kondrashov & Stefano Allesina**"
 date: "Fundamentals of Biological Data Analysis -- BIOS 26318"
 output:
@@ -25,10 +25,16 @@ knitr::opts_chunk$set(
   fig.align = "center")
 ```
 
+## Goals
 
-# Likelihood and estimation
+* understand the difference between likelihood and probability
+* maximum likelihood estimation
+* calculate positive predictive value of a hypothesis test
+* interpret the results of Bayesian inference
 
-## Likelihood vs. probability
+## Likelihood and estimation
+
+### likelihood vs. probability
 
 In everyday English, probability and likelihood are synonymous. In probability and statistics, however, the two are distinct, although related, concepts. The definition of likelihood is based on the notion of conditional probability that we defined in week 2, applied to a data set and a particular probability model $M$:
 
@@ -58,12 +64,12 @@ So the likelihood of this data set being produced by a fair coin is about 20.5%.
 
 This certainly looks like a probability  - in fact we calculated it from a probability distribution function, so why do we call it a likelihood? There are two fundamental differences between the two, one mostly abstract, the other more grounded.
 
-First, a model (or model parameters) is not a random variable, because it comes from an assumption we made in our heads, not from an outcome of a random process. This may seem to be an abstract, almost philosophical distinction, but how would you go about assigning probabilities to all the models one can come up with? Would they vary from person to person, because one may prefer to use the binomial random variablem, and another prefers Poisson? You see how this can get dicey if we think of these in terms of the traditional "frequency of outcomes" framework of probability.
+First, a model (or model parameters) is not a random variable, because it comes from an assumption we made in our heads, not from an outcome of a random process. This may seem to be an abstract, almost philosophical distinction, but how would you go about assigning probabilities to all the models one can come up with? Would they vary from person to person, because one may prefer to use the binomial random variable, and another prefers Poisson? You see how this can get dicey if we think of these in terms of the traditional "frequency of outcomes" framework of probability.
 
 Second, and more quantitatively relevant, is that likelihoods do not satisfy the fundamental axiom of probability: they do not add up to one. Remember that probabilities were defined on a sample space of all outcomes of a random experiment. Likelihoods apply to models or their parameters, and there are usually uncountably many models - in fact it's not possible to even describe all the possible models in vague terms! Even if we agree that we're evaluating only one type of model, e.g. the binomial random variable, the likelihood parameter $p$ does not work like a probability, because there is a non-zero likelihood for any value $p$ (technically, the coin could have any degree of unfairness!) so adding up all of the likelihoods will results in infinity.
 
 
-## Maximizing likelihood
+### maximizing likelihood
 
 One of the most common applications of likelihood is to find the model or model parameters that give the highest likelihood based on the data, and call those the best statistical estimate. Here are the symbols we will use in this discussion:
 
@@ -72,9 +78,9 @@ One of the most common applications of likelihood is to find the model or model 
 * $L(\theta \ \vert \ D)$: the likelihood function, read "the likelihood of $\theta$ given the data"
 * $\hat{\theta}$: the maximum-likelihood estimates (m.l.e.) of the parameters
 
-### Discrete probability distributions
+### discrete probability distributions
 
-The simplest case is that of a probability distribution function that takes discrete values. Then, the likelihood of $\theta$ given the data is simply the probability of obtaining the data when parameterizing the model with parameters $\theta$:
+The simplest case is that of a probability distribution function that takes discrete values. Then, the likelihood of $\theta$ given the data is simply the probability of obtaining the data when parametrizing the model with parameters $\theta$:
 
 $$L(\theta \ \vert \ D) = P(X = D \ \vert \ \theta)$$
 
@@ -108,7 +114,7 @@ k(1-p) = (n-k)p \\
 $$
 
 
-### Continuous probability distributions
+### continuous probability distributions
 
 The definition is more complex for continuous variables (because $P(X = x; \theta) = 0$ as there are infinitely many values...). What is commonly done is to use the *density function* $f(x; \theta)$ and considering the probability of obtaining a value $x \in [x_j, x_j + h]$, where $x_j$ is our observed data point, and $h$ is small. Then:
 
@@ -120,7 +126,7 @@ Note that, contrary to probabilities, density values can take values greater tha
 
 Most classical statistical estimations are based on maximizing a likelihood function. For example, linear regression estimates of slope and intercept are based on minimizing the sum of squares, or more generally, the $\chi$-squared statistic. This amounts to maximizing the likelihood of the underlying model, which is based on the assumptions of normally distributed independent residuals.
 
-# Bayesian thinking
+## Bayesian thinking
 
 We will formalize the process of incorporation of prior knowledge into probabilistic inference by going back to the notion of conditional probability introduced in week 2. First, if you multiply both sides of the definition by $P(B)$, then we obtain the probability of the intersection of events $A$ and $B$:
 $$P(A \cap B) = P(A \ \vert \ B) P(B); \;  P(A \cap B) = P(B \ \vert \ A) P(A) $$
@@ -138,7 +144,7 @@ It may not be clear at first glance why this is useful: after all, we replaced s
 $$ P(Neg) =  P(Neg  \ \vert \  H) P(H) + P(Neg  \ \vert \  D)P(D)  = $$
 $$ = 0.8 \times 0.99 + 0.2 \times 0.01 = 0.794$$
 
-## Bayes' formula
+### Bayes' formula
 Take the first formula in this section, which expresses the probability $P(A \cap B)$ in two different ways.  Since the expressions are equal, we can combine them into one equation, and by dividing both sides by $P(B)$, we obtain what's known as *Bayes' formula*:
 $$ P(A \ \vert \ B) = \frac{P(B \ \vert \ A) P(A)}{P(B) }$$
 
@@ -152,7 +158,7 @@ Bayes' formula gives us the probability of $A$ given $B$ from probabilities of $
 ![xkcd on Bayes' formula](https://imgs.xkcd.com/comics/modified_bayes_theorem.png)
 
 
-## Positive predictive value
+### positive predictive value
 
 In reality, a doctor doesn't have the true information about the patient's health,  but rather the information from the test and hopefully some information about the population where she is working.  Let us assume we know the rate of false positives $P(Pos \ \vert \ H$) and the rate of false negatives $P(Neg  \ \vert \  D)$, as well as the prevalence of the disease in the whole population $P(D)$. Then we can use Bayes' formula to answer the practical question, if the test result is positive, what is the probability the patient is actually sick? This is called the *positive predictive value* of a test. The deep Bayesian fact is that one cannot make inferences about the health of the patient after the test without some prior knowledge, specifically the prevalence of the disease in the population:
 $$ P(D  \ \vert \  Pos) =  \frac{P(Pos \ \vert \ D)P(D)}{P(Pos \ \vert \ D) P(D) + P(Pos  \ \vert \  H)P(H)}$$
@@ -166,18 +172,29 @@ $$ P(H  \ \vert \  Neg)  = \frac{P(Neg \ \vert \ H)P(H)}{P(Neg \ \vert \ H) P(H)
 $$ = \frac{0.99 \times 0.98}{0.99 \times 0.98 + 0.01 \times 0.02} =  0.9998$$
 This is again because this disease is quite rare in this population, so a negative test result is almost guaranteed to be correct. In another population, where disease is more prevalent, this may not be the case.
 
-![Bayesian hypothesis testing tree with prior probability 0.1](./prob_tree_tikz1.png)
+![Bayesian hypothesis testing tree with prior probability 0.1](../images/prob_tree_tikz1.png)
 
-![Bayesian hypothesis testing tree with prior probability 0.01](./prob_tree_tikz2.png)
-
-
+![Bayesian hypothesis testing tree with prior probability 0.01](../images/prob_tree_tikz2.png)
 
 **Exercise:** Simulate medical testing by rolling dice for a rare disease (1/6 prevalence) and a common disease (1/2 prevalence), with both sensitivity and specificity of 5/6. Compare the positive predictive values for the two cases.
 
-## Reproducibility of studies
+
+### prosecutor's fallacy 
 
 ![Frequentists vs Bayesians](https://imgs.xkcd.com/comics/frequentists_vs_bayesians.png)
 
+The basic principle of Bayesian thinking is that one cannot interpret the reliability of a result, e.g. a hypothesis test, without factoring in the prior probability of it being true. This seems like a commonsensical concept, but it is often neglected when such results are interpreted in various contexts, which can lead to perilous mistakes.
+
+
+
+Here is a scenario called "the prosecutor's fallacy". Suppose that a defendant is accused of a crime, and physical evidence collected at the crime scene matches this person (e.g. a fingerprint or a DNA sample), but no other evidence exists to connect the defendant to the crime. The prosecutor calls an expert witness to testify that fewer than one out of a million randomly chosen people would match this sample. Therefore, she argues, there is overwhelming probability that the defendant is guilty and less than 1 in a million chance they are innocent.
+
+Do you spot the problem with the argument?
+
+It's the same fallacy as we saw in the medical testing scenario, or that is portrayed in the xkcd cartoon above. The prosecutor is conflating the probability of a match (positive result) given that the person is innocent, and the probability of the person being innocent, given the match. The probability of the former is one in a million, but we want to know the latter! And the latter depends on the prior probability of the person committing the crime, which should have been investigated by the detectives: did the defendant have a conflict with the victim or have they never met? did he have opportunity to commit the crime, or was he in a different city at the time? Without this information, it is impossible to decide whether it's more likely that the  DNA/fingerprint match is a false positive (in a country of 300 million, you can find 300 false matches if everyone is in the database!) or a true positive.
+
+
+### reproducibility in science
 
 In 2005 John Ioannidis published a paper entitled ["Why most published research findings are false"](https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.0020124). The paper, as you can see by its title, was intended to be provocative, but it is based solidly on the classic formula of Bayes. The motivation for the paper came from the observation that too often in modern science, big, splashy studies that were published could not be reproduced or verified by other researchers. What could be behind this epidemic of questionable scientific work?
 
@@ -187,7 +204,7 @@ Too often, a hypothesis is tested and if the resultant p-value is less than some
 
 Ioannidis performed basic calculations of the probability that a published study is true (that is, that a positive reported result is a true positive), and how it is affected by pre-study (prior) probability, number of conducted studies on the same hypothesis, and the level of bias. His prediction is that for fairly typical scenario (e.g. pre-study probability of 10%, ten groups working simultaneously, and a reasonable amount of bias) the probability that a published result is correct is less than 50%. He then followed up with another paper [2] that investigated 49 top-cited medical research publications over a decade, and looked at whether follow-up studies could replicate the results, and found that a very significant fraction of their findings could not be replicated or were found to have weaker effects by subsequent investigations.
 
-# Bayesian inference
+## Bayesian inference
 
 As an alternative to frequentist and maximum likelihood approaches to modeling biological data, Bayesian statistics has seen an impressive growth in recent years, due to the improved computational power. 
 
@@ -205,7 +222,7 @@ where:
 
 ### Example: capture-recapture
 
-There is a well-estabilished method in population ecology of estimating the size of a population by repeatedly capturing and tagging a number of individuals and later repeating the experiment to see how many are recaptured. Suppose that $n$ were captured initially and $k$ were recaptured later. We assume that the probability $p$ of recapturing an individual is the same for all individuals. Then our likelihood function is once again, based on the binomial distribution.
+There is a well-established method in population ecology of estimating the size of a population by repeatedly capturing and tagging a number of individuals and later repeating the experiment to see how many are recaptured. Suppose that $n$ were captured initially and $k$ were recaptured later. We assume that the probability $p$ of recapturing an individual is the same for all individuals. Then our likelihood function is once again, based on the binomial distribution.
 
 $$
 L(p \ \vert \ k, n) = \binom{n}{k}p^k (1-p)^{n-k}
@@ -267,7 +284,7 @@ The type of calculation performed above is feasible only for very simple models,
 
 Bayesian inference is used for many compex problems, including phylogenetic tree builiding [5].
 
-# Reading:
+## Reading:
 
 1. [Maximum likelihood estimation from scratch](https://www.r-bloggers.com/maximum-likelihood-estimation-from-scratch/)
 
