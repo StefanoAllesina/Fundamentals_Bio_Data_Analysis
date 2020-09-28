@@ -175,13 +175,13 @@ t.test(my_sample$sample1,
     #   Two Sample t-test
     # 
     # data:  my_sample$sample1 and my_sample$sample2
-    # t = 0.014001, df = 1998, p-value = 0.9888
+    # t = 0.52687, df = 1998, p-value = 0.5983
     # alternative hypothesis: true difference in means is not equal to 0
     # 95 percent confidence interval:
-    #  -0.08479241  0.08601177
+    #  -0.06490965  0.11259707
     # sample estimates:
     # mean of x mean of y 
-    # 0.9685846 0.9679749
+    #  1.050716  1.026872
 
 **Exercise:** Can you detect a “significant difference in means”
 (assuming ![\\alpha
@@ -228,7 +228,7 @@ sampled from the same distribution)?
 sum(pvalues < 0.05)
 ```
 
-    # [1] 124
+    # [1] 142
 
 You should get a number of “significant” tests that is about ![2500
 \\cdot 0.05

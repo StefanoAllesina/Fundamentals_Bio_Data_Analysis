@@ -1,11 +1,18 @@
-Week 4: Likelihood and Bayes
+Likelihood and Bayes
 ================
 **Dmitry Kondrashov & Stefano Allesina**
 Fundamentals of Biological Data Analysis – BIOS 26318
 
-# Likelihood and estimation
+## Goals
 
-## Likelihood vs. probability
+  - understand the difference between likelihood and probability
+  - maximum likelihood estimation
+  - calculate positive predictive value of a hypothesis test
+  - interpret the results of Bayesian inference
+
+## Likelihood and estimation
+
+### likelihood vs. probability
 
 In everyday English, probability and likelihood are synonymous. In
 probability and statistics, however, the two are distinct, although
@@ -78,7 +85,7 @@ it comes from an assumption we made in our heads, not from an outcome of
 a random process. This may seem to be an abstract, almost philosophical
 distinction, but how would you go about assigning probabilities to all
 the models one can come up with? Would they vary from person to person,
-because one may prefer to use the binomial random variablem, and another
+because one may prefer to use the binomial random variable, and another
 prefers Poisson? You see how this can get dicey if we think of these in
 terms of the traditional “frequency of outcomes” framework of
 probability.
@@ -97,7 +104,7 @@ probability, because there is a non-zero likelihood for any value
 could have any degree of unfairness\!) so adding up all of the
 likelihoods will results in infinity.
 
-## Maximizing likelihood
+### maximizing likelihood
 
 One of the most common applications of likelihood is to find the model
 or model parameters that give the highest likelihood based on the data,
@@ -118,13 +125,13 @@ will use in this discussion:
     "\\hat{\\theta}"): the maximum-likelihood estimates (m.l.e.) of the
     parameters
 
-### Discrete probability distributions
+### discrete probability distributions
 
 The simplest case is that of a probability distribution function that
 takes discrete values. Then, the likelihood of
 ![\\theta](https://latex.codecogs.com/png.latex?%5Ctheta "\\theta")
 given the data is simply the probability of obtaining the data when
-parameterizing the model with parameters
+parametrizing the model with parameters
 ![\\theta](https://latex.codecogs.com/png.latex?%5Ctheta "\\theta"):
 
   
@@ -195,7 +202,7 @@ k(1-p) = (n-k)p \\\\
 \\hat p = k/n
 ")  
 
-### Continuous probability distributions
+### continuous probability distributions
 
 The definition is more complex for continuous variables (because ![P(X =
 x; \\theta)
@@ -237,7 +244,7 @@ generally, the ![\\chi](https://latex.codecogs.com/png.latex?%5Cchi
 the underlying model, which is based on the assumptions of normally
 distributed independent residuals.
 
-# Bayesian thinking
+## Bayesian thinking
 
 We will formalize the process of incorporation of prior knowledge into
 probabilistic inference by going back to the notion of conditional
@@ -296,7 +303,7 @@ selected patient? Let us call ![P(H)
 = 0.794](https://latex.codecogs.com/png.latex?%20%3D%200.8%20%5Ctimes%200.99%20%2B%200.2%20%5Ctimes%200.01%20%3D%200.794
 " = 0.8 \\times 0.99 + 0.2 \\times 0.01 = 0.794")  
 
-## Bayes’ formula
+### Bayes’ formula
 
 Take the first formula in this section, which expresses the probability
 ![P(A \\cap
@@ -335,7 +342,7 @@ probabilities) on the probability of the hypothesis being true.
 ![xkcd on Bayes’
 formula](https://imgs.xkcd.com/comics/modified_bayes_theorem.png)
 
-## Positive predictive value
+### positive predictive value
 
 In reality, a doctor doesn’t have the true information about the
 patient’s health, but rather the information from the test and
@@ -388,20 +395,53 @@ a negative test result is almost guaranteed to be correct. In another
 population, where disease is more prevalent, this may not be the case.
 
 ![Bayesian hypothesis testing tree with prior probability
-0.1](./prob_tree_tikz1.png)
+0.1](../images/prob_tree_tikz1.png)
 
 ![Bayesian hypothesis testing tree with prior probability
-0.01](./prob_tree_tikz2.png)
+0.01](../images/prob_tree_tikz2.png)
 
 **Exercise:** Simulate medical testing by rolling dice for a rare
 disease (1/6 prevalence) and a common disease (1/2 prevalence), with
 both sensitivity and specificity of 5/6. Compare the positive predictive
 values for the two cases.
 
-## Reproducibility of studies
+### prosecutor’s fallacy
 
 ![Frequentists vs
 Bayesians](https://imgs.xkcd.com/comics/frequentists_vs_bayesians.png)
+
+The basic principle of Bayesian thinking is that one cannot interpret
+the reliability of a result, e.g. a hypothesis test, without factoring
+in the prior probability of it being true. This seems like a
+commonsensical concept, but it is often neglected when such results are
+interpreted in various contexts, which can lead to perilous mistakes.
+
+Here is a scenario called “the prosecutor’s fallacy”. Suppose that a
+defendant is accused of a crime, and physical evidence collected at the
+crime scene matches this person (e.g. a fingerprint or a DNA sample),
+but no other evidence exists to connect the defendant to the crime. The
+prosecutor calls an expert witness to testify that fewer than one out of
+a million randomly chosen people would match this sample. Therefore, she
+argues, there is overwhelming probability that the defendant is guilty
+and less than 1 in a million chance they are innocent.
+
+Do you spot the problem with the argument?
+
+It’s the same fallacy as we saw in the medical testing scenario, or that
+is portrayed in the xkcd cartoon above. The prosecutor is conflating the
+probability of a match (positive result) given that the person is
+innocent, and the probability of the person being innocent, given the
+match. The probability of the former is one in a million, but we want to
+know the latter\! And the latter depends on the prior probability of the
+person committing the crime, which should have been investigated by the
+detectives: did the defendant have a conflict with the victim or have
+they never met? did he have opportunity to commit the crime, or was he
+in a different city at the time? Without this information, it is
+impossible to decide whether it’s more likely that the DNA/fingerprint
+match is a false positive (in a country of 300 million, you can find 300
+false matches if everyone is in the database\!) or a true positive.
+
+### reproducibility in science
 
 In 2005 John Ioannidis published a paper entitled [“Why most published
 research findings are
@@ -447,7 +487,7 @@ found that a very significant fraction of their findings could not be
 replicated or were found to have weaker effects by subsequent
 investigations.
 
-# Bayesian inference
+## Bayesian inference
 
 As an alternative to frequentist and maximum likelihood approaches to
 modeling biological data, Bayesian statistics has seen an impressive
@@ -497,7 +537,7 @@ where:
 
 ### Example: capture-recapture
 
-There is a well-estabilished method in population ecology of estimating
+There is a well-established method in population ecology of estimating
 the size of a population by repeatedly capturing and tagging a number of
 individuals and later repeating the experiment to see how many are
 recaptured. Suppose that ![n](https://latex.codecogs.com/png.latex?n
@@ -632,7 +672,7 @@ parameters.
 Bayesian inference is used for many compex problems, including
 phylogenetic tree builiding \[5\].
 
-# Reading:
+## Reading:
 
 1.  [Maximum likelihood estimation from
     scratch](https://www.r-bloggers.com/maximum-likelihood-estimation-from-scratch/)

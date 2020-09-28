@@ -108,12 +108,12 @@ head(dt)
     # # A tibble: 6 x 10
     #   date       county state fips  cases deaths confirmed_cases confirmed_deaths
     #   <date>     <chr>  <chr> <chr> <dbl>  <dbl>           <dbl>            <dbl>
-    # 1 2020-09-20 Autau… Alab… 01001  1673     24            1510               23
-    # 2 2020-09-20 Baldw… Alab… 01003  5047     49            4866               45
-    # 3 2020-09-20 Barbo… Alab… 01005   830      7             640                7
-    # 4 2020-09-20 Bibb   Alab… 01007   628     10             599                6
-    # 5 2020-09-20 Blount Alab… 01009  1542     14            1192               14
-    # 6 2020-09-20 Bullo… Alab… 01011   585     14             562               13
+    # 1 2020-09-28 Autau… Alab… 01001  1773     25            1589               24
+    # 2 2020-09-28 Baldw… Alab… 01003  5526     50            5078               46
+    # 3 2020-09-28 Barbo… Alab… 01005   885      7             667                7
+    # 4 2020-09-28 Bibb   Alab… 01007   656     10             622                6
+    # 5 2020-09-28 Blount Alab… 01009  1617     15            1255               15
+    # 6 2020-09-28 Bullo… Alab… 01011   606     14             581               13
     # # … with 2 more variables: probable_cases <dbl>, probable_deaths <dbl>
 
 we are going to work with `date`, `county`, `state`, `cases` and

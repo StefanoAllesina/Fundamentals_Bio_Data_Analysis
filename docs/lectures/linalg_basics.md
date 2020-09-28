@@ -3,7 +3,7 @@ Brief overview of linear algebra
 **Dmitry Kondrashov & Stefano Allesina**
 Fundamentals of Biological Data Analysis – BIOS 26318
 
-# Goals
+## Goals
 
   - Solving linear equations
   - Best-fit line through multiple data points
@@ -18,7 +18,7 @@ library(tidyverse) # our friend the tidyverse
 library(ggfortify) 
 ```
 
-# Solving multivariate linear equations
+## Solving multivariate linear equations
 
 Linear algebra is intimately tied to linear equations, that is, to
 equations where all variables are multiplied by constant terms and added
@@ -239,7 +239,7 @@ only two unknowns. We need to find
 ![b](https://latex.codecogs.com/png.latex?b "b") such that they are a
 “best fit” to the data, not the perfect solution.
 
-## Least-squares line
+### least-squares line
 
 Let us write the equation in matrix form as follows:
 
@@ -363,7 +363,7 @@ pl + geom_smooth(method = "lm") # lm stands for linear model
 
 <img src="linalg_basics_files/figure-gfm/unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
 
-# Linearity and vector spaces
+## Linearity and vector spaces
 
 We have dealt with linear models in various guises, so now would be a
 good time to define properly what linearity means. The word comes from
@@ -487,7 +487,7 @@ number line can also be thought of as the vector space
 ![\\mathbb{R}^1](https://latex.codecogs.com/png.latex?%5Cmathbb%7BR%7D%5E1
 "\\mathbb{R}^1").
 
-## Linear independence and basis vectors
+### linear independence and basis vectors
 
 How can we describe a vector space without trying to list all of its
 elements? We know that one can generate an element by taking linear
@@ -558,7 +558,7 @@ coordinates for each basis:
 \\vec r_{C} = (2,1); \\; \\vec r_D = (1.5, -0.5)
 ")  
 
-## Projections and changes of basis
+### projections and changes of basis
 
 The representation of an arbitrary vector (point) in a vector space as a
 linear combination of a given basis set is called the  of the point in
@@ -664,9 +664,9 @@ norm squared, and multiplied by the vector that one wants to express in
 the new basis. The resulting vector contains the coordinates in the new
 basis.
 
-# Matrices as linear operators
+## Matrices as linear operators
 
-## matrices transform vectors
+### matrices transform vectors
 
 In this section we will learn to characterize square matrices by finding
 special numbers and vectors associated with them. At the core of this
@@ -722,7 +722,7 @@ Generally, a square matrix has an associated set of vectors for which
 multiplication by the matrix is equivalent to multiplication by a
 constant. This can be written down as a definition:
 
-An *eigenvector* of a square matrix
+**Definition.** An *eigenvector* of a square matrix
 ![A](https://latex.codecogs.com/png.latex?A "A") is a vector ![\\vec
 v](https://latex.codecogs.com/png.latex?%5Cvec%20v "\\vec v") for which
 matrix multiplication by ![A](https://latex.codecogs.com/png.latex?A
@@ -731,7 +731,9 @@ matrix multiplication by ![A](https://latex.codecogs.com/png.latex?A
 is called its *eigenvalue* of
 ![A](https://latex.codecogs.com/png.latex?A "A") corresponding the the
 eigenvector ![\\vec v](https://latex.codecogs.com/png.latex?%5Cvec%20v
-"\\vec v"). The relationship is summarized in the following equation:   
+"\\vec v"). The relationship is summarized in the following equation:
+
+  
 ![
 A \\times \\vec v = \\lambda \\vec v
 ](https://latex.codecogs.com/png.latex?%0AA%20%20%5Ctimes%20%20%5Cvec%20v%20%3D%20%5Clambda%20%5Cvec%20v%0A
@@ -777,10 +779,14 @@ then any scalar multiple ![c \\vec
 v](https://latex.codecogs.com/png.latex?c%20%5Cvec%20v "c \\vec v") is
 also an eigenvector with the same eigenvalue. The following demonstrates
 this algebraically:   
-![A \\times (c \\vec v) = c A \\times \\vec v = c \\lambda \\vec v =
-\\lambda (c \\vec
-v)](https://latex.codecogs.com/png.latex?A%20%20%5Ctimes%20%20%28c%20%5Cvec%20v%29%20%3D%20c%20A%20%20%5Ctimes%20%20%5Cvec%20v%20%3D%20c%20%5Clambda%20%5Cvec%20v%20%3D%20%20%5Clambda%20%28c%20%5Cvec%20v%29
-"A  \\times  (c \\vec v) = c A  \\times  \\vec v = c \\lambda \\vec v =  \\lambda (c \\vec v)")  
+![
+A \\times (c \\vec v) = c A \\times \\vec v = c \\lambda \\vec v =
+\\lambda (c \\vec v)
+](https://latex.codecogs.com/png.latex?%0AA%20%20%5Ctimes%20%20%28c%20%5Cvec%20v%29%20%3D%20c%20A%20%20%5Ctimes%20%20%5Cvec%20v%20%3D%20c%20%5Clambda%20%5Cvec%20v%20%3D%20%20%5Clambda%20%28c%20%5Cvec%20v%29%0A
+"
+A  \\times  (c \\vec v) = c A  \\times  \\vec v = c \\lambda \\vec v =  \\lambda (c \\vec v)
+")  
+
 This shows that when the vector ![c \\vec
 v](https://latex.codecogs.com/png.latex?c%20%5Cvec%20v "c \\vec v") is
 multiplied by the matrix ![A](https://latex.codecogs.com/png.latex?A
@@ -797,10 +803,17 @@ by scalar multiplication** that are all essentially the same
 eigenvector. Another way to represent this, if the eigenvector is real,
 is that an eigenvector as a **direction that remains unchanged by
 multiplication by the matrix**, such as direction of the vector
-![v](https://latex.codecogs.com/png.latex?v "v") in figure . As
+![v](https://latex.codecogs.com/png.latex?v "v") in the figure below. As
 mentioned above, this is true only for real eigenvalues and
 eigenvectors, since complex eigenvectors cannot be used to define a
 direction in a real space.
+
+![Illustration of the geometry of a matrix
+![A](https://latex.codecogs.com/png.latex?A "A") multiplying its
+eigenvector ![v](https://latex.codecogs.com/png.latex?v "v"), resulting
+in a vector in the same direction ![\\lambda
+v](https://latex.codecogs.com/png.latex?%5Clambda%20v
+"\\lambda v")](../images/Eigenvalue_equation.png)
 
 To summarize, eigenvalues and eigenvectors of a matrix are a set of
 numbers and a set of vectors (up to scalar multiple) that describe the
@@ -814,7 +827,7 @@ eigenvectors and eigenvalues defines a matrix
 ![A](https://latex.codecogs.com/png.latex?A "A"), which is why an older
 name for them is characteristic vectors and values.
 
-### Calculating eigenvalues
+### calculating eigenvalues
 
 Finding the eigenvalues and eigenvectors analytically, that is on paper,
 is quite laborious even for 3 by 3 or 4 by 4 matrices and for larger
@@ -823,7 +836,9 @@ outsourced to a computer, and MATLAB has a number of functions for this
 purpose. Nevertheless, it is useful to go through the process in 2
 dimensions in order to gain an understanding of what is involved. From
 the definition of eigenvalues and eigenvectors, the condition can be
-written in terms of the four elements of a 2 by 2 matrix:   
+written in terms of the four elements of a 2 by 2 matrix:
+
+  
 ![
 \\left(\\begin{array}{cc}a & b \\\\c &
 d\\end{array}\\right)\\left(\\begin{array}{c}v\_1 \\\\ v\_2
@@ -852,10 +867,15 @@ Then we substitute this into the second equation and get:
 Since ![v\_2](https://latex.codecogs.com/png.latex?v_2 "v_2") multiplies
 both terms, and is not necessarily zero, we require that its
 multiplicative factor be zero. Doing a little algebra, we obtain the
-following, known as the *characteristic equation* of the matrix:   
-![-bc +(a-\\lambda)(d-\\lambda) = \\lambda^2-(a+d)\\lambda +ad-bc
-= 0](https://latex.codecogs.com/png.latex?-bc%20%2B%28a-%5Clambda%29%28d-%5Clambda%29%20%3D%20%5Clambda%5E2-%28a%2Bd%29%5Clambda%20%2Bad-bc%20%3D%200
-"-bc +(a-\\lambda)(d-\\lambda) = \\lambda^2-(a+d)\\lambda +ad-bc = 0")  
+following, known as the *characteristic equation* of the matrix:
+
+  
+![
+\-bc +(a-\\lambda)(d-\\lambda) = \\lambda^2-(a+d)\\lambda +ad-bc = 0
+](https://latex.codecogs.com/png.latex?%0A-bc%20%2B%28a-%5Clambda%29%28d-%5Clambda%29%20%3D%20%5Clambda%5E2-%28a%2Bd%29%5Clambda%20%2Bad-bc%20%3D%200%0A
+"
+-bc +(a-\\lambda)(d-\\lambda) = \\lambda^2-(a+d)\\lambda +ad-bc = 0
+")  
 This equation can be simplified by using two quantities we defined at
 the beginning of the section: the sum of the diagonal elements called
 the trace ![\\tau =
@@ -865,11 +885,15 @@ ad-bc](https://latex.codecogs.com/png.latex?%5CDelta%20%3D%20ad-bc
 "\\Delta = ad-bc"). The quadratic equation has two solutions, dependent
 solely on ![\\tau](https://latex.codecogs.com/png.latex?%5Ctau "\\tau")
 and ![\\Delta](https://latex.codecogs.com/png.latex?%5CDelta "\\Delta"):
+
   
-![\\lambda = \\frac{\\tau \\pm \\sqrt{\\tau^2-4\\Delta}}{2}
-\\label{eq:2D\_eig}](https://latex.codecogs.com/png.latex?%5Clambda%20%3D%20%5Cfrac%7B%5Ctau%20%5Cpm%20%5Csqrt%7B%5Ctau%5E2-4%5CDelta%7D%7D%7B2%7D%0A%5Clabel%7Beq%3A2D_eig%7D
-"\\lambda = \\frac{\\tau \\pm \\sqrt{\\tau^2-4\\Delta}}{2}
-\\label{eq:2D_eig}")  
+![
+\\lambda = \\frac{\\tau \\pm \\sqrt{\\tau^2-4\\Delta}}{2}
+](https://latex.codecogs.com/png.latex?%0A%5Clambda%20%3D%20%5Cfrac%7B%5Ctau%20%5Cpm%20%5Csqrt%7B%5Ctau%5E2-4%5CDelta%7D%7D%7B2%7D%0A
+"
+\\lambda = \\frac{\\tau \\pm \\sqrt{\\tau^2-4\\Delta}}{2}
+")  
+
 This is the general expression for a 2 by 2 matrix, showing there are
 two possible eigenvalues. Note that if
 ![\\tau^2-4\\Delta\>0](https://latex.codecogs.com/png.latex?%5Ctau%5E2-4%5CDelta%3E0
@@ -882,19 +906,31 @@ parts), and if
 known as degenerate, because two eigenvectors share the same eigenvalue.
 
 **Example.** Let us take the same matrix we looked at in the previous
-subsection:   
-![A = \\left(\\begin{array}{cc}2 & 1
-\\\\ 2& 3\\end{array}\\right)](https://latex.codecogs.com/png.latex?A%20%3D%20%5Cleft%28%5Cbegin%7Barray%7D%7Bcc%7D2%20%26%201%20%5C%5C%202%26%203%5Cend%7Barray%7D%5Cright%29
-"A = \\left(\\begin{array}{cc}2 & 1 \\\\ 2& 3\\end{array}\\right)")  
+subsection:
+
+  
+![
+A = \\left(\\begin{array}{cc}2 & 1 \\\\ 2& 3\\end{array}\\right)
+](https://latex.codecogs.com/png.latex?%0AA%20%3D%20%5Cleft%28%5Cbegin%7Barray%7D%7Bcc%7D2%20%26%201%20%5C%5C%202%26%203%5Cend%7Barray%7D%5Cright%29%0A
+"
+A = \\left(\\begin{array}{cc}2 & 1 \\\\ 2& 3\\end{array}\\right)
+")  
+
 The trace of this matrix is ![\\tau = 2+3
 =5](https://latex.codecogs.com/png.latex?%5Ctau%20%3D%202%2B3%20%3D5
 "\\tau = 2+3 =5") and the determinant is ![\\Delta = 6 - 2
 = 4](https://latex.codecogs.com/png.latex?%5CDelta%20%3D%206%20-%202%20%3D%204
-"\\Delta = 6 - 2 = 4"). Then by our formula, the eigenvalues are:   
-![\\lambda = \\frac{5 \\pm \\sqrt{5^2-4 \\times 4}}{2} = \\frac{5
-\\pm 3}{2}
-= 4, 1](https://latex.codecogs.com/png.latex?%5Clambda%20%3D%20%5Cfrac%7B5%20%5Cpm%20%5Csqrt%7B5%5E2-4%20%5Ctimes%204%7D%7D%7B2%7D%20%20%3D%20%20%5Cfrac%7B5%20%5Cpm%203%7D%7B2%7D%20%20%3D%204%2C%201
-"\\lambda = \\frac{5 \\pm \\sqrt{5^2-4 \\times 4}}{2}  =  \\frac{5 \\pm 3}{2}  = 4, 1")  
+"\\Delta = 6 - 2 = 4"). Then by our formula, the eigenvalues are:
+
+  
+![
+\\lambda = \\frac{5 \\pm \\sqrt{5^2-4 \\times 4}}{2} = \\frac{5
+\\pm 3}{2} = 4, 1
+](https://latex.codecogs.com/png.latex?%0A%5Clambda%20%3D%20%5Cfrac%7B5%20%5Cpm%20%5Csqrt%7B5%5E2-4%20%5Ctimes%204%7D%7D%7B2%7D%20%20%3D%20%20%5Cfrac%7B5%20%5Cpm%203%7D%7B2%7D%20%20%3D%204%2C%201%0A
+"
+\\lambda = \\frac{5 \\pm \\sqrt{5^2-4 \\times 4}}{2}  =  \\frac{5 \\pm 3}{2}  = 4, 1
+")  
+
 These are the multiples we found in the example above, as expected. Of
 course `R` has functions to calculate this instead of doing this by
 hand:
